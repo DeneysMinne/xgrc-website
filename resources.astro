@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import { resources } from '../data/site.js';
+---
+
+<Base title="Resources | XGRC® Software" description="Booklets, brochures, infographics and release notes for the XGRC platform and its solutions.">
+  <section class="page-head">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>Resources</span>
+      <h1>Guides, briefs and product detail.</h1>
+      <p class="lede">Downloadable material across the suite. Booklets, brochures, one-page infographics, and the platform release log.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid cols-2">
+        {resources.map((r) => (
+          <div class="card res">
+            <span class="tag">{r.type}</span>
+            <h3>{r.title}</h3>
+            <p>{r.note}</p>
+            <a href="#" class="link-arrow">Download →</a>
+          </div>
+        ))}
+      </div>
+      <p class="note">Hook downloads up to your file store or CMS. Filenames from the current site, e.g. the SHEQX booklet PDF, can be dropped into <code>/public/assets</code>.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 18px; }
+  .res .link-arrow { display: inline-block; margin-top: 14px; }
+  .note { font-size: 0.85rem; color: var(--faint); margin-top: 28px; }
+  code { font-family: var(--font-mono); color: var(--cyan); font-size: 0.85em; }
+</style>

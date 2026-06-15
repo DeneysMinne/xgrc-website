@@ -1,0 +1,106 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import { pillars, solutions, customerGroups, brand } from '../data/site.js';
+const previewSolutions = solutions.slice(0, 6);
+const logoNames = customerGroups.flatMap((g) => g.names).slice(0, 18);
+---
+
+<Base title="XGRC Software® — Driving Compliance® in your organisation">
+  <Hero />
+
+  <!-- Problem + pillars -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>The problem we solve</span>
+        <h2>Governance, risk, compliance and cyber security still operate in silos.</h2>
+        <p class="lede">Decision-makers face critical blind spots. We unify them into one smart, scalable, and intuitive platform built on a single auditable foundation.</p>
+      </div>
+      <div class="grid cols-4">
+        {pillars.map((p) => (
+          <div class="card">
+            <span class="tag">{p.name}</span>
+            <p>{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- AI / MAIA -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="card maia">
+        <div>
+          <span class="eyebrow"><span class="dot"></span>AI-Enabled Governance Assistance</span>
+          <h2>The Intelligence of Governance.</h2>
+          <p class="lede">MAIA enhances interaction with governance records, policies and controls through governed AI capability embedded within the XGRC® platform. Faster insight generation, supporting better decisions.</p>
+          <a href="/solutions" class="link-arrow">Explore MAIA and the suite →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions preview -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>One platform, many lenses</span>
+        <h2>Specialist solutions, built on one foundation.</h2>
+        <p class="lede">Adopt the solution that addresses your most pressing challenge today. Combine more over time, without migrating data or rebuilding processes.</p>
+      </div>
+      <div class="grid cols-3">
+        {previewSolutions.map((s) => (
+          <a href={`/solutions#${s.slug}`} class={`card ${s.partner ? 'card--partner' : ''}`}>
+            <span class="tag">{s.tag}</span>
+            <h3>{s.name}</h3>
+            <p>{s.blurb}</p>
+          </a>
+        ))}
+      </div>
+      <div style="margin-top:28px;">
+        <a href="/solutions" class="btn btn-ghost">See all solutions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customers -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow"><span class="dot"></span>Trusted by industry leaders</span></div>
+      <div class="logos">
+        {logoNames.map((n) => (<span class="logo-chip">{n}</span>))}
+      </div>
+      <a href="/use-cases" class="link-arrow" style="display:inline-block;margin-top:22px;">See how organisations use XGRC® →</a>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="card cta">
+        <h2>Let's work together.</h2>
+        <p class="lede">Whether you are addressing a single risk domain or coordinating assurance across the enterprise, XGRC® Software gives you the foundation to move forward with confidence.</p>
+        <div class="cta-actions">
+          <a href={`mailto:${brand.email}`} class="btn btn-primary">Request a live demo</a>
+          <a href="/about" class="btn btn-ghost">About XGRC</a>
+        </div>
+        <p class="contactline">{brand.email} · {brand.phone}</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .maia { background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02)); border-color: var(--line-strong); }
+  .maia h2 { margin-bottom: 0.4em; }
+  .maia .lede { margin-bottom: 18px; }
+  .logos { display: flex; flex-wrap: wrap; gap: 12px; }
+  .logo-chip { font-family: var(--font-mono); font-size: 12px; color: var(--mute); border: 1px solid var(--line); border-radius: 100px; padding: 9px 16px; background: var(--panel); transition: 0.25s; }
+  .logo-chip:hover { color: var(--ink); border-color: var(--line-strong); }
+  .cta { text-align: center; padding: clamp(36px, 6vw, 64px); background: linear-gradient(160deg, rgba(47,232,138,0.07), rgba(48,226,244,0.03)); border-color: var(--line-strong); }
+  .cta .lede { margin: 12px auto 26px; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .contactline { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
+</style>
