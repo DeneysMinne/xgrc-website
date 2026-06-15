@@ -1,0 +1,88 @@
+---
+import { nav, brand } from '../data/site.js';
+const path = Astro.url.pathname;
+const isActive = (href) => href === '/' ? path === '/' : path.startsWith(href);
+---
+
+<header class="site-header" id="siteHeader">
+  <div class="container bar">
+    <a href="/" class="brand" aria-label={brand.name}>
+      <span class="mark" aria-hidden="true"></span>
+      <span class="brand-text"><span class="x">X</span><b>GRC</b> Software</span>
+    </a>
+
+    <nav class="primary" aria-label="Primary">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class={`nav-link ${isActive(item.href) && !item.external ? 'is-active' : ''}`}
+          {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >{item.label}</a>
+      ))}
+    </nav>
+
+    <a href="/#contact" class="btn btn-primary nav-cta">Request demo</a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+    {nav.map((item) => (
+      <a href={item.href} {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{item.label}</a>
+    ))}
+    <a href="/#contact" class="btn btn-primary">Request demo</a>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(6, 15, 28, 0.55);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    transition: background 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  }
+  .site-header.scrolled { background: rgba(6, 15, 28, 0.9); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); }
+  .bar { display: flex; align-items: center; gap: 18px; height: 74px; }
+
+  .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink); font-family: var(--font-display); font-weight: 700; font-size: 17px; margin-right: auto; }
+  .mark { width: 26px; height: 26px; border-radius: 7px; position: relative; background: conic-gradient(from 210deg, var(--deep), var(--cyan), var(--blue), var(--deep)); box-shadow: 0 0 18px rgba(48, 226, 244, 0.45); }
+  .mark::after { content: ""; position: absolute; inset: 5px; border-radius: 3px; background: var(--void); }
+  .brand-text .x { color: var(--cyan); }
+  .brand-text b { font-weight: 800; }
+
+  .primary { display: flex; gap: 20px; align-items: center; }
+  .nav-link { color: var(--mute); text-decoration: none; font-size: 13.5px; font-weight: 500; transition: color 0.2s; white-space: nowrap; }
+  .nav-link:hover, .nav-link.is-active { color: var(--ink); }
+  .nav-link.is-active { color: var(--cyan); }
+
+  .nav-cta { padding: 9px 17px; font-size: 13.5px; }
+
+  .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 8px; }
+  .menu-toggle span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: 0.25s; }
+
+  .mobile-menu { display: none; flex-direction: column; gap: 4px; padding: 12px clamp(20px, 4vw, 40px) 22px; border-top: 1px solid var(--line); }
+  .mobile-menu a { padding: 11px 0; color: var(--mute); text-decoration: none; font-size: 15px; }
+  .mobile-menu a:hover { color: var(--ink); }
+  .mobile-menu .btn { margin-top: 10px; justify-content: center; }
+  .site-header.open .mobile-menu { display: flex; }
+
+  @media (max-width: 1024px) {
+    .primary, .nav-cta { display: none; }
+    .menu-toggle { display: flex; }
+  }
+</style>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  const toggle = document.getElementById('menuToggle');
+  window.addEventListener('scroll', () => {
+    header?.classList.toggle('scrolled', window.scrollY > 40);
+  });
+  toggle?.addEventListener('click', () => {
+    const open = header?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+</script>

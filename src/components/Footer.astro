@@ -1,0 +1,55 @@
+---
+import { offices, brand, nav } from '../data/site.js';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="top">
+      <div class="col brandcol">
+        <div class="brand"><span class="mark" aria-hidden="true"></span><span><span class="x">X</span><b>GRC</b> Software</span></div>
+        <p class="promise">{brand.tagline}</p>
+        <p class="promise">{brand.promise}.</p>
+        <p class="iso">ISO 27001:2022 certified · Built by Strategix</p>
+      </div>
+
+      <div class="col">
+        <h4>Explore</h4>
+        {nav.map((item) => (
+          <a href={item.href} {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{item.label}</a>
+        ))}
+      </div>
+
+      {offices.map((o) => (
+        <div class="col">
+          <h4>{o.city}</h4>
+          <p class="addr">{o.address}</p>
+          <p class="addr">{o.phone}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="bottom">
+      <span>© {year} {brand.name}. All rights reserved.</span>
+      <span>{brand.email} · {brand.phone}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer { border-top: 1px solid var(--line); background: rgba(6, 15, 28, 0.6); padding: clamp(48px, 7vw, 80px) 0 28px; margin-top: 40px; }
+  .top { display: grid; grid-template-columns: 1.6fr repeat(4, 1fr); gap: 32px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 16px; margin-bottom: 14px; }
+  .mark { width: 24px; height: 24px; border-radius: 6px; position: relative; background: conic-gradient(from 210deg, var(--deep), var(--cyan), var(--blue), var(--deep)); }
+  .mark::after { content: ""; position: absolute; inset: 5px; border-radius: 2px; background: var(--void); }
+  .x { color: var(--cyan); } b { font-weight: 800; }
+  .promise { font-size: 0.9rem; color: var(--mute); margin-bottom: 4px; max-width: 34ch; }
+  .iso { font-family: var(--font-mono); font-size: 11px; color: var(--faint); margin-top: 12px; }
+  h4 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; font-weight: 500; }
+  .col a { display: block; color: var(--mute); text-decoration: none; font-size: 0.9rem; padding: 4px 0; }
+  .col a:hover { color: var(--ink); }
+  .addr { font-size: 0.82rem; color: var(--mute); margin-bottom: 8px; line-height: 1.5; }
+  .bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--line); margin-top: 40px; padding-top: 22px; font-size: 0.8rem; color: var(--faint); }
+  @media (max-width: 900px) { .top { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .top { grid-template-columns: 1fr; } }
+</style>
