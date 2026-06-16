@@ -1,0 +1,190 @@
+---
+// Single source of truth convergence visual.
+// Drops into the homepage "Problem we solve" section, below the section heading.
+// Edit the words here. Layout arranges itself, so you never touch positions.
+const disciplines = ['Risk', 'Compliance', 'Cyber', 'ESG', 'SHEQ', 'Assurance'];
+const caption = 'One source of truth';
+
+// Resting position of each label along the foundation line, and the scattered
+// start it animates in from. Index order matches `disciplines`.
+const lefts = ['8%', '25%', '42%', '58%', '75%', '92%'];
+const scatter = [
+  { dx: -130, dy: -70, rot: -9 },
+  { dx: 110, dy: -95, rot: 7 },
+  { dx: -80, dy: 60, rot: 5 },
+  { dx: 150, dy: 35, rot: -6 },
+  { dx: -160, dy: -25, rot: 10 },
+  { dx: 70, dy: 85, rot: -8 },
+];
+---
+
+<div class="ssot" data-ssot>
+  <div class="ssot-stage">
+    {disciplines.map((d, i) => (
+      <span
+        class="ssot-chip"
+        style={`left:${lefts[i]};--dx:${scatter[i].dx}px;--dy:${scatter[i].dy}px;--rot:${scatter[i].rot}deg;--d:${(i * 0.05).toFixed(2)}s`}
+      >{d}</span>
+    ))}
+
+    <div class="ssot-railwrap" aria-hidden="true">
+      <div class="ssot-rail"></div>
+      {lefts.map((l) => <span class="ssot-dot" style={`left:${l}`}></span>)}
+      <span class="ssot-hub"></span>
+      <span class="ssot-pulse"></span>
+    </div>
+
+    <p class="ssot-cap">{caption}</p>
+  </div>
+</div>
+
+<style>
+  .ssot { width: 100%; }
+  .ssot-stage { position: relative; height: 280px; margin: 8px auto 0; max-width: 760px; }
+
+  .ssot-chip {
+    position: absolute;
+    top: 64px;
+    transform: translateX(-50%);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #d6ecf4;
+    background: rgba(48, 226, 244, 0.06);
+    border: 1px solid rgba(48, 226, 244, 0.28);
+    padding: 9px 16px;
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) var(--d), opacity 0.55s ease var(--d);
+  }
+
+  .ssot-railwrap { position: absolute; left: 0; right: 0; top: 196px; height: 2px; }
+  .ssot-rail {
+    position: absolute;
+    left: 6%;
+    width: 88%;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(48, 226, 244, 0.15), #30e2f4 45%, #30e2f4 55%, rgba(48, 226, 244, 0.15));
+    box-shadow: 0 0 14px rgba(48, 226, 244, 0.5);
+    transform-origin: left center;
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+  }
+  .ssot-dot {
+    position: absolute;
+    top: -4px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #30e2f4;
+    box-shadow: 0 0 10px rgba(48, 226, 244, 0.8);
+    transform: translateX(-50%) scale(1);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .ssot-hub {
+    position: absolute;
+    left: 50%;
+    top: -9px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #060f1c;
+    border: 2px solid #30e2f4;
+    box-shadow: 0 0 16px rgba(48, 226, 244, 0.7);
+    transform: translateX(-50%) scale(1);
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .ssot-pulse {
+    position: absolute;
+    top: -7px;
+    left: 0;
+    width: 80px;
+    height: 14px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(48, 226, 244, 0.7), transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .ssot-cap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 226px;
+    margin: 0;
+    text-align: center;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: #30e2f4;
+    transition: opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s;
+  }
+
+  /* Scattered start state, applied by script just before the one-time play. */
+  .ssot-stage.is-pre .ssot-chip { transform: translate(calc(-50% + var(--dx)), var(--dy)) rotate(var(--rot)); opacity: 0; }
+  .ssot-stage.is-pre .ssot-rail { transform: scaleX(0); }
+  .ssot-stage.is-pre .ssot-dot,
+  .ssot-stage.is-pre .ssot-hub { opacity: 0; transform: translateX(-50%) scale(0.2); }
+  .ssot-stage.is-pre .ssot-cap { opacity: 0; transform: translateY(8px); }
+
+  .ssot-stage.is-instant .ssot-chip,
+  .ssot-stage.is-instant .ssot-rail,
+  .ssot-stage.is-instant .ssot-dot,
+  .ssot-stage.is-instant .ssot-hub,
+  .ssot-stage.is-instant .ssot-cap { transition: none; }
+
+  .ssot-stage.is-go .ssot-pulse { animation: ssot-pulse 1s ease 0.55s 1 both; }
+  @keyframes ssot-pulse {
+    0% { left: 0%; opacity: 0; }
+    18% { opacity: 1; }
+    100% { left: 94%; opacity: 0; }
+  }
+
+  /* Mobile: labels stack onto a vertical spine, no travelling pulse. */
+  @media (max-width: 640px) {
+    .ssot-stage { height: auto; min-height: 360px; padding: 16px 0; }
+    .ssot-chip { position: static; display: block; width: max-content; margin: 0 auto 14px; transform: none; }
+    .ssot-stage.is-pre .ssot-chip { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); }
+    .ssot-railwrap { top: 12px; bottom: 44px; left: 50%; right: auto; width: 2px; height: auto; }
+    .ssot-rail { left: 0; top: 0; width: 2px; height: 100%; transform-origin: top center; background: linear-gradient(180deg, rgba(48, 226, 244, 0.15), #30e2f4 45%, #30e2f4 55%, rgba(48, 226, 244, 0.15)); }
+    .ssot-stage.is-pre .ssot-rail { transform: scaleY(0); }
+    .ssot-dot, .ssot-pulse { display: none; }
+    .ssot-hub { left: 0; top: 50%; transform: translate(-50%, -50%) scale(1); }
+    .ssot-stage.is-pre .ssot-hub { transform: translate(-50%, -50%) scale(0.2); }
+    .ssot-cap { position: static; margin-top: 10px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ssot-chip, .ssot-rail, .ssot-dot, .ssot-hub, .ssot-cap { transition: none !important; }
+    .ssot-pulse { animation: none !important; }
+  }
+</style>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function play(stage) {
+    stage.classList.remove('is-go');
+    stage.classList.add('is-instant', 'is-pre');
+    void stage.offsetWidth;
+    stage.classList.remove('is-instant');
+    requestAnimationFrame(() => {
+      stage.classList.remove('is-pre');
+      void stage.offsetWidth;
+      stage.classList.add('is-go');
+    });
+  }
+
+  document.querySelectorAll('[data-ssot] .ssot-stage').forEach((stage) => {
+    if (reduce) return; // resolved baseline already shows; no motion
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          play(stage);
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(stage);
+  });
+</script>
