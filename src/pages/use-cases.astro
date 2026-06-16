@@ -1,8 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
 import { customerGroups, caseStudies } from '../data/site.js';
----
 
+const useCases = [
+  { slug: 'internal-audit', tag: 'Audit & assurance', name: 'Internal Audit', blurb: 'Plan, execute and manage internal audits in one place, linked to risks, controls and corrective actions across the full audit lifecycle.', live: true },
+  { slug: 'risk-management', tag: 'Risk', name: 'Risk Management', blurb: 'Identify, assess and treat enterprise risk with a consistent framework aligned to ISO 31000 and COSO.', live: false },
+  { slug: 'esg', tag: 'Sustainability', name: 'ESG', blurb: 'Measure, track and report ESG performance with auditable evidence and consistent disclosure.', live: false },
+  { slug: 'sheqx', tag: 'SHEQ', name: 'SHEQX\u00ae', blurb: 'Manage safety, health, environment and quality on one platform aligned to ISO 9001, 14001 and 45001.', live: false },
+  { slug: 'compliance', tag: 'Compliance', name: 'Compliance', blurb: 'Bring obligations, controls and evidence together for continuous, audit-ready compliance.', live: false }
+];
+---
 <Base title="Use Cases | XGRC® Software" description="How organisations across mining, manufacturing, logistics and more use XGRC to drive compliance.">
   <section class="page-head">
     <div class="container">
@@ -11,7 +18,25 @@ import { customerGroups, caseStudies } from '../data/site.js';
       <p class="lede">From mining and steel to food, logistics and finance, organisations use XGRC® to unify oversight and drive compliance across their operations.</p>
     </div>
   </section>
-
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>By discipline</span>
+        <h2>Explore how XGRC® is used in practice.</h2>
+        <p class="lede">Structured, solution-focused guides showing how XGRC® addresses a specific discipline, from planning through to assurance.</p>
+      </div>
+      <div class="grid cols-3">
+        {useCases.filter((u) => u.live).map((u) => (
+          <a class="card uc-card" href={`/use-cases/${u.slug}/`}>
+            <span class="tag">{u.tag}</span>
+            <h3>{u.name}</h3>
+            <p>{u.blurb}</p>
+            <span class="link-arrow">View use case &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
   <section class="section">
     <div class="container">
       <div class="section-head">
@@ -29,7 +54,6 @@ import { customerGroups, caseStudies } from '../data/site.js';
       </div>
     </div>
   </section>
-
   <section class="section--tight">
     <div class="container">
       <div class="section-head">
@@ -49,10 +73,11 @@ import { customerGroups, caseStudies } from '../data/site.js';
     </div>
   </section>
 </Base>
-
 <style>
   .page-head { padding: 130px 0 0; }
   .page-head h1 { margin: 8px 0 18px; }
+  .uc-card { text-decoration: none; display: flex; flex-direction: column; }
+  .uc-card .link-arrow { margin-top: auto; padding-top: 16px; }
   .sectors { display: flex; flex-direction: column; gap: 28px; }
   .sector { border-top: 1px solid var(--line); padding-top: 22px; }
   .sector h3 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; font-weight: 500; }
