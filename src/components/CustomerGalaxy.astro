@@ -1,0 +1,502 @@
+---
+const logos = [
+  { file: 'INTERWASTE.jpg',        name: 'Interwaste' },
+  { file: 'SCAW.png',              name: 'SCAW' },
+  { file: 'ARM.jpg',               name: 'ARM' },
+  { file: 'RCL-FOODS.jpg',         name: 'RCL Foods' },
+  { file: 'Toyota.png',            name: 'Toyota' },
+  { file: 'SPAR.png',              name: 'SPAR' },
+  { file: 'KAP.png',               name: 'KAP' },
+  { file: 'AFGRI.jpg',             name: 'AFGRI' },
+  { file: 'TSEBO.jpg',             name: 'Tsebo' },
+  { file: 'UNITRANS.png',          name: 'Unitrans' },
+  { file: 'Fraser-Alexander.jpg',  name: 'Fraser Alexander' },
+  { file: 'SERVEST.jpg',           name: 'Servest' },
+  { file: 'SUPERCARE.jpg',         name: 'Supercare' },
+  { file: 'HELUKABEL.jpg',         name: 'Helukabel' },
+  { file: 'MUSTEK.png',            name: 'Mustek' },
+  { file: 'PG-Bison.jpg',          name: 'PG Bison' },
+  { file: 'PG-Glass.jpg',          name: 'PG Glass' },
+  { file: 'FUCHS.png',             name: 'Fuchs' },
+  { file: 'CSIR.png',              name: 'CSIR' },
+  { file: 'Sandton-Plant-Hire.jpg',name: 'Sandton Plant Hire' },
+  { file: 'TRIDENTSA.jpg',         name: 'Trident SA' },
+  { file: 'TRIDENTSTEEL.png',      name: 'Trident Steel' },
+  { file: 'SPIER.png',             name: 'Spier' },
+  { file: 'ADM.jpg',               name: 'ADM' },
+  { file: 'ASTEC.jpg',             name: 'Astec' },
+  { file: 'CCH.jpg',               name: 'CCH' },
+  { file: 'GIC.jpg',               name: 'GIC' },
+  { file: 'KWE.png',               name: 'KWE' },
+  { file: 'SBPM.jpg',              name: 'SBPM' },
+  { file: 'MESURE.png',            name: 'Mesure' },
+  { file: 'MEZE.png',              name: 'MEZE' },
+  { file: 'PPLE.png',              name: 'PPLE' },
+  { file: 'LOMARAIS.png',          name: 'Lomarais' },
+  { file: 'CLINGLOBAL.png',        name: 'Clinglobal' },
+  { file: 'OVERBERG.jpg',          name: 'Overberg' },
+  { file: 'Rosh-Pinah-Zinc.jpg',   name: 'Rosh Pinah Zinc' },
+  { file: 'WOODLANDS.jpg',         name: 'Woodlands' },
+];
+
+// Deterministic scatter: 7-col × 6-row grid with organic jitter
+// Leaves 10% top for the eyebrow label and 10% bottom for the CTA
+function scatter(i: number) {
+  const cols = 7;
+  const total = logos.length; // 37
+  const col = i % cols;
+  const row = Math.floor(i / cols);
+  const maxRow = Math.ceil(total / cols) - 1; // 5
+
+  const xMin = 4, xMax = 95;
+  const yMin = 12, yMax = 85;
+
+  const baseX = xMin + (col / (cols - 1)) * (xMax - xMin);
+  const baseY = yMin + (row / maxRow) * (yMax - yMin);
+
+  // Prime-multiplier jitter – avoids visible patterns
+  const jx = ((i * 127 + col * 31) % 100 - 50) * 0.055;
+  const jy = ((i * 89  + row * 47) % 100 - 50) * 0.055;
+
+  // Depth 1-4; higher = moves more with mouse (feels closer)
+  const depth = ((i * 3 + col * 2 + row) % 4) + 1;
+
+  return {
+    x:     Math.max(xMin, Math.min(xMax, baseX + jx)).toFixed(1),
+    y:     Math.max(yMin, Math.min(yMax, baseY + jy)).toFixed(1),
+    depth,
+    delay: (i * 0.045).toFixed(2),
+  };
+}
+---
+
+<!-- ============================================================
+     CUSTOMER GALAXY — sticky scroll sequence
+     220vh outer so the 4 stages play as the user scrolls through.
+     Static fallback for reduced-motion and mobile (<768px).
+============================================================ -->
+<section id="galaxyOuter" class="galaxy-outer" aria-label="Trusted by industry leaders">
+  <div id="galaxySticky" class="galaxy-sticky">
+
+    <!-- Radial glow (opacity driven by scroll progress) -->
+    <div id="galaxyGlow" class="galaxy-glow" aria-hidden="true"></div>
+
+    <!-- Stage 1-2: Keyhole — cube + UNLOCK NETWORK -->
+    <div id="galaxyKeyhole" class="galaxy-keyhole" aria-hidden="true">
+      <img
+        src="/assets/xgrc-cube.png"
+        alt=""
+        class="galaxy-cube"
+        draggable="false"
+      />
+      <span class="unlock-label">UNLOCK NETWORK</span>
+    </div>
+
+    <!-- Stage 3-4: Constellation -->
+    <div id="galaxyConst" class="galaxy-constellation">
+      <span class="eyebrow const-eyebrow"><span class="dot"></span>Trusted by industry leaders</span>
+
+      {logos.map((logo, i) => {
+        const p = scatter(i);
+        return (
+          <div
+            class="star"
+            style={`left:${p.x}%;top:${p.y}%;--delay:${p.delay}s`}
+            data-depth={p.depth}
+          >
+            <div class="star-card">
+              <img
+                src={`/assets/logos/customers/${logo.file}`}
+                alt={logo.name}
+                class="star-img"
+                loading="lazy"
+                draggable="false"
+              />
+            </div>
+          </div>
+        );
+      })}
+
+      <a href="/use-cases" class="link-arrow const-cta">
+        See how they use XGRC&reg; &rarr;
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  const outer       = document.getElementById('galaxyOuter') as HTMLElement;
+  const sticky      = document.getElementById('galaxySticky') as HTMLElement;
+  const glow        = document.getElementById('galaxyGlow') as HTMLElement;
+  const keyhole     = document.getElementById('galaxyKeyhole') as HTMLElement;
+  const constEl     = document.getElementById('galaxyConst') as HTMLElement;
+  const stars       = Array.from(document.querySelectorAll<HTMLElement>('.star'));
+
+  if (!outer || !sticky) return;
+
+  const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isCoarse  = window.matchMedia('(pointer: coarse)').matches;
+  const isMobile  = () => window.innerWidth < 768;
+
+  // ── Static / reduced-motion path ───────────────────────────
+  if (isReduced || isMobile()) {
+    sticky.classList.add('is-static');
+    glow.style.opacity = '1';
+    keyhole.style.display = 'none';
+    constEl.classList.add('is-visible');
+    stars.forEach(s => s.classList.add('star--in'));
+    return;
+  }
+
+  // ── Scroll-driven path ──────────────────────────────────────
+  let constellationShown = false;
+
+  // Glow border: trigger when section enters viewport
+  const borderObserver = new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) sticky.classList.add('is-glowing');
+  }, { threshold: 0.1 });
+  borderObserver.observe(outer);
+
+  function onScroll() {
+    const rect     = outer.getBoundingClientRect();
+    const outerH   = outer.offsetHeight;
+    const vh       = window.innerHeight;
+    const scrolled = -rect.top;
+    const maxScroll = outerH - vh;
+    const p = Math.max(0, Math.min(1, scrolled / maxScroll));
+
+    // Glow intensity — 0 → full at progress 0.18
+    glow.style.opacity = String(Math.min(p / 0.18, 1));
+
+    // Keyhole opacity: fade in 0.1-0.28, hold, fade out 0.38-0.56
+    let kp: number;
+    if      (p < 0.10) kp = 0;
+    else if (p < 0.28) kp = (p - 0.10) / 0.18;
+    else if (p < 0.38) kp = 1;
+    else if (p < 0.56) kp = 1 - (p - 0.38) / 0.18;
+    else               kp = 0;
+    keyhole.style.opacity = String(kp);
+
+    // Constellation: reveal at progress 0.56
+    if (p >= 0.56 && !constellationShown) {
+      constellationShown = true;
+      constEl.classList.add('is-visible');
+      stars.forEach((star, i) => {
+        setTimeout(() => star.classList.add('star--in'), i * 48);
+      });
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ── Mouse parallax ──────────────────────────────────────────
+  if (!isCoarse) {
+    let rafId = 0;
+    let mx = 0, my = 0;
+
+    sticky.addEventListener('pointermove', (e: PointerEvent) => {
+      if (!constellationShown) return;
+      const r  = sticky.getBoundingClientRect();
+      mx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2); // -1 to 1
+      my = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        stars.forEach(star => {
+          const d  = parseInt(star.dataset.depth ?? '1', 10);
+          star.style.setProperty('--px', `${(mx * d * 11).toFixed(1)}px`);
+          star.style.setProperty('--py', `${(my * d *  8).toFixed(1)}px`);
+        });
+      });
+    });
+
+    sticky.addEventListener('pointerleave', () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        stars.forEach(star => {
+          star.style.setProperty('--px', '0px');
+          star.style.setProperty('--py', '0px');
+        });
+      });
+    });
+  }
+
+  // Re-check on resize (mobile breakpoint)
+  window.addEventListener('resize', () => {
+    if (isMobile()) {
+      sticky.classList.add('is-static');
+      glow.style.opacity = '1';
+      keyhole.style.display = 'none';
+      constEl.classList.add('is-visible');
+      stars.forEach(s => s.classList.add('star--in'));
+    }
+  }, { passive: true });
+})();
+</script>
+
+<style>
+  /* ── Outer scroll container ─────────────────────────────── */
+  .galaxy-outer {
+    position: relative;
+    height: 220vh;
+  }
+
+  /* ── Sticky viewport ─────────────────────────────────────── */
+  .galaxy-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background: var(--abyss, #060f1c);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Glowing border ring (::before) */
+  }
+  .galaxy-sticky::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    pointer-events: none;
+    z-index: 4;
+    transition: border-color 0.8s ease, box-shadow 0.8s ease;
+  }
+  .galaxy-sticky.is-glowing::before {
+    border-color: rgba(48, 226, 244, 0.35);
+    box-shadow:
+      inset 0 0 120px rgba(38, 158, 198, 0.10),
+      inset 0 0  50px rgba(48, 226, 244, 0.06),
+      0 0 80px rgba(38, 158, 198, 0.30),
+      0 0 160px rgba(38, 158, 198, 0.14);
+  }
+
+  /* ── Radial glow atmosphere ──────────────────────────────── */
+  .galaxy-glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at center, rgba(38, 158, 198, 0.18) 0%, rgba(38, 158, 198, 0.06) 40%, transparent 68%),
+      radial-gradient(ellipse 28% 22% at center, rgba(48, 226, 244, 0.22) 0%, transparent 55%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ── Keyhole content ─────────────────────────────────────── */
+  .galaxy-keyhole {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .galaxy-cube {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    animation: cube-pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes cube-pulse {
+    0%, 100% {
+      filter: drop-shadow(0 0 18px rgba(48, 226, 244, 0.45))
+              drop-shadow(0 0 40px rgba(38, 158, 198, 0.30));
+      transform: scale(1);
+    }
+    50% {
+      filter: drop-shadow(0 0 36px rgba(48, 226, 244, 0.80))
+              drop-shadow(0 0 80px rgba(38, 158, 198, 0.50));
+      transform: scale(1.06);
+    }
+  }
+  .unlock-label {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--cyan, #30e2f4);
+    opacity: 0.85;
+  }
+
+  /* ── Constellation container ─────────────────────────────── */
+  .galaxy-constellation {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 2;
+  }
+  .galaxy-constellation.is-visible { opacity: 1; }
+
+  /* Eyebrow label */
+  .const-eyebrow {
+    position: absolute;
+    top: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.8s ease 0.6s;
+  }
+  .is-visible .const-eyebrow { opacity: 1; }
+
+  /* Link CTA */
+  .const-cta {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.8s ease 1.2s;
+  }
+  .is-visible .const-cta { opacity: 1; }
+
+  /* ── Individual logo stars ───────────────────────────────── */
+  .star {
+    position: absolute;
+    transform: translate(
+      calc(-50% + var(--px, 0px)),
+      calc(-50% + var(--py, 0px))
+    );
+    opacity: 0;
+    transition:
+      transform 0.12s ease-out,
+      opacity 0.6s ease var(--delay, 0s);
+    z-index: 0;
+  }
+  .star.star--in { opacity: 1; }
+  .star:hover { z-index: 10; }
+
+  .star-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 108px;
+    height: 52px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 8px;
+    backdrop-filter: blur(3px);
+    transition:
+      background 0.28s ease,
+      border-color 0.28s ease,
+      box-shadow 0.28s ease,
+      transform 0.28s ease;
+  }
+  .star:hover .star-card {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(48, 226, 244, 0.35);
+    box-shadow: 0 0 22px rgba(48, 226, 244, 0.18);
+    transform: scale(1.10);
+  }
+
+  .star-img {
+    max-width: 86px;
+    max-height: 38px;
+    object-fit: contain;
+    filter: grayscale(75%) brightness(0.72);
+    transition: filter 0.28s ease;
+  }
+  .star:hover .star-img {
+    filter: grayscale(0) brightness(1.0);
+  }
+
+  /* ── Static / reduced-motion mode ───────────────────────── */
+  .is-static.galaxy-sticky {
+    position: relative;
+    height: auto;
+    padding: 64px 0 56px;
+  }
+  .galaxy-outer:has(.is-static) {
+    height: auto;
+  }
+  .is-static .galaxy-constellation {
+    position: relative;
+    opacity: 1;
+    padding: 48px var(--container-pad, 5vw);
+  }
+  .is-static .const-eyebrow,
+  .is-static .const-cta { position: relative; transform: none; opacity: 1; }
+  .is-static .const-eyebrow { left: auto; margin-bottom: 28px; display: block; }
+  .is-static .const-cta { left: auto; margin-top: 28px; display: block; }
+  .is-static .star {
+    position: relative;
+    left: auto !important;
+    top: auto !important;
+    transform: none;
+    display: inline-block;
+    margin: 6px;
+    opacity: 1;
+  }
+  .is-static .galaxy-constellation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .is-static .star.star--in { opacity: 1; }
+
+  /* ── Mobile (<768px) always static ─────────────────────── */
+  @media (max-width: 767px) {
+    .galaxy-outer { height: auto; }
+    .galaxy-sticky {
+      position: relative;
+      height: auto;
+      padding: 56px 0 48px;
+    }
+    .galaxy-glow { opacity: 0.6; }
+    .galaxy-keyhole { display: none; }
+    .galaxy-constellation {
+      position: relative;
+      opacity: 1;
+      padding: 36px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+    .const-eyebrow {
+      position: relative;
+      left: auto;
+      transform: none;
+      opacity: 1;
+      margin-bottom: 24px;
+      width: 100%;
+      text-align: center;
+    }
+    .const-cta {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      transform: none;
+      opacity: 1;
+      margin-top: 24px;
+      width: 100%;
+      text-align: center;
+    }
+    .star {
+      position: relative;
+      left: auto !important;
+      top: auto !important;
+      transform: none;
+      opacity: 1;
+      margin: 5px;
+    }
+  }
+
+  /* Respect reduced motion globally */
+  @media (prefers-reduced-motion: reduce) {
+    .galaxy-cube { animation: none; }
+    .star, .star-card, .star-img, .const-eyebrow, .const-cta,
+    .galaxy-glow, .galaxy-sticky::before { transition: none; }
+  }
+</style>
