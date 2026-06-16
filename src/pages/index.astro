@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
+import SsotConvergence from '../components/SsotConvergence.astro';
 import { pillars, solutions, customerGroups, brand } from '../data/site.js';
 const previewSolutions = solutions.slice(0, 6);
 const logoNames = customerGroups.flatMap((g) => g.names).slice(0, 18);
@@ -17,6 +18,7 @@ const logoNames = customerGroups.flatMap((g) => g.names).slice(0, 18);
         <h2>Governance, risk, compliance and cyber security still operate in silos.</h2>
         <p class="lede">Decision-makers face critical blind spots. We unify them into one smart, scalable, and intuitive platform built on a single auditable foundation.</p>
       </div>
+      <SsotConvergence />
       <div class="grid cols-4">
         {pillars.map((p) => (
           <div class="card">
