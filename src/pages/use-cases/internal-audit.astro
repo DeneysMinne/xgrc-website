@@ -245,7 +245,7 @@ const schema = {
     lastFocused = document.activeElement;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
-    modal.querySelector('input[name="name"]')?.focus();
+    modal.querySelector('input[name="name"]')?.focus({ preventScroll: true });
   }
   function closeModal() {
     modal.hidden = true;
