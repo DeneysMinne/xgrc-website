@@ -15,7 +15,7 @@ export const brand = {
 // Primary navigation. Strategix is an external link to the group site.
 export const nav = [
   { label: 'Home', href: '/' },
-  { label: 'Solutions', href: '/solutions' },
+  { label: 'GRC Software', href: '/grc-software' },
   { label: 'Use Cases', href: '/use-cases' },
   { label: 'Customers', href: '/customers' },
   { label: 'Resources', href: '/resources' },
