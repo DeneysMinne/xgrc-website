@@ -52,6 +52,7 @@ export const solutions = [
 // Rich solution detail data — powers /solutions/[slug] pages.
 export const solutionDetails = {
   sheqx: {
+    logo: '/assets/logos/solutions/sheqx.png',
     name: 'SHEQX®',
     tag: 'Safety, Health, Environment & Quality',
     headline: 'SHEQ compliance that closes actions, not just spreadsheets.',
@@ -80,6 +81,7 @@ export const solutionDetails = {
   },
 
   msx: {
+    logo: '/assets/logos/solutions/msx.png',
     name: 'MSX®',
     tag: 'Integrated Management System',
     headline: 'One management system. Every ISO standard. Zero duplication.',
@@ -108,6 +110,7 @@ export const solutionDetails = {
   },
 
   msxcyber: {
+    logo: '/assets/logos/solutions/msxcyber.png',
     name: 'MSXCyber',
     tag: 'Information Security Governance',
     headline: 'ISO 27001 compliance without the spreadsheet chaos.',
@@ -135,6 +138,7 @@ export const solutionDetails = {
   },
 
   erm: {
+    logo: '/assets/logos/solutions/erm.png',
     name: 'Enterprise Risk Management',
     tag: 'Enterprise Risk Intelligence',
     headline: 'Risk managed at enterprise scale, not spreadsheet scale.',
@@ -162,6 +166,7 @@ export const solutionDetails = {
   },
 
   'integrated-assurance': {
+    logo: '/assets/logos/solutions/integrated-assurance.png',
     name: 'Integrated Assurance',
     tag: 'Internal Audit & Combined Assurance',
     headline: 'One audit plan. Four lines of defence. Zero gaps.',
@@ -189,6 +194,7 @@ export const solutionDetails = {
   },
 
   envirx: {
+    logo: '/assets/logos/solutions/envirx.png',
     name: 'ENVIRX®',
     tag: 'Environmental Compliance & Monitoring',
     headline: 'Environmental compliance you can demonstrate, not just claim.',
@@ -216,6 +222,7 @@ export const solutionDetails = {
   },
 
   esg: {
+    logo: '/assets/logos/solutions/esg.png',
     name: 'ESG',
     tag: 'Environmental, Social & Governance Reporting',
     headline: 'ESG reporting that survives investor scrutiny.',
@@ -243,6 +250,7 @@ export const solutionDetails = {
   },
 
   'compliance-hub': {
+    logo: '/assets/logos/solutions/compliance-hub.png',
     name: 'XGRC® Compliance Hub',
     tag: 'Supplier & Third-Party Compliance',
     headline: 'Your supply chain\'s compliance posture, visible in real time.',
@@ -270,6 +278,7 @@ export const solutionDetails = {
   },
 
   xlogic: {
+    logo: '/assets/logos/solutions/xlogic.png',
     name: 'XLOGIC®',
     tag: 'Governance Execution',
     headline: 'Policies that work. Controls that are actually enforced.',
@@ -296,6 +305,7 @@ export const solutionDetails = {
   },
 
   maia: {
+    logo: '/assets/logos/solutions/maia.png',
     name: 'MAIA',
     tag: 'Governed AI for GRC',
     headline: 'The intelligence of governance, without leaving your boundaries.',
