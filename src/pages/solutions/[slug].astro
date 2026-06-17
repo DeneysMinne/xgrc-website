@@ -56,7 +56,9 @@ const schema = JSON.stringify({
           <span aria-hidden="true">/</span>
           <span>{detail.name}</span>
         </div>
-        <span class="eyebrow"><span class="dot"></span>{detail.tag}</span>
+        {detail.icon && (
+          <img src={detail.icon} alt="" aria-hidden="true" class="sol-product-icon" loading="eager" />
+        )}
         <h1>{detail.name}</h1>
         <p class="sol-headline">{detail.headline}</p>
         <p class="lede sol-lede">{detail.lede}</p>
@@ -71,21 +73,28 @@ const schema = JSON.stringify({
         </div>
       </div>
 
-      <!-- Right: glass logo tile -->
-      {detail.logo && (
-        <div class="sol-logo-col">
-          <div class="glass-tile">
-            <div class="glass-glow" aria-hidden="true"></div>
-            <img
-              src={detail.logo}
-              alt={`${detail.name} logo`}
-              class="glass-logo"
-              loading="eager"
-            />
-            <span class="glass-tag">{detail.tag}</span>
+      <!-- Right: dashboard or glass placeholder -->
+      <div class="sol-dash-col">
+        {detail.screenshot ? (
+          <div class="sol-dash-frame">
+            <div class="sol-dash-chrome">
+              <span class="dc-dot dc-red"></span>
+              <span class="dc-dot dc-yellow"></span>
+              <span class="dc-dot dc-green"></span>
+              <span class="dc-url">app.xgrcsoftware.com · {detail.name}</span>
+            </div>
+            <div class="sol-dash-screen">
+              <img src={detail.screenshot} alt={`${detail.name} dashboard`} loading="eager" />
+            </div>
           </div>
-        </div>
-      )}
+        ) : (
+          <div class="sol-dash-placeholder">
+            <div class="glass-glow" aria-hidden="true"></div>
+            {detail.icon && <img src={detail.icon} alt="" class="placeholder-icon" loading="eager" />}
+            <span class="placeholder-label">Dashboard coming soon</span>
+          </div>
+        )}
+      </div>
 
     </div>
   </section>
@@ -211,70 +220,107 @@ const schema = JSON.stringify({
   }
   .sol-hero-inner {
     display: grid;
-    grid-template-columns: 1fr 340px;
+    grid-template-columns: 1fr 520px;
     gap: 64px;
     align-items: center;
   }
 
-  /* ── Glass logo tile ─────────────────────────────────── */
-  .sol-logo-col {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /* ── Product icon above H1 ───────────────────────────── */
+  .sol-product-icon {
+    height: 56px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 2px 12px rgba(48,226,244,0.3));
   }
-  .glass-tile {
+
+  /* ── Dashboard frame ─────────────────────────────────── */
+  .sol-dash-col {
+    width: 100%;
+  }
+  .sol-dash-frame {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(48,226,244,0.15);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(48,226,244,0.06) inset;
+    background: #0a1525;
+  }
+  .sol-dash-chrome {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: #0d1e35;
+    border-bottom: 1px solid rgba(48,226,244,0.1);
+  }
+  .dc-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+  .dc-red    { background: #ff5f57; }
+  .dc-yellow { background: #febc2e; }
+  .dc-green  { background: #28c840; }
+  .dc-url {
+    margin-left: 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--faint);
+    letter-spacing: 0.04em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .sol-dash-screen img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ── Placeholder (no screenshot yet) ────────────────── */
+  .sol-dash-placeholder {
     position: relative;
-    width: 300px;
-    min-height: 320px;
-    border-radius: 28px;
-    border: 1px solid rgba(48,226,244,0.18);
-    background: rgba(13,31,53,0.55);
+    width: 100%;
+    min-height: 300px;
+    border-radius: 14px;
+    border: 1px solid rgba(48,226,244,0.12);
+    background: rgba(13,31,53,0.5);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    box-shadow:
-      0 0 0 1px rgba(48,226,244,0.06) inset,
-      0 24px 64px rgba(0,0,0,0.45),
-      0 0 80px rgba(48,226,244,0.04) inset;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    padding: 40px 32px 32px;
+    gap: 16px;
     overflow: hidden;
   }
   .glass-glow {
     position: absolute;
-    top: -30%;
+    top: -20%;
     left: 50%;
     transform: translateX(-50%);
-    width: 220px;
-    height: 220px;
+    width: 260px;
+    height: 260px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(48,226,244,0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(48,226,244,0.1) 0%, transparent 70%);
     pointer-events: none;
-    filter: blur(20px);
+    filter: blur(28px);
   }
-  .glass-logo {
+  .placeholder-icon {
     position: relative;
-    width: 100%;
-    max-width: 220px;
-    height: auto;
+    height: 100px;
+    width: auto;
     object-fit: contain;
-    filter: drop-shadow(0 4px 24px rgba(48,226,244,0.25));
+    filter: drop-shadow(0 4px 20px rgba(48,226,244,0.2));
+    opacity: 0.85;
   }
-  .glass-tag {
+  .placeholder-label {
     position: relative;
     font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
+    font-size: 11px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--faint);
-    text-align: center;
-    line-height: 1.5;
-    border-top: 1px solid rgba(48,226,244,0.1);
-    padding-top: 16px;
-    width: 100%;
   }
 
   .breadcrumb {
@@ -448,10 +494,9 @@ const schema = JSON.stringify({
   .contact-line { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
 
   /* ── Responsive ──────────────────────────────────────── */
-  @media (max-width: 1000px) {
+  @media (max-width: 1100px) {
     .sol-hero-inner { grid-template-columns: 1fr; gap: 48px; }
-    .sol-logo-col { justify-content: flex-start; }
-    .glass-tile { width: 260px; min-height: 280px; }
+    .sol-dash-placeholder { min-height: 220px; }
   }
   @media (max-width: 900px) {
     .overview-split { grid-template-columns: 1fr; gap: 40px; }

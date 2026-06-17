@@ -53,6 +53,8 @@ export const solutions = [
 export const solutionDetails = {
   sheqx: {
     logo: '/assets/logos/solutions/sheqx.png',
+    icon: '/assets/logos/solutions/icons/sheqx.png',
+    screenshot: '/assets/screenshots/sheq-dashboard.jpg',
     name: 'SHEQX®',
     tag: 'Safety, Health, Environment & Quality',
     headline: 'SHEQ compliance that closes actions, not just spreadsheets.',
@@ -82,6 +84,8 @@ export const solutionDetails = {
 
   msx: {
     logo: '/assets/logos/solutions/msx.png',
+    icon: '/assets/logos/solutions/icons/msx.png',
+    screenshot: null,
     name: 'MSX®',
     tag: 'Integrated Management System',
     headline: 'One management system. Every ISO standard. Zero duplication.',
@@ -111,6 +115,8 @@ export const solutionDetails = {
 
   msxcyber: {
     logo: '/assets/logos/solutions/msxcyber.png',
+    icon: '/assets/logos/solutions/icons/msxcyber.png',
+    screenshot: null,
     name: 'MSXCyber',
     tag: 'Information Security Governance',
     headline: 'ISO 27001 compliance without the spreadsheet chaos.',
@@ -139,6 +145,8 @@ export const solutionDetails = {
 
   erm: {
     logo: '/assets/logos/solutions/erm.png',
+    icon: '/assets/logos/solutions/icons/erm.png',
+    screenshot: '/assets/screenshots/erm-dashboard.jpg',
     name: 'Enterprise Risk Management',
     tag: 'Enterprise Risk Intelligence',
     headline: 'Risk managed at enterprise scale, not spreadsheet scale.',
@@ -167,6 +175,8 @@ export const solutionDetails = {
 
   'integrated-assurance': {
     logo: '/assets/logos/solutions/integrated-assurance.png',
+    icon: '/assets/logos/solutions/icons/integrated-assurance.png',
+    screenshot: null,
     name: 'Integrated Assurance',
     tag: 'Internal Audit & Combined Assurance',
     headline: 'One audit plan. Four lines of defence. Zero gaps.',
@@ -195,6 +205,8 @@ export const solutionDetails = {
 
   envirx: {
     logo: '/assets/logos/solutions/envirx.png',
+    icon: '/assets/logos/solutions/icons/envirx.png',
+    screenshot: '/assets/screenshots/climate-dashboard.jpg',
     name: 'ENVIRX®',
     tag: 'Environmental Compliance & Monitoring',
     headline: 'Environmental compliance you can demonstrate, not just claim.',
@@ -223,6 +235,8 @@ export const solutionDetails = {
 
   esg: {
     logo: '/assets/logos/solutions/esg.png',
+    icon: '/assets/logos/solutions/icons/esg.png',
+    screenshot: '/assets/screenshots/carbon-dashboard.jpg',
     name: 'ESG',
     tag: 'Environmental, Social & Governance Reporting',
     headline: 'ESG reporting that survives investor scrutiny.',
@@ -251,6 +265,8 @@ export const solutionDetails = {
 
   'compliance-hub': {
     logo: '/assets/logos/solutions/compliance-hub.png',
+    icon: '/assets/logos/solutions/icons/compliance-hub.png',
+    screenshot: null,
     name: 'XGRC® Compliance Hub',
     tag: 'Supplier & Third-Party Compliance',
     headline: 'Your supply chain\'s compliance posture, visible in real time.',
@@ -279,6 +295,8 @@ export const solutionDetails = {
 
   xlogic: {
     logo: '/assets/logos/solutions/xlogic.png',
+    icon: '/assets/logos/solutions/icons/xlogic.png',
+    screenshot: null,
     name: 'XLOGIC®',
     tag: 'Governance Execution',
     headline: 'Policies that work. Controls that are actually enforced.',
@@ -306,6 +324,8 @@ export const solutionDetails = {
 
   maia: {
     logo: '/assets/logos/solutions/maia.png',
+    icon: '/assets/logos/solutions/icons/maia.png',
+    screenshot: null,
     name: 'MAIA',
     tag: 'Governed AI for GRC',
     headline: 'The intelligence of governance, without leaving your boundaries.',
