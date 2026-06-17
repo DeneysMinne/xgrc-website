@@ -1,0 +1,367 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const problems = [
+  'Inspections performed inconsistently across sites and teams',
+  'Paper-based checklists with no central record',
+  'Limited visibility of inspection findings',
+  'Poor tracking of identified issues and corrective actions'
+];
+
+const approach = [
+  'Perform inspections using structured digital checklists',
+  'Capture findings in real time on mobile or desktop',
+  'Assign corrective actions directly from findings',
+  'Track issues and resolutions to closure',
+  'Report on safety performance across sites'
+];
+
+const howItWorks = [
+  'Digital inspection checklists by site and area',
+  'Mobile-friendly inspections in the field',
+  'Real-time data capture and findings',
+  'Action tracking and escalation',
+  'Centralised dashboards and reporting'
+];
+
+const manual = [
+  'Paper-based inspection forms',
+  'No central tracking of findings',
+  'Delayed reporting and limited visibility'
+];
+const withXgrc = [
+  'Digital inspections in the field',
+  'Centralised findings and action register',
+  'Real-time visibility across all sites',
+  'Structured reporting to management'
+];
+
+const resourceIncludes = [
+  'Workplace conditions',
+  'Housekeeping',
+  'PPE',
+  'Equipment',
+  'Fire safety',
+  'Emergency preparedness'
+];
+
+const standards = ['ISO 45001', 'ISO 14001', 'ISO 9001'];
+const scope = [
+  'Workplace inspections',
+  'Safety compliance',
+  'Hazard identification',
+  'Operational safety'
+];
+
+const pageTitle = 'Workplace Safety Inspection Checklist | SHEQX® by XGRC®';
+const pageDesc = 'Workplace safety inspection checklist to identify hazards, ensure compliance, and improve safety. Download a practical inspection checklist from XGRC®.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      'name': 'Workplace Safety Inspection — SHEQX®',
+      'serviceType': 'Workplace safety inspection management',
+      'description': 'Perform structured safety inspections using digital checklists, capture findings in real time, assign corrective actions, and report on safety performance across sites.',
+      'provider': { '@type': 'Organization', 'name': 'XGRC® Software', 'url': 'https://xgrcsoftware.com' }
+    },
+    {
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://xgrcsoftware.com/' },
+        { '@type': 'ListItem', 'position': 2, 'name': 'Use Cases', 'item': 'https://xgrcsoftware.com/use-cases/' },
+        { '@type': 'ListItem', 'position': 3, 'name': 'Workplace Safety Inspection' }
+      ]
+    }
+  ]
+};
+---
+<Base title={pageTitle} description={pageDesc}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <!-- ============ HERO ============ -->
+  <section class="page-head">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span><a href="/use-cases/">Use Cases</a><span>/</span><b>Workplace Safety Inspection</b>
+      </nav>
+      <span class="eyebrow"><span class="dot"></span>Use Case &middot; SHEQX&reg;</span>
+      <h1>Workplace safety inspections that capture findings, not just tick boxes.</h1>
+      <p class="lede">SHEQX&reg; by XGRC&reg; enables organisations to perform structured safety inspections using practical, real-world checklists aligned to operational requirements. Capture findings in real time, assign actions, and track outcomes from a single platform.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" data-open-download type="button">Download the inspection checklist</button>
+        <a href="#demo" class="btn btn-ghost">Book a demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE PROBLEM ============ -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>The problem</span>
+        <h2>Inconsistent inspections leave hazards undetected and actions untracked.</h2>
+        <p class="lede">When inspections are paper-based and findings are not centrally tracked, issues fall through the cracks and corrective actions are never closed out.</p>
+      </div>
+      <div class="grid cols-2">
+        {problems.map((p) => (
+          <div class="card problem"><p>{p}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE XGRC APPROACH ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>The SHEQX&reg; approach</span>
+        <h2>A structured, digital inspection process.</h2>
+      </div>
+      <div class="grid cols-3 steps">
+        {approach.map((step, i) => (
+          <div class="card step">
+            <span class="step-no">{String(i + 1).padStart(2, '0')}</span>
+            <p>{step}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>How it works</span>
+        <h2>Built for inspectors in the field, visible to safety leaders.</h2>
+      </div>
+      <div class="grid cols-2 howgrid">
+        <ul class="ticks">
+          {howItWorks.map((h) => (<li>{h}</li>))}
+        </ul>
+        <div class="card platform">
+          <h3>From finding to action in one system.</h3>
+          <p>SHEQX&reg; enables safety officers to conduct structured inspections using digital checklists in the field. Findings are captured in real time, corrective actions are assigned immediately, and management gets a live view of safety performance across all sites.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MANUAL VS SHEQX ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>From manual to SHEQX&reg;</span>
+        <h2>The same inspection process, without the paperwork.</h2>
+      </div>
+      <div class="grid cols-2 compare">
+        <div class="card col-manual">
+          <span class="compare-label">Manual approach</span>
+          <ul class="bars">{manual.map((m) => (<li>{m}</li>))}</ul>
+        </div>
+        <div class="card col-xgrc">
+          <span class="compare-label">SHEQX&reg; approach</span>
+          <ul class="bars">{withXgrc.map((x) => (<li>{x}</li>))}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOWNLOADABLE RESOURCE (gated) ============ -->
+  <section class="section--tight" id="resource">
+    <div class="container">
+      <div class="card resource">
+        <div class="resource-body">
+          <span class="eyebrow"><span class="dot"></span>Free resource</span>
+          <h2>Workplace Safety Inspection Checklist</h2>
+          <p class="lede">A practical, field-level inspection checklist covering workplace conditions, housekeeping, PPE, equipment, fire safety, electrical, emergency preparedness and signage.</p>
+          <ul class="ticks compact">
+            {resourceIncludes.map((r) => (<li>{r}</li>))}
+          </ul>
+        </div>
+        <div class="resource-action">
+          <button class="btn btn-primary" data-open-download type="button">Download the checklist</button>
+          <span class="resource-note">PDF &middot; Inspection form &middot; v1.0</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STANDARDS + SCOPE ============ -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="grid cols-2">
+        <div>
+          <span class="eyebrow"><span class="dot"></span>Standards and frameworks</span>
+          <h3 class="chips-head">Inspect against the standards that matter.</h3>
+          <ul class="chips">{standards.map((s) => (<li>{s}</li>))}</ul>
+        </div>
+        <div>
+          <span class="eyebrow"><span class="dot"></span>Scope of application</span>
+          <h3 class="chips-head">One checklist across every inspection area.</h3>
+          <ul class="chips">{scope.map((s) => (<li>{s}</li>))}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section" id="demo">
+    <div class="container">
+      <div class="card cta-band">
+        <h2>See safety inspections as a structured, measurable process.</h2>
+        <p class="lede">Book a demo to see how SHEQX&reg; enables structured safety inspections and compliance.</p>
+        <a href="/contact/" class="btn btn-primary">Book a demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOWNLOAD MODAL ============ -->
+  <div class="modal" id="downloadModal" hidden>
+    <div class="modal-backdrop" data-close-download></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="dlTitle">
+      <button class="modal-x" data-close-download type="button" aria-label="Close">&times;</button>
+      <div data-form-state>
+        <span class="eyebrow"><span class="dot"></span>Workplace Safety Inspection Checklist</span>
+        <h3 id="dlTitle">Where should we send your download link?</h3>
+        <p>Enter your details and we will email you the link to the inspection checklist.</p>
+        <form id="downloadForm" novalidate>
+          <label>Name<input type="text" name="name" required autocomplete="name" /></label>
+          <label>Work email<input type="email" name="email" required autocomplete="email" /></label>
+          <label>Company <span class="opt">(optional)</span><input type="text" name="company" autocomplete="organization" /></label>
+          <p class="form-error" data-error hidden>Please enter your name and a valid email address.</p>
+          <button class="btn btn-primary" type="submit">Email me the checklist</button>
+          <p class="form-fine">We use your details only to send the resource and occasional XGRC&reg; updates. Unsubscribe any time.</p>
+        </form>
+      </div>
+      <div data-success-state hidden>
+        <span class="eyebrow ok"><span class="dot"></span>On its way</span>
+        <h3>Thank you. Check your inbox.</h3>
+        <p>We have sent the download link for the Workplace Safety Inspection Checklist to your email. If it does not arrive in a few minutes, check your spam folder.</p>
+        <button class="btn btn-ghost" data-close-download type="button">Close</button>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script>
+  // ---- Gated download interaction (front-end only for now) ----
+  const modal = document.getElementById('downloadModal');
+  const form = document.getElementById('downloadForm');
+  const formState = modal?.querySelector('[data-form-state]');
+  const successState = modal?.querySelector('[data-success-state]');
+  const errorEl = modal?.querySelector('[data-error]');
+  let lastFocused = null;
+
+  function openModal() {
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    modal.querySelector('input[name="name"]')?.focus({ preventScroll: true });
+  }
+  function closeModal() {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    formState.hidden = false;
+    successState.hidden = true;
+    form?.reset();
+    errorEl.hidden = true;
+    lastFocused?.focus();
+  }
+
+  document.querySelectorAll('[data-open-download]').forEach((b) => b.addEventListener('click', openModal));
+  document.querySelectorAll('[data-close-download]').forEach((b) => b.addEventListener('click', closeModal));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const name = (data.get('name') || '').toString().trim();
+    const email = (data.get('email') || '').toString().trim();
+    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!name || !validEmail) { errorEl.hidden = false; return; }
+    errorEl.hidden = true;
+
+    // ===========================================================
+    // INTEGRATION POINT — replace this block when the gating tool
+    // is chosen (HubSpot form submit, or a form-service endpoint).
+    // It should send { name, email, company } to capture the lead
+    // and trigger the email containing the download link.
+    // For now it simply shows the success state so the flow is testable.
+    // ===========================================================
+    formState.hidden = true;
+    successState.hidden = false;
+  });
+</script>
+
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 18px; max-width: 22ch; }
+  .crumbs { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--faint); display: flex; gap: 10px; align-items: center; margin-bottom: 26px; }
+  .crumbs a { color: var(--mute); text-decoration: none; }
+  .crumbs a:hover { color: var(--cyan); }
+  .crumbs b { color: var(--ink); font-weight: 500; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+
+  .problem p { color: var(--ink); font-size: 1rem; }
+  .problem::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--blue); opacity: 0.55; }
+
+  .steps .step { display: flex; gap: 16px; align-items: flex-start; }
+  .step-no { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--cyan); border: 1px solid var(--line-strong); border-radius: 8px; padding: 5px 9px; background: rgba(48,226,244,0.06); flex: none; }
+  .step p { color: var(--ink); font-size: 0.98rem; }
+
+  .howgrid { align-items: start; }
+  .ticks { list-style: none; display: grid; gap: 14px; }
+  .ticks li { position: relative; padding-left: 30px; color: var(--ink); }
+  .ticks li::before { content: ""; position: absolute; left: 0; top: 7px; width: 14px; height: 14px; border-radius: 4px; border: 2px solid var(--cyan); }
+  .ticks.compact li { font-size: 0.95rem; }
+  .platform { background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02)); border-color: var(--line-strong); }
+  .platform h3 { margin-bottom: 10px; }
+
+  .compare-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; display: inline-block; margin-bottom: 16px; }
+  .col-manual .compare-label { color: var(--faint); }
+  .col-xgrc { border-color: var(--line-strong); background: linear-gradient(120deg, rgba(48,226,244,0.05), transparent); }
+  .col-xgrc .compare-label { color: var(--cyan); }
+  .bars { list-style: none; display: grid; gap: 12px; }
+  .bars li { padding: 11px 14px; border-radius: var(--radius-sm); font-size: 0.95rem; }
+  .col-manual .bars li { background: rgba(255,255,255,0.03); color: var(--mute); border: 1px solid var(--line); }
+  .col-xgrc .bars li { background: rgba(48,226,244,0.06); color: var(--ink); border: 1px solid var(--line-strong); }
+
+  .resource { display: flex; gap: 36px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: linear-gradient(120deg, rgba(38,158,198,0.07), rgba(48,226,244,0.02)); border-color: var(--line-strong); }
+  .resource-body { flex: 1 1 360px; }
+  .resource-body h2 { margin: 4px 0 10px; font-size: clamp(1.5rem, 2.4vw, 2rem); }
+  .resource-action { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .resource-note { font-family: var(--font-mono); font-size: 11px; color: var(--faint); letter-spacing: 0.06em; }
+
+  .chips-head { margin-bottom: 18px; max-width: 24ch; }
+  .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips li { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); border: 1px solid var(--line); border-radius: 100px; padding: 8px 15px; background: rgba(48,226,244,0.05); }
+
+  .cta-band { text-align: center; padding: clamp(40px, 6vw, 64px); background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(0,92,169,0.05)); border-color: var(--line-strong); }
+  .cta-band .lede { margin: 0 auto 26px; }
+
+  .modal { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .modal[hidden] { display: none; }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(3, 8, 15, 0.72); backdrop-filter: blur(4px); }
+  .modal-card { position: relative; width: 100%; max-width: 440px; background: var(--abyss); border: 1px solid var(--line-strong); border-radius: var(--radius-lg); padding: clamp(26px, 4vw, 34px); }
+  .modal-x { position: absolute; top: 14px; right: 16px; background: none; border: none; color: var(--mute); font-size: 26px; line-height: 1; cursor: pointer; }
+  .modal-x:hover { color: var(--ink); }
+  .modal-card h3 { margin-bottom: 8px; }
+  .modal-card form { display: grid; gap: 14px; margin-top: 20px; }
+  .modal-card label { display: grid; gap: 6px; font-size: 0.85rem; color: var(--mute); font-family: var(--font-body); }
+  .modal-card .opt { color: var(--faint); }
+  .modal-card input { background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 11px 13px; color: var(--ink); font-family: var(--font-body); font-size: 15px; }
+  .modal-card input:focus { outline: none; border-color: var(--cyan); }
+  .modal-card .btn { width: 100%; justify-content: center; }
+  .form-error { color: #ff8a8a; font-size: 0.85rem; }
+  .form-fine { font-size: 0.75rem; color: var(--faint); line-height: 1.5; }
+  .eyebrow.ok { color: var(--green); border-color: rgba(47,232,138,0.3); background: rgba(47,232,138,0.06); }
+  .eyebrow.ok .dot { background: var(--green); box-shadow: 0 0 9px var(--green); }
+
+  @media (max-width: 700px) {
+    .resource { flex-direction: column; align-items: flex-start; }
+    .resource-action { width: 100%; }
+  }
+</style>
