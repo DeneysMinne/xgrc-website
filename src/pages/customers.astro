@@ -1,0 +1,306 @@
+---
+import Base from '../layouts/Base.astro';
+import { customerGroups } from '../data/site.js';
+
+const LOGO_BASE = '/assets/logos/customers/';
+---
+
+<Base
+  title="Customers | XGRC® Software"
+  description="Trusted by more than 800 companies globally across mining, manufacturing, steel, food, logistics, finance and more."
+>
+  <!-- Hero -->
+  <section class="cust-hero">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>Customers</span>
+      <h1>Trusted by more than<br><em>800 companies</em> globally.</h1>
+      <p class="lede">Organisations across mining, steel, food, logistics and finance — spanning southern Africa, the UK, and beyond — rely on XGRC® to unify compliance across their operations.</p>
+    </div>
+  </section>
+
+  <!-- Sticky sector filter chips -->
+  <div class="chip-bar" id="chipBar" role="navigation" aria-label="Filter by sector">
+    <div class="container chip-inner">
+      <button class="chip-btn is-active" data-sector="all">All sectors</button>
+      {customerGroups.map(g => (
+        <button class="chip-btn" data-sector={g.id}>{g.chip}</button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Sector logo grids -->
+  <div class="sectors-wrap" id="sectorsStart">
+    {customerGroups.map((g, i) => (
+      <section class="sector-section" id={g.id} data-sector={g.id}>
+        <div class="container">
+          <header class="sector-hd">
+            <span class="sector-idx">{String(i + 1).padStart(2, '0')}</span>
+            <h2 class="sector-name">{g.sector}</h2>
+          </header>
+          <div class="logo-grid">
+            {g.customers.map(c => (
+              c.logo
+                ? (
+                  <div class="logo-slot" title={c.name}>
+                    <span class="glow" aria-hidden="true"></span>
+                    <img
+                      src={`${LOGO_BASE}${c.logo}`}
+                      alt={c.name}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                ) : (
+                  <div class="logo-slot logo-slot--pending" title={c.name}>
+                    <span class="glow" aria-hidden="true"></span>
+                    <span class="logo-name">{c.name}</span>
+                  </div>
+                )
+            ))}
+          </div>
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="card cust-cta">
+        <span class="eyebrow"><span class="dot"></span>Join them</span>
+        <h2>Your organisation belongs here.</h2>
+        <p class="lede">Whether you are starting with one discipline or coordinating assurance enterprise-wide, XGRC® gives you the foundation to move forward with confidence.</p>
+        <a href="mailto:info@xgrcsoftware.com" class="btn btn-primary">Request a live demo</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ── Hero ─────────────────────────────────────────────── */
+  .cust-hero {
+    padding: 130px 0 56px;
+  }
+  .cust-hero h1 {
+    margin: 10px 0 18px;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    max-width: 20ch;
+    line-height: 1.15;
+  }
+  .cust-hero em {
+    font-style: normal;
+    color: var(--cyan);
+  }
+
+  /* ── Sticky chip bar ──────────────────────────────────── */
+  .chip-bar {
+    position: sticky;
+    top: 74px;
+    z-index: 60;
+    background: rgba(6, 15, 28, 0.9);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .chip-inner {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .chip-inner::-webkit-scrollbar { display: none; }
+
+  .chip-btn {
+    flex-shrink: 0;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--mute);
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+  .chip-btn:hover {
+    color: var(--ink);
+    border-color: var(--line-strong);
+  }
+  .chip-btn.is-active {
+    color: var(--void);
+    background: var(--cyan);
+    border-color: var(--cyan);
+  }
+
+  /* ── Sectors ──────────────────────────────────────────── */
+  .sectors-wrap { padding-bottom: 20px; }
+
+  .sector-section {
+    padding: 52px 0 40px;
+    border-top: 1px solid var(--line);
+  }
+  .sector-section:first-child { border-top: none; }
+
+  .sector-hd {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .sector-idx {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--cyan);
+    opacity: 0.65;
+    flex-shrink: 0;
+  }
+  .sector-name {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Logo grid ────────────────────────────────────────── */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+
+  /* ── Logo slot ────────────────────────────────────────── */
+  .logo-slot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 88px;
+    border-radius: 12px;
+    transition: transform 0.3s var(--ease);
+    cursor: default;
+    isolation: isolate;
+  }
+  .logo-slot:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Ambient glow — white core hides white JPG backgrounds on dark page */
+  .logo-slot .glow {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center,
+      rgba(255, 255, 255, 0.90)   0%,
+      rgba( 48, 226, 244, 0.50)  25%,
+      rgba( 38, 158, 198, 0.22)  50%,
+      transparent                 72%
+    );
+    opacity: 0.45;
+    transition: opacity 0.35s var(--ease), inset 0.35s var(--ease);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .logo-slot:hover .glow {
+    opacity: 1;
+    inset: -18px;
+  }
+
+  .logo-slot img {
+    max-width: 112px;
+    max-height: 54px;
+    width: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Pending slot — no logo yet */
+  .logo-slot--pending { opacity: 0.40; }
+  .logo-slot--pending:hover { opacity: 0.72; transform: translateY(-2px); }
+  .logo-slot--pending .glow {
+    background: radial-gradient(circle at center,
+      rgba(48, 226, 244, 0.22) 0%,
+      rgba(38, 158, 198, 0.10) 50%,
+      transparent              72%
+    );
+  }
+  .logo-name {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--mute);
+    text-align: center;
+    line-height: 1.4;
+    max-width: 110px;
+    padding: 0 6px;
+  }
+
+  /* ── CTA ──────────────────────────────────────────────── */
+  .cust-cta {
+    text-align: center;
+    padding: clamp(40px, 6vw, 68px);
+    background: linear-gradient(160deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02));
+    border-color: var(--line-strong);
+  }
+  .cust-cta h2 { margin: 10px 0 16px; }
+  .cust-cta .lede { margin: 0 auto 28px; max-width: 52ch; }
+
+  /* ── Mobile ───────────────────────────────────────────── */
+  @media (max-width: 600px) {
+    .logo-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 6px; }
+    .logo-slot { height: 74px; }
+    .logo-slot img { max-width: 88px; max-height: 44px; }
+    .logo-name { font-size: 10px; }
+  }
+</style>
+
+<script>
+  const chipBar  = document.getElementById('chipBar');
+  const chips    = document.querySelectorAll('.chip-btn');
+  const sections = document.querySelectorAll('.sector-section');
+
+  // Click chip → smooth scroll to sector (offset for sticky nav + chip bar)
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const id = chip.dataset.sector;
+      if (id === 'all') {
+        document.getElementById('sectorsStart').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        const target = document.getElementById(id);
+        if (target) {
+          const offset = 74 + (chipBar ? chipBar.offsetHeight : 50) + 16;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
+  // Scroll → highlight active chip + scroll chip into view in chip bar
+  function updateActive() {
+    const offset = 74 + (chipBar ? chipBar.offsetHeight : 50) + 24;
+    let activeId = 'all';
+    sections.forEach(section => {
+      if (section.getBoundingClientRect().top <= offset) {
+        activeId = section.dataset.sector;
+      }
+    });
+    chips.forEach(c => {
+      const active = c.dataset.sector === activeId;
+      c.classList.toggle('is-active', active);
+      if (active) {
+        c.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
+</script>

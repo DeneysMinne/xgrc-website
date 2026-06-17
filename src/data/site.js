@@ -17,6 +17,7 @@ export const nav = [
   { label: 'Home', href: '/' },
   { label: 'Solutions', href: '/solutions' },
   { label: 'Use Cases', href: '/use-cases' },
+  { label: 'Customers', href: '/customers' },
   { label: 'Resources', href: '/resources' },
   { label: 'Insights', href: '/insights' },
   { label: 'Legal Hub', href: '/legal-hub' },
@@ -49,16 +50,114 @@ export const solutions = [
 
 // Customer roster grouped by industry.
 export const customerGroups = [
-  { sector: 'Mining & infrastructure', names: ['Fraser Alexander', 'Gap Infrastructure Corporation', 'Sandton Plant Hire', 'African Rainbow Minerals', 'Rosh Pinah Zinc Corporation', 'Siyanda Bakgatla Platinum Mine'] },
-  { sector: 'Manufacturing & industrial', names: ['Trident S.A.', 'PG Bison', 'PG Glass', 'Pandrol', 'Helukabel', 'Astec Industries'] },
-  { sector: 'Steel manufacturing & supply', names: ['Trident Steel', 'Scaw Metals Group', 'Isilo Steel', 'Qinisa Steel Solutions', 'Steel & Pipes for Africa'] },
-  { sector: 'Holding & investment groups', names: ['KAP Ltd', 'African Rainbow Minerals', 'Mesure Holdings', 'Commercial Cold Holdings', 'Motseng Holdings'] },
-  { sector: 'Facilities, pharma & waste', names: ['Servest', 'Bidvest Steiner', 'Tsebo Solutions Group', 'Interwaste Holdings', 'Supercare by Empact Group', 'The Pple Group', 'Avacare Health Group'] },
-  { sector: 'Food & agriculture', names: ['RCL Foods', 'Woodlands Dairy', 'AFGRI', 'Overberg Agri', 'Meze Foods', 'ADM'] },
-  { sector: 'Wine & fruit production', names: ['Spier Wine Farm', 'Lutzville Vineyards', "L'Ormarins Estate", 'Stellenbosch Hills', 'Letaba African Realty Trust'] },
-  { sector: 'Logistics & distribution', names: ['Unitrans', 'Value Logistics', 'Kintetsu World Express', 'Hazmat Global', 'SPAR Distribution Centres', 'Morgan Cargo', 'Toyota South Africa'] },
-  { sector: 'Lubricants, oil & gas', names: ['FUCHS Lubricants', 'Puregas', 'Petro Hyper', 'Vula Oils', 'OilTech Namibia'] },
-  { sector: 'Science, IT & telecoms', names: ['CSIR', 'WhiteSci', 'MTC Namibia', 'Mustek', 'INHANCE Technology', 'Clinglobal'] }
+  {
+    id: 'mining', sector: 'Mining & infrastructure', chip: 'Mining',
+    customers: [
+      { name: 'Fraser Alexander',             logo: 'Fraser-Alexander.jpg' },
+      { name: 'Gap Infrastructure Corporation', logo: 'GIC.jpg' },
+      { name: 'Sandton Plant Hire',            logo: 'Sandton-Plant-Hire.jpg' },
+      { name: 'African Rainbow Minerals',      logo: 'ARM.jpg' },
+      { name: 'Rosh Pinah Zinc Corporation',   logo: 'Rosh-Pinah-Zinc.jpg' },
+      { name: 'Siyanda Bakgatla Platinum Mine', logo: 'SBPM.jpg' },
+    ]
+  },
+  {
+    id: 'manufacturing', sector: 'Manufacturing & industrial', chip: 'Manufacturing',
+    customers: [
+      { name: 'Trident S.A.',    logo: 'TRIDENTSA.jpg' },
+      { name: 'PG Bison',        logo: 'PG-Bison.jpg' },
+      { name: 'PG Glass',        logo: 'PG-Glass.jpg' },
+      { name: 'Pandrol' },
+      { name: 'Helukabel',       logo: 'HELUKABEL.jpg' },
+      { name: 'Astec Industries', logo: 'ASTEC.jpg' },
+    ]
+  },
+  {
+    id: 'steel', sector: 'Steel manufacturing & supply', chip: 'Steel',
+    customers: [
+      { name: 'Trident Steel',         logo: 'TRIDENTSTEEL.png' },
+      { name: 'Scaw Metals Group',      logo: 'SCAW.png' },
+      { name: 'Isilo Steel' },
+      { name: 'Qinisa Steel Solutions' },
+      { name: 'Steel & Pipes for Africa' },
+    ]
+  },
+  {
+    id: 'holding', sector: 'Holding & investment groups', chip: 'Holding',
+    customers: [
+      { name: 'KAP Ltd',                  logo: 'KAP.png' },
+      { name: 'African Rainbow Minerals', logo: 'ARM.jpg' },
+      { name: 'Mesure Holdings',          logo: 'MESURE.png' },
+      { name: 'Commercial Cold Holdings', logo: 'CCH.jpg' },
+      { name: 'Motseng Holdings' },
+    ]
+  },
+  {
+    id: 'facilities', sector: 'Facilities, pharma & waste', chip: 'Facilities',
+    customers: [
+      { name: 'Servest',                    logo: 'SERVEST.jpg' },
+      { name: 'Bidvest Steiner' },
+      { name: 'Tsebo Solutions Group',       logo: 'TSEBO.jpg' },
+      { name: 'Interwaste Holdings',         logo: 'INTERWASTE.jpg' },
+      { name: 'Supercare by Empact Group',   logo: 'SUPERCARE.jpg' },
+      { name: 'The Pple Group',              logo: 'PPLE.png' },
+      { name: 'Avacare Health Group' },
+    ]
+  },
+  {
+    id: 'food', sector: 'Food & agriculture', chip: 'Food & Agri',
+    customers: [
+      { name: 'RCL Foods',       logo: 'RCL-FOODS.jpg' },
+      { name: 'Woodlands Dairy', logo: 'WOODLANDS.jpg' },
+      { name: 'AFGRI',           logo: 'AFGRI.jpg' },
+      { name: 'Overberg Agri',   logo: 'OVERBERG.jpg' },
+      { name: 'Meze Foods',      logo: 'MEZE.png' },
+      { name: 'ADM',             logo: 'ADM.jpg' },
+    ]
+  },
+  {
+    id: 'wine', sector: 'Wine & fruit production', chip: 'Wine & Fruit',
+    customers: [
+      { name: 'Spier Wine Farm',          logo: 'SPIER.png' },
+      { name: 'Lutzville Vineyards' },
+      { name: "L'Ormarins Estate",        logo: 'LOMARAIS.png' },
+      { name: 'Stellenbosch Hills' },
+      { name: 'Letaba African Realty Trust' },
+    ]
+  },
+  {
+    id: 'logistics', sector: 'Logistics & distribution', chip: 'Logistics',
+    customers: [
+      { name: 'Unitrans',                 logo: 'UNITRANS.png' },
+      { name: 'Value Logistics' },
+      { name: 'Kintetsu World Express',   logo: 'KWE.png' },
+      { name: 'Hazmat Global' },
+      { name: 'SPAR Distribution Centres', logo: 'SPAR.png' },
+      { name: 'Morgan Cargo' },
+      { name: 'Toyota South Africa',      logo: 'Toyota.png' },
+    ]
+  },
+  {
+    id: 'energy', sector: 'Lubricants, oil & gas', chip: 'Oil & Gas',
+    customers: [
+      { name: 'FUCHS Lubricants', logo: 'FUCHS.png' },
+      { name: 'Puregas' },
+      { name: 'Petro Hyper' },
+      { name: 'Vula Oils' },
+      { name: 'OilTech Namibia' },
+    ]
+  },
+  {
+    id: 'technology', sector: 'Science, IT & telecoms', chip: 'Technology',
+    customers: [
+      { name: 'CSIR',              logo: 'CSIR.png' },
+      { name: 'WhiteSci' },
+      { name: 'MTC Namibia' },
+      { name: 'Mustek',            logo: 'MUSTEK.png' },
+      { name: 'INHANCE Technology' },
+      { name: 'Clinglobal',        logo: 'CLINGLOBAL.png' },
+    ]
+  },
 ];
 
 export const caseStudies = [
