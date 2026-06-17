@@ -1,0 +1,371 @@
+---
+import Base from '../../layouts/Base.astro';
+import { solutions, solutionDetails, brand } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return Object.keys(solutionDetails).map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const detail   = solutionDetails[slug];
+const solution = solutions.find((s) => s.slug === slug);
+if (!detail || !solution) return Astro.redirect('/solutions');
+
+const related = detail.related
+  .map((r) => solutions.find((s) => s.slug === r))
+  .filter(Boolean);
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: `XGRC® ${detail.name}`,
+      applicationCategory: 'BusinessApplication',
+      description: detail.lede,
+      operatingSystem: 'Web',
+      provider: { '@type': 'Organization', name: 'XGRC® Software', url: 'https://xgrcsoftware.com' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home',      item: 'https://xgrcsoftware.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Solutions', item: 'https://xgrcsoftware.com/solutions' },
+        { '@type': 'ListItem', position: 3, name: detail.name },
+      ],
+    },
+  ],
+});
+---
+
+<Base
+  title={`${detail.name} — ${detail.tag} | XGRC®`}
+  description={detail.lede}
+>
+  <script type="application/ld+json" set:html={schema} />
+
+  <!-- ── Hero ──────────────────────────────────────────── -->
+  <section class="sol-hero">
+    <div class="sol-hero-glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/solutions">Solutions</a>
+        <span aria-hidden="true">/</span>
+        <span>{detail.name}</span>
+      </div>
+      <span class="eyebrow"><span class="dot"></span>{detail.tag}</span>
+      <h1>{detail.name}</h1>
+      <p class="sol-headline">{detail.headline}</p>
+      <p class="lede sol-lede">{detail.lede}</p>
+      <div class="sol-actions">
+        <a href={`mailto:${brand.email}?subject=Demo%20Request%20-%20${encodeURIComponent(detail.name)}`} class="btn btn-primary">Request a demo</a>
+        <a href="/solutions" class="btn btn-ghost">All solutions &rarr;</a>
+      </div>
+      <div class="sol-standards-strip">
+        {detail.standards.map((s) => (
+          <span class="std-badge">{s}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The challenge ─────────────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>The challenge</span>
+        <h2>What breaks without {detail.name}.</h2>
+      </div>
+      <div class="grid cols-2 challenge-grid">
+        {detail.challenges.map((c) => (
+          <div class="card challenge-card">
+            <span class="challenge-icon" aria-hidden="true">→</span>
+            <h3>{c.title}</h3>
+            <p>{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Solution overview ─────────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="overview-split">
+        <div class="overview-copy">
+          <span class="eyebrow"><span class="dot"></span>What it does</span>
+          <h2>How {detail.name} works.</h2>
+          <p class="lede">{detail.overview}</p>
+          <a href={`mailto:${brand.email}?subject=Demo%20Request%20-%20${encodeURIComponent(detail.name)}`} class="link-arrow">See it in action &rarr;</a>
+        </div>
+        <div class="overview-stats">
+          {detail.stats.map((s) => (
+            <div class="stat-block">
+              <span class="stat-val">{s.value}</span>
+              <span class="stat-label">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Modules / What's inside ───────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>What's included</span>
+        <h2>Everything in {detail.name}.</h2>
+        <p class="lede">Every capability included as standard — no extra modules to purchase, no feature tiers.</p>
+      </div>
+      <div class="module-groups">
+        {detail.moduleGroups.map((group) => (
+          <div class="module-group">
+            <h3 class="group-label">{group.category}</h3>
+            <div class="module-chips">
+              {group.modules.map((m) => (
+                <span class="module-chip">{m}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Platform integration ──────────────────────────── -->
+  {related.length > 0 && (
+    <section class="section--tight">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow"><span class="dot"></span>Better together</span>
+          <h2>{detail.name} is stronger on the platform.</h2>
+          <p class="lede">Every XGRC® solution shares the same data foundation. When {detail.name} is combined with other solutions, risk, compliance, assurance, and governance data flows without duplication.</p>
+        </div>
+        <div class="grid cols-3 related-grid">
+          {related.map((r) => (
+            <a class="card related-card" href={`/solutions/${r.slug}`}>
+              <span class="tag">{r.tag}</span>
+              <h3>{r.name}</h3>
+              <p>{r.blurb}</p>
+              <span class="link-arrow">Explore &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ── CTA ───────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="card cta-block">
+        <div class="cta-tag"><span class="dot"></span>{detail.tag}</div>
+        <h2>See {detail.name} running in your environment.</h2>
+        <p class="lede">Talk to an XGRC® specialist about how {detail.name} fits your organisation's specific compliance and governance requirements.</p>
+        <div class="cta-actions">
+          <a href={`mailto:${brand.email}?subject=Demo%20Request%20-%20${encodeURIComponent(detail.name)}`} class="btn btn-primary">Request a live demo</a>
+          <a href="/use-cases" class="btn btn-ghost">See use cases</a>
+        </div>
+        <p class="contact-line">{brand.email} &middot; {brand.phone}</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ── Hero ───────────────────────────────────────────── */
+  .sol-hero {
+    padding: 130px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .sol-hero-glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 15% 0%, rgba(48,226,244,0.07) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 85% 100%, rgba(38,158,198,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--faint);
+    margin-bottom: 20px;
+  }
+  .breadcrumb a { color: var(--mute); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--cyan); }
+
+  .sol-hero h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin: 10px 0 18px;
+    background: linear-gradient(135deg, var(--ink) 40%, var(--cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    max-width: 14ch;
+  }
+  .sol-headline {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+    max-width: 720px;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .sol-lede { max-width: 660px; margin-bottom: 32px; }
+  .sol-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
+  .sol-standards-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .std-badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--cyan);
+    border: 1px solid rgba(48,226,244,0.25);
+    border-radius: 100px;
+    padding: 6px 14px;
+    background: rgba(48,226,244,0.05);
+  }
+
+  /* ── Challenge cards ────────────────────────────────── */
+  .challenge-grid { margin-top: 0; }
+  .challenge-card {
+    border-color: rgba(255,80,80,0.12);
+    background: rgba(255,60,60,0.03);
+    position: relative;
+  }
+  .challenge-card:hover { border-color: rgba(255,100,100,0.25); }
+  .challenge-icon {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    color: rgba(255,80,80,0.5);
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .challenge-card h3 { color: var(--ink); margin-bottom: 8px; font-size: 1rem; }
+  .challenge-card p { color: var(--mute); font-size: 14px; }
+
+  /* ── Overview split ─────────────────────────────────── */
+  .overview-split {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 64px;
+    align-items: start;
+  }
+  .overview-copy .eyebrow { margin-bottom: 12px; }
+  .overview-copy h2 { margin-bottom: 16px; }
+  .overview-copy .lede { margin-bottom: 24px; }
+  .overview-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat-block {
+    padding: 24px 28px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--panel);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stat-val {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--cyan);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+
+  /* ── Module groups ──────────────────────────────────── */
+  .module-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 40px;
+  }
+  .module-group {}
+  .group-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .module-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .module-chip {
+    font-size: 13px;
+    color: var(--mute);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 7px 14px;
+    background: var(--panel);
+    transition: 0.2s;
+    font-family: var(--font-body);
+  }
+  .module-chip:hover { color: var(--ink); border-color: var(--line-strong); transform: translateY(-1px); }
+
+  /* ── Related solutions ──────────────────────────────── */
+  .related-card { text-decoration: none; display: flex; flex-direction: column; }
+  .related-card .link-arrow { margin-top: auto; padding-top: 16px; }
+
+  /* ── CTA ─────────────────────────────────────────────── */
+  .cta-block {
+    text-align: center;
+    padding: clamp(36px, 6vw, 64px);
+    background: linear-gradient(160deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02));
+    border-color: var(--line-strong);
+  }
+  .cta-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 16px;
+  }
+  .cta-block h2 { margin-bottom: 14px; max-width: 580px; margin-left: auto; margin-right: auto; }
+  .cta-block .lede { margin: 0 auto 28px; max-width: 540px; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .contact-line { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
+
+  /* ── Responsive ──────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .overview-split { grid-template-columns: 1fr; gap: 40px; }
+    .overview-stats { flex-direction: row; flex-wrap: wrap; }
+    .stat-block { flex: 1; min-width: 140px; }
+  }
+  @media (max-width: 600px) {
+    .sol-hero { padding: 110px 0 52px; }
+    .challenge-grid { grid-template-columns: 1fr; }
+  }
+</style>

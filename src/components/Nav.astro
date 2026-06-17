@@ -7,8 +7,7 @@ const isActive = (href) => href === '/' ? path === '/' : path.startsWith(href);
 <header class="site-header" id="siteHeader">
   <div class="container bar">
     <a href="/" class="brand" aria-label={brand.name}>
-      <span class="mark" aria-hidden="true"></span>
-      <span class="brand-text"><span class="x">X</span><b>GRC</b> Software</span>
+      <img src="/assets/xgrc-logo-nav.png" alt="XGRC Software" class="brand-logo" />
     </a>
 
     <nav class="primary" aria-label="Primary">
@@ -47,11 +46,8 @@ const isActive = (href) => href === '/' ? path === '/' : path.startsWith(href);
   .site-header.scrolled { background: rgba(6, 15, 28, 0.9); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); }
   .bar { display: flex; align-items: center; gap: 18px; height: 74px; }
 
-  .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink); font-family: var(--font-display); font-weight: 700; font-size: 17px; margin-right: auto; }
-  .mark { width: 26px; height: 26px; border-radius: 7px; position: relative; background: conic-gradient(from 210deg, var(--deep), var(--cyan), var(--blue), var(--deep)); box-shadow: 0 0 18px rgba(48, 226, 244, 0.45); }
-  .mark::after { content: ""; position: absolute; inset: 5px; border-radius: 3px; background: var(--void); }
-  .brand-text .x { color: var(--cyan); }
-  .brand-text b { font-weight: 800; }
+  .brand { display: flex; align-items: center; text-decoration: none; margin-right: auto; }
+  .brand-logo { height: 36px; width: auto; display: block; }
 
   .primary { display: flex; gap: 20px; align-items: center; }
   .nav-link { color: var(--mute); text-decoration: none; font-size: 13.5px; font-weight: 500; transition: color 0.2s; white-space: nowrap; }

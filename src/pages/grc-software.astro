@@ -69,14 +69,14 @@ const schema = JSON.stringify({
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xgrcsoftware.com/' },
-        { '@type': 'ListItem', position: 2, name: 'GRC Software' },
+        { '@type': 'ListItem', position: 2, name: 'GRC Platform' },
       ],
     },
   ],
 });
 ---
 <Base
-  title="GRC Software — Governance, Risk & Compliance Platform | XGRC®"
+  title="GRC Platform — Governance, Risk & Compliance | XGRC®"
   description="XGRC® is an enterprise GRC platform that unifies governance, risk, compliance, ESG and data protection (GDPR, POPIA) into one auditable system. Trusted by 800+ companies."
 >
   <script type="application/ld+json" set:html={schema} />
@@ -84,7 +84,7 @@ const schema = JSON.stringify({
   <!-- ── Hero ───────────────────────────────────────────── -->
   <section class="grc-hero">
     <div class="container">
-      <span class="eyebrow"><span class="dot"></span>GRC Software Platform</span>
+      <span class="eyebrow"><span class="dot"></span>GRC Platform</span>
       <h1>Governance, Risk &amp; Compliance.<br>Unified.</h1>
       <p class="lede">XGRC® is an enterprise GRC platform that brings governance, risk, compliance, ESG and data protection into one auditable system — eliminating silos and giving your organisation a single version of the truth.</p>
       <div class="hero-actions">
@@ -122,6 +122,34 @@ const schema = JSON.stringify({
             <span class="link-arrow">Explore &rarr;</span>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Platform in action ───────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>The platform in action</span>
+        <h2>Real dashboards. Real decisions.</h2>
+        <p class="lede">Every discipline has a dedicated intelligence layer — executive dashboards built for decision-makers, not data analysts.</p>
+      </div>
+      <div class="dash-tabs" id="dashTabs">
+        <button class="dash-tab is-active" data-img="/assets/screenshots/erm-dashboard.jpg" data-label="Enterprise Risk Overview">Enterprise Risk</button>
+        <button class="dash-tab" data-img="/assets/screenshots/sheq-dashboard.jpg" data-label="SHEQ Executive Overview">SHEQ &amp; Safety</button>
+        <button class="dash-tab" data-img="/assets/screenshots/climate-dashboard.jpg" data-label="Climate Risk Register">Climate Risk</button>
+        <button class="dash-tab" data-img="/assets/screenshots/carbon-dashboard.jpg" data-label="Carbon Emissions Overview">Carbon &amp; ESG</button>
+      </div>
+      <div class="dash-frame">
+        <div class="dash-chrome">
+          <span class="dc-dot dc-red"></span>
+          <span class="dc-dot dc-yellow"></span>
+          <span class="dc-dot dc-green"></span>
+          <span class="dc-url" id="dashUrl">app.xgrcsoftware.com &nbsp;·&nbsp; Enterprise Risk Overview</span>
+        </div>
+        <div class="dash-screen">
+          <img id="dashImg" src="/assets/screenshots/erm-dashboard.jpg" alt="XGRC Enterprise Risk Management dashboard" width="2648" height="1418" loading="lazy" />
+        </div>
       </div>
     </div>
   </section>
@@ -216,6 +244,24 @@ const schema = JSON.stringify({
       </div>
     </div>
   </section>
+<script>
+  const tabs = document.querySelectorAll('.dash-tab');
+  const img  = document.getElementById('dashImg');
+  const url  = document.getElementById('dashUrl');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      img.classList.add('is-switching');
+      setTimeout(() => {
+        img.src = tab.dataset.img;
+        img.alt = tab.dataset.label;
+        url.textContent = 'app.xgrcsoftware.com  ·  ' + tab.dataset.label;
+        img.classList.remove('is-switching');
+      }, 220);
+    });
+  });
+</script>
 </Base>
 
 <style>
@@ -347,6 +393,68 @@ const schema = JSON.stringify({
   .cta .lede { margin: 0 auto 26px; max-width: 540px; }
   .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .contactline { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
+
+  /* ── Dashboard showcase ──────────────────────────────── */
+  .dash-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .dash-tab {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--mute);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 9px 20px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: var(--font-body);
+  }
+  .dash-tab:hover { color: var(--ink); border-color: var(--line-strong); }
+  .dash-tab.is-active { background: rgba(48,226,244,0.08); border-color: rgba(48,226,244,0.4); color: var(--cyan); }
+  .dash-frame {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(48,226,244,0.15);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
+  }
+  .dash-chrome {
+    background: rgba(8,16,32,0.98);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid rgba(48,226,244,0.08);
+  }
+  .dc-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  .dc-red    { background: #ff5f57; }
+  .dc-yellow { background: #febc2e; }
+  .dc-green  { background: #28c840; }
+  .dc-url {
+    flex: 1;
+    margin-left: 12px;
+    background: rgba(6,15,28,0.7);
+    border: 1px solid rgba(48,226,244,0.08);
+    border-radius: 5px;
+    padding: 5px 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--faint);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dash-screen { line-height: 0; }
+  .dash-screen img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.25s ease;
+  }
+  .dash-screen img.is-switching { opacity: 0; }
 
   /* ── Responsive ──────────────────────────────────────── */
   @media (max-width: 900px) {

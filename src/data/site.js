@@ -15,7 +15,7 @@ export const brand = {
 // Primary navigation. Strategix is an external link to the group site.
 export const nav = [
   { label: 'Home', href: '/' },
-  { label: 'GRC Software', href: '/grc-software' },
+  { label: 'GRC Platform', href: '/grc-software' },
   { label: 'Use Cases', href: '/use-cases' },
   { label: 'Customers', href: '/customers' },
   { label: 'Resources', href: '/resources' },
@@ -47,6 +47,280 @@ export const solutions = [
   { name: 'Libryo', slug: 'libryo', tag: 'Partner', blurb: 'Jurisdiction-specific regulatory intelligence embedded directly within XGRC®.', partner: true },
   { name: 'Hakware', slug: 'hakware', tag: 'Partner', blurb: 'Behavioural cyber-risk and awareness insight into the human element of security.', partner: true }
 ];
+
+// Rich solution detail data — powers /solutions/[slug] pages.
+export const solutionDetails = {
+  sheqx: {
+    name: 'SHEQX®',
+    tag: 'Safety, Health, Environment & Quality',
+    headline: 'SHEQ compliance that closes actions, not just spreadsheets.',
+    lede: 'SHEQX® aggregates safety, health, environment, and quality data into one auditable platform — giving you the visibility to prevent incidents, close non-conformances, and sustain ISO certification without the administrative drag.',
+    challenges: [
+      { title: 'Incidents tracked in email', body: 'Safety events get logged then forgotten. No closure, no pattern analysis, no learning.' },
+      { title: 'ISO audits reveal surprises', body: 'Compliance gaps stay invisible until an external audit makes them official findings with deadlines attached.' },
+      { title: 'Permits expire unnoticed', body: 'Legal appointments, MSDSs, and operational permits lapse because nobody owns the expiry calendar.' },
+      { title: 'Actions with no accountability', body: 'Corrective actions raised, assigned, then orphaned. Months later, the same issue recurs.' },
+    ],
+    overview: 'SHEQX® manages the complete SHEQ lifecycle — from hazard identification and incident capture through risk treatment, compliance monitoring, and ISO-aligned audit management — across every site and business unit on one platform.',
+    stats: [
+      { value: '24', label: 'Modules' },
+      { value: 'ISO 9001', label: '14001 · 45001' },
+      { value: 'Real-time', label: 'Action tracking' },
+    ],
+    moduleGroups: [
+      { category: 'Risk & Safety', modules: ['Incident Management', 'Risk Management', 'Emergency Preparedness', 'PPE Management', 'Medical Surveillance', 'Occupational Job Profiles'] },
+      { category: 'Compliance & Legal', modules: ['Legal Requirements', 'Legal Appointments', 'Permit Management', 'MSDS Management'] },
+      { category: 'Quality & Operations', modules: ['Non-Conformance Management', 'Change Management', 'Calibration', 'Objectives & Targets', 'Strategy Management'] },
+      { category: 'People & Training', modules: ['Training Records', 'Employee Management', 'Stakeholder Engagement', 'Suggestions'] },
+      { category: 'Oversight', modules: ['Audit Management', 'Inspection Management', 'Document Manager', 'Meeting Management', 'Action Manager'] },
+    ],
+    standards: ['ISO 9001', 'ISO 14001', 'ISO 45001'],
+    related: ['msx', 'erm', 'envirx'],
+  },
+
+  msx: {
+    name: 'MSX®',
+    tag: 'Integrated Management System',
+    headline: 'One management system. Every ISO standard. Zero duplication.',
+    lede: 'MSX® merges your governance, risk, compliance, and operational systems into one common framework — eliminating conflicting responsibilities, removing duplicated effort, and giving leadership real-time visibility across all business activities.',
+    challenges: [
+      { title: 'Multiple systems, multiple truths', body: 'ISO 9001, ISO 14001, and ISO 45001 managed in separate tools. The same data entered three times, never reconciled.' },
+      { title: 'Improvement programmes disconnected from risk', body: 'Continual improvement initiatives tracked in isolation — no link to the risks they are supposed to address.' },
+      { title: 'Board reporting takes weeks', body: 'Management performance data lives across departments, systems, and spreadsheets. Consolidation consumes more resource than the analysis.' },
+      { title: 'Certification gaps only surface at audit time', body: 'Without continuous monitoring across all ISO requirements, gaps accumulate silently between certification cycles.' },
+    ],
+    overview: 'MSX® is the integration layer that unifies multiple ISO management system disciplines into one coordinated programme — with consistent document control, governance workflows, audit management, and performance evaluation across the organisation.',
+    stats: [
+      { value: '25', label: 'Modules' },
+      { value: 'Multi-ISO', label: 'In one system' },
+      { value: 'Continual', label: 'Improvement built in' },
+    ],
+    moduleGroups: [
+      { category: 'Leadership & Strategy', modules: ['Leadership', 'Governance', 'Strategy & Initiatives', 'Objectives & Targets', 'Planning'] },
+      { category: 'Operations & Support', modules: ['Operations', 'Support', 'Change Management', 'Communication', 'Calibration'] },
+      { category: 'Performance & Improvement', modules: ['Performance Evaluation', 'Improvement', 'Event Management', 'Non-conformances'] },
+      { category: 'Compliance & Assurance', modules: ['Audit Management', 'Legal Compliance', 'Legal Appointments', 'Risk Assessment', 'Inspections Management'] },
+      { category: 'People & Documentation', modules: ['Training', 'Stakeholder Engagement', 'Document Manager', 'Document Template Control', 'Meeting Manager'] },
+    ],
+    standards: ['ISO 9001', 'ISO 14001', 'ISO 45001', 'ISO 22000'],
+    related: ['sheqx', 'erm', 'integrated-assurance'],
+  },
+
+  msxcyber: {
+    name: 'MSXCyber',
+    tag: 'Information Security Governance',
+    headline: 'ISO 27001 compliance without the spreadsheet chaos.',
+    lede: 'MSXCyber delivers a complete Information Security Management System aligned to ISO 27001:2022 — with governance, risk management, and audit-ready evidence built in from day one. The average South African data breach costs R32.36 million. Structured ISMS governance is no longer optional.',
+    challenges: [
+      { title: 'ISO 27001 gaps only found at audit', body: 'Without continuous monitoring, control weaknesses accumulate quietly between certification reviews.' },
+      { title: 'Asset inventories in spreadsheets', body: 'Assets undocumented, risks unassessed. One security incident reveals just how fragile the inventory actually is.' },
+      { title: 'No structured incident response', body: 'When a breach occurs, the response is improvised. Regulatory disclosure obligations are missed. Costs escalate.' },
+      { title: 'GDPR and POPIA obligations untracked', body: 'Data protection compliance managed through email threads — no evidence trail, no audit readiness.' },
+    ],
+    overview: 'MSXCyber implements the full plan-do-check-act cycle for information security — from asset registration and risk assessment through control implementation, incident management, internal audit, and management review — on a single governed platform.',
+    stats: [
+      { value: 'R32.36m', label: 'Average SA breach cost' },
+      { value: 'ISO 27001', label: ':2022 Certified' },
+      { value: '20+', label: 'Modules' },
+    ],
+    moduleGroups: [
+      { category: 'Security Operations', modules: ['Asset Register', 'Monitoring', 'Inspections', 'Broadcasting', 'Event Management'] },
+      { category: 'Risk & Controls', modules: ['Risk Assessments', 'Non-Conformances', 'Change Management', 'Strategies'] },
+      { category: 'Governance & Compliance', modules: ['Audits', 'Document Control', 'Legal Compliance', 'Objectives & Targets'] },
+      { category: 'People & Communication', modules: ['Training', 'Stakeholder Management', 'Meeting Manager'] },
+    ],
+    standards: ['ISO 27001:2022', 'GDPR', 'POPIA', 'NIS Directive'],
+    related: ['msx', 'erm', 'maia'],
+  },
+
+  erm: {
+    name: 'Enterprise Risk Management',
+    tag: 'Enterprise Risk Intelligence',
+    headline: 'Risk managed at enterprise scale, not spreadsheet scale.',
+    lede: 'A structured, auditable approach to enterprise, operational, and project risk — aligned to ISO 31000 and COSO ERM — with board-level dashboards, risk appetite monitoring, and corrective action tracking built in.',
+    challenges: [
+      { title: 'Risk registers nobody maintains', body: 'Annual reviews produce impressive registers that are outdated before they are presented. Residual risk is never re-assessed.' },
+      { title: 'Risk appetite defined, but not enforced', body: 'The board sets appetite thresholds. Operational decisions ignore them. There is no mechanism to detect or escalate breaches.' },
+      { title: 'KRIs reported in isolation', body: 'Key risk indicators tracked separately from the risks they monitor. Early warning signals go unnoticed until they become incidents.' },
+      { title: 'Risk and assurance disconnected', body: 'The audit plan bears no relationship to the risk register. High-risk areas go unaudited. Low-risk areas receive excess coverage.' },
+    ],
+    overview: 'XGRC® ERM provides a complete enterprise risk management platform — from risk identification and appetite-setting through treatment planning, KRI monitoring, and board-level reporting — with every element linked to governance, controls, and assurance.',
+    stats: [
+      { value: 'ISO 31000', label: '& COSO ERM' },
+      { value: 'Real-time', label: 'Board dashboards' },
+      { value: 'Full', label: 'Assurance linkage' },
+    ],
+    moduleGroups: [
+      { category: 'Risk Identification', modules: ['Risk Register', 'Risk Categorisation', 'Emerging Risk Tracking', 'Risk Event Capture'] },
+      { category: 'Assessment & Appetite', modules: ['Likelihood & Impact Scoring', 'Risk Appetite Thresholds', 'Tolerance Monitoring', 'Heat Map Visualisation'] },
+      { category: 'Treatment & Action', modules: ['Treatment Plans', 'Action Accountability', 'Escalation & Breach Alerts', 'Residual Risk Tracking'] },
+      { category: 'Monitoring & Reporting', modules: ['KRI Monitoring', 'Board Dashboards', 'Management Reporting', 'Trend Analysis'] },
+    ],
+    standards: ['ISO 31000', 'COSO ERM', 'King V', 'IFRS'],
+    related: ['integrated-assurance', 'msx', 'msxcyber'],
+  },
+
+  'integrated-assurance': {
+    name: 'Integrated Assurance',
+    tag: 'Internal Audit & Combined Assurance',
+    headline: 'One audit plan. Four lines of defence. Zero gaps.',
+    lede: 'Coordinate internal audit and combined assurance across your organisation — linked directly to risks, controls, and corrective actions — so every line of defence operates from the same picture of what needs assurance.',
+    challenges: [
+      { title: 'Audit findings that do not close risks', body: 'Internal audit operates independently from the risk register. Findings are raised, management responds, risks stay open.' },
+      { title: 'Combined assurance maps in PowerPoint', body: 'Outdated the moment they are presented. Nobody knows who is providing assurance over which risks until the board asks.' },
+      { title: 'Coverage gaps and duplication', body: 'High-risk areas receive no audit attention. Low-risk areas audited three times by different lines. Nobody has a consolidated view.' },
+      { title: 'Reactive audit planning', body: 'Annual plans built from intuition and last year\'s plan, not from the current risk landscape. Emerging risks go unaudited.' },
+    ],
+    overview: 'XGRC® Integrated Assurance manages the complete internal audit lifecycle — from risk-based planning and fieldwork through findings management, corrective actions, and board reporting — with a combined assurance matrix that maps every assurance provider to the risks they cover.',
+    stats: [
+      { value: '4', label: 'Lines of defence' },
+      { value: 'Risk-based', label: 'Audit planning' },
+      { value: 'Live', label: 'Assurance matrix' },
+    ],
+    moduleGroups: [
+      { category: 'Planning', modules: ['Risk-Based Audit Planning', 'Annual Audit Schedule', 'Resource & Capacity Planning', 'Scope Definition'] },
+      { category: 'Fieldwork', modules: ['Audit Programme Management', 'Evidence Capture', 'Interview & Testing Records', 'Working Papers'] },
+      { category: 'Findings & Actions', modules: ['Finding Ratings & Classification', 'Management Response Tracking', 'Corrective Action Plans', 'Follow-up & Closure'] },
+      { category: 'Combined Assurance', modules: ['Four Lines of Defence Map', 'Combined Assurance Matrix', 'Assurance Coverage Analytics', 'Board & Audit Committee Reporting'] },
+    ],
+    standards: ['IIA Standards', 'ISO 19011', 'King V', 'PFMA'],
+    related: ['erm', 'msx', 'msxcyber'],
+  },
+
+  envirx: {
+    name: 'ENVIRX®',
+    tag: 'Environmental Compliance & Monitoring',
+    headline: 'Environmental compliance you can demonstrate, not just claim.',
+    lede: 'ENVIRX® captures, tracks, and reports environmental performance data — from waste and water to air quality and energy consumption — in a single auditable system aligned to ISO 14001 and local environmental legislation.',
+    challenges: [
+      { title: 'Monitoring data scattered across sites', body: 'Each facility tracks environmental data differently. Consolidated reporting requires weeks of manual reconciliation.' },
+      { title: 'Regulatory inspections reveal unrecorded incidents', body: 'Environmental events that were informally dealt with on-site become formal non-compliances when an inspector asks for the evidence.' },
+      { title: 'Targets set but not monitored', body: 'Reduction commitments made to stakeholders and regulators. Progress is invisible until the annual sustainability report.' },
+      { title: 'Legal requirements change faster than compliance registers', body: 'Environmental legislation is updated continuously. Manual tracking cannot keep pace.' },
+    ],
+    overview: 'ENVIRX® manages the complete environmental compliance and performance programme — from legal obligation tracking and environmental monitoring data capture through incident reporting, objectives management, and regulatory reporting — all linked to your ISO 14001 management system.',
+    stats: [
+      { value: 'ISO 14001', label: 'Aligned' },
+      { value: 'Multi-site', label: 'Monitoring' },
+      { value: 'Continuous', label: 'Legal tracking' },
+    ],
+    moduleGroups: [
+      { category: 'Environmental Monitoring', modules: ['Environmental Monitoring', 'Air Quality Monitoring', 'Noise Monitoring', 'Water Quality Monitoring', 'Biodiversity Monitoring', 'Surface Area Change Monitoring', 'Material Flows', 'Energy Monitoring'] },
+      { category: 'Compliance & Legal', modules: ['Legal Compliance', 'Objectives & Targets', 'Strategy & Initiatives', 'Document Manager', 'Communication', 'Stakeholder Engagement'] },
+      { category: 'Operations & Governance', modules: ['Governance', 'Leadership', 'Planning', 'Support', 'Operations', 'Calibration', 'Inspections Management'] },
+      { category: 'Performance & Improvement', modules: ['Performance Evaluation', 'Improvement', 'Risk Assessment', 'Event Management', 'Non-Conformances', 'Audit Management'] },
+    ],
+    standards: ['ISO 14001', 'NEMA', 'King V', 'GHG Protocol'],
+    related: ['sheqx', 'esg', 'msx'],
+  },
+
+  esg: {
+    name: 'ESG',
+    tag: 'Environmental, Social & Governance Reporting',
+    headline: 'ESG reporting that survives investor scrutiny.',
+    lede: 'Collect, manage, and report ESG data in a structured, auditable way — aligned to GRI, IFRS S1/S2, and CDP — so your sustainability disclosures are backed by evidence, not just intention.',
+    challenges: [
+      { title: 'Disclosures built on unverifiable data', body: 'ESG reports assembled from manually collected spreadsheets. Investors and auditors increasingly ask for evidence. Evidence is not there.' },
+      { title: 'Questionnaires that take weeks to complete', body: 'Investor ESG questionnaires arrive and the search begins. Data is scattered, definitions differ by site, nobody owns the numbers.' },
+      { title: 'Targets without audit trails', body: 'Net-zero commitments and social targets made publicly. Progress tracked informally. Assurance providers have nothing to work with.' },
+      { title: 'Regulatory disclosure obligations missed', body: 'IFRS S1 and S2 requirements are expanding. Organisations without structured ESG data collection cannot comply in time.' },
+    ],
+    overview: 'XGRC® ESG provides a structured platform for collecting, managing, and reporting environmental, social, and governance data across the organisation — with multi-framework alignment, Scope 1/2/3 emissions tracking, and assurance-ready audit trails.',
+    stats: [
+      { value: 'GRI', label: '& IFRS S1/S2' },
+      { value: 'Scope 1·2·3', label: 'Emissions tracking' },
+      { value: 'Assurance', label: 'Ready' },
+    ],
+    moduleGroups: [
+      { category: 'Context & Strategy', modules: ['Materiality Assessment', 'ESG Strategy', 'Stakeholder Engagement', 'Business Strategy Alignment', 'Objectives & Targets', 'Indicator Thresholds'] },
+      { category: 'Environmental', modules: ['Scope 1, 2 & 3 Emissions', 'Energy Monitoring', 'Water & Waste Management', 'Biodiversity Records', 'Climate Risk Register'] },
+      { category: 'Social & Governance', modules: ['Employee Health & Safety Data', 'Training & Development Records', 'Board Composition & Diversity', 'Anti-corruption Policies', 'Ethics & Conduct Records'] },
+      { category: 'Reporting & Assurance', modules: ['GRI Index Compilation', 'IFRS S1/S2 Alignment', 'IIRC Integrated Reporting', 'CDP Disclosure Support', 'SDG Alignment', 'Audit Trail & Evidence Repository', 'Automated Report Configuration'] },
+    ],
+    standards: ['GRI Standards', 'IFRS S1 & S2', 'CDP', 'ISO 14001', 'IIRC 6 Capitals', 'King V', 'UN SDGs', 'JSE Sustainability'],
+    related: ['envirx', 'integrated-assurance', 'msx'],
+  },
+
+  'compliance-hub': {
+    name: 'XGRC® Compliance Hub',
+    tag: 'Supplier & Third-Party Compliance',
+    headline: 'Your supply chain\'s compliance posture, visible in real time.',
+    lede: 'Structured onboarding, vetting, and ongoing compliance management for suppliers, contractors, and third parties — with automated document expiry tracking, risk scoring, and compliance dashboards that give you a live view of your entire supply chain.',
+    challenges: [
+      { title: 'Certificates expire without warning', body: 'Supplier documents managed through email. Nobody owns the expiry calendar. A non-compliant contractor arrives on site.' },
+      { title: 'Onboarding takes weeks', body: 'Manual verification, back-and-forth emails, documents in different formats. High-risk contractors cleared faster than low-risk ones because nobody applied the same standard.' },
+      { title: 'No real-time supply chain view', body: 'You cannot answer the question "which of our active contractors are currently compliant?" without running a spreadsheet exercise.' },
+      { title: 'Incidents reveal undiscovered gaps', body: 'A site incident exposes a contractor whose safety certification lapsed three months ago. Nobody noticed.' },
+    ],
+    overview: 'XGRC® Compliance Hub provides a structured portal for supplier and contractor onboarding, document verification, and ongoing compliance monitoring — with automated expiry alerts, risk-based scoring, and real-time dashboards that replace email-based compliance management.',
+    stats: [
+      { value: 'Automated', label: 'Expiry alerts' },
+      { value: 'Risk-scored', label: 'Suppliers' },
+      { value: 'Real-time', label: 'Compliance view' },
+    ],
+    moduleGroups: [
+      { category: 'Onboarding', modules: ['Supplier Registration Portal', 'Document Upload & Verification', 'Vetting Workflows', 'Approval & Rejection Management'] },
+      { category: 'Ongoing Compliance', modules: ['Document Expiry Tracking', 'Automated Renewal Alerts', 'Compliance Status Dashboards', 'Audit-Ready Evidence Store'] },
+      { category: 'Risk Management', modules: ['Supplier Risk Scoring', 'Risk-Based Monitoring Frequency', 'Non-Compliance Escalation', 'Performance Ratings'] },
+      { category: 'Reporting', modules: ['Compliance Summary Reports', 'Expiry Calendars', 'Supplier Performance Analytics', 'Regulatory Disclosure Support'] },
+    ],
+    standards: ['ISO 9001', 'ISO 45001', 'POPIA', 'B-BBEE'],
+    related: ['sheqx', 'xlogic', 'msx'],
+  },
+
+  xlogic: {
+    name: 'XLOGIC®',
+    tag: 'Governance Execution',
+    headline: 'Policies that work. Controls that are actually enforced.',
+    lede: 'XLOGIC® converts governance frameworks, policies, and controls into structured, enforceable workflows — so compliance is built into how work gets done, not bolted on afterwards through audits.',
+    challenges: [
+      { title: 'Policies approved and filed, never operationalised', body: 'Documents are published. Employees are notified. Controls are never implemented. The gap between policy and practice grows with every update.' },
+      { title: 'Frameworks defined at board level, disconnected from operations', body: 'Governance structures documented in reports. Day-to-day operations run on institutional knowledge, habit, and workarounds.' },
+      { title: 'Evidence collected reactively', body: 'Compliance evidence gathered when an audit is announced, not continuously as work is performed. Evidence quality reflects urgency, not accuracy.' },
+      { title: 'Controls that exist on paper only', body: 'Internal audit reveals controls that are documented but not operating effectively. Management responses are familiar words.' },
+    ],
+    overview: 'XLOGIC® is the governance execution layer — it takes the policies, frameworks, and controls defined in XGRC® and converts them into structured workflows with accountability, evidence capture, and continuous compliance monitoring built in.',
+    stats: [
+      { value: 'Policy-to', label: 'Workflow conversion' },
+      { value: 'Continuous', label: 'Evidence capture' },
+      { value: 'Full', label: 'Audit trail' },
+    ],
+    moduleGroups: [
+      { category: 'Policy Operationalisation', modules: ['Policy-to-Workflow Conversion', 'Control Implementation Tracking', 'Responsibility Assignment', 'Acknowledgement & Signoff'] },
+      { category: 'Evidence & Compliance', modules: ['Continuous Evidence Collection', 'Compliance Monitoring Dashboards', 'Control Effectiveness Tracking', 'Audit-Ready Evidence Repository'] },
+      { category: 'Governance Architecture', modules: ['Framework Mapping', 'Obligation-to-Control Linkage', 'Governance Calendar', 'Accountability Structures'] },
+    ],
+    standards: ['King V', 'ISO 9001', 'ISO 27001', 'COSO'],
+    related: ['msx', 'erm', 'integrated-assurance'],
+  },
+
+  maia: {
+    name: 'MAIA',
+    tag: 'Governed AI for GRC',
+    headline: 'The intelligence of governance, without leaving your boundaries.',
+    lede: 'Master Artificial Intelligence Archetype — governed AI embedded within XGRC® that enhances how decision-makers interact with governance records, risks, policies, and compliance data. Faster insight. Better decisions. Full auditability. Zero data leaving your governance environment.',
+    challenges: [
+      { title: 'Answers take days, not minutes', body: 'A board member asks about residual risk in a business unit. The risk manager spends two days compiling a response from multiple systems.' },
+      { title: 'Governance records exist but are inaccessible', body: 'Policies, risk registers, audit findings, and compliance records accumulated over years. Too dense, too fragmented for rapid insight generation.' },
+      { title: 'AI tools that create new governance risk', body: 'Generic AI tools access external data, store queries, and operate outside organisational boundaries. Using them for governance decisions creates the risk they are supposed to reduce.' },
+      { title: 'Strategic decisions disconnected from operational risk data', body: 'Leadership makes decisions without a live view of the risk and compliance posture. The data exists. Nobody can access it fast enough to matter.' },
+    ],
+    overview: 'MAIA is governed AI embedded within the XGRC® platform — operating exclusively on your organisation\'s governance data, with full auditability of every AI interaction, delivering rapid insight generation across risk, compliance, policy, and audit records without exposing data externally.',
+    stats: [
+      { value: 'Zero', label: 'External data exposure' },
+      { value: 'Full', label: 'AI audit trail' },
+      { value: 'Live', label: 'Governance intelligence' },
+    ],
+    moduleGroups: [
+      { category: 'Governance Intelligence', modules: ['Natural Language Risk Queries', 'Policy & Procedure Q&A', 'Compliance Status Summaries', 'Regulatory Change Impact Analysis', 'ESG & SHERQ Insight Engine'] },
+      { category: 'DAVE — Data Integration', modules: ['API Data Connections', 'IoT Device Data', 'Microsoft Power BI', 'Microsoft Power Apps', 'Azure & PowerAutomate', 'XGRC Platform Data', 'Custom Data Requirements'] },
+      { category: 'LUCI — AI Interface', modules: ['DataViews & ML Dashboards', 'Predictive Maintenance AI', 'H&S Assistant Agent', 'Driver Fatigue Monitoring', 'Process Automation Bots', 'Voice Mode Interface'] },
+      { category: 'Governed AI Architecture', modules: ['Data Boundary Enforcement', 'AI Interaction Audit Trail', 'User Permission Alignment', 'Explainable AI Outputs', 'ChatGPT & Azure Integration'] },
+    ],
+    standards: ['ISO 42001', 'ISO 27001', 'ISO 31000', 'ISO 45001', 'GDPR', 'POPIA'],
+    related: ['erm', 'integrated-assurance', 'msxcyber'],
+  },
+};
 
 // Customer roster grouped by industry.
 export const customerGroups = [

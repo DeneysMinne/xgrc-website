@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { solutions } from '../data/site.js';
+import { solutions, solutionDetails } from '../data/site.js';
 const points = [
   'One source of truth',
   'Consistent workflows and approvals',
@@ -38,13 +38,22 @@ const points = [
         <h2>Specialist solutions, connected by one platform.</h2>
       </div>
       <div class="grid cols-3">
-        {solutions.map((s) => (
-          <div id={s.slug} class={`card ${s.partner ? 'card--partner' : ''}`}>
-            <span class="tag">{s.tag}</span>
-            <h3>{s.name}</h3>
-            <p>{s.blurb}</p>
-          </div>
-        ))}
+        {solutions.map((s) => {
+          const hasDetail = !!solutionDetails[s.slug];
+          const Tag = hasDetail ? 'a' : 'div';
+          return (
+            <Tag
+              id={s.slug}
+              class={`card sol-card ${s.partner ? 'card--partner' : ''} ${hasDetail ? 'sol-card--linked' : ''}`}
+              {...(hasDetail ? { href: `/solutions/${s.slug}` } : {})}
+            >
+              <span class="tag">{s.tag}</span>
+              <h3>{s.name}</h3>
+              <p>{s.blurb}</p>
+              {hasDetail && <span class="link-arrow">Explore {s.name} &rarr;</span>}
+            </Tag>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -58,4 +67,6 @@ const points = [
   .points { list-style: none; display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
   .points li { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); border: 1px solid var(--line); border-radius: 100px; padding: 8px 15px; background: rgba(48,226,244,0.05); }
   .small { font-size: 0.98rem; }
+  .sol-card--linked { text-decoration: none; display: flex; flex-direction: column; cursor: pointer; }
+  .sol-card--linked .link-arrow { margin-top: auto; padding-top: 16px; }
 </style>
