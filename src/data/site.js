@@ -160,9 +160,64 @@ export const customerGroups = [
   },
 ];
 
+// pdf: false = no PDF yet. Set pdf: true once you upload /public/case-studies/{slug}.pdf
 export const caseStudies = [
-  { title: 'Vican Manufacturing: Excellence in Safety, Quality, and Compliance', summary: 'A leading South African paint producer enhanced operational capability through SHEQX® and ISO 9001.', solution: 'SHEQX®' },
-  { title: 'GRC Link and Maverick Holding Company collaboration', summary: 'Partner collaboration extending XGRC® reach across the GRC market.', solution: 'Partnership' }
+  {
+    slug: 'vican-manufacturing',
+    company: 'Vican Manufacturing',
+    sector: 'Manufacturing',
+    solution: 'SHEQX®',
+    summary: 'A South African paint producer became an industry benchmark for safety, quality, and regulatory compliance through SHEQX® and ISO 9001 implementation.',
+    pdf: false,
+  },
+  {
+    slug: 'sandton-plant-hire',
+    company: 'Sandton Plant Hire',
+    sector: 'Plant hire & mining',
+    solution: 'SHEQX®',
+    summary: 'Replaced disconnected spreadsheets with SHEQX® — delivering faster SHEQ response times, accurate reporting, and the ability to scale operations without increasing risk exposure.',
+    pdf: false,
+  },
+  {
+    slug: 'commercial-cold-holdings',
+    company: 'Commercial Cold Holdings',
+    sector: 'Cold chain logistics',
+    solution: 'SHEQX®',
+    summary: 'One of the 25 largest refrigerated warehousing providers globally digitised SHEQ workflows to strengthen food safety, product integrity, and compliance with international export protocols.',
+    pdf: false,
+  },
+  {
+    slug: 'interwaste',
+    company: 'Interwaste',
+    sector: 'Waste management',
+    solution: 'SHEQX®',
+    summary: 'Unified SHEQ processes across multiple regions — significantly reducing reporting effort, accelerating safety action closure, and increasing near-miss reporting volumes.',
+    pdf: false,
+  },
+  {
+    slug: 'pple-group',
+    company: 'Pple Group',
+    sector: 'Human capital',
+    solution: 'SHEQX®',
+    summary: 'Elevated operational standards across the group through ISO 9001 and SHEQX®, improving quality management and compliance visibility.',
+    pdf: false,
+  },
+  {
+    slug: 'tn-ceramics',
+    company: 'TN Ceramics',
+    sector: 'Mining & materials',
+    solution: 'XGRC®',
+    summary: 'A specialist ceramics supplier to major Southern African mining companies adopted XGRC® to strengthen governance, compliance, and operational oversight.',
+    pdf: false,
+  },
+  {
+    slug: 'servest',
+    company: 'Servest',
+    sector: 'Facilities management',
+    solution: 'SHEQX® + ENVIRX®',
+    summary: 'Digitised SHEQ processes since 2019, reducing administrative burden and achieving renewed ISO 9001, 14001, and 45001 certifications in October 2024.',
+    pdf: false,
+  },
 ];
 
 export const articles = [

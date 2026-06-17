@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import SsotConvergence from '../components/SsotConvergence.astro';
-import { brand } from '../data/site.js';
+import { brand, caseStudies } from '../data/site.js';
 
 const capabilities = [
   {
@@ -45,17 +45,6 @@ const capabilities = [
 const globalFrameworks = ['GDPR', 'ISO 27001', 'ISO 9001', 'ISO 14001', 'ISO 45001', 'ISO 22000', 'ISO 31000'];
 const localFrameworks  = ['POPIA', 'PAIA', 'King V'];
 
-const useCases = [
-  { name: 'Internal Audit',               href: '/use-cases/internal-audit/',               tag: 'Audit & assurance', blurb: 'Plan, execute and manage internal audits linked to risks, controls and corrective actions.' },
-  { name: 'Policy Management',            href: '/use-cases/policy-management/',            tag: 'Governance',        blurb: 'Manage policies from development and approval through acknowledgement tracking, version control, and compliance monitoring.' },
-  { name: 'Risk Management',              href: '/use-cases/risk-management/',              tag: 'Risk',              blurb: 'Identify, assess and treat enterprise risk with a consistent framework aligned to ISO 31000 and COSO.' },
-  { name: 'Enterprise Risk Management',   href: '/use-cases/enterprise-risk-management/',   tag: 'Risk',              blurb: 'Central ERM platform to identify, assess, treat and monitor risk across strategic, operational, financial and compliance dimensions.' },
-  { name: 'ESG Reporting',                href: '/use-cases/esg-reporting/',                tag: 'Sustainability',    blurb: 'Collect, manage and report ESG data aligned to GRI, IFRS Sustainability and ISO standards.' },
-  { name: 'Safety Management',            href: '/use-cases/safety-management/',            tag: 'SHEQ',              blurb: 'Manage safety, incidents, inspections and compliance aligned to ISO 45001, ISO 14001 and ISO 9001.' },
-  { name: 'Compliance Management',        href: '/use-cases/compliance-management/',        tag: 'Compliance',        blurb: 'Manage supplier, contractor and customer compliance through a structured portal with automated tracking.' },
-  { name: 'Workplace Safety Inspection',  href: '/use-cases/workplace-safety-inspection/',  tag: 'Inspection',        blurb: 'A field-level inspection checklist for identifying hazards and maintaining a safe working environment.' },
-  { name: 'Fire Safety Inspection',       href: '/use-cases/fire-safety-inspection/',       tag: 'Inspection',        blurb: 'A practical fire safety inspection checklist for identifying hazards and maintaining fire safety compliance.' },
-];
 
 const whyPoints = [
   { stat: '800+',         label: 'Companies',      body: 'Organisations across southern Africa and the UK trust XGRC® to drive compliance at enterprise scale.' },
@@ -163,23 +152,31 @@ const schema = JSON.stringify({
     </div>
   </section>
 
-  <!-- ── Use cases ─────────────────────────────────────── -->
+  <!-- ── Case studies ─────────────────────────────────── -->
   <section class="section--tight">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>In practice</span>
-        <h2>See XGRC® applied to real challenges.</h2>
-        <p class="lede">Structured, solution-focused guides showing how XGRC® addresses a specific discipline — from planning through to assurance.</p>
+        <span class="eyebrow"><span class="dot"></span>Case studies</span>
+        <h2>Outcomes, not just software.</h2>
+        <p class="lede">How organisations across manufacturing, mining, logistics, and facilities management use XGRC® in practice.</p>
       </div>
       <div class="grid cols-3">
-        {useCases.map((u) => (
-          <a class="card uc-card" href={u.href}>
-            <span class="tag">{u.tag}</span>
-            <h3>{u.name}</h3>
-            <p>{u.blurb}</p>
-            <span class="link-arrow">View use case &rarr;</span>
-          </a>
+        {caseStudies.map((c) => (
+          <div class="card cs-card">
+            <div class="cs-meta">
+              <span class="tag">{c.sector}</span>
+              <span class="cs-solution">{c.solution}</span>
+            </div>
+            <h3 class="cs-company">{c.company}</h3>
+            <p>{c.summary}</p>
+            {c.pdf && (
+              <a href={`/case-studies/${c.slug}.pdf`} class="link-arrow" download>Download case study &rarr;</a>
+            )}
+          </div>
         ))}
+      </div>
+      <div style="margin-top:28px;">
+        <a href="/use-cases" class="btn btn-ghost">Explore use cases &rarr;</a>
       </div>
     </div>
   </section>
@@ -302,9 +299,12 @@ const schema = JSON.stringify({
     border-color: rgba(48, 226, 244, 0.50);
   }
 
-  /* ── Use cases ───────────────────────────────────────── */
-  .uc-card { text-decoration: none; display: flex; flex-direction: column; }
-  .uc-card .link-arrow { margin-top: auto; padding-top: 16px; }
+  /* ── Case studies ────────────────────────────────────── */
+  .cs-card { display: flex; flex-direction: column; }
+  .cs-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+  .cs-solution { font-family: var(--font-mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.06em; }
+  .cs-company { margin-bottom: 8px; }
+  .cs-card .link-arrow { margin-top: auto; padding-top: 16px; }
 
   /* ── Why XGRC ────────────────────────────────────────── */
   .why-section { position: relative; }
