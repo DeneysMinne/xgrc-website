@@ -16,6 +16,7 @@ export const brand = {
 export const nav = [
   { label: 'Home', href: '/' },
   { label: 'GRC Platform', href: '/grc-software' },
+  { label: 'Solutions', href: '/solutions' },
   { label: 'Use Cases', href: '/use-cases' },
   { label: 'Customers', href: '/customers' },
   { label: 'Resources', href: '/resources' },
