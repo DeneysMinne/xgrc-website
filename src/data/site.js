@@ -325,7 +325,7 @@ export const solutionDetails = {
   maia: {
     logo: '/assets/logos/solutions/maia.png',
     icon: '/assets/logos/solutions/icons/maia.png',
-    screenshot: null,
+    screenshot: '/assets/screenshots/maia-dashboard.png',
     name: 'MAIA',
     tag: 'Governed AI for GRC',
     headline: 'The intelligence of governance, without leaving your boundaries.',
