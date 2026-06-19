@@ -140,6 +140,28 @@ const schema = JSON.stringify({
     </div>
   </section>
 
+  <!-- ── See it in action (video) ────────────────────── -->
+  {detail.video && (
+    <section class="section--tight">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow"><span class="dot"></span>See it in action</span>
+          <h2>{detail.name} in practice.</h2>
+        </div>
+        <div class="sol-video-wrap">
+          <video
+            src={detail.video}
+            controls
+            playsinline
+            preload="none"
+            class="sol-video"
+            aria-label={`${detail.name} product overview video`}
+          />
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- ── Modules / What's inside ───────────────────────── -->
   <section class="section--tight">
     <div class="container">
@@ -492,6 +514,24 @@ const schema = JSON.stringify({
   .cta-block .lede { margin: 0 auto 28px; max-width: 540px; }
   .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .contact-line { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
+
+  /* ── Video ──────────────────────────────────────────── */
+  .sol-video-wrap {
+    margin-top: 40px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(48,226,244,0.15);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(48,226,244,0.06) inset;
+    background: #000;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sol-video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 
   /* ── Responsive ──────────────────────────────────────── */
   @media (max-width: 1100px) {
