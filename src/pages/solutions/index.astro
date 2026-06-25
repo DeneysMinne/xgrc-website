@@ -1,0 +1,72 @@
+---
+import Base from '../../layouts/Base.astro';
+import { solutions, solutionDetails } from '../../data/site.js';
+const points = [
+  'One source of truth',
+  'Consistent workflows and approvals',
+  'A continuous audit trail across all disciplines'
+];
+---
+
+<Base title="Solutions | XGRC® Software" description="A modular governance, risk and compliance platform. Specialist solutions on one secure, auditable foundation.">
+  <section class="page-head">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>XGRC® Software Solutions</span>
+      <h1>Confidence and control across governance, risk and compliance.</h1>
+      <p class="lede">Modern organisations do not struggle with a lack of data. They struggle with fragmented oversight. Risk sits in one system. Compliance in another. Assurance in spreadsheets. XGRC® Software exists to restore confidence and control.</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="card platform">
+        <span class="eyebrow"><span class="dot"></span>Synergy in Assurance, Strength in Compliance®</span>
+        <h2>A platform built for assurance at scale.</h2>
+        <p class="lede">At the core is a single, secure, auditable data foundation. All solutions operate on this shared platform, ensuring consistency, traceability, and integrity of information. Rather than separate tools for separate disciplines, XGRC® provides specialist lenses while keeping a connected view.</p>
+        <ul class="points">
+          {points.map((p) => (<li>{p}</li>))}
+        </ul>
+        <p class="lede small">Designed for choice, not forced consolidation. Adopt one solution today; combine more over time. As you grow, XGRC® scales with you, with no data migration, no rebuilt processes, no compromised assurance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>The suite</span>
+        <h2>Specialist solutions, connected by one platform.</h2>
+      </div>
+      <div class="grid cols-3">
+        {solutions.map((s) => {
+          const hasDetail = !!solutionDetails[s.slug];
+          const Tag = hasDetail ? 'a' : 'div';
+          return (
+            <Tag
+              id={s.slug}
+              class={`card sol-card ${s.partner ? 'card--partner' : ''} ${hasDetail ? 'sol-card--linked' : ''}`}
+              {...(hasDetail ? { href: `/solutions/${s.slug}` } : {})}
+            >
+              <span class="tag">{s.tag}</span>
+              <h3>{s.name}</h3>
+              <p>{s.blurb}</p>
+              {hasDetail && <span class="link-arrow">Explore {s.name} &rarr;</span>}
+            </Tag>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 18px; max-width: 18ch; }
+  .platform { background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02)); border-color: var(--line-strong); }
+  .platform h2 { margin: 6px 0 14px; }
+  .points { list-style: none; display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
+  .points li { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); border: 1px solid var(--line); border-radius: 100px; padding: 8px 15px; background: rgba(48,226,244,0.05); }
+  .small { font-size: 0.98rem; }
+  .sol-card--linked { text-decoration: none; display: flex; flex-direction: column; cursor: pointer; }
+  .sol-card--linked .link-arrow { margin-top: auto; padding-top: 16px; }
+</style>

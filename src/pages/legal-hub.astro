@@ -1,0 +1,353 @@
+---
+import Base from '../layouts/Base.astro';
+
+const journey = [
+  { n: 1, kind: 'sys', title: 'First contact — protect confidentiality', desc: 'Before any platform information, pricing, or architecture is shared, both parties sign the NDA. This protects XGRC IP during the entire evaluation phase.', docs: [{ name: 'Non-Disclosure Agreement v4.0', ref: 'XGRC-NDA-004', chips: [['fill', 'Customer fills: name, reg no, jurisdiction, address, email'], ['sign', 'Both parties sign + witness'], ['pre', 'Strategix: pre-filled']] }] },
+  { n: 2, kind: 'mute', title: 'Discovery — capture requirements', desc: 'The customer completes the Business Landscape document, recording requirements, user counts, modules needed, and integrations. Strategix uses this for configuration, scoping, and pricing. The customer warrants its accuracy under SaaS Agreement clause 6.1.', docs: [{ name: 'Business Landscape', ref: 'Internal scoping document', chips: [['fill', 'Customer completes all fields'], ['ref', 'No signature required'], ['alert', "Customer warrants accuracy, inaccuracy is at customer's risk"]] }] },
+  { n: 3, kind: 'go', title: 'Commercial agreement — price and scope', desc: 'Strategix issues the Proposal with all commercial terms: pricing, licence structure, term, and renewal basis. On signature by both parties it becomes the binding Order Form and the subscription begins.', docs: [{ name: 'Proposal & Order Form v2.0', ref: 'XGRC-PRO-002 · 30-day validity from date of issue', chips: [['pre', 'Strategix: completes all commercial fields before sending'], ['fill', 'Customer: reg no, address, primary contact'], ['sign', 'Both parties sign + witness'], ['alert', 'On signature: becomes binding Order Form']] }] },
+  { n: 4, kind: 'sys', title: 'Legal framework — signed once', desc: 'The SaaS Agreement is signed alongside the Proposal at deal close. By signing, the customer accepts the DPA and all Website Policies by reference, with no separate click-throughs required for any operational policy.', docs: [
+    { name: 'SaaS Agreement v4.0', ref: 'XGRC-SAAS-004 · 21 clauses · effective date taken from Proposal', chips: [['pre', 'Strategix: pre-filled including all 5 Website Policy URLs'], ['fill', 'Customer: name, reg no, jurisdiction, address, email, notices contact'], ['sign', 'Both parties sign + witness'], ['ref', 'Incorporates DPA + 5 Website Policies by reference']] },
+    { name: 'Data Processing Addendum v2.0', ref: 'XGRC-DPA-002 · accepted via SaaS Agreement cl.18.2, no separate signature', chips: [['ref', 'Binding by reference, no re-signing on policy updates'], ['pre', 'Satisfies POPIA s.21 operator agreement requirement']] }
+  ] },
+  { n: 5, kind: 'go', title: 'Onboarding & go-live', desc: 'Platform access is provisioned per the Business Landscape. Any changes to scope after signature require formal change control and may affect price and timelines.', chips: [['pre', 'Configuration per Business Landscape'], ['alert', 'Changes after signing require a formal change order'], ['ref', 'Support Policy governs all support from day one']] },
+  { n: 6, kind: 'mute', title: 'Active subscription — ongoing obligations', desc: "Both parties operate under the SaaS Agreement for the term. Website Policies can be updated on 30 days' notice without re-signing. Annual fee adjustments apply from 1 March each year on 30 days' written notice.", precedence: ['Proposal wins', 'SaaS Agreement', 'Website Policies'] },
+  { n: 7, kind: 'mute', title: 'Renewal', desc: "Auto-renews unless 60 days' written notice is given before term end. New Proposal issued if pricing or scope changes. SaaS Agreement continues, no re-signing required.", chips: [['pre', 'New Proposal for pricing changes only'], ['ref', 'SaaS Agreement continues, no re-signing'], ['alert', "60 days' notice required to cancel"]] },
+  { n: 8, kind: 'stop', title: 'Termination', desc: 'Either party may terminate per the SaaS Agreement. 30-day data export window. All outstanding fees immediately due and payable. Key clauses survive.', chips: [['alert', '30-day data export window (cl.7.4)'], ['alert', 'All fees immediately due on termination'], ['ref', 'Survival: clauses 5, 7, 12, 14, 17, 19']] }
+];
+
+const anatomy = [
+  { badge: 'XGRC-NDA-004', name: 'NDA v4.0', sub: '16 clauses · 2-year term · 5-year survival', tone: 'sys', clauses: ['Parties', 'Definitions', 'Confidentiality obligations', 'Permitted disclosure', 'Intellectual property', 'Data protection', 'Return and destruction', 'Term and survival', 'No obligation', 'Breach and remedies', 'Limitation of liability', 'Assignment', 'Governing law & disputes', 'Notices', 'General', 'Signatures'], chips: ['AFSA arbitration · Johannesburg', 'Trade secrets survive indefinitely', 'No competing use clause', 'No reverse engineering clause'] },
+  { badge: 'XGRC-PRO-002', name: 'Proposal & Order Form v2.0', sub: '10 sections · 30-day validity', tone: 'go', clauses: ['Executive summary', 'Customer details', 'Proposed XGRC solution', 'Scope and assumptions', 'Licence structure', 'Commercial terms', 'Term and renewal', 'Contractual framework', 'Customer acknowledgements', 'Acceptance / signatures'], chips: ['Becomes Order Form on signature', 'Discounts: initial term only, no precedent', 'Annual adjustment from 1 March each year'] },
+  { badge: 'XGRC-SAAS-004', name: 'SaaS Agreement v4.0', sub: '21 clauses · master legal framework · signed once', tone: 'sys', clauses: ['Parties', 'Effective date & structure', 'Definitions', 'Subscription grant', 'Use restrictions', 'Customer responsibilities', 'Customer data', 'Service delivery', 'Fees and payment', 'Term and renewal', 'Termination', 'Intellectual property', 'Warranties', 'Limitation of liability', 'Indemnities', 'Suspension', 'Confidentiality', 'Website policies & DPA', 'Governing law & disputes', 'Notices', 'General + signatures'], chips: ['12-month liability cap', 'Suspension, not interest, for non-payment', '30-day data export on termination', 'Benchmarking prohibition', '1 March annual price adjustment'] },
+  { badge: 'XGRC-DPA-002', name: 'Data Processing Addendum v2.0', sub: '16 clauses · binding via SaaS cl.18.2 · no separate signature', tone: 'sys', clauses: ['Purpose and scope', 'Definitions', 'Roles of parties', 'Scope of processing', 'Customer obligations', 'Provider obligations', 'Security measures', 'Subprocessors', 'International transfers', 'Data subject rights', 'Security incidents', 'Retention and deletion', 'Audit and compliance', 'Liability', 'Updates to DPA', 'Governing law'], chips: ['POPIA s.21 operator agreement', '72-hr breach notification', '90-day deletion window', 'Azure West Europe (Netherlands / Ireland)'] }
+];
+
+const webGroups = [
+  { label: 'Legal Hub — /legal', cards: [
+    { tone: 'bind', title: 'Legal Hub index', url: '/legal', desc: 'Anchor page. Separates binding documents from public notices. Sets the contractual context explicitly.' },
+    { tone: 'bind', title: 'Data Processing Addendum', url: '/legal/data-processing-addendum', desc: 'POPIA s.21 operator agreement. 16 clauses. 72-hr breach notification. Version and date must display clearly.' },
+    { tone: 'bind', title: 'Acceptable Use Policy', url: '/legal/acceptable-use-policy', desc: 'Permitted and prohibited platform use. Breach triggers immediate suspension rights.' },
+    { tone: 'bind', title: 'Support Policy', url: '/legal/support-policy', desc: '6 severity levels. Sev 0 covered 24/7. Response targets with customer-caused exclusions.' },
+    { tone: 'info', title: 'Privacy Policy', url: '/legal/privacy-policy', desc: 'POPIA notice for website visitors and prospects.' },
+    { tone: 'info', title: 'Cookie Policy', url: '/legal/cookie-policy', desc: 'Cookie categories and management preferences.' },
+    { tone: 'info', title: 'Website Terms of Use', url: '/legal/website-terms', desc: 'Website access, IP ownership, and no-reliance clause.' },
+    { tone: 'info', title: 'Privacy Requests', url: '/legal/privacy-requests', desc: 'POPIA data subject rights. Contact: info@xgrcsoftware.com' }
+  ] },
+  { label: 'Trust Centre — /trust', cards: [
+    { tone: 'trust', title: 'Trust Centre index', url: '/trust', desc: 'Enterprise procurement and security due diligence entry point.' },
+    { tone: 'trust', title: 'Cybersecurity Policy', url: '/trust/cybersecurity', desc: 'ISO 27001:2022 alignment. Security controls. Incident handling. Binding in part via SaaS.' },
+    { tone: 'trust', title: 'Subprocessor List', url: '/trust/subprocessors', desc: "Microsoft Azure + Microsoft 365. EU West Europe. 10 Business Days' notice for material changes." },
+    { tone: 'trust', title: 'Data Hosting', url: '/trust/data-hosting', desc: 'Azure West Europe (Netherlands / Ireland). ISO 27001/27017/27018 + SOC 2 Type II certified.' }
+  ] },
+  { label: 'Operational pages', cards: [
+    { tone: 'info', title: 'Service Status', url: '/status', desc: 'Live operational notices for availability, incidents, and planned maintenance.' },
+    { tone: 'info', title: 'Accessibility Statement', url: '/accessibility', desc: 'Accessibility commitment supporting enterprise procurement checklists.' }
+  ] }
+];
+
+const triggers = [
+  { tone: 'amber', label: 'Non-payment escalation — SaaS cl.9.4', title: 'Payment default process', pill: 'cl.9.4', steps: ['Day 31: written payment reminder issued to the customer', 'Day 45: suspension of access on written notice. Subscription keeps running, no credit available, no set-off permitted', "Day 60+: termination right on 7 Business Days' written notice (cl.11.2)", 'On termination: all outstanding fees immediately due and payable'] },
+  { tone: 'red', label: 'Immediate suspension — SaaS cl.16', title: 'Suspension without prior notice', pill: 'cl.16', steps: ['Security incident or threat to the platform or other customers on the multi-tenant environment', 'Material breach of the Acceptable Use Policy', 'Continued access would expose Strategix to legal liability', 'Customer notified as soon as reasonably practicable after suspension'] },
+  { tone: 'red', label: 'Termination for cause — SaaS cl.11.1', title: 'Material breach or insolvency', pill: 'cl.11.1', steps: ['Material breach not remedied within 14 Business Days of written notice specifying the breach', 'Insolvency, liquidation, or business rescue appointment', 'All fees for the remainder of any fixed term become immediately due and payable'] },
+  { tone: 'blue', label: 'Security incident — DPA cl.11', title: 'Confirmed data breach', pill: 'DPA cl.11', steps: ['Notify customer within 72 hours of becoming aware of a confirmed security incident', 'Notification must include: nature of incident, data categories affected, and remediation steps', "Not responsible for incidents from customer's own configuration, users, or systems outside Strategix's control"] },
+  { tone: 'blue', label: 'Subprocessor change — DPA cl.8', title: 'Adding or changing a subprocessor', pill: 'DPA cl.8', steps: ["Material change: 10 Business Days' advance written notice to the customer", "Customer may object in writing within 10 Business Days on data protection grounds", 'If unresolved within 30 days: either party may terminate the affected service on written notice'] }
+];
+
+const renewalFlow = [
+  { step: 'Day −60', title: 'Renewal notification', sub: 'Strategix sends renewal notification confirming fees for the next period' },
+  { step: 'Customer reviews', title: 'Accept or cancel', sub: "60 days' written notice to cancel. No response means auto-renewal." },
+  { step: 'If pricing changes', title: 'New Proposal issued', sub: 'Customer signs new Proposal only. SaaS Agreement continues unchanged.' },
+  { step: 'If no notice given', title: 'Auto-renews', sub: 'Same term, fees per renewal notification or 1 March annual adjustment' }
+];
+
+const renewalTable = [
+  ['SaaS Agreement', 'Continues automatically, no re-signing required'],
+  ['Data Processing Addendum', 'Continues automatically, no re-signing required'],
+  ['Website Policies', "Continue automatically, updated on 30 days' notice without re-signing"],
+  ['Proposal & Order Form', 'New Proposal required only if pricing or scope changes'],
+  ['NDA', 'Separate 2-year term, check expiry date and refresh if needed']
+];
+
+const tabs = [
+  { id: 'journey', label: 'Customer Journey' },
+  { id: 'anatomy', label: 'Document Anatomy' },
+  { id: 'website', label: 'Website Layer' },
+  { id: 'triggers', label: 'Triggers & Consequences' },
+  { id: 'renewal', label: 'Renewal & Pricing' }
+];
+---
+
+<Base title="Legal Hub | XGRC Software" description="The XGRC contract framework and document flow: customer journey, document anatomy, website legal map, triggers and renewal.">
+  <section class="page-head">
+    <div class="container">
+      <div class="breadcrumb">XGRC Software / Legal Hub</div>
+      <span class="eyebrow"><span class="dot"></span>Legal Hub</span>
+      <h1>Contract Framework & Document Flow</h1>
+      <p class="lede">How every agreement fits together, from first contact to renewal. Five views of the same connected framework.</p>
+      <div class="meta">Version 4.0 · Effective 30 April 2026 · Governed by South African law</div>
+    </div>
+  </section>
+
+  <div class="tab-bar">
+    <div class="container tab-inner">
+      {tabs.map((t, i) => (
+        <button class={`tab-btn ${i === 0 ? 'active' : ''}`} data-tab={t.id}>{t.label}</button>
+      ))}
+    </div>
+  </div>
+
+  <div class="container page-body">
+
+    <!-- JOURNEY -->
+    <div id="journey" class="panel active">
+      <div class="flow">
+        {journey.map((s, i) => (
+          <div class="step">
+            <div class="spine">
+              <div class={`step-num k-${s.kind}`}>{s.n}</div>
+              {i < journey.length - 1 && <div class="step-line"></div>}
+            </div>
+            <div class="step-body">
+              <div class="step-title">{s.title}</div>
+              <p class="step-desc">{s.desc}</p>
+              {s.docs && s.docs.map((d) => (
+                <div class="doc-card">
+                  <div class="doc-name">{d.name}</div>
+                  <div class="doc-ref">{d.ref}</div>
+                  <div class="chips">
+                    {d.chips.map(([c, txt]) => (<span class={`chip ${c}`}>{txt}</span>))}
+                  </div>
+                </div>
+              ))}
+              {s.chips && (<div class="chips">{s.chips.map(([c, txt]) => (<span class={`chip ${c}`}>{txt}</span>))}</div>)}
+              {s.precedence && (
+                <div class="prec-bar">
+                  {s.precedence.map((p, pi) => (<div class="prec-item"><span class="prec-num">{pi + 1}</span>{p}</div>))}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- ANATOMY -->
+    <div id="anatomy" class="panel">
+      {anatomy.map((d) => (
+        <div class="doc-section">
+          <div class={`doc-header tone-${d.tone}`}>
+            <span class="doc-badge">{d.badge}</span>
+            <span class="doc-section-name">{d.name}</span>
+            <span class="doc-section-sub">{d.sub}</span>
+          </div>
+          <div class="clause-grid">
+            {d.clauses.map((c, ci) => (<div class="clause-cell"><strong>{ci + 1}</strong>{c}</div>))}
+          </div>
+          <div class="chips">{d.chips.map((c) => (<span class="chip ref">{c}</span>))}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- WEBSITE -->
+    <div id="website" class="panel">
+      <div class="legend">
+        <span class="leg"><span class="leg-dot t-bind"></span>Binding, incorporated into SaaS Agreement</span>
+        <span class="leg"><span class="leg-dot t-trust"></span>Trust Centre, procurement and due diligence</span>
+        <span class="leg"><span class="leg-dot t-info"></span>Informational, public notices</span>
+      </div>
+      {webGroups.map((g) => (
+        <div class="web-section">
+          <div class="sec-label">{g.label}</div>
+          <div class="web-grid">
+            {g.cards.map((c) => (
+              <div class={`web-card t-${c.tone}`}>
+                <div class="web-card-title">{c.title}</div>
+                <div class="web-card-url">{c.url}</div>
+                <div class="web-card-desc">{c.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- TRIGGERS -->
+    <div id="triggers" class="panel">
+      {triggers.map((t) => (
+        <div class="trigger-group">
+          <div class={`sec-label tcol-${t.tone}`}>{t.label}</div>
+          <div class="trigger-card">
+            <div class="trigger-title">{t.title}<span class={`tpill tp-${t.tone}`}>{t.pill}</span></div>
+            <ul class="trigger-steps">
+              {t.steps.map((s) => (<li>{s}</li>))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- RENEWAL -->
+    <div id="renewal" class="panel">
+      <div class="renewal-flow">
+        {renewalFlow.map((r, i) => (
+          <>
+            <div class="r-box">
+              <div class="r-step">{r.step}</div>
+              <div class="r-title">{r.title}</div>
+              <div class="r-sub">{r.sub}</div>
+            </div>
+            {i < renewalFlow.length - 1 && <div class="r-arr">›</div>}
+          </>
+        ))}
+      </div>
+
+      <div class="rtable-wrap">
+        <table class="rtable">
+          <thead><tr><th>Document</th><th>What happens at renewal</th></tr></thead>
+          <tbody>
+            {renewalTable.map(([doc, what]) => (<tr><td>{doc}</td><td>{what}</td></tr>))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="price-notice">
+        <div class="price-notice-title">Annual Price Adjustment, SaaS Agreement Clause 9.6</div>
+        <p>The Provider may adjust Fees annually with effect from <strong>1 March</strong> each year on not less than <strong>30 days' prior written notice</strong>. Adjustments may reflect inflation, operating cost increases, subprocessor cost changes (including Microsoft Azure infrastructure pricing), enhancements to the Service, and changes in market conditions.</p>
+        <p>The adjusted Fees apply from the first billing cycle commencing on or after 1 March in the relevant year. If no notice of adjustment is given before 1 March, the Fees from the preceding period continue unchanged until the next annual adjustment cycle. The first annual adjustment shall not take effect earlier than 12 months after the Effective Date.</p>
+      </div>
+    </div>
+
+    <div class="doc-control">
+      Strategix Application Solutions (Pty) Ltd · Registration No. 2015/192960/07 · York House Block A Unit 5, Tybalt Place, Waterfall Office Park, Vorna Valley, Midrand, 1685 · info@xgrcsoftware.com · Effective 30 April 2026 · Version 4.0
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page-head { padding: 124px 0 24px; }
+  .breadcrumb { font-family: var(--font-mono); font-size: 11px; color: var(--faint); letter-spacing: 0.06em; margin-bottom: 16px; }
+  .page-head h1 { margin: 8px 0 16px; }
+  .meta { font-family: var(--font-mono); font-size: 11.5px; color: var(--faint); margin-top: 16px; }
+
+  /* tabs */
+  .tab-bar { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(6,15,28,0.6); margin-bottom: 40px; position: sticky; top: 74px; z-index: 40; backdrop-filter: blur(12px); }
+  .tab-inner { display: flex; gap: 4px; overflow-x: auto; }
+  .tab-btn { background: none; border: 0; border-bottom: 2px solid transparent; color: var(--mute); font-family: var(--font-body); font-size: 14px; font-weight: 500; padding: 16px 14px; cursor: pointer; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active { color: var(--cyan); border-bottom-color: var(--cyan); }
+
+  .page-body { padding-bottom: 40px; }
+  .panel { display: none; }
+  .panel.active { display: block; animation: fade 0.3s var(--ease); }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* colour-coded chips */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .chip { font-size: 12px; line-height: 1.35; padding: 6px 11px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--mute); }
+  .chip.fill { color: var(--cyan); border-color: rgba(48,226,244,0.3); background: rgba(48,226,244,0.06); }
+  .chip.sign { color: var(--green); border-color: rgba(47,232,138,0.3); background: rgba(47,232,138,0.06); }
+  .chip.pre { color: #6db8e0; border-color: rgba(38,158,198,0.3); background: rgba(38,158,198,0.06); }
+  .chip.ref { color: var(--mute); }
+  .chip.alert { color: #f6c560; border-color: rgba(246,197,96,0.3); background: rgba(246,197,96,0.06); }
+
+  /* journey */
+  .flow { max-width: 760px; }
+  .step { display: flex; gap: 20px; }
+  .spine { display: flex; flex-direction: column; align-items: center; }
+  .step-num { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 14px; flex-shrink: 0; border: 2px solid; background: var(--abyss); }
+  .k-sys { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 14px rgba(48,226,244,0.4); }
+  .k-go { border-color: var(--green); color: var(--green); box-shadow: 0 0 14px rgba(47,232,138,0.35); }
+  .k-mute { border-color: var(--line-strong); color: var(--mute); }
+  .k-stop { border-color: #f08585; color: #f08585; box-shadow: 0 0 14px rgba(240,133,133,0.35); }
+  .step-line { width: 2px; flex: 1; background: linear-gradient(var(--line-strong), var(--line)); margin: 4px 0; }
+  .step-body { padding-bottom: 34px; flex: 1; }
+  .step-title { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; margin-bottom: 6px; }
+  .step-desc { font-size: 0.95rem; max-width: 60ch; }
+  .doc-card { margin-top: 14px; background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--cyan); border-radius: 12px; padding: 16px 18px; }
+  .doc-name { font-family: var(--font-display); font-weight: 600; font-size: 1rem; }
+  .doc-ref { font-family: var(--font-mono); font-size: 11px; color: var(--faint); margin-top: 3px; }
+  .prec-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+  .prec-item { display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--mute); border: 1px solid var(--line); border-radius: 100px; padding: 7px 14px; background: var(--panel); }
+  .prec-num { width: 20px; height: 20px; border-radius: 50%; background: var(--cyan); color: var(--green-ink); font-weight: 700; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+
+  /* anatomy */
+  .doc-section { border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 22px; background: var(--panel); }
+  .doc-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+  .doc-header.tone-sys { background: rgba(48,226,244,0.06); }
+  .doc-header.tone-go { background: rgba(47,232,138,0.06); }
+  .doc-badge { font-family: var(--font-mono); font-size: 11px; padding: 4px 9px; border-radius: 6px; background: var(--abyss); color: var(--cyan); border: 1px solid var(--line); }
+  .doc-section-name { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
+  .doc-section-sub { font-family: var(--font-mono); font-size: 11px; color: var(--faint); }
+  .clause-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 18px 20px; }
+  .clause-cell { font-size: 12.5px; color: var(--mute); background: var(--abyss); border: 1px solid var(--line); border-radius: 8px; padding: 9px 11px; display: flex; gap: 8px; }
+  .clause-cell strong { color: var(--cyan); font-family: var(--font-mono); font-size: 11px; }
+  .doc-section .chips { padding: 0 20px 18px; margin-top: 0; }
+
+  /* website layer */
+  .legend { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 26px; font-size: 13px; color: var(--mute); }
+  .leg { display: flex; align-items: center; gap: 8px; }
+  .leg-dot { width: 11px; height: 11px; border-radius: 3px; }
+  .t-bind { background: #f08585; } .t-trust { background: #6db8e0; } .t-info { background: var(--faint); }
+  .web-section { margin-bottom: 30px; }
+  .sec-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; }
+  .web-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .web-card { background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--faint); border-radius: 12px; padding: 16px 18px; transition: 0.25s var(--ease); }
+  .web-card:hover { transform: translateY(-3px); border-color: var(--line-strong); }
+  .web-card.t-bind { border-left-color: #f08585; }
+  .web-card.t-trust { border-left-color: #6db8e0; }
+  .web-card.t-info { border-left-color: var(--faint); }
+  .web-card-title { font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; }
+  .web-card-url { font-family: var(--font-mono); font-size: 11px; color: var(--cyan); margin: 4px 0 8px; }
+  .web-card-desc { font-size: 0.85rem; color: var(--mute); }
+
+  /* triggers */
+  .trigger-group { margin-bottom: 24px; }
+  .tcol-amber { color: #f6c560; } .tcol-red { color: #f08585; } .tcol-blue { color: #6db8e0; }
+  .trigger-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 20px 22px; }
+  .trigger-title { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .tpill { font-family: var(--font-mono); font-size: 10.5px; padding: 3px 8px; border-radius: 6px; border: 1px solid; }
+  .tp-amber { color: #f6c560; border-color: rgba(246,197,96,0.4); } .tp-red { color: #f08585; border-color: rgba(240,133,133,0.4); } .tp-blue { color: #6db8e0; border-color: rgba(109,184,224,0.4); }
+  .trigger-steps { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .trigger-steps li { font-size: 0.92rem; color: var(--mute); padding-left: 18px; position: relative; }
+  .trigger-steps li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
+
+  /* renewal */
+  .renewal-flow { display: flex; align-items: stretch; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+  .r-box { flex: 1; min-width: 180px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 18px; }
+  .r-step { font-family: var(--font-mono); font-size: 11px; color: var(--cyan); margin-bottom: 8px; }
+  .r-title { font-family: var(--font-display); font-weight: 600; margin-bottom: 6px; }
+  .r-sub { font-size: 0.85rem; color: var(--mute); }
+  .r-arr { display: flex; align-items: center; color: var(--faint); font-size: 1.6rem; }
+  .rtable-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius-md); margin-bottom: 28px; }
+  .rtable { width: 100%; border-collapse: collapse; }
+  .rtable th { text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cyan); padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  .rtable td { padding: 14px 18px; font-size: 0.92rem; color: var(--mute); border-bottom: 1px solid var(--line); }
+  .rtable td:first-child { color: var(--ink); font-weight: 600; }
+  .rtable tr:last-child td { border-bottom: 0; }
+  .price-notice { background: linear-gradient(140deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02)); border: 1px solid var(--line-strong); border-radius: var(--radius-md); padding: 24px; }
+  .price-notice-title { font-family: var(--font-display); font-weight: 700; color: var(--cyan); margin-bottom: 12px; }
+  .price-notice p { font-size: 0.92rem; margin-bottom: 12px; }
+  .price-notice p:last-child { margin-bottom: 0; }
+
+  .doc-control { font-family: var(--font-mono); font-size: 11px; color: var(--faint); line-height: 1.7; border-top: 1px solid var(--line); margin-top: 40px; padding-top: 22px; }
+
+  @media (max-width: 760px) {
+    .clause-grid { grid-template-columns: repeat(2, 1fr); }
+    .web-grid { grid-template-columns: 1fr; }
+    .r-arr { display: none; }
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-tab');
+      buttons.forEach((b) => b.classList.remove('active'));
+      panels.forEach((p) => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(id)?.classList.add('active');
+    });
+  });
+</script>

@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import { customerGroups, caseStudies } from '../data/site.js';
+---
+
+<Base title="Use Cases | XGRC® Software" description="How organisations across mining, manufacturing, logistics and more use XGRC to drive compliance.">
+  <section class="page-head">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>Use Cases</span>
+      <h1>Trusted by industry leaders.</h1>
+      <p class="lede">From mining and steel to food, logistics and finance, organisations use XGRC® to unify oversight and drive compliance across their operations.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Featured case studies</span>
+        <h2>Outcomes, not just software.</h2>
+      </div>
+      <div class="grid cols-2">
+        {caseStudies.map((c) => (
+          <div class="card">
+            <span class="tag">{c.solution}</span>
+            <h3>{c.title}</h3>
+            <p>{c.summary}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Customers by industry</span>
+        <h2>A platform proven across sectors.</h2>
+      </div>
+      <div class="sectors">
+        {customerGroups.map((g) => (
+          <div class="sector">
+            <h3>{g.sector}</h3>
+            <div class="chips">
+              {g.names.map((n) => (<span class="chip">{n}</span>))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 18px; }
+  .sectors { display: flex; flex-direction: column; gap: 28px; }
+  .sector { border-top: 1px solid var(--line); padding-top: 22px; }
+  .sector h3 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; font-weight: 500; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip { font-size: 13px; color: var(--mute); border: 1px solid var(--line); border-radius: 100px; padding: 8px 15px; background: var(--panel); transition: 0.25s; }
+  .chip:hover { color: var(--ink); border-color: var(--line-strong); transform: translateY(-2px); }
+</style>

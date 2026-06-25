@@ -1,0 +1,113 @@
+---
+import Base from '../layouts/Base.astro';
+import { articles } from '../data/site.js';
+---
+
+<Base title="Insights | XGRC® Software" description="Thinking on GRC, ESG, ISO standards, risk frameworks and cyber from the XGRC team.">
+  <section class="page-head">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>Insights</span>
+      <h1>Perspective on governance, risk and compliance.</h1>
+      <p class="lede">Practical thinking on ESG, ISO standards, risk frameworks, SHEQ and cyber, written for the people who carry the compliance load.</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="featured-video-card">
+        <div class="fv-meta">
+          <span class="fv-label">Video · May 2026</span>
+          <h2 class="fv-title">AI is not the risk. Lack of governance is.</h2>
+          <p class="fv-desc">Our perspective on why AI adoption is not the threat — and why the absence of governance frameworks is the real exposure organisations face right now.</p>
+        </div>
+        <div class="fv-player">
+          <video
+            src="/assets/videos/ai-governance-may-2026.mp4"
+            controls
+            playsinline
+            preload="none"
+            class="fv-video"
+            aria-label="XGRC insight: AI is not the risk — lack of governance is"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="articles">
+        {articles.map((a, i) => (
+          <a href="#" class="article">
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="title">{a}</span>
+            <span class="go">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 18px; max-width: 20ch; }
+  .featured-video-card {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 52px;
+    align-items: center;
+    padding: clamp(32px, 5vw, 56px);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(48,226,244,0.04), rgba(38,158,198,0.02));
+    margin-bottom: 16px;
+  }
+  .fv-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .fv-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--ink);
+    margin: 0 0 16px;
+  }
+  .fv-desc {
+    color: var(--mute);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+  .fv-player {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(48,226,244,0.12);
+    background: #000;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+  .fv-video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  @media (max-width: 800px) {
+    .featured-video-card { grid-template-columns: 1fr; gap: 28px; }
+  }
+  .articles { display: flex; flex-direction: column; }
+  .article { display: flex; align-items: center; gap: 22px; padding: 22px 4px; border-top: 1px solid var(--line); text-decoration: none; color: var(--ink); transition: 0.25s; }
+  .article:last-child { border-bottom: 1px solid var(--line); }
+  .article:hover { padding-left: 14px; }
+  .article:hover .title { color: var(--cyan); }
+  .num { font-family: var(--font-mono); font-size: 12px; color: var(--faint); }
+  .title { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.05rem, 1.8vw, 1.35rem); flex: 1; transition: color 0.25s; }
+  .go { color: var(--cyan); font-size: 1.1rem; }
+</style>

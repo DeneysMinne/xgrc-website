@@ -1,0 +1,163 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import SsotConvergence from '../components/SsotConvergence.astro';
+import { pillars, solutions, brand } from '../data/site.js';
+const previewSolutions = solutions.slice(0, 6);
+---
+
+<Base title="XGRC Software® — Driving Compliance® in your organisation">
+  <Hero />
+
+  <!-- Problem + pillars -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>The problem we solve</span>
+        <h2>Governance, risk, compliance and cyber security still operate in silos.</h2>
+        <p class="lede">Decision-makers face critical blind spots. We unify them into one smart, scalable, and intuitive platform built on a single auditable foundation.</p>
+      </div>
+      <SsotConvergence />
+      <div class="grid cols-4">
+        {pillars.map((p) => (
+          <div class="card">
+            <span class="tag">{p.name}</span>
+            <p>{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- AI / MAIA -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="card maia">
+        <div>
+          <span class="eyebrow"><span class="dot"></span>AI-Enabled Governance Assistance</span>
+          <h2>The Intelligence of Governance.</h2>
+          <p class="lede">MAIA enhances interaction with governance records, policies and controls through governed AI capability embedded within the XGRC® platform. Faster insight generation, supporting better decisions.</p>
+          <a href="/solutions" class="link-arrow">Explore MAIA and the suite →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted by strip -->
+  <section class="trusted-strip">
+    <div class="container">
+      <p class="trusted-label">Trusted by more than 800 companies globally</p>
+      <div class="trusted-logos">
+        <div class="logo-slot" title="Fraser Alexander"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/Fraser-Alexander.jpg" alt="Fraser Alexander" loading="lazy"></div>
+        <div class="logo-slot" title="PG Bison"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/PG-Bison.jpg" alt="PG Bison" loading="lazy"></div>
+        <div class="logo-slot" title="Scaw Metals Group"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/SCAW.png" alt="Scaw Metals Group" loading="lazy"></div>
+        <div class="logo-slot" title="KAP Ltd"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/KAP.png" alt="KAP Ltd" loading="lazy"></div>
+        <div class="logo-slot" title="RCL Foods"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/RCL-FOODS.jpg" alt="RCL Foods" loading="lazy"></div>
+        <div class="logo-slot" title="Unitrans"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/UNITRANS.png" alt="Unitrans" loading="lazy"></div>
+        <div class="logo-slot" title="FUCHS Lubricants"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/FUCHS.png" alt="FUCHS Lubricants" loading="lazy"></div>
+        <div class="logo-slot" title="CSIR"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/CSIR.png" alt="CSIR" loading="lazy"></div>
+      </div>
+      <a href="/customers/" class="link-arrow trusted-cta">See all customers →</a>
+    </div>
+  </section>
+
+  <!-- Solutions preview -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>One platform, many lenses</span>
+        <h2>Specialist solutions, built on one foundation.</h2>
+        <p class="lede">Adopt the solution that addresses your most pressing challenge today. Combine more over time, without migrating data or rebuilding processes.</p>
+      </div>
+      <div class="grid cols-3">
+        {previewSolutions.map((s) => (
+          <a href={`/solutions#${s.slug}`} class={`card ${s.partner ? 'card--partner' : ''}`}>
+            <span class="tag">{s.tag}</span>
+            <h3>{s.name}</h3>
+            <p>{s.blurb}</p>
+          </a>
+        ))}
+      </div>
+      <div style="margin-top:28px;">
+        <a href="/solutions" class="btn btn-ghost">See all solutions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="card cta">
+        <h2>Let's work together.</h2>
+        <p class="lede">Whether you are addressing a single risk domain or coordinating assurance across the enterprise, XGRC® Software gives you the foundation to move forward with confidence.</p>
+        <div class="cta-actions">
+          <a href={`mailto:${brand.email}`} class="btn btn-primary">Request a live demo</a>
+          <a href="/about" class="btn btn-ghost">About XGRC</a>
+        </div>
+        <p class="contactline">{brand.email} · {brand.phone}</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .maia { background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02)); border-color: var(--line-strong); }
+  .maia h2 { margin-bottom: 0.4em; }
+  .maia .lede { margin-bottom: 18px; }
+  .cta { text-align: center; padding: clamp(36px, 6vw, 64px); background: linear-gradient(160deg, rgba(47,232,138,0.07), rgba(48,226,244,0.03)); border-color: var(--line-strong); }
+  .cta .lede { margin: 12px auto 26px; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .contactline { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
+
+  /* ── Trusted by strip ─────────────────────────────────── */
+  .trusted-strip { padding: 64px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .trusted-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); text-align: center; margin-bottom: 32px; }
+  .trusted-logos {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .trusted-cta { display: block; text-align: center; }
+
+  /* Shared logo slot (reused on /customers page) */
+  .logo-slot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    border-radius: 10px;
+    transition: transform 0.3s var(--ease);
+    cursor: default;
+    isolation: isolate;
+  }
+  .logo-slot:hover { transform: translateY(-3px); }
+  .logo-slot .glow {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center,
+      rgba(255, 255, 255, 0.88)   0%,
+      rgba( 48, 226, 244, 0.48)  25%,
+      rgba( 38, 158, 198, 0.20)  50%,
+      transparent                 72%
+    );
+    opacity: 0.42;
+    transition: opacity 0.35s var(--ease), inset 0.35s var(--ease);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .logo-slot:hover .glow { opacity: 0.95; inset: -18px; }
+  .logo-slot img {
+    max-width: 100px;
+    max-height: 48px;
+    width: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 900px) { .trusted-logos { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 480px) { .trusted-logos { grid-template-columns: repeat(2, 1fr); } }
+</style>

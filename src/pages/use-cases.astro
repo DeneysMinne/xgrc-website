@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import { customerGroups, caseStudies } from '../data/site.js';
+
+const useCases = [
+  { slug: 'internal-audit', tag: 'Audit & assurance', name: 'Internal Audit', blurb: 'Plan, execute and manage internal audits in one place, linked to risks, controls and corrective actions across the full audit lifecycle.', live: true },
+  { slug: 'policy-management', tag: 'Governance', name: 'Policy Management', blurb: 'Manage policies in a structured way — from development and approval through communication, acknowledgement tracking, version control, and compliance monitoring.', live: true },
+  { slug: 'risk-management', tag: 'Risk', name: 'Risk Management', blurb: 'Identify, assess and treat enterprise risk with a consistent framework aligned to ISO 31000 and COSO.', live: true },
+  { slug: 'enterprise-risk-management', tag: 'Risk', name: 'Enterprise Risk Management', blurb: 'Central ERM platform to identify, assess, treat and monitor risk across strategic, operational, financial and compliance dimensions, aligned to ISO 31000 and COSO.', live: true },
+  { slug: 'esg-reporting', tag: 'Sustainability', name: 'ESG Reporting', blurb: 'Collect, manage and report ESG data in a structured way, aligned to GRI, IFRS Sustainability and ISO standards.', live: true },
+  { slug: 'safety-management', tag: 'SHEQ', name: 'Safety Management', blurb: 'Manage safety, incidents, inspections and compliance in a structured way, aligned to ISO 45001, ISO 14001 and ISO 9001.', live: true },
+  { slug: 'compliance-management', tag: 'Compliance', name: 'Compliance Management', blurb: 'Manage supplier, contractor and customer compliance through a structured portal, with automated tracking, expiry management and real-time oversight.', live: true },
+  { slug: 'workplace-safety-inspection', tag: 'Inspection', name: 'Workplace Safety Inspection', blurb: 'A practical, field-level checklist for identifying hazards, ensuring compliance, and maintaining a safe working environment across your operations.', live: true },
+  { slug: 'fire-safety-inspection', tag: 'Inspection', name: 'Fire Safety Inspection', blurb: 'A practical, field-level fire safety inspection checklist for identifying hazards, ensuring compliance, and maintaining fire safety across your operations.', live: true }
+];
+---
+<Base title="Use Cases | XGRC® Software" description="How organisations across mining, manufacturing, logistics and more use XGRC to drive compliance.">
+  <section class="page-head">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>Use Cases</span>
+      <h1>Trusted by industry leaders.</h1>
+      <p class="lede">From mining and steel to food, logistics and finance, organisations use XGRC® to unify oversight and drive compliance across their operations.</p>
+    </div>
+  </section>
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>By discipline</span>
+        <h2>Explore how XGRC® is used in practice.</h2>
+        <p class="lede">Structured, solution-focused guides showing how XGRC® addresses a specific discipline, from planning through to assurance.</p>
+      </div>
+      <div class="grid cols-3">
+        {useCases.filter((u) => u.live).map((u) => (
+          <a class="card uc-card" href={`/use-cases/${u.slug}/`}>
+            <span class="tag">{u.tag}</span>
+            <h3>{u.name}</h3>
+            <p>{u.blurb}</p>
+            <span class="link-arrow">View use case &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Featured case studies</span>
+        <h2>Outcomes, not just software.</h2>
+      </div>
+      <div class="grid cols-2">
+        {caseStudies.map((c) => (
+          <div class="card">
+            <span class="tag">{c.solution}</span>
+            <h3>{c.company}</h3>
+            <p>{c.summary}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Customers by industry</span>
+        <h2>A platform proven across sectors.</h2>
+      </div>
+      <div class="sectors">
+        {customerGroups.map((g) => (
+          <div class="sector">
+            <h3>{g.sector}</h3>
+            <div class="chips">
+              {g.customers.map((c) => (<span class="chip">{c.name}</span>))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 18px; }
+  .uc-card { text-decoration: none; display: flex; flex-direction: column; }
+  .uc-card .link-arrow { margin-top: auto; padding-top: 16px; }
+  .sectors { display: flex; flex-direction: column; gap: 28px; }
+  .sector { border-top: 1px solid var(--line); padding-top: 22px; }
+  .sector h3 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; font-weight: 500; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip { font-size: 13px; color: var(--mute); border: 1px solid var(--line); border-radius: 100px; padding: 8px 15px; background: var(--panel); transition: 0.25s; }
+  .chip:hover { color: var(--ink); border-color: var(--line-strong); transform: translateY(-2px); }
+</style>

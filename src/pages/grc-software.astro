@@ -1,0 +1,469 @@
+---
+import Base from '../layouts/Base.astro';
+import SsotConvergence from '../components/SsotConvergence.astro';
+import { brand, caseStudies } from '../data/site.js';
+
+const capabilities = [
+  {
+    tag: 'Governance',
+    title: 'Policy, Governance & Board Reporting',
+    body: 'Manage policies, document controls, board reporting, and stakeholder oversight from a single governance hub.',
+    href: '/solutions#msx',
+  },
+  {
+    tag: 'Risk',
+    title: 'Enterprise Risk Management',
+    body: 'Identify, assess, and treat enterprise risk using a consistent framework aligned to ISO 31000 and COSO.',
+    href: '/solutions#erm',
+  },
+  {
+    tag: 'Compliance',
+    title: 'Compliance & Regulation',
+    body: 'Track obligations across ISO standards, GDPR, POPIA, PAIA, and industry regulations with real-time compliance status.',
+    href: '/solutions#compliance-hub',
+  },
+  {
+    tag: 'Data Protection',
+    title: 'Data Protection & Privacy',
+    body: 'Manage GDPR and POPIA obligations, data subject access requests, privacy impact assessments, and data breach response.',
+    href: '/solutions#msxcyber',
+  },
+  {
+    tag: 'Assurance',
+    title: 'Internal Audit & Assurance',
+    body: 'Plan, execute, and manage the full internal audit lifecycle, linked to risks, controls, and corrective actions.',
+    href: '/solutions#integrated-assurance',
+  },
+  {
+    tag: 'ESG',
+    title: 'ESG, Safety & Operations',
+    body: 'Collect and report ESG data, manage safety incidents and inspections, aligned to ISO 45001, ISO 14001, and GRI.',
+    href: '/solutions#esg',
+  },
+];
+
+const globalFrameworks = ['GDPR', 'ISO 27001', 'ISO 9001', 'ISO 14001', 'ISO 45001', 'ISO 22000', 'ISO 31000'];
+const localFrameworks  = ['POPIA', 'PAIA', 'King V'];
+
+
+const whyPoints = [
+  { stat: '800+',         label: 'Companies',      body: 'Organisations across southern Africa and the UK trust XGRC® to drive compliance at enterprise scale.' },
+  { stat: 'ISO 27001',    label: ':2022 Certified', body: 'The XGRC® platform is certified to the latest international standard for information security management.' },
+  { stat: '1',            label: 'Platform',        body: 'One auditable data layer across governance, risk, compliance, ESG, and data protection — no double-entry, no tool sprawl.' },
+  { stat: 'SA + UK',      label: 'Regulations',     body: 'Purpose-built for South African and UK regulatory environments — POPIA, PAIA, King V, and GDPR, in a single platform.' },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'XGRC® GRC Software Platform',
+      applicationCategory: 'BusinessApplication',
+      description: 'GRC software to manage governance, risk, compliance, ESG and data protection (GDPR, POPIA) in one platform.',
+      operatingSystem: 'Web',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'ZAR' },
+      provider: { '@type': 'Organization', name: 'XGRC® Software', url: 'https://xgrcsoftware.com' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xgrcsoftware.com/' },
+        { '@type': 'ListItem', position: 2, name: 'GRC Platform' },
+      ],
+    },
+  ],
+});
+---
+<Base
+  title="GRC Platform — Governance, Risk & Compliance | XGRC®"
+  description="XGRC® is an enterprise GRC platform that unifies governance, risk, compliance, ESG and data protection (GDPR, POPIA) into one auditable system. Trusted by 800+ companies."
+>
+  <script type="application/ld+json" set:html={schema} />
+
+  <!-- ── Hero ───────────────────────────────────────────── -->
+  <section class="grc-hero">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>GRC Platform</span>
+      <h1>Governance, Risk &amp; Compliance.<br>Unified.</h1>
+      <p class="lede">XGRC® is an enterprise GRC platform that brings governance, risk, compliance, ESG and data protection into one auditable system — eliminating silos and giving your organisation a single version of the truth.</p>
+      <div class="hero-actions">
+        <a href={`mailto:${brand.email}?subject=XGRC%20Demo%20Request`} class="btn btn-primary">Book a Demo</a>
+        <a href="/solutions" class="btn btn-ghost">Explore solutions &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Platform concept ──────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>The platform</span>
+        <h2>One platform. One source of truth.</h2>
+        <p class="lede">Most organisations run governance, risk, compliance, and ESG in isolation — separate tools, disconnected data, duplicate effort. XGRC® consolidates every discipline into one foundation, so decisions are based on the same data, controls link to the right risks, and your compliance status is always current.</p>
+      </div>
+      <SsotConvergence />
+    </div>
+  </section>
+
+  <!-- ── Capability cards ──────────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>What XGRC® covers</span>
+        <h2>Six disciplines. One foundation.</h2>
+      </div>
+      <div class="grid cols-3">
+        {capabilities.map((c) => (
+          <a class="card cap-card" href={c.href}>
+            <span class="tag">{c.tag}</span>
+            <h3>{c.title}</h3>
+            <p>{c.body}</p>
+            <span class="link-arrow">Explore &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Platform in action ───────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>The platform in action</span>
+        <h2>Real dashboards. Real decisions.</h2>
+        <p class="lede">Every discipline has a dedicated intelligence layer — executive dashboards built for decision-makers, not data analysts.</p>
+      </div>
+      <div class="dash-tabs" id="dashTabs">
+        <button class="dash-tab is-active" data-img="/assets/screenshots/erm-dashboard.jpg" data-label="Enterprise Risk Overview">Enterprise Risk</button>
+        <button class="dash-tab" data-img="/assets/screenshots/sheq-dashboard.jpg" data-label="SHEQ Executive Overview">SHEQ &amp; Safety</button>
+        <button class="dash-tab" data-img="/assets/screenshots/climate-dashboard.jpg" data-label="Climate Risk Register">Climate Risk</button>
+        <button class="dash-tab" data-img="/assets/screenshots/carbon-dashboard.jpg" data-label="Carbon Emissions Overview">Carbon &amp; ESG</button>
+      </div>
+      <div class="dash-frame">
+        <div class="dash-chrome">
+          <span class="dc-dot dc-red"></span>
+          <span class="dc-dot dc-yellow"></span>
+          <span class="dc-dot dc-green"></span>
+          <span class="dc-url" id="dashUrl">app.xgrcsoftware.com &nbsp;·&nbsp; Enterprise Risk Overview</span>
+        </div>
+        <div class="dash-screen">
+          <img id="dashImg" src="/assets/screenshots/erm-dashboard.jpg" alt="XGRC Enterprise Risk Management dashboard" width="2648" height="1418" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Frameworks ────────────────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Standards & regulations</span>
+        <h2>Built for global standards and local law.</h2>
+        <p class="lede">XGRC® supports the frameworks your organisation must comply with — from international ISO standards to South African legislation.</p>
+      </div>
+      <div class="fw-split">
+        <div class="fw-panel">
+          <span class="fw-region">Global</span>
+          <ul class="fw-chips">
+            {globalFrameworks.map((f) => <li class="fw-chip">{f}</li>)}
+          </ul>
+        </div>
+        <div class="fw-divider" aria-hidden="true"></div>
+        <div class="fw-panel">
+          <span class="fw-region">South Africa</span>
+          <ul class="fw-chips">
+            {localFrameworks.map((f) => <li class="fw-chip fw-chip--sa">{f}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Case studies ─────────────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Case studies</span>
+        <h2>Outcomes, not just software.</h2>
+        <p class="lede">How organisations across manufacturing, mining, logistics, and facilities management use XGRC® in practice.</p>
+      </div>
+      <div class="grid cols-3">
+        {caseStudies.map((c) => (
+          <div class="card cs-card">
+            <div class="cs-meta">
+              <span class="tag">{c.sector}</span>
+              <span class="cs-solution">{c.solution}</span>
+            </div>
+            <h3 class="cs-company">{c.company}</h3>
+            <p>{c.summary}</p>
+            {c.pdf && (
+              <a href={`/case-studies/${c.slug}.pdf`} class="link-arrow" download>Download case study &rarr;</a>
+            )}
+          </div>
+        ))}
+      </div>
+      <div style="margin-top:28px;">
+        <a href="/use-cases" class="btn btn-ghost">Explore use cases &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why XGRC ──────────────────────────────────────── -->
+  <section class="section--tight why-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Why XGRC®</span>
+        <h2>Specific reasons to choose XGRC®.</h2>
+      </div>
+      <div class="why-grid">
+        {whyPoints.map((w) => (
+          <div class="why-card">
+            <div class="why-stat">
+              <span class="stat-val">{w.stat}</span>
+              <span class="stat-sub">{w.label}</span>
+            </div>
+            <p class="why-body">{w.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ───────────────────────────────────────────── -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="card cta">
+        <h2>Take control of governance, risk, compliance and data protection.</h2>
+        <p class="lede">Whether you are addressing a single risk domain or coordinating assurance across the enterprise, XGRC® gives you the foundation to move forward with confidence.</p>
+        <div class="cta-actions">
+          <a href={`mailto:${brand.email}?subject=XGRC%20Demo%20Request`} class="btn btn-primary">Request a live demo</a>
+          <a href="/use-cases" class="btn btn-ghost">See use cases</a>
+        </div>
+        <p class="contactline">{brand.email} &middot; {brand.phone}</p>
+      </div>
+    </div>
+  </section>
+<script>
+  const tabs = document.querySelectorAll('.dash-tab');
+  const img  = document.getElementById('dashImg');
+  const url  = document.getElementById('dashUrl');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      img.classList.add('is-switching');
+      setTimeout(() => {
+        img.src = tab.dataset.img;
+        img.alt = tab.dataset.label;
+        url.textContent = 'app.xgrcsoftware.com  ·  ' + tab.dataset.label;
+        img.classList.remove('is-switching');
+      }, 220);
+    });
+  });
+</script>
+</Base>
+
+<style>
+  /* ── Hero ─────────────────────────────────────────────── */
+  .grc-hero {
+    padding: 140px 0 80px;
+    position: relative;
+  }
+  .grc-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%,
+      rgba(48, 226, 244, 0.07) 0%,
+      transparent 70%);
+    pointer-events: none;
+  }
+  .grc-hero .eyebrow { margin-bottom: 14px; }
+  .grc-hero h1 {
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 22px;
+    max-width: 680px;
+  }
+  .grc-hero .lede { max-width: 600px; margin-bottom: 32px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* ── Capability cards ─────────────────────────────────── */
+  .cap-card { text-decoration: none; display: flex; flex-direction: column; }
+  .cap-card .link-arrow { margin-top: auto; padding-top: 16px; }
+
+  /* ── Frameworks ──────────────────────────────────────── */
+  .fw-split {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 48px;
+    align-items: start;
+    margin-top: 40px;
+  }
+  .fw-divider {
+    background: var(--line);
+    align-self: stretch;
+  }
+  .fw-panel {}
+  .fw-region {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 20px;
+  }
+  .fw-chips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .fw-chip {
+    font-size: 13px;
+    font-family: var(--font-mono);
+    color: var(--mute);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 8px 16px;
+    background: var(--panel);
+    transition: 0.25s;
+  }
+  .fw-chip:hover { color: var(--ink); border-color: var(--line-strong); }
+  .fw-chip--sa {
+    color: var(--cyan);
+    border-color: rgba(48, 226, 244, 0.25);
+    background: rgba(48, 226, 244, 0.05);
+  }
+  .fw-chip--sa:hover {
+    background: rgba(48, 226, 244, 0.10);
+    border-color: rgba(48, 226, 244, 0.50);
+  }
+
+  /* ── Case studies ────────────────────────────────────── */
+  .cs-card { display: flex; flex-direction: column; }
+  .cs-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+  .cs-solution { font-family: var(--font-mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.06em; }
+  .cs-company { margin-bottom: 8px; }
+  .cs-card .link-arrow { margin-top: auto; padding-top: 16px; }
+
+  /* ── Why XGRC ────────────────────────────────────────── */
+  .why-section { position: relative; }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 40px;
+  }
+  .why-card {
+    padding: 32px 28px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .why-stat { display: flex; flex-direction: column; gap: 4px; }
+  .stat-val {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--cyan);
+    line-height: 1;
+  }
+  .stat-sub {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  .why-body { font-size: 14px; color: var(--mute); line-height: 1.6; margin: 0; }
+
+  /* ── CTA (shared from index.astro pattern) ───────────── */
+  .cta { text-align: center; padding: clamp(36px, 6vw, 64px); background: linear-gradient(160deg, rgba(47,232,138,0.07), rgba(48,226,244,0.03)); border-color: var(--line-strong); }
+  .cta h2 { margin-bottom: 14px; max-width: 620px; margin-left: auto; margin-right: auto; }
+  .cta .lede { margin: 0 auto 26px; max-width: 540px; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .contactline { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
+
+  /* ── Dashboard showcase ──────────────────────────────── */
+  .dash-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .dash-tab {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--mute);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 9px 20px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: var(--font-body);
+  }
+  .dash-tab:hover { color: var(--ink); border-color: var(--line-strong); }
+  .dash-tab.is-active { background: rgba(48,226,244,0.08); border-color: rgba(48,226,244,0.4); color: var(--cyan); }
+  .dash-frame {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(48,226,244,0.15);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
+  }
+  .dash-chrome {
+    background: rgba(8,16,32,0.98);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid rgba(48,226,244,0.08);
+  }
+  .dc-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  .dc-red    { background: #ff5f57; }
+  .dc-yellow { background: #febc2e; }
+  .dc-green  { background: #28c840; }
+  .dc-url {
+    flex: 1;
+    margin-left: 12px;
+    background: rgba(6,15,28,0.7);
+    border: 1px solid rgba(48,226,244,0.08);
+    border-radius: 5px;
+    padding: 5px 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--faint);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dash-screen { line-height: 0; }
+  .dash-screen img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.25s ease;
+  }
+  .dash-screen img.is-switching { opacity: 0; }
+
+  /* ── Responsive ──────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .fw-split { grid-template-columns: 1fr; gap: 32px; }
+    .fw-divider { display: none; }
+  }
+  @media (max-width: 600px) {
+    .why-grid { grid-template-columns: 1fr; }
+    .grc-hero { padding: 110px 0 60px; }
+  }
+</style>
