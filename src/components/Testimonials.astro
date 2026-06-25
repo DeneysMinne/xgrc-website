@@ -1,0 +1,83 @@
+---
+import { testimonials } from '../data/site.js';
+// Renders nothing if the array is empty — no placeholder content ever ships.
+if (testimonials.length === 0) return;
+---
+
+<section class="section testimonials-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>What customers say</span>
+      <h2>Real outcomes, real organisations.</h2>
+    </div>
+    <div class="grid cols-3 testimonials-grid">
+      {testimonials.map((t) => (
+        <figure class="card testimonial-card">
+          <blockquote class="t-quote">"{t.quote}"</blockquote>
+          {t.outcome && (
+            <p class="t-outcome">{t.outcome}</p>
+          )}
+          <figcaption class="t-attribution">
+            <span class="t-name">{t.name}</span>
+            <span class="t-role">{t.role}, {t.company}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-section { padding-top: 0; }
+
+  .testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background: var(--panel);
+    border-color: var(--line);
+  }
+  .testimonial-card:hover { border-color: var(--line-strong); }
+
+  .t-quote {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 1.4vw, 1.1rem);
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .t-outcome {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+    padding: 6px 10px;
+    background: rgba(47, 232, 138, 0.07);
+    border: 1px solid rgba(47, 232, 138, 0.2);
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  .t-attribution {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .t-name {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .t-role {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--mute);
+    letter-spacing: 0.04em;
+  }
+</style>
