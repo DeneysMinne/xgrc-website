@@ -2,12 +2,42 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import SsotConvergence from '../components/SsotConvergence.astro';
-import { pillars, solutions, brand } from '../data/site.js';
+import Testimonials from '../components/Testimonials.astro';
+import { pillars, solutions, stats, brand } from '../data/site.js';
 const previewSolutions = solutions.slice(0, 6);
+const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed);
 ---
 
 <Base title="XGRC Software® — Driving Compliance® in your organisation">
   <Hero />
+
+  <!-- B. Proof-stats band -->
+  {visibleStats.length > 0 && (
+    <section class="stats-band">
+      <div class="container stats-inner">
+        {visibleStats.map((s) => (
+          <div class="stat-cell">
+            <span class="stat-value">{s.value}</span>
+            <span class="stat-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- C. MAIA — promoted above pillars, outcome-first copy -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="card maia">
+        <div>
+          <span class="eyebrow"><span class="dot"></span>Governed AI · MAIA</span>
+          <h2>Ask your governance data anything.</h2>
+          <p class="lede">MAIA is governed AI embedded within XGRC® — so decision-makers get instant answers from risk registers, policies and audit records, without data ever leaving your governance environment. Faster insight. Better decisions. Full AI audit trail.</p>
+          <a href="/solutions/maia" class="link-arrow">Explore MAIA →</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Problem + pillars -->
   <section class="section">
@@ -25,20 +55,6 @@ const previewSolutions = solutions.slice(0, 6);
             <p>{p.body}</p>
           </div>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- AI / MAIA -->
-  <section class="section--tight">
-    <div class="container">
-      <div class="card maia">
-        <div>
-          <span class="eyebrow"><span class="dot"></span>AI-Enabled Governance Assistance</span>
-          <h2>The Intelligence of Governance.</h2>
-          <p class="lede">MAIA enhances interaction with governance records, policies and controls through governed AI capability embedded within the XGRC® platform. Faster insight generation, supporting better decisions.</p>
-          <a href="/solutions" class="link-arrow">Explore MAIA and the suite →</a>
-        </div>
       </div>
     </div>
   </section>
@@ -84,14 +100,17 @@ const previewSolutions = solutions.slice(0, 6);
     </div>
   </section>
 
+  <!-- E. Testimonials (renders nothing if array is empty) -->
+  <Testimonials />
+
   <!-- Contact CTA -->
   <section class="section" id="contact">
     <div class="container">
       <div class="card cta">
-        <h2>Let's work together.</h2>
+        <h2>Ready to see it in action?</h2>
         <p class="lede">Whether you are addressing a single risk domain or coordinating assurance across the enterprise, XGRC® Software gives you the foundation to move forward with confidence.</p>
         <div class="cta-actions">
-          <a href={`mailto:${brand.email}`} class="btn btn-primary">Request a live demo</a>
+          <a href="/demo" class="btn btn-primary">Book a demo</a>
           <a href="/about" class="btn btn-ghost">About XGRC</a>
         </div>
         <p class="contactline">{brand.email} · {brand.phone}</p>
@@ -101,6 +120,50 @@ const previewSolutions = solutions.slice(0, 6);
 </Base>
 
 <style>
+  /* ── B. Stats band ────────────────────────────────────── */
+  .stats-band {
+    padding: 48px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .stats-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .stat-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 24px;
+    border-right: 1px solid var(--line);
+    text-align: center;
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--cyan);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  @media (max-width: 600px) {
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat-cell:nth-child(2) { border-right: none; }
+    .stat-cell:nth-child(3) { border-top: 1px solid var(--line); }
+    .stat-cell:nth-child(4) { border-top: 1px solid var(--line); }
+  }
+
+  /* ── C. MAIA card ─────────────────────────────────────── */
   .maia { background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02)); border-color: var(--line-strong); }
   .maia h2 { margin-bottom: 0.4em; }
   .maia .lede { margin-bottom: 18px; }
