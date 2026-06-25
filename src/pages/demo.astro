@@ -1,0 +1,375 @@
+---
+import Base from '../layouts/Base.astro';
+import { brand } from '../data/site.js';
+
+// TODO: Replace with your real Formspree endpoint once created at formspree.io
+// e.g. "https://formspree.io/f/XXXXXXXX"
+const FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+---
+
+<Base
+  title="Book a Demo | XGRC® Software"
+  description="See XGRC® in action. Book a personalised demo with our team — we'll show you how the platform addresses your specific governance, risk and compliance challenges."
+>
+  <section class="demo-hero">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>Book a demo</span>
+      <h1>See XGRC® <span class="grad">in action.</span></h1>
+      <p class="lede">A personalised walkthrough with our team — focused on your industry, your compliance challenges, and the solutions that will have the most impact for your organisation.</p>
+    </div>
+  </section>
+
+  <section class="section--tight demo-body">
+    <div class="container demo-layout">
+
+      <!-- Form -->
+      <div class="demo-form-wrap">
+        <form
+          id="demoForm"
+          class="demo-form card"
+          method="POST"
+          action={FORM_ENDPOINT}
+          novalidate
+        >
+          <h2 class="form-title">Request a walkthrough</h2>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="fname">First name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="fname" name="firstName" required autocomplete="given-name" placeholder="Jane" />
+            </div>
+            <div class="field">
+              <label for="lname">Last name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="lname" name="lastName" required autocomplete="family-name" placeholder="Smith" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Work email <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" required autocomplete="email" placeholder="jane@company.com" />
+          </div>
+
+          <div class="field">
+            <label for="company">Company <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="company" name="company" required autocomplete="organization" placeholder="Acme Industries" />
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone <span class="opt">(optional)</span></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+27 (0)87 000 0000" />
+          </div>
+
+          <div class="field">
+            <label for="message">What are you trying to solve? <span class="opt">(optional)</span></label>
+            <textarea id="message" name="message" rows="4" placeholder="e.g. We need to consolidate our SHEQ and audit processes across 12 sites..."></textarea>
+          </div>
+
+          <input type="hidden" name="_subject" value="Demo request from xgrcwebsite" />
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+              <span class="btn-label">Book my demo</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <p class="form-note">We respond within one business day. No spam, no automated sequences.</p>
+        </form>
+
+        <!-- Success state -->
+        <div class="success-card card" id="successCard" aria-live="polite" hidden>
+          <div class="success-icon" aria-hidden="true">✓</div>
+          <h2>Request received.</h2>
+          <p>Thank you — one of our team will be in touch within one business day to arrange your walkthrough.</p>
+          <a href="/" class="btn btn-ghost" style="margin-top:22px;">Back to home</a>
+        </div>
+
+        <!-- Error state -->
+        <p class="form-error" id="formError" hidden role="alert">
+          Something went wrong — please try again or email us directly at
+          <a href={`mailto:${brand.email}`}>{brand.email}</a>.
+        </p>
+      </div>
+
+      <!-- What to expect sidebar -->
+      <aside class="demo-aside">
+        <div class="expect-card card">
+          <h3>What to expect</h3>
+          <ul class="expect-list">
+            <li>
+              <span class="expect-dot" aria-hidden="true"></span>
+              <span><strong>Personalised walkthrough</strong> — we focus on the solutions relevant to your role and industry, not a generic slide deck.</span>
+            </li>
+            <li>
+              <span class="expect-dot" aria-hidden="true"></span>
+              <span><strong>Live platform</strong> — you see the real XGRC® environment, not a prototype.</span>
+            </li>
+            <li>
+              <span class="expect-dot" aria-hidden="true"></span>
+              <span><strong>30–45 minutes</strong> — enough time to explore the platform meaningfully, short enough to respect your schedule.</span>
+            </li>
+            <li>
+              <span class="expect-dot" aria-hidden="true"></span>
+              <span><strong>No obligation</strong> — ask as many questions as you need. We will follow up only if it makes sense for your situation.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-fallback">
+          <p class="contact-label">Prefer to reach us directly?</p>
+          <a href={`mailto:${brand.email}`} class="contact-line">
+            <span class="contact-icon" aria-hidden="true">✉</span>
+            {brand.email}
+          </a>
+          <a href={`tel:${brand.phone.replace(/\s/g,'')}`} class="contact-line">
+            <span class="contact-icon" aria-hidden="true">☎</span>
+            {brand.phone}
+          </a>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ── Hero ─────────────────────────────────────────────── */
+  .demo-hero {
+    padding: 130px 0 48px;
+  }
+  .demo-hero h1 {
+    margin: 10px 0 18px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    max-width: 18ch;
+  }
+  .grad {
+    background: linear-gradient(100deg, var(--cyan-hi), var(--cyan) 40%, var(--blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ── Layout ───────────────────────────────────────────── */
+  .demo-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* ── Form card ────────────────────────────────────────── */
+  .demo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .form-title {
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+    margin-bottom: 4px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    font-family: var(--font-body);
+  }
+  .req { color: var(--cyan); }
+  .opt { color: var(--faint); font-weight: 400; font-size: 12px; }
+
+  input, textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    padding: 11px 14px;
+    transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+    outline: none;
+    resize: vertical;
+  }
+  input::placeholder, textarea::placeholder { color: var(--faint); }
+  input:focus, textarea:focus {
+    border-color: var(--cyan);
+    background: rgba(48, 226, 244, 0.04);
+  }
+  input:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+  }
+
+  .form-actions { margin-top: 4px; }
+  .btn-full { width: 100%; justify-content: center; }
+
+  .btn-spinner {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(4, 19, 11, 0.3);
+    border-top-color: var(--green-ink);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  .btn-full.loading .btn-label { display: none; }
+  .btn-full.loading .btn-spinner { display: block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .form-note {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--faint);
+    text-align: center;
+  }
+
+  /* ── Success / Error ──────────────────────────────────── */
+  .success-card {
+    text-align: center;
+    padding: clamp(40px, 6vw, 60px) clamp(24px, 4vw, 48px);
+    background: linear-gradient(160deg, rgba(47, 232, 138, 0.07), rgba(48, 226, 244, 0.03));
+    border-color: rgba(47, 232, 138, 0.3);
+  }
+  .success-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(47, 232, 138, 0.12);
+    border: 1px solid rgba(47, 232, 138, 0.35);
+    color: var(--green);
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+  .success-card h2 { margin-bottom: 10px; }
+  .success-card p { color: var(--mute); max-width: 40ch; margin: 0 auto; }
+
+  .form-error {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #f87171;
+    padding: 12px 16px;
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    border-radius: var(--radius-sm);
+    background: rgba(248, 113, 113, 0.05);
+  }
+  .form-error a { color: #f87171; text-decoration: underline; }
+
+  /* ── Aside ────────────────────────────────────────────── */
+  .expect-card { background: var(--panel); border-color: var(--line); margin-bottom: 20px; }
+  .expect-card h3 { margin-bottom: 20px; }
+
+  .expect-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .expect-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .expect-list li span:last-child {
+    font-size: 14px;
+    color: var(--mute);
+    line-height: 1.55;
+  }
+  .expect-list strong { color: var(--ink); font-weight: 600; }
+  .expect-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 7px var(--cyan);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  /* ── Contact fallback ─────────────────────────────────── */
+  .contact-fallback {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px clamp(22px, 3vw, 32px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--panel);
+  }
+  .contact-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--faint);
+    margin-bottom: 4px;
+  }
+  .contact-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--mute);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-line:hover { color: var(--ink); }
+  .contact-icon { color: var(--cyan); font-style: normal; font-size: 13px; }
+
+  /* ── Responsive ───────────────────────────────────────── */
+  @media (max-width: 860px) {
+    .demo-layout { grid-template-columns: 1fr; }
+    .demo-aside { order: -1; }
+    .expect-card { display: none; }
+  }
+  @media (max-width: 540px) {
+    .field-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script define:vars={{ FORM_ENDPOINT }}>
+  const form     = document.getElementById('demoForm');
+  const success  = document.getElementById('successCard');
+  const errorEl  = document.getElementById('formError');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorEl.hidden = true;
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+
+    try {
+      const data = new FormData(form);
+      const res  = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        form.hidden = true;
+        success.hidden = false;
+      } else {
+        throw new Error('non-2xx');
+      }
+    } catch {
+      errorEl.hidden = false;
+      submitBtn.classList.remove('loading');
+      submitBtn.disabled = false;
+    }
+  });
+</script>
