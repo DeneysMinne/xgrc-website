@@ -570,6 +570,32 @@ export const people = Array.from({ length: 21 }, (_, i) => ({
   superpower: 'Superpower to add'
 }));
 
+// Proof stats — powers the stats band on the homepage.
+// confirmed: true = derivable from live site data; safe to deploy.
+// confirmed: false = owner must verify before production (gated to DEV builds).
+export const stats = [
+  { value: '800+', label: 'Companies globally',        confirmed: true  },
+  { value: '11',   label: 'Years of GRC expertise',    confirmed: true  },
+  { value: '10+',  label: 'Solutions on one platform', confirmed: true  },
+  { value: '3',    label: 'Countries with offices',    confirmed: true  },
+  // Uncomment and confirm before enabling — owner to supply verified number:
+  // { value: '[[CONFIRM]]', label: 'Users governed', confirmed: false },
+];
+
+// Testimonials — real quotes only; component renders nothing if array is empty.
+// PLACEHOLDER samples below are commented out and must NEVER ship to production.
+// Owner: add real attributed quotes (name + role + company + permission) here.
+export const testimonials = [
+  // PLACEHOLDER — not for production:
+  // {
+  //   quote: "XGRC® gave us a single view of every compliance obligation across our sites. Audit prep that used to take weeks now takes days.",
+  //   name: "Name Surname",
+  //   role: "Group SHEQ Manager",
+  //   company: "Company Name",
+  //   outcome: null,  // optional: e.g. "Renewed ISO 45001 certification October 2024"
+  // },
+];
+
 export const offices = [
   { city: 'Johannesburg', address: 'First Floor, York House, Tybalt Place, Waterfall Park, Bekker Rd, Midrand, 1685', phone: '+27 (0)87 802 0179' },
   { city: 'Cape Town', address: '7th Floor, The Cliffs, Niagara Road, Tyger Falls, Off Carl Cronje Drive, Tygervalley, Cape Town, 7530', phone: 'Deneys +27 82 336 9915 / Craig +27 84 660 6699' },
