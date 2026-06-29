@@ -1,0 +1,469 @@
+---
+import Base from '../../layouts/Base.astro';
+import { articles } from '../../data/site.js';
+import { articleContent } from '../../data/articleContent.js';
+
+export function getStaticPaths() {
+  return articles.map((a) => ({ params: { slug: a.slug }, props: { article: a } }));
+}
+
+const { slug } = Astro.params;
+const { article } = Astro.props;
+const body = articleContent[slug] ?? '';
+
+const wordCount = body.split(/\s+/).filter(Boolean).length;
+const readTime = Math.max(1, Math.ceil(wordCount / 220));
+
+const dateObj = new Date(article.date);
+const formattedDate = dateObj.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const related = articles
+  .filter((a) => a.category === article.category && a.slug !== slug)
+  .slice(0, 3);
+
+// Convert plain-text article body to structured HTML
+function renderBody(text) {
+  const blocks = text.trim().split(/\n\n+/);
+  return blocks
+    .map((block) => {
+      const trimmed = block.trim();
+      if (!trimmed) return '';
+      const lines = trimmed.split('\n');
+
+      // Bullet list: every line starts with '- '
+      if (lines.length > 0 && lines.every((l) => l.trim().startsWith('- '))) {
+        const items = lines.map((l) => `<li>${l.trim().slice(2).trim()}</li>`).join('');
+        return `<ul>${items}</ul>`;
+      }
+
+      // Heading: single short line that doesn't end with sentence punctuation
+      if (
+        lines.length === 1 &&
+        trimmed.length < 120 &&
+        !/[.,:;]$/.test(trimmed) &&
+        !trimmed.startsWith('-')
+      ) {
+        return `<h2>${trimmed}</h2>`;
+      }
+
+      // Paragraph
+      return `<p>${trimmed.replace(/\n/g, ' ')}</p>`;
+    })
+    .join('');
+}
+
+const bodyHtml = renderBody(body);
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: article.title,
+  description: article.excerpt,
+  image: `https://xgrcsoftware.com/assets/images/insights/${slug}.jpg`,
+  datePublished: article.date,
+  author: { '@type': 'Organization', name: 'XGRC® Software' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'XGRC® Software',
+    url: 'https://xgrcsoftware.com',
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `https://xgrcsoftware.com/insights/${slug}` },
+});
+
+const categoryColors = {
+  'ESG': '#3ecf8e',
+  'GRC': '#30e2f4',
+  'Cyber': '#a78bfa',
+  'ERM': '#fb923c',
+  'SHEQ': '#fbbf24',
+  'Environment': '#34d399',
+  'Food Safety': '#86efac',
+  'Mining': '#d97706',
+  'AI & Governance': '#60a5fa',
+  'Risk': '#f87171',
+};
+const catColor = categoryColors[article.category] || '#30e2f4';
+---
+
+<Base title={`${article.title} | XGRC® Insights`} description={article.excerpt}>
+  <script type="application/ld+json" set:html={schema} />
+
+  <div class="art-page">
+
+    <!-- ── Breadcrumb ──────────────────────────────────── -->
+    <nav class="art-breadcrumb" aria-label="Breadcrumb">
+      <div class="container art-breadcrumb-inner">
+        <a href="/insights">← Insights</a>
+        <span aria-hidden="true">/</span>
+        <span>{article.category}</span>
+      </div>
+    </nav>
+
+    <!-- ── Header ─────────────────────────────────────── -->
+    <header class="art-header">
+      <div class="container art-header-inner">
+        <div class="art-meta">
+          <span class="art-cat" style={`--cat-color: ${catColor}`}>{article.category}</span>
+          <span class="art-sep" aria-hidden="true">·</span>
+          <span class="art-date">{formattedDate}</span>
+          <span class="art-sep" aria-hidden="true">·</span>
+          <span class="art-read">{readTime} min read</span>
+        </div>
+        <h1 class="art-title">{article.title}</h1>
+        <p class="art-excerpt">{article.excerpt}</p>
+      </div>
+    </header>
+
+    <!-- ── Hero Image ─────────────────────────────────── -->
+    <div class="art-img-wrap">
+      <div class="container">
+        <img
+          src={`/assets/images/insights/${slug}.jpg`}
+          alt={article.title}
+          class="art-hero-img"
+          width="1200"
+          height="630"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <!-- ── Article Body ───────────────────────────────── -->
+    <div class="art-body">
+      <div class="container">
+        <div class="art-content" set:html={bodyHtml} />
+      </div>
+    </div>
+
+    <!-- ── CTA ────────────────────────────────────────── -->
+    <div class="art-cta-wrap">
+      <div class="container">
+        <div class="art-cta">
+          <p class="art-cta-eyebrow">Take the next step</p>
+          <h2 class="art-cta-heading">Ready to strengthen your {article.category} programme?</h2>
+          <p class="art-cta-body">See how XGRC® gives your team the visibility, accountability, and control it needs — without the spreadsheet chaos.</p>
+          <div class="art-cta-btns">
+            <a href="/demo" class="btn-primary">Book a Demo</a>
+            <a href="/solutions" class="btn-ghost">Explore Solutions →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Related Articles ───────────────────────────── -->
+    {related.length > 0 && (
+      <div class="art-related-wrap">
+        <div class="container">
+          <h3 class="art-related-heading">More on {article.category}</h3>
+          <div class="art-related-grid">
+            {related.map((r) => (
+              <a href={`/insights/${r.slug}`} class="rel-card">
+                <div class="rel-card-img">
+                  <img src={`/assets/images/insights/${r.slug}.jpg`} alt={r.title} loading="lazy" decoding="async" />
+                </div>
+                <div class="rel-card-body">
+                  <span class="rel-cat">{r.category}</span>
+                  <p class="rel-title">{r.title}</p>
+                  <span class="rel-arrow">Read →</span>
+                </div>
+              </a>
+            ))}
+          </div>
+          <div class="art-back">
+            <a href="/insights">← All Insights</a>
+          </div>
+        </div>
+      </div>
+    )}
+    {related.length === 0 && (
+      <div class="art-back-only">
+        <div class="container">
+          <a href="/insights" class="art-back-link">← All Insights</a>
+        </div>
+      </div>
+    )}
+
+  </div>
+</Base>
+
+<style>
+  /* ── Page scaffold ──────────────────────────────────── */
+  .art-page {
+    padding-top: 80px; /* nav height */
+  }
+
+  /* ── Breadcrumb ─────────────────────────────────────── */
+  .art-breadcrumb {
+    padding: 20px 0 0;
+  }
+  .art-breadcrumb-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--mute);
+  }
+  .art-breadcrumb-inner a {
+    color: var(--mute);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .art-breadcrumb-inner a:hover { color: var(--cyan); }
+
+  /* ── Header ─────────────────────────────────────────── */
+  .art-header { padding: 36px 0 40px; }
+  .art-header-inner { max-width: 780px; }
+
+  .art-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  .art-cat {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: color-mix(in srgb, var(--cat-color) 15%, transparent);
+    color: var(--cat-color);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
+  .art-sep { color: var(--faint); }
+  .art-date, .art-read { color: var(--mute); }
+
+  .art-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    color: var(--ink);
+    margin: 0 0 20px;
+  }
+  .art-excerpt {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: var(--mute);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 68ch;
+  }
+
+  /* ── Hero Image ─────────────────────────────────────── */
+  .art-img-wrap { padding-bottom: 52px; }
+  .art-hero-img {
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    border-radius: var(--radius-lg, 12px);
+    display: block;
+    border: 1px solid var(--line);
+  }
+
+  /* ── Article Body ───────────────────────────────────── */
+  .art-body { padding-bottom: 72px; }
+  .art-content {
+    max-width: 720px;
+    font-size: clamp(1rem, 1.2vw, 1.08rem);
+    line-height: 1.8;
+    color: var(--ink);
+  }
+
+  /* typography within article content */
+  .art-content :global(h2) {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 2.4em 0 0.6em;
+    line-height: 1.3;
+  }
+  .art-content :global(h2:first-child) { margin-top: 0; }
+
+  .art-content :global(p) {
+    margin: 0 0 1.4em;
+    color: color-mix(in srgb, var(--ink) 85%, transparent);
+  }
+
+  .art-content :global(ul) {
+    margin: 0 0 1.4em;
+    padding-left: 1.4em;
+    list-style: none;
+  }
+  .art-content :global(li) {
+    position: relative;
+    padding-left: 1em;
+    margin-bottom: 0.6em;
+    color: color-mix(in srgb, var(--ink) 85%, transparent);
+  }
+  .art-content :global(li::before) {
+    content: '→';
+    position: absolute;
+    left: -0.6em;
+    color: var(--cyan);
+    font-size: 0.8em;
+    top: 0.15em;
+  }
+
+  /* ── CTA ────────────────────────────────────────────── */
+  .art-cta-wrap {
+    padding: 0 0 80px;
+  }
+  .art-cta {
+    background: linear-gradient(135deg, rgba(48,226,244,0.06), rgba(38,158,198,0.03));
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg, 12px);
+    padding: clamp(36px, 5vw, 64px);
+    max-width: 760px;
+  }
+  .art-cta-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin: 0 0 12px;
+  }
+  .art-cta-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 0 14px;
+    line-height: 1.25;
+  }
+  .art-cta-body {
+    color: var(--mute);
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin: 0 0 28px;
+  }
+  .art-cta-btns {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 12px 28px;
+    background: var(--cyan);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost {
+    display: inline-block;
+    padding: 12px 4px;
+    color: var(--mute);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--ink); }
+
+  /* ── Related ────────────────────────────────────────── */
+  .art-related-wrap {
+    padding: 0 0 80px;
+    border-top: 1px solid var(--line);
+  }
+  .art-related-heading {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--mute);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 52px 0 28px;
+  }
+  .art-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .rel-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .rel-card:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-2px);
+  }
+  .rel-card-img {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+  .rel-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+    display: block;
+  }
+  .rel-card:hover .rel-card-img img { transform: scale(1.04); }
+  .rel-card-body {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+  .rel-cat {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cyan);
+  }
+  .rel-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0;
+    flex: 1;
+  }
+  .rel-arrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--mute);
+    margin-top: 4px;
+  }
+
+  .art-back { margin-top: 40px; }
+  .art-back a, .art-back-link {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--mute);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .art-back a:hover, .art-back-link:hover { color: var(--ink); }
+  .art-back-only { padding: 0 0 80px; }
+
+  @media (max-width: 900px) {
+    .art-related-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .art-related-grid { grid-template-columns: 1fr; }
+    .art-cta-btns { flex-direction: column; align-items: flex-start; }
+  }
+</style>
