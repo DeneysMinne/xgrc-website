@@ -178,44 +178,68 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
   .trusted-logos {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    gap: 8px;
+    gap: 14px;
     margin-bottom: 28px;
   }
   .trusted-cta { display: block; text-align: center; }
 
-  /* Shared logo slot (reused on /customers page) */
+  /* ── Glass tile logo slots ────────────────────────────── */
   .logo-slot {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80px;
-    border-radius: 10px;
-    transition: transform 0.3s var(--ease);
+    aspect-ratio: 1 / 1;   /* square */
+    padding: 10%;            /* logo fills the remaining 80% */
+    border-radius: 14px;
+
+    /* clear glass — almost nothing in the middle */
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-top-color: rgba(255, 255, 255, 0.22); /* rim catches light */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    /* floating depth */
+    box-shadow:
+      0 5px 22px rgba(0, 0, 0, 0.48),
+      inset 0 1px 0 rgba(255, 255, 255, 0.13);
+
+    transition:
+      transform 0.4s var(--ease),
+      box-shadow 0.4s var(--ease),
+      border-color 0.4s var(--ease);
     cursor: default;
     isolation: isolate;
   }
-  .logo-slot:hover { transform: translateY(-3px); }
+  .logo-slot:hover {
+    transform: translateY(-7px);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.60),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      0 0 0 1px rgba(48, 226, 244, 0.18);
+    border-top-color: rgba(255, 255, 255, 0.32);
+  }
+  /* Faint light behind the glass */
   .logo-slot .glow {
     position: absolute;
-    inset: -8px;
+    inset: -18px;
     border-radius: 50%;
-    background: radial-gradient(circle at center,
-      rgba(255, 255, 255, 0.88)   0%,
-      rgba( 48, 226, 244, 0.48)  25%,
-      rgba( 38, 158, 198, 0.20)  50%,
-      transparent                 72%
+    background: radial-gradient(
+      ellipse at 50% 50%,
+      rgba(48, 226, 244, 0.10) 0%,
+      rgba(38, 158, 198, 0.04) 45%,
+      transparent 70%
     );
-    opacity: 0.42;
-    transition: opacity 0.35s var(--ease), inset 0.35s var(--ease);
+    opacity: 0.5;
+    transition: opacity 0.4s var(--ease), inset 0.4s var(--ease);
     pointer-events: none;
     z-index: -1;
   }
-  .logo-slot:hover .glow { opacity: 0.95; inset: -18px; }
+  .logo-slot:hover .glow { opacity: 0.9; inset: -28px; }
   .logo-slot img {
-    max-width: 100px;
-    max-height: 48px;
     width: 100%;
+    height: 100%;
     object-fit: contain;
     position: relative;
     z-index: 1;

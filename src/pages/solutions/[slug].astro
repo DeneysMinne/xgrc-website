@@ -141,7 +141,7 @@ const schema = JSON.stringify({
   </section>
 
   <!-- ── See it in action (video) ────────────────────── -->
-  {detail.video && (
+  {(detail.youtubeId || detail.video) && (
     <section class="section--tight">
       <div class="container">
         <div class="section-head">
@@ -149,14 +149,26 @@ const schema = JSON.stringify({
           <h2>{detail.name} in practice.</h2>
         </div>
         <div class="sol-video-wrap">
-          <video
-            src={detail.video}
-            controls
-            playsinline
-            preload="none"
-            class="sol-video"
-            aria-label={`${detail.name} product overview video`}
-          />
+          {detail.youtubeId ? (
+            <div class="yt-wrap">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${detail.youtubeId}`}
+                title={`${detail.name} product overview`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+          ) : (
+            <video
+              src={detail.video}
+              controls
+              playsinline
+              preload="none"
+              class="sol-video"
+              aria-label={`${detail.name} product overview video`}
+            />
+          )}
         </div>
       </div>
     </section>
@@ -530,6 +542,18 @@ const schema = JSON.stringify({
   .sol-video {
     width: 100%;
     height: auto;
+    display: block;
+  }
+  .yt-wrap {
+    position: relative;
+    padding-top: 56.25%;
+  }
+  .yt-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
     display: block;
   }
 
