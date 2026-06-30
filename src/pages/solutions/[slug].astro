@@ -63,7 +63,7 @@ const schema = JSON.stringify({
         <p class="sol-headline">{detail.headline}</p>
         <p class="lede sol-lede">{detail.lede}</p>
         <div class="sol-actions">
-          <a href={`mailto:${brand.email}?subject=Demo%20Request%20-%20${encodeURIComponent(detail.name)}`} class="btn btn-primary">Request a demo</a>
+          <a href="/demo" class="btn btn-primary">Request a demo</a>
           <a href="/solutions" class="btn btn-ghost">All solutions &rarr;</a>
         </div>
         <div class="sol-standards-strip">
@@ -126,7 +126,7 @@ const schema = JSON.stringify({
           <span class="eyebrow"><span class="dot"></span>What it does</span>
           <h2>How {detail.name} works.</h2>
           <p class="lede">{detail.overview}</p>
-          <a href={`mailto:${brand.email}?subject=Demo%20Request%20-%20${encodeURIComponent(detail.name)}`} class="link-arrow">See it in action &rarr;</a>
+          <a href="/demo" class="link-arrow">See it in action &rarr;</a>
         </div>
         <div class="overview-stats">
           {detail.stats.map((s) => (
@@ -228,7 +228,7 @@ const schema = JSON.stringify({
         <h2>See {detail.name} running in your environment.</h2>
         <p class="lede">Talk to an XGRC® specialist about how {detail.name} fits your organisation's specific compliance and governance requirements.</p>
         <div class="cta-actions">
-          <a href={`mailto:${brand.email}?subject=Demo%20Request%20-%20${encodeURIComponent(detail.name)}`} class="btn btn-primary">Request a live demo</a>
+          <a href="/demo" class="btn btn-primary">Request a live demo</a>
           <a href="/use-cases" class="btn btn-ghost">See use cases</a>
         </div>
         <p class="contact-line">{brand.email} &middot; {brand.phone}</p>

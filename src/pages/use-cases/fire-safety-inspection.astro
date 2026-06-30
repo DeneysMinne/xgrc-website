@@ -235,10 +235,11 @@ const schema = {
         </form>
       </div>
       <div data-success-state hidden>
-        <span class="eyebrow ok"><span class="dot"></span>On its way</span>
-        <h3>Thank you. Check your inbox.</h3>
-        <p>We have sent the download link for the Fire Safety Inspection Checklist to your email. If it does not arrive in a few minutes, check your spam folder.</p>
-        <button class="btn btn-ghost" data-close-download type="button">Close</button>
+        <span class="eyebrow ok"><span class="dot"></span>Ready to download</span>
+        <h3>Your checklist is ready.</h3>
+        <p>Click the button below to download the PDF. We have also sent this link to your email.</p>
+        <a class="btn btn-primary" href="/Fire-Safety-Inspection-Checklist-XGRC-v1.0.pdf" download="Fire-Safety-Inspection-Checklist-XGRC-v1.0.pdf" style="margin-top:18px;width:100%;justify-content:center;">Download the checklist (PDF)</a>
+        <button class="btn btn-ghost" data-close-download type="button" style="width:100%;justify-content:center;margin-top:10px;">Close</button>
       </div>
     </div>
   </div>
@@ -283,12 +284,29 @@ const schema = {
     errorEl.hidden = true;
 
     // ===========================================================
-    // INTEGRATION POINT — replace this block when the gating tool
-    // is chosen (HubSpot form submit, or a form-service endpoint).
-    // It should send { name, email, company } to capture the lead
-    // and trigger the email containing the download link.
-    // For now it simply shows the success state so the flow is testable.
-    // ===========================================================
+    // Submit lead to form endpoint (fire-and-forget — download proceeds regardless)
+    fetch('/api/demo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        firstName: name.split(' ')[0],
+        lastName: name.split(' ').slice(1).join(' ') || '',
+        email,
+        company: (data.get('company') || '').toString().trim(),
+        message: 'Checklist download request: Fire Safety Inspection Checklist',
+        _subject: 'Checklist download — Fire Safety Inspection Checklist',
+        _download_url: window.location.origin + '/Fire-Safety-Inspection-Checklist-XGRC-v1.0.pdf',
+      }),
+    }).catch(() => {}); // swallow errors — download still works
+
+    // Trigger download immediately so user doesn't wait for email
+    const a = document.createElement('a');
+    a.href = '/Fire-Safety-Inspection-Checklist-XGRC-v1.0.pdf';
+    a.download = 'Fire-Safety-Inspection-Checklist-XGRC-v1.0.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
     formState.hidden = true;
     successState.hidden = false;
   });
