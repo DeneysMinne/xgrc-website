@@ -49,10 +49,13 @@ const useCases = [
       </div>
       <div class="grid cols-2">
         {caseStudies.map((c) => (
-          <div class="card">
+          <div class={`card${c.pdf ? ' cs-card' : ''}`}>
             <span class="tag">{c.solution}</span>
             <h3>{c.company}</h3>
             <p>{c.summary}</p>
+            {c.pdf && (
+              <a href={`/case-studies/${c.slug}.pdf`} class="link-arrow" download>Download case study &rarr;</a>
+            )}
           </div>
         ))}
       </div>
@@ -82,6 +85,8 @@ const useCases = [
   .page-head h1 { margin: 8px 0 18px; }
   .uc-card { text-decoration: none; display: flex; flex-direction: column; }
   .uc-card .link-arrow { margin-top: auto; padding-top: 16px; }
+  .cs-card { display: flex; flex-direction: column; }
+  .cs-card .link-arrow { margin-top: auto; padding-top: 16px; }
   .sectors { display: flex; flex-direction: column; gap: 28px; }
   .sector { border-top: 1px solid var(--line); padding-top: 22px; }
   .sector h3 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; font-weight: 500; }

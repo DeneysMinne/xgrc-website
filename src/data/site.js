@@ -475,7 +475,7 @@ export const caseStudies = [
     sector: 'Manufacturing',
     solution: 'SHEQX®',
     summary: 'A South African paint producer became an industry benchmark for safety, quality, and regulatory compliance through SHEQX® and ISO 9001 implementation.',
-    pdf: false,
+    pdf: true,
   },
   {
     slug: 'sandton-plant-hire',
@@ -483,7 +483,7 @@ export const caseStudies = [
     sector: 'Plant hire & mining',
     solution: 'SHEQX®',
     summary: 'Replaced disconnected spreadsheets with SHEQX® — delivering faster SHEQ response times, accurate reporting, and the ability to scale operations without increasing risk exposure.',
-    pdf: false,
+    pdf: true,
   },
   {
     slug: 'commercial-cold-holdings',
@@ -491,7 +491,7 @@ export const caseStudies = [
     sector: 'Cold chain logistics',
     solution: 'SHEQX®',
     summary: 'One of the 25 largest refrigerated warehousing providers globally digitised SHEQ workflows to strengthen food safety, product integrity, and compliance with international export protocols.',
-    pdf: false,
+    pdf: true,
   },
   {
     slug: 'interwaste',
@@ -499,7 +499,7 @@ export const caseStudies = [
     sector: 'Waste management',
     solution: 'SHEQX®',
     summary: 'Unified SHEQ processes across multiple regions — significantly reducing reporting effort, accelerating safety action closure, and increasing near-miss reporting volumes.',
-    pdf: false,
+    pdf: true,
   },
   {
     slug: 'pple-group',
@@ -507,7 +507,7 @@ export const caseStudies = [
     sector: 'Human capital',
     solution: 'SHEQX®',
     summary: 'Elevated operational standards across the group through ISO 9001 and SHEQX®, improving quality management and compliance visibility.',
-    pdf: false,
+    pdf: true,
   },
   {
     slug: 'tn-ceramics',
@@ -515,7 +515,7 @@ export const caseStudies = [
     sector: 'Mining & materials',
     solution: 'XGRC®',
     summary: 'A specialist ceramics supplier to major Southern African mining companies adopted XGRC® to strengthen governance, compliance, and operational oversight.',
-    pdf: false,
+    pdf: true,
   },
   {
     slug: 'servest',
@@ -523,7 +523,7 @@ export const caseStudies = [
     sector: 'Facilities management',
     solution: 'SHEQX® + ENVIRX®',
     summary: 'Digitised SHEQ processes since 2019, reducing administrative burden and achieving renewed ISO 9001, 14001, and 45001 certifications in October 2024.',
-    pdf: false,
+    pdf: true,
   },
 ];
 
