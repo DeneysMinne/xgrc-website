@@ -1,0 +1,100 @@
+{
+  "slug": "king-v-governance-readiness-checklist",
+  "title": "King V Governance Readiness Checklist",
+  "subtitle": "A practical checklist for applying and reporting against King V corporate governance principles",
+  "isoTags": ["King V", "Corporate Governance", "Risk Governance", "Combined Assurance", "ESG", "Compliance"],
+  "intro": "King V is South Africa's corporate governance code, applied on an apply-and-explain basis rather than as a certifiable legal requirement. This checklist sets out a practical sequence for demonstrating how governance principles are applied and reported against, not just referenced.",
+  "pageBreakAfter": "D",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Leadership, Ethics & Governance Structure",
+      "items": [
+        "Document how the governing body provides ethical and effective leadership",
+        "Define and record the roles, composition, and independence of the governing body",
+        "Maintain a governance framework describing delegation of authority to management",
+        "Review board and committee composition against skills and diversity expectations",
+        "Record how the organisation's culture and values are monitored by leadership"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Strategy, Performance & Value Creation",
+      "items": [
+        "Link strategic objectives to the risks and opportunities that inform them",
+        "Document how performance against strategy is monitored and reported",
+        "Confirm resource allocation decisions are informed by risk and assurance input",
+        "Report on value created for stakeholders, not only financial performance",
+        "Review strategic assumptions when the risk or operating environment changes materially"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Risk Governance",
+      "items": [
+        "Confirm the governing body sets and approves the organisation's risk appetite and tolerance",
+        "Maintain a risk management framework covering strategic, operational, and emerging risks",
+        "Report material risk exposures and mitigation status to the governing body",
+        "Review risk governance effectiveness at defined intervals",
+        "Link risk oversight explicitly to the combined assurance model"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Combined Assurance",
+      "items": [
+        "Map assurance providers across management, internal audit, and external assurance",
+        "Confirm the combined assurance model covers the organisation's material risks",
+        "Identify and address gaps or duplication in assurance coverage",
+        "Report combined assurance conclusions to the audit and risk committees",
+        "Review the combined assurance model when the risk profile changes"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Compliance & Legal Governance",
+      "items": [
+        "Maintain a register of applicable laws, regulations, and codes relevant to the organisation",
+        "Assign accountability for monitoring compliance with material legal obligations",
+        "Report material compliance breaches or exposures to the governing body",
+        "Review the effectiveness of the compliance function or capability periodically",
+        "Confirm whistleblowing and ethics reporting channels are operating and monitored"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Sustainability & ESG Governance",
+      "items": [
+        "Confirm sustainability is embedded in strategy, not managed as a standalone initiative",
+        "Report on environmental, social, and governance performance to stakeholders",
+        "Assign oversight of sustainability performance to a board committee or equivalent structure",
+        "Track progress against sustainability targets and disclose material gaps",
+        "Align ESG disclosure with the frameworks stakeholders expect, such as GRI or IFRS Sustainability"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Stakeholder Engagement & Reporting",
+      "items": [
+        "Identify material stakeholders and their legitimate interests in the organisation",
+        "Document how stakeholder feedback informs governance and strategic decisions",
+        "Prepare integrated or governance reporting that explains, rather than simply lists, practices applied",
+        "Disclose areas where a King V principle is not fully applied and explain why",
+        "Review stakeholder communication channels for effectiveness on a periodic basis"
+      ]
+    },
+    {
+      "letter": "H",
+      "title": "Apply-and-Explain Reporting Discipline",
+      "items": [
+        "Prepare a governance disclosure that addresses each King V principle individually",
+        "Avoid generic or copied disclosure language that does not reflect actual practice",
+        "Have governance disclosures reviewed by the governing body before publication",
+        "Update disclosures year on year to reflect genuine changes in practice",
+        "Retain supporting evidence for each disclosure in case of stakeholder or assurance scrutiny"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

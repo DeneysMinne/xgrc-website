@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate-pdfs": "scripts/generate-pdfs/.venv/bin/python3 scripts/generate-pdfs/build_checklists.py",
+    "validate-content": "node scripts/validate-content.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0"

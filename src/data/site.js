@@ -709,7 +709,37 @@ export const resources = [
   { type: 'Booklet', title: 'SHEQX® Booklet', note: 'PDF overview of the SHEQ management solution.' },
   { type: 'Brochure', title: 'Integrated Assurance Brochure', note: 'Combined assurance and four lines of defence.' },
   { type: 'Infographic', title: 'Product infographics', note: 'One-page summaries for SHEQX, ENVIRX, MSXCyber, ERM, MAIA, ESG, Compliance Hub, Cyber Security and Hakware.' },
-  { type: 'Release notes', title: 'Platform release notes', note: 'Latest feature and security updates across the XGRC® platform.' }
+  { type: 'Release notes', title: 'Platform release notes', note: 'Latest feature and release updates across the XGRC® platform.' }
+];
+
+// Video hub — powers /videos/. Add a new entry here (with a real YouTube ID) to
+// publish a new video; the category must be one of videoCategories below.
+export const videos = [
+  {
+    youtubeId: '2qmLbCaUNtw',
+    title: 'AI is not the risk. Lack of governance is.',
+    description: 'Our perspective on why AI adoption is not the threat — and why the absence of governance frameworks is the real exposure organisations face right now.',
+    category: 'Platform Overview',
+    date: '2026-05',
+  },
+  {
+    youtubeId: 'hW3EPWIKj9s',
+    title: 'Digital SHEQ Systems Centralise Incident Reporting',
+    description: 'How SHEQX® brings incident reporting, inspections and corrective actions onto one connected platform.',
+    category: 'SHEQX®',
+    date: '2026-06',
+  },
+  {
+    youtubeId: 'v3_97N3WUuI',
+    title: 'The Future of ESG Is Digital with XGRC® Software',
+    description: 'Why structured, auditable ESG data collection is replacing spreadsheet-based sustainability reporting.',
+    category: 'ESG',
+    date: '2026-06',
+  },
+];
+
+export const videoCategories = [
+  'Platform Overview', 'SHEQX®', 'MSX®', 'ENVIRX®', 'Compliance Hub', 'MSXCyber', 'ESG', 'Training', 'Implementation Guides', 'Webinars',
 ];
 
 // About — vertical timeline. Founded 2015. Fill in the real milestones.

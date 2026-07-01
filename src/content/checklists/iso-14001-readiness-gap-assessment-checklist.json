@@ -1,0 +1,92 @@
+{
+  "slug": "iso-14001-readiness-gap-assessment-checklist",
+  "title": "ISO 14001:2015 Readiness & Gap Assessment Checklist",
+  "subtitle": "A practical checklist for assessing environmental management system readiness against ISO 14001",
+  "isoTags": ["ISO 14001", "Environmental Management", "EMS", "ESG", "GHG Protocol", "Environmental Monitoring"],
+  "intro": "ISO 14001 certification depends on an environmental management system that demonstrably controls significant environmental impacts. This checklist sets out a practical sequence for assessing EMS maturity and closing gaps before certification or recertification audit.",
+  "pageBreakAfter": "D",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Context & Scope",
+      "items": [
+        "Define the EMS scope, including sites, activities, and processes covered",
+        "Identify interested parties and their relevant environmental expectations",
+        "Determine environmental conditions relevant to the organisation's context",
+        "Confirm the EMS scope statement is consistent with certification intent"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Leadership & Environmental Policy",
+      "items": [
+        "Document an environmental policy approved and communicated by top management",
+        "Assign environmental management roles, responsibilities, and authorities",
+        "Set measurable environmental objectives aligned to significant impacts",
+        "Confirm management commitment to compliance and continual improvement"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Environmental Aspects & Legal Compliance",
+      "items": [
+        "Maintain a register of environmental aspects and evaluate their significance",
+        "Identify and maintain a compliance obligations register covering applicable legislation",
+        "Evaluate compliance with legal and other requirements on a set frequency",
+        "Track permits, licences, and authorisations with renewal dates monitored"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Operational Controls",
+      "items": [
+        "Establish operating criteria for activities associated with significant aspects",
+        "Control environmental impacts across the value chain where relevant",
+        "Maintain emergency preparedness and response procedures for environmental incidents",
+        "Manage waste, effluent, and emissions in line with operational controls"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Monitoring, Measurement & Performance",
+      "items": [
+        "Monitor and measure environmental performance against defined indicators",
+        "Calibrate or verify monitoring equipment used for environmental data",
+        "Track energy, water, waste, and emissions data against targets",
+        "Evaluate environmental performance trends ahead of management review"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Internal Audit",
+      "items": [
+        "Maintain an internal audit programme covering all EMS clauses and significant aspects",
+        "Assign auditors who are independent of the area being audited",
+        "Raise nonconformities with objective evidence and clear descriptions",
+        "Verify corrective actions close the root cause, not just the symptom"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Management Review",
+      "items": [
+        "Hold management review at planned intervals with a defined agenda",
+        "Review compliance status, audit results, and environmental performance",
+        "Review the status of actions from previous management reviews",
+        "Record decisions on resourcing, changes, and improvement opportunities"
+      ]
+    },
+    {
+      "letter": "H",
+      "title": "Continual Improvement & Certification Readiness",
+      "items": [
+        "Investigate environmental nonconformities and determine root cause",
+        "Assign corrective actions with clear owners and realistic due dates",
+        "Reassess significant aspects after changes to operations or legislation",
+        "Conduct a pre-certification readiness review ahead of the external audit"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

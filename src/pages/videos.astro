@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import { videos, videoCategories } from '../data/site.js';
+---
+<Base title="Video Hub | XGRC® Software" description="Platform overviews, product walkthroughs, and training videos from XGRC® Software.">
+  <section class="page-head">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>Video Hub</span>
+      <h1>See XGRC® in motion.</h1>
+      <p class="lede">Platform overviews, product walkthroughs, and training content across the XGRC® suite.</p>
+    </div>
+  </section>
+
+  {videoCategories.map((cat) => {
+    const catVideos = videos.filter((v) => v.category === cat);
+    return (
+      <section class="section--tight">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow"><span class="dot"></span>{cat}</span>
+          </div>
+          {catVideos.length > 0 ? (
+            <div class="vid-grid">
+              {catVideos.map((v) => (
+                <div class="vid-card">
+                  <div class="yt-wrap">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${v.youtubeId}`}
+                      title={v.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                  <div class="vid-meta">
+                    <h3 class="vid-title">{v.title}</h3>
+                    <p>{v.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p class="empty">More {cat} videos coming soon.</p>
+          )}
+        </div>
+      </section>
+    );
+  })}
+</Base>
+
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 18px; }
+  .vid-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+  .vid-card { display: flex; flex-direction: column; gap: 14px; }
+  .yt-wrap { position: relative; width: 100%; padding-top: 56.25%; border-radius: var(--radius-lg); overflow: hidden; background: var(--panel); }
+  .yt-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .vid-title { font-size: 1.05rem; margin-bottom: 6px; }
+  .vid-meta p { color: var(--mute); font-size: 0.92rem; }
+  .empty { color: var(--faint); font-size: 0.9rem; }
+</style>

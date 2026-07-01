@@ -1,18 +1,38 @@
 """
-XGRC® Checklist PDF builder — white background, 2-page layout matching reference.
+XGRC® Checklist PDF builder — generic, data-driven.
+
+Reads every *.json file in src/content/checklists/, generates a matching
+branded PDF (white background, 2-page layout) into public/resources/, and
+writes standard PDF metadata (brief section 15).
+
+Usage (from repo root):
+  scripts/generate-pdfs/.venv/bin/python3 scripts/generate-pdfs/build_checklists.py
+  scripts/generate-pdfs/.venv/bin/python3 scripts/generate-pdfs/build_checklists.py internal-audit-checklist   # single file
+
+Setup (one-time):
+  python3 -m venv scripts/generate-pdfs/.venv
+  scripts/generate-pdfs/.venv/bin/pip install reportlab pypdf fonttools
+See docs/add-new-use-case.md for the full workflow.
 """
 
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
 from reportlab.lib.units import mm
 from reportlab.platypus import (Spacer, Table, TableStyle, Paragraph,
-                                  PageBreak, BaseDocTemplate,
-                                  PageTemplate, Frame)
+                                  NextPageTemplate, KeepTogether,
+                                  BaseDocTemplate, PageTemplate, Frame)
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.enums import TA_CENTER
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-import io, os
+import io, os, sys, json, glob
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT  = os.path.abspath(os.path.join(SCRIPT_DIR, '..', '..'))
+LOGO_PATH  = os.path.join(REPO_ROOT, 'public', 'assets', 'xgrc-logo-header.png')
+FONT_DIR   = os.path.join(SCRIPT_DIR, 'fonts')
+CONTENT_DIR = os.path.join(REPO_ROOT, 'src', 'content', 'checklists')
+OUTPUT_DIR  = os.path.join(REPO_ROOT, 'public', 'resources')
 
 NAVY       = colors.HexColor('#060f1c')
 CYAN       = colors.HexColor('#30e2f4')
@@ -26,9 +46,6 @@ FOOTER_CLR = colors.HexColor('#7a8a98')
 
 W, H = A4
 
-LOGO_PATH = '/Users/deneysminne/Downloads/xgrc-website 2/public/assets/xgrc-logo-header.png'
-FONT_DIR  = '/tmp/xgrc-fonts'
-
 HEADER_H = 64   # keep header compact
 FOOTER_H = 24
 SUBHDR_H = 34
@@ -39,12 +56,12 @@ def ensure_fonts():
     if _fonts_registered:
         return
     needed = {
-        'XOutfit':   'outfit-400.ttf',
-        'XOutfitSB': 'outfit-600.ttf',
-        'XOutfitB':  'outfit-700.ttf',
-        'XInter':    'inter-400.ttf',
-        'XInterSB':  'inter-600.ttf',
-        'XMono':     'jetbrains-400.ttf',
+        'XOutfit':   'Outfit-Regular.ttf',
+        'XOutfitSB': 'Outfit-SemiBold.ttf',
+        'XOutfitB':  'Outfit-Bold.ttf',
+        'XInter':    'Inter-Regular.ttf',
+        'XInterSB':  'Inter-SemiBold.ttf',
+        'XMono':     'JetBrainsMono-Regular.ttf',
     }
     for name, fname in needed.items():
         path = os.path.join(FONT_DIR, fname)
@@ -53,6 +70,8 @@ def ensure_fonts():
                 pdfmetrics.registerFont(TTFont(name, path))
             except Exception as e:
                 print(f'  WARN font {name}: {e}')
+        else:
+            print(f'  WARN missing font file: {path}')
     _fonts_registered = True
 
 def PS(name, **kw):
@@ -65,7 +84,7 @@ def _draw_footer(c, doc):
     fy = 8
     c.setFont('XMono', 7)
     c.setFillColor(FOOTER_CLR)
-    c.drawString(15*mm, fy, 'v1.0  \xb7  Classification: Public')
+    c.drawString(15*mm, fy, f'{doc.xgrc_version}  \xb7  Classification: {doc.xgrc_classification}')
     c.drawCentredString(W/2, fy, 'XGRC\xae Software  \xb7  Driving Compliance\xae')
     c.drawRightString(W - 15*mm, fy, f'Page {doc.page}')
     c.setStrokeColor(RULE_LINE)
@@ -90,7 +109,7 @@ def _draw_page1(c, doc, title):
     c.setFillColor(BLUE)
     c.roundRect(bx, by, bw, bh, br, fill=1, stroke=0)
     c.setFont('XMono', 7.5); c.setFillColor(WHITE)
-    c.drawCentredString(bx + bw/2, by + 4.5, 'v1.0')
+    c.drawCentredString(bx + bw/2, by + 4.5, doc.xgrc_version)
     _draw_footer(c, doc)
     c.restoreState()
 
@@ -149,7 +168,7 @@ def section_block(letter, title, items):
         ('LEFTPADDING',   (0,0),(0,-1), 2),
         ('LEFTPADDING',   (1,0),(1,-1), 5),
         ('RIGHTPADDING',  (0,0),(-1,-1), 4),
-        ('TOPPADDING',    (0,0),(-1,-1), 5),   # tighter padding
+        ('TOPPADDING',    (0,0),(-1,-1), 5),
         ('BOTTOMPADDING', (0,0),(-1,-1), 5),
         ('LINEBELOW',     (0,0),(-1,-2), 0.4, RULE_LINE),
     ]))
@@ -191,14 +210,14 @@ def legal_block():
 
 def build_checklist(cfg):
     ensure_fonts()
-    out   = cfg['out']
-    title = cfg['title']
+    out     = cfg['out']
+    title   = cfg['title']
+    version = cfg.get('version', 'v1.0')
     inner_w = W - 30*mm
 
     sTitleStyle = PS('dt', fontName='XOutfitB',  fontSize=22, textColor=DARK_TEXT, leading=27, spaceAfter=3)
     sSubTitle   = PS('ds', fontName='XInter',    fontSize=9.5, textColor=MUTED,   leading=14, spaceAfter=5)
 
-    # Frame heights calculated to fit A-D on page 1, E-G+legal on page 2
     f1_h = H - HEADER_H - FOOTER_H - 14
     f2_h = H - SUBHDR_H - 6 - FOOTER_H - 14
 
@@ -216,17 +235,21 @@ def build_checklist(cfg):
                           pageTemplates=[t1, t2],
                           leftMargin=15*mm, rightMargin=15*mm,
                           topMargin=HEADER_H + 10, bottomMargin=FOOTER_H + 6)
+    doc.xgrc_version = version
+    doc.xgrc_classification = cfg.get('classification', 'Public')
 
     story = []
     story.append(Paragraph(title, sTitleStyle))
     story.append(Paragraph(cfg.get('subtitle', ''), sSubTitle))
     story += iso_tags_row(cfg.get('iso_tags', []))
     story += intro_box(cfg.get('intro', ''))
-    pb_after = cfg.get('page_break_after', '')
+    # Any page after page 1 (whether reached by natural overflow or an explicit
+    # break) should use the compact continuation header, not the hero header.
+    # Queuing NextPageTemplate once, before any section, makes this robust to
+    # variable section lengths instead of guessing a manual page_break_after.
+    story.append(NextPageTemplate('pn'))
     for letter, sec_title, items in cfg['sections']:
-        story += section_block(letter, sec_title, items)
-        if letter == pb_after:
-            story.append(PageBreak())
+        story.append(KeepTogether(section_block(letter, sec_title, items)))
     story += legal_block()
     doc.build(story)
 
@@ -243,144 +266,55 @@ def build_checklist(cfg):
     print(f'Built {len(r.pages)} pages: {out}')
 
 
-# ── SHEQX Safety Management ────────────────────────────────────
-build_checklist({
-    'out': '/Users/deneysminne/Downloads/xgrc-website 2/public/Safety-Management-Checklist-SHEQX-v1.0.pdf',
-    'title':    'Safety Management Checklist',
-    'subtitle': 'ISO-aligned safety management process, from incident capture to continuous improvement',
-    'iso_tags': ['ISO 45001', 'ISO 14001', 'ISO 9001'],
-    'intro': (
-        'Use this checklist to run a structured safety management process end to end. '
-        'It mirrors the SHEQX\xae safety lifecycle, covering incident management, '
-        'inspections, hazard identification, corrective actions and performance monitoring. '
-        'Tick each item as you complete it.'
-    ),
-    'page_break_after': 'D',
-    'sections': [
-        ('A', 'Incident Management', [
-            'Capture incidents and near misses',
-            'Record incident details and evidence',
-            'Classify incidents by type and severity',
-            'Investigate root causes',
-        ]),
-        ('B', 'Inspections', [
-            'Conduct routine inspections',
-            'Use structured inspection checklists',
-            'Record findings and observations',
-            'Capture supporting evidence',
-        ]),
-        ('C', 'Hazard Identification', [
-            'Identify hazards in the workplace',
-            'Assess associated risks',
-            'Record hazards in a central register',
-            'Review hazards regularly',
-        ]),
-        ('D', 'Corrective Actions', [
-            'Define corrective and preventive actions',
-            'Assign responsible owners',
-            'Set target dates',
-            'Track progress to closure',
-        ]),
-        ('E', 'Monitoring and Performance', [
-            'Monitor safety performance indicators',
-            'Track incidents and trends over time',
-            'Review inspection outcomes',
-            'Identify recurring issues',
-        ]),
-        ('F', 'Reporting', [
-            'Generate safety reports',
-            'Provide management dashboards',
-            'Report on compliance status',
-            'Highlight high-risk areas',
-        ]),
-        ('G', 'Continuous Improvement', [
-            'Identify improvement opportunities',
-            'Implement changes',
-            'Review effectiveness of changes',
-            'Update safety processes',
-        ]),
-    ],
-    'metadata': {
-        '/Title':    'Safety Management Checklist (ISO-aligned) | XGRC\xae Software',
-        '/Author':   'XGRC\xae Software',
-        '/Subject':  'ISO-aligned safety management checklist for the SHEQX\xae module of the XGRC\xae GRC platform',
-        '/Keywords': ('safety management, SHEQX, incident management, inspections, hazard identification, '
-                      'corrective actions, ISO 45001, ISO 14001, ISO 9001, GRC, governance risk compliance, '
-                      'XGRC, XGRC Software, occupational health and safety, OHS'),
-        '/Creator':  'XGRC\xae Software',
-        '/Producer': 'XGRC\xae Software',
-        '/Company':  'XGRC\xae Software, a Strategix product',
-    },
-})
+def load_checklist(path):
+    with open(path) as f:
+        data = json.load(f)
+    slug = data['slug']
+    version = data.get('version', 'v1.0')
+    version_suffix = version.replace('.', '-').replace('v', 'v')
+    out_filename = data.get('pdfFilename', f"xgrc-{slug}-{version_suffix}.pdf")
+    out_path = os.path.join(OUTPUT_DIR, out_filename)
 
-# ── ESG Reporting ──────────────────────────────────────────────
-build_checklist({
-    'out': '/Users/deneysminne/Downloads/xgrc-website 2/public/ESG-Reporting-Checklist-XGRC-v1.0.pdf',
-    'title':    'ESG Reporting Checklist',
-    'subtitle': 'Framework-aligned ESG process, from data collection to disclosure and reporting',
-    'iso_tags': ['GRI Standards', 'IFRS Sustainability', 'ISO 14001', 'ISO 45001', 'ISO 26000'],
-    'intro': (
-        'Use this checklist to run a structured ESG reporting process end to end. '
-        'It mirrors the XGRC\xae ESG lifecycle, covering data collection, governance, '
-        'environmental and social metrics, reporting and assurance. '
-        'Tick each item as you complete it.'
-    ),
-    'page_break_after': 'D',
-    'sections': [
-        ('A', 'Governance and Oversight', [
-            'Define ESG governance structure',
-            'Assign ESG responsibilities and ownership',
-            'Establish ESG policies and commitments',
-            'Integrate ESG into risk management',
-        ]),
-        ('B', 'Data Collection', [
-            'Identify relevant ESG metrics and indicators',
-            'Define data sources and collection methods',
-            'Collect environmental data (emissions, energy, water, waste)',
-            'Collect social data (workforce, safety, community)',
-        ]),
-        ('C', 'Environmental Performance', [
-            'Measure and record GHG emissions (Scope 1, 2, 3)',
-            'Track energy consumption and intensity',
-            'Monitor water usage and recycling',
-            'Record waste generation and disposal',
-        ]),
-        ('D', 'Social Performance', [
-            'Track workforce diversity and inclusion metrics',
-            'Record safety incidents and lost-time rates',
-            'Monitor employee training and development',
-            'Document community engagement activities',
-        ]),
-        ('E', 'Reporting and Disclosure', [
-            'Map disclosures to GRI, IFRS S1/S2 or applicable framework',
-            'Prepare ESG report content and narrative',
-            'Review and approve ESG disclosures',
-            'Publish and distribute ESG report',
-        ]),
-        ('F', 'Assurance and Verification', [
-            'Identify data requiring third-party assurance',
-            'Engage assurance provider',
-            'Address findings and restate data if required',
-            'Document assurance conclusion',
-        ]),
-        ('G', 'Continuous Improvement', [
-            'Review ESG performance against targets',
-            'Identify gaps and improvement actions',
-            'Update ESG targets for next reporting period',
-            'Embed learnings into the ESG process',
-        ]),
-    ],
-    'metadata': {
-        '/Title':    'ESG Reporting Checklist (Framework-aligned) | XGRC\xae Software',
-        '/Author':   'XGRC\xae Software',
-        '/Subject':  'Framework-aligned ESG reporting checklist for the XGRC\xae GRC platform',
-        '/Keywords': ('ESG reporting, sustainability, GRI, IFRS Sustainability, IFRS S1, IFRS S2, '
-                      'ISO 14001, ISO 45001, ISO 26000, environmental social governance, '
-                      'carbon emissions, GHG, Scope 1 Scope 2 Scope 3, XGRC, XGRC Software'),
-        '/Creator':  'XGRC\xae Software',
-        '/Producer': 'XGRC\xae Software',
-        '/Company':  'XGRC\xae Software, a Strategix product',
-    },
-})
+    sections = [(s['letter'], s['title'], s['items']) for s in data['sections']]
 
-print('All PDFs built successfully.')
+    keywords = data.get('keywords') or ', '.join(data.get('isoTags', []) + ['XGRC', 'XGRC Software'])
+
+    return {
+        'out': out_path,
+        'title': data['title'],
+        'subtitle': data.get('subtitle', ''),
+        'iso_tags': data.get('isoTags', []),
+        'intro': data.get('intro', ''),
+        'page_break_after': data.get('pageBreakAfter', ''),
+        'sections': sections,
+        'version': version,
+        'classification': data.get('classification', 'Public'),
+        'metadata': {
+            '/Title':    f"{data['title']} | XGRC\xae Software",
+            '/Author':   data.get('author', 'XGRC\xae Software'),
+            '/Subject':  data.get('subject', data.get('subtitle', '')),
+            '/Keywords': keywords,
+            '/Creator':  'XGRC\xae Website Content Engine',
+            '/Producer': 'XGRC\xae Software',
+            '/Company':  'XGRC\xae Software, a Strategix product',
+        },
+    }
+
+
+def main():
+    only = sys.argv[1:]
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    files = sorted(glob.glob(os.path.join(CONTENT_DIR, '*.json')))
+    if only:
+        files = [f for f in files if os.path.splitext(os.path.basename(f))[0] in only]
+    if not files:
+        print('No checklist JSON files found.')
+        return
+    for path in files:
+        cfg = load_checklist(path)
+        build_checklist(cfg)
+    print(f'\nDone. {len(files)} checklist(s) processed.')
+
+
+if __name__ == '__main__':
+    main()

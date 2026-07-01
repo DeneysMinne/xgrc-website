@@ -1,0 +1,87 @@
+{
+  "slug": "incident-management-checklist",
+  "title": "Incident Management Checklist",
+  "subtitle": "A practical checklist for capturing, investigating, and closing out incidents",
+  "isoTags": ["ISO 45001", "ISO 14001", "ISO 22301"],
+  "intro": "Incidents that are not captured consistently and investigated properly tend to repeat. This checklist sets out a practical sequence for reporting, investigating, and closing incidents so that root causes are addressed and corrective actions are tracked to completion.",
+  "pageBreakAfter": "D",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Reporting & Initial Capture",
+      "items": [
+        "Report the incident through a defined channel within 24 hours",
+        "Capture date, time, location, and people involved",
+        "Classify the incident type and initial severity rating",
+        "Collect photographic or physical evidence at the scene",
+        "Notify the relevant manager or incident owner immediately"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Immediate Response",
+      "items": [
+        "Secure the area and remove any ongoing hazard",
+        "Provide first aid or medical attention where required",
+        "Preserve evidence and witness statements before the scene changes",
+        "Determine whether the incident is notifiable to a regulator",
+        "Log any equipment or property involved for inspection"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Investigation",
+      "items": [
+        "Assign a qualified investigator or investigation team",
+        "Interview witnesses and affected persons",
+        "Apply a structured root cause analysis method",
+        "Distinguish immediate causes from underlying systemic causes",
+        "Document findings in a formal investigation report"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Classification & Severity",
+      "items": [
+        "Confirm severity and potential severity ratings against defined criteria",
+        "Flag incidents that qualify as near misses for trend analysis",
+        "Link the incident to the relevant risk or hazard register entry",
+        "Determine if the incident indicates a pattern across sites or teams"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Corrective & Preventive Actions",
+      "items": [
+        "Define corrective actions that address the root cause, not just the symptom",
+        "Assign each action an owner and a realistic due date",
+        "Distinguish immediate corrective actions from longer-term preventive actions",
+        "Verify that actions are resourced and achievable",
+        "Escalate overdue actions to management"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Closure & Verification",
+      "items": [
+        "Verify that corrective actions were implemented as described",
+        "Confirm the action actually resolved the root cause before closing",
+        "Obtain sign-off from the incident owner or investigator",
+        "Archive the investigation report and supporting evidence",
+        "Communicate lessons learned to relevant teams"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Monitoring & Reporting",
+      "items": [
+        "Review incident trends by type, location, and severity on a set frequency",
+        "Report incident and action status to management and relevant committees",
+        "Benchmark incident rates against prior periods and targets",
+        "Feed recurring findings into risk assessments and training programmes"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

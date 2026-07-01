@@ -1,19 +1,51 @@
 ---
 import Base from '../layouts/Base.astro';
 import { resources } from '../data/site.js';
+import { useCaseRegistry } from '../data/useCaseRegistry.js';
+
+const checklistResources = useCaseRegistry.filter((u) => u.resource);
 ---
 
-<Base title="Resources | XGRC® Software" description="Booklets, brochures, infographics and release notes for the XGRC platform and its solutions.">
+<Base title="Resources | XGRC® Software" description="Checklists, gap assessments, booklets, brochures, and release notes for the XGRC platform and its solutions.">
   <section class="page-head">
     <div class="container">
       <span class="eyebrow"><span class="dot"></span>Resources</span>
-      <h1>Guides, briefs and product detail.</h1>
-      <p class="lede">Downloadable material across the suite. Booklets, brochures, one-page infographics, and the platform release log.</p>
+      <h1>Guides, checklists and product detail.</h1>
+      <p class="lede">Downloadable material across the suite. ISO gap assessments, inspection checklists, booklets, brochures, and the platform release log.</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Checklists &amp; gap assessments</span>
+        <h2>Practical resources for every discipline.</h2>
+      </div>
+      <div class="filters" role="group" aria-label="Filter by category">
+        <button class="filter-chip is-active" data-filter="All" type="button">All</button>
+        {[...new Set(checklistResources.map((u) => u.category))].map((c) => (
+          <button class="filter-chip" data-filter={c} type="button">{c}</button>
+        ))}
+      </div>
+      <div class="grid cols-2" data-res-grid>
+        {checklistResources.map((u) => (
+          <a class="card res" data-category={u.category} href={`/use-cases/${u.slug}/#resource`}>
+            <span class="tag">{u.category}</span>
+            <h3>{u.resource.title}</h3>
+            <p>Related to: {u.crumbLabel}</p>
+            <span class="link-arrow">View &amp; download →</span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Product material</span>
+        <h2>Booklets, brochures and release notes.</h2>
+      </div>
       <div class="grid cols-2">
         {resources.map((r) => (
           <div class="card res">
@@ -25,14 +57,33 @@ import { resources } from '../data/site.js';
         ))}
       </div>
       <p class="note">Hook downloads up to your file store or CMS. Filenames from the current site, e.g. the SHEQX booklet PDF, can be dropped into <code>/public/assets</code>.</p>
+      <p class="note"><a href="/videos/" class="link-arrow">Looking for videos? Visit the Video Hub →</a></p>
     </div>
   </section>
 </Base>
 
+<script>
+  const grid = document.querySelector('[data-res-grid]');
+  const chips = document.querySelectorAll('.filter-chip');
+  chips.forEach((chip) => chip.addEventListener('click', () => {
+    chips.forEach((c) => c.classList.remove('is-active'));
+    chip.classList.add('is-active');
+    const filter = chip.dataset.filter;
+    grid.querySelectorAll('[data-category]').forEach((card) => {
+      card.style.display = filter === 'All' || card.dataset.category === filter ? '' : 'none';
+    });
+  }));
+</script>
+
 <style>
   .page-head { padding: 130px 0 0; }
   .page-head h1 { margin: 8px 0 18px; }
-  .res .link-arrow { display: inline-block; margin-top: 14px; }
+  .res { text-decoration: none; display: flex; flex-direction: column; }
+  .res .link-arrow { display: inline-block; margin-top: auto; padding-top: 14px; }
   .note { font-size: 0.85rem; color: var(--faint); margin-top: 28px; }
   code { font-family: var(--font-mono); color: var(--cyan); font-size: 0.85em; }
+  .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+  .filter-chip { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--mute); border: 1px solid var(--line); border-radius: 100px; padding: 9px 16px; background: transparent; cursor: pointer; transition: 0.2s; }
+  .filter-chip:hover { color: var(--ink); border-color: var(--line-strong); }
+  .filter-chip.is-active { color: var(--cyan); border-color: var(--line-strong); background: rgba(48,226,244,0.06); }
 </style>

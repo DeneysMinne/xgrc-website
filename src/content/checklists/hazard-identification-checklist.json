@@ -1,0 +1,105 @@
+{
+  "slug": "hazard-identification-checklist",
+  "title": "Hazard Identification Checklist",
+  "subtitle": "A field-level checklist for identifying workplace hazards before they cause harm",
+  "isoTags": ["ISO 45001", "ISO 14001", "ISO 9001"],
+  "intro": "Hazards that go unidentified cannot be controlled. This checklist gives inspectors a practical sequence for walking a site or area and systematically identifying physical, chemical, biological, ergonomic, and environmental hazards, along with the reporting process needed to act on them.",
+  "pageBreakAfter": "E",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Physical Hazards",
+      "items": [
+        "Are moving machine parts, rotating equipment, or pinch points exposed to workers?",
+        "Are noise levels in the area within acceptable exposure limits?",
+        "Are vibration sources (hand tools, vehicles) identified and assessed?",
+        "Are sharp edges, protruding objects, or unguarded openings present in the work area?",
+        "Are extreme temperature sources (hot surfaces, cold storage) identified and controlled?"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Chemical Hazards",
+      "items": [
+        "Are all chemicals on site correctly labelled and stored according to compatibility requirements?",
+        "Are safety data sheets available and accessible for all hazardous substances in use?",
+        "Are workers exposed to fumes, dust, or vapours without adequate ventilation or extraction?",
+        "Are spill containment measures in place for hazardous liquids?",
+        "Are incompatible chemicals segregated to prevent dangerous reactions?"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Biological Hazards",
+      "items": [
+        "Are workers exposed to mould, bacteria, or biological waste without adequate controls?",
+        "Are sanitation facilities adequate and well maintained for the workforce size?",
+        "Is there a risk of exposure to bloodborne pathogens or contaminated sharps?",
+        "Are pest control measures in place where biological contamination risk exists?"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Ergonomic Hazards",
+      "items": [
+        "Are workstations assessed for posture, reach, and repetitive strain risk?",
+        "Is manual handling of loads assessed for weight, frequency, and lifting technique?",
+        "Are workers exposed to prolonged awkward postures without job rotation or breaks?",
+        "Is seating, desk height, or equipment adjustable to fit the individual worker?"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Environmental Hazards",
+      "items": [
+        "Is lighting adequate for the tasks being performed in the area?",
+        "Is ventilation sufficient to maintain safe air quality?",
+        "Are workers exposed to extreme weather conditions without adequate protection or shelter?",
+        "Are outdoor work areas assessed for lightning, flooding, or other seasonal hazards?"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Working at Height",
+      "items": [
+        "Are edges, openings, and platforms at height fitted with guardrails or fall-arrest systems?",
+        "Is fall-arrest equipment inspected and within its certification date before use?",
+        "Are ladders and scaffolding inspected before use and free from visible defects?",
+        "Is access to elevated work areas restricted to authorised, trained personnel?"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Confined Spaces",
+      "items": [
+        "Are confined spaces clearly identified, signed, and access-controlled?",
+        "Is atmospheric testing conducted before and during confined space entry?",
+        "Is a permit-to-work system in place for all confined space entries?",
+        "Is a trained attendant and rescue plan in place for every confined space entry?"
+      ]
+    },
+    {
+      "letter": "H",
+      "title": "Housekeeping & Access",
+      "items": [
+        "Are walkways, aisles, and emergency routes kept clear of obstructions?",
+        "Are spills cleaned up promptly and warning signs placed where needed?",
+        "Is waste and scrap material stored and disposed of in designated areas?",
+        "Are trailing cables, hoses, or cords identified as trip hazards and routed safely?"
+      ]
+    },
+    {
+      "letter": "I",
+      "title": "Hazard Reporting Process",
+      "items": [
+        "Is there a clear, accessible process for workers to report hazards they observe?",
+        "Are reported hazards logged, assessed, and assigned an owner for action?",
+        "Are workers given feedback on the outcome of hazards they reported?",
+        "Are hazard trends reviewed periodically to identify recurring or systemic risks?",
+        "Are high-risk hazards escalated for immediate control before the next shift begins?"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

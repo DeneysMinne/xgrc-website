@@ -1,0 +1,93 @@
+{
+  "slug": "iso-9001-readiness-gap-assessment-checklist",
+  "title": "ISO 9001:2015 Readiness & Gap Assessment Checklist",
+  "subtitle": "A practical checklist for assessing quality management system readiness against ISO 9001",
+  "isoTags": ["ISO 9001", "Quality Management", "QMS", "Internal Audit", "Corrective Actions", "Continual Improvement"],
+  "intro": "ISO 9001 certification depends on a quality management system that is actually followed, not just documented. This checklist sets out a practical sequence for assessing QMS maturity and closing gaps before certification or recertification audit.",
+  "pageBreakAfter": "D",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Context & Scope",
+      "items": [
+        "Define the QMS scope, including products, services, and sites covered",
+        "Identify interested parties and their relevant quality requirements",
+        "Document internal and external issues that affect QMS outcomes",
+        "Confirm the QMS scope statement is consistent with certification intent"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Leadership & Planning",
+      "items": [
+        "Document a quality policy approved and communicated by top management",
+        "Assign quality management roles, responsibilities, and authorities",
+        "Set measurable quality objectives at relevant functions and levels",
+        "Plan actions to address risks and opportunities identified for the QMS"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Support & Resources",
+      "items": [
+        "Maintain competence records and training plans for QMS-relevant roles",
+        "Control documented information with version control and approval history",
+        "Maintain calibrated and fit-for-purpose monitoring and measuring equipment",
+        "Ensure infrastructure and work environment support conforming products and services"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Operational Controls",
+      "items": [
+        "Define requirements for products and services before accepting orders",
+        "Control design and development where applicable to the organisation",
+        "Apply supplier evaluation and control over externally provided processes",
+        "Maintain traceability and identification through production or service delivery",
+        "Control nonconforming outputs and prevent unintended use or delivery"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Performance Evaluation",
+      "items": [
+        "Monitor customer satisfaction using a defined method and frequency",
+        "Analyse quality data to identify trends, risks, and improvement opportunities",
+        "Track quality objectives against targets on a set reporting cycle",
+        "Report QMS performance to management ahead of management review"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Internal Audit",
+      "items": [
+        "Maintain an internal audit programme covering all QMS clauses and processes",
+        "Assign auditors who are independent of the area being audited",
+        "Raise nonconformities with objective evidence and clear descriptions",
+        "Verify corrective actions close the root cause, not just the symptom"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Management Review",
+      "items": [
+        "Hold management review at planned intervals with a defined agenda",
+        "Review audit results, customer feedback, and process performance",
+        "Review the status of actions from previous management reviews",
+        "Record decisions on resourcing, changes, and improvement opportunities"
+      ]
+    },
+    {
+      "letter": "H",
+      "title": "Corrective Action & Continual Improvement",
+      "items": [
+        "Investigate nonconformities and determine root cause before acting",
+        "Assign corrective actions with clear owners and realistic due dates",
+        "Verify effectiveness of corrective actions after implementation",
+        "Conduct a pre-certification readiness review ahead of the external audit"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

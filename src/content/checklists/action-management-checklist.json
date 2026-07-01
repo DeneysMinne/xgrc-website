@@ -1,0 +1,83 @@
+{
+  "slug": "action-management-checklist",
+  "title": "Action Management Checklist",
+  "subtitle": "A practical checklist for closing out audit findings, incidents, and compliance gaps",
+  "isoTags": ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 27001"],
+  "intro": "An action that is raised but never closed is worse than no action at all — it creates a false sense that the issue is being handled. This checklist sets out a practical sequence for capturing, assigning, tracking, and verifying actions raised from audits, incidents, inspections, and risk assessments so nothing is left open by default.",
+  "pageBreakAfter": "D",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Capturing the Action",
+      "items": [
+        "Log the action at the point it is raised — audit finding, incident, inspection, or risk review",
+        "Record the source of the action so it can always be traced back",
+        "Describe the required outcome, not just the task",
+        "Classify the action by type and priority",
+        "Link the action directly to the finding, risk, or nonconformity it addresses"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Assignment & Ownership",
+      "items": [
+        "Assign a single named owner accountable for the action",
+        "Set a realistic due date agreed with the owner, not imposed arbitrarily",
+        "Confirm the owner has the resources and authority to complete it",
+        "Notify the owner and their manager when the action is assigned"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Progress Tracking",
+      "items": [
+        "Require owners to update status at defined intervals",
+        "Flag actions approaching their due date automatically",
+        "Escalate overdue actions to management without manual chasing",
+        "Allow owners to request extensions with documented justification"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Verification of Closure",
+      "items": [
+        "Verify that the completed action actually addresses the root cause",
+        "Require evidence of completion before closing the action",
+        "Separate the person who completes the action from the person who verifies it, where practical",
+        "Reject closure and reassign if the evidence is insufficient"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Closing the Loop",
+      "items": [
+        "Confirm the originating audit finding, incident, or risk is updated once the action is closed",
+        "Check whether the closed action reduces the associated risk rating",
+        "Communicate closure back to the person or team that raised the issue",
+        "Archive evidence and closure records for audit purposes"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Cross-Source Visibility",
+      "items": [
+        "Maintain one action register across audits, incidents, inspections, and compliance",
+        "Identify duplicate or overlapping actions raised from different sources",
+        "Report on total open actions by source, owner, and age",
+        "Give management a single view of every open action regardless of where it originated"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Reporting & Continuous Improvement",
+      "items": [
+        "Track average time to close by action type and severity",
+        "Report recurring root causes across closed actions",
+        "Review chronically overdue owners or departments with management",
+        "Use closure trends to inform future audit and risk priorities"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

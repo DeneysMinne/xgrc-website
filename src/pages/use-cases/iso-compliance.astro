@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import { useCaseRegistry } from '../../data/useCaseRegistry.js';
+
+const isoPages = useCaseRegistry.filter((u) => u.category === 'ISO Readiness');
+---
+<Base title="ISO Compliance Software | Readiness & Gap Assessment | XGRC®" description="ISO 27001, 9001, 14001, 45001, 22000 and 31000 readiness, gap assessment and risk management software from XGRC®.">
+  <section class="page-head">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span><a href="/use-cases/">Use Cases</a><span>/</span><b>ISO Compliance</b>
+      </nav>
+      <span class="eyebrow"><span class="dot"></span>ISO Compliance</span>
+      <h1>ISO readiness, gap assessment and certification support in one platform.</h1>
+      <p class="lede">XGRC® supports readiness and gap assessment across the ISO standards most relevant to governance, risk, safety, environmental and information security management — with the same platform carrying you from initial gap assessment through to sustained certification.</p>
+    </div>
+  </section>
+  <section class="section--tight">
+    <div class="container">
+      <div class="grid cols-3">
+        {isoPages.map((u) => (
+          <a class="card uc-card" href={`/use-cases/${u.slug}/`}>
+            <span class="tag">{u.category}</span>
+            <h3>{u.crumbLabel}</h3>
+            <p>{u.lede}</p>
+            <span class="link-arrow">View readiness guide &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 18px; max-width: 26ch; }
+  .crumbs { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--faint); display: flex; gap: 10px; align-items: center; margin-bottom: 26px; }
+  .crumbs a { color: var(--mute); text-decoration: none; }
+  .crumbs a:hover { color: var(--cyan); }
+  .crumbs b { color: var(--ink); font-weight: 500; }
+  .uc-card { text-decoration: none; display: flex; flex-direction: column; }
+  .uc-card .link-arrow { margin-top: auto; padding-top: 16px; }
+</style>

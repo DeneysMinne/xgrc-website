@@ -1,0 +1,94 @@
+{
+  "slug": "iso-22000-readiness-gap-assessment-checklist",
+  "title": "ISO 22000:2018 Readiness & Gap Assessment Checklist",
+  "subtitle": "A practical checklist for assessing food safety management system readiness against ISO 22000 and HACCP",
+  "isoTags": ["ISO 22000", "HACCP", "Food Safety", "PRPs", "Traceability", "Nonconformance"],
+  "intro": "ISO 22000 certification depends on a food safety management system built on working HACCP principles and prerequisite programmes, not just documentation. This checklist sets out a practical sequence for assessing FSMS maturity and closing gaps before certification or recertification audit.",
+  "pageBreakAfter": "D",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Context & Scope",
+      "items": [
+        "Define the FSMS scope, including products, processes, and sites covered",
+        "Identify interested parties and their relevant food safety requirements",
+        "Determine applicable food safety legislation and customer requirements",
+        "Confirm the FSMS scope statement is consistent with certification intent"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Leadership & Food Safety Policy",
+      "items": [
+        "Document a food safety policy approved and communicated by top management",
+        "Assign food safety team roles, responsibilities, and authorities",
+        "Set measurable food safety objectives aligned to significant hazards",
+        "Confirm management commitment through resourcing and food safety culture initiatives"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Prerequisite Programmes (PRPs)",
+      "items": [
+        "Maintain prerequisite programmes covering facilities, equipment, and utilities",
+        "Control pest management, cleaning, and sanitation programmes",
+        "Maintain personnel hygiene requirements and training records",
+        "Control supplier approval and incoming material verification",
+        "Maintain allergen management and cross-contamination controls"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Hazard Analysis & HACCP Plan",
+      "items": [
+        "Conduct a hazard analysis for each product and process covering biological, chemical, and physical hazards",
+        "Determine critical control points and critical limits with supporting justification",
+        "Establish monitoring procedures and corrective actions for each CCP",
+        "Validate the HACCP plan and verify it remains effective",
+        "Maintain the hazard analysis current with process, recipe, or supplier changes"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Traceability & Nonconformance",
+      "items": [
+        "Maintain a traceability system linking raw materials to finished product batches",
+        "Test traceability and mock recall procedures on a set frequency",
+        "Control and segregate nonconforming product to prevent unintended release",
+        "Investigate nonconformities and determine root cause before closing"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Internal Audit",
+      "items": [
+        "Maintain an internal audit programme covering PRPs, HACCP, and FSMS clauses",
+        "Assign auditors who are independent of the area being audited",
+        "Raise nonconformities with objective evidence and clear descriptions",
+        "Verify corrective actions close the root cause, not just the symptom"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Management Review",
+      "items": [
+        "Hold management review at planned intervals with a defined agenda",
+        "Review verification results, customer complaints, and audit outcomes",
+        "Review emergency and withdrawal or recall procedure testing results",
+        "Record decisions on resourcing, changes, and improvement opportunities"
+      ]
+    },
+    {
+      "letter": "H",
+      "title": "Continual Improvement & Certification Readiness",
+      "items": [
+        "Update the hazard analysis and HACCP plan after verification findings",
+        "Reassess PRPs after facility, equipment, or supplier changes",
+        "Confirm evidence trails exist for CCP monitoring and corrective actions",
+        "Conduct a pre-certification readiness review ahead of the external audit"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

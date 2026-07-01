@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import { useCaseRegistry } from '../../data/useCaseRegistry.js';
+
+const checklists = useCaseRegistry.filter((u) => u.category === 'Inspection Checklist');
+---
+<Base title="SHEQX® Inspection Checklists | XGRC®" description="Practical, field-level SHEQX® inspection checklists — workplace safety, fire safety, PPE, equipment and hazard identification.">
+  <section class="page-head">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span><a href="/resources/">Resources</a><span>/</span><b>Inspection Checklists</b>
+      </nav>
+      <span class="eyebrow"><span class="dot"></span>Inspection Checklists</span>
+      <h1>Practical, field-level SHEQX® inspection checklists.</h1>
+      <p class="lede">Download field-ready checklists for the inspections your teams run every day — then run them digitally in SHEQX® to capture findings, assign actions, and report in real time.</p>
+    </div>
+  </section>
+  <section class="section--tight">
+    <div class="container">
+      <div class="grid cols-3">
+        {checklists.map((u) => (
+          <a class="card uc-card" href={`/use-cases/${u.slug}/`}>
+            <span class="tag">{u.category}</span>
+            <h3>{u.crumbLabel}</h3>
+            <p>{u.lede}</p>
+            <span class="link-arrow">View checklist &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 18px; max-width: 26ch; }
+  .crumbs { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--faint); display: flex; gap: 10px; align-items: center; margin-bottom: 26px; }
+  .crumbs a { color: var(--mute); text-decoration: none; }
+  .crumbs a:hover { color: var(--cyan); }
+  .crumbs b { color: var(--ink); font-weight: 500; }
+  .uc-card { text-decoration: none; display: flex; flex-direction: column; }
+  .uc-card .link-arrow { margin-top: auto; padding-top: 16px; }
+</style>

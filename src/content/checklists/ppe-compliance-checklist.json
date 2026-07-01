@@ -1,0 +1,107 @@
+{
+  "slug": "ppe-compliance-checklist",
+  "title": "PPE Compliance Checklist",
+  "subtitle": "A field-level checklist for verifying PPE availability, condition, and use",
+  "isoTags": ["ISO 45001", "ISO 14001", "ISO 9001"],
+  "intro": "Personal protective equipment only protects workers when it is available, in good condition, and actually worn correctly. This checklist gives inspectors a practical sequence for verifying PPE compliance on site, from issue and condition through hazard-specific requirements and training.",
+  "pageBreakAfter": "E",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "PPE Availability & Issue",
+      "items": [
+        "Is the required PPE for each task defined and communicated to workers?",
+        "Is PPE readily available at point of use or issue stations?",
+        "Are stock levels sufficient to replace damaged or worn items without delay?",
+        "Is there a documented record of PPE issued to each employee?",
+        "Are visitors and contractors issued appropriate PPE before entering the site?"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "PPE Condition & Inspection",
+      "items": [
+        "Is PPE visually inspected for damage or wear before each use?",
+        "Are damaged or expired items removed from circulation immediately?",
+        "Are PPE inspection dates and results recorded?",
+        "Is PPE stored correctly when not in use to avoid degradation?",
+        "Are manufacturer expiry or service-life dates checked and enforced?"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "PPE Usage Compliance",
+      "items": [
+        "Are workers wearing the correct PPE for the task and area they are in?",
+        "Are PPE-mandatory zones clearly signed at entry points?",
+        "Is PPE worn correctly, not just present (e.g. straps fastened, visors down)?",
+        "Are non-compliance instances observed, recorded, and corrected on the spot?",
+        "Is there visible supervisory enforcement of PPE requirements?"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Head, Eye & Face Protection",
+      "items": [
+        "Are hard hats worn in all designated head-protection zones?",
+        "Are hard hats free of cracks, dents, or degradation from UV exposure?",
+        "Is eye and face protection matched to the specific hazard (impact, chemical, welding)?",
+        "Are safety glasses or face shields worn during grinding, cutting, or chemical handling tasks?"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Hearing & Respiratory Protection",
+      "items": [
+        "Is hearing protection worn in areas exceeding the defined noise threshold?",
+        "Is the hearing protection's rated attenuation appropriate for the measured noise level?",
+        "Is respiratory protection selected based on a documented exposure assessment?",
+        "Have workers using respirators been fit-tested for the specific model issued?",
+        "Are respirator filters and cartridges replaced according to the manufacturer schedule?"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Hand & Foot Protection",
+      "items": [
+        "Is glove type matched to the specific hazard (cut, chemical, thermal, electrical)?",
+        "Are gloves inspected for punctures, tears, or chemical degradation before use?",
+        "Are safety boots worn in all designated foot-protection areas?",
+        "Do safety boots meet the required rating (impact, puncture, electrical, slip resistance) for the task?"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "PPE Training & Competency",
+      "items": [
+        "Have workers been trained on correct fitting, use, and limitations of issued PPE?",
+        "Is PPE training refreshed at a defined interval or after incidents?",
+        "Can workers explain why specific PPE is required for their task?",
+        "Are new employees issued and trained on PPE before starting work?",
+        "Are training records available and up to date for all employees on site?"
+      ]
+    },
+    {
+      "letter": "H",
+      "title": "PPE Storage & Maintenance",
+      "items": [
+        "Is PPE storage clean, dry, and free from contamination sources?",
+        "Is reusable PPE cleaned or decontaminated according to a defined procedure?",
+        "Are PPE storage areas clearly labelled and organised by type?",
+        "Is a maintenance schedule followed for equipment such as respirators and fall-arrest harnesses?"
+      ]
+    },
+    {
+      "letter": "I",
+      "title": "Non-Conformance & Replacement",
+      "items": [
+        "Is there a defined process for reporting lost, damaged, or non-conforming PPE?",
+        "Are replacement requests actioned within a reasonable timeframe?",
+        "Are recurring PPE non-conformances logged and linked to corrective actions?",
+        "Are trends in PPE non-conformance reviewed to identify systemic issues?"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

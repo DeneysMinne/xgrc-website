@@ -1,0 +1,85 @@
+{
+  "slug": "internal-controls-checklist",
+  "title": "Internal Controls Checklist",
+  "subtitle": "A practical checklist for designing, testing, and assuring internal controls",
+  "isoTags": ["COSO", "ISO 31000", "King V"],
+  "intro": "Controls that are documented but never tested tend to fail quietly. This checklist sets out a practical sequence for designing, implementing, testing, and assuring internal controls so that control effectiveness is demonstrable, not assumed.",
+  "pageBreakAfter": "D",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Control Framework & Design",
+      "items": [
+        "Define the internal control framework and governance structure",
+        "Map controls to the risks they are intended to mitigate",
+        "Classify controls by type — preventive, detective, or corrective",
+        "Assign a control owner accountable for each control",
+        "Document control design in sufficient detail to test against"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Control Implementation",
+      "items": [
+        "Confirm the control is operating as designed in practice",
+        "Assign responsibility for day-to-day control execution",
+        "Provide guidance or training to those executing the control",
+        "Record evidence of control execution as it occurs"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Control Testing",
+      "items": [
+        "Define a control testing schedule based on risk rating",
+        "Test design effectiveness — is the control capable of working",
+        "Test operating effectiveness — is the control actually working",
+        "Sample transactions or evidence consistently across test periods",
+        "Document test results with supporting evidence"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Deficiency Management",
+      "items": [
+        "Classify control deficiencies by severity",
+        "Distinguish control deficiencies from significant deficiencies and material weaknesses",
+        "Assign remediation actions with clear ownership and deadlines",
+        "Track deficiencies through to verified closure",
+        "Escalate unresolved deficiencies to management and audit committee"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Combined Assurance Alignment",
+      "items": [
+        "Map which line of defence is providing assurance over each control",
+        "Avoid duplicated testing across internal audit, risk, and compliance functions",
+        "Identify controls with no assurance coverage at all",
+        "Align control testing plans with the internal audit plan"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Monitoring & Reporting",
+      "items": [
+        "Maintain a live register of control status and test results",
+        "Report control effectiveness to management on a defined cycle",
+        "Present control assurance summaries to the audit and risk committee",
+        "Track control performance trends over multiple reporting periods"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Continuous Improvement",
+      "items": [
+        "Review and update controls when processes or systems change",
+        "Retire controls that no longer address an active risk",
+        "Incorporate lessons from incidents and audit findings into control design",
+        "Reassess the control environment at least annually"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

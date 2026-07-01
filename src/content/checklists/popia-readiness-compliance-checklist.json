@@ -1,0 +1,98 @@
+{
+  "slug": "popia-readiness-compliance-checklist",
+  "title": "POPIA Readiness & Compliance Checklist",
+  "subtitle": "A practical checklist for assessing POPIA readiness across information officer duties, data subject rights, and breach management",
+  "isoTags": ["POPIA", "Data Protection", "Privacy", "Information Officer", "Data Subject Rights", "Breach Management"],
+  "intro": "POPIA compliance in South Africa depends on an appointed Information Officer, documented processing conditions, and a working process for data subject requests and breaches. This checklist sets out a practical sequence for assessing readiness against the Information Regulator's expectations.",
+  "pageBreakAfter": "D",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Information Officer & Governance",
+      "items": [
+        "Appoint an Information Officer and register the appointment with the Information Regulator",
+        "Appoint deputy information officers for business units or sites where needed",
+        "Define the Information Officer's responsibilities for POPIA compliance oversight",
+        "Maintain a POPIA governance structure with clear reporting to management",
+        "Review Information Officer duties and resourcing on a periodic basis"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Processing Conditions & Lawful Processing",
+      "items": [
+        "Identify and document the lawful justification for each processing activity",
+        "Confirm personal information is processed only for the purpose it was collected",
+        "Apply minimality — collect only the personal information reasonably required",
+        "Obtain consent where consent is the relied-upon justification, and record it",
+        "Review special personal information and children's information processing for additional safeguards"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Data Subject Rights (PAIA-linked Access)",
+      "items": [
+        "Provide a documented process for data subjects to request access to their personal information",
+        "Provide a process for correction or deletion of inaccurate or unlawfully held information",
+        "Verify requester identity before actioning a request",
+        "Track request timelines from receipt to response and closure",
+        "Handle objections to processing, including for direct marketing purposes"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Security Safeguards",
+      "items": [
+        "Implement appropriate technical and organisational measures to secure personal information",
+        "Maintain access controls limiting personal information access to those who need it",
+        "Assess and document risks to personal information in the organisation's care",
+        "Review security safeguards when systems, vendors, or processing activities change",
+        "Maintain an inventory of systems and locations where personal information is held"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Breach (Security Compromise) Management",
+      "items": [
+        "Maintain a documented process for identifying and assessing a security compromise",
+        "Notify the Information Regulator as soon as reasonably possible once a compromise is confirmed",
+        "Notify affected data subjects where there are reasonable grounds to believe their information was accessed unlawfully",
+        "Record breach details, impact assessment, and remedial steps in a breach register",
+        "Review the cause of each breach and update controls to prevent recurrence"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Third-Party & Operator Agreements",
+      "items": [
+        "Maintain a register of operators processing personal information on the organisation's behalf",
+        "Confirm written agreements with operators cover confidentiality and security obligations",
+        "Require operators to notify the organisation promptly of any security compromise",
+        "Review operator security practices before onboarding and periodically thereafter",
+        "Assess cross-border transfers of personal information for adequate safeguards"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Cross-Border Transfers",
+      "items": [
+        "Identify all instances where personal information is transferred outside South Africa",
+        "Confirm the receiving party is subject to comparable data protection obligations",
+        "Document the legal basis relied on for each cross-border transfer",
+        "Review cross-border arrangements when providers, contracts, or hosting locations change"
+      ]
+    },
+    {
+      "letter": "H",
+      "title": "Training & Awareness",
+      "items": [
+        "Deliver POPIA training to employees who handle personal information",
+        "Ensure the Information Officer and deputies receive role-specific training",
+        "Track training completion and retain evidence for audit purposes",
+        "Raise awareness of how to identify and report a suspected security compromise"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

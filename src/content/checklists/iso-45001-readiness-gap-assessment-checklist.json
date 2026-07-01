@@ -1,0 +1,93 @@
+{
+  "slug": "iso-45001-readiness-gap-assessment-checklist",
+  "title": "ISO 45001:2018 Readiness & Gap Assessment Checklist",
+  "subtitle": "A practical checklist for assessing OH&S management system readiness against ISO 45001",
+  "isoTags": ["ISO 45001", "OH&S", "Health and Safety", "Incident Management", "Risk Assessment", "Contractor Safety"],
+  "intro": "ISO 45001 certification depends on an occupational health and safety management system that actively prevents harm, not just documents intent. This checklist sets out a practical sequence for assessing OH&S maturity and closing gaps before certification or recertification audit.",
+  "pageBreakAfter": "D",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Context, Scope & Worker Participation",
+      "items": [
+        "Define the OH&S management system scope, including sites and activities covered",
+        "Identify interested parties and their relevant OH&S expectations",
+        "Establish processes for worker consultation and participation",
+        "Confirm the scope statement is consistent with certification intent"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Leadership & OH&S Policy",
+      "items": [
+        "Document an OH&S policy approved and communicated by top management",
+        "Assign OH&S roles, responsibilities, and authorities across the organisation",
+        "Set measurable OH&S objectives aligned to significant hazards and risks",
+        "Confirm management commitment through visible leadership and resourcing"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Hazard Identification & Risk Assessment",
+      "items": [
+        "Maintain a hazard identification process covering routine and non-routine activities",
+        "Apply a documented OH&S risk assessment methodology consistently",
+        "Identify legal and other OH&S requirements applicable to the organisation",
+        "Evaluate compliance with legal requirements on a set frequency",
+        "Apply the hierarchy of controls when determining risk controls"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Operational Controls",
+      "items": [
+        "Establish operating controls for activities associated with significant OH&S risks",
+        "Manage contractor and visitor safety through defined onboarding and controls",
+        "Maintain permit-to-work and change management processes for high-risk activities",
+        "Maintain emergency preparedness and response procedures and test them regularly"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Incident Management & Performance",
+      "items": [
+        "Report and investigate incidents, near misses, and nonconformities consistently",
+        "Determine root cause and assign corrective actions with clear ownership",
+        "Track leading and lagging OH&S performance indicators",
+        "Monitor medical surveillance and occupational health data where applicable"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Internal Audit",
+      "items": [
+        "Maintain an internal audit programme covering all OH&S clauses and significant risks",
+        "Assign auditors who are independent of the area being audited",
+        "Raise nonconformities with objective evidence and clear descriptions",
+        "Verify corrective actions close the root cause, not just the symptom"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Management Review",
+      "items": [
+        "Hold management review at planned intervals with a defined agenda",
+        "Review incident trends, audit results, and compliance evaluation outcomes",
+        "Review worker consultation feedback and participation outcomes",
+        "Record decisions on resourcing, changes, and improvement opportunities"
+      ]
+    },
+    {
+      "letter": "H",
+      "title": "Continual Improvement & Certification Readiness",
+      "items": [
+        "Investigate OH&S nonconformities and verify effectiveness of corrective actions",
+        "Reassess risk after changes to operations, equipment, or legislation",
+        "Confirm evidence trails exist for training, PPE issue, and medical surveillance",
+        "Conduct a pre-certification readiness review ahead of the external audit"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

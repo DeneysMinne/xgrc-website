@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import { useCaseRegistry } from '../../data/useCaseRegistry.js';
+
+const regPages = useCaseRegistry.filter((u) => u.category === 'Regulatory');
+---
+<Base title="Regulatory Compliance Software | GDPR, POPIA, PAIA & King V | XGRC®" description="Regulatory and governance compliance software from XGRC® — GDPR, POPIA, PAIA and King V readiness in one platform.">
+  <section class="page-head">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span><a href="/use-cases/">Use Cases</a><span>/</span><b>Regulatory Compliance</b>
+      </nav>
+      <span class="eyebrow"><span class="dot"></span>Regulatory Compliance</span>
+      <h1>Regulatory and governance obligations, managed on one platform.</h1>
+      <p class="lede">From data protection to corporate governance, XGRC® gives organisations a structured way to demonstrate compliance against the regulatory and governance frameworks that matter most in Southern Africa and internationally.</p>
+    </div>
+  </section>
+  <section class="section--tight">
+    <div class="container">
+      <div class="grid cols-2">
+        {regPages.map((u) => (
+          <a class="card uc-card" href={`/use-cases/${u.slug}/`}>
+            <span class="tag">{u.category}</span>
+            <h3>{u.crumbLabel}</h3>
+            <p>{u.lede}</p>
+            <span class="link-arrow">View compliance guide &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 18px; max-width: 26ch; }
+  .crumbs { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--faint); display: flex; gap: 10px; align-items: center; margin-bottom: 26px; }
+  .crumbs a { color: var(--mute); text-decoration: none; }
+  .crumbs a:hover { color: var(--cyan); }
+  .crumbs b { color: var(--ink); font-weight: 500; }
+  .uc-card { text-decoration: none; display: flex; flex-direction: column; }
+  .uc-card .link-arrow { margin-top: auto; padding-top: 16px; }
+</style>

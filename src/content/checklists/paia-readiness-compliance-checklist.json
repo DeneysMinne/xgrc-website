@@ -1,0 +1,96 @@
+{
+  "slug": "paia-readiness-compliance-checklist",
+  "title": "PAIA Readiness & Compliance Checklist",
+  "subtitle": "A practical checklist for managing access-to-information obligations, manuals, and formal information requests",
+  "isoTags": ["PAIA", "Access to Information", "Records Management", "Information Requests", "Compliance"],
+  "intro": "PAIA compliance depends on an accurate, published information manual and a working process for receiving, tracking, and responding to formal requests. This checklist sets out a practical sequence for keeping access-to-information obligations audit-ready.",
+  "pageBreakAfter": "D",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "PAIA Manual & Governance",
+      "items": [
+        "Compile and publish a PAIA manual describing the records the organisation holds",
+        "Assign an Information Officer accountable for PAIA compliance",
+        "Include contact details and request procedures in the published manual",
+        "Review and update the manual when the organisation's structure or record types change",
+        "Make the manual accessible on the organisation's website and on request"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Records Classification & Management",
+      "items": [
+        "Maintain a classification scheme describing categories of records held",
+        "Identify records available automatically without a formal request",
+        "Identify records subject to statutory grounds for refusal",
+        "Maintain records in a state that allows timely retrieval when requested",
+        "Apply consistent retention and disposal practices across record categories"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Request Intake & Logging",
+      "items": [
+        "Provide a documented channel for submitting formal access requests",
+        "Log every request received, including requester details and records sought",
+        "Confirm receipt of each request to the requester",
+        "Assign each request to an owner responsible for gathering the relevant records",
+        "Track requests centrally rather than through ad hoc email correspondence"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Request Assessment & Response",
+      "items": [
+        "Assess each request against statutory grounds for granting or refusing access",
+        "Consult relevant business units to confirm what records exist and their sensitivity",
+        "Document the reasons for any refusal, partial grant, or deferral",
+        "Track response timelines from receipt to decision as a defined process step",
+        "Notify the requester of the decision, applicable fees, and any right of appeal"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Fees & Access Arrangements",
+      "items": [
+        "Apply a consistent, documented approach to request and access fees",
+        "Confirm fee waivers or reductions are considered where applicable",
+        "Provide records in the format requested where reasonably possible",
+        "Record the method and date of access provided to the requester"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Appeals & Escalations",
+      "items": [
+        "Provide requesters with information on internal appeal or Information Regulator escalation routes",
+        "Track appeals separately from initial requests, with their own status and owner",
+        "Review refused requests periodically for consistency of decision-making",
+        "Escalate high-sensitivity or high-profile requests to management or legal review"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Reporting & Audit Trail",
+      "items": [
+        "Maintain a complete audit trail of each request from receipt to closure",
+        "Report on request volumes, response times, and outcomes to management",
+        "Retain evidence of decisions and correspondence for the required retention period",
+        "Review annual reporting obligations relevant to access-to-information requests"
+      ]
+    },
+    {
+      "letter": "H",
+      "title": "Training & Continuous Improvement",
+      "items": [
+        "Train staff who receive or process requests on PAIA obligations and timelines",
+        "Refresh training when the PAIA manual or internal process changes",
+        "Review recurring request themes to identify records that could be proactively published",
+        "Benchmark request-handling performance and address bottlenecks identified"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

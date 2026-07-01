@@ -1,0 +1,86 @@
+{
+  "slug": "vendor-management-checklist",
+  "title": "Vendor Management Checklist",
+  "subtitle": "A practical checklist for onboarding, vetting, and monitoring suppliers and contractors",
+  "isoTags": ["ISO 9001", "ISO 27001", "ISO 37301", "ISO 37001"],
+  "intro": "Vendor risk is easy to underestimate until a lapsed certificate or an unvetted contractor causes a real problem. This checklist sets out a practical sequence for onboarding, vetting, and monitoring suppliers and contractors so compliance status is always known, not assumed.",
+  "pageBreakAfter": "D",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Onboarding & Registration",
+      "items": [
+        "Capture vendor registration details and business documentation",
+        "Confirm the scope of goods or services to be supplied",
+        "Classify the vendor by risk category and criticality",
+        "Assign an internal owner responsible for the vendor relationship",
+        "Issue portal access for document submission where applicable"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Due Diligence & Vetting",
+      "items": [
+        "Verify company registration and tax compliance status",
+        "Screen for conflicts of interest and beneficial ownership",
+        "Check references and past performance history",
+        "Confirm insurance, safety, and quality certifications are current",
+        "Apply consistent vetting criteria regardless of vendor size"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Contractual & Compliance Requirements",
+      "items": [
+        "Define compliance requirements and required documents per vendor category",
+        "Include audit and inspection rights in vendor agreements",
+        "Set clear expectations for data protection and information security",
+        "Confirm anti-bribery and anti-corruption commitments are in place",
+        "Record contract start, renewal, and expiry dates"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Document & Expiry Management",
+      "items": [
+        "Track expiry dates for certificates, insurance, and licences",
+        "Send automated renewal reminders ahead of expiry",
+        "Suspend or flag vendors with lapsed documentation",
+        "Maintain a central, auditable document repository per vendor"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Ongoing Monitoring & Risk Scoring",
+      "items": [
+        "Assign and periodically review a risk score per vendor",
+        "Set monitoring frequency based on risk level",
+        "Track incidents, non-conformances, or complaints linked to a vendor",
+        "Re-assess risk scoring after any significant compliance event",
+        "Escalate high-risk vendors for management review"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Performance Management",
+      "items": [
+        "Record vendor performance ratings against agreed criteria",
+        "Review performance data at defined intervals",
+        "Link performance issues to corrective action plans",
+        "Feed performance history into renewal and re-tender decisions"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Reporting & Continuous Improvement",
+      "items": [
+        "Generate compliance status reports across the full vendor base",
+        "Report on expiring documents and outstanding renewals",
+        "Review vendor management processes for gaps at least annually",
+        "Benchmark vendor compliance rates over time"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

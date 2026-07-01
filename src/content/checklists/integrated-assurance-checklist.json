@@ -1,0 +1,82 @@
+{
+  "slug": "integrated-assurance-checklist",
+  "title": "Integrated Assurance Checklist",
+  "subtitle": "A practical checklist for building a combined assurance plan across all lines of defence",
+  "isoTags": ["King V", "IIA Standards", "ISO 19011", "COSO"],
+  "intro": "Combined assurance only works when every line of defence is mapped against the same risks. This checklist sets out a practical sequence for building a risk-based audit plan, coordinating assurance providers, and reporting coverage so the board sees one picture, not four disconnected ones.",
+  "pageBreakAfter": "D",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Assurance Framework & Governance",
+      "items": [
+        "Define the four lines of defence and the assurance providers within each",
+        "Confirm reporting lines and independence of internal audit",
+        "Approve the combined assurance framework at board or audit committee level",
+        "Assign accountability for maintaining the assurance map"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Risk-Based Audit Planning",
+      "items": [
+        "Build the annual audit plan directly from the current risk register",
+        "Prioritise high-risk and emerging risk areas for audit coverage",
+        "Allocate audit resources and capacity against the plan",
+        "Review and approve the audit plan with the audit committee"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Combined Assurance Mapping",
+      "items": [
+        "Map every risk to the assurance providers covering it",
+        "Identify risks with no assurance coverage at all",
+        "Identify risks receiving duplicated assurance from multiple providers",
+        "Update the assurance matrix whenever the risk landscape changes"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Fieldwork & Evidence",
+      "items": [
+        "Define audit scope and criteria before fieldwork begins",
+        "Capture evidence and working papers in a structured, auditable format",
+        "Conduct interviews and testing consistently against the audit programme",
+        "Rate findings using a consistent classification scale"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Findings & Management Response",
+      "items": [
+        "Record findings with clear root cause and business impact",
+        "Obtain a documented management response to every finding",
+        "Assign corrective actions with named owners and due dates",
+        "Track findings through to verified closure, not just management sign-off"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Coverage Analytics & Reporting",
+      "items": [
+        "Report assurance coverage against the full risk universe",
+        "Highlight coverage gaps and duplication to the audit committee",
+        "Present audit and combined assurance status to the board on a set cycle",
+        "Track overdue actions and escalate persistent non-closure"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Continuous Improvement",
+      "items": [
+        "Review the combined assurance model at least annually",
+        "Incorporate emerging risks into the next audit planning cycle",
+        "Benchmark assurance maturity against IIA and ISO 19011 practice",
+        "Refine coordination between lines of defence based on lessons learned"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

@@ -1,0 +1,11 @@
+---
+import UseCaseLayout from '../../layouts/UseCaseLayout.astro';
+import { useCaseRegistry } from '../../data/useCaseRegistry.js';
+
+export function getStaticPaths() {
+  return useCaseRegistry.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+<UseCaseLayout entry={entry} />

@@ -1,0 +1,106 @@
+{
+  "slug": "equipment-safety-inspection-checklist",
+  "title": "Equipment Safety Inspection Checklist",
+  "subtitle": "A field-level checklist for inspecting machinery and equipment safety",
+  "isoTags": ["ISO 45001", "ISO 14001", "ISO 9001"],
+  "intro": "Machinery and equipment are a leading source of serious workplace injury when guarding, isolation, or maintenance controls fail. This checklist gives inspectors a practical sequence for verifying equipment safety on site, from guarding and lockout through operator competency and emergency stops.",
+  "pageBreakAfter": "E",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Machine Guarding",
+      "items": [
+        "Are all moving parts (belts, chains, gears, blades) fitted with fixed or interlocked guards?",
+        "Are guards free of damage, gaps, or unauthorised modification?",
+        "Do interlocked guards stop the machine immediately when opened?",
+        "Are guards reinstated correctly after maintenance before equipment is returned to service?",
+        "Are point-of-operation hazards guarded to prevent hand or body access during operation?"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Lockout / Tagout",
+      "items": [
+        "Is a documented lockout/tagout procedure available for each piece of equipment?",
+        "Are isolation points clearly identified and labelled on the equipment?",
+        "Are personal locks and tags used and not shared between workers?",
+        "Is a zero-energy state verified before maintenance work begins?",
+        "Are lockout/tagout procedures followed for all energy sources, not just electrical?"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Electrical Safety on Equipment",
+      "items": [
+        "Are electrical enclosures and panels closed, labelled, and free of exposed conductors?",
+        "Are cables and connectors free of damage, fraying, or improvised repairs?",
+        "Is earthing or bonding intact and verified on relevant equipment?",
+        "Are residual current devices or equivalent protection fitted where required?",
+        "Are electrical inspections and test tags current and visible?"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Lifting Equipment & Slings",
+      "items": [
+        "Is lifting equipment (cranes, hoists, forklifts) within its current inspection or load test date?",
+        "Are slings, chains, and shackles free of visible wear, deformation, or corrosion?",
+        "Is safe working load clearly marked and not exceeded during operation?",
+        "Are lifting operations planned and supervised for non-routine or complex lifts?"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Pressure Equipment",
+      "items": [
+        "Is pressure equipment (compressors, boilers, vessels) within its current statutory inspection date?",
+        "Are pressure relief valves fitted, unobstructed, and tested?",
+        "Are gauges functional and readings within normal operating range?",
+        "Are pressure equipment records and certificates available on site?"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Maintenance & Service Records",
+      "items": [
+        "Is a documented preventive maintenance schedule followed for each machine?",
+        "Are maintenance records up to date and available for inspection?",
+        "Are defects identified during maintenance logged and closed out before return to service?",
+        "Is equipment taken out of service and tagged when a fault is identified?",
+        "Are third-party statutory inspection certificates current for regulated equipment?"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Operator Competency",
+      "items": [
+        "Are operators trained and certified for the specific equipment they use?",
+        "Are competency records current and available for each authorised operator?",
+        "Is equipment restricted to authorised operators only, with unauthorised use prevented?",
+        "Are refresher training and competency reassessments conducted at a defined interval?"
+      ]
+    },
+    {
+      "letter": "H",
+      "title": "Emergency Stops & Safety Devices",
+      "items": [
+        "Are emergency stop controls clearly visible, accessible, and correctly labelled?",
+        "Do emergency stops function correctly when tested?",
+        "Are light curtains, pressure mats, or other safety devices functioning and unobstructed?",
+        "Are alarms and warning indicators (audible or visual) operational on moving equipment?"
+      ]
+    },
+    {
+      "letter": "I",
+      "title": "Housekeeping Around Equipment",
+      "items": [
+        "Is the area around equipment kept clear of clutter, spills, and trip hazards?",
+        "Are walkways and access routes to equipment unobstructed?",
+        "Is equipment kept free of excessive dust, oil, or material build-up that could create a hazard?",
+        "Are tools and loose parts stored away from moving machinery when not in use?"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}
