@@ -147,6 +147,7 @@ export const solutionDetails = {
     logo: '/assets/logos/solutions/msxcyber.png',
     icon: '/assets/logos/solutions/icons/msxcyber.png',
     screenshot: '/assets/screenshots/msxcyber-dashboard.png',
+    youtubeId: '5hZX0WIebCo',
     name: 'MSXCyber®',
     tag: 'Information Security Governance',
     headline: 'ISO 27001 compliance without the spreadsheet chaos.',
@@ -354,6 +355,7 @@ export const solutionDetails = {
     logo: '/assets/logos/solutions/compliance-hub.png',
     icon: '/assets/logos/solutions/icons/compliance-hub.png',
     screenshot: '/assets/screenshots/compliance-hub-dashboard.png',
+    youtubeId: 'itta_NfEvOU',
     name: 'XGRC® Compliance Hub',
     tag: 'Supplier & Third-Party Compliance',
     metaTitle: 'Compliance Hub | Supplier Compliance Workflows | XGRC®',
@@ -436,6 +438,7 @@ export const solutionDetails = {
     logo: '/assets/logos/solutions/maia.png',
     icon: '/assets/logos/solutions/icons/maia.png',
     screenshot: '/assets/screenshots/maia-dashboard.png',
+    youtubeId: 'inqCqT0uW2k',
     name: 'MAIA®',
     tag: 'Governed AI for GRC',
     headline: 'The intelligence of governance — governed, audited, accountable.',
@@ -1035,6 +1038,34 @@ export const resources = [
 // Video hub — powers /videos/. Add a new entry here (with a real YouTube ID) to
 // publish a new video; the category must be one of videoCategories below.
 export const videos = [
+  {
+    youtubeId: 'inqCqT0uW2k',
+    title: 'AI Is Not the Risk. Poor AI Governance Is.',
+    description: 'Why the danger in AI adoption is not the technology itself, but deploying it without permissions, audit trails, or accountability — the governed AI case for MAIA®.',
+    category: 'Platform Overview',
+    date: '2026-07',
+  },
+  {
+    youtubeId: '5hZX0WIebCo',
+    title: "Cyber Risk Doesn't Stay in IT. It's a Business Risk.",
+    description: 'Why cyber risk belongs on the enterprise risk register, not just the IT ticket queue — and how MSXCyber® connects ISO 27001 controls, incidents and evidence in one auditable system.',
+    category: 'MSXCyber®',
+    date: '2026-07',
+  },
+  {
+    youtubeId: 'itta_NfEvOU',
+    title: "Compliance Isn't the Problem. Fragmented Systems Are.",
+    description: 'How disconnected spreadsheets and siloed tools — not the compliance requirements themselves — are what actually slow organisations down, and how Compliance Hub brings supplier and third-party compliance onto one platform.',
+    category: 'Compliance Hub',
+    date: '2026-07',
+  },
+  {
+    youtubeId: '2GeDzakhgjw',
+    title: 'ESG Without Governance Is Just Reporting.',
+    description: 'Why ESG data without governance behind it is just a spreadsheet exercise — and what it takes to turn sustainability disclosures into auditable, defensible evidence.',
+    category: 'ESG',
+    date: '2026-07',
+  },
   {
     youtubeId: '2qmLbCaUNtw',
     title: 'AI is not the risk. Lack of governance is.',
