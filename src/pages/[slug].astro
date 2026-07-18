@@ -1,4 +1,6 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
 import Base from '../layouts/Base.astro';
 import { solutions, solutionDetails, brand } from '../data/site.js';
 
@@ -10,6 +12,9 @@ const { slug } = Astro.params;
 const detail   = solutionDetails[slug];
 const solution = solutions.find((s) => s.slug === slug);
 if (!detail || !solution) return Astro.redirect('/solutions');
+
+const ogCandidate = path.join(process.cwd(), 'public', 'assets', 'og', `og-${slug}.jpg`);
+const ogImage = fs.existsSync(ogCandidate) ? `/assets/og/og-${slug}.jpg` : '/assets/og-default.jpg';
 
 const related = detail.related
   .map((r) => solutions.find((s) => s.slug === r))
@@ -49,7 +54,7 @@ const schema = JSON.stringify({
 <Base
   title={detail.metaTitle || `${detail.name} — ${detail.tag} | XGRC®`}
   description={detail.lede}
-  ogImage={`/assets/og/og-${slug}.jpg`}
+  ogImage={ogImage}
 >
   <script type="application/ld+json" set:html={schema} />
 
@@ -90,7 +95,7 @@ const schema = JSON.stringify({
               <span class="dc-dot dc-red"></span>
               <span class="dc-dot dc-yellow"></span>
               <span class="dc-dot dc-green"></span>
-              <span class="dc-url">v5.xgrc.cloud · {detail.name}</span>
+              <span class="dc-url">{detail.appUrl || 'v5.xgrc.cloud'} · {detail.name}</span>
             </div>
             <div class="sol-dash-screen">
               <img src={detail.screenshot} alt={`${detail.name} dashboard`} loading="eager" />
@@ -155,6 +160,39 @@ const schema = JSON.stringify({
       </div>
     </div>
   </section>
+
+  <!-- ── Product tour (real screenshots) ───────────────── -->
+  {detail.productShots && detail.productShots.length > 0 && (
+    <section class="section--tight">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow"><span class="dot"></span>Product tour</span>
+          <h2>{detail.name}, screen by screen.</h2>
+        </div>
+        <div class="tour-list">
+          {detail.productShots.map((shot) => (
+            <div class="tour-item">
+              <div class="tour-copy">
+                <h3>{shot.title}</h3>
+                <p>{shot.body}</p>
+              </div>
+              <div class="tour-shot-frame">
+                <div class="sol-dash-chrome">
+                  <span class="dc-dot dc-red"></span>
+                  <span class="dc-dot dc-yellow"></span>
+                  <span class="dc-dot dc-green"></span>
+                  <span class="dc-url">{detail.appUrl || 'v5.xgrc.cloud'} · {shot.title}</span>
+                </div>
+                <div class="sol-dash-screen">
+                  <img src={shot.image} alt={shot.title} loading="lazy" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- ── See it in action (video) ────────────────────── -->
   {(detail.youtubeId || detail.video) && (
@@ -539,6 +577,27 @@ const schema = JSON.stringify({
   .cta-block .lede { margin: 0 auto 28px; max-width: 540px; }
   .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .contact-line { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
+
+  /* ── Product tour ────────────────────────────────────── */
+  .tour-list { display: flex; flex-direction: column; gap: 56px; }
+  .tour-item { display: grid; grid-template-columns: 320px 1fr; gap: 48px; align-items: center; }
+  .tour-item:nth-child(even) { grid-template-columns: 1fr 320px; }
+  .tour-item:nth-child(even) .tour-copy { order: 2; }
+  .tour-item:nth-child(even) .tour-shot-frame { order: 1; }
+  .tour-copy h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); margin-bottom: 12px; letter-spacing: -0.01em; }
+  .tour-copy p { color: var(--mute); font-size: 0.98rem; line-height: 1.65; }
+  .tour-shot-frame {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(48,226,244,0.15);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(48,226,244,0.06) inset;
+    background: #0a1525;
+  }
+  .tour-shot-frame .sol-dash-screen img { width: 100%; height: auto; display: block; }
+  @media (max-width: 900px) {
+    .tour-item, .tour-item:nth-child(even) { grid-template-columns: 1fr; gap: 20px; }
+    .tour-item:nth-child(even) .tour-copy, .tour-item:nth-child(even) .tour-shot-frame { order: initial; }
+  }
 
   /* ── Video ──────────────────────────────────────────── */
   .sol-video-wrap {

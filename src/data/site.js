@@ -53,7 +53,8 @@ export const solutions = [
   { name: 'XLOGIC®', slug: 'xlogic', tag: 'Governance Execution', blurb: 'Converts policies, frameworks, controls and obligations into structured workflows with accountability, evidence capture and auditability.', available: true },
   { name: 'MAIA®', slug: 'maia', tag: 'Governed AI', blurb: 'Governed AI for GRC — combining business intelligence, data views and intelligent agents, with a full AI interaction audit trail.' },
   { name: 'Libryo', slug: 'libryo', tag: 'Partner', blurb: 'Jurisdiction-specific regulatory intelligence embedded directly within XGRC®.', partner: true },
-  { name: 'Hakware', slug: 'hakware', tag: 'Partner', blurb: 'AI-powered penetration testing and unified vulnerability visibility across your environment.', partner: true }
+  { name: 'Hakware', slug: 'hakware', tag: 'Partner', blurb: 'AI-powered penetration testing and unified vulnerability visibility across your environment.', partner: true },
+  { name: 'XRM', slug: 'xrm', tag: 'Sales & CRM', blurb: 'A structured, auditable CRM for leads, opportunities, quotes and customer relationships — built with the same governance discipline as the rest of XGRC® Software.' }
 ];
 
 // Rich solution detail data — powers /solutions/[slug] pages.
@@ -546,6 +547,55 @@ export const solutionDetails = {
         { q: 'How often does Hakware test our environment?', a: 'Continuously, not annually. Hakware\'s AI engine (Archangel) runs offensive testing against your external environment on an ongoing basis, rather than a single point-in-time report.' },
         { q: 'Does Hakware monitor the dark web for our data?', a: 'Yes. Hakware monitors for leaked credentials and exposed data on the dark web, surfacing exposure before it becomes a breach.' },
         { q: 'How do Hakware\'s findings reach our governance records?', a: 'Through the XGRC® partnership, Hakware\'s findings feed directly into MSXCyber® as governed risks, actions and audit-ready evidence — not a separate, disconnected report.' },
+      ],
+    },
+  },
+
+  xrm: {
+    screenshot: '/assets/screenshots/xrm-dashboard.png',
+    appUrl: 'xrm.xgrc.cloud',
+    // youtubeId: '',  // add once a product walkthrough video exists
+    name: 'XRM',
+    tag: 'Sales Pipeline & Customer Management',
+    metaTitle: 'XRM — Sales Pipeline & CRM Software | XGRC®',
+    headline: 'Pipeline discipline, not pipeline guesswork.',
+    lede: 'XRM gives your sales team one governed system to qualify leads, progress opportunities, generate quotes and close deals — with the approval workflows, audit trail and real-time visibility leadership actually needs, instead of a CRM that quietly becomes another unmanaged spreadsheet.',
+    challenges: [
+      { title: 'Leads and real deals blur together', body: 'Unqualified interest sits in the same list as live opportunities, so nobody can tell what is genuine pipeline and what is noise.' },
+      { title: 'Deals move with no accountability', body: 'Reps shift opportunities between stages unchecked, discounts get approved in a hallway conversation, and forecasts are guesses dressed up as numbers.' },
+      { title: 'Quotes leave the building unmanaged', body: 'Pricing goes out over email, versions get lost, and nobody can say with confidence which quote the customer actually accepted.' },
+      { title: 'Leadership has no real-time view', body: 'Pipeline health, at-risk deals and quota attainment live in a spreadsheet someone updates once a week, if that.' },
+    ],
+    overview: 'XRM manages the full sales lifecycle — from lead capture and qualification through opportunity progression, configurable approval workflows, quote generation and close — on one platform with a complete, queryable audit trail. Built-in dashboards, forecasting and sales-health flags give managers and leadership a live view of pipeline health without a manual reporting cycle.',
+    stats: [
+      { value: '25+', label: 'Modules across the sales lifecycle' },
+      { value: 'Real-time', label: 'Pipeline & forecast dashboards' },
+      { value: 'Full', label: 'Audit trail on every record' },
+    ],
+    productShots: [
+      { image: '/assets/screenshots/xrm-dashboard.png', title: 'The whole business, at a glance', body: 'Weighted and gross pipeline, a conversion funnel from leads to won, month-over-month momentum, and pipeline value by stage — a sales leader sees the health of the operation in five seconds, without running a report.' },
+      { image: '/assets/screenshots/xrm-pipeline.png', title: 'A pipeline you can actually see', body: 'Every open deal on a visual board, one column per stage, dragged from stage to stage as it progresses. The CRM stays current because keeping it current is effortless.' },
+      { image: '/assets/screenshots/xrm-opportunity-detail.png', title: 'Everything about a deal, in one place', body: 'Stage journey, weighted value, days-to-close, products, stakeholders, notes, documents and full activity history — the complete context of a deal on one page, not scattered across inboxes and folders.' },
+      { image: '/assets/screenshots/xrm-quotes.png', title: 'From opportunity to signed quote', body: 'Quotes generated straight off an opportunity and tracked through draft, sent, accepted and expiring — so nothing is left hanging in the gap between "interested" and "closed."' },
+    ],
+    moduleGroups: [
+      { category: 'Pipeline & Deals', modules: ['Leads', 'Opportunities', 'Accounts', 'Contacts', 'Quotes'] },
+      { category: 'Planning & Visibility', modules: ['Dashboard', 'Forecast', 'Territory Management', 'Sales Health', 'Reports'] },
+      { category: 'Workflow & Governance', modules: ['Approval Workflows', 'Audit Log', 'Custom Fields', 'Sales Configuration'] },
+      { category: 'Productivity', modules: ['My Actions', 'My Approvals', 'Calendar', 'Email Templates', 'Bulk Imports'] },
+      { category: 'Administration', modules: ['User & Role Management', 'Pipeline & Stage Setup', 'Company Profile'] },
+    ],
+    standards: ['Multi-tenant SaaS', 'Role-based access', 'Configurable approvals', 'Full audit trail'],
+    related: [], // no confirmed live data integration with other XGRC solutions yet — leave empty until one exists
+    geo: {
+      definition: 'XRM is a customer relationship management (CRM) platform for managing leads, opportunities, accounts, contacts and quotes through a structured, auditable sales process — with configurable approval workflows and governance controls built in from day one.',
+      usage: 'Sales teams typically adopt XRM when leads and live opportunities are tracked in the same overcrowded spreadsheet, deal approvals happen informally over email, and management has no real-time view of pipeline health, forecast accuracy or at-risk deals. XRM keeps the entire sales lifecycle — from first contact to closed deal — on one governed platform with a complete audit trail.',
+      notThis: 'XRM is not a generic contact list or a marketing-automation tool. It is a structured sales pipeline and quote management system with rule-based approval workflows and a full audit trail, built by the team behind XGRC® Software to bring the same governance discipline to sales that XGRC® brings to risk and compliance.',
+      faqs: [
+        { q: 'What is XRM used for?', a: 'XRM manages the full sales lifecycle — lead qualification, opportunity progression, quote generation and deal closure — with configurable approval workflows and a complete audit trail across every record.' },
+        { q: 'Does XRM replace our spreadsheet-based pipeline?', a: 'Yes. XRM replaces manually maintained pipeline spreadsheets with a governed system where leads, opportunities, accounts, contacts and quotes are tracked in one place, with real-time dashboards and forecasting.' },
+        { q: 'Can XRM enforce approval rules on discounts or large deals?', a: 'Yes. Configurable approval workflows automatically route deals or quotes that match admin-defined rules — for example, deals above a set value — to the right approver before they can proceed.' },
+        { q: 'Who builds and supports XRM?', a: 'XRM is built and supported by the team behind XGRC® Software, bringing the same standard of auditability and governance discipline to the sales pipeline.' },
       ],
     },
   },
