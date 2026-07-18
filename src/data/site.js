@@ -1074,6 +1074,13 @@ export const videos = [
     date: '2026-05',
   },
   {
+    youtubeId: 'IxTJu0rcqn8',
+    title: 'Overcome Fragmented Oversight with a Unified GRC Foundation',
+    description: 'Why disconnected risk, compliance, ESG and cyber data leaves leadership without the clarity to act — and how XGRC® provides one secure, auditable data foundation across every discipline.',
+    category: 'Platform Overview',
+    date: '2026-03',
+  },
+  {
     youtubeId: 'hW3EPWIKj9s',
     title: 'Digital SHEQ Systems Centralise Incident Reporting',
     description: 'How SHEQX® brings incident reporting, inspections and corrective actions onto one connected platform.',
