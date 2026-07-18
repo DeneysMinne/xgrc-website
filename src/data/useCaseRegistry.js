@@ -77,6 +77,12 @@ export const useCaseRegistry = [
       pdfPath: '/Internal-Audit-Checklist-XGRC-v1.0.pdf',
     },
     relatedUseCases: ['risk-management', 'internal-controls', 'integrated-assurance'],
+    faqs: [
+      { q: 'What is internal audit software?', a: 'Internal audit software is a system for planning, executing and reporting on audits in one place, connecting each audit to the risks, controls and corrective actions it relates to, instead of managing plans and findings across spreadsheets and email.' },
+      { q: 'Can XGRC® handle multiple audit types on one platform?', a: 'Yes. XGRC® supports internal audits, ISO audits, compliance audits, risk-based audits and combined assurance on the same platform, using the same findings register and action-tracking workflow.' },
+      { q: 'How does XGRC® link audit findings to risk management?', a: 'Every audit finding can be linked directly to a risk and its existing controls, so a finding traces back to the risk it relates to and forward to the corrective action assigned to close it — visible on one dashboard.' },
+      { q: 'Which standards does the internal audit module align to?', a: 'The audit module is aligned to ISO 9001, ISO 14001, ISO 45001, ISO 27001, ISO 31000 and COSO, and the downloadable checklist reflects this alignment.' },
+    ],
   },
 
   {
@@ -143,6 +149,12 @@ export const useCaseRegistry = [
       pdfPath: '/Policy-Management-Checklist-XGRC-v1.0.pdf',
     },
     relatedUseCases: ['internal-controls', 'compliance-management', 'action-management'],
+    faqs: [
+      { q: 'What is policy management software?', a: 'Policy management software centralises the full policy lifecycle — drafting, approval, version control, communication and acknowledgement tracking — in one auditable repository, instead of policies scattered across shared drives with no change history.' },
+      { q: 'How does XGRC® track policy acknowledgement?', a: 'XGRC® tracks who has read and acknowledged each policy, with automated reminders for outstanding acknowledgements, giving compliance teams a real-time, auditable record of acceptance across the organisation.' },
+      { q: 'Are policies linked to risks and controls?', a: 'Yes. Every policy is linked to the risks and controls it governs, so policy status feeds directly into risk and compliance reporting rather than sitting in a separate document repository.' },
+      { q: 'Does XGRC® keep a version history of policies?', a: 'Yes. Every policy change is version-controlled with a full change history and configurable approval workflow, so you can show exactly which version was in effect at any point in time.' },
+    ],
   },
 
   {
@@ -204,9 +216,15 @@ export const useCaseRegistry = [
         'Monitoring and reporting',
       ],
       checklistSlug: 'risk-management-checklist',
-      pdfPath: '/Enterprise-Risk-Management-Checklist-XGRC-v1.0.pdf',
+      pdfPath: '/resources/xgrc-risk-management-checklist-v1-0.pdf',
     },
     relatedUseCases: ['enterprise-risk-management', 'internal-controls', 'iso-31000-risk-management'],
+    faqs: [
+      { q: 'What is risk management software?', a: 'Risk management software lets you identify, assess, treat and report on risk from one register, linking every risk to the controls and mitigation actions that address it, instead of maintaining risk information in disconnected spreadsheets.' },
+      { q: 'Which risk frameworks does XGRC® support?', a: 'XGRC® is aligned to ISO 31000 and COSO, and supports risk types across enterprise, operational, strategic, compliance, and cyber and information security risk on one consistent scoring model.' },
+      { q: 'How is XGRC® different from a risk register spreadsheet?', a: 'A spreadsheet register cannot enforce a consistent scoring model, track action ownership, or link risks to controls and audit findings automatically. XGRC® does all three on one platform with real-time dashboards.' },
+      { q: 'Can risk data feed into board or committee reporting?', a: 'Yes. Risk exposure, control effectiveness and action status are visible on real-time dashboards that can be used directly for management and governance committee reporting.' },
+    ],
   },
 
   {
@@ -273,6 +291,12 @@ export const useCaseRegistry = [
       pdfPath: '/Enterprise-Risk-Management-Checklist-XGRC-v1.0.pdf',
     },
     relatedUseCases: ['risk-management', 'integrated-assurance', 'iso-31000-risk-management'],
+    faqs: [
+      { q: 'What is enterprise risk management (ERM) software?', a: 'ERM software gives leadership a single, board-ready view of risk exposure across the whole organisation, aligned to a defined framework such as ISO 31000, COSO or King V, rather than risk being managed inconsistently by department.' },
+      { q: 'How does XGRC® support King V governance requirements?', a: 'XGRC® aligns risk identification, assessment and reporting to King V governance principles, giving the board visibility of risk appetite, exposure and treatment status in the format governance committees expect.' },
+      { q: 'What is the difference between this and the Risk Management use case?', a: 'Risk Management covers day-to-day operational risk identification and control at team level. Enterprise Risk Management adds the governance layer on top — a defined risk framework, board reporting and escalation across strategic, operational, financial and compliance categories.' },
+      { q: 'Can XGRC® link risks to audit findings automatically?', a: 'Yes. Every risk can be linked to its controls and to related audit findings, so a control weakness identified in audit automatically informs the residual risk score for the risk it relates to.' },
+    ],
   },
 
   {
@@ -338,6 +362,12 @@ export const useCaseRegistry = [
       pdfPath: '/ESG-Reporting-Checklist-XGRC-v1.0.pdf',
     },
     relatedUseCases: ['iso-14001-readiness', 'enterprise-risk-management'],
+    faqs: [
+      { q: 'What is ESG reporting software?', a: 'ESG reporting software centralises environmental, social and governance data collection, validation and reporting on one platform, so metrics are traceable to source evidence instead of being consolidated manually in spreadsheets before every reporting cycle.' },
+      { q: 'Which ESG frameworks does XGRC® support?', a: 'XGRC® is framework-agnostic by design — you define the ESG metrics and framework your organisation reports against, and XGRC® structures data collection, validation and approval around it.' },
+      { q: 'How does XGRC® keep ESG data auditable?', a: 'Every ESG metric has a defined owner, a validation and approval step, and a full history of changes, so reported figures can be traced back to the underlying data collection and sign-off — important when ESG disclosures face external assurance.' },
+      { q: 'Can ESG data link to environmental risk and compliance?', a: 'Yes. ESG metrics can be linked to related risks and compliance obligations (such as ISO 14001 environmental management), so environmental performance data and compliance status stay consistent across the platform.' },
+    ],
   },
 
   {
@@ -476,6 +506,12 @@ export const useCaseRegistry = [
       pdfPath: '/Compliance-Hub-Checklist-XGRC-v1.0.pdf',
     },
     relatedUseCases: ['vendor-management', 'policy-management', 'popia-compliance'],
+    faqs: [
+      { q: 'What is compliance management software?', a: 'Compliance management software tracks the compliance status of suppliers, contractors and third parties in one place — requirements, document submission, expiry dates and renewals — instead of chasing paperwork by email and spreadsheet trackers.' },
+      { q: 'Does XGRC® flag expiring compliance documents automatically?', a: 'Yes. XGRC® tracks document expiry and renewal dates and can flag upcoming expirations before a supplier or contractor falls out of compliance, rather than discovering the gap during an audit.' },
+      { q: 'Can this cover both suppliers and contractors?', a: 'Yes. The same compliance requirements, onboarding and monitoring workflow applies to suppliers, contractors and other third parties, with requirements configurable per category.' },
+      { q: 'How does this connect to POPIA and data protection compliance?', a: 'Third-party compliance requirements can include data protection obligations under POPIA, so supplier and contractor compliance status and data protection compliance are tracked on the same platform rather than in separate systems.' },
+    ],
   },
 
   {

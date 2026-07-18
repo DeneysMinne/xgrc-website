@@ -513,35 +513,6 @@ const schema = JSON.stringify({
   .notthis-faq-grid { gap: 48px; align-items: start; }
   .notthis-block .eyebrow, .faq-block .eyebrow { margin-bottom: 12px; }
   .notthis-block h2, .faq-block h2 { margin-bottom: 16px; }
-  .faq-list { display: flex; flex-direction: column; gap: 10px; }
-  .faq-item {
-    border: 1px solid var(--line);
-    border-radius: var(--radius-md);
-    background: var(--panel);
-    padding: 16px 18px;
-  }
-  .faq-item summary {
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--ink);
-    font-size: 0.96rem;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-  .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item summary::after {
-    content: '+';
-    font-family: var(--font-mono);
-    color: var(--cyan);
-    font-size: 1.1rem;
-    flex-shrink: 0;
-    transition: transform 0.2s;
-  }
-  .faq-item[open] summary::after { transform: rotate(45deg); }
-  .faq-item p { color: var(--mute); font-size: 0.92rem; margin-top: 10px; line-height: 1.6; }
   @media (max-width: 900px) {
     .notthis-faq-grid { grid-template-columns: 1fr; }
   }

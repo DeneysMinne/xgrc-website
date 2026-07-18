@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
-import { milestones, people } from '../data/site.js';
+import { milestones, people, stats } from '../data/site.js';
+
+const visibleStats = import.meta.env.DEV ? stats : stats.filter((s) => s.confirmed);
 ---
 
 <Base title="About Us | XGRC® Software" description="The story of XGRC Software since 2015, and the humans behind the code.">
@@ -11,6 +13,20 @@ import { milestones, people } from '../data/site.js';
       <p class="lede">XGRC® Software is built and owned by Strategix. Since 2015 we have helped organisations replace fragmented oversight with one secure, auditable platform. ISO 27001:2022 certified, with a presence in Johannesburg, Cape Town and the United Kingdom.</p>
     </div>
   </section>
+
+  <!-- Proof-stats band -->
+  {visibleStats.length > 0 && (
+    <section class="stats-band">
+      <div class="container stats-inner">
+        {visibleStats.map((s) => (
+          <div class="stat-cell">
+            <span class="stat-value">{s.value}</span>
+            <span class="stat-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
 
   <!-- Vertical timeline -->
   <section class="section">
@@ -31,6 +47,26 @@ import { milestones, people } from '../data/site.js';
           </li>
         ))}
       </ol>
+    </div>
+  </section>
+
+  <!-- Backed by Strategix Group -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="grid cols-2 backing-grid">
+        <div>
+          <span class="eyebrow"><span class="dot"></span>Ownership & backing</span>
+          <h2>Built by an accountable group, not a startup on its own.</h2>
+          <p class="lede">XGRC® Software is developed and owned by Strategix Application Solutions (Pty) Ltd (Reg No. 2015/192960/07), part of the Strategix group — an integrated technology group delivering cloud, security, data, ERP and governance solutions across South Africa and the United Kingdom. That backing means dedicated engineering, security and support capacity behind the platform, not a side project.</p>
+          <a href="/strategix" class="link-arrow">Explore Strategix Group's full capability &rarr;</a>
+        </div>
+        <div class="backing-facts">
+          <div class="fact"><span class="fact-label">Founded</span><span class="fact-value">2015</span></div>
+          <div class="fact"><span class="fact-label">Certification</span><span class="fact-value">ISO 27001:2022</span></div>
+          <div class="fact"><span class="fact-label">Group divisions</span><span class="fact-value">4 specialist practices</span></div>
+          <div class="fact"><span class="fact-label">Offices</span><span class="fact-value">Johannesburg · Cape Town · UK</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -60,6 +96,29 @@ import { milestones, people } from '../data/site.js';
 <style>
   .page-head { padding: 130px 0 0; }
   .page-head h1 { margin: 8px 0 18px; }
+
+  /* proof-stats band */
+  .stats-band { padding: 48px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .stat-cell { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 24px;
+    border-right: 1px solid var(--line); text-align: center; }
+  .stat-cell:last-child { border-right: none; }
+  .stat-value { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700;
+    color: var(--cyan); letter-spacing: -0.03em; line-height: 1; }
+  .stat-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); }
+  @media (max-width: 600px) {
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat-cell:nth-child(2) { border-right: none; }
+    .stat-cell:nth-child(3), .stat-cell:nth-child(4) { border-top: 1px solid var(--line); }
+  }
+
+  /* backed by Strategix */
+  .backing-grid { align-items: center; gap: clamp(28px, 5vw, 56px); }
+  .backing-facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .fact { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 18px; }
+  .fact-label { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); margin-bottom: 6px; }
+  .fact-value { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; }
+  @media (max-width: 700px) { .backing-facts { grid-template-columns: 1fr; } }
 
   /* timeline — centered spine, events alternating left/right */
   .timeline { list-style: none; position: relative; margin: 0 auto; max-width: 880px; padding: 8px 0; }

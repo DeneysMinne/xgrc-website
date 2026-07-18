@@ -53,6 +53,15 @@ const whyPoints = [
   { stat: 'SA + UK',      label: 'Regulations',     body: 'Purpose-built for South African and UK regulatory environments — POPIA, PAIA, King V, and GDPR, in a single platform.' },
 ];
 
+const faqs = [
+  { q: 'What is GRC software?', a: 'GRC software brings governance, risk management and compliance activities onto one platform, so policies, risks, controls, audits and obligations are tracked in one auditable place instead of spreadsheets and email. XGRC® adds ESG and data protection (GDPR/POPIA) on the same foundation.' },
+  { q: 'How is XGRC® different from point solutions?', a: 'Most organisations run separate tools for risk, audit, ESG and compliance, each with its own data model. XGRC® connects them on one data layer, so a risk links to its controls, its audit findings, and its remediation actions automatically — no duplicate entry, no reconciliation between systems.' },
+  { q: 'Does XGRC® support POPIA and GDPR?', a: 'Yes. XGRC® is purpose-built for South African and UK/EU regulatory environments, with dedicated workflows for POPIA, PAIA, King V and GDPR data protection obligations, including data subject access requests and privacy impact assessments.' },
+  { q: 'How long does implementation take?', a: 'Implementation scope depends on how many disciplines (risk, audit, ESG, compliance, safety) and business units you bring onto the platform at once. Most customers start with one discipline live within weeks, then expand module by module rather than a single big-bang rollout.' },
+  { q: 'Is XGRC® secure and independently certified?', a: 'Yes. The XGRC® platform is certified to ISO/IEC 27001:2022 for information security management, and customer data is hosted in Azure West Europe (Netherlands).' },
+  { q: 'Can XGRC® integrate with our existing systems?', a: 'Yes. XGRC® is designed to sit alongside your existing HR, ERP and IT systems rather than replace them, with API-based integration available for data exchange where required.' },
+];
+
 const schema = JSON.stringify({
   '@context': 'https://schema.org',
   '@graph': [
@@ -71,6 +80,14 @@ const schema = JSON.stringify({
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xgrcsoftware.com/' },
         { '@type': 'ListItem', position: 2, name: 'GRC Platform' },
       ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
     },
   ],
 });
@@ -226,6 +243,24 @@ const schema = JSON.stringify({
             </div>
             <p class="why-body">{w.body}</p>
           </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Frequently asked</span>
+        <h2>Common questions about the platform.</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
         ))}
       </div>
     </div>

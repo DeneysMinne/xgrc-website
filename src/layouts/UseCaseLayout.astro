@@ -22,6 +22,7 @@ const {
   heroButtonLabel = 'Download the checklist',
   ctaHeadline = 'See it as a structured, integrated process.',
   ctaBody = 'Book a demo to see how XGRC® turns this into one connected workflow.',
+  faqs = [],
 } = entry;
 
 const solution = relatedSolution ? solutionDetails[relatedSolution] : null;
@@ -47,6 +48,14 @@ const schema = {
         { '@type': 'ListItem', 'position': 3, 'name': crumbLabel },
       ],
     },
+    ...(faqs.length > 0 ? [{
+      '@type': 'FAQPage',
+      'mainEntity': faqs.map((f) => ({
+        '@type': 'Question',
+        'name': f.q,
+        'acceptedAnswer': { '@type': 'Answer', 'text': f.a },
+      })),
+    }] : []),
   ],
 };
 ---
@@ -223,6 +232,26 @@ const schema = {
               <p>{r.lede}</p>
               <span class="link-arrow">View use case &rarr;</span>
             </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ============ FAQ ============ -->
+  {faqs.length > 0 && (
+    <section class="section--tight">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow"><span class="dot"></span>Frequently asked</span>
+          <h2>Common questions.</h2>
+        </div>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
           ))}
         </div>
       </div>
