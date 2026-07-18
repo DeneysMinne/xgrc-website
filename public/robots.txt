@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /login/
+
+Sitemap: https://xgrcsoftware.com/sitemap-index.xml

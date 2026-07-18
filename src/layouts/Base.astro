@@ -2,8 +2,44 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { brand, socialLinks } from '../data/site.js';
 
-const { title = 'XGRC Software', description = 'Synergy in Assurance, Strength in Compliance. A connected governance, risk and compliance platform.' } = Astro.props;
+const {
+  title = 'XGRC® Software',
+  description = 'Synergy in Assurance, Strength in Compliance. A connected governance, risk and compliance platform.',
+  noindex = false,
+  ogImage = '/assets/og-default.jpg',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site);
+const siteURL = Astro.site.toString().replace(/\/$/, '');
+
+const orgSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${siteURL}/#organization`,
+      name: 'XGRC® Software',
+      url: siteURL,
+      logo: `${siteURL}/assets/logos/brand/xgrc-icon-white.png`,
+      description: 'XGRC® Software is a global governance, risk and compliance platform with specialist solutions that operate on one secure, auditable data foundation.',
+      foundingDate: '2015',
+      email: brand.email,
+      telephone: brand.phone,
+      sameAs: [...socialLinks.map((s) => s.url), 'https://www.strategix.co.za'],
+      parentOrganization: { '@type': 'Organization', name: 'Strategix Group', url: 'https://www.strategix.co.za' },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteURL}/#website`,
+      url: siteURL,
+      name: 'XGRC® Software',
+      publisher: { '@id': `${siteURL}/#organization` },
+    },
+  ],
+});
 ---
 
 <!doctype html>
@@ -13,9 +49,26 @@ const { title = 'XGRC Software', description = 'Synergy in Assurance, Strength i
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <script type="application/ld+json" set:html={orgSchema} />
   </head>
   <body>
     <Nav />

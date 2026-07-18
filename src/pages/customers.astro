@@ -1,20 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
+import LogoTile from '../components/LogoTile.astro';
 import { customerGroups } from '../data/site.js';
-
-const LOGO_BASE = '/assets/logos/customers/';
 ---
 
 <Base
   title="Customers | XGRC® Software"
-  description="Trusted by more than 800 companies globally across mining, manufacturing, steel, food, logistics, finance and more."
+  description="Trusted by more than 800 companies globally across mining, manufacturing, steel, food, logistics, finance, technology and more — a global platform, from single-site teams to multinational headquarters."
 >
   <!-- Hero -->
   <section class="cust-hero">
     <div class="container">
       <span class="eyebrow"><span class="dot"></span>Customers</span>
       <h1>Trusted by more than<br><em>800 companies</em> globally.</h1>
-      <p class="lede">Organisations across mining, steel, food, logistics and finance — spanning southern Africa, the UK, and beyond — rely on XGRC® to unify compliance across their operations.</p>
+      <p class="lede">Organisations across mining, steel, food, logistics, finance and technology rely on XGRC® to unify compliance — from a single regional operation to the multinational headquarters it reports into, across Africa, Europe, Australia and the Americas.</p>
     </div>
   </section>
 
@@ -39,23 +38,7 @@ const LOGO_BASE = '/assets/logos/customers/';
           </header>
           <div class="logo-grid">
             {g.customers.map(c => (
-              c.logo
-                ? (
-                  <div class="logo-slot" title={c.name}>
-                    <span class="glow" aria-hidden="true"></span>
-                    <img
-                      src={`${LOGO_BASE}${c.logo}`}
-                      alt={c.name}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                ) : (
-                  <div class="logo-slot logo-slot--pending" title={c.name}>
-                    <span class="glow" aria-hidden="true"></span>
-                    <span class="logo-name">{c.name}</span>
-                  </div>
-                )
+              <LogoTile name={c.name} logo={c.logo} url={c.url} caseStudySlug={c.caseStudySlug} />
             ))}
           </div>
         </div>
@@ -173,96 +156,6 @@ const LOGO_BASE = '/assets/logos/customers/';
     gap: 16px;
   }
 
-  /* ── Glass tile logo slot ─────────────────────────────── */
-  .logo-slot {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    aspect-ratio: 1 / 1;   /* square */
-    padding: 10%;            /* logo fills the remaining 80% */
-    border-radius: 14px;
-
-    /* clear glass */
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    border-top-color: rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-
-    box-shadow:
-      0 5px 22px rgba(0, 0, 0, 0.48),
-      inset 0 1px 0 rgba(255, 255, 255, 0.13);
-
-    transition:
-      transform 0.4s var(--ease),
-      box-shadow 0.4s var(--ease),
-      border-color 0.4s var(--ease);
-    cursor: default;
-    isolation: isolate;
-  }
-  .logo-slot:hover {
-    transform: translateY(-7px);
-    box-shadow:
-      0 18px 52px rgba(0, 0, 0, 0.62),
-      inset 0 1px 0 rgba(255, 255, 255, 0.22),
-      0 0 0 1px rgba(48, 226, 244, 0.18);
-    border-top-color: rgba(255, 255, 255, 0.32);
-  }
-
-  /* Faint backlight */
-  .logo-slot .glow {
-    position: absolute;
-    inset: -20px;
-    border-radius: 50%;
-    background: radial-gradient(
-      ellipse at 50% 50%,
-      rgba(48, 226, 244, 0.10) 0%,
-      rgba(38, 158, 198, 0.04) 45%,
-      transparent 70%
-    );
-    opacity: 0.5;
-    transition: opacity 0.4s var(--ease), inset 0.4s var(--ease);
-    pointer-events: none;
-    z-index: -1;
-  }
-  .logo-slot:hover .glow { opacity: 0.9; inset: -32px; }
-
-  .logo-slot img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Pending slot — no logo yet */
-  .logo-slot--pending {
-    opacity: 0.40;
-    border-color: rgba(48, 226, 244, 0.09);
-    border-top-color: rgba(48, 226, 244, 0.15);
-  }
-  .logo-slot--pending:hover { opacity: 0.70; }
-  .logo-slot--pending .glow {
-    background: radial-gradient(
-      ellipse at 50% 50%,
-      rgba(48, 226, 244, 0.07) 0%,
-      transparent 65%
-    );
-  }
-  .logo-name {
-    position: relative;
-    z-index: 1;
-    font-family: var(--font-display);
-    font-size: 11.5px;
-    font-weight: 500;
-    color: var(--mute);
-    text-align: center;
-    line-height: 1.45;
-    max-width: 120px;
-    padding: 0 6px;
-  }
-
   /* ── CTA ──────────────────────────────────────────────── */
   .cust-cta {
     text-align: center;
@@ -276,7 +169,6 @@ const LOGO_BASE = '/assets/logos/customers/';
   /* ── Mobile ───────────────────────────────────────────── */
   @media (max-width: 600px) {
     .logo-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
-    .logo-name { font-size: 10px; }
   }
 </style>
 

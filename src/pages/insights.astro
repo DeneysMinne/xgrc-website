@@ -126,7 +126,7 @@ const categories = ['All', ...Array.from(new Set(articles.map((a) => a.category)
             <a href={`/insights/${a.slug}`} class="art-card">
               <div class="art-card-img">
                 <img
-                  src={`/assets/images/insights/${a.slug}.jpg`}
+                  src={`/assets/images/insights/${a.image || `${a.slug}.jpg`}`}
                   alt={a.title}
                   loading="lazy"
                   decoding="async"

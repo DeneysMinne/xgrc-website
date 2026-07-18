@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import { accessibilityStatement as content } from '../data/legalContent.js';
+---
+
+<Base
+  title="Accessibility Statement | XGRC® Software"
+  description="Strategix's commitment to accessibility and usability of the XGRC® Software website and platform."
+>
+  <section class="page-head">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>Accessibility</span>
+      <h1>{content.title}.</h1>
+      <p class="meta">Version: {content.version} &middot; Last updated: {content.lastUpdated}</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container narrow">
+      {content.sections.map((s) => (
+        <p class="body-p">{s.body}</p>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 12px; }
+  .meta { font-family: var(--font-mono); font-size: 12px; color: var(--faint); }
+  .narrow { max-width: 760px; }
+  .body-p { color: var(--mute); line-height: 1.75; font-size: 0.98rem; margin-bottom: 18px; }
+</style>

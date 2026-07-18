@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { articles } from '../../data/site.js';
+import { articles, articleFaqs, solutions } from '../../data/site.js';
 import { articleContent } from '../../data/articleContent.js';
 
 export function getStaticPaths() {
@@ -10,6 +10,11 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const { article } = Astro.props;
 const body = articleContent[slug] ?? '';
+const faqs = articleFaqs[slug];
+const imageFile = article.image || `${slug}.jpg`;
+const relatedSolutions = (article.relatedSolutions || [])
+  .map((s) => solutions.find((sol) => sol.slug === s))
+  .filter(Boolean);
 
 const wordCount = body.split(/\s+/).filter(Boolean).length;
 const readTime = Math.max(1, Math.ceil(wordCount / 220));
@@ -59,7 +64,7 @@ const schema = JSON.stringify({
   '@type': 'Article',
   headline: article.title,
   description: article.excerpt,
-  image: `https://xgrcsoftware.com/assets/images/insights/${slug}.jpg`,
+  image: `https://xgrcsoftware.com/assets/images/insights/${imageFile}`,
   datePublished: article.date,
   author: { '@type': 'Organization', name: 'XGRC® Software' },
   publisher: {
@@ -69,6 +74,16 @@ const schema = JSON.stringify({
   },
   mainEntityOfPage: { '@type': 'WebPage', '@id': `https://xgrcsoftware.com/insights/${slug}` },
 });
+
+const faqSchema = faqs ? JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+}) : null;
 
 const categoryColors = {
   'ESG': '#3ecf8e',
@@ -85,8 +100,9 @@ const categoryColors = {
 const catColor = categoryColors[article.category] || '#30e2f4';
 ---
 
-<Base title={`${article.title} | XGRC® Insights`} description={article.excerpt}>
+<Base title={`${article.title} | XGRC® Insights`} description={article.excerpt} ogImage={`/assets/images/insights/${imageFile}`}>
   <script type="application/ld+json" set:html={schema} />
+  {faqSchema && <script type="application/ld+json" set:html={faqSchema} />}
 
   <div class="art-page">
 
@@ -118,7 +134,7 @@ const catColor = categoryColors[article.category] || '#30e2f4';
     <div class="art-img-wrap">
       <div class="container">
         <img
-          src={`/assets/images/insights/${slug}.jpg`}
+          src={`/assets/images/insights/${imageFile}`}
           alt={article.title}
           class="art-hero-img"
           width="1200"
@@ -133,6 +149,31 @@ const catColor = categoryColors[article.category] || '#30e2f4';
     <div class="art-body">
       <div class="container">
         <div class="art-content" set:html={bodyHtml} />
+
+        {relatedSolutions.length > 0 && (
+          <div class="art-related-solutions">
+            <h3 class="art-related-heading">Related solutions</h3>
+            <div class="art-rel-sol-list">
+              {relatedSolutions.map((s) => (
+                <a href={`/${s.slug}/`} class="rel-sol-link">{s.name} &rarr;</a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {faqs && (
+          <div class="art-faqs">
+            <h3 class="art-related-heading">Frequently asked</h3>
+            <div class="faq-list">
+              {faqs.map((f) => (
+                <details class="faq-item">
+                  <summary>{f.q}</summary>
+                  <p>{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
 
@@ -160,7 +201,7 @@ const catColor = categoryColors[article.category] || '#30e2f4';
             {related.map((r) => (
               <a href={`/insights/${r.slug}`} class="rel-card">
                 <div class="rel-card-img">
-                  <img src={`/assets/images/insights/${r.slug}.jpg`} alt={r.title} loading="lazy" decoding="async" />
+                  <img src={`/assets/images/insights/${r.image || `${r.slug}.jpg`}`} alt={r.title} loading="lazy" decoding="async" />
                 </div>
                 <div class="rel-card-body">
                   <span class="rel-cat">{r.category}</span>
@@ -311,6 +352,63 @@ const catColor = categoryColors[article.category] || '#30e2f4';
     font-size: 0.8em;
     top: 0.15em;
   }
+
+  /* ── Related solutions ────────────────────────────────── */
+  .art-related-solutions { max-width: 720px; margin: 0 0 48px; }
+  .art-related-heading {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--mute);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+  .art-rel-sol-list { display: flex; flex-wrap: wrap; gap: 12px; }
+  .rel-sol-link {
+    display: inline-block;
+    padding: 9px 16px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--cyan);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .rel-sol-link:hover { border-color: var(--cyan); color: var(--cyan-hi); }
+
+  /* ── Article FAQs ─────────────────────────────────────── */
+  .art-faqs { max-width: 720px; margin: 0 0 48px; }
+  .art-faqs .faq-list { display: flex; flex-direction: column; gap: 10px; }
+  .art-faqs .faq-item {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md, 10px);
+    background: var(--panel);
+    padding: 16px 18px;
+  }
+  .art-faqs .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 0.96rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .art-faqs .faq-item summary::-webkit-details-marker { display: none; }
+  .art-faqs .faq-item summary::after {
+    content: '+';
+    font-family: var(--font-mono);
+    color: var(--cyan);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .art-faqs .faq-item[open] summary::after { transform: rotate(45deg); }
+  .art-faqs .faq-item p { color: var(--mute); font-size: 0.92rem; margin-top: 10px; line-height: 1.6; }
 
   /* ── CTA ────────────────────────────────────────────── */
   .art-cta-wrap {

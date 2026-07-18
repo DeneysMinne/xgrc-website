@@ -3,12 +3,24 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import SsotConvergence from '../components/SsotConvergence.astro';
 import Testimonials from '../components/Testimonials.astro';
+import LogoTile from '../components/LogoTile.astro';
 import { pillars, solutions, stats, brand } from '../data/site.js';
+
+const trustedLogos = [
+  { name: 'Fraser Alexander', logo: 'Fraser-Alexander.jpg' },
+  { name: 'PG Bison',         logo: 'PG-Bison.jpg' },
+  { name: 'Scaw Metals Group', logo: 'SCAW.png' },
+  { name: 'KAP Ltd',          logo: 'KAP.png' },
+  { name: 'RCL Foods',        logo: 'RCL-FOODS.jpg' },
+  { name: 'Unitrans',         logo: 'UNITRANS.png' },
+  { name: 'FUCHS Lubricants', logo: 'FUCHS.png' },
+  { name: 'CSIR',             logo: 'CSIR.png' },
+];
 const previewSolutions = solutions.slice(0, 6);
 const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed);
 ---
 
-<Base title="XGRC Software® — Driving Compliance® in your organisation">
+<Base title="XGRC® Software — Driving Compliance® in your organisation" ogImage="/assets/og/og-xgrc-platform.jpg">
   <Hero />
 
   <!-- B. Proof-stats band -->
@@ -25,15 +37,15 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
     </section>
   )}
 
-  <!-- C. MAIA — promoted above pillars, outcome-first copy -->
+  <!-- C. MAIA® — promoted above pillars, outcome-first copy -->
   <section class="section--tight">
     <div class="container">
       <div class="card maia">
         <div>
-          <span class="eyebrow"><span class="dot"></span>Governed AI · MAIA</span>
+          <span class="eyebrow"><span class="dot"></span>Governed AI · MAIA®</span>
           <h2>Ask your governance data anything.</h2>
-          <p class="lede">MAIA is governed AI embedded within XGRC® — so decision-makers get instant answers from risk registers, policies and audit records, without data ever leaving your governance environment. Faster insight. Better decisions. Full AI audit trail.</p>
-          <a href="/solutions/maia" class="link-arrow">Explore MAIA →</a>
+          <p class="lede">MAIA® is governed AI embedded within XGRC® — so decision-makers get instant answers from risk registers, policies and audit records, through controlled, audited AI integrations with a complete interaction audit trail.</p>
+          <a href="/maia/" class="link-arrow">Explore MAIA® →</a>
         </div>
       </div>
     </div>
@@ -64,14 +76,9 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
     <div class="container">
       <p class="trusted-label">Trusted by more than 800 companies globally</p>
       <div class="trusted-logos">
-        <div class="logo-slot" title="Fraser Alexander"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/Fraser-Alexander.jpg" alt="Fraser Alexander" loading="lazy"></div>
-        <div class="logo-slot" title="PG Bison"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/PG-Bison.jpg" alt="PG Bison" loading="lazy"></div>
-        <div class="logo-slot" title="Scaw Metals Group"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/SCAW.png" alt="Scaw Metals Group" loading="lazy"></div>
-        <div class="logo-slot" title="KAP Ltd"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/KAP.png" alt="KAP Ltd" loading="lazy"></div>
-        <div class="logo-slot" title="RCL Foods"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/RCL-FOODS.jpg" alt="RCL Foods" loading="lazy"></div>
-        <div class="logo-slot" title="Unitrans"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/UNITRANS.png" alt="Unitrans" loading="lazy"></div>
-        <div class="logo-slot" title="FUCHS Lubricants"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/FUCHS.png" alt="FUCHS Lubricants" loading="lazy"></div>
-        <div class="logo-slot" title="CSIR"><span class="glow" aria-hidden="true"></span><img src="/assets/logos/customers/CSIR.png" alt="CSIR" loading="lazy"></div>
+        {trustedLogos.map((c) => (
+          <LogoTile name={c.name} logo={c.logo} />
+        ))}
       </div>
       <a href="/customers/" class="link-arrow trusted-cta">See all customers →</a>
     </div>
@@ -163,7 +170,7 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
     .stat-cell:nth-child(4) { border-top: 1px solid var(--line); }
   }
 
-  /* ── C. MAIA card ─────────────────────────────────────── */
+  /* ── C. MAIA® card ─────────────────────────────────────── */
   .maia { background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02)); border-color: var(--line-strong); }
   .maia h2 { margin-bottom: 0.4em; }
   .maia .lede { margin-bottom: 18px; }
@@ -182,68 +189,6 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
     margin-bottom: 28px;
   }
   .trusted-cta { display: block; text-align: center; }
-
-  /* ── Glass tile logo slots ────────────────────────────── */
-  .logo-slot {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    aspect-ratio: 1 / 1;   /* square */
-    padding: 10%;            /* logo fills the remaining 80% */
-    border-radius: 14px;
-
-    /* clear glass — almost nothing in the middle */
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    border-top-color: rgba(255, 255, 255, 0.22); /* rim catches light */
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-
-    /* floating depth */
-    box-shadow:
-      0 5px 22px rgba(0, 0, 0, 0.48),
-      inset 0 1px 0 rgba(255, 255, 255, 0.13);
-
-    transition:
-      transform 0.4s var(--ease),
-      box-shadow 0.4s var(--ease),
-      border-color 0.4s var(--ease);
-    cursor: default;
-    isolation: isolate;
-  }
-  .logo-slot:hover {
-    transform: translateY(-7px);
-    box-shadow:
-      0 16px 48px rgba(0, 0, 0, 0.60),
-      inset 0 1px 0 rgba(255, 255, 255, 0.22),
-      0 0 0 1px rgba(48, 226, 244, 0.18);
-    border-top-color: rgba(255, 255, 255, 0.32);
-  }
-  /* Faint light behind the glass */
-  .logo-slot .glow {
-    position: absolute;
-    inset: -18px;
-    border-radius: 50%;
-    background: radial-gradient(
-      ellipse at 50% 50%,
-      rgba(48, 226, 244, 0.10) 0%,
-      rgba(38, 158, 198, 0.04) 45%,
-      transparent 70%
-    );
-    opacity: 0.5;
-    transition: opacity 0.4s var(--ease), inset 0.4s var(--ease);
-    pointer-events: none;
-    z-index: -1;
-  }
-  .logo-slot:hover .glow { opacity: 0.9; inset: -28px; }
-  .logo-slot img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    position: relative;
-    z-index: 1;
-  }
 
   @media (max-width: 900px) { .trusted-logos { grid-template-columns: repeat(4, 1fr); } }
   @media (max-width: 480px) { .trusted-logos { grid-template-columns: repeat(2, 1fr); } }

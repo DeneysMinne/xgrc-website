@@ -1,6 +1,6 @@
 ---
-import Base from '../../layouts/Base.astro';
-import { solutions, solutionDetails, brand } from '../../data/site.js';
+import Base from '../layouts/Base.astro';
+import { solutions, solutionDetails, brand } from '../data/site.js';
 
 export function getStaticPaths() {
   return Object.keys(solutionDetails).map((slug) => ({ params: { slug } }));
@@ -34,20 +34,29 @@ const schema = JSON.stringify({
         { '@type': 'ListItem', position: 3, name: detail.name },
       ],
     },
+    ...(detail.geo?.faqs ? [{
+      '@type': 'FAQPage',
+      mainEntity: detail.geo.faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }] : []),
   ],
 });
 ---
 
 <Base
-  title={`${detail.name} — ${detail.tag} | XGRC®`}
+  title={detail.metaTitle || `${detail.name} — ${detail.tag} | XGRC®`}
   description={detail.lede}
+  ogImage={`/assets/og/og-${slug}.jpg`}
 >
   <script type="application/ld+json" set:html={schema} />
 
   <!-- ── Hero ──────────────────────────────────────────── -->
   <section class="sol-hero">
     <div class="sol-hero-glow" aria-hidden="true"></div>
-    <div class="container sol-hero-inner">
+    <div class={`container sol-hero-inner ${!detail.screenshot ? 'sol-hero-inner--solo' : ''}`}>
 
       <!-- Left: copy -->
       <div class="sol-hero-copy">
@@ -73,31 +82,38 @@ const schema = JSON.stringify({
         </div>
       </div>
 
-      <!-- Right: dashboard or glass placeholder -->
-      <div class="sol-dash-col">
-        {detail.screenshot ? (
+      <!-- Right: dashboard -->
+      {detail.screenshot && (
+        <div class="sol-dash-col">
           <div class="sol-dash-frame">
             <div class="sol-dash-chrome">
               <span class="dc-dot dc-red"></span>
               <span class="dc-dot dc-yellow"></span>
               <span class="dc-dot dc-green"></span>
-              <span class="dc-url">app.xgrcsoftware.com · {detail.name}</span>
+              <span class="dc-url">v5.xgrc.cloud · {detail.name}</span>
             </div>
             <div class="sol-dash-screen">
               <img src={detail.screenshot} alt={`${detail.name} dashboard`} loading="eager" />
             </div>
           </div>
-        ) : (
-          <div class="sol-dash-placeholder">
-            <div class="glass-glow" aria-hidden="true"></div>
-            {detail.icon && <img src={detail.icon} alt="" class="placeholder-icon" loading="eager" />}
-            <span class="placeholder-label">Dashboard coming soon</span>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
 
     </div>
   </section>
+
+  <!-- ── Definition / usage context (GEO) ────────────────── -->
+  {detail.geo && (
+    <section class="section--tight">
+      <div class="container">
+        <div class="geo-block">
+          <h2>What is {detail.name}?</h2>
+          <p class="lede">{detail.geo.definition}</p>
+          <p class="lede">{detail.geo.usage}</p>
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- ── The challenge ─────────────────────────────────── -->
   <section class="section--tight">
@@ -180,7 +196,7 @@ const schema = JSON.stringify({
       <div class="section-head">
         <span class="eyebrow"><span class="dot"></span>What's included</span>
         <h2>Everything in {detail.name}.</h2>
-        <p class="lede">Every capability included as standard — no extra modules to purchase, no feature tiers.</p>
+        <p class="lede">Core capabilities are configured to your requirements, with the flexibility to expand as your needs grow.</p>
       </div>
       <div class="module-groups">
         {detail.moduleGroups.map((group) => (
@@ -208,13 +224,40 @@ const schema = JSON.stringify({
         </div>
         <div class="grid cols-3 related-grid">
           {related.map((r) => (
-            <a class="card related-card" href={`/solutions/${r.slug}`}>
+            <a class="card related-card" href={`/${r.slug}/`}>
               <span class="tag">{r.tag}</span>
               <h3>{r.name}</h3>
               <p>{r.blurb}</p>
               <span class="link-arrow">Explore &rarr;</span>
             </a>
           ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ── What it's not / FAQs (GEO) ──────────────────────── -->
+  {detail.geo && (
+    <section class="section--tight">
+      <div class="container">
+        <div class="grid cols-2 notthis-faq-grid">
+          <div class="notthis-block">
+            <span class="eyebrow"><span class="dot"></span>Set the record straight</span>
+            <h2>What {detail.name} is not.</h2>
+            <p class="lede">{detail.geo.notThis}</p>
+          </div>
+          <div class="faq-block">
+            <span class="eyebrow"><span class="dot"></span>Frequently asked</span>
+            <h2>Common questions.</h2>
+            <div class="faq-list">
+              {detail.geo.faqs.map((f) => (
+                <details class="faq-item">
+                  <summary>{f.q}</summary>
+                  <p>{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -257,6 +300,10 @@ const schema = JSON.stringify({
     grid-template-columns: 1fr 520px;
     gap: 64px;
     align-items: center;
+  }
+  .sol-hero-inner--solo {
+    grid-template-columns: 1fr;
+    max-width: 760px;
   }
 
   /* ── Product icon above H1 ───────────────────────────── */
@@ -308,53 +355,6 @@ const schema = JSON.stringify({
     width: 100%;
     height: auto;
     display: block;
-  }
-
-  /* ── Placeholder (no screenshot yet) ────────────────── */
-  .sol-dash-placeholder {
-    position: relative;
-    width: 100%;
-    min-height: 300px;
-    border-radius: 14px;
-    border: 1px solid rgba(48,226,244,0.12);
-    background: rgba(13,31,53,0.5);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    overflow: hidden;
-  }
-  .glass-glow {
-    position: absolute;
-    top: -20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(48,226,244,0.1) 0%, transparent 70%);
-    pointer-events: none;
-    filter: blur(28px);
-  }
-  .placeholder-icon {
-    position: relative;
-    height: 100px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 20px rgba(48,226,244,0.2));
-    opacity: 0.85;
-  }
-  .placeholder-label {
-    position: relative;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--faint);
   }
 
   .breadcrumb {
@@ -504,6 +504,48 @@ const schema = JSON.stringify({
   .related-card { text-decoration: none; display: flex; flex-direction: column; }
   .related-card .link-arrow { margin-top: auto; padding-top: 16px; }
 
+  /* ── Definition / usage context (GEO) ────────────────── */
+  .geo-block h2 { margin-bottom: 14px; }
+  .geo-block .lede:last-child { margin-bottom: 0; }
+  .geo-block .lede { margin-bottom: 14px; }
+
+  /* ── What it's not / FAQs (GEO) ──────────────────────── */
+  .notthis-faq-grid { gap: 48px; align-items: start; }
+  .notthis-block .eyebrow, .faq-block .eyebrow { margin-bottom: 12px; }
+  .notthis-block h2, .faq-block h2 { margin-bottom: 16px; }
+  .faq-list { display: flex; flex-direction: column; gap: 10px; }
+  .faq-item {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--panel);
+    padding: 16px 18px;
+  }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 0.96rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    font-family: var(--font-mono);
+    color: var(--cyan);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { color: var(--mute); font-size: 0.92rem; margin-top: 10px; line-height: 1.6; }
+  @media (max-width: 900px) {
+    .notthis-faq-grid { grid-template-columns: 1fr; }
+  }
+
   /* ── CTA ─────────────────────────────────────────────── */
   .cta-block {
     text-align: center;
@@ -560,7 +602,6 @@ const schema = JSON.stringify({
   /* ── Responsive ──────────────────────────────────────── */
   @media (max-width: 1100px) {
     .sol-hero-inner { grid-template-columns: 1fr; gap: 48px; }
-    .sol-dash-placeholder { min-height: 220px; }
   }
   @media (max-width: 900px) {
     .overview-split { grid-template-columns: 1fr; gap: 40px; }

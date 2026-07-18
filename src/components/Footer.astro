@@ -1,16 +1,39 @@
 ---
-import { offices, brand, nav } from '../data/site.js';
+import { offices, brand, nav, socialLinks } from '../data/site.js';
 const year = new Date().getFullYear();
+
+// LinkedIn/Facebook render as real text glyphs (flexbox centers them exactly).
+// YouTube/Instagram are built from plain rect/circle primitives rather than a
+// hand-drawn path — trivially verifiable centering (e.g. rect x=3 width=18 → center=12).
+const GLYPHS = { LinkedIn: 'in', Facebook: 'f' };
+const YOUTUBE_PATH = 'M2 9a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V9Zm8-0.5v7l6-3.5-6-3.5Z';
 ---
 
 <footer class="site-footer">
   <div class="container">
     <div class="top">
       <div class="col brandcol">
-        <div class="brand"><span class="mark" aria-hidden="true"></span><span><span class="x">X</span><b>GRC</b> Software</span></div>
+        <div class="brand"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" aria-hidden="true" class="footer-icon" /><span class="footer-word"><span class="fw-x">X</span>GRC<sup class="fw-reg">&reg;</sup><span class="fw-sw">Software</span></span></div>
         <p class="promise">{brand.tagline}</p>
         <p class="promise">{brand.promise}.</p>
         <p class="iso">ISO 27001:2022 certified · Built by Strategix</p>
+        <div class="social-row">
+          {socialLinks.map((s) => (
+            <a href={s.url} target="_blank" rel="noopener noreferrer" aria-label={`XGRC® Software on ${s.name}`} class="social-icon">
+              {s.name === 'YouTube' ? (
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d={YOUTUBE_PATH}></path></svg>
+              ) : s.name === 'Instagram' ? (
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4.2"></circle>
+                  <circle cx="17" cy="7" r="1.15" fill="currentColor" stroke="none"></circle>
+                </svg>
+              ) : (
+                <span class="social-glyph" aria-hidden="true">{GLYPHS[s.name]}</span>
+              )}
+            </a>
+          ))}
+        </div>
       </div>
 
       <div class="col">
@@ -29,9 +52,17 @@ const year = new Date().getFullYear();
       ))}
     </div>
 
+    <div class="legal-row">
+      <a href="/legal/privacy-policy">Privacy Policy</a>
+      <a href="/legal/cookie-policy">Cookie Policy</a>
+      <a href="/legal/website-terms-of-use">Website Terms</a>
+      <a href="/accessibility-statement">Accessibility</a>
+      <a href="/legal">Legal Hub</a>
+    </div>
+
     <div class="bottom">
       <span>© {year} {brand.name}. All rights reserved.</span>
-      <span>{brand.email} · {brand.phone}</span>
+      <span class="bottom-right">{brand.email} · {brand.phone} · <a href="/login">Customer login</a></span>
     </div>
   </div>
 </footer>
@@ -39,17 +70,36 @@ const year = new Date().getFullYear();
 <style>
   .site-footer { border-top: 1px solid var(--line); background: rgba(6, 15, 28, 0.6); padding: clamp(48px, 7vw, 80px) 0 28px; margin-top: 40px; }
   .top { display: grid; grid-template-columns: 1.6fr repeat(4, 1fr); gap: 32px; }
-  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 16px; margin-bottom: 14px; }
-  .mark { width: 24px; height: 24px; border-radius: 6px; position: relative; background: conic-gradient(from 210deg, var(--deep), var(--cyan), var(--blue), var(--deep)); }
-  .mark::after { content: ""; position: absolute; inset: 5px; border-radius: 2px; background: var(--void); }
-  .x { color: var(--cyan); } b { font-weight: 800; }
+  .brand { display: flex; align-items: center; gap: 11px; margin-bottom: 18px; }
+  .footer-icon { height: 38px; width: auto; display: block; }
+  .footer-word { font-family: var(--font-display); font-weight: 700; font-size: 19px; letter-spacing: -0.01em; color: var(--ink); white-space: nowrap; }
+  .fw-x { background: linear-gradient(180deg, var(--cyan), #eaf05a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .fw-sw { font-weight: 500; color: var(--mute); font-size: 0.82em; margin-left: 6px; }
+  .fw-reg { font-size: 0.55em; font-weight: 600; color: var(--ink); vertical-align: super; margin-left: 2px; }
   .promise { font-size: 0.9rem; color: var(--mute); margin-bottom: 4px; max-width: 34ch; }
   .iso { font-family: var(--font-mono); font-size: 11px; color: var(--faint); margin-top: 12px; }
+  .social-row { display: flex; gap: 10px; margin-top: 18px; }
+  /* Scoped to .social-row so this beats the more specific `.col a { display: block }`
+     rule below — otherwise the flex centering is silently overridden and the glyph/icon
+     just flows left as plain inline content. */
+  .social-row .social-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 9px; padding: 0;
+    background: rgba(255, 255, 255, 0.04); border: 1px solid var(--line);
+    color: var(--mute); transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .social-row .social-icon:hover { color: var(--cyan); border-color: var(--line-strong); background: var(--panel-hover); }
+  .social-glyph { font-family: var(--font-display); font-weight: 700; font-size: 14px; line-height: 1; }
   h4 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; font-weight: 500; }
   .col a { display: block; color: var(--mute); text-decoration: none; font-size: 0.9rem; padding: 4px 0; }
   .col a:hover { color: var(--ink); }
   .addr { font-size: 0.82rem; color: var(--mute); margin-bottom: 8px; line-height: 1.5; }
-  .bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--line); margin-top: 40px; padding-top: 22px; font-size: 0.8rem; color: var(--faint); }
+  .legal-row { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 40px; }
+  .legal-row a { color: var(--faint); text-decoration: none; font-size: 0.78rem; }
+  .legal-row a:hover { color: var(--cyan); }
+  .bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--line); margin-top: 16px; padding-top: 22px; font-size: 0.8rem; color: var(--faint); }
+  .bottom-right a { color: var(--faint); text-decoration: none; }
+  .bottom-right a:hover { color: var(--cyan); }
   @media (max-width: 900px) { .top { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 560px) { .top { grid-template-columns: 1fr; } }
 </style>

@@ -1,0 +1,427 @@
+---
+import Base from '../layouts/Base.astro';
+import { offices } from '../data/site.js';
+
+const divisions = [
+  {
+    key: 'business', tag: 'Business Solutions', tagline: 'Run the business', color: '#2f5fb0',
+    desc: 'ERP, CRM, AI-driven automation and Microsoft Power Platform — the operational backbone of your enterprise. We implement, integrate and support the core systems your teams rely on every day.',
+    caps: [
+      { name: 'ERP & Finance', desc: 'Core financial management and enterprise resource planning.', svcs: ['Dynamics 365 Finance & Operations', 'Microsoft 365'] },
+      { name: 'CRM & Sales', desc: 'Customer relationship management and sales enablement for revenue growth.', svcs: ['Dynamics 365 Sales', 'Salesforce'] },
+      { name: 'AI & Automation', desc: 'Intelligent automation and AI copilots that eliminate manual work.', svcs: ['Microsoft Copilot', 'Power Automate'] },
+      { name: 'Power Platform', desc: 'Rapid business application development on Microsoft’s low-code platform.', svcs: ['Power Apps', 'Power Automate', 'Power Virtual Agents', 'Dataverse'] },
+      { name: 'HR & Workforce Automation', desc: 'Automated HR processes, from onboarding to payroll.', svcs: ['Factorial'] },
+    ],
+  },
+  {
+    key: 'application', tag: 'Application Solutions', tagline: 'Govern & comply', color: '#21895a',
+    desc: 'Governance, risk, compliance, ESG, health, safety and quality — delivered through XGRC® Software and specialist advisory. The division that turns regulation into competitive advantage.',
+    marker: 'XGRC® Software is the flagship product of this division',
+    caps: [
+      { name: 'Governance & Risk', desc: 'Enterprise governance, risk management and combined assurance.', svcs: ['XGRC® Software', 'MSX®', 'Enterprise Risk Management'] },
+      { name: 'Safety, Health & Environment', desc: 'SHEQ and environmental compliance for regulated, high-risk environments.', svcs: ['SHEQX®', 'ENVIRX®'] },
+      { name: 'Cybersecurity Governance', desc: 'ISMS governance, plus AI-powered penetration testing and vulnerability visibility.', svcs: ['MSXCyber®', 'Hakware'] },
+      { name: 'Third-Party & Supplier Compliance', desc: 'Structured onboarding, vetting and ongoing compliance of suppliers and contractors.', svcs: ['XGRC® Compliance Hub', 'XLOGIC®'] },
+      { name: 'Regulatory Intelligence & Governed AI', desc: 'Jurisdiction-specific regulatory intelligence and governed AI for GRC.', svcs: ['Libryo', 'MAIA®'] },
+    ],
+  },
+  {
+    key: 'technology', tag: 'Technology Solutions', tagline: 'Build & protect', color: '#6b3fa0',
+    desc: 'Cloud infrastructure, managed IT, prevention-first cyber security and data protection. The foundation layer every other Strategix division — and every enterprise client — depends on.',
+    caps: [
+      { name: 'Cloud & Virtualisation', desc: 'Enterprise virtualisation and private cloud, delivered as a VMware Premier Partner.', svcs: ['VMware Cloud Foundation (VCF)', 'vSphere', 'vSAN', 'VMware Cloud on AWS/Azure/Google Cloud'] },
+      { name: 'Multi-Cloud Platforms', desc: 'Public cloud infrastructure design, migration and management.', svcs: ['Microsoft Azure', 'AWS', 'Google Cloud'] },
+      { name: 'Network, Automation & Edge', desc: 'Software-defined networking, edge connectivity and cloud automation.', svcs: ['VMware NSX', 'VeloCloud SD-WAN', 'VMware HCX', 'VMware Tanzu', 'Aria Automation'] },
+      { name: 'Prevention-First Security', desc: 'Cybersecurity built around preventing threats before they enter the environment.', svcs: ['Fortinet / FortiGate', 'Hakware'] },
+      { name: 'Data Protection & Disaster Recovery', desc: 'Backup, replication and disaster recovery for business continuity.', svcs: ['Veeam', 'Rubrik'] },
+      { name: 'Data Centre & Hardware', desc: 'Colocation and enterprise hardware from our data centre and hardware partners.', svcs: ['Teraco (exclusive data centre partner)', 'Lenovo', 'Dell', 'Fujitsu Siemens'] },
+    ],
+  },
+  {
+    key: 'data', tag: 'Data Solutions', tagline: 'Know your data', color: '#d97a1f',
+    desc: 'Data engineering, business intelligence, data governance and intelligent integration. We help organisations move from raw, fragmented data to auditable, actionable insight.',
+    caps: [
+      { name: 'Business Intelligence & Reporting', desc: 'Self-service BI and analytics that put insight in the hands of business users.', svcs: ['Power BI'] },
+      { name: 'Unified Data Platform & Governance', desc: 'A single platform for data integration, engineering, governance and analytics at enterprise scale.', svcs: ['Microsoft Fabric'] },
+      { name: 'AI-Powered Analytics', desc: 'Conversational, AI-assisted analysis directly against your data estate.', svcs: ['Microsoft Copilot'] },
+    ],
+  },
+];
+
+const pillars = [
+  { icon: '⚙', h3: 'Connected capability', body: 'Every division shares architecture, methodology and client context. ERP data informs risk registers. Security posture feeds governance reporting. Your systems work together because the teams building and managing them do too — inside one group.' },
+  { icon: '◎', h3: 'Single accountability', body: 'One relationship. One commercial engagement. One group that owns the outcome. No finger-pointing between vendors when something goes wrong. No gaps in responsibility. Strategix is accountable for the full technology stack — always.' },
+  { icon: '↗', h3: 'Proven at enterprise scale', body: 'Deployed in 60+ countries across mining, financial services, healthcare, manufacturing and government. Offices in Johannesburg, Cape Town and the United Kingdom. Delivering outcomes across six continents.' },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://www.strategix.co.za/#organization',
+      name: 'Strategix Group',
+      alternateName: ['Strategix', 'Strategix Technology Solutions'],
+      url: 'https://www.strategix.co.za',
+      logo: 'https://xgrcsoftware.com/assets/logos/brand/xgrc-icon-white.png',
+      description: 'Strategix is an integrated technology group delivering cloud, security, data, ERP, application and governance solutions for enterprise organisations. Four specialist divisions — Business Solutions, Application Solutions, Technology Solutions and Data Solutions — operate as one accountable group. Business, Simplified.',
+      slogan: 'Business, Simplified.',
+      areaServed: [
+        { '@type': 'Country', name: 'South Africa' },
+        { '@type': 'Country', name: 'United Kingdom' },
+      ],
+      address: offices.map((o) => ({ '@type': 'PostalAddress', streetAddress: o.address, addressCountry: o.city === 'United Kingdom' ? 'GB' : 'ZA' })),
+      sameAs: ['https://www.strategix.co.za'],
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xgrcsoftware.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Strategix Group', item: 'https://xgrcsoftware.com/strategix' },
+      ],
+    },
+  ],
+});
+---
+
+<Base
+  title="Strategix Group | The Technology Partner Behind XGRC® Software"
+  description="Strategix is an integrated technology group delivering cloud, security, data, ERP and GRC solutions across South Africa and the United Kingdom. Four specialist divisions, one trusted partner behind XGRC® Software."
+  ogImage="/assets/og/og-xgrc-platform.jpg"
+>
+  <script type="application/ld+json" set:html={schema} />
+
+  <section class="page-head">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>The group behind XGRC® Software</span>
+      <h1>One group. Every capability you need.</h1>
+      <p class="lede">Strategix is an integrated technology group — cloud, security, data, ERP and governance — with XGRC® Software at the centre of our assurance capability. Four specialist divisions. One accountable partner. Business, Simplified.</p>
+      <div class="sol-actions head-actions">
+        <a href="#model" class="btn btn-primary">Explore our capability</a>
+        <a href="https://www.strategix.co.za" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Visit Strategix Group &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Stats band ─────────────────────────────────────── -->
+  <section class="stats-band">
+    <div class="container stats-inner">
+      <div class="stat-cell"><span class="stat-value">60+</span><span class="stat-label">Countries deployed</span></div>
+      <div class="stat-cell"><span class="stat-value">4</span><span class="stat-label">Specialist divisions</span></div>
+      <div class="stat-cell"><span class="stat-value">6</span><span class="stat-label">Continents served</span></div>
+      <div class="stat-cell"><span class="stat-value">1</span><span class="stat-label">Trusted, accountable group</span></div>
+    </div>
+  </section>
+
+  <!-- ── Our Model ──────────────────────────────────────── -->
+  <section class="section" id="model">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow"><span class="dot"></span>Our model</span>
+        <h2>Four divisions. One integrated group.</h2>
+        <p class="lede">Navigate Strategix Group's full capability — from business operations to data intelligence. Each division is a specialist practice in its own right, sharing one group delivery backbone. Select a division to explore the capabilities beneath.</p>
+      </div>
+
+      <div class="model-hub">
+        <a href="https://www.strategix.co.za" target="_blank" rel="noopener noreferrer" class="hub-logo-link" aria-label="Visit the Strategix Group website">
+          <img src="/assets/logos/brand/strategix-group-logo.png" alt="Strategix Group" class="hub-logo" />
+        </a>
+        <p class="hub-hint" id="hubHint">Select a division to explore its capabilities.</p>
+      </div>
+
+      <div class="model-grid" role="tablist" aria-label="Strategix divisions">
+        {divisions.map((d) => (
+          <button class="model-tile" style={`--tile-color:${d.color}`} data-div={d.key} role="tab" aria-selected="false" aria-controls="modelDetailPanel">
+            <span class="model-tile-tag">{d.tag}</span>
+            <span class="model-tile-sub">{d.tagline}</span>
+          </button>
+        ))}
+      </div>
+
+      <div class="model-detail" id="modelDetailPanel" hidden aria-live="polite">
+        <div class="model-detail-head">
+          <div>
+            <span class="model-detail-eyebrow" id="modelDetailEyebrow"></span>
+            <h3 id="modelDetailTitle"></h3>
+            <p id="modelDetailDesc"></p>
+            <div class="model-detail-marker" id="modelDetailMarker"></div>
+          </div>
+          <button class="model-detail-close" id="modelDetailClose" aria-label="Close detail">&times;</button>
+        </div>
+        <div class="model-cap-grid" id="modelCapGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Bridge to XGRC ─────────────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="card bridge-box">
+        <div class="bridge-body">
+          <span class="eyebrow"><span class="dot"></span>Application Solutions · Built by Strategix since 2015</span>
+          <h3>XGRC® Software is our flagship governance and compliance product.</h3>
+          <p>Founded in 2015, XGRC® Software was built to solve a problem Strategix observed across every enterprise client engagement: governance, risk and compliance data trapped in silos — invisible to the people who needed it most. A decade later, XGRC® is deployed in 60+ countries across six continents, helping organisations drive compliance, connect assurance and make governance executable.</p>
+          <p>ISO 27001:2022 certified. Built on a single auditable foundation. When you work with XGRC® Software, you already work with Strategix — and the full group capability is one conversation away.</p>
+        </div>
+        <div class="bridge-ctas">
+          <a href="/grc-software" class="btn btn-primary">Explore XGRC® Platform</a>
+          <a href="/demo" class="btn btn-ghost">Book a demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why Strategix ──────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Why Strategix</span>
+        <h2>One accountable partner. Every technology layer.</h2>
+        <p class="lede">Most enterprise organisations manage six to twelve separate technology vendors. Strategix consolidates them into one integrated group — without sacrificing specialist depth in any domain.</p>
+      </div>
+      <div class="grid cols-3">
+        {pillars.map((p) => (
+          <div class="card pillar">
+            <div class="pillar-icon" aria-hidden="true">{p.icon}</div>
+            <h3>{p.h3}</h3>
+            <p>{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Delivery model ──────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>How we deliver</span>
+        <h2>Professional Services. Managed Services.</h2>
+        <p class="lede">Strategix delivers through two primary models, matched to where your organisation is today and where it needs to go.</p>
+      </div>
+      <div class="grid cols-2">
+        <div class="card delivery-card">
+          <h3>Professional Services</h3>
+          <p>Implementation, advisory, training and change management. For organisations deploying new solutions, undergoing transformation, or needing specialist domain expertise on a scoped basis.</p>
+          <ul class="delivery-list">
+            <li>Solution implementation and configuration</li>
+            <li>GRC, ESG and compliance advisory</li>
+            <li>Cloud architecture and migration</li>
+            <li>Data platform build and integration</li>
+            <li>Training, adoption and change enablement</li>
+          </ul>
+        </div>
+        <div class="card delivery-card">
+          <h3>Managed Services</h3>
+          <p>Ongoing management, monitoring and optimisation. For organisations who want Strategix to operate and continuously improve their technology environment on an accountable, ongoing basis.</p>
+          <ul class="delivery-list">
+            <li>Managed cloud infrastructure and IaaS</li>
+            <li>24/7 security monitoring and response</li>
+            <li>Managed XGRC® platform administration</li>
+            <li>Data platform operations and support</li>
+            <li>Service desk and end-user support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Final CTA ───────────────────────────────────────── -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="card cta-block">
+        <span class="eyebrow"><span class="dot"></span>Get started with Strategix</span>
+        <h2>Ready to work with the full group?</h2>
+        <p class="lede">Whether you start with XGRC® Software, a cloud migration, an ERP rollout, or a data transformation — Strategix is the one group that can take you all the way.</p>
+        <div class="cta-actions">
+          <a href="https://www.strategix.co.za" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Talk to Strategix</a>
+          <a href="/demo" class="btn btn-ghost">Book an XGRC® demo</a>
+        </div>
+        <p class="contact-line">
+          {offices.map((o) => `${o.city} · ${o.phone}`).join('  ·  ')}
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 18px; max-width: 18ch; }
+  .head-actions { display: flex; gap: 14px; margin-top: 26px; flex-wrap: wrap; }
+  .center { text-align: center; margin-left: auto; margin-right: auto; }
+  .section-head.center { max-width: 640px; }
+
+  /* stats band */
+  .stats-band { padding: 48px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat-cell { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; border-right: 1px solid var(--line); padding: 0 12px; }
+  .stat-cell:last-child { border-right: none; }
+  .stat-value { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--ink); }
+  .stat-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); }
+
+  /* model hub */
+  .model-hub { display: flex; flex-direction: column; align-items: center; gap: 14px; margin: 44px 0 36px; }
+  .hub-logo-link { display: inline-flex; transition: transform 0.2s var(--ease); }
+  .hub-logo-link:hover { transform: translateY(-3px); }
+  .hub-logo { width: 100%; max-width: 220px; height: auto; object-fit: contain; filter: drop-shadow(0 0 30px rgba(48, 226, 244, 0.14)); }
+  .hub-hint { font-size: 13px; color: var(--faint); }
+
+  /* model tiles */
+  .model-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 720px; margin: 0 auto; }
+  .model-tile {
+    position: relative;
+    text-align: left;
+    padding: 20px 22px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    background: color-mix(in srgb, var(--tile-color) 24%, var(--panel));
+    transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s;
+    font-family: var(--font-body);
+    color: var(--ink);
+  }
+  .model-tile::after {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: 14px;
+    border: 1px solid color-mix(in srgb, var(--tile-color) 45%, transparent);
+    pointer-events: none;
+  }
+  .model-tile:hover { transform: translateY(-3px); }
+  .model-tile.is-active { background: color-mix(in srgb, var(--tile-color) 42%, var(--panel)); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35); }
+  .model-tile-tag { display: block; font-weight: 700; font-size: 0.98rem; margin-bottom: 4px; }
+  .model-tile-sub { display: block; font-size: 12.5px; color: rgba(255, 255, 255, 0.72); }
+
+  /* model detail panel */
+  .model-detail { margin-top: 32px; padding: clamp(24px, 4vw, 36px); background: var(--panel); border: 1px solid var(--line-strong); border-radius: var(--radius-md); animation: modelDetailIn 0.3s var(--ease) both; }
+  .model-detail[hidden] { display: none; }
+  @keyframes modelDetailIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .model-detail-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+  .model-detail-eyebrow { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); display: block; margin-bottom: 6px; }
+  .model-detail-head h3 { margin: 0 0 8px; }
+  .model-detail-head p { font-size: 0.94rem; color: var(--mute); max-width: 560px; margin: 0; }
+  .model-detail-marker { font-size: 11.5px; color: var(--green); margin-top: 10px; font-weight: 500; }
+  .model-detail-close { background: none; border: 1px solid var(--line); border-radius: 8px; color: var(--faint); font-size: 18px; line-height: 1; padding: 6px 11px; cursor: pointer; flex-shrink: 0; transition: border-color 0.15s, color 0.15s; }
+  .model-detail-close:hover { border-color: var(--line-strong); color: var(--ink); }
+  /* .model-cap-card and everything beneath it is injected client-side by the
+     script below, so it never receives Astro's scoping attribute — these
+     rules must be :global() or they silently never match. */
+  .model-cap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  :global(.model-cap-card) { padding: 18px 20px; border: 1px solid var(--line); border-radius: 10px; transition: background 0.18s, border-color 0.18s; }
+  :global(.model-cap-card:hover), :global(.model-cap-card.open) { background: var(--panel-hover); border-color: var(--line-strong); }
+  :global(.model-cap-card h4) { font-size: 13.5px; font-weight: 700; color: var(--ink); margin: 0 0 6px; }
+  :global(.model-cap-card p) { font-size: 12.5px; color: var(--mute); margin: 0 0 10px; line-height: 1.5; }
+  :global(.model-cap-toggle) { font-size: 11px; color: var(--faint); font-weight: 600; letter-spacing: 0.04em; cursor: pointer; }
+  :global(.model-cap-card.open .model-cap-toggle) { color: var(--cyan); }
+  :global(.model-svc-chips) { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+  :global(.model-svc-chips[hidden]) { display: none; }
+  :global(.model-svc-chip) { font-size: 11px; color: var(--mute); background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 4px 9px; }
+
+  /* bridge */
+  .bridge-box { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; padding: clamp(28px, 5vw, 44px); }
+  .bridge-body h3 { margin: 10px 0 14px; }
+  .bridge-body p { font-size: 0.96rem; }
+  .bridge-body p + p { margin-top: 10px; }
+  .bridge-ctas { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
+
+  /* pillars */
+  .pillar-icon { font-size: 1.5rem; margin-bottom: 16px; opacity: 0.9; color: var(--cyan); }
+
+  /* delivery */
+  .delivery-card p { margin: 8px 0 0; }
+  .delivery-list { list-style: none; margin-top: 18px; display: flex; flex-direction: column; gap: 8px; }
+  .delivery-list li { font-size: 13px; color: var(--mute); display: flex; align-items: center; gap: 9px; }
+  .delivery-list li::before { content: '→'; color: var(--cyan); font-size: 12px; flex-shrink: 0; }
+
+  /* CTA */
+  .cta-block { text-align: center; padding: clamp(36px, 6vw, 64px); background: linear-gradient(160deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02)); border-color: var(--line-strong); }
+  .cta-block h2 { margin: 10px 0 14px; max-width: 580px; margin-left: auto; margin-right: auto; }
+  .cta-block .lede { margin: 0 auto 28px; max-width: 540px; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .contact-line { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
+
+  @media (max-width: 900px) {
+    .bridge-box { grid-template-columns: 1fr; }
+    .bridge-ctas { flex-direction: row; flex-wrap: wrap; }
+  }
+  @media (max-width: 600px) {
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat-cell:nth-child(2) { border-right: none; }
+    .stat-cell:nth-child(3), .stat-cell:nth-child(4) { border-top: 1px solid var(--line); padding-top: 16px; }
+  }
+  @media (max-width: 560px) {
+    .model-grid { grid-template-columns: 1fr; max-width: 420px; }
+    .model-cap-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script define:vars={{ DIVISIONS: divisions }}>
+  (function () {
+    const panel = document.getElementById('modelDetailPanel');
+    const hint = document.getElementById('hubHint');
+    const tiles = document.querySelectorAll('.model-tile');
+    const DEFAULT_HINT = 'Select a division to explore its capabilities.';
+    let activeKey = null;
+
+    function renderCaps(caps) {
+      const grid = document.getElementById('modelCapGrid');
+      grid.innerHTML = '';
+      caps.forEach((cap) => {
+        const card = document.createElement('div');
+        card.className = 'model-cap-card';
+        const hasSvcs = Array.isArray(cap.svcs) && cap.svcs.length > 0;
+        const chips = hasSvcs ? cap.svcs.map((s) => `<span class="model-svc-chip">${s}</span>`).join('') : '';
+        card.innerHTML =
+          `<h4>${cap.name}</h4><p>${cap.desc}</p>` +
+          (hasSvcs ? `<span class="model-cap-toggle">View services &rarr;</span><div class="model-svc-chips" hidden>${chips}</div>` : '');
+        const toggle = card.querySelector('.model-cap-toggle');
+        if (toggle) {
+          toggle.addEventListener('click', () => {
+            const open = card.classList.toggle('open');
+            const chipsDiv = card.querySelector('.model-svc-chips');
+            chipsDiv.hidden = !open;
+            toggle.innerHTML = open ? 'Hide services &uarr;' : 'View services &rarr;';
+          });
+        }
+        grid.appendChild(card);
+      });
+    }
+
+    function closeDetail() {
+      activeKey = null;
+      panel.hidden = true;
+      tiles.forEach((t) => { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+      hint.textContent = DEFAULT_HINT;
+    }
+
+    function selectDivision(key) {
+      const d = DIVISIONS.find((x) => x.key === key);
+      if (!d) return;
+      activeKey = key;
+      tiles.forEach((t) => {
+        const isActive = t.dataset.div === key;
+        t.classList.toggle('is-active', isActive);
+        t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+      document.getElementById('modelDetailEyebrow').textContent = d.tagline;
+      document.getElementById('modelDetailTitle').textContent = d.tag;
+      document.getElementById('modelDetailDesc').textContent = d.desc;
+      document.getElementById('modelDetailMarker').textContent = d.marker || '';
+      renderCaps(d.caps);
+      panel.hidden = false;
+      hint.textContent = `Exploring ${d.tag}.`;
+      setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+    }
+
+    tiles.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (activeKey === btn.dataset.div) { closeDetail(); return; }
+        selectDivision(btn.dataset.div);
+      });
+    });
+
+    document.getElementById('modelDetailClose').addEventListener('click', closeDetail);
+  }());
+</script>

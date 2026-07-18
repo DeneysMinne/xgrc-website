@@ -1,0 +1,101 @@
+---
+import Base from '../../layouts/Base.astro';
+import { legalDocs } from '../../data/legalContent.js';
+
+const binding = ['data-processing-addendum', 'acceptable-use-policy', 'support-policy'];
+const publicNotices = ['privacy-policy', 'cookie-policy', 'website-terms-of-use', 'privacy-requests', 'paia-manual'];
+const reference = ['contract-framework'];
+
+const docCard = (slug) => ({ slug, ...legalDocs[slug] });
+---
+
+<Base
+  title="Legal Hub | XGRC® Software"
+  description="Access all legal terms, contractual addenda, operational policies, and customer transparency documents for XGRC® Software, provided by Strategix Application Solutions (Pty) Ltd."
+>
+  <section class="page-head">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>Legal</span>
+      <h1>Legal Hub.</h1>
+      <p class="lede">All legal terms, contractual addenda, operational policies, and customer transparency documents that support the delivery of XGRC® Software.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Incorporated by reference</span>
+        <h2>Binding customer documents.</h2>
+        <p class="lede">These documents are incorporated by reference into the XGRC® SaaS Agreement. By signing the Proposal & Order Form, the customer confirms it has reviewed and accepts these documents.</p>
+      </div>
+      <div class="grid cols-3">
+        {binding.map((slug) => {
+          const d = docCard(slug);
+          return (
+            <a class="card doc-card" href={`/legal/${slug}`}>
+              <h3>{d.title}</h3>
+              <p>{d.intro}</p>
+              <span class="link-arrow">Read {d.title} &rarr;</span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Public notices</span>
+        <h2>Website & privacy policies.</h2>
+        <p class="lede">Informational notices governing use of the XGRC® website and how we handle personal information.</p>
+      </div>
+      <div class="grid cols-3">
+        {publicNotices.map((slug) => {
+          const d = docCard(slug);
+          return (
+            <a class="card doc-card" href={`/legal/${slug}`}>
+              <h3>{d.title}</h3>
+              <p>{d.intro || `${d.title} for XGRC® Software.`}</p>
+              <span class="link-arrow">Read {d.title} &rarr;</span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Reference</span>
+        <h2>How our contracts fit together.</h2>
+      </div>
+      <div class="grid cols-3">
+        {reference.map((slug) => {
+          const d = docCard(slug);
+          return (
+            <a class="card doc-card" href={`/legal/${slug}`}>
+              <h3>{d.title}</h3>
+              <p>{d.intro}</p>
+              <span class="link-arrow">Read {d.title} &rarr;</span>
+            </a>
+          );
+        })}
+        <a class="card doc-card" href="/trust">
+          <h3>Trust Centre</h3>
+          <p>Security, hosting, subprocessors, and data protection information for procurement due diligence.</p>
+          <span class="link-arrow">Visit Trust Centre &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 18px; }
+  .doc-card { text-decoration: none; display: flex; flex-direction: column; cursor: pointer; }
+  .doc-card p { font-size: 0.9rem; }
+  .doc-card .link-arrow { margin-top: auto; padding-top: 16px; }
+</style>

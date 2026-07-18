@@ -47,7 +47,7 @@ const localFrameworks  = ['POPIA', 'PAIA', 'King V'];
 
 
 const whyPoints = [
-  { stat: '800+',         label: 'Companies',      body: 'Organisations across southern Africa and the UK trust XGRC® to drive compliance at enterprise scale.' },
+  { stat: '800+',         label: 'Companies',      body: 'Organisations across Africa, Europe, Australia and the Americas trust XGRC® to drive compliance at enterprise scale — a global platform, wherever they operate.' },
   { stat: 'ISO 27001',    label: ':2022 Certified', body: 'The XGRC® platform is certified to the latest international standard for information security management.' },
   { stat: '1',            label: 'Platform',        body: 'One auditable data layer across governance, risk, compliance, ESG, and data protection — no double-entry, no tool sprawl.' },
   { stat: 'SA + UK',      label: 'Regulations',     body: 'Purpose-built for South African and UK regulatory environments — POPIA, PAIA, King V, and GDPR, in a single platform.' },
@@ -78,6 +78,7 @@ const schema = JSON.stringify({
 <Base
   title="GRC Platform — Governance, Risk & Compliance | XGRC®"
   description="XGRC® is an enterprise GRC platform that unifies governance, risk, compliance, ESG and data protection (GDPR, POPIA) into one auditable system. Trusted by 800+ companies."
+  ogImage="/assets/og/og-grc-software.jpg"
 >
   <script type="application/ld+json" set:html={schema} />
 
@@ -145,7 +146,7 @@ const schema = JSON.stringify({
           <span class="dc-dot dc-red"></span>
           <span class="dc-dot dc-yellow"></span>
           <span class="dc-dot dc-green"></span>
-          <span class="dc-url" id="dashUrl">app.xgrcsoftware.com &nbsp;·&nbsp; Enterprise Risk Overview</span>
+          <span class="dc-url" id="dashUrl">v5.xgrc.cloud &nbsp;·&nbsp; Enterprise Risk Overview</span>
         </div>
         <div class="dash-screen">
           <img id="dashImg" src="/assets/screenshots/erm-dashboard.jpg" alt="XGRC Enterprise Risk Management dashboard" width="2648" height="1418" loading="lazy" />
@@ -256,7 +257,7 @@ const schema = JSON.stringify({
       setTimeout(() => {
         img.src = tab.dataset.img;
         img.alt = tab.dataset.label;
-        url.textContent = 'app.xgrcsoftware.com  ·  ' + tab.dataset.label;
+        url.textContent = 'v5.xgrc.cloud  ·  ' + tab.dataset.label;
         img.classList.remove('is-switching');
       }, 220);
     });

@@ -1,14 +1,17 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { solutions, solutionDetails } from '../../data/site.js';
+import { solutions, solutionDetails, implementationPartners } from '../../data/site.js';
 const points = [
   'One source of truth',
   'Consistent workflows and approvals',
   'A continuous audit trail across all disciplines'
 ];
+const nativeSolutions = solutions.filter((s) => !s.partner && !s.available);
+const availableSolutions = solutions.filter((s) => s.available);
+const partnerSolutions = solutions.filter((s) => s.partner);
 ---
 
-<Base title="Solutions | XGRC® Software" description="A modular governance, risk and compliance platform. Specialist solutions on one secure, auditable foundation.">
+<Base title="Solutions | XGRC® Software" description="A modular governance, risk and compliance platform. Specialist solutions on one secure, auditable foundation." ogImage="/assets/og/og-solutions.jpg">
   <section class="page-head">
     <div class="container">
       <span class="eyebrow"><span class="dot"></span>XGRC® Software Solutions</span>
@@ -31,21 +34,23 @@ const points = [
     </div>
   </section>
 
+  <!-- ── Native XGRC® Software Solutions ──────────────────── -->
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>The suite</span>
-        <h2>Specialist solutions, connected by one platform.</h2>
+        <span class="eyebrow"><span class="dot"></span>Built by XGRC®</span>
+        <h2>Native XGRC® Software Solutions.</h2>
+        <p class="lede">Specialist modules, built and owned by XGRC®, running natively on one connected platform and data foundation.</p>
       </div>
       <div class="grid cols-3">
-        {solutions.map((s) => {
+        {nativeSolutions.map((s) => {
           const hasDetail = !!solutionDetails[s.slug];
           const Tag = hasDetail ? 'a' : 'div';
           return (
             <Tag
               id={s.slug}
-              class={`card sol-card ${s.partner ? 'card--partner' : ''} ${hasDetail ? 'sol-card--linked' : ''}`}
-              {...(hasDetail ? { href: `/solutions/${s.slug}` } : {})}
+              class={`card sol-card ${hasDetail ? 'sol-card--linked' : ''}`}
+              {...(hasDetail ? { href: `/${s.slug}/` } : {})}
             >
               <span class="tag">{s.tag}</span>
               <h3>{s.name}</h3>
@@ -54,6 +59,85 @@ const points = [
             </Tag>
           );
         })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Available Platform Solutions ─────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>On the platform</span>
+        <h2>Available Platform Solutions.</h2>
+        <p class="lede">Configured solutions available within XGRC® Software for customers that require specific governance, compliance or operational workflows.</p>
+      </div>
+      <div class="grid cols-3">
+        {availableSolutions.map((s) => {
+          const hasDetail = !!solutionDetails[s.slug];
+          const Tag = hasDetail ? 'a' : 'div';
+          return (
+            <Tag
+              id={s.slug}
+              class={`card sol-card ${hasDetail ? 'sol-card--linked' : ''}`}
+              {...(hasDetail ? { href: `/${s.slug}/` } : {})}
+            >
+              <span class="tag">{s.tag}</span>
+              <h3>{s.name}</h3>
+              <p>{s.blurb}</p>
+              {hasDetail && <span class="link-arrow">Explore {s.name} &rarr;</span>}
+            </Tag>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Partner Software Solutions ───────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Embedded partners</span>
+        <h2>Partner Software Solutions.</h2>
+        <p class="lede">Selected partner software solutions extend XGRC® Software where specialist third-party capability adds value to a customer deployment.</p>
+      </div>
+      <div class="grid cols-3">
+        {partnerSolutions.map((s) => {
+          const hasDetail = !!solutionDetails[s.slug];
+          const Tag = hasDetail ? 'a' : 'div';
+          return (
+            <Tag
+              id={s.slug}
+              class={`card sol-card card--partner ${hasDetail ? 'sol-card--linked' : ''}`}
+              {...(hasDetail ? { href: `/${s.slug}/` } : {})}
+            >
+              <span class="tag">{s.tag}</span>
+              <h3>{s.name}</h3>
+              <p>{s.blurb}</p>
+              {hasDetail && <span class="link-arrow">Explore {s.name} &rarr;</span>}
+            </Tag>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Implementation and Delivery Partners ─────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Delivery network</span>
+        <h2>Implementation and Delivery Partners.</h2>
+        <p class="lede">Implementation partners support delivery, adoption and customer enablement. They are not XGRC® Software products.</p>
+      </div>
+      <div class="grid cols-3">
+        {implementationPartners.map((p) => (
+          <a class="card partner-card" href={p.url} target="_blank" rel="noopener noreferrer">
+            <span class="tag">{p.region}</span>
+            <h3>{p.name}</h3>
+            <p>{p.blurb}</p>
+            <span class="link-arrow">Visit website &rarr;</span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -69,4 +153,6 @@ const points = [
   .small { font-size: 0.98rem; }
   .sol-card--linked { text-decoration: none; display: flex; flex-direction: column; cursor: pointer; }
   .sol-card--linked .link-arrow { margin-top: auto; padding-top: 16px; }
+  .partner-card { text-decoration: none; display: flex; flex-direction: column; cursor: pointer; }
+  .partner-card .link-arrow { margin-top: auto; padding-top: 16px; }
 </style>

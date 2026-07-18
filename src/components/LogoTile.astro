@@ -1,0 +1,250 @@
+---
+// Shared customer-logo tile. Renders three variants:
+//  - pending: no logo file yet (name-only placeholder)
+//  - static: has a logo, but no case study or website link — behaves like a plain glass tile
+//  - flip:   has a case study and/or website url — hover/focus/tap flips the tile to reveal it
+const { name, logo, url, caseStudySlug } = Astro.props;
+const LOGO_BASE = '/assets/logos/customers/';
+const hasBack = Boolean(url || caseStudySlug);
+---
+
+{!logo ? (
+  <div class="logo-tile logo-tile--pending" title={name}>
+    <span class="glow" aria-hidden="true"></span>
+    <span class="logo-name">{name}</span>
+  </div>
+) : hasBack ? (
+  <div class="logo-tile logo-tile--flip">
+    <span class="glow" aria-hidden="true"></span>
+    {caseStudySlug && <span class="cs-dot" title="Case study available" aria-hidden="true"></span>}
+    <div class="tile-card">
+      <div class="tile-face tile-face--front">
+        <img src={`${LOGO_BASE}${logo}`} alt={name} loading="lazy" decoding="async" />
+      </div>
+      <div class="tile-face tile-face--back">
+        <span class="tb-name">{name}</span>
+        <span class="tb-links">
+          {caseStudySlug && (
+            <a href={`/case-studies/${caseStudySlug}.pdf`} class="tb-link" download aria-label={`${name} case study (PDF download)`}>
+              Case study <span aria-hidden="true">↓</span>
+            </a>
+          )}
+          {url && (
+            <a href={url} class="tb-link" target="_blank" rel="noopener noreferrer" aria-label={`Visit ${name} website`}>
+              Visit site <span aria-hidden="true">→</span>
+            </a>
+          )}
+        </span>
+      </div>
+    </div>
+  </div>
+) : (
+  <div class="logo-tile" title={name}>
+    <span class="glow" aria-hidden="true"></span>
+    <img src={`${LOGO_BASE}${logo}`} alt={name} loading="lazy" decoding="async" />
+  </div>
+)}
+
+<style>
+  /* ── Shared tile shell ────────────────────────────────── */
+  .logo-tile {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 14px;
+    isolation: isolate;
+  }
+
+  /* Faint backlight — shared by every variant */
+  .logo-tile .glow {
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 50% 50%, rgba(48, 226, 244, 0.10) 0%, rgba(38, 158, 198, 0.04) 45%, transparent 70%);
+    opacity: 0.5;
+    transition: opacity 0.4s var(--ease), inset 0.4s var(--ease);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .logo-tile:hover .glow, .logo-tile:focus-within .glow, .logo-tile.is-flipped .glow { opacity: 0.9; inset: -32px; }
+
+  /* ── Static / plain tile (no back content) ───────────── */
+  .logo-tile:not(.logo-tile--flip):not(.logo-tile--pending) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-top-color: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 5px 22px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.13);
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+    cursor: default;
+  }
+  .logo-tile:not(.logo-tile--flip):not(.logo-tile--pending):hover {
+    transform: translateY(-7px);
+    box-shadow: 0 18px 52px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 0 1px rgba(48, 226, 244, 0.18);
+    border-top-color: rgba(255, 255, 255, 0.32);
+  }
+  .logo-tile:not(.logo-tile--flip) > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Pending (no logo yet) ────────────────────────────── */
+  .logo-tile--pending {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
+    opacity: 0.40;
+    border: 1px solid rgba(48, 226, 244, 0.09);
+    border-top-color: rgba(48, 226, 244, 0.15);
+    border-radius: 14px;
+    transition: opacity 0.4s var(--ease);
+  }
+  .logo-tile--pending:hover { opacity: 0.70; }
+  .logo-tile--pending .glow {
+    background: radial-gradient(ellipse at 50% 50%, rgba(48, 226, 244, 0.07) 0%, transparent 65%);
+  }
+  .logo-name {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--mute);
+    text-align: center;
+    line-height: 1.45;
+    max-width: 120px;
+    padding: 0 6px;
+  }
+
+  /* ── Case-study indicator dot ─────────────────────────── */
+  .cs-dot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px rgba(48, 226, 244, 0.75), 0 0 0 2px rgba(6, 15, 28, 0.7);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  /* ── Flip tile ─────────────────────────────────────────── */
+  .logo-tile--flip {
+    perspective: 900px;
+    z-index: 1;
+  }
+  .logo-tile--flip:hover,
+  .logo-tile--flip:focus-within,
+  .logo-tile--flip.is-flipped {
+    z-index: 5;
+  }
+  .tile-card {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0.15, 0.2, 1);
+    border-radius: 14px;
+  }
+  .logo-tile--flip:hover .tile-card,
+  .logo-tile--flip:focus-within .tile-card,
+  .logo-tile--flip.is-flipped .tile-card {
+    transform: rotateY(180deg) scale(1.08);
+  }
+  .tile-face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+    box-shadow: 0 5px 22px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.13);
+    transition: box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+  }
+  .logo-tile--flip:hover .tile-face,
+  .logo-tile--flip:focus-within .tile-face,
+  .logo-tile--flip.is-flipped .tile-face {
+    box-shadow: 0 18px 52px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 0 1px rgba(48, 226, 244, 0.18);
+  }
+  .tile-face--front {
+    padding: 10%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-top-color: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .tile-face--front img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .tile-face--back {
+    flex-direction: column;
+    gap: 8px;
+    padding: 14% 10%;
+    text-align: center;
+    background: linear-gradient(160deg, rgba(48, 226, 244, 0.14), rgba(10, 23, 41, 0.94));
+    border: 1px solid rgba(48, 226, 244, 0.28);
+    transform: rotateY(180deg);
+  }
+  .tb-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+  .tb-links { display: flex; flex-direction: column; gap: 7px; }
+  .tb-link {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.02em;
+    color: var(--cyan);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .tb-link:hover { color: var(--cyan-hi); }
+
+  @media (max-width: 600px) {
+    .logo-name { font-size: 10px; }
+    .tb-name { font-size: 11px; }
+    .tb-link { font-size: 10px; }
+  }
+</style>
+
+<script>
+  // Touch/tap fallback: hover and :focus-within already flip on desktop/keyboard.
+  // On touch devices, first tap on a tile flips it; a second tap on a back-face
+  // link follows it normally; tapping elsewhere on the page closes any open tile.
+  if (!document.body.dataset.logoTileBound) {
+    document.body.dataset.logoTileBound = 'true';
+    document.addEventListener('click', (e) => {
+      const target = e.target;
+      const tile = target.closest('.logo-tile--flip');
+      if (!tile) {
+        document.querySelectorAll('.logo-tile--flip.is-flipped').forEach((t) => t.classList.remove('is-flipped'));
+        return;
+      }
+      if (tile.classList.contains('is-flipped') && target.closest('a')) return;
+      e.preventDefault();
+      document.querySelectorAll('.logo-tile--flip.is-flipped').forEach((t) => {
+        if (t !== tile) t.classList.remove('is-flipped');
+      });
+      tile.classList.toggle('is-flipped');
+    });
+  }
+</script>

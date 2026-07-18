@@ -7,7 +7,8 @@ const isActive = (href) => href === '/' ? path === '/' : path.startsWith(href);
 <header class="site-header" id="siteHeader">
   <div class="container bar">
     <a href="/" class="brand" aria-label={brand.name}>
-      <img src="/assets/xgrc-logo-nav.png" alt="XGRC Software" class="brand-logo" />
+      <img src="/assets/logos/brand/xgrc-icon-white.png" alt="" aria-hidden="true" class="brand-icon" />
+      <span class="brand-word"><span class="bw-x">X</span>GRC<sup class="bw-reg">&reg;</sup></span>
     </a>
 
     <nav class="primary" aria-label="Primary">
@@ -20,6 +21,7 @@ const isActive = (href) => href === '/' ? path === '/' : path.startsWith(href);
       ))}
     </nav>
 
+    <a href="/login" class="nav-link nav-login">Customer login</a>
     <a href="/demo" class="btn btn-primary nav-cta">Book a demo</a>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
@@ -31,6 +33,7 @@ const isActive = (href) => href === '/' ? path === '/' : path.startsWith(href);
     {nav.map((item) => (
       <a href={item.href} {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{item.label}</a>
     ))}
+    <a href="/login">Customer login</a>
     <a href="/demo" class="btn btn-primary">Book a demo</a>
   </nav>
 </header>
@@ -46,15 +49,19 @@ const isActive = (href) => href === '/' ? path === '/' : path.startsWith(href);
   .site-header.scrolled { background: rgba(6, 15, 28, 0.9); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); }
   .bar { display: flex; align-items: center; gap: 18px; height: 74px; }
 
-  .brand { display: flex; align-items: center; text-decoration: none; margin-right: auto; }
-  .brand-logo { height: 36px; width: auto; display: block; }
+  .brand { display: flex; align-items: center; gap: 9px; text-decoration: none; margin-right: auto; }
+  .brand-icon { height: 32px; width: auto; display: block; }
+  .brand-word { font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: -0.01em; color: var(--ink); white-space: nowrap; }
+  .bw-x { background: linear-gradient(180deg, var(--cyan), #eaf05a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .bw-reg { font-size: 0.55em; font-weight: 600; color: var(--ink); vertical-align: super; margin-left: 2px; }
 
   .primary { display: flex; gap: 20px; align-items: center; }
   .nav-link { color: var(--mute); text-decoration: none; font-size: 13.5px; font-weight: 500; transition: color 0.2s; white-space: nowrap; }
   .nav-link:hover, .nav-link.is-active { color: var(--ink); }
   .nav-link.is-active { color: var(--cyan); }
+  .nav-login { flex-shrink: 0; }
 
-  .nav-cta { padding: 9px 17px; font-size: 13.5px; }
+  .nav-cta { padding: 9px 17px; font-size: 13.5px; flex-shrink: 0; white-space: nowrap; }
 
   .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 8px; }
   .menu-toggle span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: 0.25s; }

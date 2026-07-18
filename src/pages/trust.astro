@@ -1,0 +1,126 @@
+---
+import Base from '../layouts/Base.astro';
+import { brand } from '../data/site.js';
+
+const sections = [
+  {
+    title: 'Security & certification',
+    body: 'XGRC® Software is certified to ISO 27001:2022 for information security management, covering the governance, risk assessment, controls and continuous improvement processes that protect customer data.',
+    href: '/trust/cybersecurity-data-protection-policy',
+  },
+  {
+    title: 'Data hosting & residency',
+    body: 'XGRC® Software is hosted on Microsoft Azure in the West Europe (Netherlands) region. Azure\'s infrastructure holds its own ISO 27001, ISO 27017, ISO 27018 and SOC 2 Type II certifications.',
+    href: '/trust/data-hosting',
+  },
+  {
+    title: 'Subprocessors',
+    body: 'Our primary subprocessors are Microsoft Azure and Microsoft 365, used for hosting, infrastructure and productivity services. Customers receive advance written notice of any material subprocessor change, with the right to raise objections on data protection grounds.',
+    href: '/trust/subprocessors',
+  },
+  {
+    title: 'Data protection',
+    body: 'Customer personal data is processed under a Data Processing Addendum satisfying POPIA section 21 operator agreement requirements, with a 72-hour security incident notification commitment and defined data subject rights handling.',
+    href: '/legal/data-processing-addendum',
+  },
+];
+
+const policies = [
+  { name: 'Privacy Policy', slug: 'privacy-policy' },
+  { name: 'Cookie Policy', slug: 'cookie-policy' },
+  { name: 'Website Terms of Use', slug: 'website-terms-of-use' },
+  { name: 'Privacy Requests', slug: 'privacy-requests' },
+];
+---
+
+<Base
+  title="Trust Centre | XGRC® Software"
+  description="Review XGRC® Software security, hosting, subprocessors, and data protection information for procurement due diligence."
+  ogImage="/assets/og/og-trust-centre.jpg"
+>
+  <section class="page-head">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>Trust Centre</span>
+      <h1>Security and compliance, on the record.</h1>
+      <p class="lede">Everything your procurement, security, or legal team needs to evaluate XGRC® Software — hosting, certifications, subprocessors, and data protection commitments.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid cols-2 trust-grid">
+        {sections.map((s) => (
+          <a class="card trust-card" href={s.href}>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+            <span class="link-arrow">Read more &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="card policies-card">
+        <span class="eyebrow"><span class="dot"></span>Policies</span>
+        <h2>Privacy Policy, Cookie Policy & Website Terms.</h2>
+        <p class="lede">Our full legal and policy documentation is published in the Legal Hub, including the Data Processing Addendum and SaaS-incorporated policies.</p>
+        <div class="policy-links">
+          {policies.map((p) => (
+            <a href={`/legal/${p.slug}`} class="policy-link">{p.name}</a>
+          ))}
+          <a href="/legal" class="policy-link policy-link--all">All legal documents &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="card cta-block">
+        <div class="cta-tag"><span class="dot"></span>Due diligence</div>
+        <h2>Need a security questionnaire completed, or a signed DPA?</h2>
+        <p class="lede">Our team can provide security questionnaire responses, certification evidence, and signed data processing documentation for procurement review.</p>
+        <div class="cta-actions">
+          <a href="/contact" class="btn btn-primary">Contact us</a>
+        </div>
+        <p class="contact-line">{brand.email} &middot; {brand.phone}</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 18px; max-width: 20ch; }
+  .trust-grid { gap: 24px; }
+  .trust-card { text-decoration: none; display: flex; flex-direction: column; cursor: pointer; }
+  .trust-card h3 { margin-bottom: 10px; }
+  .trust-card p { color: var(--mute); font-size: 0.95rem; line-height: 1.6; }
+  .trust-card .link-arrow { margin-top: auto; padding-top: 14px; }
+  .policies-card { background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02)); border-color: var(--line-strong); }
+  .policies-card h2 { margin: 6px 0 14px; }
+  .policy-links { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 20px; }
+  .policy-link { font-size: 0.9rem; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; }
+  .policy-link:hover { color: var(--cyan); border-color: var(--cyan); }
+  .policy-link--all { color: var(--cyan); border: none; font-weight: 500; }
+  .cta-block {
+    text-align: center;
+    padding: clamp(36px, 6vw, 64px);
+    background: linear-gradient(160deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02));
+    border-color: var(--line-strong);
+  }
+  .cta-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--cyan); margin-bottom: 16px;
+  }
+  .cta-block h2 { margin-bottom: 14px; max-width: 580px; margin-left: auto; margin-right: auto; }
+  .cta-block .lede { margin: 0 auto 28px; max-width: 540px; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .contact-line { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
+  @media (max-width: 700px) {
+    .trust-grid { grid-template-columns: 1fr; }
+  }
+</style>

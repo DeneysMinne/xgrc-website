@@ -1,2 +1,18 @@
 public/assets/videos/
 scripts/generate-pdfs/.venv/
+
+# build artifacts
+node_modules/
+dist/
+.astro/
+
+# python
+__pycache__/
+*.pyc
+form-handler/.venv/
+
+# editor/os
+.DS_Store
+
+# claude code local state
+.claude/

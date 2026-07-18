@@ -2,6 +2,126 @@
 // Content sourced from xgrcsoftware.com — all rights reserved XGRC® Software.
 export const articleContent = {
 
+'what-is-governed-ai-for-grc': `Most organisations did not choose to have an AI governance gap. It happened by default — employees started using ChatGPT and similar tools for real work faster than policies, permissions, or audit trails could catch up. In governance, risk and compliance functions specifically, that gap is dangerous: the data involved — risk registers, audit findings, policy content — is exactly the data an organisation cannot afford to expose, store externally, or use without an audit trail.
+
+What Is Governed AI for GRC?
+
+Governed AI for GRC is the controlled use of artificial intelligence to interrogate governance, risk, compliance, audit and policy data — within defined user permissions, security controls, and a complete audit trail of every interaction. It is not a separate AI product bolted onto existing governance tools. It is AI designed from the outset to operate inside the same boundaries, permissions, and accountability structures as the rest of the governance environment.
+
+Governed AI vs Generic AI Tools
+
+Generic AI tools are built for general-purpose use: broad access to whatever is pasted in, no persistent permission model, and typically no audit trail of what was asked or answered. Using them against governance data means an organisation cannot say with confidence who accessed what, whether the AI's output influenced a real compliance decision, or whether sensitive data left the organisation's control. Governed AI closes each of these gaps by design — access follows existing user permissions, every interaction is logged, and outputs are explainable rather than opaque.
+
+When Organisations Need Governed AI
+
+The need typically surfaces once governance data has grown too large and fragmented for manual analysis — a board member asks a residual-risk question that takes two days to answer, or an audit committee wants a real-time compliance summary that today requires pulling data from four disconnected systems. At that point, generic AI tools look tempting and are exactly the wrong answer, because the data at stake is the same data an ISO 27001 or POPIA audit would scrutinise.
+
+Standards Context: ISO/IEC 42001
+
+ISO/IEC 42001 is the first international standard for AI management systems, addressing exactly this governance gap — how organisations should manage AI risk, oversight and accountability. Organisations adopting AI in governance contexts should expect ISO/IEC 42001 alignment to become a due-diligence expectation, in the same way ISO 27001 is now for information security.
+
+How MAIA® Delivers Governed AI
+
+MAIA® is XGRC®'s governed AI for GRC — embedded within the platform so that AI interactions inherit existing user permissions, operate through controlled, audited AI integrations, and produce a complete interaction audit trail. Every question MAIA® answers draws only on data the requesting user is already authorised to see, and every interaction is logged for later review.
+
+Governed AI is not about avoiding AI. It is about using it without creating the very governance risk it is meant to reduce. Organisations that get this right gain faster insight without accepting a new, ungoverned data risk in return.`,
+
+'what-is-iso-42001': `Every major information security programme today references ISO 27001. Very few organisations have an equivalent answer for AI. ISO/IEC 42001 was published to close that gap — the first international standard specifically for managing AI within an organisation, rather than treating it as an unmanaged add-on to existing systems.
+
+What Is ISO/IEC 42001?
+
+ISO/IEC 42001 is an international standard that specifies requirements for establishing, implementing, maintaining and continually improving an AI management system. It covers AI risk assessment, data governance, transparency, human oversight, and continual improvement — applied specifically to how an organisation designs, deploys and monitors AI systems, rather than general IT governance.
+
+Why It Exists
+
+AI adoption has moved faster than governance in most organisations. Tools are deployed departmentally, data boundaries are unclear, and accountability for AI-driven decisions is often undefined. ISO/IEC 42001 gives organisations a structured framework to close that gap — the same role ISO 27001 plays for information security, or ISO 9001 for quality management.
+
+Who Needs ISO/IEC 42001
+
+Organisations building or embedding AI capability into governance, risk, compliance, or other sensitive business functions are the clearest candidates — anywhere AI-driven decisions carry regulatory, financial, or reputational consequences if oversight fails. It is particularly relevant to software vendors embedding AI into products used for governance and compliance, where customers will reasonably expect evidence of AI oversight as part of procurement due diligence.
+
+What ISO/IEC 42001 Requires
+
+At a structural level, it mirrors other ISO management-system standards: documented AI policies, risk assessment specific to AI use cases, defined roles and accountability, human oversight mechanisms, and a continual improvement cycle — plus AI-specific requirements around data quality, transparency of AI-driven outputs, and impact assessment.
+
+How XGRC® Is Preparing
+
+XGRC® is targeting ISO/IEC 42001 certification for September 2026. MAIA®, XGRC®'s governed AI for GRC, is already built around the principles the standard requires — permission alignment, a complete AI interaction audit trail, explainable outputs, and controlled, audited AI integrations — ahead of formal certification.
+
+ISO/IEC 42001 will do for AI governance what ISO 27001 did for information security: turn an assumed good practice into a demonstrable, auditable standard. Organisations evaluating AI-enabled governance tools should be asking vendors where they stand against it now, not after certification becomes the market expectation.`,
+
+'supplier-compliance-software-vs-procurement-systems': `A signed purchase order does not tell you whether a contractor's safety certification is still valid, whether a supplier's B-BBEE status has lapsed, or whether a third party has ever been vetted at all. Procurement systems and supplier compliance software solve different problems, and organisations that rely on one to do the other's job discover the gap only when an incident forces the question.
+
+What Procurement Systems Do
+
+Procurement systems manage the commercial lifecycle of a purchase — requisitions, purchase orders, vendor payments, and contract value. They answer questions like what was ordered, from whom, and for how much. They are not built to track whether a supplier is legally, safely, or contractually compliant to do the work.
+
+What Supplier Compliance Software Does
+
+Supplier compliance software manages the risk lifecycle of a third-party relationship — onboarding, document verification, ongoing compliance monitoring, risk scoring, and expiry tracking for certificates, insurance, and safety documentation. It answers a different question: is this supplier currently compliant, and who is accountable if they are not?
+
+Where the Gap Appears
+
+Organisations that rely on procurement systems alone typically discover compliance gaps reactively — a site incident reveals a contractor's safety certification lapsed months earlier, or an audit finds active suppliers who were never formally vetted. The purchase order was processed correctly. The compliance obligation was never tracked at all.
+
+When Organisations Need Supplier Compliance Software
+
+The trigger is usually a combination of factors: a large or growing supplier and contractor base, safety-critical site work performed by third parties, regulatory requirements around vetting such as B-BBEE or ISO 45001 contractor management, or a compliance incident that exposed the gap in procurement-only tracking.
+
+How Compliance Hub Fits Alongside Procurement
+
+XGRC® Compliance Hub is not a procurement replacement — it runs alongside existing procurement systems, managing supplier onboarding, document expiry tracking, risk-based scoring, and ongoing compliance monitoring. Compliance obligations connect to the same governed data foundation as XGRC®'s other solutions, including XLOGIC® for turning compliance policy into enforced, evidenced workflow.
+
+Procurement answers what you bought and from whom. Supplier compliance answers whether you should have. Organisations need both systems, doing different jobs, rather than asking one to cover for the other.`,
+
+'policy-management-vs-governance-execution': `A policy that has been written, approved, and filed is not the same thing as a policy that is being followed. Most organisations discover this gap not through their own monitoring, but through an audit finding, an incident investigation, or a regulator's question that the approved document was never designed to answer.
+
+What Policy Management Software Does
+
+Policy management software handles the document lifecycle of governance — drafting, version control, approval workflows, distribution, and acknowledgement tracking. It answers questions like which version is current, who approved it, and who has confirmed they read it.
+
+What Governance Execution Does
+
+Governance execution goes a step further: it converts the obligations inside a policy into structured, assigned, trackable workflows with continuous evidence capture. Instead of asking whether a policy was distributed, it tracks whether the controls the policy requires are actually being performed, by whom, and with what evidence.
+
+Where Policy Management Alone Falls Short
+
+A policy can be approved, distributed, and universally acknowledged, and still not be operating in practice. Acknowledgement tracking proves someone read a document. It does not prove a control is functioning, that an obligation is being met, or that evidence exists to demonstrate it during an audit. This is the gap internal audit findings repeatedly expose: policies that exist on paper but were never operationalised into day-to-day work.
+
+When Organisations Need Governance Execution
+
+The signal is usually an audit or incident finding: a documented control that turns out not to be operating effectively, a governance framework defined at board level with no visible connection to daily operations, or compliance evidence that only gets gathered reactively once an audit is announced.
+
+How XLOGIC® Delivers Governance Execution
+
+XLOGIC® is XGRC®'s governance execution solution — it converts policies, frameworks, controls and obligations into structured workflows with assigned accountability, continuous evidence capture, and full auditability. It is not a document repository; it operationalises what the policy already says should happen, and gives you evidence that it did.
+
+Policy management proves a document exists and was distributed. Governance execution proves the obligations inside it are actually being met. Most organisations already have the first. Very few have built the second — until an audit shows them the difference.`,
+
+'integrated-assurance-vs-internal-audit-software': `An internal audit function can run a flawless annual plan, close every finding on schedule, and still leave the board without a clear answer to a basic question: across every line of defence, what risks currently have no assurance coverage at all? That question is what separates internal audit software from integrated assurance.
+
+What Internal Audit Software Does
+
+Internal audit software manages the audit function itself — risk-based planning, fieldwork, evidence capture, findings, and corrective action tracking. It is built around the audit lifecycle: plan, execute, report, follow up.
+
+What Integrated Assurance Does
+
+Integrated assurance coordinates assurance activity across every line of defence — internal audit, risk management, compliance, and external assurance providers — against a single, live combined assurance matrix. It answers a broader question than any one audit plan can: who is providing assurance over which risks, where is coverage duplicated, and where is there none at all.
+
+Where Internal Audit Software Alone Falls Short
+
+Internal audit software, used in isolation, optimises the audit function without necessarily connecting it to the organisation's actual risk landscape. Audit findings are tracked to closure, but the audit plan itself may still be built from intuition and prior-year precedent rather than current risk data — meaning audit effort can be well-executed and still misallocated.
+
+When Organisations Need Integrated Assurance
+
+The trigger is usually a governance or reporting gap: combined assurance maps that live in outdated slide decks, a board or audit committee asking for assurance coverage the internal audit plan alone cannot answer, or coverage gaps and duplication discovered only when someone manually reconciles multiple assurance sources.
+
+How XGRC® Integrated Assurance Connects the Picture
+
+XGRC® Integrated Assurance manages the full internal audit lifecycle — risk-based planning, fieldwork, findings and corrective actions — while maintaining a live combined assurance matrix connected directly to the same risk register used in XGRC® ERM. Audit planning reflects current risk, not last year's assumptions, and assurance coverage across all four lines of defence is visible in real time rather than reconstructed for each board meeting.
+
+Internal audit software makes the audit function efficient. Integrated assurance makes assurance itself complete — connecting every line of defence to one risk picture, so gaps are visible before the board has to ask.`,
+
 'why-ai-governance-is-becoming-a-competitive-advantage': `AI Governance Is No Longer Just About Risk
 
 For many organisations, conversations about artificial intelligence have focused on one thing: risk. Concerns around data privacy, regulatory compliance, bias, transparency, and accountability have dominated discussions as businesses race to adopt AI-powered tools and technologies. While these concerns remain valid, forward-thinking organisations are beginning to view AI governance differently. Instead of seeing governance as a necessary control mechanism, they are recognising it as a strategic business advantage. As AI becomes increasingly embedded into business operations, organisations that can govern AI effectively will be better positioned to innovate confidently, respond to regulatory changes, build stakeholder trust, and make more informed decisions. The question is no longer whether organisations should govern AI. The real question is whether they can afford not to.
@@ -385,13 +505,13 @@ The Value of Digital ISO 27001 Software
 
 Modern cybersecurity compliance tools streamline Information Security Management System oversight by centralising governance processes. Key advantages include structured risk assessment workflows, centralised policy management and version control, automated control tracking and mapping, integrated incident and corrective action logging, real-time compliance dashboards, and defensible audit trails. Rather than scrambling ahead of audits, organisations maintain continuous readiness.
 
-How MSXCyber Simplifies ISO 27001 Compliance
+How MSXCyber® Simplifies ISO 27001 Compliance
 
-MSXCyber provides a centralised cybersecurity and governance platform designed to support ISO 27001 implementation and ongoing ISMS management. By connecting risks, controls, policies, incidents, and audit evidence within a single framework, MSXCyber enables organisations to map and manage ISO 27001 controls digitally, track risk treatment plans in real time, maintain structured documentation repositories, generate audit-ready reports instantly, and strengthen overall cybersecurity governance. The result is a more efficient certification journey and stronger, sustainable compliance.
+MSXCyber® provides a centralised cybersecurity and governance platform designed to support ISO 27001 implementation and ongoing ISMS management. By connecting risks, controls, policies, incidents, and audit evidence within a single framework, MSXCyber® enables organisations to map and manage ISO 27001 controls digitally, track risk treatment plans in real time, maintain structured documentation repositories, generate audit-ready reports instantly, and strengthen overall cybersecurity governance. The result is a more efficient certification journey and stronger, sustainable compliance.
 
 From Certification to Continuous Cyber Resilience
 
-ISO 27001 should not be treated as a one-time achievement. It is a framework for ongoing information security improvement. Digitally enabled compliance ensures that cybersecurity governance becomes embedded in daily operations — not revisited only during audit season. MSXCyber supports that shift from manual administration to structured, data-driven risk management.`,
+ISO 27001 should not be treated as a one-time achievement. It is a framework for ongoing information security improvement. Digitally enabled compliance ensures that cybersecurity governance becomes embedded in daily operations — not revisited only during audit season. MSXCyber® supports that shift from manual administration to structured, data-driven risk management.`,
 
 'simplifying-esg-reporting-through-centralised-environmental-data': `Environmental, Social, and Governance (ESG) reporting is no longer optional. Across global markets, organisations are facing increasing regulatory scrutiny, investor expectations, and stakeholder pressure to demonstrate measurable sustainability performance. Yet many businesses are still managing environmental data through disconnected spreadsheets, emails, and departmental systems. The result: inconsistent reporting, time-consuming consolidation, and increased compliance risk. Effective ESG reporting requires centralised environmental governance — not manual administration.
 

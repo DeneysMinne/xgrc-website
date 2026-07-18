@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import { trustDocs } from '../../data/legalContent.js';
+
+export function getStaticPaths() {
+  return Object.keys(trustDocs).map((doc) => ({ params: { doc } }));
+}
+
+const { doc } = Astro.params;
+const content = trustDocs[doc];
+if (!content) return Astro.redirect('/trust');
+---
+
+<Base
+  title={`${content.title} | Trust Centre | XGRC® Software`}
+  description={content.intro || `${content.title} for XGRC® Software.`}
+>
+  <section class="page-head">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/trust">Trust Centre</a>
+        <span aria-hidden="true">/</span>
+        <span>{content.title}</span>
+      </div>
+      <span class="eyebrow"><span class="dot"></span>XGRC® Software · {content.reference || 'Trust Centre'}</span>
+      <h1>{content.title}</h1>
+      <p class="meta">
+        {content.version && <>Version: {content.version} &middot; </>}
+        Last updated: {content.lastUpdated}
+        {content.effective && <> &middot; Effective: {content.effective}</>}
+      </p>
+      {content.intro && <p class="lede">{content.intro}</p>}
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container narrow">
+      {content.sections.map((s) => (
+        <div class="doc-section">
+          {s.h && <h2>{s.h}</h2>}
+          {s.body && <p>{s.body}</p>}
+          {s.list && (
+            <ul>
+              {s.list.map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+          {s.table && (
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>{s.table.headers.map((h) => <th>{h}</th>)}</tr>
+                </thead>
+                <tbody>
+                  {s.table.rows.map((row) => (
+                    <tr>{row.map((cell) => <td>{cell}</td>)}</tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container narrow">
+      <div class="card cta-card">
+        <p>Need a security questionnaire completed, or a signed copy for procurement?</p>
+        <a href="/contact" class="btn btn-ghost">Contact us</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 10px 0 12px; max-width: 26ch; }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--faint); margin-bottom: 18px; }
+  .breadcrumb a { color: var(--faint); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--cyan); }
+  .meta { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-bottom: 18px; }
+  .narrow { max-width: 800px; }
+  .doc-section { margin-bottom: 36px; }
+  .doc-section h2 { font-size: 1.25rem; margin-bottom: 12px; }
+  .doc-section p { color: var(--mute); line-height: 1.7; font-size: 0.96rem; }
+  .doc-section ul { margin: 0; padding-left: 20px; color: var(--mute); line-height: 1.8; font-size: 0.96rem; }
+  .doc-section ul li { margin-bottom: 6px; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius-md); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cyan); background: var(--panel); white-space: nowrap; }
+  td { color: var(--mute); }
+  tr:last-child td { border-bottom: none; }
+
+  .cta-card { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding: 26px 28px; }
+  .cta-card p { margin: 0; color: var(--mute); font-size: 0.95rem; }
+
+  @media (max-width: 640px) {
+    .table-wrap table { min-width: 480px; }
+  }
+</style>

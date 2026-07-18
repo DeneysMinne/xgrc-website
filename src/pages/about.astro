@@ -20,11 +20,11 @@ import { milestones, people } from '../data/site.js';
         <h2>A decade of Driving Compliance®.</h2>
       </div>
       <ol class="timeline">
-        {milestones.map((m) => (
-          <li class="event">
-            <div class="year">{m.year}</div>
+        {milestones.map((m, i) => (
+          <li class={`event ${i % 2 === 0 ? 'is-left' : 'is-right'}`}>
             <div class="node" aria-hidden="true"></div>
             <div class="body">
+              <div class="year">{m.year}</div>
               <h3>{m.title}</h3>
               <p>{m.body}</p>
             </div>
@@ -34,41 +34,60 @@ import { milestones, people } from '../data/site.js';
     </div>
   </section>
 
-  <!-- Humans behind the code -->
-  <section class="section--tight">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>The humans behind the code</span>
-        <h2>{people.length} people, one mission.</h2>
-        <p class="lede">Every card is a name and a superpower. The team that builds, secures and supports the platform.</p>
+  <!-- Humans behind the code — renders nothing until people[] is populated -->
+  {people.length > 0 && (
+    <section class="section--tight">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow"><span class="dot"></span>The humans behind the code</span>
+          <h2>{people.length} people, one mission.</h2>
+          <p class="lede">Every card is a name and a superpower. The team that builds, secures and supports the platform.</p>
+        </div>
+        <div class="people">
+          {people.map((p) => (
+            <div class="person">
+              <div class="avatar" aria-hidden="true">{p.name.split(' ').map((w) => w[0]).join('').slice(0, 2)}</div>
+              <div class="pname">{p.name}</div>
+              <div class="power">{p.superpower}</div>
+            </div>
+          ))}
+        </div>
       </div>
-      <div class="people">
-        {people.map((p) => (
-          <div class="person">
-            <div class="avatar" aria-hidden="true">{p.name.split(' ').map((w) => w[0]).join('').slice(0, 2)}</div>
-            <div class="pname">{p.name}</div>
-            <div class="power">{p.superpower}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
 </Base>
 
 <style>
   .page-head { padding: 130px 0 0; }
   .page-head h1 { margin: 8px 0 18px; }
 
-  /* timeline */
-  .timeline { list-style: none; position: relative; margin-left: 8px; padding-left: 40px; }
-  .timeline::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px;
+  /* timeline — centered spine, events alternating left/right */
+  .timeline { list-style: none; position: relative; margin: 0 auto; max-width: 880px; padding: 8px 0; }
+  .timeline::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-50%);
     background: linear-gradient(180deg, var(--cyan), var(--blue) 60%, transparent); }
-  .event { position: relative; padding: 0 0 36px 0; }
-  .event .year { font-family: var(--font-mono); font-size: 13px; color: var(--cyan); margin-bottom: 6px; }
-  .event .node { position: absolute; left: -47px; top: 2px; width: 14px; height: 14px; border-radius: 50%;
+  .event { position: relative; width: 50%; box-sizing: border-box; padding-bottom: 44px; }
+  .event.is-left { left: 0; padding-right: 44px; text-align: right; }
+  .event.is-right { left: 50%; padding-left: 44px; text-align: left; }
+  .event .node { position: absolute; top: 3px; width: 14px; height: 14px; border-radius: 50%;
     background: var(--void); border: 2px solid var(--cyan); box-shadow: 0 0 14px rgba(48,226,244,0.6); }
+  .event.is-left .node { right: -7px; }
+  .event.is-right .node { left: -7px; }
+  .event .year { font-family: var(--font-mono); font-size: 13px; color: var(--cyan); margin-bottom: 6px; }
   .event .body h3 { margin-bottom: 6px; }
-  .event .body p { max-width: 60ch; font-size: 0.96rem; }
+  .event .body p { font-size: 0.96rem; }
+  .event.is-left .body p { margin-left: auto; }
+  .event.is-right .body p { margin-right: auto; }
+  .event .body p { max-width: 38ch; }
+
+  @media (max-width: 700px) {
+    .timeline { padding-left: 40px; max-width: none; }
+    .timeline::before { left: 0; transform: none; }
+    .event, .event.is-left, .event.is-right {
+      width: 100%; left: 0; padding-right: 0; padding-left: 0; text-align: left;
+    }
+    .event.is-left .node, .event.is-right .node { left: -47px; right: auto; }
+    .event.is-left .body p, .event.is-right .body p { margin-left: 0; margin-right: 0; max-width: 60ch; }
+  }
 
   /* people */
   .people { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
