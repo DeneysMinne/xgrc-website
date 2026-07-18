@@ -69,6 +69,25 @@ const orgSchema = JSON.stringify({
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
     <script type="application/ld+json" set:html={orgSchema} />
+
+    <!-- Google Analytics (GA4) — only fires on the real production domain, so
+         staging traffic and local testing never pollute production data. -->
+    <script>
+      const GA_MEASUREMENT_ID = 'G-XKBDKND5LZ';
+      const PRODUCTION_HOSTNAMES = ['xgrcsoftware.com', 'www.xgrcsoftware.com'];
+      if (PRODUCTION_HOSTNAMES.includes(window.location.hostname)) {
+        const tag = document.createElement('script');
+        tag.async = true;
+        tag.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+        document.head.appendChild(tag);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(...args) { window.dataLayer.push(args); }
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', GA_MEASUREMENT_ID);
+      }
+    </script>
   </head>
   <body>
     <Nav />
