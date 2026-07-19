@@ -1192,17 +1192,89 @@ export const stats = [
 ];
 
 // Testimonials — real quotes only; component renders nothing if array is empty.
-// PLACEHOLDER samples below are commented out and must NEVER ship to production.
-// Owner: add real attributed quotes (name + role + company + permission) here.
+// Sourced verbatim from the published case studies in public/case-studies/.
+// Two quotes in the Pple Group case study carry only a role, no named
+// individual, and one TN Ceramics quote appears twice under two different
+// names in the source PDF (a copy-paste artefact there) — all three were
+// left out here rather than publish an unclear or duplicated attribution.
 export const testimonials = [
-  // PLACEHOLDER — not for production:
-  // {
-  //   quote: "XGRC® gave us a single view of every compliance obligation across our sites. Audit prep that used to take weeks now takes days.",
-  //   name: "Name Surname",
-  //   role: "Group SHEQ Manager",
-  //   company: "Company Name",
-  //   outcome: null,  // optional: e.g. "Renewed ISO 45001 certification October 2024"
-  // },
+  {
+    quote: "By implementing XGRC SHEQX® and ENVIRX, we have seen a 30% reduction in administrative workload and a 25% improvement in incident and inspection data accuracy output. This has enabled our teams to focus on more value-adding activities that drive risk and compliance.",
+    name: "Lucky Ncayiyana",
+    role: "Group SHERQ Manager",
+    company: "Servest",
+    outcome: "30% reduction in administrative workload",
+  },
+  {
+    quote: "Switching to SHEQX® has been a game-changer. We've cut admin, gained visibility, and built a more proactive safety culture.",
+    name: "Clinton Venter",
+    role: "Group SHEQ Manager",
+    company: "Sandton Plant Hire",
+    outcome: null,
+  },
+  {
+    quote: "SHEQX® has become more than a reporting tool. It has transformed how we embed safety and accountability into our daily operations. Real-time insights give our teams the visibility to act fast and the confidence to maintain the highest environmental and compliance standards.",
+    name: "Juan Dorfling",
+    role: "Group Safety Manager",
+    company: "Interwaste",
+    outcome: null,
+  },
+  {
+    quote: "We chose XGRC Software because of their deep understanding of compliance management and their ability to provide an integrated, digital solution. Since partnering with XGRC, we have not only achieved ISO certification but have also streamlined our compliance processes, allowing us to focus on strategic growth.",
+    name: "Edward Heynes",
+    role: "Group Executive: Business Excellence and Supply Chain",
+    company: "Servest",
+    outcome: null,
+  },
+  {
+    quote: "Implementing SHEQX® has been a turning point in our compliance journey. We have not only digitised key processes but also gained real-time visibility into SHEQ performance across the group.",
+    name: "Larna Jodamus",
+    role: "Group Compliance Manager",
+    company: "Commercial Cold Holdings",
+    outcome: null,
+  },
+  {
+    quote: "SHEQX® empowers our teams to manage risk proactively. With better data and mobile functionality, we have created a safer, smarter operating environment.",
+    name: "Jurie Schoeman",
+    role: "Chief Operations Officer",
+    company: "Commercial Cold Holdings",
+    outcome: null,
+  },
+  {
+    quote: "From a finance and operations perspective, we needed a partner that could deliver more than just compliance. XGRC® gave us visibility, integration, and control. It's already paying off — in both accuracy and peace of mind.",
+    name: "Petrus Roets",
+    role: "Financial Director",
+    company: "Sandton Plant Hire",
+    outcome: null,
+  },
+  {
+    quote: "The encryption and secure access protocols within the XGRC platform have been instrumental in protecting our data. This level of security gives us confidence in meeting industry standards and ensuring that our stakeholders' information remains protected.",
+    name: "Stuart Kader",
+    role: "Group Digital Transformation & Technology Director",
+    company: "Servest",
+    outcome: null,
+  },
+  {
+    quote: "The integration of ISO 9001 quality management into our SHEQX® platform was transformative. With support from GRC Link, we now consistently deliver superior products, significantly boosting our market competitiveness.",
+    name: "Chad Cardoso",
+    role: "Managing Director",
+    company: "Vican Manufacturing",
+    outcome: null,
+  },
+  {
+    quote: "With the SHEQX® platform and ISO 9001 integration, supported by GRC Link, our operational processes have become streamlined and transparent, directly contributing to customer trust and operational efficiency.",
+    name: "Ryan Palmer",
+    role: "Operations Manager",
+    company: "Vican Manufacturing",
+    outcome: null,
+  },
+  {
+    quote: "Implementing XGRC solutions with GRC Link transformed our approach. We now manage compliance and quality proactively, enhancing our operational excellence significantly.",
+    name: "Herford Dennis",
+    role: "Managing Director",
+    company: "TN Ceramics",
+    outcome: null,
+  },
 ];
 
 export const offices = [
