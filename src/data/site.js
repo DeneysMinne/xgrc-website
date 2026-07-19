@@ -1179,35 +1179,36 @@ export const milestones = [
   { year: 'Sep 2026', title: 'ISO/IEC 42001 certification audit', body: 'XGRC® undergoes its ISO/IEC 42001 certification audit, targeting governed AI certification for MAIA®.' },
 ];
 
-// About — "humans behind the code".
-// division must be one of the four keys in about.astro's `divisions` list
-// ('Business' | 'Application' | 'Technology' | 'Data') — it colour-codes the card.
+// About — "humans behind the code". The XGRC team (21 people) who build,
+// secure and support the platform. This is the XGRC website, so there is no
+// division split here (divisions are a Strategix group concept, not XGRC's).
 // photo: filename under /public/assets/team/ (omit for an initials avatar).
 // superpower / humanTrait: keep each to ONE short clause (see reference cards).
+// Card colours are decorative only (rotated by position in about.astro).
 // These are PLACEHOLDERS — swap for the real 21-person XGRC list when it lands.
 // Renders nothing on the About page until populated (see about.astro).
 export const people = [
-  { name: 'Name Surname', title: 'Chief Executive Officer', division: 'Business', superpower: 'Turning frantic audit requirements into calm UI', humanTrait: 'Unapologetic cat enthusiast' },
-  { name: 'Name Surname', title: 'Chief Technology Officer', division: 'Technology', superpower: 'Architecting systems that never sleep', humanTrait: 'Actually needs 8 hours of sleep' },
-  { name: 'Name Surname', title: 'Head of Product', division: 'Application', superpower: 'Untangling complex compliance knots into clean code', humanTrait: 'Bakes a mean sourdough loaf on weekends' },
-  { name: 'Name Surname', title: 'Lead Data Engineer', division: 'Data', superpower: 'Making a million rows confess in seconds', humanTrait: 'Collects vinyl nobody has heard of' },
-  { name: 'Name Surname', title: 'Solutions Architect', division: 'Application', superpower: 'Drawing the diagram that ends the meeting', humanTrait: 'Runs ultramarathons for fun' },
-  { name: 'Name Surname', title: 'Senior Developer', division: 'Technology', superpower: 'Deleting more code than they write', humanTrait: 'Fluent in three languages, none of them Java' },
-  { name: 'Name Surname', title: 'QA Lead', division: 'Application', superpower: 'Breaking it before the customer can', humanTrait: 'Grows chillies hot enough to void warranties' },
-  { name: 'Name Surname', title: 'Security Engineer', division: 'Technology', superpower: 'Thinking like the person you hope never calls', humanTrait: 'Picks locks as a party trick' },
-  { name: 'Name Surname', title: 'Data Analyst', division: 'Data', superpower: 'Finding the story hiding in the spreadsheet', humanTrait: 'Weekend astrophotographer' },
-  { name: 'Name Surname', title: 'UX Designer', division: 'Application', superpower: 'Making the hard thing feel obvious', humanTrait: 'Sketches strangers on the train' },
-  { name: 'Name Surname', title: 'Implementation Consultant', division: 'Business', superpower: 'Translating boardroom into backlog', humanTrait: 'Keeps bees on a city rooftop' },
-  { name: 'Name Surname', title: 'Customer Success Manager', division: 'Business', superpower: 'Answering the question behind the question', humanTrait: 'Undefeated at office table tennis' },
-  { name: 'Name Surname', title: 'DevOps Engineer', division: 'Technology', superpower: 'Making deploys boring on purpose', humanTrait: 'Restores vintage motorbikes' },
-  { name: 'Name Surname', title: 'Support Lead', division: 'Business', superpower: 'Staying calm when the ticket is on fire', humanTrait: 'Volunteer wildlife photographer' },
-  { name: 'Name Surname', title: 'Backend Developer', division: 'Technology', superpower: 'Writing the query that used to time out', humanTrait: 'Home barista with strong opinions' },
-  { name: 'Name Surname', title: 'Frontend Developer', division: 'Application', superpower: 'Pixels that behave on every screen', humanTrait: 'Speedruns retro platformers' },
-  { name: 'Name Surname', title: 'Data Governance Specialist', division: 'Data', superpower: 'Knowing exactly where every record lives', humanTrait: 'Curates a very serious tea collection' },
-  { name: 'Name Surname', title: 'Business Analyst', division: 'Business', superpower: 'Turning "it depends" into a decision', humanTrait: 'Weekend stand-up comedian' },
-  { name: 'Name Surname', title: 'Project Manager', division: 'Business', superpower: 'Herding deadlines that would rather not', humanTrait: 'Competitive open-water swimmer' },
-  { name: 'Name Surname', title: 'Machine Learning Engineer', division: 'Data', superpower: 'Teaching the model to admit when it is unsure', humanTrait: 'Builds mechanical keyboards from scratch' },
-  { name: 'Name Surname', title: 'Technical Writer', division: 'Application', superpower: 'Making the manual the thing people actually read', humanTrait: 'Reads a book a week, always physical' },
+  { name: 'Name Surname', title: 'Chief Executive Officer', superpower: 'Turning frantic audit requirements into calm UI', humanTrait: 'Unapologetic cat enthusiast' },
+  { name: 'Name Surname', title: 'Chief Technology Officer', superpower: 'Architecting systems that never sleep', humanTrait: 'Actually needs 8 hours of sleep' },
+  { name: 'Name Surname', title: 'Head of Product', superpower: 'Untangling complex compliance knots into clean code', humanTrait: 'Bakes a mean sourdough loaf on weekends' },
+  { name: 'Name Surname', title: 'Lead Data Engineer', superpower: 'Making a million rows confess in seconds', humanTrait: 'Collects vinyl nobody has heard of' },
+  { name: 'Name Surname', title: 'Solutions Architect', superpower: 'Drawing the diagram that ends the meeting', humanTrait: 'Runs ultramarathons for fun' },
+  { name: 'Name Surname', title: 'Senior Developer', superpower: 'Deleting more code than they write', humanTrait: 'Fluent in three languages, none of them Java' },
+  { name: 'Name Surname', title: 'QA Lead', superpower: 'Breaking it before the customer can', humanTrait: 'Grows chillies hot enough to void warranties' },
+  { name: 'Name Surname', title: 'Security Engineer', superpower: 'Thinking like the person you hope never calls', humanTrait: 'Picks locks as a party trick' },
+  { name: 'Name Surname', title: 'Data Analyst', superpower: 'Finding the story hiding in the spreadsheet', humanTrait: 'Weekend astrophotographer' },
+  { name: 'Name Surname', title: 'UX Designer', superpower: 'Making the hard thing feel obvious', humanTrait: 'Sketches strangers on the train' },
+  { name: 'Name Surname', title: 'Implementation Consultant', superpower: 'Translating boardroom into backlog', humanTrait: 'Keeps bees on a city rooftop' },
+  { name: 'Name Surname', title: 'Customer Success Manager', superpower: 'Answering the question behind the question', humanTrait: 'Undefeated at office table tennis' },
+  { name: 'Name Surname', title: 'DevOps Engineer', superpower: 'Making deploys boring on purpose', humanTrait: 'Restores vintage motorbikes' },
+  { name: 'Name Surname', title: 'Support Lead', superpower: 'Staying calm when the ticket is on fire', humanTrait: 'Volunteer wildlife photographer' },
+  { name: 'Name Surname', title: 'Backend Developer', superpower: 'Writing the query that used to time out', humanTrait: 'Home barista with strong opinions' },
+  { name: 'Name Surname', title: 'Frontend Developer', superpower: 'Pixels that behave on every screen', humanTrait: 'Speedruns retro platformers' },
+  { name: 'Name Surname', title: 'Data Governance Specialist', superpower: 'Knowing exactly where every record lives', humanTrait: 'Curates a very serious tea collection' },
+  { name: 'Name Surname', title: 'Business Analyst', superpower: 'Turning "it depends" into a decision', humanTrait: 'Weekend stand-up comedian' },
+  { name: 'Name Surname', title: 'Project Manager', superpower: 'Herding deadlines that would rather not', humanTrait: 'Competitive open-water swimmer' },
+  { name: 'Name Surname', title: 'Machine Learning Engineer', superpower: 'Teaching the model to admit when it is unsure', humanTrait: 'Builds mechanical keyboards from scratch' },
+  { name: 'Name Surname', title: 'Technical Writer', superpower: 'Making the manual the thing people actually read', humanTrait: 'Reads a book a week, always physical' },
 ];
 
 // Proof stats — powers the stats band on the homepage.

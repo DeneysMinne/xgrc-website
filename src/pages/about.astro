@@ -11,14 +11,10 @@ const divisions = [
   { tag: 'Data Solutions', tagline: 'Know your data', color: '#d97a1f' },
 ];
 
-// Maps a person's short division key to its display tag + colour.
-const DIVISION_MAP = {
-  Business: { tag: 'Business Solutions', color: '#2f5fb0' },
-  Application: { tag: 'Application Solutions', color: '#21895a' },
-  Technology: { tag: 'Technology Solutions', color: '#6b3fa0' },
-  Data: { tag: 'Data Solutions', color: '#d97a1f' },
-};
-const personDivision = (key) => DIVISION_MAP[key] || { tag: 'XGRC® Software', color: '#30e2f4' };
+// Decorative-only palette for the team cards. No meaning attached — just a
+// rotation so the grid stays lively (like the reference), keyed by position.
+const CARD_COLORS = ['#30e2f4', '#6b3fa0', '#21895a', '#d97a1f', '#2f5fb0', '#c2456b'];
+const cardColor = (i) => CARD_COLORS[i % CARD_COLORS.length];
 
 const offices = [
   { city: 'Johannesburg', country: 'South Africa', icon: 'hillbrow' },
@@ -165,14 +161,13 @@ const offices = [
           <p class="lede">Enterprise software doesn't build itself. Hover over the team, or tap on mobile, to see what makes each of us tick.</p>
         </div>
         <div class="people">
-          {people.map((p) => {
+          {people.map((p, i) => {
             const initials = p.name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase();
-            const dv = personDivision(p.division);
             return (
               <button
                 type="button"
                 class="person"
-                style={`--card-color: ${dv.color};`}
+                style={`--card-color: ${cardColor(i)};`}
                 aria-label={`${p.name}, ${p.title}. Superpower: ${p.superpower}. Human trait: ${p.humanTrait}.`}
               >
                 <span class="person-face">
@@ -183,7 +178,6 @@ const offices = [
                   )}
                   <span class="p-name">{p.name}</span>
                   <span class="p-title">{p.title}</span>
-                  <span class="p-division">{dv.tag}</span>
                 </span>
                 <span class="person-reveal" aria-hidden="true">
                   <span class="pr-block">
@@ -295,7 +289,7 @@ const offices = [
     .event.is-left .body p, .event.is-right .body p { margin-left: 0; margin-right: 0; max-width: 60ch; }
   }
 
-  /* people — hover/tap-reveal cards, tinted per division */
+  /* people — hover/tap-reveal cards, decorative colour rotation (no meaning) */
   .people { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   .person {
     position: relative; isolation: isolate;
@@ -343,10 +337,9 @@ const offices = [
     border: 1px solid color-mix(in srgb, var(--card-color) 65%, transparent);
   }
   .p-name { font-family: var(--font-display); font-weight: 600; font-size: 1rem; line-height: 1.25; }
-  .p-title { font-size: 0.8rem; color: var(--mute); line-height: 1.3; max-width: 22ch; }
-  .p-division {
-    font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: color-mix(in srgb, var(--card-color) 55%, var(--mute)); margin-top: 4px;
+  .p-title {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: color-mix(in srgb, var(--card-color) 45%, var(--mute)); line-height: 1.4; max-width: 22ch; margin-top: 3px;
   }
   /* back */
   .person-reveal { opacity: 0; transform: translateY(8px); }
