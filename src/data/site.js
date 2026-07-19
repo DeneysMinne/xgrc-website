@@ -1210,7 +1210,7 @@ export const testimonials = [
     name: "Clinton Venter",
     role: "Group SHEQ Manager",
     company: "Sandton Plant Hire",
-    outcome: null,
+    outcome: "Leagues ahead of any system the team has used",
   },
   {
     quote: "SHEQX® has become more than a reporting tool. It has transformed how we embed safety and accountability into our daily operations. Real-time insights give our teams the visibility to act fast and the confidence to maintain the highest environmental and compliance standards.",
@@ -1241,11 +1241,11 @@ export const testimonials = [
     outcome: "Faster incident response and trend identification",
   },
   {
-    quote: "From a finance and operations perspective, we needed a partner that could deliver more than just compliance. XGRC® gave us visibility, integration, and control. It's already paying off — in both accuracy and peace of mind.",
+    quote: "From a finance and operations perspective, we needed a partner that could deliver more than just compliance. XGRC® gave us visibility, integration, and control. It's already paying off, in both accuracy and peace of mind.",
     name: "Petrus Roets",
     role: "Financial Director",
     company: "Sandton Plant Hire",
-    outcome: null,
+    outcome: "A smart investment in visibility and control",
   },
   {
     quote: "The encryption and secure access protocols within the XGRC platform have been instrumental in protecting our data. This level of security gives us confidence in meeting industry standards and ensuring that our stakeholders' information remains protected.",
