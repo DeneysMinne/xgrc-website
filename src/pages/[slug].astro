@@ -73,6 +73,9 @@ const schema = JSON.stringify({
         {detail.icon && (
           <img src={detail.icon} alt="" aria-hidden="true" class="sol-product-icon" loading="eager" />
         )}
+        {detail.poweredBy && (
+          <div class="powered-by-badge"><span class="dot"></span>Powered by {detail.poweredBy}</div>
+        )}
         <h1>{detail.name}</h1>
         <p class="sol-headline">{detail.headline}</p>
         <p class="lede sol-lede">{detail.lede}</p>
@@ -306,8 +309,8 @@ const schema = JSON.stringify({
     <div class="container">
       <div class="card cta-block">
         <div class="cta-tag"><span class="dot"></span>{detail.tag}</div>
-        <h2>See {detail.name} running in your environment.</h2>
-        <p class="lede">Talk to an XGRC® specialist about how {detail.name} fits your organisation's specific compliance and governance requirements.</p>
+        <h2>{detail.ctaHeadline || `See ${detail.name} running in your environment.`}</h2>
+        <p class="lede">{detail.ctaBody || `Talk to an XGRC® specialist about how ${detail.name} fits your organisation's specific compliance and governance requirements.`}</p>
         <div class="cta-actions">
           <a href="/demo" class="btn btn-primary">Request a live demo</a>
           <a href="/use-cases" class="btn btn-ghost">See use cases</a>
@@ -352,6 +355,28 @@ const schema = JSON.stringify({
     display: block;
     margin-bottom: 16px;
     filter: drop-shadow(0 2px 12px rgba(48,226,244,0.3));
+  }
+
+  /* ── Powered-by badge (used where a solution has no icon asset yet) ── */
+  .powered-by-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    border: 1px solid rgba(48,226,244,0.25);
+    border-radius: 100px;
+    padding: 7px 14px 7px 12px;
+    background: rgba(48,226,244,0.05);
+    margin-bottom: 18px;
+  }
+  .powered-by-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--cyan); box-shadow: 0 0 8px var(--cyan);
+    flex-shrink: 0;
   }
 
   /* ── Dashboard frame ─────────────────────────────────── */
