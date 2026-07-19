@@ -1184,34 +1184,34 @@ export const milestones = [
 // split here (divisions are a Strategix group concept, not XGRC's).
 // photo: filename under /public/assets/team/ (omit for an initials avatar).
 // Names + titles are REAL (from the org chart). superpower / humanTrait are
-// still placeholders ('[ To follow ]') until Deneys supplies the real ones;
-// keep each to ONE short clause when they land (see reference cards).
+// FUN PLACEHOLDERS generated to fill the cards until each person supplies
+// their own; role-flavoured superpowers + light, wholesome traits. Keep each
+// to ONE short clause when the real ones replace these (see reference cards).
 // Card colours are decorative only (rotated by position in about.astro).
 // Renders nothing on the About page until populated (see about.astro).
-const TF = '[ To follow ]';
 export const people = [
-  { name: 'Jacob O’Brien', title: 'Chief Executive Officer', superpower: TF, humanTrait: TF },
-  { name: 'Stefan Venter', title: 'Chief Technology Officer', superpower: TF, humanTrait: TF },
-  { name: 'Stanly O’Brien', title: 'Chief Operations Officer', superpower: TF, humanTrait: TF },
-  { name: 'Deneys Minne', title: 'Chief Revenue Officer', superpower: TF, humanTrait: TF },
-  { name: 'Nic Roets', title: 'Development Manager', superpower: TF, humanTrait: TF },
-  { name: 'Alexis van Eck', title: 'General Manager', superpower: TF, humanTrait: TF },
-  { name: 'Revalisha Moodley', title: 'Business Development Manager', superpower: TF, humanTrait: TF },
-  { name: 'Lilly Breytenbach', title: 'Operations Manager', superpower: TF, humanTrait: TF },
-  { name: 'Nadia Bezuidenhout', title: 'Report Specialist', superpower: TF, humanTrait: TF },
-  { name: 'Rikus De Beer', title: 'Development Team Lead', superpower: TF, humanTrait: TF },
-  { name: 'Leasche De Beer', title: 'System Operations Specialist', superpower: TF, humanTrait: TF },
-  { name: 'Nannette O’Brien', title: 'QA Team Leader', superpower: TF, humanTrait: TF },
-  { name: 'Veruscka Fuller', title: 'Projects Team Lead', superpower: TF, humanTrait: TF },
-  { name: 'Pieter Bossert', title: 'Senior Software Engineer', superpower: TF, humanTrait: TF },
-  { name: 'Lerochca De Meyer', title: 'Support Consultant', superpower: TF, humanTrait: TF },
-  { name: 'Mikayla Telescourt', title: 'Support Consultant', superpower: TF, humanTrait: TF },
-  { name: 'Michaela Manca', title: 'QA Consultant', superpower: TF, humanTrait: TF },
-  { name: 'Amor Esterhuizen', title: 'QA Consultant', superpower: TF, humanTrait: TF },
-  { name: 'Michelle Vermaak', title: 'Project Consultant', superpower: TF, humanTrait: TF },
-  { name: 'Dee Dee Richards', title: 'Project Consultant', superpower: TF, humanTrait: TF },
-  { name: 'Chris Sherrard', title: 'Junior Software Engineer', superpower: TF, humanTrait: TF },
-  { name: 'Brandon O’Brien', title: 'Intermediate Software Engineer', superpower: TF, humanTrait: TF },
+  { name: 'Jacob O’Brien', title: 'Chief Executive Officer', superpower: 'Seeing the whole board three moves ahead', humanTrait: 'Makes the coffee before anyone else arrives' },
+  { name: 'Stefan Venter', title: 'Chief Technology Officer', superpower: 'Turning "impossible" into a release date', humanTrait: 'Will happily debate tabs versus spaces for an hour' },
+  { name: 'Stanly O’Brien', title: 'Chief Operations Officer', superpower: 'Keeping every moving part in perfect sync', humanTrait: 'Colour-codes absolutely everything' },
+  { name: 'Deneys Minne', title: 'Chief Revenue Officer', superpower: 'Turning a first hello into a lasting partnership', humanTrait: 'Never knowingly lost a conversation' },
+  { name: 'Nic Roets', title: 'Development Manager', superpower: 'Shipping quality without the drama', humanTrait: 'Has a keyboard shortcut for everything' },
+  { name: 'Alexis van Eck', title: 'General Manager', superpower: 'Making the complicated look effortless', humanTrait: 'Always knows where the good coffee is' },
+  { name: 'Revalisha Moodley', title: 'Business Development Manager', superpower: 'Spotting an opportunity a mile away', humanTrait: 'Fills passports faster than photo albums' },
+  { name: 'Lilly Breytenbach', title: 'Operations Manager', superpower: 'Turning chaos into a tidy checklist', humanTrait: 'Plans holidays like military operations' },
+  { name: 'Nadia Bezuidenhout', title: 'Report Specialist', superpower: 'Finding the one number that actually matters', humanTrait: 'Owns more highlighters than is strictly reasonable' },
+  { name: 'Rikus De Beer', title: 'Development Team Lead', superpower: 'Unblocking the whole team before standup ends', humanTrait: 'Weekend braai master, non-negotiable' },
+  { name: 'Leasche De Beer', title: 'System Operations Specialist', superpower: 'Keeping the lights on while everyone sleeps', humanTrait: 'Has strong opinions about mechanical keyboards' },
+  { name: 'Nannette O’Brien', title: 'QA Team Leader', superpower: 'Finding the bug nobody thought to look for', humanTrait: 'Actually reads the terms and conditions' },
+  { name: 'Veruscka Fuller', title: 'Projects Team Lead', superpower: 'Landing every project on time and on target', humanTrait: 'Keeps a to-do list for the to-do lists' },
+  { name: 'Pieter Bossert', title: 'Senior Software Engineer', superpower: 'Writing code that still makes sense a year later', humanTrait: 'Fuelled entirely by good coffee and curiosity' },
+  { name: 'Lerochca De Meyer', title: 'Support Consultant', superpower: 'Turning a frustrated ticket into a thank-you', humanTrait: 'Remembers every customer and their dog by name' },
+  { name: 'Mikayla Telescourt', title: 'Support Consultant', superpower: 'Answering the question before you finish asking', humanTrait: 'Certified plant parent to a small jungle' },
+  { name: 'Michaela Manca', title: 'QA Consultant', superpower: 'Breaking it gently so customers never have to', humanTrait: 'Never leaves a puzzle unfinished' },
+  { name: 'Amor Esterhuizen', title: 'QA Consultant', superpower: 'Spotting the tiny detail everyone else scrolled past', humanTrait: 'Bakes when stressed, so the office wins' },
+  { name: 'Michelle Vermaak', title: 'Project Consultant', superpower: 'Keeping every stakeholder smiling and informed', humanTrait: 'Weekend hiker chasing the next good view' },
+  { name: 'Dee Dee Richards', title: 'Project Consultant', superpower: 'Turning a vague brief into a clear plan', humanTrait: 'Collects notebooks faster than they get filled' },
+  { name: 'Chris Sherrard', title: 'Junior Software Engineer', superpower: 'Learning a whole new stack over a weekend', humanTrait: 'Gamer by night, debugger by day' },
+  { name: 'Brandon O’Brien', title: 'Intermediate Software Engineer', superpower: 'Fixing it properly, not just quickly', humanTrait: 'Can name that song in three notes' },
 ];
 
 // Proof stats — powers the stats band on the homepage.
