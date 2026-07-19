@@ -1179,36 +1179,39 @@ export const milestones = [
   { year: 'Sep 2026', title: 'ISO/IEC 42001 certification audit', body: 'XGRC® undergoes its ISO/IEC 42001 certification audit, targeting governed AI certification for MAIA®.' },
 ];
 
-// About — "humans behind the code". The XGRC team (21 people) who build,
-// secure and support the platform. This is the XGRC website, so there is no
-// division split here (divisions are a Strategix group concept, not XGRC's).
+// About — "humans behind the code". The XGRC team who build, secure and
+// support the platform. This is the XGRC website, so there is no division
+// split here (divisions are a Strategix group concept, not XGRC's).
 // photo: filename under /public/assets/team/ (omit for an initials avatar).
-// superpower / humanTrait: keep each to ONE short clause (see reference cards).
+// Names + titles are REAL (from the org chart). superpower / humanTrait are
+// still placeholders ('[ To follow ]') until Deneys supplies the real ones;
+// keep each to ONE short clause when they land (see reference cards).
 // Card colours are decorative only (rotated by position in about.astro).
-// These are PLACEHOLDERS — swap for the real 21-person XGRC list when it lands.
 // Renders nothing on the About page until populated (see about.astro).
+const TF = '[ To follow ]';
 export const people = [
-  { name: 'Name Surname', title: 'Chief Executive Officer', superpower: 'Turning frantic audit requirements into calm UI', humanTrait: 'Unapologetic cat enthusiast' },
-  { name: 'Name Surname', title: 'Chief Technology Officer', superpower: 'Architecting systems that never sleep', humanTrait: 'Actually needs 8 hours of sleep' },
-  { name: 'Name Surname', title: 'Head of Product', superpower: 'Untangling complex compliance knots into clean code', humanTrait: 'Bakes a mean sourdough loaf on weekends' },
-  { name: 'Name Surname', title: 'Lead Data Engineer', superpower: 'Making a million rows confess in seconds', humanTrait: 'Collects vinyl nobody has heard of' },
-  { name: 'Name Surname', title: 'Solutions Architect', superpower: 'Drawing the diagram that ends the meeting', humanTrait: 'Runs ultramarathons for fun' },
-  { name: 'Name Surname', title: 'Senior Developer', superpower: 'Deleting more code than they write', humanTrait: 'Fluent in three languages, none of them Java' },
-  { name: 'Name Surname', title: 'QA Lead', superpower: 'Breaking it before the customer can', humanTrait: 'Grows chillies hot enough to void warranties' },
-  { name: 'Name Surname', title: 'Security Engineer', superpower: 'Thinking like the person you hope never calls', humanTrait: 'Picks locks as a party trick' },
-  { name: 'Name Surname', title: 'Data Analyst', superpower: 'Finding the story hiding in the spreadsheet', humanTrait: 'Weekend astrophotographer' },
-  { name: 'Name Surname', title: 'UX Designer', superpower: 'Making the hard thing feel obvious', humanTrait: 'Sketches strangers on the train' },
-  { name: 'Name Surname', title: 'Implementation Consultant', superpower: 'Translating boardroom into backlog', humanTrait: 'Keeps bees on a city rooftop' },
-  { name: 'Name Surname', title: 'Customer Success Manager', superpower: 'Answering the question behind the question', humanTrait: 'Undefeated at office table tennis' },
-  { name: 'Name Surname', title: 'DevOps Engineer', superpower: 'Making deploys boring on purpose', humanTrait: 'Restores vintage motorbikes' },
-  { name: 'Name Surname', title: 'Support Lead', superpower: 'Staying calm when the ticket is on fire', humanTrait: 'Volunteer wildlife photographer' },
-  { name: 'Name Surname', title: 'Backend Developer', superpower: 'Writing the query that used to time out', humanTrait: 'Home barista with strong opinions' },
-  { name: 'Name Surname', title: 'Frontend Developer', superpower: 'Pixels that behave on every screen', humanTrait: 'Speedruns retro platformers' },
-  { name: 'Name Surname', title: 'Data Governance Specialist', superpower: 'Knowing exactly where every record lives', humanTrait: 'Curates a very serious tea collection' },
-  { name: 'Name Surname', title: 'Business Analyst', superpower: 'Turning "it depends" into a decision', humanTrait: 'Weekend stand-up comedian' },
-  { name: 'Name Surname', title: 'Project Manager', superpower: 'Herding deadlines that would rather not', humanTrait: 'Competitive open-water swimmer' },
-  { name: 'Name Surname', title: 'Machine Learning Engineer', superpower: 'Teaching the model to admit when it is unsure', humanTrait: 'Builds mechanical keyboards from scratch' },
-  { name: 'Name Surname', title: 'Technical Writer', superpower: 'Making the manual the thing people actually read', humanTrait: 'Reads a book a week, always physical' },
+  { name: 'Jacob O’Brien', title: 'Chief Executive Officer', superpower: TF, humanTrait: TF },
+  { name: 'Stefan Venter', title: 'Chief Technology Officer', superpower: TF, humanTrait: TF },
+  { name: 'Stanly O’Brien', title: 'Chief Operations Officer', superpower: TF, humanTrait: TF },
+  { name: 'Deneys Minne', title: 'Chief Revenue Officer', superpower: TF, humanTrait: TF },
+  { name: 'Nic Roets', title: 'Development Manager', superpower: TF, humanTrait: TF },
+  { name: 'Alexis van Eck', title: 'General Manager', superpower: TF, humanTrait: TF },
+  { name: 'Revalisha Moodley', title: 'Business Development Manager', superpower: TF, humanTrait: TF },
+  { name: 'Lilly Breytenbach', title: 'Operations Manager', superpower: TF, humanTrait: TF },
+  { name: 'Nadia Bezuidenhout', title: 'Report Specialist', superpower: TF, humanTrait: TF },
+  { name: 'Rikus De Beer', title: 'Development Team Lead', superpower: TF, humanTrait: TF },
+  { name: 'Leasche De Beer', title: 'System Operations Specialist', superpower: TF, humanTrait: TF },
+  { name: 'Nannette O’Brien', title: 'QA Team Leader', superpower: TF, humanTrait: TF },
+  { name: 'Veruscka Fuller', title: 'Projects Team Lead', superpower: TF, humanTrait: TF },
+  { name: 'Pieter Bossert', title: 'Senior Software Engineer', superpower: TF, humanTrait: TF },
+  { name: 'Lerochca De Meyer', title: 'Support Consultant', superpower: TF, humanTrait: TF },
+  { name: 'Mikayla Telescourt', title: 'Support Consultant', superpower: TF, humanTrait: TF },
+  { name: 'Michaela Manca', title: 'QA Consultant', superpower: TF, humanTrait: TF },
+  { name: 'Amor Esterhuizen', title: 'QA Consultant', superpower: TF, humanTrait: TF },
+  { name: 'Michelle Vermaak', title: 'Project Consultant', superpower: TF, humanTrait: TF },
+  { name: 'Dee Dee Richards', title: 'Project Consultant', superpower: TF, humanTrait: TF },
+  { name: 'Chris Sherrard', title: 'Junior Software Engineer', superpower: TF, humanTrait: TF },
+  { name: 'Brandon O’Brien', title: 'Intermediate Software Engineer', superpower: TF, humanTrait: TF },
 ];
 
 // Proof stats — powers the stats band on the homepage.
