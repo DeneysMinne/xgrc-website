@@ -62,7 +62,7 @@ export const solutionDetails = {
   sheqx: {
     logo: '/assets/logos/solutions/sheqx.png',
     icon: '/assets/logos/solutions/icons/sheqx.png',
-    screenshot: '/assets/screenshots/sheqx-dashboard.png',
+    screenshot: '/assets/screenshots/sheqx-dashboard.webp',
     youtubeId: 'hW3EPWIKj9s',
     name: 'SHEQX®',
     tag: 'Safety, Health, Environment & Quality',
@@ -105,7 +105,7 @@ export const solutionDetails = {
   msx: {
     logo: '/assets/logos/solutions/msx.png',
     icon: '/assets/logos/solutions/icons/msx.png',
-    screenshot: '/assets/screenshots/msx-dashboard.png',
+    screenshot: '/assets/screenshots/msx-dashboard.webp',
     name: 'MSX®',
     tag: 'Integrated Management System',
     headline: 'One management system. Multiple standards. Less duplicated effort.',
@@ -147,7 +147,7 @@ export const solutionDetails = {
   msxcyber: {
     logo: '/assets/logos/solutions/msxcyber.png',
     icon: '/assets/logos/solutions/icons/msxcyber.png',
-    screenshot: '/assets/screenshots/msxcyber-dashboard.png',
+    screenshot: '/assets/screenshots/msxcyber-dashboard.webp',
     youtubeId: '5hZX0WIebCo',
     name: 'MSXCyber®',
     tag: 'Information Security Governance',
@@ -189,7 +189,7 @@ export const solutionDetails = {
   erm: {
     logo: '/assets/logos/solutions/erm.png',
     icon: '/assets/logos/solutions/icons/erm.png',
-    screenshot: '/assets/screenshots/erm-dashboard-new.png',
+    screenshot: '/assets/screenshots/erm-dashboard-new.webp',
     name: 'Enterprise Risk Management',
     tag: 'Enterprise Risk Intelligence',
     metaTitle: 'Enterprise Risk Management Software | XGRC®',
@@ -231,7 +231,7 @@ export const solutionDetails = {
   'integrated-assurance': {
     logo: '/assets/logos/solutions/integrated-assurance.png',
     icon: '/assets/logos/solutions/icons/integrated-assurance.png',
-    screenshot: '/assets/screenshots/integrated-assurance-dashboard.png',
+    screenshot: '/assets/screenshots/integrated-assurance-dashboard.webp',
     name: 'Integrated Assurance',
     tag: 'Internal Audit & Combined Assurance',
     headline: 'One audit plan. Four lines of defence. Zero gaps.',
@@ -272,7 +272,7 @@ export const solutionDetails = {
   envirx: {
     logo: '/assets/logos/solutions/envirx.png',
     icon: '/assets/logos/solutions/icons/envirx.png',
-    screenshot: '/assets/screenshots/envirx-dashboard.png',
+    screenshot: '/assets/screenshots/envirx-dashboard.webp',
     name: 'ENVIRX®',
     tag: 'Environmental Compliance & Monitoring',
     headline: 'Environmental compliance you can demonstrate, not just claim.',
@@ -313,7 +313,7 @@ export const solutionDetails = {
   esg: {
     logo: '/assets/logos/solutions/esg.png',
     icon: '/assets/logos/solutions/icons/esg.png',
-    screenshot: '/assets/screenshots/esg-dashboard.png',
+    screenshot: '/assets/screenshots/esg-dashboard.webp',
     youtubeId: 'v3_97N3WUuI',
     name: 'ESG',
     tag: 'Environmental, Social & Governance Reporting',
@@ -355,7 +355,7 @@ export const solutionDetails = {
   'compliance-hub': {
     logo: '/assets/logos/solutions/compliance-hub.png',
     icon: '/assets/logos/solutions/icons/compliance-hub.png',
-    screenshot: '/assets/screenshots/compliance-hub-dashboard.png',
+    screenshot: '/assets/screenshots/compliance-hub-dashboard.webp',
     youtubeId: 'itta_NfEvOU',
     name: 'XGRC® Compliance Hub',
     tag: 'Supplier & Third-Party Compliance',
@@ -398,7 +398,7 @@ export const solutionDetails = {
   xlogic: {
     logo: '/assets/logos/solutions/xlogic.png',
     icon: '/assets/logos/solutions/icons/xlogic.png',
-    screenshot: '/assets/screenshots/xlogic-dashboard.png',
+    screenshot: '/assets/screenshots/xlogic-dashboard.webp',
     name: 'XLOGIC®',
     tag: 'Governance Execution',
     headline: 'Policies that work. Controls that are actually enforced.',
@@ -438,7 +438,7 @@ export const solutionDetails = {
   maia: {
     logo: '/assets/logos/solutions/maia.png',
     icon: '/assets/logos/solutions/icons/maia.png',
-    screenshot: '/assets/screenshots/maia-dashboard.png',
+    screenshot: '/assets/screenshots/maia-dashboard.webp',
     youtubeId: 'inqCqT0uW2k',
     name: 'MAIA®',
     tag: 'Governed AI for GRC',
