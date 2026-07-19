@@ -436,6 +436,12 @@ export const useCaseRegistry = [
       pdfPath: '/Safety-Management-Checklist-SHEQX-v1.0.pdf',
     },
     relatedUseCases: ['workplace-safety-inspection', 'incident-management', 'iso-45001-readiness'],
+    faqs: [
+      { q: 'What is safety management software?', a: 'Safety management software brings incidents, inspections, hazards and corrective actions into one system, so safety performance is visible in real time instead of reconstructed from spreadsheets and paper records after the fact.' },
+      { q: 'Does SHEQX® cover incidents and inspections on the same platform?', a: 'Yes. SHEQX® captures incidents, conducts inspections and audits, and tracks hazards and corrective actions in one connected register, so a single platform covers the full scope of day-to-day safety management.' },
+      { q: 'How does SHEQX® give leadership visibility without manual reporting?', a: 'Every incident, inspection and corrective action feeds real-time dashboards, so safety performance across sites is visible as it happens rather than compiled into a report after the fact.' },
+      { q: 'Which standards does SHEQX® align to?', a: 'SHEQX® aligns to ISO 45001, ISO 14001 and ISO 9001, and the downloadable safety management checklist reflects this alignment.' },
+    ],
   },
 
   {
@@ -572,6 +578,12 @@ export const useCaseRegistry = [
       pdfPath: '/Workplace-Safety-Inspection-Checklist-SHEQX-v1.0.pdf',
     },
     relatedUseCases: ['fire-safety-inspection', 'ppe-compliance', 'hazard-identification'],
+    faqs: [
+      { q: 'What is a workplace safety inspection checklist?', a: 'A workplace safety inspection checklist is a structured tool for identifying hazards and verifying safety conditions during a site inspection, capturing findings consistently instead of relying on memory or an ad hoc walk-through.' },
+      { q: 'Can inspections be done on a mobile device in the field?', a: 'Yes. SHEQX® inspections are mobile-friendly, so findings are captured in real time on site rather than written up from notes afterwards.' },
+      { q: 'What happens to a finding raised during an inspection?', a: 'Corrective actions can be assigned directly from a finding, with progress tracked to closure, so identified issues do not sit unresolved in a report nobody follows up on.' },
+      { q: 'Which standards does the workplace safety inspection checklist align to?', a: 'The checklist aligns to ISO 45001, ISO 14001 and ISO 9001, covering workplace conditions, housekeeping, PPE, equipment, fire safety and emergency preparedness.' },
+    ],
   },
 
   {
@@ -632,6 +644,12 @@ export const useCaseRegistry = [
       pdfPath: '/Fire-Safety-Inspection-Checklist-XGRC-v1.0.pdf',
     },
     relatedUseCases: ['workplace-safety-inspection', 'equipment-safety-inspection', 'hazard-identification'],
+    faqs: [
+      { q: 'What is a fire safety inspection checklist?', a: 'A fire safety inspection checklist is a structured tool for verifying fire equipment, emergency exits and fire safety risks during a site inspection, so gaps are identified before they become incidents rather than discovered during an audit.' },
+      { q: 'Does the checklist cover emergency exits and evacuation routes?', a: 'Yes. It covers fire equipment inspection, emergency exits and evacuation routes, fire alarm systems, flammable materials storage, housekeeping and ignition sources, and electrical safety.' },
+      { q: 'How are fire safety findings tracked to resolution?', a: 'Findings are captured with supporting evidence and corrective actions are assigned immediately, so an obstructed exit or a faulty extinguisher is tracked to a verified fix, not just noted in a report.' },
+      { q: 'Which standards does the fire safety inspection checklist align to?', a: 'The checklist aligns to ISO 45001, ISO 14001 and ISO 9001, the same standards SHEQX® supports across the rest of its safety management scope.' },
+    ],
   },
 
   // ─────────────────────────── USE CASES (new) ───────────────────────────────
@@ -701,6 +719,12 @@ export const useCaseRegistry = [
     relatedUseCases: ['safety-management', 'action-management', 'hazard-identification'],
     ctaHeadline: 'See incident management as a structured, closed-loop process.',
     ctaBody: 'Book a demo to see how SHEQX® turns incident capture, investigation, and corrective action into one connected workflow.',
+    faqs: [
+      { q: 'What is incident management software?', a: 'Incident management software captures incidents as they happen, structures the investigation into root causes, and tracks corrective actions through to verified closure, rather than leaving incidents logged but never actually resolved.' },
+      { q: 'Does SHEQX® support root cause analysis, not just incident logging?', a: 'Yes. Every incident goes through a structured root cause analysis workflow, so the underlying cause is identified and addressed rather than just the immediate symptom.' },
+      { q: 'How does SHEQX® stop the same incident recurring?', a: 'Incident findings feed into risk assessments and trend reporting, so recurring root causes surface as a pattern leadership can act on, rather than repeating as isolated events.' },
+      { q: 'Which standards does incident management align to?', a: 'SHEQX® incident management aligns to ISO 45001, ISO 14001 and ISO 22301, and connects to root cause analysis and corrective action tracking across the platform.' },
+    ],
   },
 
   {
@@ -769,6 +793,12 @@ export const useCaseRegistry = [
     relatedUseCases: ['compliance-management', 'internal-controls', 'popia-compliance'],
     ctaHeadline: 'See vendor management as a structured, transparent process.',
     ctaBody: 'Book a demo to see how XGRC Compliance Hub turns vendor onboarding, vetting, and monitoring into one connected, auditable workflow.',
+    faqs: [
+      { q: 'What is vendor management software?', a: 'Vendor management software onboards, vets and monitors suppliers and contractors in one place, tracking documents, expiry dates and risk scores so third-party compliance status is known at any moment rather than assumed.' },
+      { q: 'Does XGRC® flag expiring vendor certificates automatically?', a: 'Yes. Document expiry is tracked with automated renewal reminders, so a lapsed insurance certificate or expired vendor certification is flagged before it becomes a compliance gap.' },
+      { q: 'Can vendor risk scoring differ by category?', a: 'Yes. Risk criteria and vetting requirements are configurable by vendor category, so a high-risk contractor and a low-risk supplier are not assessed against the same checklist.' },
+      { q: 'Which standards does vendor management align to?', a: 'Vendor management aligns to ISO 9001, ISO 27001 and ISO 37301, alongside third-party risk and supplier and contractor compliance practice more broadly.' },
+    ],
   },
 
   {
@@ -836,6 +866,12 @@ export const useCaseRegistry = [
     relatedUseCases: ['integrated-assurance', 'internal-audit', 'risk-management'],
     ctaHeadline: 'See internal controls as a tested, assured process.',
     ctaBody: 'Book a demo to see how XGRC® turns control design, testing, and remediation into one connected, auditable workflow.',
+    faqs: [
+      { q: 'What is internal controls software?', a: 'Internal controls software lets organisations design, test and assure controls in a structured way, linking each control to the risk it mitigates so effectiveness can be demonstrated rather than assumed from documentation alone.' },
+      { q: 'Does XGRC® test whether controls actually work, not just whether they exist?', a: 'Yes. Controls are tested for design and operating effectiveness on a set schedule, with deficiencies classified and tracked through to verified remediation rather than logged and forgotten.' },
+      { q: 'How does this avoid duplicated control testing across teams?', a: 'Combined assurance mapping shows which assurance provider is already testing a given control, so internal audit, risk and compliance are not independently re-testing the same control.' },
+      { q: 'Which frameworks does internal controls management align to?', a: 'Internal controls align to COSO, ISO 31000 and King V, and connect directly to combined assurance and internal audit elsewhere on the platform.' },
+    ],
   },
 
   {
@@ -903,6 +939,12 @@ export const useCaseRegistry = [
     relatedUseCases: ['internal-audit', 'internal-controls', 'risk-management'],
     ctaHeadline: 'See combined assurance as one coordinated process, not four.',
     ctaBody: 'Book a demo to see how XGRC® connects audit planning, fieldwork, findings, and combined assurance reporting on one platform.',
+    faqs: [
+      { q: 'What is integrated assurance software?', a: 'Integrated assurance software coordinates internal audit and combined assurance across every line of defence, linking each finding back to the risk it relates to so the board sees one consolidated assurance picture instead of separate reports from separate functions.' },
+      { q: 'Does XGRC® build the audit plan from the actual risk register?', a: 'Yes. The annual audit plan is built from the current risk register, so audit effort is directed at the highest-risk areas rather than repeating the same checks a spreadsheet-based plan defaults to.' },
+      { q: 'How current is the combined assurance matrix?', a: 'The combined assurance matrix is live, not a static document, so coverage gaps and duplication across lines of defence are visible continuously rather than discovered when someone next updates a slide deck.' },
+      { q: 'Which standards does integrated assurance align to?', a: 'Integrated assurance aligns to King V, IIA Standards, ISO 19011, COSO and ISO 31000, reflecting the lines of defence model most assurance functions report against.' },
+    ],
   },
 
   {
@@ -970,6 +1012,12 @@ export const useCaseRegistry = [
     relatedUseCases: ['internal-audit', 'incident-management', 'internal-controls'],
     ctaHeadline: 'See every finding closed, not just filed.',
     ctaBody: 'Book a demo to see how XGRC® turns audit findings, incidents, inspections, and risk actions into one accountable register with verified closure.',
+    faqs: [
+      { q: 'What is action management software?', a: 'Action management software is the connective layer that closes findings raised anywhere on the platform, whether from an audit, an incident, an inspection or a risk assessment, tracking each one to verified closure rather than treating it as a standalone task list.' },
+      { q: 'Does closing an action require evidence?', a: 'Yes. An action cannot be marked complete without supporting evidence, so closure reflects that the underlying issue was actually fixed rather than taken on trust.' },
+      { q: 'What happens to overdue actions?', a: 'Overdue actions escalate automatically, so a stalled corrective action surfaces to management without anyone having to chase it manually.' },
+      { q: 'Which standards does action management support?', a: 'Action management supports ISO 9001, ISO 14001, ISO 45001 and ISO 27001 by closing the corrective and preventive actions each of those standards requires, traced back to its originating audit, incident or inspection.' },
+    ],
   },
 
   // ─────────────────────────── REGULATORY ────────────────────────────────────
@@ -1037,6 +1085,12 @@ export const useCaseRegistry = [
       pdfPath: '/resources/xgrc-gdpr-readiness-compliance-checklist-v1-0.pdf',
     },
     relatedUseCases: ['popia-compliance', 'internal-controls', 'iso-27001-readiness'],
+    faqs: [
+      { q: 'What is GDPR compliance software?', a: 'GDPR compliance software manages lawful basis, data subject requests, DPIAs and breach notification on one auditable platform, so data protection obligations are backed by evidence rather than a policy filed away and rarely revisited.' },
+      { q: 'Does XGRC® track data subject access requests to a deadline?', a: 'Yes. Data subject access, correction and erasure requests are logged and tracked to a defined process, so response timelines are managed consistently rather than handled ad hoc by email.' },
+      { q: 'Are DPIAs completed before a project goes live?', a: 'New projects and systems are screened for DPIA requirements as part of the workflow, so privacy risk is assessed before go-live rather than retrofitted afterwards.' },
+      { q: 'How does this connect to the rest of the ISMS?', a: 'MSXCyber® links processing records, DPIAs and breach management to the same governance and risk framework used across the information security management system, so data protection is part of day-to-day risk and compliance evidence, not a separate spreadsheet exercise.' },
+    ],
   },
 
   {
@@ -1103,6 +1157,12 @@ export const useCaseRegistry = [
       pdfPath: '/resources/xgrc-popia-readiness-compliance-checklist-v1-0.pdf',
     },
     relatedUseCases: ['gdpr-compliance', 'paia-compliance', 'compliance-management'],
+    faqs: [
+      { q: 'What is POPIA compliance software?', a: 'POPIA compliance software gives the Information Officer a structured way to manage processing conditions, data subject rights and security compromise reporting on one auditable platform, rather than relying on informal, undocumented practice.' },
+      { q: 'Does XGRC® support the Information Officer’s statutory duties directly?', a: 'Yes. The platform formalises the Information Officer role and reporting structure, and gives them a central place to manage processing records, requests and compromise response.' },
+      { q: 'How are security compromises reported to the Information Regulator?', a: 'Security compromises go through a structured workflow with defined Information Regulator notification steps, so the assessment and reporting process is consistent rather than improvised under pressure.' },
+      { q: 'Does this cover operator and third-party agreements?', a: 'Yes. Operator and third-party agreement tracking is part of the platform, so data shared with processors is covered by the same oversight as data processed internally.' },
+    ],
   },
 
   {
@@ -1169,6 +1229,12 @@ export const useCaseRegistry = [
       pdfPath: '/resources/xgrc-paia-readiness-compliance-checklist-v1-0.pdf',
     },
     relatedUseCases: ['popia-compliance', 'compliance-management', 'vendor-management'],
+    faqs: [
+      { q: 'What is PAIA compliance software?', a: 'PAIA compliance software manages the published information manual, records classification and formal access requests from intake through decision and response, on one auditable platform rather than an inbox.' },
+      { q: 'Does XGRC® keep an audit trail of access request decisions?', a: 'Yes. Every request is logged with a complete audit trail from receipt to closure, so a decision can be explained and defended to a requester or the Information Regulator.' },
+      { q: 'How are requests assessed against statutory grounds for refusal?', a: 'Requests go through a configurable assessment and decision workflow aligned to statutory grounds for access or refusal, so assessments are applied consistently rather than case by case.' },
+      { q: 'Does this cover appeals and escalations?', a: 'Yes. Appeal and escalation tracking is part of the same workflow, so a disputed decision is not handled outside the system that logged the original request.' },
+    ],
   },
 
   {
@@ -1235,6 +1301,12 @@ export const useCaseRegistry = [
       pdfPath: '/resources/xgrc-king-v-governance-readiness-checklist-v1-0.pdf',
     },
     relatedUseCases: ['integrated-assurance', 'esg-reporting', 'enterprise-risk-management'],
+    faqs: [
+      { q: 'What is King V governance software?', a: 'King V governance software gives boards a structured way to apply King V principles and report against them with evidence, covering risk governance, combined assurance and ESG oversight on one auditable platform. King V itself is applied on an apply-and-explain basis, not a certifiable requirement, so the software’s role is to make that explanation credible.' },
+      { q: 'Does XGRC® monitor risk appetite, not just document it?', a: 'Yes. Risk appetite and tolerance are monitored at governing body level on a live basis, so the board can see whether actual risk exposure is within the appetite it set, rather than reviewing it once a year.' },
+      { q: 'Is the combined assurance matrix kept current for governance reporting?', a: 'Yes. The combined assurance matrix maps coverage across management, internal audit and external assurance continuously, so King V disclosures on assurance are backed by current data rather than a static document.' },
+      { q: 'How does ESG oversight fit into King V reporting?', a: 'ESG oversight is linked to sustainability data and targets and embedded directly in board reporting, so it is treated as a governance responsibility rather than a separate reporting exercise added at year end.' },
+    ],
   },
 
   // ─────────────────────────── INSPECTION CHECKLISTS (new) ──────────────────
@@ -1296,6 +1368,12 @@ export const useCaseRegistry = [
       pdfPath: '/resources/xgrc-ppe-compliance-checklist-v1-0.pdf',
     },
     relatedUseCases: ['workplace-safety-inspection', 'equipment-safety-inspection', 'hazard-identification'],
+    faqs: [
+      { q: 'What is a PPE compliance checklist?', a: 'A PPE compliance checklist verifies that personal protective equipment is available, in good condition and correctly used, capturing findings from field-level inspections rather than assuming compliance from policy alone.' },
+      { q: 'Does the checklist link PPE findings to training records?', a: 'Yes. PPE inspection findings link directly to training and competency records, so a worker without the required competency for a given hazard is visible alongside any equipment gap.' },
+      { q: 'How are PPE non-conformances actioned?', a: 'Non-conformances identified during inspection are logged and assigned corrective actions immediately, rather than observed and left unrecorded.' },
+      { q: 'Which standards does the PPE compliance checklist align to?', a: 'The checklist aligns to ISO 45001, ISO 14001 and ISO 9001, covering PPE availability, condition, usage compliance, hazard-specific requirements, training and storage.' },
+    ],
   },
 
   {
@@ -1356,6 +1434,12 @@ export const useCaseRegistry = [
       pdfPath: '/resources/xgrc-equipment-safety-inspection-checklist-v1-0.pdf',
     },
     relatedUseCases: ['workplace-safety-inspection', 'ppe-compliance', 'hazard-identification'],
+    faqs: [
+      { q: 'What is an equipment safety inspection checklist?', a: 'An equipment safety inspection checklist verifies machine guarding, lockout/tagout and maintenance status in the field, so a guarding failure or an isolation gap is caught before equipment causes harm.' },
+      { q: 'Does the checklist cover lockout/tagout verification?', a: 'Yes. Lockout/tagout and zero-energy states are verified before maintenance work begins, alongside machine guarding and safety device checks.' },
+      { q: 'What happens to equipment defects found during inspection?', a: 'Defects and safety device faults are captured in real time, corrective actions are assigned, and non-conforming equipment can be taken out of service until the defect is resolved.' },
+      { q: 'Does this connect to maintenance and calibration records?', a: 'Yes. SHEQX® links equipment inspection findings to non-conformance management and calibration records, so a defect is tracked from identification through to verified repair rather than sitting isolated from maintenance history.' },
+    ],
   },
 
   {
@@ -1416,6 +1500,12 @@ export const useCaseRegistry = [
       pdfPath: '/resources/xgrc-hazard-identification-checklist-v1-0.pdf',
     },
     relatedUseCases: ['workplace-safety-inspection', 'fire-safety-inspection', 'ppe-compliance'],
+    faqs: [
+      { q: 'What is a hazard identification checklist?', a: 'A hazard identification checklist provides a structured way to systematically identify physical, chemical and ergonomic workplace hazards, rather than relying on informal observation or waiting for an incident to reveal a risk.' },
+      { q: 'Does an identified hazard automatically feed the risk register?', a: 'Yes. Hazards identified in the field link directly to the risk register for formal assessment, so a hazard walk feeds structured risk management rather than ending as a standalone note.' },
+      { q: 'How are high-risk hazards escalated?', a: 'High-risk findings are escalated automatically, so a serious hazard reaches the right person immediately rather than waiting in a queue with lower-priority items.' },
+      { q: 'Which standards does hazard identification align to?', a: 'Hazard identification aligns to ISO 45001, ISO 14001 and ISO 9001, and covers physical, chemical, biological and ergonomic hazards including working at height and confined spaces.' },
+    ],
   },
 
   // ─────────────────────────── ISO READINESS ─────────────────────────────────
@@ -1484,6 +1574,12 @@ export const useCaseRegistry = [
       pdfPath: '/resources/xgrc-iso-27001-readiness-gap-assessment-checklist-v1-0.pdf',
     },
     relatedUseCases: ['gdpr-compliance', 'popia-compliance', 'internal-audit'],
+    faqs: [
+      { q: 'What is ISO 27001 compliance software?', a: 'ISO 27001 compliance software assesses ISMS readiness, tracks Annex A control implementation, and manages the information security management system on an ongoing basis, rather than reconstructing evidence in the weeks before an audit.' },
+      { q: 'Does MSXCyber® keep the Statement of Applicability current?', a: 'Yes. The Statement of Applicability is tracked directly against Annex A controls as they are implemented, so it reflects the actual control environment rather than drifting out of date between audits.' },
+      { q: 'How are risks and controls linked for audit evidence?', a: 'The asset register, risk assessments and Annex A controls are linked to internal audit and incident management, so every control has a traceable evidence trail rather than scattered supporting documents.' },
+      { q: 'Which frameworks does ISO 27001 readiness align to?', a: 'ISO 27001 readiness aligns to ISO 27001:2022, ISO 27002, NIST CSF, GDPR and POPIA, reflecting how information security and data protection obligations typically overlap.' },
+    ],
   },
 
   {
@@ -1551,6 +1647,12 @@ export const useCaseRegistry = [
       pdfPath: '/resources/xgrc-iso-9001-readiness-gap-assessment-checklist-v1-0.pdf',
     },
     relatedUseCases: ['internal-audit', 'internal-controls', 'action-management'],
+    faqs: [
+      { q: 'What is ISO 9001 compliance software?', a: 'ISO 9001 compliance software assesses quality management system readiness and runs the QMS as a living system, tracking nonconformances, document control and internal audit rather than maintaining a folder of documents produced for the auditor.' },
+      { q: 'Does MSX® verify that corrective actions actually resolved the nonconformance?', a: 'Yes. Corrective actions are tracked to verified closure, so a nonconformance is only closed once the fix has been confirmed effective, not just logged as done.' },
+      { q: 'How is document control managed?', a: 'Documents are managed centrally with version control and approval workflows, so outdated versions are not still in circulation on the floor.' },
+      { q: 'Which standard does ISO 9001 readiness align to?', a: 'ISO 9001 readiness aligns to ISO 9001:2015, and connects to internal audit and action management elsewhere on the platform for a consistent audit programme across sites.' },
+    ],
   },
 
   {
@@ -1618,6 +1720,12 @@ export const useCaseRegistry = [
       pdfPath: '/resources/xgrc-iso-14001-readiness-gap-assessment-checklist-v1-0.pdf',
     },
     relatedUseCases: ['esg-reporting', 'hazard-identification', 'internal-audit'],
+    faqs: [
+      { q: 'What is ISO 14001 compliance software?', a: 'ISO 14001 compliance software assesses environmental management system readiness and monitors compliance obligations continuously, rather than reconstructing evidence for the auditor from scattered site records.' },
+      { q: 'Does ENVIRX® track legal compliance obligations as legislation changes?', a: 'Yes. Legal compliance obligations are tracked with renewal alerts, so a changed requirement is flagged rather than missed until the next review.' },
+      { q: 'How is the environmental aspects and impacts register maintained?', a: 'The aspects and impacts register is centralised across every site, so environmental significance ratings stay current rather than drifting out of date per location.' },
+      { q: 'Which frameworks does ISO 14001 readiness align to?', a: 'ISO 14001 readiness aligns to ISO 14001:2015, and connects to ESG reporting and the GHG Protocol where environmental performance data overlaps with sustainability disclosure.' },
+    ],
   },
 
   {
@@ -1685,6 +1793,12 @@ export const useCaseRegistry = [
       pdfPath: '/resources/xgrc-iso-45001-readiness-gap-assessment-checklist-v1-0.pdf',
     },
     relatedUseCases: ['workplace-safety-inspection', 'incident-management', 'hazard-identification'],
+    faqs: [
+      { q: 'What is ISO 45001 compliance software?', a: 'ISO 45001 compliance software assesses OH&S management system readiness and runs hazard identification, incident management and contractor safety as one connected system, rather than managing each separately across sites.' },
+      { q: 'Does SHEQX® track contractor safety compliance with expiry visibility?', a: 'Yes. Contractor and visitor safety compliance is tracked with expiry visibility, so a lapsed contractor certification is flagged rather than discovered on site.' },
+      { q: 'How are corrective actions from incidents and audits tracked?', a: 'Actions from incidents, audits and inspections are tracked to closure in one register, so nothing raised during an ISO 45001 gap assessment or an incident investigation is left open indefinitely.' },
+      { q: 'Which frameworks does ISO 45001 readiness align to?', a: 'ISO 45001 readiness aligns to ISO 45001:2018, and connects to hazard identification and incident management elsewhere on the platform for a single OH&S system.' },
+    ],
   },
 
   {
@@ -1752,6 +1866,12 @@ export const useCaseRegistry = [
       pdfPath: '/resources/xgrc-iso-22000-readiness-gap-assessment-checklist-v1-0.pdf',
     },
     relatedUseCases: ['internal-audit', 'compliance-management', 'action-management'],
+    faqs: [
+      { q: 'What is ISO 22000 compliance software?', a: 'ISO 22000 compliance software assesses food safety management system readiness, keeping prerequisite programmes, HACCP plans and traceability audit-ready every day rather than only in the run-up to a certification audit.' },
+      { q: 'Does MSX® support mock recall testing for traceability?', a: 'Yes. Batch and traceability records support mock recall testing, so traceability speed and accuracy are verified regularly rather than assumed until a real recall is needed.' },
+      { q: 'How is the HACCP plan kept current after a process change?', a: 'The HACCP plan is managed with change tracking, so a process or supplier change prompts a review rather than leaving the plan reflecting an outdated process.' },
+      { q: 'Which standard does ISO 22000 readiness align to?', a: 'ISO 22000 readiness aligns to ISO 22000:2018, covering prerequisite programmes, hazard analysis, HACCP and traceability.' },
+    ],
   },
 
   {
@@ -1818,6 +1938,12 @@ export const useCaseRegistry = [
       pdfPath: '/resources/xgrc-iso-31000-risk-management-checklist-v1-0.pdf',
     },
     relatedUseCases: ['risk-management', 'enterprise-risk-management', 'king-v-governance'],
+    faqs: [
+      { q: 'What is ISO 31000 risk management software?', a: 'ISO 31000 is a guideline for managing risk, not a certifiable standard, so there is no audit to pass. XGRC® software helps organisations adopt and embed the ISO 31000 process, from establishing context through risk assessment, treatment and ongoing review.' },
+      { q: 'Does XGRC® apply consistent risk criteria across business units?', a: 'Yes. Risk criteria and appetite thresholds are configurable once and applied consistently, so likelihood and impact are scored the same way regardless of which business unit raises the risk.' },
+      { q: 'Is risk treatment checked for effectiveness, not just assigned?', a: 'Yes. Risk treatment plans are tracked with owner and effectiveness monitoring, so a treatment is verified to have actually reduced the risk rather than assumed complete once assigned.' },
+      { q: 'How does this connect to COSO ERM and King V?', a: 'The ISO 31000 process underpins COSO ERM and King V risk governance requirements, so the same risk register and reporting feed all three without maintaining separate risk frameworks.' },
+    ],
   },
 ];
 
