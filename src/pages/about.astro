@@ -12,9 +12,9 @@ const divisions = [
 ];
 
 const offices = [
-  { city: 'Johannesburg', country: 'South Africa', icon: 'building' },
+  { city: 'Johannesburg', country: 'South Africa', icon: 'ponte' },
   { city: 'Cape Town', country: 'South Africa', icon: 'mountain' },
-  { city: 'Milton Keynes', country: 'United Kingdom', icon: 'globe' },
+  { city: 'Milton Keynes', country: 'United Kingdom', icon: 'bigben' },
 ];
 ---
 
@@ -98,26 +98,25 @@ const offices = [
           {offices.map((o) => (
             <div class="office-card">
               <span class="office-icon" aria-hidden="true">
-                {o.icon === 'building' && (
-                  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
-                    <rect x="6" y="3" width="12" height="18"></rect>
-                    <rect x="9" y="7" width="2" height="2"></rect>
-                    <rect x="13" y="7" width="2" height="2"></rect>
-                    <rect x="9" y="12" width="2" height="2"></rect>
-                    <rect x="13" y="12" width="2" height="2"></rect>
-                    <rect x="10" y="17" width="4" height="4"></rect>
+                {o.icon === 'ponte' && (
+                  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+                    <path d="M6 21 V9 C6 4.5 8.7 2 12 2 C15.3 2 18 4.5 18 9 V21"></path>
+                    <circle cx="12" cy="9.5" r="2.4"></circle>
+                    <line x1="4" y1="21" x2="20" y2="21"></line>
                   </svg>
                 )}
                 {o.icon === 'mountain' && (
                   <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
-                    <path d="M3 19 L8 8 L10 6 L14 6 L16 8 L21 19 Z"></path>
+                    <path d="M3 19 L8 7 L16 7 L21 19 Z"></path>
+                    <line x1="6.5" y1="19" x2="17.5" y2="19"></line>
                   </svg>
                 )}
-                {o.icon === 'globe' && (
-                  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6">
-                    <circle cx="12" cy="12" r="9"></circle>
-                    <ellipse cx="12" cy="12" rx="4" ry="9"></ellipse>
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                {o.icon === 'bigben' && (
+                  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+                    <path d="M8 9 L8 6 L10 6 L10 4 L14 4 L14 6 L16 6 L16 9"></path>
+                    <rect x="8" y="9" width="8" height="11"></rect>
+                    <circle cx="12" cy="12.5" r="2.6"></circle>
+                    <line x1="6" y1="20" x2="18" y2="20"></line>
                   </svg>
                 )}
               </span>
