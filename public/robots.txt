@@ -1,5 +1,10 @@
 User-agent: *
 Allow: /
 Disallow: /login/
+# Content-Signal (Cloudflare, CC0): how automated clients may use this content.
+# search = appear in search results; ai-input = use as live context in AI answers;
+# ai-train = use for model training. XGRC opts in to all three for maximum reach.
+# Unknown directive to strict validators — harmless per RFC 9309 (ignore unknown lines).
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 
 Sitemap: https://xgrcsoftware.com/sitemap-index.xml

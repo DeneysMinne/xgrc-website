@@ -85,6 +85,16 @@ const faqSchema = faqs ? JSON.stringify({
   })),
 }) : null;
 
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home',     item: 'https://xgrcsoftware.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Insights', item: 'https://xgrcsoftware.com/insights/' },
+    { '@type': 'ListItem', position: 3, name: article.title },
+  ],
+});
+
 const categoryColors = {
   'ESG': '#3ecf8e',
   'GRC': '#30e2f4',
@@ -100,8 +110,9 @@ const categoryColors = {
 const catColor = categoryColors[article.category] || '#30e2f4';
 ---
 
-<Base title={`${article.title} | XGRC® Insights`} description={article.excerpt} ogImage={`/assets/images/insights/${imageFile}`}>
+<Base title={`${article.title} | XGRC® Insights`} description={article.excerpt} ogImage={`/assets/images/insights/${imageFile}`} mdPath={`/insights/${slug}.md`}>
   <script type="application/ld+json" set:html={schema} />
+  <script type="application/ld+json" set:html={breadcrumbSchema} />
   {faqSchema && <script type="application/ld+json" set:html={faqSchema} />}
 
   <div class="art-page">

@@ -59,7 +59,7 @@ const schema = {
   ],
 };
 ---
-<Base title={title} description={metaDescription}>
+<Base title={title} description={metaDescription} mdPath={`/use-cases/${slug}.md`}>
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
   <!-- ============ HERO ============ -->

@@ -180,3 +180,15 @@ a { color: inherit; }
 /* shared 16:9 YouTube embed wrapper — used on solution pages and the About page */
 .yt-wrap { position: relative; padding-top: 56.25%; }
 .yt-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+
+/* Hide content visually and from screen readers (aria-hidden on the element).
+   Used for the Markdown-twin pointer that targets LLMs pasting a URL. */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

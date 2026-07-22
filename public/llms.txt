@@ -1,0 +1,48 @@
+# XGRC® Software
+
+> XGRC® Software is a governance, risk and compliance (GRC) platform. Specialist
+> solutions for safety, risk, information security, ESG, environmental compliance,
+> assurance and third-party governance run on one secure, auditable data
+> foundation, so risks, controls, obligations and evidence stay connected rather
+> than scattered across spreadsheets and disconnected tools. XGRC® serves
+> compliance, risk, internal audit and SHEQ/EHS teams at mid-to-large enterprises.
+> Part of the Strategix Group.
+
+## Platform
+
+- [GRC Platform overview](https://xgrcsoftware.com/grc-software): How the XGRC® platform connects governance, risk and compliance on one data foundation.
+- [All solutions](https://xgrcsoftware.com/solutions): The full XGRC® solution suite at a glance.
+- [Use cases](https://xgrcsoftware.com/use-cases): Compliance, risk, audit and safety problems XGRC® is used to solve, by discipline and standard.
+
+## Solutions
+
+- [SHEQX®](https://xgrcsoftware.com/sheqx): Safety, health, environment and quality management aligned to ISO 9001, ISO 14001 and ISO 45001.
+- [MSXCyber®](https://xgrcsoftware.com/msxcyber): Information security management (ISMS) aligned to ISO 27001:2022, with GDPR and POPIA support.
+- [Enterprise Risk Management](https://xgrcsoftware.com/erm): Structured, auditable enterprise, operational and project risk aligned to ISO 31000 and COSO.
+- [ESG](https://xgrcsoftware.com/esg): ESG data management and governance for consistent, auditable sustainability reporting.
+- [ENVIRX®](https://xgrcsoftware.com/envirx): Environmental compliance and performance monitoring with auditable environmental records.
+- [Integrated Assurance](https://xgrcsoftware.com/integrated-assurance): Internal audit and combined assurance linked directly to risks, controls and actions.
+- [XGRC® Compliance Hub](https://xgrcsoftware.com/compliance-hub): Supplier, contractor and third-party compliance through structured onboarding, vetting and ongoing assurance.
+- [XLOGIC®](https://xgrcsoftware.com/xlogic): Converts policies, frameworks, controls and obligations into structured workflows with accountability and evidence capture.
+- [MSX®](https://xgrcsoftware.com/msx): An integrated programme that coordinates multiple XGRC® disciplines into one management system.
+- [MAIA®](https://xgrcsoftware.com/maia): Governed AI for GRC — business intelligence and intelligent agents with a full AI interaction audit trail.
+- [XRM](https://xgrcsoftware.com/xrm): An auditable CRM for leads, opportunities, quotes and customer relationships, built with the same governance discipline as the rest of XGRC®.
+
+## Partner solutions
+
+- [Libryo](https://xgrcsoftware.com/libryo): Jurisdiction-specific regulatory intelligence embedded within XGRC®.
+- [Hakware](https://xgrcsoftware.com/hakware): AI-powered penetration testing and unified vulnerability visibility.
+
+## Resources
+
+- [Insights](https://xgrcsoftware.com/insights): Articles on GRC, risk, ESG, information security and compliance practice.
+- [Resources](https://xgrcsoftware.com/resources): Downloadable compliance and audit checklists (ISO, ESG, enterprise risk, fire safety, internal audit, policy management).
+- [Customers](https://xgrcsoftware.com/customers): Organisations using XGRC® Software.
+- [Trust Centre](https://xgrcsoftware.com/trust): Security, privacy and compliance posture of XGRC® Software itself.
+
+## Company
+
+- [About XGRC®](https://xgrcsoftware.com/about): Who XGRC® Software is and the team behind it.
+- [Strategix](https://xgrcsoftware.com/strategix): The Strategix Group, XGRC®'s parent organisation.
+- [Contact](https://xgrcsoftware.com/contact): How to reach XGRC® Software.
+- [Book a demo](https://xgrcsoftware.com/demo): Request a demonstration of the XGRC® platform.
