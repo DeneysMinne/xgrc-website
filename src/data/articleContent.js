@@ -839,4 +839,63 @@ Efficiency and Cost Savings: reporting cycles shrink by approximately 60%, audit
 
 ESG reporting is no longer an optional checkbox — it is a strategic differentiator. By employing XGRC® ESG and ENVIRX®, organisations can move beyond compliance, embedding sustainability into governance, risk, and performance architecture.`,
 
+'what-is-grc-software': `Governance, risk and compliance (GRC) software is a category of enterprise software that brings an organisation's governance activities, risk management and regulatory compliance onto one connected platform — so policies, risks, controls, obligations, audits and the evidence behind them are managed together rather than in separate, disconnected tools.
+
+What GRC Software Actually Does
+
+At its core, GRC software replaces the spreadsheets, email threads and standalone point tools that most organisations accumulate over time. Instead of a risk register in one place, an audit tracker in another, and a compliance obligations list in a third, a GRC platform holds them on a single data foundation where each record can reference the others. A control can be linked to the risk it mitigates, the obligation it satisfies, the audit that tested it, and the corrective action raised when it failed.
+
+The three disciplines in the GRC grouping are usually owned by different teams but depend on the same underlying information:
+
+- Governance — the decision-making structures, policies and accountability that direct how an organisation operates.
+- Risk — identifying, assessing, treating and monitoring the risks that could affect objectives.
+- Compliance — conforming with external regulations and internal standards, and being able to prove it.
+
+Why Organisations Move to GRC Software
+
+The move is usually triggered by a specific failure. An external audit surfaces a gap that had been invisible between certification cycles. A board member asks a residual-risk question that takes days to answer because the data sits in four systems. The same information is entered three times for three standards and never reconciled. GRC software addresses the root cause common to all of these: fragmentation. When governance, risk and compliance data live apart, no one can see the whole picture, and evidence is assembled reactively rather than maintained continuously.
+
+Integrated GRC vs Point Tools
+
+A single-purpose tool — a standalone risk register or an audit tracker — solves one discipline in isolation. The limitation appears at the seams: a risk recorded in one tool has no live link to the control that treats it or the audit that tests it, so those relationships are rebuilt by hand every reporting cycle. An integrated GRC platform keeps the relationships intact on one data foundation, which is what makes continuous assurance and real-time reporting possible rather than a quarterly scramble.
+
+GRC Software and XGRC®
+
+<a href="/grc-software">XGRC® Software</a> is a GRC platform built around this connected model. Specialist solutions — including <a href="/erm">Enterprise Risk Management</a> aligned to ISO 31000 and COSO, <a href="/integrated-assurance">Integrated Assurance</a>, <a href="/sheqx">SHEQX®</a> for safety, health, environment and quality, and <a href="/msxcyber">MSXCyber®</a> for ISO 27001-aligned information security — run on one secure, auditable data foundation. Because they share that foundation, risks, controls, obligations and evidence stay linked across disciplines instead of being duplicated across systems.
+
+When Does an Organisation Need GRC Software?
+
+The need typically surfaces once manual methods stop scaling: when compliance obligations span multiple regulations and standards, when audit evidence is assembled from scattered sources, or when leadership needs one defensible view of risk and compliance across business units. At that point a spreadsheet is no longer a system of record — it is a source of risk in its own right.`,
+
+'five-risk-management-process-steps': `Risk is part of every business, and it cannot be ignored or left to chance. A structured risk management process gives an organisation a repeatable way to identify what could go wrong, decide what to do about it, and check whether those decisions are working. ISO 31000, the international standard for risk management, describes risk management as a continuous cycle rather than a one-off exercise — and that cycle can be distilled into five practical steps.
+
+Step 1: Identify the Risks
+
+Every project and process carries potential pitfalls, and the first step is to anticipate them. Risks generally fall into four broad categories — hazard, operational, financial and strategic — and teams need to uncover, describe and record the risks that could affect their objectives. Because the risk environment changes constantly, identification is not a one-time task: the risk register needs regular review so that new and emerging risks are captured as they arise.
+
+Step 2: Assess and Measure the Risks
+
+Once risks are identified, each one is assessed for the likelihood of it occurring and the impact it would have if it did. Many organisations visualise this with a heat map, which makes it easy to see which risks are both frequent and severe. Scoring risks this way turns a long, undifferentiated list into a prioritised one, so attention and resources go to the risks that matter most rather than being spread evenly across all of them.
+
+Step 3: Evaluate Treatment Options
+
+With risks prioritised, the next step is to decide how to respond to each one. There are four standard treatment options:
+
+- Accept — the organisation judges that the benefit of an activity outweighs the risk, which is often appropriate for small or unavoidable risks.
+- Avoid — the organisation stops the activity altogether and eliminates the risk it poses.
+- Control (mitigate) — the organisation reduces the likelihood of the risk occurring, or the impact if it does.
+- Transfer — the organisation shifts responsibility for the consequences to another party, for example through insurance.
+
+Step 4: Implement the Chosen Treatment
+
+Once the most suitable treatment has been selected, the organisation puts it into effect. This means assigning ownership, allocating the resources needed, and following a defined process so the treatment is applied consistently rather than ad hoc. Clear accountability at this stage is what turns a decision on paper into a control that actually operates.
+
+Step 5: Monitor and Review
+
+Risk management does not end once treatments are in place. ISO 31000 places continual monitoring and review at the centre of the process: treatments are tracked to confirm they are working, residual risk is reassessed, and the register is updated as circumstances change. This feedback loop keeps the process alive and responsive rather than a static document filed after an annual review.
+
+Bringing the Process Together
+
+Managing these five steps across spreadsheets and email is where most risk programmes lose visibility. <a href="/erm">XGRC® Enterprise Risk Management</a> supports the full cycle on one platform — aligned to ISO 31000 and COSO — and connects each risk to the controls that treat it, the actions raised against it, and the assurance activities that test it, so nothing falls between systems.`,
+
 };

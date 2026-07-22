@@ -40,7 +40,7 @@ export const pillars = [
   { name: 'Sustainability', body: 'A robust, proactive approach to corporate sustainability with effective monitoring of the latest legislation and regulations.' }
 ];
 
-// The real public solution suite (OCCX, BCMX, PIX retired / not in use).
+// The real public solution suite (BCMX and PIX retired / not in use).
 export const solutions = [
   { name: 'MSX®', slug: 'msx', tag: 'Management system', blurb: 'A flexible, integrated hub that unifies multiple XGRC® disciplines into one coordinated management system.' },
   { name: 'MSXCyber®', slug: 'msxcyber', tag: 'Information security', blurb: 'ISMS support aligned to ISO 27001, with governance, risk management, and audit-ready evidence for cybersecurity programmes.' },
@@ -807,6 +807,24 @@ export const caseStudies = [
 
 export const articles = [
   {
+    slug: 'what-is-grc-software',
+    title: 'What Is GRC Software? A Practical Definition',
+    excerpt: 'GRC software brings governance, risk management and compliance onto one connected platform — so risks, controls, obligations and evidence are managed together instead of in disconnected spreadsheets and point tools.',
+    category: 'GRC',
+    date: '2025-09-09',
+    image: 'grc-vs-risk-management-software-why-the-difference-matters.jpg',
+    relatedSolutions: ['erm', 'integrated-assurance'],
+  },
+  {
+    slug: 'five-risk-management-process-steps',
+    title: 'The Five Risk Management Process Steps',
+    excerpt: 'A structured, repeatable risk management cycle — identify, assess, evaluate treatment, implement and monitor — aligned to ISO 31000, and how to run it on one platform instead of scattered spreadsheets.',
+    category: 'Risk Management',
+    date: '2020-04-25',
+    image: 'iso-31000-vs-coso-key-erm-framework-differences.jpg',
+    relatedSolutions: ['erm', 'integrated-assurance'],
+  },
+  {
     slug: 'what-is-governed-ai-for-grc',
     title: 'What Is Governed AI for GRC?',
     excerpt: 'Generic AI tools create as much governance risk as they solve. Governed AI for GRC is a different category — built for permissions, audit trails, and accountability from the ground up.',
@@ -1035,6 +1053,18 @@ export const articles = [
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
 // Only articles with an entry here render a FAQ section + FAQPage schema.
 export const articleFaqs = {
+  'what-is-grc-software': [
+    { q: 'What is GRC software used for?', a: 'GRC software is used to manage governance, risk and compliance on one platform — maintaining policies, risk registers, controls, regulatory obligations, audits and evidence together so they stay linked rather than scattered across spreadsheets and separate tools.' },
+    { q: 'What is the difference between GRC software and risk management software?', a: 'Risk management software focuses on one discipline — identifying, assessing and treating risk. GRC software is broader: it covers governance and compliance as well, and connects risks to the controls, obligations, audits and actions across all three, on a shared data foundation.' },
+    { q: 'Do we need GRC software if we already use spreadsheets?', a: 'Spreadsheets work until obligations span multiple regulations, audit evidence is assembled from scattered sources, or leadership needs one defensible view of risk and compliance. At that point a spreadsheet stops being a reliable system of record and becomes a source of risk itself.' },
+    { q: 'Does XGRC® provide GRC software?', a: 'Yes. XGRC® Software is a GRC platform whose specialist solutions — enterprise risk management, integrated assurance, SHEQX®, MSXCyber® and others — run on one secure, auditable data foundation so information stays connected across disciplines.' },
+  ],
+  'five-risk-management-process-steps': [
+    { q: 'What are the five steps of the risk management process?', a: 'Identify the risks; assess and measure them by likelihood and impact; evaluate treatment options; implement the chosen treatment; and monitor and review the results. ISO 31000 treats these as a continuous cycle rather than a one-off exercise.' },
+    { q: 'What are the four risk treatment options?', a: 'Accept the risk, avoid it by stopping the activity, control (mitigate) it by reducing its likelihood or impact, or transfer it to another party — for example through insurance.' },
+    { q: 'How does ISO 31000 relate to the risk management process?', a: 'ISO 31000 is the international standard for risk management. It frames the process as a continuous cycle and places ongoing monitoring and review at its centre, rather than treating risk assessment as a document filed once a year.' },
+    { q: 'How does XGRC® support the risk management process?', a: 'XGRC® Enterprise Risk Management supports the full cycle on one platform, aligned to ISO 31000 and COSO, connecting each risk to the controls that treat it, the actions raised against it, and the assurance activities that test it.' },
+  ],
   'what-is-governed-ai-for-grc': [
     { q: 'Does governed AI mean we can\'t use tools like ChatGPT at all?', a: 'No — it means AI access to governance data happens through controlled, audited integrations rather than unrestricted general-purpose use, so data boundaries and audit trails are maintained.' },
     { q: 'How is governed AI different from just restricting who can use AI?', a: 'Access restriction alone doesn\'t create an audit trail or explainable outputs. Governed AI combines permission alignment with logging and explainability, purpose-built for governance contexts.' },

@@ -93,3 +93,41 @@ WordPress host at this stage):
 - http→https and www→non-www: both canonicalize to `https://xgrcsoftware.com`
   in one hop, then the redirect map applies on top (2 hops total for an old
   `www` link — expected, terminates cleanly at 200, not a loop).
+
+## Traffic-weighted review + gap pass — 2026-07-22
+
+The traffic/backlink review flagged above as "not done" is now done, using a
+12-month Google Search Console **Performance (Pages)** export and the **external
+links (More sample links)** export.
+
+**The 44 `/insights/` fallback tier is closed.** Reviewed against real traffic:
+only `/category/occx/` (27 clicks) and `/category/xgrc-software/` (11 clicks)
+draw meaningful clicks; the individual old posts in that tier have ~0 clicks.
+`/insights/` is the correct like-for-like for WordPress category/archive
+listings, so no re-routing was needed. Backlinks: the external-links export
+shows every linked page is the homepage, a product page, or the mobile app —
+**no old blog post carries backlink equity**, so recreation decisions were made
+on evergreen topical value, not link preservation.
+
+**Bigger finding — 86 traffic-drawing old URLs were missing from the map.** The
+original map was built from the 294-URL *indexed-pages* export; the *Performance*
+export surfaced 86 more old URLs that still receive impressions/clicks but had no
+redirect, so they would soft-404 to the homepage (the SPA `try_files` fallback
+serves `/index.html` with a 200 for unknown paths — confirmed). **79 were added**
+to the map + `.conf` (same curated-keyword method; exact-match where a new
+article exists, `/resources/` for old PDFs); 7 pure-junk paths were excluded
+(WordPress `ubermenu` plugin assets, stray logo images). All tested: correct 301
+to a 200 target, no chains. Map is now 264 → 343 rows.
+
+**Two high-demand posts recreated as real articles** (turning their redirects
+into 1:1 matches): `/2025/09/09/what-is-a-grc-software/` (640 impressions) →
+`/insights/what-is-grc-software/`, and `/2020/04/25/the-five-risk-management-process-steps/`
+(857 impressions) → `/insights/five-risk-management-process-steps/`. Drafts for
+review; grounded in `solutionDetails`, no fabricated statistics.
+
+**OCCX removed.** OCCX is a retired product, not in the solution stack. Removed
+from the `src/data/site.js` comment and confirmed absent from the built site.
+The two old OCCX URLs (`/category/occx/`, `OCCX-Infographic.pdf`) still redirect
+to neutral pages (`/insights/`, `/solutions/`) that carry no OCCX branding — kept
+to preserve the 27 clicks and avoid a soft-404. Flip these to hard-404 if the
+retired URLs should disappear entirely.
