@@ -66,10 +66,30 @@ launch. None of them are wrong in the sense of landing somewhere
 irrelevant; some may just be a notch more generic than a human editor
 would choose.
 
-## Before applying
+## Verified 2026-07-20
 
-- This `.conf` file is not wired into any server block yet, and the
-  production `xgrcsoftware.com` nginx config doesn't exist yet either (see
-  the domain cutover project notes).
-- Test a sample of these redirects against a real request once the
-  production server block exists, before pointing DNS.
+Wired into the production `xgrcsoftware.com` vhost (`include` line before the
+SPA `try_files` fallback), `nginx -t` passes, and tested directly against the
+server via `curl --resolve` (bypassing DNS, which still points at the old
+WordPress host at this stage):
+
+- All 29 high-confidence rows (exact + curated + renamed solution): correct
+  301, correct target, target returns 200.
+- Spot-check across `/sheqx/`, `/erm/`, `/esg/`, `/msxcyber/`,
+  `/compliance-hub/`, `/msx/`, `/grc-software/` (26 rows): all correct, all
+  topic assignments sane on review.
+- All 44 `/insights/` fallback rows: all redirect correctly and land on a
+  200. Traffic/impressions/backlink-weighted review of these 44 was **not
+  done** — no GSC Performance export or backlink data exists in this repo;
+  only the indexed-URL list. Needed before treating this tier as fully
+  reviewed, not just functionally correct.
+- 32 no-redirect URLs (homepage, 12 solution pages, 3 static pages, 2
+  existing-rule paths, 14 legal/trust paths — note this is 32 against the
+  "30" figure above, an old count that was never reconciled; not a
+  functional issue): all clean 200.
+- No redirect chains/loops: no `new_path` value collides with any
+  `old_path`, no staging-domain or absolute-URL leakage in the `.conf`, no
+  overlap with the vhost's other location blocks.
+- http→https and www→non-www: both canonicalize to `https://xgrcsoftware.com`
+  in one hop, then the redirect map applies on top (2 hops total for an old
+  `www` link — expected, terminates cleanly at 200, not a loop).
