@@ -10,7 +10,11 @@
 #   ./scripts/indexnow-submit.sh              # submit every URL in the sitemap
 #   ./scripts/indexnow-submit.sh <url> ...    # submit only the given URL(s)
 #
-# Run it after a content deploy so new/changed pages get picked up quickly.
+# Runs automatically as the "postbuild" npm script after every `npm run build`
+# (this VM's `astro build` writes straight to the nginx-served dist/, so a
+# build IS a deploy here — no separate deploy step to hook into). Failure
+# here must not fail the build, hence `|| true` in package.json.
+#
 # Set up 2026-07-24 during the domain cutover. See memory: xgrc-domain-cutover-2026-07.
 
 set -euo pipefail

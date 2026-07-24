@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "postbuild": "scripts/indexnow-submit.sh || true",
     "preview": "astro preview",
     "astro": "astro",
     "generate-pdfs": "scripts/generate-pdfs/.venv/bin/python3 scripts/generate-pdfs/build_checklists.py",
