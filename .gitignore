@@ -16,3 +16,6 @@ form-handler/.venv/
 
 # claude code local state
 .claude/
+
+# secrets — never commit
+.secrets/
