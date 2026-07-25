@@ -418,6 +418,20 @@ export const useCaseRegistry = [
     scope: ['Environmental monitoring (air, water, noise, biodiversity, energy)', 'Legal obligation and compliance tracking', 'Objectives, targets and initiatives', 'Incident and non-conformance management', 'Regulatory and stakeholder reporting'],
     ctaHeadline: 'See how XGRC® makes environmental compliance demonstrable.',
     ctaBody: 'Book a demo to see how ENVIRX® consolidates multi-site environmental monitoring and legal obligation tracking into one auditable system.',
+    heroButtonLabel: 'Download the environmental compliance checklist',
+    resource: {
+      title: 'Environmental Compliance Checklist',
+      note: 'PDF · Programme-aligned · v1.0',
+      includes: [
+        'Legal obligation and compliance register',
+        'Multi-site environmental monitoring',
+        'Permits, licences and authorisations',
+        'Incidents and non-conformances',
+        'Objectives, targets and reporting',
+      ],
+      checklistSlug: 'environmental-compliance-checklist',
+      pdfPath: '/resources/xgrc-environmental-compliance-checklist-v1-0.pdf',
+    },
     relatedUseCases: ['iso-14001-readiness', 'esg-reporting'],
     faqs: [
       { q: 'What is environmental compliance software?', a: 'Environmental compliance software helps organisations monitor environmental performance, manage legal obligations, record evidence and maintain auditable environmental data across sites, operations and regulatory requirements. XGRC® delivers this through ENVIRX®, aligned to ISO 14001 and local environmental legislation.' },

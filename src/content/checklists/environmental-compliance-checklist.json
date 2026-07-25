@@ -1,0 +1,82 @@
+{
+  "slug": "environmental-compliance-checklist",
+  "title": "Environmental Compliance Checklist",
+  "subtitle": "A practical checklist for running an auditable environmental compliance programme across sites",
+  "isoTags": ["ISO 14001", "NEMA", "Environmental Compliance", "Environmental Monitoring", "King V", "GHG Protocol"],
+  "intro": "Environmental compliance is demonstrated with evidence, not intention. This checklist sets out a practical sequence for running an ongoing environmental compliance programme, from legal obligation tracking and multi-site monitoring through incidents, targets, and regulatory reporting, so environmental performance can be produced on demand for an inspector or auditor.",
+  "pageBreakAfter": "D",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Legal Obligations & Compliance Register",
+      "items": [
+        "Maintain a register of applicable environmental legislation and other requirements",
+        "Assign an owner to each obligation with an evaluation frequency defined",
+        "Record the review date and source when legislation changes are published",
+        "Evaluate compliance against each obligation and log the outcome with evidence"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Multi-Site Environmental Monitoring",
+      "items": [
+        "Capture monitoring data for air quality, water, noise, biodiversity, and energy per site",
+        "Use consistent units and definitions across every site to allow consolidation",
+        "Set monitoring frequency and thresholds for each parameter",
+        "Flag readings that breach a threshold for investigation and action"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Permits, Licences & Authorisations",
+      "items": [
+        "Maintain a schedule of environmental permits, licences, and authorisations",
+        "Monitor expiry and renewal dates with reminders ahead of the deadline",
+        "Record permit conditions and link them to the monitoring data that evidences compliance",
+        "Confirm each operating site holds the authorisations its activities require"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Environmental Incidents & Non-Conformances",
+      "items": [
+        "Record environmental incidents and near misses at the time they occur",
+        "Classify each event by type, severity, and affected environmental aspect",
+        "Determine root cause rather than recording only the immediate symptom",
+        "Assign corrective actions with clear owners and realistic due dates"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Objectives, Targets & Initiatives",
+      "items": [
+        "Define measurable environmental objectives aligned to significant impacts",
+        "Set reduction targets with a baseline and a monitored progress measure",
+        "Link improvement initiatives to the objectives they support",
+        "Review progress against targets on a set frequency, not only at year end"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Inspections & Operational Controls",
+      "items": [
+        "Schedule environmental inspections with defined scope and frequency",
+        "Use standardised inspection questions that produce a testable yes or no",
+        "Record findings with evidence and raise non-conformances where needed",
+        "Verify operational controls for waste, effluent, and emissions are being applied"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Reporting & Stakeholder Communication",
+      "items": [
+        "Produce regulatory and internal reports from the monitoring data, not re-keyed spreadsheets",
+        "Maintain an audit trail linking every reported figure to its source evidence",
+        "Feed environmental data into ESG and sustainability disclosures without re-entry",
+        "Record stakeholder communications and commitments with follow-up actions tracked"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}
