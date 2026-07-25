@@ -2,6 +2,36 @@
 // Content sourced from xgrcsoftware.com — all rights reserved XGRC® Software.
 export const articleContent = {
 
+'digital-sheq-management': `Safety, health, environment and quality management rarely fails because people do not care. It fails because the information needed to act sits in the wrong places: an incident logged in an email thread, a corrective action promised in a meeting, a permit expiry noted on someone's calendar, an audit finding recorded in a spreadsheet nobody reopens until the next audit. Each record exists. None of them are connected. Digital SHEQ management is the move from that scattered state to one auditable platform where safety, health, environment and quality data is managed together.
+
+Why Scattered SHEQ Records Fail
+
+The pattern repeats across sites and industries. Incidents get logged then forgotten, with no closure, no pattern analysis and no learning carried into the next month. ISO compliance gaps stay invisible until an external audit makes them official findings with deadlines attached. Legal appointments, material safety data sheets and operational permits lapse because nobody owns the expiry calendar. Corrective actions are raised, assigned and then orphaned, so months later the same issue recurs. The common thread is not negligence. It is the absence of a single system of record that connects an incident to its root cause, its corrective action, and the audit that should have caught it.
+
+What Digital SHEQ Management Changes
+
+Bringing SHEQ onto one platform changes what the organisation can see and prove. <a href="/sheqx">SHEQX®</a> manages the complete SHEQ lifecycle, from hazard identification and incident capture through risk treatment, compliance monitoring and ISO-aligned audit management, across every site and business unit. Instead of chasing evidence before an audit, the evidence accumulates as work is done. Instead of discovering a lapsed permit when an inspector asks, the expiry is owned and monitored ahead of the deadline.
+
+The Building Blocks
+
+A digital SHEQ programme connects several disciplines that are usually managed apart:
+
+- Incident and hazard management, so events are captured at the time they occur, classified, and driven through to closure rather than logged and lost
+- Risk management, linking hazards and incidents to the controls that treat them
+- Legal requirements, legal appointments, permit and MSDS management, so obligations and their expiry dates are owned rather than assumed
+- Non-conformance and action management, so corrective actions have owners, due dates and an audit trail
+- Audit and inspection management, so ISO evidence is produced from the platform rather than reassembled before each audit
+
+Because these sit on one data foundation, a single incident connects to the risk it relates to, the action raised against it, and the audit that tests whether the control is working.
+
+Sustaining ISO Certification Without the Administrative Drag
+
+Most organisations running SHEQ are aligned to ISO 9001, ISO 14001 and ISO 45001. The difficulty is rarely understanding the standards. It is sustaining the evidence between audits. Digital SHEQ management keeps that evidence current by design: audits, inspections, actions and compliance obligations are tracked continuously, so certification is maintained through everyday operation rather than a scramble before each surveillance visit.
+
+From Records to Outcomes
+
+The point of digital SHEQ management is not tidier records. It is prevention and accountability: patterns spotted before they become incidents, actions closed rather than orphaned, and one auditable view of SHEQ performance that leadership can trust across every site. SHEQX® is the Safety, Health, Environment and Quality solution within XGRC® Software, connecting SHEQ data to the same secure foundation used across risk, compliance and assurance, so safety, health, environment and quality are governed as part of the wider picture rather than in isolation.`,
+
 'what-is-governed-ai-for-grc': `Most organisations did not choose to have an AI governance gap. It happened by default — employees started using ChatGPT and similar tools for real work faster than policies, permissions, or audit trails could catch up. In governance, risk and compliance functions specifically, that gap is dangerous: the data involved — risk registers, audit findings, policy content — is exactly the data an organisation cannot afford to expose, store externally, or use without an audit trail.
 
 What Is Governed AI for GRC?

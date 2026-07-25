@@ -811,6 +811,15 @@ export const caseStudies = [
 // citation). Absent it, dateModified falls back to `date`.
 export const articles = [
   {
+    slug: 'digital-sheq-management',
+    title: 'Digital SHEQ Management: From Scattered Records to One Auditable Platform',
+    excerpt: 'Safety, health, environment and quality data still lives in email, spreadsheets and paper forms at many organisations. Moving SHEQ management onto one auditable platform is what turns scattered records into closed actions, prevented incidents and sustained ISO certification.',
+    category: 'SHEQ',
+    date: '2026-07-25',
+    image: 'what-is-sheq-software-complete-guide.jpg',
+    relatedSolutions: ['sheqx'],
+  },
+  {
     slug: 'what-is-grc-software',
     title: 'What Is GRC Software? A Practical Definition',
     excerpt: 'GRC software brings governance, risk management and compliance onto one connected platform — so risks, controls, obligations and evidence are managed together instead of in disconnected spreadsheets and point tools.',
@@ -1057,6 +1066,12 @@ export const articles = [
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
 // Only articles with an entry here render a FAQ section + FAQPage schema.
 export const articleFaqs = {
+  'digital-sheq-management': [
+    { q: 'What is digital SHEQ management?', a: 'Digital SHEQ management is running safety, health, environment and quality processes on one auditable platform instead of across email, spreadsheets and paper forms. Incidents, risks, inspections, audits, actions and compliance obligations are connected on a shared data foundation, so records are linked and evidence is always current.' },
+    { q: 'How does it help sustain ISO certification?', a: 'Aligned to ISO 9001, ISO 14001 and ISO 45001, a digital SHEQ platform tracks audits, inspections, actions and compliance obligations continuously, so certification evidence stays current between audits rather than being reassembled before each surveillance visit.' },
+    { q: 'What does SHEQ stand for?', a: 'SHEQ stands for Safety, Health, Environment and Quality. SHEQ management brings these four disciplines together so their risks, incidents, controls and compliance obligations are managed on one platform rather than separately.' },
+    { q: 'Which XGRC® solution provides SHEQ management?', a: 'SHEQX® is the Safety, Health, Environment and Quality solution within XGRC® Software. It manages the full SHEQ lifecycle across every site and connects to the same secure data foundation used across risk, compliance and assurance.' },
+  ],
   'what-is-grc-software': [
     { q: 'What is GRC software used for?', a: 'GRC software is used to manage governance, risk and compliance on one platform — maintaining policies, risk registers, controls, regulatory obligations, audits and evidence together so they stay linked rather than scattered across spreadsheets and separate tools.' },
     { q: 'What is the difference between GRC software and risk management software?', a: 'Risk management software focuses on one discipline — identifying, assessing and treating risk. GRC software is broader: it covers governance and compliance as well, and connects risks to the controls, obligations, audits and actions across all three, on a shared data foundation.' },
