@@ -833,6 +833,24 @@ export const caseStudies = [
 // citation). Absent it, dateModified falls back to `date`.
 export const articles = [
   {
+    slug: 'what-is-enterprise-risk-management',
+    title: 'What Is Enterprise Risk Management? A Complete Guide',
+    excerpt: 'What enterprise risk management is, how it differs from traditional risk management, the ISO 31000 and COSO frameworks behind it, and how software sustains ERM across the whole organisation.',
+    category: 'ERM',
+    date: '2026-07-25',
+    image: 'cultivating-a-risk-aware-culture-tackling-the-people-risk-in-enterprise-risk-management.jpg',
+    relatedSolutions: ['erm'],
+  },
+  {
+    slug: 'erm-vs-grc',
+    title: 'ERM vs GRC: What Is the Difference?',
+    excerpt: 'ERM and GRC are often used interchangeably but are not the same. Enterprise risk management is a discipline focused on risk; GRC is the broader environment it sits inside. How they relate, and which you need.',
+    category: 'ERM',
+    date: '2026-07-25',
+    image: 'grc-vs-risk-management-software-why-the-difference-matters.jpg',
+    relatedSolutions: ['erm'],
+  },
+  {
     slug: 'digital-sheq-management',
     title: 'Digital SHEQ Management: From Scattered Records to One Auditable Platform',
     excerpt: 'Safety, health, environment and quality data still lives in email, spreadsheets and paper forms at many organisations. Moving SHEQ management onto one auditable platform is what turns scattered records into closed actions, prevented incidents and sustained ISO certification.',
@@ -1088,6 +1106,18 @@ export const articles = [
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
 // Only articles with an entry here render a FAQ section + FAQPage schema.
 export const articleFaqs = {
+  'what-is-enterprise-risk-management': [
+    { q: 'What is enterprise risk management in simple terms?', a: 'Enterprise risk management (ERM) is managing an organisation\'s risks across the whole business as one connected portfolio, rather than department by department. It identifies, assesses, treats and monitors risk against the appetite the board has set, and links each risk to the controls and assurance meant to manage it.' },
+    { q: 'What is the difference between ERM and risk management?', a: 'Traditional risk management is usually local and periodic, with each department keeping its own register reviewed once a year. ERM is organisation-wide and continuous: it aggregates risk across departments and projects, keeps the register live, and connects risks to controls, owners and assurance activity.' },
+    { q: 'What frameworks are used for enterprise risk management?', a: 'The two most widely used are ISO 31000, the international standard for risk management, and the COSO ERM framework, which links risk more explicitly to strategy and performance. Most organisations draw on both, treating risk management as a continuous cycle integrated into decision-making.' },
+    { q: 'Does XGRC® provide enterprise risk management software?', a: 'Yes. XGRC® Enterprise Risk Management provides a live risk register, risk appetite monitoring, key risk indicators, board-level dashboards and corrective action tracking, aligned to ISO 31000 and COSO, on the same auditable platform used across compliance and assurance.' },
+  ],
+  'erm-vs-grc': [
+    { q: 'Is ERM part of GRC?', a: 'Yes. Enterprise risk management is one of the pillars of governance, risk and compliance. GRC spans governance, risk and compliance as connected disciplines on shared data, and ERM provides the risk pillar within that broader model.' },
+    { q: 'What is the difference between ERM and GRC?', a: 'ERM is a discipline focused on risk: exposure, controls, appetite and assurance. GRC is the broader environment that discipline sits inside, covering governance and compliance as well as risk, and connecting all three so they reinforce each other rather than operating in silos.' },
+    { q: 'Can you have ERM without GRC?', a: 'An organisation can run enterprise risk management without a full GRC model, but it will manage risk in relative isolation from the governance and compliance activities that depend on the same information. Most organisations grow from ERM into a connected GRC approach over time.' },
+    { q: 'Does XGRC® cover both ERM and GRC?', a: 'Yes. XGRC® is a GRC platform whose specialist solutions run on one auditable data foundation. Enterprise Risk Management is the risk pillar, connected on the same platform to compliance, audit and assurance.' },
+  ],
   'digital-sheq-management': [
     { q: 'What is digital SHEQ management?', a: 'Digital SHEQ management is running safety, health, environment and quality processes on one auditable platform instead of across email, spreadsheets and paper forms. Incidents, risks, inspections, audits, actions and compliance obligations are connected on a shared data foundation, so records are linked and evidence is always current.' },
     { q: 'How does it help sustain ISO certification?', a: 'Aligned to ISO 9001, ISO 14001 and ISO 45001, a digital SHEQ platform tracks audits, inspections, actions and compliance obligations continuously, so certification evidence stays current between audits rather than being reassembled before each surveillance visit.' },

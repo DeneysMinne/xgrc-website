@@ -2,6 +2,69 @@
 // Content sourced from xgrcsoftware.com — all rights reserved XGRC® Software.
 export const articleContent = {
 
+'what-is-enterprise-risk-management': `Every organisation carries risk. The question is whether it manages that risk in one connected view or in a scatter of disconnected registers, spreadsheets and departmental silos. Enterprise risk management is the discipline of doing the former: looking at risk across the whole organisation, as a portfolio, rather than one department or project at a time.
+
+What Is Enterprise Risk Management?
+
+Enterprise risk management (ERM) is a structured, organisation-wide approach to identifying, assessing, treating and monitoring the risks that could affect an organisation's objectives. Instead of managing risks in isolation, ERM connects them to the controls that treat them, the risk appetite the board has set, and the assurance activities that test whether those controls work. The result is a single, current view of risk that leadership can actually act on.
+
+Enterprise Risk Management vs Traditional Risk Management
+
+Traditional risk management tends to be local and periodic: each department keeps its own register, risks are reviewed once a year, and residual risk is rarely re-assessed. It answers the question "what could go wrong here?". Enterprise risk management answers a broader question: "what is our total exposure, and is it within the level we have agreed to accept?". The difference is scope and connection. ERM aggregates risk across departments and projects, links each risk to its controls and owners, and keeps the picture live. For a fuller treatment of the underlying cycle, see <a href="/insights/five-risk-management-process-steps">the five risk management process steps</a>, and for how this plays out in tooling, <a href="/insights/erm-software-vs-traditional-risk-tools">ERM software versus traditional risk tools</a>.
+
+The Enterprise Risk Management Framework
+
+ERM is usually built on an established framework. The two most widely used are ISO 31000, the international standard for risk management, and the COSO ERM framework, which links risk more explicitly to strategy and performance. ISO 31000 frames risk management as a continuous cycle rather than a one-off exercise; COSO ERM emphasises integrating risk into strategic decision-making. Most organisations draw on both. The differences between them are set out in <a href="/insights/iso-31000-vs-coso-key-erm-framework-differences">ISO 31000 vs COSO</a>.
+
+Core Components of Enterprise Risk Management
+
+A working ERM programme brings several elements onto one foundation:
+
+- A risk register that is maintained continuously, not rebuilt annually
+- Risk appetite thresholds set by the board, with a mechanism to detect and escalate breaches
+- Key risk indicators (KRIs) tracked alongside the risks they monitor, so early warning signals are noticed
+- Controls linked to the specific risks they treat, with clear owners
+- Corrective actions raised, assigned and tracked to closure
+- Assurance and audit activity aligned to the risk register, so high-risk areas are actually tested
+
+Why Enterprise Risk Management Matters
+
+Risk that is managed in silos produces impressive registers that are outdated before they reach the board, appetite thresholds that operational decisions quietly ignore, and audit plans that bear no relationship to where the real exposure sits. ERM closes those gaps. It gives decision-makers one defensible view of exposure, connects risk to the controls and assurance meant to manage it, and turns risk management from an annual compliance exercise into an ongoing part of how the organisation runs.
+
+How Software Supports Enterprise Risk Management
+
+At scale, ERM is difficult to sustain in spreadsheets. <a href="/use-cases/enterprise-risk-management">Enterprise risk management software</a> provides the shared data foundation the discipline needs: a live risk register, risk appetite monitoring, KRIs tied to their risks, board-level dashboards, and corrective action tracking, all aligned to ISO 31000 and COSO. <a href="/erm">XGRC® Enterprise Risk Management</a> delivers this within the wider XGRC® platform, so enterprise, operational and project risk are managed on the same auditable system used across compliance and assurance.
+
+Enterprise Risk Management and the Wider GRC Picture
+
+ERM does not operate alone. It sits within an organisation's broader governance, risk and compliance environment, sharing data with compliance obligations, audits and controls. Understanding where ERM ends and GRC begins is a common point of confusion, addressed in <a href="/insights/erm-vs-grc">ERM vs GRC</a>. Managed together on one platform, risk stops being a standalone register and becomes part of a connected governance picture.`,
+
+'erm-vs-grc': `ERM and GRC are two of the most used, and most confused, acronyms in risk and governance. They overlap, they are often used interchangeably, and vendors rarely help by using them loosely. But they are not the same thing, and knowing the difference matters when you are deciding what your organisation actually needs.
+
+What Is Enterprise Risk Management (ERM)?
+
+Enterprise risk management is the discipline of managing risk across the whole organisation as a connected portfolio, rather than department by department. It identifies, assesses, treats and monitors risk against the appetite the board has set, aligned to frameworks such as ISO 31000 and COSO. Its centre of gravity is risk: exposure, controls, appetite and assurance. For the full picture, see <a href="/insights/what-is-enterprise-risk-management">what is enterprise risk management</a>.
+
+What Is Governance, Risk and Compliance (GRC)?
+
+Governance, risk and compliance is a broader operating model. It spans three connected disciplines: governance (how the organisation is directed and held accountable), risk (identifying and managing exposure), and compliance (meeting legal, regulatory and internal obligations). GRC is less a single activity than a way of running these disciplines on shared data so they reinforce each other rather than operating in silos. XGRC® describes this on the <a href="/grc-software">GRC platform</a> page.
+
+ERM vs GRC: The Key Difference
+
+The simplest way to hold the distinction: ERM is a discipline; GRC is the environment that discipline sits inside. ERM is focused on risk. GRC is broader, covering governance and compliance as well as risk, and connecting all three. Put another way, enterprise risk management is one of the pillars of GRC. An organisation can run ERM without a full GRC model, but it will manage risk in relative isolation from the governance and compliance activities that depend on the same information.
+
+How ERM Fits Within GRC
+
+In a mature GRC environment, the risk register does not stand alone. Risks link to the compliance obligations they threaten, to the controls that treat them, and to the audits that test those controls. Risk appetite informs governance decisions. Compliance failures feed back into the risk picture. ERM provides the risk pillar; GRC connects it to everything else. This is why the two are so often conflated: done well, ERM is inseparable from the governance and compliance around it.
+
+Which Does Your Organisation Need?
+
+If the immediate problem is that risk is fragmented, registers are stale, and the board lacks one view of exposure, ERM is the priority. If the problem is broader, with governance, risk and compliance each managed in separate tools and disconnected data, then a GRC approach is the answer, with ERM as one part of it. In practice most organisations grow from one into the other: they start by getting risk under control, then connect it to compliance and assurance.
+
+How XGRC® Brings Them Together
+
+XGRC® is a GRC platform whose specialist solutions run on one auditable data foundation. <a href="/erm">Enterprise Risk Management</a> is the risk pillar, connected on the same platform to compliance, audit and assurance, so risk is governed as part of the whole rather than in isolation. That connection is the practical difference between managing risk and managing governance, risk and compliance together. For the related distinction between GRC and standalone risk software, see <a href="/insights/grc-vs-risk-management-software-why-the-difference-matters">GRC vs risk management software</a>.`,
+
 'digital-sheq-management': `Safety, health, environment and quality management rarely fails because people do not care. It fails because the information needed to act sits in the wrong places: an incident logged in an email thread, a corrective action promised in a meeting, a permit expiry noted on someone's calendar, an audit finding recorded in a spreadsheet nobody reopens until the next audit. Each record exists. None of them are connected. Digital SHEQ management is the move from that scattered state to one auditable platform where safety, health, environment and quality data is managed together.
 
 Why Scattered SHEQ Records Fail
