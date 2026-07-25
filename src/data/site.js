@@ -833,6 +833,24 @@ export const caseStudies = [
 // citation). Absent it, dateModified falls back to `date`.
 export const articles = [
   {
+    slug: 'enterprise-risk-management-vs-traditional-risk-management',
+    title: 'ERM vs Traditional Risk Management: What Is the Difference?',
+    excerpt: 'Traditional risk management is local and periodic; enterprise risk management is organisation-wide and continuous. What separates them, and why organisations move from one to the other.',
+    category: 'ERM',
+    date: '2026-07-25',
+    image: 'erm-software-vs-traditional-risk-tools.jpg',
+    relatedSolutions: ['erm'],
+  },
+  {
+    slug: 'erp-vs-erm',
+    title: 'ERP vs ERM: What Is the Difference?',
+    excerpt: 'ERP and ERM are one letter apart and often confused, but they are different systems: ERP runs the business, ERM governs its risk. What each does, and why organisations run both.',
+    category: 'ERM',
+    date: '2026-07-25',
+    image: 'iso-31000-vs-coso-key-erm-framework-differences.jpg',
+    relatedSolutions: ['erm'],
+  },
+  {
     slug: 'what-is-enterprise-risk-management',
     title: 'What Is Enterprise Risk Management? A Complete Guide',
     excerpt: 'What enterprise risk management is, how it differs from traditional risk management, the ISO 31000 and COSO frameworks behind it, and how software sustains ERM across the whole organisation.',
@@ -1106,6 +1124,18 @@ export const articles = [
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
 // Only articles with an entry here render a FAQ section + FAQPage schema.
 export const articleFaqs = {
+  'enterprise-risk-management-vs-traditional-risk-management': [
+    { q: 'What is the difference between traditional risk management and enterprise risk management?', a: 'Traditional risk management is local and periodic, with each department keeping its own register reviewed on a set cycle. Enterprise risk management is organisation-wide and continuous: it aggregates risk into one connected view, links risks to controls, owners and the board\'s appetite, and keeps the picture current.' },
+    { q: 'What is traditional risk management?', a: 'Traditional risk management manages risk within a single department, site or project, usually in a spreadsheet reviewed once a year. It answers what could go wrong in one area, but sees risks in isolation and offers no single view of the organisation\'s total exposure.' },
+    { q: 'Why do organisations move from traditional risk management to ERM?', a: 'The move happens when departmental registers can no longer be added together to answer a board-level question, risk appetite cannot be monitored on the ground, and the audit plan bears no relationship to where the real risk sits. ERM closes that gap with one connected, continuously maintained view.' },
+    { q: 'Is enterprise risk management just risk management at a bigger scale?', a: 'It is more than scale. ERM changes how risk is seen and connected: from many isolated registers to one portfolio, from periodic reviews to continuous monitoring, and from standalone spreadsheets to risks linked to controls, appetite and assurance on shared data.' },
+  ],
+  'erp-vs-erm': [
+    { q: 'What is the difference between ERP and ERM?', a: 'ERP (enterprise resource planning) runs an organisation\'s core operations, such as finance, procurement, supply chain and HR, on one integrated system. ERM (enterprise risk management) governs risk, through risk registers, controls, appetite and assurance. ERP runs the business; ERM governs its risk.' },
+    { q: 'Are ERP and ERM the same thing?', a: 'No. They are one letter apart but solve different problems and rarely overlap in function. ERP is about operational efficiency and a single source of truth for transactions; ERM is about governance and resilience, giving leadership a view of exposure against risk appetite.' },
+    { q: 'Do organisations need both ERP and ERM?', a: 'Most established organisations run both. ERP keeps operations running on reliable data; ERM keeps risk governed on reliable data. They serve different audiences and answer to different pressures, and are bought, run and measured separately.' },
+    { q: 'Does XGRC® provide ERP or ERM?', a: 'XGRC® provides ERM, not ERP. XGRC® Enterprise Risk Management delivers a live risk register, risk appetite monitoring and assurance-aligned risk management on one auditable platform. Strategix, the group behind XGRC®, delivers ERP separately as part of its broader technology portfolio.' },
+  ],
   'what-is-enterprise-risk-management': [
     { q: 'What is enterprise risk management in simple terms?', a: 'Enterprise risk management (ERM) is managing an organisation\'s risks across the whole business as one connected portfolio, rather than department by department. It identifies, assesses, treats and monitors risk against the appetite the board has set, and links each risk to the controls and assurance meant to manage it.' },
     { q: 'What is the difference between ERM and risk management?', a: 'Traditional risk management is usually local and periodic, with each department keeping its own register reviewed once a year. ERM is organisation-wide and continuous: it aggregates risk across departments and projects, keeps the register live, and connects risks to controls, owners and assurance activity.' },
