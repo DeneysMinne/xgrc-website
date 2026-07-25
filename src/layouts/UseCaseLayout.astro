@@ -352,6 +352,7 @@ const schema = {
           _subject: `Checklist download — ${resourceTitle}`,
           _download_url: window.location.origin + pdfPath,
           _source_page: pageUrl,
+          _ga_client_id: (document.cookie.match(/_ga=GA\d\.\d\.(\d+\.\d+)/) || [])[1] || '',
         }),
       }).catch(() => {}); // swallow errors — download still works
 

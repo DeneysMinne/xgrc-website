@@ -9,12 +9,18 @@ Required env vars (add to /etc/xgrc/forms.env):
   MS_CLIENT_SECRET  <secret>
   MS_SENDER         info@xgrcsoftware.com
   FORM_TO           deneysm@strategix.co.za
+
+Optional (server-side GA4 lead tracking via Measurement Protocol):
+  GA4_MEASUREMENT_ID  G-XXXXXXXXXX
+  GA4_MP_API_SECRET   <secret>   (GA4 Admin > Data Streams > Measurement Protocol API secrets)
 """
 
 import json
 import logging
 import os
+import random
 import sys
+import time
 from datetime import datetime, timezone
 
 import requests
@@ -134,6 +140,52 @@ def _send_email(data: dict) -> None:
     log.info("Email sent via Graph API to %s for %s", to, email)
 
 
+def _send_ga4_event(data: dict) -> None:
+    """Fire a server-side GA4 'generate_lead' event via the Measurement Protocol.
+
+    Server-side confirmation means a lead is only counted once it actually
+    reaches the backend, immune to ad-blockers that drop the client-side tag.
+    Entirely best-effort: any failure is logged and swallowed so it can never
+    affect the form response.
+    """
+    mid = os.environ.get("GA4_MEASUREMENT_ID")
+    secret = os.environ.get("GA4_MP_API_SECRET")
+    if not mid or not secret:
+        return  # GA4 not configured — skip silently.
+
+    if data.get("_download_url"):
+        lead_type = "checklist"
+    elif (data.get("_category") or "").strip().lower().startswith("partner"):
+        lead_type = "partner"
+    else:
+        lead_type = "demo"
+
+    # Prefer the browser's GA client_id (sent by the form) so the conversion
+    # ties to the real session/source; fall back to a synthetic id otherwise.
+    client_id = (data.get("_ga_client_id") or "").strip() or f"{random.randint(10**9, 10**10)}.{int(time.time())}"
+
+    payload = {
+        "client_id": client_id,
+        "events": [{
+            "name": "generate_lead",
+            "params": {
+                "lead_type": lead_type,
+                "engagement_time_msec": "1",
+            },
+        }],
+    }
+    try:
+        requests.post(
+            "https://www.google-analytics.com/mp/collect",
+            params={"measurement_id": mid, "api_secret": secret},
+            json=payload,
+            timeout=5,
+        )
+        log.info("GA4 generate_lead sent (type=%s)", lead_type)
+    except Exception as exc:
+        log.warning("GA4 MP event failed: %s", exc)
+
+
 @app.route("/api/demo", methods=["POST"])
 def demo_submit():
     data = request.get_json(silent=True) or {}
@@ -155,6 +207,8 @@ def demo_submit():
     except Exception as exc:
         log.error("Email send failed: %s", exc)
         # Still return success — submission is saved; email failure is ops-side.
+
+    _send_ga4_event(data)
 
     return jsonify({"ok": True}), 200
 
