@@ -77,10 +77,10 @@ const YOUTUBE_PATH = 'M2 9a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4H6a4 4 
   .site-footer { border-top: 1px solid var(--line); background: rgba(6, 15, 28, 0.6); padding: clamp(48px, 7vw, 80px) 0 28px; margin-top: 40px; }
   .top { display: grid; grid-template-columns: 1.6fr 4fr; gap: 32px; }
   .explore-block { margin-bottom: 32px; }
-  .nav-grid {
-    display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(2, auto);
-    grid-auto-flow: column; column-gap: 24px; row-gap: 0;
-  }
+  /* Multi-column so the link list auto-balances into even columns for ANY
+     item count (no empty column / orphan tile when links are added). */
+  .nav-grid { columns: 5; column-gap: 24px; }
+  .nav-grid a { break-inside: avoid; }
   .offices-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-top: 28px; border-top: 1px solid var(--line); }
   .brand { display: flex; align-items: center; gap: 11px; margin-bottom: 18px; }
   .footer-icon { height: 38px; width: auto; display: block; }
@@ -114,11 +114,11 @@ const YOUTUBE_PATH = 'M2 9a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4H6a4 4 
   .bottom-right a:hover { color: var(--cyan); }
   @media (max-width: 900px) {
     .top { grid-template-columns: 1fr; }
-    .nav-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, auto); }
+    .nav-grid { columns: 3; }
     .offices-row { grid-template-columns: repeat(3, 1fr); }
   }
   @media (max-width: 560px) {
-    .nav-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(5, auto); }
+    .nav-grid { columns: 2; }
     .offices-row { grid-template-columns: 1fr; gap: 20px; }
   }
 </style>
