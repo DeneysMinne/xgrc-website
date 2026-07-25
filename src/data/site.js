@@ -69,6 +69,7 @@ export const solutionDetails = {
     tag: 'Safety, Health, Environment & Quality',
     headline: 'SHEQ compliance that closes actions, not just spreadsheets.',
     lede: 'SHEQX® aggregates safety, health, environment, and quality data into one auditable platform — giving you the visibility to prevent incidents, close non-conformances, and sustain ISO certification without the administrative drag.',
+    metaDescription: 'SHEQX® unifies safety, health, environment and quality on one auditable platform, aligned to ISO 9001, 14001 and 45001 to prevent incidents and close actions.',
     challenges: [
       { title: 'Incidents tracked in email', body: 'Safety events get logged then forgotten. No closure, no pattern analysis, no learning.' },
       { title: 'ISO audits reveal surprises', body: 'Compliance gaps stay invisible until an external audit makes them official findings with deadlines attached.' },
@@ -112,6 +113,7 @@ export const solutionDetails = {
     tag: 'Integrated Management System',
     headline: 'One management system. Multiple standards. Less duplicated effort.',
     lede: 'MSX® merges your governance, risk, compliance, and operational systems into one common framework — eliminating conflicting responsibilities, removing duplicated effort, and giving leadership real-time visibility across all business activities.',
+    metaDescription: 'MSX® merges governance, risk, compliance and operational systems into one common framework, removing conflicting responsibilities and duplicated compliance effort.',
     challenges: [
       { title: 'Multiple systems, multiple truths', body: 'ISO 9001, ISO 14001, and ISO 45001 managed in separate tools. The same data entered three times, never reconciled.' },
       { title: 'Improvement programmes disconnected from risk', body: 'Continual improvement initiatives tracked in isolation — no link to the risks they are supposed to address.' },
@@ -156,6 +158,7 @@ export const solutionDetails = {
     tag: 'Information Security Governance',
     headline: 'ISO 27001 compliance without the spreadsheet chaos.',
     lede: 'MSXCyber® delivers a complete Information Security Management System aligned to ISO 27001:2022 — with governance, risk management, and audit-ready evidence built in from day one. Data breaches now carry material financial, regulatory and operational consequences — structured ISMS governance is no longer optional.',
+    metaDescription: 'MSXCyber® is a complete Information Security Management System aligned to ISO 27001:2022, with governance, risk management and audit-ready evidence built in.',
     challenges: [
       { title: 'ISO 27001 gaps only found at audit', body: 'Without continuous monitoring, control weaknesses accumulate quietly between certification reviews.' },
       { title: 'Asset inventories in spreadsheets', body: 'Assets undocumented, risks unassessed. One security incident reveals just how fragile the inventory actually is.' },
@@ -199,6 +202,7 @@ export const solutionDetails = {
     metaTitle: 'Enterprise Risk Management Software | XGRC®',
     headline: 'Risk managed at enterprise scale, not spreadsheet scale.',
     lede: 'A structured, auditable approach to enterprise, operational, and project risk — aligned to ISO 31000 and COSO ERM — with board-level dashboards, risk appetite monitoring, and corrective action tracking built in.',
+    metaDescription: 'Enterprise risk management aligned to ISO 31000 and COSO, with board dashboards, risk appetite monitoring and a full audit trail across enterprise and project risk.',
     challenges: [
       { title: 'Risk registers nobody maintains', body: 'Annual reviews produce impressive registers that are outdated before they are presented. Residual risk is never re-assessed.' },
       { title: 'Risk appetite defined, but not enforced', body: 'The board sets appetite thresholds. Operational decisions ignore them. There is no mechanism to detect or escalate breaches.' },
@@ -240,6 +244,7 @@ export const solutionDetails = {
     tag: 'Internal Audit & Combined Assurance',
     headline: 'One audit plan. Four lines of defence. Zero gaps.',
     lede: 'Coordinate internal audit and combined assurance across your organisation — linked directly to risks, controls, and corrective actions — so every line of defence operates from the same picture of what needs assurance.',
+    metaDescription: 'Coordinate internal audit and combined assurance, linked to risks, controls and actions, so every line of defence works from one shared view.',
     challenges: [
       { title: 'Audit findings that do not close risks', body: 'Internal audit operates independently from the risk register. Findings are raised, management responds, risks stay open.' },
       { title: 'Combined assurance maps in PowerPoint', body: 'Outdated the moment they are presented. Nobody knows who is providing assurance over which risks until the board asks.' },
@@ -282,6 +287,7 @@ export const solutionDetails = {
     tag: 'Environmental Compliance & Monitoring',
     headline: 'Environmental compliance you can demonstrate, not just claim.',
     lede: 'ENVIRX® captures, tracks, and reports environmental performance data — from waste and water to air quality and energy consumption — in a single auditable system aligned to ISO 14001 and local environmental legislation.',
+    metaDescription: 'ENVIRX® captures, tracks and reports environmental performance data, from waste and water to air and energy, in one auditable system aligned to ISO 14001.',
     challenges: [
       { title: 'Monitoring data scattered across sites', body: 'Each facility tracks environmental data differently. Consolidated reporting requires weeks of manual reconciliation.' },
       { title: 'Regulatory inspections reveal unrecorded incidents', body: 'Environmental events that were informally dealt with on-site become formal non-compliances when an inspector asks for the evidence.' },
@@ -325,6 +331,7 @@ export const solutionDetails = {
     tag: 'Environmental, Social & Governance Reporting',
     headline: 'ESG reporting that survives investor scrutiny.',
     lede: 'Collect, manage, and report ESG data in a structured, auditable way — aligned to GRI, IFRS S1/S2, and CDP — so your sustainability disclosures are backed by evidence, not just intention.',
+    metaDescription: 'Collect, manage and report ESG data in a structured, auditable way, aligned to GRI, IFRS S1/S2 and CDP, so sustainability disclosures are backed by evidence.',
     challenges: [
       { title: 'Disclosures built on unverifiable data', body: 'ESG reports assembled from manually collected spreadsheets. Investors and auditors increasingly ask for evidence. Evidence is not there.' },
       { title: 'Questionnaires that take weeks to complete', body: 'Investor ESG questionnaires arrive and the search begins. Data is scattered, definitions differ by site, nobody owns the numbers.' },
@@ -368,6 +375,7 @@ export const solutionDetails = {
     metaTitle: 'Compliance Hub | Supplier Compliance Workflows | XGRC®',
     headline: 'Your supply chain\'s compliance posture, visible in real time.',
     lede: 'Structured onboarding, vetting, and ongoing compliance management for suppliers, contractors, and third parties — with automated document expiry tracking, risk scoring, and compliance dashboards that give you a live view of your entire supply chain.',
+    metaDescription: 'XGRC® Compliance Hub manages vetting and ongoing compliance for suppliers, contractors and third parties, with document expiry tracking and risk scoring.',
     challenges: [
       { title: 'Certificates expire without warning', body: 'Supplier documents managed through email. Nobody owns the expiry calendar. A non-compliant contractor arrives on site.' },
       { title: 'Onboarding takes weeks', body: 'Manual verification, back-and-forth emails, documents in different formats. High-risk contractors cleared faster than low-risk ones because nobody applied the same standard.' },
@@ -409,6 +417,7 @@ export const solutionDetails = {
     tag: 'Governance Execution',
     headline: 'Policies that work. Controls that are actually enforced.',
     lede: 'XLOGIC® converts governance frameworks, policies, and controls into structured, enforceable workflows — so compliance is built into how work gets done, not bolted on afterwards through audits.',
+    metaDescription: 'XLOGIC® converts governance frameworks, policies and controls into structured, enforceable workflows, so compliance is built into how work gets done.',
     challenges: [
       { title: 'Policies approved and filed, never operationalised', body: 'Documents are published. Employees are notified. Controls are never implemented. The gap between policy and practice grows with every update.' },
       { title: 'Frameworks defined at board level, disconnected from operations', body: 'Governance structures documented in reports. Day-to-day operations run on institutional knowledge, habit, and workarounds.' },
@@ -451,6 +460,7 @@ export const solutionDetails = {
     tag: 'Governed AI for GRC',
     headline: 'The intelligence of governance — governed, audited, accountable.',
     lede: 'MAIA® is governed AI for GRC, embedded within XGRC® to help decision-makers interact with governance records, risks, policies, and compliance data. Faster insight. Better decisions. Full auditability — through controlled, audited AI integrations with a complete interaction audit trail.',
+    metaDescription: 'MAIA® is governed AI for GRC, embedded in XGRC® so decision-makers can interrogate risks, policies and compliance data with a full audit trail.',
     challenges: [
       { title: 'Answers take days, not minutes', body: 'A board member asks about residual risk in a business unit. The risk manager spends two days compiling a response from multiple systems.' },
       { title: 'Governance records exist but are inaccessible', body: 'Policies, risk registers, audit findings, and compliance records accumulated over years. Too dense, too fragmented for rapid insight generation.' },
@@ -490,6 +500,7 @@ export const solutionDetails = {
     tag: 'Regulatory Intelligence Partner',
     headline: 'Legal obligations, translated into action — for every site, every jurisdiction.',
     lede: 'Libryo turns dense, constantly-changing EHS legislation into clear, site-specific compliance obligations. XGRC® partners with Libryo to embed jurisdiction-specific regulatory intelligence directly into your legal register, so obligations, tasks, and evidence live on the same platform as the rest of your governance and risk data.',
+    metaDescription: 'Libryo turns dense, changing EHS legislation into clear, site-specific compliance obligations, embedded in XGRC® for jurisdiction-specific regulatory tracking.',
     challenges: [
       { title: 'Legal registers built and maintained by hand', body: 'Legislation is tracked in spreadsheets by whoever has time. Updates depend on someone noticing a change in the Government Gazette.' },
       { title: 'Multi-site, multi-jurisdiction sprawl', body: 'Every site operates under a different mix of national, provincial, and local regulation. No single view of what applies where.' },
@@ -528,6 +539,7 @@ export const solutionDetails = {
     tag: 'AI-Powered Security Testing Partner',
     headline: 'Continuous, AI-driven penetration testing that keeps you one step ahead.',
     lede: 'Hakware is an AI-powered security management platform that tests your environment the way an attacker would — continuously, not once a year. XGRC® partners with Hakware to bring offensive security testing, unified vulnerability visibility, and dark web monitoring into the same governed environment as your ISMS.',
+    metaDescription: 'Hakware is an AI-powered security platform that tests your environment the way an attacker would, continuously rather than once a year, integrated with XGRC®.',
     challenges: [
       { title: 'Penetration tests happen once a year', body: 'Annual pentests produce a point-in-time report. New vulnerabilities in the eleven months between tests go undetected.' },
       { title: 'Security data scattered across tools', body: 'Firewalls, endpoints, cloud environments, and Microsoft 365 each report separately. No single view of actual exposure.' },
@@ -570,6 +582,7 @@ export const solutionDetails = {
     metaTitle: 'XRM — Sales Pipeline & CRM Software | XGRC®',
     headline: 'Pipeline discipline, not pipeline guesswork.',
     lede: 'XRM gives your sales team one governed system to qualify leads, progress opportunities, generate quotes and close deals, with the approval workflows, audit trail and real-time visibility leadership actually needs. Built and run on the same ISO/IEC 27001:2022-certified XGRC® infrastructure as the rest of the platform, not a bolted-on CRM that quietly becomes another unmanaged spreadsheet.',
+    metaDescription: 'XRM is one governed system for sales teams to qualify leads, progress opportunities, generate quotes and close deals, with approvals and a full audit trail.',
     challenges: [
       { title: 'Leads and real deals blur together', body: 'Unqualified interest sits in the same list as live opportunities, so nobody can tell what is genuine pipeline and what is noise.' },
       { title: 'Deals move with no accountability', body: 'Reps shift opportunities between stages unchecked, discounts get approved in a hallway conversation, and forecasts are guesses dressed up as numbers.' },
