@@ -16,7 +16,7 @@ from weasyprint import HTML
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 FONTS = os.path.join(os.path.dirname(__file__), 'fonts')
 BRAND = os.path.join(ROOT, 'public', 'assets', 'logos', 'brand')
-OUT = os.path.join(ROOT, 'public', 'assets', 'infographics', 'erm-infographic.pdf')
+OUT = os.path.join(ROOT, 'public', 'assets', 'infographics', 'erm-infographic-v2.pdf')
 
 
 def b64(path):

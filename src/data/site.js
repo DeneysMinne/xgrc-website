@@ -193,7 +193,7 @@ export const solutionDetails = {
   },
 
   erm: {
-    infographic: '/assets/infographics/erm-infographic.pdf',
+    infographic: '/assets/infographics/erm-infographic-v2.pdf',
     logo: '/assets/logos/solutions/erm.png',
     icon: '/assets/logos/solutions/icons/erm.png',
     screenshot: '/assets/screenshots/erm-dashboard-new.webp',
