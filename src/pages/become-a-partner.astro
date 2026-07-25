@@ -253,15 +253,17 @@ const solutions = ['SHEQX®', 'MSX®', 'MSXCyber®', 'ENVIRX®', 'ERM', 'ESG', '
 
     try {
       const fd = new FormData(form);
-      // Fold partner-specific fields into the message so they reach the enquiry email.
+      // Fold partner-specific fields into the message so they reach the enquiry
+      // email. The email renders the message as HTML (newlines collapse), so
+      // segments are joined with " · " and end in punctuation to stay readable.
       const solutions = fd.getAll('solutions').join(', ');
-      const extras = [
-        fd.get('partnershipType') && `Partnership interest: ${fd.get('partnershipType')}`,
-        fd.get('companySize') && `Company size: ${fd.get('companySize')}`,
-        solutions && `Solutions of interest: ${solutions}`,
-      ].filter(Boolean).join('\n');
       const baseMsg = (fd.get('message') || '').trim();
-      const message = [extras, baseMsg].filter(Boolean).join('\n\n');
+      const message = [
+        fd.get('partnershipType') && `Partnership interest: ${fd.get('partnershipType')}.`,
+        fd.get('companySize') && `Company size: ${fd.get('companySize')}.`,
+        solutions && `Solutions of interest: ${solutions}.`,
+        baseMsg && `Notes: ${baseMsg}`,
+      ].filter(Boolean).join(' · ');
 
       const body = {
         firstName: fd.get('firstName'),
