@@ -1144,7 +1144,11 @@ export const articleFaqs = {
 // PDFs open in a new tab (download:true); internal pages navigate in place.
 // Product infographics are not listed here — each lives on its solution page.
 export const resources = [
-  { type: 'Booklet', title: 'SHEQX® Booklet', note: 'PDF overview of the SHEQ management solution.', href: '/resources/xgrc-sheqx-booklet.pdf', download: true },
+  { type: 'Booklet', title: 'SHEQX® Booklet', note: 'Safety, health, environment and quality management.', href: '/resources/xgrc-sheqx-booklet.pdf', download: true },
+  { type: 'E-Book', title: 'ENVIRX® E-Book', note: 'Environmental compliance and performance monitoring.', href: '/resources/xgrc-envirx-ebook.pdf', download: true },
+  { type: 'Booklet', title: 'ERM Booklet', note: 'Enterprise risk management as a strategic capability.', href: '/resources/xgrc-erm-booklet.pdf', download: true },
+  { type: 'Booklet', title: 'XGRC® Compliance Hub Booklet', note: 'Vendor, supplier and contractor compliance management.', href: '/resources/xgrc-compliance-hub-booklet.pdf', download: true },
+  { type: 'Booklet', title: 'Cyber Security Booklet', note: 'Information security and cyber risk management.', href: '/resources/xgrc-cyber-security-booklet.pdf', download: true },
   { type: 'Brochure', title: 'Integrated Assurance Brochure', note: 'Combined assurance and four lines of defence.', href: '/resources/xgrc-integrated-assurance-brochure.pdf', download: true }
 ];
 
