@@ -60,7 +60,7 @@ export const solutions = [
 // Rich solution detail data — powers /solutions/[slug] pages.
 export const solutionDetails = {
   sheqx: {
-    infographic: '/assets/infographics/sheqx-infographic.pdf',
+    infographic: '/assets/infographics/sheqx-infographic-v2.pdf',
     logo: '/assets/logos/solutions/sheqx.png',
     icon: '/assets/logos/solutions/icons/sheqx.png',
     screenshot: '/assets/screenshots/sheqx-dashboard.webp',
@@ -105,7 +105,7 @@ export const solutionDetails = {
   },
 
   msx: {
-    infographic: '/assets/infographics/msx-infographic.pdf',
+    infographic: '/assets/infographics/msx-infographic-v2.pdf',
     logo: '/assets/logos/solutions/msx.png',
     icon: '/assets/logos/solutions/icons/msx.png',
     screenshot: '/assets/screenshots/msx-dashboard.webp',
@@ -149,7 +149,7 @@ export const solutionDetails = {
   },
 
   msxcyber: {
-    infographic: '/assets/infographics/msxcyber-infographic.pdf',
+    infographic: '/assets/infographics/msxcyber-infographic-v2.pdf',
     logo: '/assets/logos/solutions/msxcyber.png',
     icon: '/assets/logos/solutions/icons/msxcyber.png',
     screenshot: '/assets/screenshots/msxcyber-dashboard.webp',
@@ -193,7 +193,7 @@ export const solutionDetails = {
   },
 
   erm: {
-    infographic: '/assets/infographics/erm-infographic-v2.pdf',
+    infographic: '/assets/infographics/erm-infographic-v3.pdf',
     logo: '/assets/logos/solutions/erm.png',
     icon: '/assets/logos/solutions/icons/erm.png',
     screenshot: '/assets/screenshots/erm-dashboard-new.webp',
@@ -279,7 +279,7 @@ export const solutionDetails = {
   },
 
   envirx: {
-    infographic: '/assets/infographics/envirx-infographic.pdf',
+    infographic: '/assets/infographics/envirx-infographic-v2.pdf',
     logo: '/assets/logos/solutions/envirx.png',
     icon: '/assets/logos/solutions/icons/envirx.png',
     screenshot: '/assets/screenshots/envirx-dashboard.webp',
@@ -322,7 +322,7 @@ export const solutionDetails = {
   },
 
   esg: {
-    infographic: '/assets/infographics/esg-infographic.pdf',
+    infographic: '/assets/infographics/esg-infographic-v2.pdf',
     logo: '/assets/logos/solutions/esg.png',
     icon: '/assets/logos/solutions/icons/esg.png',
     screenshot: '/assets/screenshots/esg-dashboard.webp',
@@ -451,7 +451,7 @@ export const solutionDetails = {
   },
 
   maia: {
-    infographic: '/assets/infographics/maia-infographic.pdf',
+    infographic: '/assets/infographics/maia-infographic-v2.pdf',
     logo: '/assets/logos/solutions/maia.png',
     icon: '/assets/logos/solutions/icons/maia.png',
     screenshot: '/assets/screenshots/maia-dashboard.webp',
@@ -495,7 +495,7 @@ export const solutionDetails = {
   },
 
   libryo: {
-    infographic: '/assets/infographics/libryo-infographic.pdf',
+    infographic: '/assets/infographics/libryo-infographic-v2.pdf',
     name: 'Libryo',
     tag: 'Regulatory Intelligence Partner',
     headline: 'Legal obligations, translated into action — for every site, every jurisdiction.',
@@ -534,7 +534,7 @@ export const solutionDetails = {
   },
 
   hakware: {
-    infographic: '/assets/infographics/hakware-infographic.pdf',
+    infographic: '/assets/infographics/hakware-infographic-v2.pdf',
     name: 'Hakware',
     tag: 'AI-Powered Security Testing Partner',
     headline: 'Continuous, AI-driven penetration testing that keeps you one step ahead.',

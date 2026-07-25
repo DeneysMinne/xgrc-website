@@ -1,0 +1,1116 @@
+{
+ "sheqx": {
+  "name": "SHEQX®",
+  "tag": "Safety, Health, Environment & Quality",
+  "headline": "SHEQ compliance that closes actions, not just spreadsheets.",
+  "lede": "SHEQX® aggregates safety, health, environment, and quality data into one auditable platform — giving you the visibility to prevent incidents, close non-conformances, and sustain ISO certification without the administrative drag.",
+  "logo": "/assets/logos/solutions/sheqx.png",
+  "standards": [
+   "ISO 9001",
+   "ISO 14001",
+   "ISO 45001"
+  ],
+  "moduleGroups": [
+   {
+    "category": "Risk & Safety",
+    "modules": [
+     "Incident Management",
+     "Risk Management",
+     "Emergency Preparedness",
+     "PPE Management",
+     "Medical Surveillance",
+     "Occupational Job Profiles"
+    ]
+   },
+   {
+    "category": "Compliance & Legal",
+    "modules": [
+     "Legal Requirements",
+     "Legal Appointments",
+     "Permit Management",
+     "MSDS Management"
+    ]
+   },
+   {
+    "category": "Quality & Operations",
+    "modules": [
+     "Non-Conformance Management",
+     "Change Management",
+     "Calibration",
+     "Objectives & Targets",
+     "Strategy Management"
+    ]
+   },
+   {
+    "category": "People & Training",
+    "modules": [
+     "Training Records",
+     "Employee Management",
+     "Stakeholder Engagement",
+     "Suggestions"
+    ]
+   },
+   {
+    "category": "Oversight",
+    "modules": [
+     "Audit Management",
+     "Inspection Management",
+     "Document Manager",
+     "Meeting Management",
+     "Action Manager"
+    ]
+   }
+  ],
+  "challenges": [
+   {
+    "title": "Incidents tracked in email",
+    "body": "Safety events get logged then forgotten. No closure, no pattern analysis, no learning."
+   },
+   {
+    "title": "ISO audits reveal surprises",
+    "body": "Compliance gaps stay invisible until an external audit makes them official findings with deadlines attached."
+   },
+   {
+    "title": "Permits expire unnoticed",
+    "body": "Legal appointments, MSDSs, and operational permits lapse because nobody owns the expiry calendar."
+   },
+   {
+    "title": "Actions with no accountability",
+    "body": "Corrective actions raised, assigned, then orphaned. Months later, the same issue recurs."
+   }
+  ],
+  "stats": [
+   {
+    "value": "24",
+    "label": "Modules"
+   },
+   {
+    "value": "ISO 9001",
+    "label": "14001 · 45001"
+   },
+   {
+    "value": "Real-time",
+    "label": "Action tracking"
+   }
+  ]
+ },
+ "msx": {
+  "name": "MSX®",
+  "tag": "Integrated Management System",
+  "headline": "One management system. Multiple standards. Less duplicated effort.",
+  "lede": "MSX® merges your governance, risk, compliance, and operational systems into one common framework — eliminating conflicting responsibilities, removing duplicated effort, and giving leadership real-time visibility across all business activities.",
+  "logo": "/assets/logos/solutions/msx.png",
+  "standards": [
+   "ISO 9001",
+   "ISO 14001",
+   "ISO 45001",
+   "ISO 22000"
+  ],
+  "moduleGroups": [
+   {
+    "category": "Leadership & Strategy",
+    "modules": [
+     "Leadership",
+     "Governance",
+     "Strategy & Initiatives",
+     "Objectives & Targets",
+     "Planning"
+    ]
+   },
+   {
+    "category": "Operations & Support",
+    "modules": [
+     "Operations",
+     "Support",
+     "Change Management",
+     "Communication",
+     "Calibration"
+    ]
+   },
+   {
+    "category": "Performance & Improvement",
+    "modules": [
+     "Performance Evaluation",
+     "Improvement",
+     "Event Management",
+     "Non-conformances"
+    ]
+   },
+   {
+    "category": "Compliance & Assurance",
+    "modules": [
+     "Audit Management",
+     "Legal Compliance",
+     "Legal Appointments",
+     "Risk Assessment",
+     "Inspections Management"
+    ]
+   },
+   {
+    "category": "People & Documentation",
+    "modules": [
+     "Training",
+     "Stakeholder Engagement",
+     "Document Manager",
+     "Document Template Control",
+     "Meeting Manager"
+    ]
+   }
+  ],
+  "challenges": [
+   {
+    "title": "Multiple systems, multiple truths",
+    "body": "ISO 9001, ISO 14001, and ISO 45001 managed in separate tools. The same data entered three times, never reconciled."
+   },
+   {
+    "title": "Improvement programmes disconnected from risk",
+    "body": "Continual improvement initiatives tracked in isolation — no link to the risks they are supposed to address."
+   },
+   {
+    "title": "Board reporting takes weeks",
+    "body": "Management performance data lives across departments, systems, and spreadsheets. Consolidation consumes more resource than the analysis."
+   },
+   {
+    "title": "Certification gaps only surface at audit time",
+    "body": "Without continuous monitoring across all ISO requirements, gaps accumulate silently between certification cycles."
+   }
+  ],
+  "stats": [
+   {
+    "value": "25",
+    "label": "Modules"
+   },
+   {
+    "value": "Multi-ISO",
+    "label": "In one system"
+   },
+   {
+    "value": "Continual",
+    "label": "Improvement built in"
+   }
+  ]
+ },
+ "msxcyber": {
+  "name": "MSXCyber®",
+  "tag": "Information Security Governance",
+  "headline": "ISO 27001 compliance without the spreadsheet chaos.",
+  "lede": "MSXCyber® delivers a complete Information Security Management System aligned to ISO 27001:2022 — with governance, risk management, and audit-ready evidence built in from day one. Data breaches now carry material financial, regulatory and operational consequences — structured ISMS governance is no longer optional.",
+  "logo": "/assets/logos/solutions/msxcyber.png",
+  "standards": [
+   "ISO 27001:2022",
+   "GDPR",
+   "POPIA",
+   "NIS Directive"
+  ],
+  "moduleGroups": [
+   {
+    "category": "Security Operations",
+    "modules": [
+     "Asset Register",
+     "Monitoring",
+     "Inspections",
+     "Broadcasting",
+     "Event Management"
+    ]
+   },
+   {
+    "category": "Risk & Controls",
+    "modules": [
+     "Risk Assessments",
+     "Non-Conformances",
+     "Change Management",
+     "Strategies"
+    ]
+   },
+   {
+    "category": "Governance & Compliance",
+    "modules": [
+     "Audits",
+     "Document Control",
+     "Legal Compliance",
+     "Objectives & Targets"
+    ]
+   },
+   {
+    "category": "People & Communication",
+    "modules": [
+     "Training",
+     "Stakeholder Management",
+     "Meeting Manager"
+    ]
+   }
+  ],
+  "challenges": [
+   {
+    "title": "ISO 27001 gaps only found at audit",
+    "body": "Without continuous monitoring, control weaknesses accumulate quietly between certification reviews."
+   },
+   {
+    "title": "Asset inventories in spreadsheets",
+    "body": "Assets undocumented, risks unassessed. One security incident reveals just how fragile the inventory actually is."
+   },
+   {
+    "title": "No structured incident response",
+    "body": "When a breach occurs, the response is improvised. Regulatory disclosure obligations are missed. Costs escalate."
+   },
+   {
+    "title": "GDPR and POPIA obligations untracked",
+    "body": "Data protection compliance managed through email threads — no evidence trail, no audit readiness."
+   }
+  ],
+  "stats": [
+   {
+    "value": "ISO 27001:2022",
+    "label": "Aligned ISMS governance"
+   },
+   {
+    "value": "4",
+    "label": "Standards supported"
+   },
+   {
+    "value": "20+",
+    "label": "Modules"
+   }
+  ]
+ },
+ "erm": {
+  "name": "Enterprise Risk Management",
+  "tag": "Enterprise Risk Intelligence",
+  "headline": "Risk managed at enterprise scale, not spreadsheet scale.",
+  "lede": "A structured, auditable approach to enterprise, operational, and project risk — aligned to ISO 31000 and COSO ERM — with board-level dashboards, risk appetite monitoring, and corrective action tracking built in.",
+  "logo": "/assets/logos/solutions/erm.png",
+  "standards": [
+   "ISO 31000",
+   "COSO ERM",
+   "King V",
+   "IFRS"
+  ],
+  "moduleGroups": [
+   {
+    "category": "Risk Identification",
+    "modules": [
+     "Risk Register",
+     "Risk Categorisation",
+     "Emerging Risk Tracking",
+     "Risk Event Capture"
+    ]
+   },
+   {
+    "category": "Assessment & Appetite",
+    "modules": [
+     "Likelihood & Impact Scoring",
+     "Risk Appetite Thresholds",
+     "Tolerance Monitoring",
+     "Heat Map Visualisation"
+    ]
+   },
+   {
+    "category": "Treatment & Action",
+    "modules": [
+     "Treatment Plans",
+     "Action Accountability",
+     "Escalation & Breach Alerts",
+     "Residual Risk Tracking"
+    ]
+   },
+   {
+    "category": "Monitoring & Reporting",
+    "modules": [
+     "KRI Monitoring",
+     "Board Dashboards",
+     "Management Reporting",
+     "Trend Analysis"
+    ]
+   }
+  ],
+  "challenges": [
+   {
+    "title": "Risk registers nobody maintains",
+    "body": "Annual reviews produce impressive registers that are outdated before they are presented. Residual risk is never re-assessed."
+   },
+   {
+    "title": "Risk appetite defined, but not enforced",
+    "body": "The board sets appetite thresholds. Operational decisions ignore them. There is no mechanism to detect or escalate breaches."
+   },
+   {
+    "title": "KRIs reported in isolation",
+    "body": "Key risk indicators tracked separately from the risks they monitor. Early warning signals go unnoticed until they become incidents."
+   },
+   {
+    "title": "Risk and assurance disconnected",
+    "body": "The audit plan bears no relationship to the risk register. High-risk areas go unaudited. Low-risk areas receive excess coverage."
+   }
+  ],
+  "stats": [
+   {
+    "value": "ISO 31000",
+    "label": "& COSO ERM"
+   },
+   {
+    "value": "Real-time",
+    "label": "Board dashboards"
+   },
+   {
+    "value": "Full",
+    "label": "Assurance linkage"
+   }
+  ]
+ },
+ "integrated-assurance": {
+  "name": "Integrated Assurance",
+  "tag": "Internal Audit & Combined Assurance",
+  "headline": "One audit plan. Four lines of defence. Zero gaps.",
+  "lede": "Coordinate internal audit and combined assurance across your organisation — linked directly to risks, controls, and corrective actions — so every line of defence operates from the same picture of what needs assurance.",
+  "logo": "/assets/logos/solutions/integrated-assurance.png",
+  "standards": [
+   "IIA Standards",
+   "ISO 19011",
+   "King V",
+   "PFMA"
+  ],
+  "moduleGroups": [
+   {
+    "category": "Planning",
+    "modules": [
+     "Risk-Based Audit Planning",
+     "Annual Audit Schedule",
+     "Resource & Capacity Planning",
+     "Scope Definition"
+    ]
+   },
+   {
+    "category": "Fieldwork",
+    "modules": [
+     "Audit Programme Management",
+     "Evidence Capture",
+     "Interview & Testing Records",
+     "Working Papers"
+    ]
+   },
+   {
+    "category": "Findings & Actions",
+    "modules": [
+     "Finding Ratings & Classification",
+     "Management Response Tracking",
+     "Corrective Action Plans",
+     "Follow-up & Closure"
+    ]
+   },
+   {
+    "category": "Combined Assurance",
+    "modules": [
+     "Four Lines of Defence Map",
+     "Combined Assurance Matrix",
+     "Assurance Coverage Analytics",
+     "Board & Audit Committee Reporting"
+    ]
+   }
+  ],
+  "challenges": [
+   {
+    "title": "Audit findings that do not close risks",
+    "body": "Internal audit operates independently from the risk register. Findings are raised, management responds, risks stay open."
+   },
+   {
+    "title": "Combined assurance maps in PowerPoint",
+    "body": "Outdated the moment they are presented. Nobody knows who is providing assurance over which risks until the board asks."
+   },
+   {
+    "title": "Coverage gaps and duplication",
+    "body": "High-risk areas receive no audit attention. Low-risk areas audited three times by different lines. Nobody has a consolidated view."
+   },
+   {
+    "title": "Reactive audit planning",
+    "body": "Annual plans built from intuition and last year's plan, not from the current risk landscape. Emerging risks go unaudited."
+   }
+  ],
+  "stats": [
+   {
+    "value": "4",
+    "label": "Lines of defence"
+   },
+   {
+    "value": "Risk-based",
+    "label": "Audit planning"
+   },
+   {
+    "value": "Live",
+    "label": "Assurance matrix"
+   }
+  ]
+ },
+ "envirx": {
+  "name": "ENVIRX®",
+  "tag": "Environmental Compliance & Monitoring",
+  "headline": "Environmental compliance you can demonstrate, not just claim.",
+  "lede": "ENVIRX® captures, tracks, and reports environmental performance data — from waste and water to air quality and energy consumption — in a single auditable system aligned to ISO 14001 and local environmental legislation.",
+  "logo": "/assets/logos/solutions/envirx.png",
+  "standards": [
+   "ISO 14001",
+   "NEMA",
+   "King V",
+   "GHG Protocol"
+  ],
+  "moduleGroups": [
+   {
+    "category": "Environmental Monitoring",
+    "modules": [
+     "Environmental Monitoring",
+     "Air Quality Monitoring",
+     "Noise Monitoring",
+     "Water Quality Monitoring",
+     "Biodiversity Monitoring",
+     "Surface Area Change Monitoring",
+     "Material Flows",
+     "Energy Monitoring"
+    ]
+   },
+   {
+    "category": "Compliance & Legal",
+    "modules": [
+     "Legal Compliance",
+     "Objectives & Targets",
+     "Strategy & Initiatives",
+     "Document Manager",
+     "Communication",
+     "Stakeholder Engagement"
+    ]
+   },
+   {
+    "category": "Operations & Governance",
+    "modules": [
+     "Governance",
+     "Leadership",
+     "Planning",
+     "Support",
+     "Operations",
+     "Calibration",
+     "Inspections Management"
+    ]
+   },
+   {
+    "category": "Performance & Improvement",
+    "modules": [
+     "Performance Evaluation",
+     "Improvement",
+     "Risk Assessment",
+     "Event Management",
+     "Non-Conformances",
+     "Audit Management"
+    ]
+   }
+  ],
+  "challenges": [
+   {
+    "title": "Monitoring data scattered across sites",
+    "body": "Each facility tracks environmental data differently. Consolidated reporting requires weeks of manual reconciliation."
+   },
+   {
+    "title": "Regulatory inspections reveal unrecorded incidents",
+    "body": "Environmental events that were informally dealt with on-site become formal non-compliances when an inspector asks for the evidence."
+   },
+   {
+    "title": "Targets set but not monitored",
+    "body": "Reduction commitments made to stakeholders and regulators. Progress is invisible until the annual sustainability report."
+   },
+   {
+    "title": "Legal requirements change faster than compliance registers",
+    "body": "Environmental legislation is updated continuously. Manual tracking cannot keep pace."
+   }
+  ],
+  "stats": [
+   {
+    "value": "ISO 14001",
+    "label": "Aligned"
+   },
+   {
+    "value": "Multi-site",
+    "label": "Monitoring"
+   },
+   {
+    "value": "Continuous",
+    "label": "Legal tracking"
+   }
+  ]
+ },
+ "esg": {
+  "name": "ESG",
+  "tag": "Environmental, Social & Governance Reporting",
+  "headline": "ESG reporting that survives investor scrutiny.",
+  "lede": "Collect, manage, and report ESG data in a structured, auditable way — aligned to GRI, IFRS S1/S2, and CDP — so your sustainability disclosures are backed by evidence, not just intention.",
+  "logo": "/assets/logos/solutions/esg.png",
+  "standards": [
+   "GRI Standards",
+   "IFRS S1 & S2",
+   "CDP",
+   "ISO 14001",
+   "IIRC 6 Capitals",
+   "King V",
+   "UN SDGs",
+   "JSE Sustainability"
+  ],
+  "moduleGroups": [
+   {
+    "category": "Context & Strategy",
+    "modules": [
+     "Materiality Assessment",
+     "ESG Strategy",
+     "Stakeholder Engagement",
+     "Business Strategy Alignment",
+     "Objectives & Targets",
+     "Indicator Thresholds"
+    ]
+   },
+   {
+    "category": "Environmental",
+    "modules": [
+     "Scope 1, 2 & 3 Emissions",
+     "Energy Monitoring",
+     "Water & Waste Management",
+     "Biodiversity Records",
+     "Climate Risk Register"
+    ]
+   },
+   {
+    "category": "Social & Governance",
+    "modules": [
+     "Employee Health & Safety Data",
+     "Training & Development Records",
+     "Board Composition & Diversity",
+     "Anti-corruption Policies",
+     "Ethics & Conduct Records"
+    ]
+   },
+   {
+    "category": "Reporting & Assurance",
+    "modules": [
+     "GRI Index Compilation",
+     "IFRS S1/S2 Alignment",
+     "IIRC Integrated Reporting",
+     "CDP Disclosure Support",
+     "SDG Alignment",
+     "Audit Trail & Evidence Repository",
+     "Automated Report Configuration"
+    ]
+   }
+  ],
+  "challenges": [
+   {
+    "title": "Disclosures built on unverifiable data",
+    "body": "ESG reports assembled from manually collected spreadsheets. Investors and auditors increasingly ask for evidence. Evidence is not there."
+   },
+   {
+    "title": "Questionnaires that take weeks to complete",
+    "body": "Investor ESG questionnaires arrive and the search begins. Data is scattered, definitions differ by site, nobody owns the numbers."
+   },
+   {
+    "title": "Targets without audit trails",
+    "body": "Net-zero commitments and social targets made publicly. Progress tracked informally. Assurance providers have nothing to work with."
+   },
+   {
+    "title": "Regulatory disclosure obligations missed",
+    "body": "IFRS S1 and S2 requirements are expanding. Organisations without structured ESG data collection cannot comply in time."
+   }
+  ],
+  "stats": [
+   {
+    "value": "GRI",
+    "label": "& IFRS S1/S2"
+   },
+   {
+    "value": "Scope 1·2·3",
+    "label": "Emissions tracking"
+   },
+   {
+    "value": "Assurance",
+    "label": "Ready"
+   }
+  ]
+ },
+ "compliance-hub": {
+  "name": "XGRC® Compliance Hub",
+  "tag": "Supplier & Third-Party Compliance",
+  "headline": "Your supply chain's compliance posture, visible in real time.",
+  "lede": "Structured onboarding, vetting, and ongoing compliance management for suppliers, contractors, and third parties — with automated document expiry tracking, risk scoring, and compliance dashboards that give you a live view of your entire supply chain.",
+  "logo": "/assets/logos/solutions/compliance-hub.png",
+  "standards": [
+   "ISO 9001",
+   "ISO 45001",
+   "POPIA",
+   "B-BBEE"
+  ],
+  "moduleGroups": [
+   {
+    "category": "Onboarding",
+    "modules": [
+     "Supplier Registration Portal",
+     "Document Upload & Verification",
+     "Vetting Workflows",
+     "Approval & Rejection Management"
+    ]
+   },
+   {
+    "category": "Ongoing Compliance",
+    "modules": [
+     "Document Expiry Tracking",
+     "Automated Renewal Alerts",
+     "Compliance Status Dashboards",
+     "Audit-Ready Evidence Store"
+    ]
+   },
+   {
+    "category": "Risk Management",
+    "modules": [
+     "Supplier Risk Scoring",
+     "Risk-Based Monitoring Frequency",
+     "Non-Compliance Escalation",
+     "Performance Ratings"
+    ]
+   },
+   {
+    "category": "Reporting",
+    "modules": [
+     "Compliance Summary Reports",
+     "Expiry Calendars",
+     "Supplier Performance Analytics",
+     "Regulatory Disclosure Support"
+    ]
+   }
+  ],
+  "challenges": [
+   {
+    "title": "Certificates expire without warning",
+    "body": "Supplier documents managed through email. Nobody owns the expiry calendar. A non-compliant contractor arrives on site."
+   },
+   {
+    "title": "Onboarding takes weeks",
+    "body": "Manual verification, back-and-forth emails, documents in different formats. High-risk contractors cleared faster than low-risk ones because nobody applied the same standard."
+   },
+   {
+    "title": "No real-time supply chain view",
+    "body": "You cannot answer the question \"which of our active contractors are currently compliant?\" without running a spreadsheet exercise."
+   },
+   {
+    "title": "Incidents reveal undiscovered gaps",
+    "body": "A site incident exposes a contractor whose safety certification lapsed three months ago. Nobody noticed."
+   }
+  ],
+  "stats": [
+   {
+    "value": "Automated",
+    "label": "Expiry alerts"
+   },
+   {
+    "value": "Risk-scored",
+    "label": "Suppliers"
+   },
+   {
+    "value": "Real-time",
+    "label": "Compliance view"
+   }
+  ]
+ },
+ "xlogic": {
+  "name": "XLOGIC®",
+  "tag": "Governance Execution",
+  "headline": "Policies that work. Controls that are actually enforced.",
+  "lede": "XLOGIC® converts governance frameworks, policies, and controls into structured, enforceable workflows — so compliance is built into how work gets done, not bolted on afterwards through audits.",
+  "logo": "/assets/logos/solutions/xlogic.png",
+  "standards": [
+   "King V",
+   "ISO 9001",
+   "ISO 27001",
+   "COSO"
+  ],
+  "moduleGroups": [
+   {
+    "category": "Policy Operationalisation",
+    "modules": [
+     "Policy-to-Workflow Conversion",
+     "Control Implementation Tracking",
+     "Responsibility Assignment",
+     "Acknowledgement & Signoff"
+    ]
+   },
+   {
+    "category": "Evidence & Compliance",
+    "modules": [
+     "Continuous Evidence Collection",
+     "Compliance Monitoring Dashboards",
+     "Control Effectiveness Tracking",
+     "Audit-Ready Evidence Repository"
+    ]
+   },
+   {
+    "category": "Governance Architecture",
+    "modules": [
+     "Framework Mapping",
+     "Obligation-to-Control Linkage",
+     "Governance Calendar",
+     "Accountability Structures"
+    ]
+   }
+  ],
+  "challenges": [
+   {
+    "title": "Policies approved and filed, never operationalised",
+    "body": "Documents are published. Employees are notified. Controls are never implemented. The gap between policy and practice grows with every update."
+   },
+   {
+    "title": "Frameworks defined at board level, disconnected from operations",
+    "body": "Governance structures documented in reports. Day-to-day operations run on institutional knowledge, habit, and workarounds."
+   },
+   {
+    "title": "Evidence collected reactively",
+    "body": "Compliance evidence gathered when an audit is announced, not continuously as work is performed. Evidence quality reflects urgency, not accuracy."
+   },
+   {
+    "title": "Controls that exist on paper only",
+    "body": "Internal audit reveals controls that are documented but not operating effectively. Management responses are familiar words."
+   }
+  ],
+  "stats": [
+   {
+    "value": "Policy-to",
+    "label": "Workflow conversion"
+   },
+   {
+    "value": "Continuous",
+    "label": "Evidence capture"
+   },
+   {
+    "value": "Full",
+    "label": "Audit trail"
+   }
+  ]
+ },
+ "maia": {
+  "name": "MAIA®",
+  "tag": "Governed AI for GRC",
+  "headline": "The intelligence of governance — governed, audited, accountable.",
+  "lede": "MAIA® is governed AI for GRC, embedded within XGRC® to help decision-makers interact with governance records, risks, policies, and compliance data. Faster insight. Better decisions. Full auditability — through controlled, audited AI integrations with a complete interaction audit trail.",
+  "logo": "/assets/logos/solutions/maia.png",
+  "standards": [
+   "ISO 42001 (targeted 2026)",
+   "ISO 27001",
+   "ISO 31000",
+   "ISO 45001",
+   "GDPR",
+   "POPIA"
+  ],
+  "moduleGroups": [
+   {
+    "category": "Governance Intelligence",
+    "modules": [
+     "Natural Language Risk Queries",
+     "Policy & Procedure Q&A",
+     "Compliance Status Summaries",
+     "Regulatory Change Impact Analysis",
+     "ESG & SHERQ Insight Engine"
+    ]
+   },
+   {
+    "category": "DAVE — Data Integration",
+    "modules": [
+     "API Data Connections",
+     "IoT Device Data",
+     "Microsoft Power BI",
+     "Microsoft Power Apps",
+     "Azure & PowerAutomate",
+     "XGRC Platform Data",
+     "Custom Data Requirements"
+    ]
+   },
+   {
+    "category": "LUCI — AI Interface",
+    "modules": [
+     "DataViews & ML Dashboards",
+     "Predictive Maintenance AI",
+     "H&S Assistant Agent",
+     "Driver Fatigue Monitoring",
+     "Process Automation Bots",
+     "Voice Mode Interface"
+    ]
+   },
+   {
+    "category": "Governed AI Architecture",
+    "modules": [
+     "Data Boundary Enforcement",
+     "AI Interaction Audit Trail",
+     "User Permission Alignment",
+     "Explainable AI Outputs",
+     "ChatGPT & Azure Integration"
+    ]
+   }
+  ],
+  "challenges": [
+   {
+    "title": "Answers take days, not minutes",
+    "body": "A board member asks about residual risk in a business unit. The risk manager spends two days compiling a response from multiple systems."
+   },
+   {
+    "title": "Governance records exist but are inaccessible",
+    "body": "Policies, risk registers, audit findings, and compliance records accumulated over years. Too dense, too fragmented for rapid insight generation."
+   },
+   {
+    "title": "AI tools that create new governance risk",
+    "body": "Generic AI tools may operate outside the governance, permission and audit controls required for regulated GRC decisions. Using them for governance decisions creates risk instead of reducing it."
+   },
+   {
+    "title": "Strategic decisions disconnected from operational risk data",
+    "body": "Leadership makes decisions without a live view of the risk and compliance posture. The data exists. Nobody can access it fast enough to matter."
+   }
+  ],
+  "stats": [
+   {
+    "value": "Audited",
+    "label": "AI integrations"
+   },
+   {
+    "value": "Full",
+    "label": "AI audit trail"
+   },
+   {
+    "value": "Live",
+    "label": "Governance intelligence"
+   }
+  ]
+ },
+ "libryo": {
+  "name": "Libryo",
+  "tag": "Regulatory Intelligence Partner",
+  "headline": "Legal obligations, translated into action — for every site, every jurisdiction.",
+  "lede": "Libryo turns dense, constantly-changing EHS legislation into clear, site-specific compliance obligations. XGRC® partners with Libryo to embed jurisdiction-specific regulatory intelligence directly into your legal register, so obligations, tasks, and evidence live on the same platform as the rest of your governance and risk data.",
+  "logo": null,
+  "standards": [
+   "ISO 14001",
+   "ISO 45001",
+   "ISO 9001"
+  ],
+  "moduleGroups": [
+   {
+    "category": "Libryo Sites",
+    "modules": [
+     "Site-Specific Legal Registers",
+     "Regulatory Change Monitoring",
+     "Obligation Breakdown",
+     "Multi-Jurisdiction Tracking"
+    ]
+   },
+   {
+    "category": "Libryo Assess",
+    "modules": [
+     "Customisable Assessments",
+     "Audit & Inspection Support",
+     "Compliance Scoring"
+    ]
+   },
+   {
+    "category": "Action & Evidence",
+    "modules": [
+     "Task & Workflow Management",
+     "Evidence Management",
+     "Audit Readiness Reporting"
+    ]
+   }
+  ],
+  "challenges": [
+   {
+    "title": "Legal registers built and maintained by hand",
+    "body": "Legislation is tracked in spreadsheets by whoever has time. Updates depend on someone noticing a change in the Government Gazette."
+   },
+   {
+    "title": "Multi-site, multi-jurisdiction sprawl",
+    "body": "Every site operates under a different mix of national, provincial, and local regulation. No single view of what applies where."
+   },
+   {
+    "title": "Regulatory changes discovered too late",
+    "body": "A law changes; the business finds out at the next audit, or after an inspector does. There is no early-warning mechanism."
+   },
+   {
+    "title": "Obligations identified, but not actioned",
+    "body": "Legal registers list what must be done. They rarely track who owns it, whether it was done, or what evidence proves it."
+   }
+  ],
+  "stats": [
+   {
+    "value": "1,000+",
+    "label": "Jurisdictions tracked"
+   },
+   {
+    "value": "Since 2016",
+    "label": "EHS regulatory intelligence"
+   },
+   {
+    "value": "Daily",
+    "label": "Legislative updates"
+   }
+  ]
+ },
+ "hakware": {
+  "name": "Hakware",
+  "tag": "AI-Powered Security Testing Partner",
+  "headline": "Continuous, AI-driven penetration testing that keeps you one step ahead.",
+  "lede": "Hakware is an AI-powered security management platform that tests your environment the way an attacker would — continuously, not once a year. XGRC® partners with Hakware to bring offensive security testing, unified vulnerability visibility, and dark web monitoring into the same governed environment as your ISMS.",
+  "logo": null,
+  "standards": [
+   "ISO 27001",
+   "NIST CSF",
+   "OWASP Top 10"
+  ],
+  "moduleGroups": [
+   {
+    "category": "AI Red Teaming",
+    "modules": [
+     "Archangel AI Penetration Testing",
+     "Hakware Scout — Network Discovery",
+     "HakObserver — VM-Level Data Collection"
+    ]
+   },
+   {
+    "category": "Unified Visibility",
+    "modules": [
+     "OneView Security Dashboard",
+     "Cloud Manager",
+     "Endpoint Manager",
+     "Firewall Manager"
+    ]
+   },
+   {
+    "category": "Governance & Threat Intel",
+    "modules": [
+     "Microsoft 365 Auditor",
+     "Zero-Day Manager",
+     "Code Manager",
+     "Dark Web & Leaked Credential Monitoring"
+    ]
+   }
+  ],
+  "challenges": [
+   {
+    "title": "Penetration tests happen once a year",
+    "body": "Annual pentests produce a point-in-time report. New vulnerabilities in the eleven months between tests go undetected."
+   },
+   {
+    "title": "Security data scattered across tools",
+    "body": "Firewalls, endpoints, cloud environments, and Microsoft 365 each report separately. No single view of actual exposure."
+   },
+   {
+    "title": "Manual triage misses what matters",
+    "body": "Security teams are buried in alerts. Human error and alert fatigue mean genuine vulnerabilities slip through."
+   },
+   {
+    "title": "Breaches discovered from the outside",
+    "body": "Leaked credentials and exposed data surface on the dark web long before anyone internally notices the exposure."
+   }
+  ],
+  "stats": [
+   {
+    "value": "Continuous",
+    "label": "AI-driven penetration testing"
+   },
+   {
+    "value": "Unified",
+    "label": "Vulnerability visibility"
+   },
+   {
+    "value": "Governed",
+    "label": "Findings feed into MSXCyber®"
+   }
+  ]
+ },
+ "xrm": {
+  "name": "XRM",
+  "tag": "Sales Pipeline & Customer Management",
+  "headline": "Pipeline discipline, not pipeline guesswork.",
+  "lede": "XRM gives your sales team one governed system to qualify leads, progress opportunities, generate quotes and close deals, with the approval workflows, audit trail and real-time visibility leadership actually needs. Built and run on the same ISO/IEC 27001:2022-certified XGRC® infrastructure as the rest of the platform, not a bolted-on CRM that quietly becomes another unmanaged spreadsheet.",
+  "logo": null,
+  "standards": [
+   "ISO 27001:2022",
+   "Multi-tenant SaaS",
+   "Configurable approvals",
+   "Full audit trail"
+  ],
+  "moduleGroups": [
+   {
+    "category": "Pipeline & Deals",
+    "modules": [
+     "Leads",
+     "Opportunities",
+     "Accounts",
+     "Contacts",
+     "Quotes"
+    ]
+   },
+   {
+    "category": "Planning & Visibility",
+    "modules": [
+     "Dashboard",
+     "Forecast",
+     "Territory Management",
+     "Sales Health",
+     "Reports"
+    ]
+   },
+   {
+    "category": "Workflow & Governance",
+    "modules": [
+     "Approval Workflows",
+     "Audit Log",
+     "Custom Fields",
+     "Sales Configuration"
+    ]
+   },
+   {
+    "category": "Productivity",
+    "modules": [
+     "My Actions",
+     "My Approvals",
+     "Calendar",
+     "Email Templates",
+     "Bulk Imports"
+    ]
+   },
+   {
+    "category": "Administration",
+    "modules": [
+     "User & Role Management",
+     "Pipeline & Stage Setup",
+     "Company Profile"
+    ]
+   }
+  ],
+  "challenges": [
+   {
+    "title": "Leads and real deals blur together",
+    "body": "Unqualified interest sits in the same list as live opportunities, so nobody can tell what is genuine pipeline and what is noise."
+   },
+   {
+    "title": "Deals move with no accountability",
+    "body": "Reps shift opportunities between stages unchecked, discounts get approved in a hallway conversation, and forecasts are guesses dressed up as numbers."
+   },
+   {
+    "title": "Quotes leave the building unmanaged",
+    "body": "Pricing goes out over email, versions get lost, and nobody can say with confidence which quote the customer actually accepted."
+   },
+   {
+    "title": "Leadership has no real-time view",
+    "body": "Pipeline health, at-risk deals and quota attainment live in a spreadsheet someone updates once a week, if that."
+   }
+  ],
+  "stats": [
+   {
+    "value": "25+",
+    "label": "Modules across the sales lifecycle"
+   },
+   {
+    "value": "ISO 27001",
+    "label": ":2022 certified platform"
+   },
+   {
+    "value": "Full",
+    "label": "Audit trail on every record"
+   }
+  ]
+ }
+}
