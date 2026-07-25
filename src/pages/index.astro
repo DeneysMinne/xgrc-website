@@ -15,6 +15,7 @@ const trustedLogos = [
   { name: 'Unitrans',         logo: 'UNITRANS.png' },
   { name: 'FUCHS Lubricants', logo: 'FUCHS.png' },
   { name: 'CSIR',             logo: 'CSIR.png' },
+  { name: 'Toyota South Africa', logo: 'Toyota.png' },
 ];
 const previewSolutions = solutions.slice(0, 6);
 const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed);
@@ -186,12 +187,14 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
     display: grid;
     /* minmax(0, 1fr) — not the default minmax(auto, 1fr) — so tracks can shrink
        below their content and never overflow the viewport on mobile. */
-    grid-template-columns: repeat(8, minmax(0, 1fr));
+    /* 9 logos: one row on desktop, 3x3 on tablet/mobile so the grid always
+       fills evenly with no orphan tile in the last row. */
+    grid-template-columns: repeat(9, minmax(0, 1fr));
     gap: 14px;
     margin-bottom: 28px;
   }
   .trusted-cta { display: block; text-align: center; }
 
-  @media (max-width: 900px) { .trusted-logos { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (max-width: 900px) { .trusted-logos { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   @media (max-width: 480px) { .trusted-logos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; } }
 </style>
