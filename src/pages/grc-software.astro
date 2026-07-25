@@ -71,7 +71,6 @@ const schema = JSON.stringify({
       applicationCategory: 'BusinessApplication',
       description: 'GRC software to manage governance, risk, compliance, ESG and data protection (GDPR, POPIA) in one platform.',
       operatingSystem: 'Web',
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'ZAR' },
       provider: { '@type': 'Organization', name: 'XGRC® Software', url: 'https://xgrcsoftware.com' },
     },
     {
@@ -102,6 +101,9 @@ const schema = JSON.stringify({
   <!-- ── Hero ───────────────────────────────────────────── -->
   <section class="grc-hero">
     <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span><b>GRC Platform</b>
+      </nav>
       <span class="eyebrow"><span class="dot"></span>GRC Platform</span>
       <h1>Governance, Risk &amp; Compliance.<br>Unified.</h1>
       <p class="lede">XGRC® is an enterprise GRC platform that brings governance, risk, compliance, ESG and data protection into one auditable system — eliminating silos and giving your organisation a single version of the truth.</p>
@@ -315,6 +317,10 @@ const schema = JSON.stringify({
       transparent 70%);
     pointer-events: none;
   }
+  .crumbs { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--faint); display: flex; gap: 10px; align-items: center; margin-bottom: 26px; }
+  .crumbs a { color: var(--mute); text-decoration: none; }
+  .crumbs a:hover { color: var(--cyan); }
+  .crumbs b { color: var(--ink); font-weight: 500; }
   .grc-hero .eyebrow { margin-bottom: 14px; }
   .grc-hero h1 {
     font-size: clamp(2.4rem, 5vw, 3.8rem);

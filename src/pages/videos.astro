@@ -1,8 +1,31 @@
 ---
 import Base from '../layouts/Base.astro';
 import { videos, videoCategories } from '../data/site.js';
+
+// VideoObject schema for every embedded video — makes the hub eligible for
+// video rich results and gives AI systems a citable, structured source.
+// YouTube derives thumbnails from the video id; `date` is YYYY-MM, so anchor
+// it to the 1st for a valid ISO 8601 uploadDate.
+const videoSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': videos.map((v) => ({
+    '@type': 'VideoObject',
+    name: v.title,
+    description: v.description,
+    thumbnailUrl: `https://i.ytimg.com/vi/${v.youtubeId}/hqdefault.jpg`,
+    uploadDate: `${v.date}-01`,
+    contentUrl: `https://www.youtube.com/watch?v=${v.youtubeId}`,
+    embedUrl: `https://www.youtube.com/embed/${v.youtubeId}`,
+    publisher: {
+      '@type': 'Organization',
+      name: 'XGRC® Software',
+      url: 'https://xgrcsoftware.com',
+    },
+  })),
+});
 ---
 <Base title="Video Hub | XGRC® Software" description="Platform overviews, product walkthroughs, and training videos from XGRC® Software.">
+  <script type="application/ld+json" set:html={videoSchema} />
   <section class="page-head">
     <div class="container">
       <span class="eyebrow"><span class="dot"></span>Video Hub</span>

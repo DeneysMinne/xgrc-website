@@ -66,6 +66,7 @@ const schema = JSON.stringify({
   description: article.excerpt,
   image: `https://xgrcsoftware.com/assets/images/insights/${imageFile}`,
   datePublished: article.date,
+  dateModified: article.dateModified || article.date,
   author: { '@type': 'Organization', name: 'XGRC® Software' },
   publisher: {
     '@type': 'Organization',

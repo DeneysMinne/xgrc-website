@@ -805,6 +805,10 @@ export const caseStudies = [
   },
 ];
 
+// `date` is the published date (ISO YYYY-MM-DD). When an article's content is
+// materially updated, add `dateModified: 'YYYY-MM-DD'` — the Article schema
+// emits it as schema.org dateModified (a freshness signal for search + AI
+// citation). Absent it, dateModified falls back to `date`.
 export const articles = [
   {
     slug: 'what-is-grc-software',
