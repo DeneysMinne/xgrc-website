@@ -6,7 +6,7 @@ import { useCaseRegistry } from '../data/useCaseRegistry.js';
 const checklistResources = useCaseRegistry.filter((u) => u.resource);
 ---
 
-<Base title="Resources | XGRC® Software" description="Checklists, gap assessments, booklets, brochures, and release notes for the XGRC platform and its solutions.">
+<Base title="Resources | XGRC® Software" description="Checklists, gap assessments, booklets and brochures for the XGRC platform and its solutions.">
   <section class="page-head">
     <div class="container">
       <span class="eyebrow"><span class="dot"></span>Resources</span>
@@ -44,7 +44,7 @@ const checklistResources = useCaseRegistry.filter((u) => u.resource);
     <div class="container">
       <div class="section-head">
         <span class="eyebrow"><span class="dot"></span>Product material</span>
-        <h2>Booklets, brochures and release notes.</h2>
+        <h2>Booklets and brochures.</h2>
       </div>
       <div class="grid cols-2">
         {resources.map((r) => (
@@ -52,7 +52,11 @@ const checklistResources = useCaseRegistry.filter((u) => u.resource);
             <span class="tag">{r.type}</span>
             <h3>{r.title}</h3>
             <p>{r.note}</p>
-            <a href="#" class="link-arrow">Download →</a>
+            <a
+              href={r.href}
+              class="link-arrow"
+              {...(r.download ? { target: '_blank', rel: 'noopener', download: true } : {})}
+            >{r.cta || 'Download →'}</a>
           </div>
         ))}
       </div>

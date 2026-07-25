@@ -84,6 +84,11 @@ const schema = JSON.stringify({
           <a href="/demo" class="btn btn-primary">Request a demo</a>
           <a href="/solutions" class="btn btn-ghost">All solutions &rarr;</a>
         </div>
+        {detail.infographic && (
+          <p class="sol-infographic">
+            <a href={detail.infographic} target="_blank" rel="noopener" download>Download the {detail.name} infographic (PDF) &rarr;</a>
+          </p>
+        )}
         <div class="sol-standards-strip">
           {detail.standards.map((s) => (
             <span class="std-badge">{s}</span>
@@ -454,7 +459,10 @@ const schema = JSON.stringify({
     letter-spacing: -0.01em;
   }
   .sol-lede { max-width: 660px; margin-bottom: 32px; }
-  .sol-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
+  .sol-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+  .sol-infographic { margin: 0 0 30px; font-size: 0.9rem; }
+  .sol-infographic a { color: var(--cyan); text-decoration: none; }
+  .sol-infographic a:hover { text-decoration: underline; }
   .sol-standards-strip {
     display: flex;
     flex-wrap: wrap;

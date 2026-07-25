@@ -60,6 +60,7 @@ export const solutions = [
 // Rich solution detail data — powers /solutions/[slug] pages.
 export const solutionDetails = {
   sheqx: {
+    infographic: '/assets/infographics/sheqx-infographic.pdf',
     logo: '/assets/logos/solutions/sheqx.png',
     icon: '/assets/logos/solutions/icons/sheqx.png',
     screenshot: '/assets/screenshots/sheqx-dashboard.webp',
@@ -103,6 +104,7 @@ export const solutionDetails = {
   },
 
   msx: {
+    infographic: '/assets/infographics/msx-infographic.pdf',
     logo: '/assets/logos/solutions/msx.png',
     icon: '/assets/logos/solutions/icons/msx.png',
     screenshot: '/assets/screenshots/msx-dashboard.webp',
@@ -145,6 +147,7 @@ export const solutionDetails = {
   },
 
   msxcyber: {
+    infographic: '/assets/infographics/msxcyber-infographic.pdf',
     logo: '/assets/logos/solutions/msxcyber.png',
     icon: '/assets/logos/solutions/icons/msxcyber.png',
     screenshot: '/assets/screenshots/msxcyber-dashboard.webp',
@@ -187,6 +190,7 @@ export const solutionDetails = {
   },
 
   erm: {
+    infographic: '/assets/infographics/erm-infographic.pdf',
     logo: '/assets/logos/solutions/erm.png',
     icon: '/assets/logos/solutions/icons/erm.png',
     screenshot: '/assets/screenshots/erm-dashboard-new.webp',
@@ -270,6 +274,7 @@ export const solutionDetails = {
   },
 
   envirx: {
+    infographic: '/assets/infographics/envirx-infographic.pdf',
     logo: '/assets/logos/solutions/envirx.png',
     icon: '/assets/logos/solutions/icons/envirx.png',
     screenshot: '/assets/screenshots/envirx-dashboard.webp',
@@ -311,6 +316,7 @@ export const solutionDetails = {
   },
 
   esg: {
+    infographic: '/assets/infographics/esg-infographic.pdf',
     logo: '/assets/logos/solutions/esg.png',
     icon: '/assets/logos/solutions/icons/esg.png',
     screenshot: '/assets/screenshots/esg-dashboard.webp',
@@ -436,6 +442,7 @@ export const solutionDetails = {
   },
 
   maia: {
+    infographic: '/assets/infographics/maia-infographic.pdf',
     logo: '/assets/logos/solutions/maia.png',
     icon: '/assets/logos/solutions/icons/maia.png',
     screenshot: '/assets/screenshots/maia-dashboard.webp',
@@ -478,6 +485,7 @@ export const solutionDetails = {
   },
 
   libryo: {
+    infographic: '/assets/infographics/libryo-infographic.pdf',
     name: 'Libryo',
     tag: 'Regulatory Intelligence Partner',
     headline: 'Legal obligations, translated into action — for every site, every jurisdiction.',
@@ -515,6 +523,7 @@ export const solutionDetails = {
   },
 
   hakware: {
+    infographic: '/assets/infographics/hakware-infographic.pdf',
     name: 'Hakware',
     tag: 'AI-Powered Security Testing Partner',
     headline: 'Continuous, AI-driven penetration testing that keeps you one step ahead.',
@@ -1131,11 +1140,12 @@ export const articleFaqs = {
   ],
 };
 
+// Product-material downloads shown on /resources. `href` set = real target.
+// PDFs open in a new tab (download:true); internal pages navigate in place.
+// Product infographics are not listed here — each lives on its solution page.
 export const resources = [
-  { type: 'Booklet', title: 'SHEQX® Booklet', note: 'PDF overview of the SHEQ management solution.' },
-  { type: 'Brochure', title: 'Integrated Assurance Brochure', note: 'Combined assurance and four lines of defence.' },
-  { type: 'Infographic', title: 'Product infographics', note: 'One-page summaries for SHEQX, ENVIRX, MSXCyber®, ERM, MAIA®, ESG, Compliance Hub, Cyber Security and Hakware.' },
-  { type: 'Release notes', title: 'Platform release notes', note: 'Latest feature and release updates across the XGRC® platform.' }
+  { type: 'Booklet', title: 'SHEQX® Booklet', note: 'PDF overview of the SHEQ management solution.', href: '/resources/xgrc-sheqx-booklet.pdf', download: true },
+  { type: 'Brochure', title: 'Integrated Assurance Brochure', note: 'Combined assurance and four lines of defence.', href: '/resources/xgrc-integrated-assurance-brochure.pdf', download: true }
 ];
 
 // Video hub — powers /videos/. Add a new entry here (with a real YouTube ID) to
