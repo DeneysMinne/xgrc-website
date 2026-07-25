@@ -361,7 +361,7 @@ export const useCaseRegistry = [
       checklistSlug: 'esg-reporting-checklist',
       pdfPath: '/ESG-Reporting-Checklist-XGRC-v1.0.pdf',
     },
-    relatedUseCases: ['iso-14001-readiness', 'enterprise-risk-management'],
+    relatedUseCases: ['environmental-compliance', 'iso-14001-readiness', 'enterprise-risk-management'],
     faqs: [
       { q: 'What is ESG reporting software?', a: 'ESG reporting software centralises environmental, social and governance data collection, validation and reporting on one platform, so metrics are traceable to source evidence instead of being consolidated manually in spreadsheets before every reporting cycle.' },
       { q: 'Which ESG frameworks does XGRC® support?', a: 'XGRC® is framework-agnostic by design. You define the ESG metrics and framework your organisation reports against, and XGRC® structures data collection, validation and approval around it.' },
@@ -1790,7 +1790,7 @@ export const useCaseRegistry = [
       checklistSlug: 'iso-14001-readiness-gap-assessment-checklist',
       pdfPath: '/resources/xgrc-iso-14001-readiness-gap-assessment-checklist-v1-0.pdf',
     },
-    relatedUseCases: ['esg-reporting', 'hazard-identification', 'internal-audit'],
+    relatedUseCases: ['environmental-compliance', 'esg-reporting', 'hazard-identification'],
     faqs: [
       { q: 'What is ISO 14001 compliance software?', a: 'ISO 14001 compliance software assesses environmental management system readiness and monitors compliance obligations continuously, rather than reconstructing evidence for the auditor from scattered site records.' },
       { q: 'Does ENVIRX® track legal compliance obligations as legislation changes?', a: 'Yes. Legal compliance obligations are tracked with renewal alerts, so a changed requirement is flagged rather than missed until the next review.' },
