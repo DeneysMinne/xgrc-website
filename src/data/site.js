@@ -833,6 +833,15 @@ export const caseStudies = [
 // citation). Absent it, dateModified falls back to `date`.
 export const articles = [
   {
+    slug: 'extended-enterprise-risk-management',
+    title: 'What Is Extended Enterprise Risk Management?',
+    excerpt: 'A large share of an organisation\'s risk sits with its suppliers, contractors and partners. Extended enterprise risk management is the discipline of governing that third-party exposure.',
+    category: 'ERM',
+    date: '2026-07-25',
+    image: 'supplier-compliance-software-vs-procurement-systems-v2.jpg',
+    relatedSolutions: ['compliance-hub', 'erm'],
+  },
+  {
     slug: 'enterprise-risk-management-vs-traditional-risk-management',
     title: 'ERM vs Traditional Risk Management: What Is the Difference?',
     excerpt: 'Traditional risk management is local and periodic; enterprise risk management is organisation-wide and continuous. What separates them, and why organisations move from one to the other.',
@@ -1124,6 +1133,12 @@ export const articles = [
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
 // Only articles with an entry here render a FAQ section + FAQPage schema.
 export const articleFaqs = {
+  'extended-enterprise-risk-management': [
+    { q: 'What is extended enterprise risk management?', a: 'Extended enterprise risk management is the discipline of identifying, assessing and monitoring the risks introduced by third parties, such as suppliers, contractors, outsourced providers and partners, across their whole lifecycle from onboarding through ongoing performance to offboarding.' },
+    { q: 'Is extended enterprise risk management the same as third-party risk management?', a: 'They describe the same thing. Extended enterprise risk management, third-party risk management and supply chain risk management all refer to governing the exposure created by the external parties an organisation depends on, rather than its own internal operations.' },
+    { q: 'Why does extended enterprise risk matter?', a: 'Because you carry the consequences without holding the controls. A supplier\'s data breach, a contractor\'s safety failure or a vendor\'s lapsed certification becomes your regulatory, operational or reputational problem. As organisations outsource more, third parties have become one of the largest and least visible sources of risk.' },
+    { q: 'How does XGRC® manage extended enterprise risk?', a: 'XGRC® Compliance Hub provides structured onboarding, vetting and ongoing compliance management for suppliers, contractors and third parties, with automated document expiry tracking and risk scoring. That data connects to enterprise risk management and assurance on the same platform, so third-party risk is governed as part of total exposure.' },
+  ],
   'enterprise-risk-management-vs-traditional-risk-management': [
     { q: 'What is the difference between traditional risk management and enterprise risk management?', a: 'Traditional risk management is local and periodic, with each department keeping its own register reviewed on a set cycle. Enterprise risk management is organisation-wide and continuous: it aggregates risk into one connected view, links risks to controls, owners and the board\'s appetite, and keeps the picture current.' },
     { q: 'What is traditional risk management?', a: 'Traditional risk management manages risk within a single department, site or project, usually in a spreadsheet reviewed once a year. It answers what could go wrong in one area, but sees risks in isolation and offers no single view of the organisation\'s total exposure.' },

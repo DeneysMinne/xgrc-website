@@ -2,6 +2,32 @@
 // Content sourced from xgrcsoftware.com — all rights reserved XGRC® Software.
 export const articleContent = {
 
+'extended-enterprise-risk-management': `Few organisations deliver anything alone. Suppliers, contractors, outsourced providers and partners sit inside almost every critical process, which means a large share of an organisation's risk now lives outside its own walls. Extended enterprise risk management is the practice of governing that risk: the exposure that comes not from what you do, but from who you depend on.
+
+What Is the Extended Enterprise?
+
+The extended enterprise is the network of third parties an organisation relies on to operate: suppliers and vendors, contractors and subcontractors, outsourced service providers, distributors and partners. Each of them can affect your ability to deliver, your compliance position and your reputation, yet none of them are under your direct control. As organisations outsource more and supply chains lengthen, the extended enterprise has become one of the largest and least visible sources of risk.
+
+What Is Extended Enterprise Risk Management?
+
+Extended enterprise risk management (sometimes called third-party or supply chain risk management) is the discipline of identifying, assessing and monitoring the risks introduced by third parties across their whole lifecycle, from onboarding and vetting through ongoing performance and eventual offboarding. It asks a specific question: what exposure do our third parties create, and are we managing it as deliberately as we manage our own?
+
+Why Extended Enterprise Risk Is Different
+
+Third-party risk behaves differently from internal risk in one crucial way: you carry the consequences without holding the controls. A supplier's data breach, a contractor's safety failure, or a vendor's lapsed certification becomes your regulatory, operational or reputational problem, often at the worst possible moment. The difficulty is visibility. Third parties are onboarded by different teams, their documents expire unnoticed, and their risk is rarely scored consistently or reviewed after the contract is signed. The exposure is real; the oversight is usually thin.
+
+How It Relates to Enterprise Risk Management
+
+Extended enterprise risk is a domain within the broader picture of <a href="/insights/what-is-enterprise-risk-management">enterprise risk management</a>. ERM looks at total exposure across the organisation as a connected portfolio; third-party risk is one of the most significant categories within that portfolio, and one of the easiest to leave out because it sits outside the organisation's own registers. Bringing it into the ERM picture, rather than treating it as a procurement afterthought, is what turns supplier oversight into genuine risk governance.
+
+Managing Extended Enterprise Risk in Practice
+
+Governing the extended enterprise means structuring what is usually ad hoc: onboarding and vetting third parties consistently, scoring their risk, tracking the documents and certifications that evidence their compliance, and monitoring them on an ongoing basis rather than only at contract signing. <a href="/compliance-hub">XGRC® Compliance Hub</a> is built for exactly this, providing structured onboarding, vetting and ongoing compliance management for suppliers, contractors and third parties, with automated document expiry tracking and risk scoring. The related discipline of managing suppliers as a governed process, rather than a procurement transaction, is covered in <a href="/insights/supplier-compliance-software-vs-procurement-systems">supplier compliance software versus procurement systems</a> and the <a href="/use-cases/vendor-management">vendor management</a> use case.
+
+The Connected Approach With XGRC®
+
+The value of governing the extended enterprise on the XGRC® platform is connection. Third-party risk does not sit in a separate silo; it feeds the same risk picture as everything else. Compliance Hub manages the third-party lifecycle, and that data connects to <a href="/erm">enterprise risk management</a> and assurance on the same auditable foundation, so the risk your suppliers and contractors carry is governed as part of your total exposure, not forgotten until it becomes an incident.`,
+
 'enterprise-risk-management-vs-traditional-risk-management': `Most organisations already do risk management of some kind. Fewer do enterprise risk management. The two sound similar and are often used as if they mean the same thing, but they describe different ways of seeing and managing risk. Understanding the difference is usually the first step an organisation takes when its existing approach stops keeping up.
 
 What Is Traditional Risk Management?
