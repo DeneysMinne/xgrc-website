@@ -5,17 +5,17 @@ const APP_URL = 'https://v5.xgrc.cloud/';
 ---
 
 <Base
-  title="Customer Login | XGRC® Software"
-  description="Log in to XGRC® Software."
-  noindex={true}
+  title="XGRC® & SHEQX® Login | Customer Sign In"
+  description="Log in to XGRC® Software. One customer login for SHEQX®, MSX®, ERM, MSXCyber®, ENVIRX®, ESG, Integrated Assurance, MAIA® and XGRC® Compliance Hub."
 >
   <section class="login-hero">
     <div class="container login-inner">
       <span class="eyebrow"><span class="dot"></span>Customer login</span>
-      <h1>Log in to XGRC®.</h1>
-      <p class="lede">One login for every XGRC® solution you're licensed for — MSX®, SHEQX®, ERM, MSXCyber®, ENVIRX®, ESG, Integrated Assurance, MAIA®, XGRC® Compliance Hub, and XLOGIC®. You'll land in the solutions your account has access to.</p>
+      <h1>Log in to XGRC® and SHEQX®.</h1>
+      <p class="lede">One login for every XGRC® solution you're licensed for. SHEQX®, MSX®, ERM, MSXCyber®, ENVIRX®, ESG, Integrated Assurance, MAIA®, XGRC® Compliance Hub and XLOGIC® all sign in through the same portal, and you'll land in the solutions your account has access to.</p>
       <a href={APP_URL} class="btn btn-primary">Log in to XGRC®</a>
-      <p class="help">Not sure which login to use, or need access set up? <a href="/contact" class="link-arrow">Contact us →</a></p>
+      <p class="app-note">Customer portal: <a href={APP_URL}>v5.xgrc.cloud</a></p>
+      <p class="help">Not sure which login to use, forgotten your details, or need access set up? <a href="/contact" class="link-arrow">Contact our team →</a></p>
     </div>
   </section>
 </Base>
@@ -25,5 +25,6 @@ const APP_URL = 'https://v5.xgrc.cloud/';
   .login-inner { max-width: 620px; margin: 0 auto; }
   .login-hero h1 { margin: 10px 0 18px; }
   .login-hero .lede { margin: 0 auto 32px; }
+  .app-note { margin-top: 18px; font-size: 0.9rem; color: var(--mute); }
   .help { margin-top: 22px; font-size: 0.92rem; color: var(--mute); }
 </style>

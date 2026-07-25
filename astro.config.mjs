@@ -8,7 +8,10 @@ export default defineConfig({
   output: 'static',
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/login') && !page.includes('/pix'),
+      // /login is intentionally indexable — it's the destination we want to
+      // rank for branded "xgrc login" / "sheqx login" searches. /pix is a
+      // retired product and stays out.
+      filter: (page) => !page.includes('/pix'),
     }),
   ],
 });
