@@ -25,8 +25,8 @@ TARGETS = ['sheqx', 'msx', 'msxcyber', 'erm', 'envirx', 'esg', 'maia', 'libryo',
 # Output filename version per slug. Bump when a fresh URL is needed to bust the
 # Cloudflare edge cache (a URL already served is cached ~4h and we can't purge).
 # erm is v3 because erm-*-v2 was already published+cached with an earlier design.
-VERSION = {'erm': 'v3'}
-DEFAULT_VERSION = 'v2'
+VERSION = {'erm': 'v4'}
+DEFAULT_VERSION = 'v3'
 
 
 def b64(path):
@@ -133,7 +133,8 @@ h1 {{ font-family: 'Outfit'; font-weight: 700; font-size: 34px; line-height: 1.0
 
 .cards {{ display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 26px; justify-content: flex-start; }}
 .card {{ flex-grow: 1; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden; }}
-.card-head {{ font-family: 'Outfit'; font-weight: 700; font-size: 12px; color: #04121d; padding: 10px 15px; background: linear-gradient(120deg, #8bf2ff, #30e2f4 55%, #22c3e0); }}
+.card-head {{ font-family: 'Outfit'; font-weight: 700; font-size: 12px; color: #eaf7fb; padding: 10px 15px;
+  background: linear-gradient(120deg, rgba(48,226,244,0.20), rgba(30,111,168,0.07)); border-bottom: 1px solid rgba(48,226,244,0.32); }}
 .card ul {{ list-style: none; padding: 12px 15px 13px; }}
 .card li {{ font-size: 9.8px; color: #c3d3e4; padding: 4px 0 4px 15px; position: relative; line-height: 1.3; }}
 .card li::before {{ content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: #30e2f4; box-shadow: 0 0 6px rgba(48,226,244,0.7); }}
