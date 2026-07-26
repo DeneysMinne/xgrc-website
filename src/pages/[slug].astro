@@ -84,9 +84,15 @@ const schema = JSON.stringify({
           <a href="/demo" class="btn btn-primary">Request a demo</a>
           <a href="/solutions" class="btn btn-ghost">All solutions &rarr;</a>
         </div>
-        {detail.infographic && (
-          <p class="sol-infographic">
-            <a href={detail.infographic} target="_blank" rel="noopener" download>Download the {detail.name} infographic (PDF) &rarr;</a>
+        {(detail.booklet || detail.infographic) && (
+          <p class="sol-downloads">
+            <span class="dl-label">Download:</span>
+            {detail.booklet && (
+              <a href={detail.booklet} target="_blank" rel="noopener" download>Brochure (PDF)</a>
+            )}
+            {detail.infographic && (
+              <a href={detail.infographic} target="_blank" rel="noopener" download>Infographic (PDF)</a>
+            )}
           </p>
         )}
         <div class="sol-standards-strip">
@@ -214,13 +220,20 @@ const schema = JSON.stringify({
         <div class="sol-video-wrap">
           {detail.youtubeId ? (
             <div class="yt-wrap">
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${detail.youtubeId}`}
-                title={`${detail.name} product overview`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                loading="lazy"
-              ></iframe>
+              <button
+                class="yt-facade"
+                data-ytid={detail.youtubeId}
+                type="button"
+                aria-label={`Play the ${detail.name} product overview video`}
+              >
+                <img
+                  src={`https://i.ytimg.com/vi/${detail.youtubeId}/maxresdefault.jpg`}
+                  onerror="this.onerror=null;this.src=this.src.replace('maxresdefault','hqdefault')"
+                  alt={`${detail.name} product overview`}
+                  loading="lazy"
+                />
+                <span class="yt-play" aria-hidden="true"></span>
+              </button>
             </div>
           ) : (
             <video
@@ -460,9 +473,11 @@ const schema = JSON.stringify({
   }
   .sol-lede { max-width: 660px; margin-bottom: 32px; }
   .sol-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
-  .sol-infographic { margin: 0 0 30px; font-size: 0.9rem; }
-  .sol-infographic a { color: var(--cyan); text-decoration: none; }
-  .sol-infographic a:hover { text-decoration: underline; }
+  .sol-downloads { margin: 0 0 30px; font-size: 0.9rem; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; }
+  .sol-downloads .dl-label { color: var(--faint); font-size: 0.82rem; }
+  .sol-downloads a { color: var(--cyan); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+  .sol-downloads a::after { content: '↓'; font-size: 0.85em; opacity: 0.8; }
+  .sol-downloads a:hover { text-decoration: underline; }
   .sol-standards-strip {
     display: flex;
     flex-wrap: wrap;
@@ -650,6 +665,14 @@ const schema = JSON.stringify({
     height: auto;
     display: block;
   }
+  /* YouTube facade: thumbnail + play button, loads the player only on click.
+     Guarantees the poster is shown (never a black box) and keeps the page light. */
+  .yt-facade { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer; background: #000; display: block; }
+  .yt-facade img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .yt-facade .yt-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 74px; height: 52px; border-radius: 13px; background: rgba(15, 20, 28, 0.78); transition: background 0.2s, transform 0.2s; }
+  .yt-facade .yt-play::before { content: ''; position: absolute; top: 50%; left: 53%; transform: translate(-50%, -50%); border-style: solid; border-width: 11px 0 11px 19px; border-color: transparent transparent transparent #fff; }
+  .yt-facade:hover .yt-play, .yt-facade:focus-visible .yt-play { background: var(--cyan); transform: translate(-50%, -50%) scale(1.06); }
+  .yt-facade:hover .yt-play::before, .yt-facade:focus-visible .yt-play::before { border-left-color: #04121d; }
 
   /* ── Responsive ──────────────────────────────────────── */
   @media (max-width: 1100px) {
@@ -666,3 +689,19 @@ const schema = JSON.stringify({
     .glass-tile { width: 220px; min-height: 240px; padding: 28px 24px 24px; }
   }
 </style>
+
+<script>
+  // Load the real YouTube player only when the facade is clicked.
+  document.querySelectorAll('.yt-facade').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-ytid');
+      const ifr = document.createElement('iframe');
+      ifr.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      ifr.title = 'Product overview video';
+      ifr.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      ifr.allowFullscreen = true;
+      ifr.setAttribute('style', 'position:absolute;inset:0;width:100%;height:100%;border:0;');
+      btn.replaceWith(ifr);
+    });
+  });
+</script>

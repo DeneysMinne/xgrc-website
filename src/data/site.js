@@ -61,6 +61,7 @@ export const solutions = [
 export const solutionDetails = {
   sheqx: {
     infographic: '/assets/infographics/sheqx-infographic-v3.pdf',
+    booklet: '/resources/xgrc-sheqx-booklet.pdf',
     logo: '/assets/logos/solutions/sheqx.png',
     icon: '/assets/logos/solutions/icons/sheqx.png',
     screenshot: '/assets/screenshots/sheqx-dashboard.webp',
@@ -150,6 +151,7 @@ export const solutionDetails = {
 
   msxcyber: {
     infographic: '/assets/infographics/msxcyber-infographic-v3.pdf',
+    booklet: '/resources/xgrc-cyber-security-booklet.pdf',
     logo: '/assets/logos/solutions/msxcyber.png',
     icon: '/assets/logos/solutions/icons/msxcyber.png',
     screenshot: '/assets/screenshots/msxcyber-dashboard.webp',
@@ -194,6 +196,7 @@ export const solutionDetails = {
 
   erm: {
     infographic: '/assets/infographics/erm-infographic-v4.pdf',
+    booklet: '/resources/xgrc-erm-booklet.pdf',
     logo: '/assets/logos/solutions/erm.png',
     icon: '/assets/logos/solutions/icons/erm.png',
     screenshot: '/assets/screenshots/erm-dashboard-new.webp',
@@ -240,6 +243,7 @@ export const solutionDetails = {
     logo: '/assets/logos/solutions/integrated-assurance.png',
     icon: '/assets/logos/solutions/icons/integrated-assurance.png',
     screenshot: '/assets/screenshots/integrated-assurance-dashboard.webp',
+    booklet: '/resources/xgrc-integrated-assurance-brochure.pdf',
     name: 'Integrated Assurance',
     tag: 'Internal Audit & Combined Assurance',
     headline: 'One audit plan. Four lines of defence. Zero gaps.',
@@ -280,6 +284,7 @@ export const solutionDetails = {
 
   envirx: {
     infographic: '/assets/infographics/envirx-infographic-v3.pdf',
+    booklet: '/resources/xgrc-envirx-ebook.pdf',
     logo: '/assets/logos/solutions/envirx.png',
     icon: '/assets/logos/solutions/icons/envirx.png',
     screenshot: '/assets/screenshots/envirx-dashboard.webp',
@@ -369,6 +374,7 @@ export const solutionDetails = {
     logo: '/assets/logos/solutions/compliance-hub.png',
     icon: '/assets/logos/solutions/icons/compliance-hub.png',
     screenshot: '/assets/screenshots/compliance-hub-dashboard.webp',
+    booklet: '/resources/xgrc-compliance-hub-booklet.pdf',
     youtubeId: 'itta_NfEvOU',
     name: 'XGRC® Compliance Hub',
     tag: 'Supplier & Third-Party Compliance',
