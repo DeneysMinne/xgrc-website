@@ -95,6 +95,10 @@ const solutions = ['SHEQX®', 'MSX®', 'MSXCyber®', 'ENVIRX®', 'ERM', 'ESG', '
           </div>
 
           <input type="hidden" name="_category" value="Partner enquiry" />
+          <div class="hp-field" aria-hidden="true">
+            <label>Leave this field empty</label>
+            <input type="text" name="_hp" tabindex="-1" autocomplete="off" />
+          </div>
 
           <div class="form-actions">
             <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
@@ -203,6 +207,7 @@ const solutions = ['SHEQX®', 'MSX®', 'MSXCyber®', 'ENVIRX®', 'ERM', 'ESG', '
   .check { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--mute); font-weight: 400; cursor: pointer; }
   .check input { width: auto; }
 
+  .hp-field { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
   .form-actions { margin-top: 4px; }
   .btn-full { width: 100%; justify-content: center; }
   .btn-spinner { display: none; width: 16px; height: 16px; border: 2px solid rgba(4, 19, 11, 0.3); border-top-color: var(--green-ink); border-radius: 50%; animation: spin 0.7s linear infinite; }
@@ -240,6 +245,7 @@ const solutions = ['SHEQX®', 'MSX®', 'MSXCyber®', 'ENVIRX®', 'ERM', 'ESG', '
 </style>
 
 <script define:vars={{ FORM_ENDPOINT }}>
+  const _loadT    = Date.now();
   const form      = document.getElementById('partnerForm');
   const success   = document.getElementById('successCard');
   const errorEl   = document.getElementById('formError');
@@ -274,6 +280,8 @@ const solutions = ['SHEQX®', 'MSX®', 'MSXCyber®', 'ENVIRX®', 'ERM', 'ESG', '
         phone:     fd.get('phone'),
         message,
         _category: 'Partner enquiry',
+        _hp: fd.get('_hp') || '',
+        _elapsed_ms: Date.now() - _loadT,
         ...(ga ? { _ga_client_id: ga } : {}),
       };
 

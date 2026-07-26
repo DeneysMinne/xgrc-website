@@ -186,6 +186,23 @@ def _send_ga4_event(data: dict) -> None:
         log.warning("GA4 MP event failed: %s", exc)
 
 
+def _is_spam(data: dict) -> str:
+    """Return a reason string if the submission looks like bot spam, else ''.
+
+    Zero-friction checks (no CAPTCHA): a honeypot field real users never see,
+    and a time-trap since bots submit far faster than a human can fill a form.
+    """
+    if (data.get("_hp") or "").strip():
+        return "honeypot filled"
+    try:
+        elapsed = int(data.get("_elapsed_ms") or 0)
+    except (ValueError, TypeError):
+        elapsed = 0
+    if 0 < elapsed < 2000:
+        return f"submitted in {elapsed}ms"
+    return ""
+
+
 @app.route("/api/demo", methods=["POST"])
 def demo_submit():
     data = request.get_json(silent=True) or {}
@@ -193,6 +210,13 @@ def demo_submit():
     first = (data.get("firstName") or "").strip()
     email = (data.get("email") or "").strip()
     company = (data.get("company") or "").strip()
+
+    spam = _is_spam(data)
+    if spam:
+        ip = request.headers.get("CF-Connecting-IP") or request.remote_addr or "?"
+        log.info("Spam dropped (%s) from %s <%s>", spam, ip, email)
+        # Return success so the bot believes it worked and does not adapt/retry.
+        return jsonify({"ok": True}), 200
 
     if not first or not email:
         return jsonify({"ok": False, "error": "Missing required fields."}), 400

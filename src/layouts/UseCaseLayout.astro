@@ -283,6 +283,7 @@ const schema = {
             <label>Name<input type="text" name="name" required autocomplete="name" /></label>
             <label>Work email<input type="email" name="email" required autocomplete="email" /></label>
             <label>Company <span class="opt">(optional)</span><input type="text" name="company" autocomplete="organization" /></label>
+            <div class="hp-field" aria-hidden="true"><label>Leave this field empty<input type="text" name="_hp" tabindex="-1" autocomplete="off" /></label></div>
             <p class="form-error" data-error hidden>Please enter your name and a valid email address.</p>
             <button class="btn btn-primary" type="submit">Email me the checklist</button>
             <p class="form-fine">We use your details only to send the resource and occasional XGRC&reg; updates. Unsubscribe any time.</p>
@@ -303,6 +304,7 @@ const schema = {
 {resource && (
   <script define:vars={{ pdfPath: resource.pdfPath, resourceTitle: resource.title, pageUrl: `/use-cases/${slug}/` }}>
     // ---- Gated download interaction ----
+    const _loadT = Date.now();
     const modal = document.getElementById('downloadModal');
     const form = document.getElementById('downloadForm');
     const formState = modal?.querySelector('[data-form-state]');
@@ -353,6 +355,8 @@ const schema = {
           _download_url: window.location.origin + pdfPath,
           _source_page: pageUrl,
           _ga_client_id: (document.cookie.match(/_ga=GA\d\.\d\.(\d+\.\d+)/) || [])[1] || '',
+          _hp: (data.get('_hp') || '').toString(),
+          _elapsed_ms: Date.now() - _loadT,
         }),
       }).catch(() => {}); // swallow errors — download still works
 
@@ -419,6 +423,7 @@ const schema = {
   .cta-band { text-align: center; padding: clamp(40px, 6vw, 64px); background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(0,92,169,0.05)); border-color: var(--line-strong); }
   .cta-band .lede { margin: 0 auto 26px; }
 
+  .hp-field { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
   .modal { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; }
   .modal[hidden] { display: none; }
   .modal-backdrop { position: absolute; inset: 0; background: rgba(3, 8, 15, 0.72); backdrop-filter: blur(4px); }

@@ -63,6 +63,10 @@ const FORM_ENDPOINT = "/api/demo";
           </div>
 
           <input type="hidden" name="_subject" value="Demo request from xgrcwebsite" />
+          <div class="hp-field" aria-hidden="true">
+            <label>Leave this field empty</label>
+            <input type="text" name="_hp" tabindex="-1" autocomplete="off" />
+          </div>
 
           <div class="form-actions">
             <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
@@ -209,6 +213,7 @@ const FORM_ENDPOINT = "/api/demo";
     outline-offset: 2px;
   }
 
+  .hp-field { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
   .form-actions { margin-top: 4px; }
   .btn-full { width: 100%; justify-content: center; }
 
@@ -339,6 +344,7 @@ const FORM_ENDPOINT = "/api/demo";
 </style>
 
 <script define:vars={{ FORM_ENDPOINT }}>
+  const _loadT   = Date.now();
   const form     = document.getElementById('demoForm');
   const success  = document.getElementById('successCard');
   const errorEl  = document.getElementById('formError');
@@ -355,6 +361,7 @@ const FORM_ENDPOINT = "/api/demo";
       const body = Object.fromEntries(fd.entries());
       const ga = (document.cookie.match(/_ga=GA\d\.\d\.(\d+\.\d+)/) || [])[1];
       if (ga) body._ga_client_id = ga;
+      body._elapsed_ms = Date.now() - _loadT;
       const res  = await fetch(FORM_ENDPOINT, {
         method: 'POST',
         body: JSON.stringify(body),
