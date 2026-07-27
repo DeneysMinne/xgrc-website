@@ -186,20 +186,42 @@ def _send_ga4_event(data: dict) -> None:
         log.warning("GA4 MP event failed: %s", exc)
 
 
-def _is_spam(data: dict) -> str:
+ALLOWED_ORIGINS = {
+    "https://xgrcsoftware.com", "https://www.xgrcsoftware.com",
+    "https://xgrcwebsite.nucleusapps.online", "http://localhost:4321",
+}
+
+
+def _is_spam(data: dict, req) -> str:
     """Return a reason string if the submission looks like bot spam, else ''.
 
-    Zero-friction checks (no CAPTCHA): a honeypot field real users never see,
-    and a time-trap since bots submit far faster than a human can fill a form.
+    Zero-friction, no-CAPTCHA checks. The honeypot + time-trap catch bots that
+    drive the real form; the timing-token and Origin checks catch bots that POST
+    straight to the API and skip the browser entirely (every genuine submission
+    from our forms carries an `_elapsed_ms` token and a browser Origin header).
     """
+    # 1. Honeypot: a hidden field real users never fill.
     if (data.get("_hp") or "").strip():
         return "honeypot filled"
+    # 2. Timing token must be present (our forms always send it) and plausible.
+    if "_elapsed_ms" not in data:
+        return "no timing token (direct API post)"
     try:
         elapsed = int(data.get("_elapsed_ms") or 0)
     except (ValueError, TypeError):
         elapsed = 0
-    if 0 < elapsed < 2000:
+    if elapsed < 2000:
         return f"submitted in {elapsed}ms"
+    # 3. If an Origin/Referer is present, it must be one of ours. We do NOT drop
+    #    when it is absent — a genuine submission carries the timing token above,
+    #    and dropping on a missing header risks silently losing real leads if any
+    #    proxy in the chain strips it.
+    origin = req.headers.get("Origin") or ""
+    if not origin:
+        ref = req.headers.get("Referer") or ""
+        origin = "/".join(ref.split("/")[:3]) if ref else ""
+    if origin and origin not in ALLOWED_ORIGINS:
+        return f"bad origin {origin}"
     return ""
 
 
@@ -211,7 +233,7 @@ def demo_submit():
     email = (data.get("email") or "").strip()
     company = (data.get("company") or "").strip()
 
-    spam = _is_spam(data)
+    spam = _is_spam(data, request)
     if spam:
         ip = request.headers.get("CF-Connecting-IP") or request.remote_addr or "?"
         log.info("Spam dropped (%s) from %s <%s>", spam, ip, email)
