@@ -844,7 +844,7 @@ export const articles = [
     excerpt: 'A large share of an organisation\'s risk sits with its suppliers, contractors and partners. Extended enterprise risk management is the discipline of governing that third-party exposure.',
     category: 'ERM',
     date: '2026-07-25',
-    image: 'extended-enterprise-risk-management.jpg',
+    image: 'extended-enterprise-risk-management-v2.jpg',
     relatedSolutions: ['compliance-hub', 'erm'],
   },
   {
