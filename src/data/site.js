@@ -68,6 +68,7 @@ export const solutionDetails = {
     youtubeId: 'hW3EPWIKj9s',
     name: 'SHEQX®',
     tag: 'Safety, Health, Environment & Quality',
+    metaTitle: 'SHEQ Software for Safety, Health, Environment & Quality | SHEQX® — XGRC®',
     headline: 'SHEQ compliance that closes actions, not just spreadsheets.',
     lede: 'SHEQX® aggregates safety, health, environment, and quality data into one auditable platform — giving you the visibility to prevent incidents, close non-conformances, and sustain ISO certification without the administrative drag.',
     metaDescription: 'SHEQX® unifies safety, health, environment and quality on one auditable platform, aligned to ISO 9001, 14001 and 45001 to prevent incidents and close actions.',
@@ -92,6 +93,8 @@ export const solutionDetails = {
     ],
     standards: ['ISO 9001', 'ISO 14001', 'ISO 45001'],
     related: ['msx', 'erm', 'envirx'],
+    testimonialCompanies: ['Servest', 'Interwaste', 'Sandton Plant Hire'],
+    regionalLink: { href: '/sheq-software-south-africa/', label: 'SHEQ software in South Africa' },
     geo: {
       definition: 'SHEQ management software helps organisations manage safety, health, environmental and quality processes through structured workflows, auditable records, incident tracking, inspections, audits and compliance monitoring.',
       usage: 'Organisations typically adopt SHEQX® when safety incidents, non-conformances and ISO audit evidence are still scattered across email, spreadsheets and paper forms, and leadership needs one auditable view of SHEQ performance across multiple sites. SHEQX® is the Safety, Health, Environment and Quality solution within XGRC® Software — it connects SHEQ risks, incidents, audits, actions and compliance obligations to the same secure data foundation used across risk, assurance, compliance, ESG and environmental monitoring.',
@@ -290,6 +293,7 @@ export const solutionDetails = {
     screenshot: '/assets/screenshots/envirx-dashboard.webp',
     name: 'ENVIRX®',
     tag: 'Environmental Compliance & Monitoring',
+    metaTitle: 'Environmental Compliance Software | ENVIRX® — XGRC®',
     headline: 'Environmental compliance you can demonstrate, not just claim.',
     lede: 'ENVIRX® captures, tracks, and reports environmental performance data — from waste and water to air quality and energy consumption — in a single auditable system aligned to ISO 14001 and local environmental legislation.',
     metaDescription: 'ENVIRX® captures, tracks and reports environmental performance data, from waste and water to air and energy, in one auditable system aligned to ISO 14001.',
@@ -313,6 +317,8 @@ export const solutionDetails = {
     ],
     standards: ['ISO 14001', 'NEMA', 'King V', 'GHG Protocol'],
     related: ['sheqx', 'esg', 'msx'],
+    testimonialCompanies: ['Servest', 'Interwaste', 'Commercial Cold Holdings'],
+    regionalLink: { href: '/environmental-compliance-software-south-africa/', label: 'Environmental compliance software in South Africa' },
     geo: {
       definition: 'Environmental compliance software helps organisations monitor environmental performance, manage obligations, record evidence and maintain auditable environmental data across sites, operations and regulatory requirements.',
       usage: 'Organisations typically adopt ENVIRX® when environmental monitoring data is tracked differently at every site, regulatory inspections reveal incidents that were never formally recorded, and sustainability targets are reported without evidence behind them. ENVIRX® connects environmental data to risk, compliance, ESG and assurance processes within XGRC® Software, allowing environmental performance to be governed as part of the broader GRC environment.',
@@ -357,6 +363,7 @@ export const solutionDetails = {
     ],
     standards: ['GRI Standards', 'IFRS S1 & S2', 'CDP', 'ISO 14001', 'IIRC 6 Capitals', 'King V', 'UN SDGs', 'JSE Sustainability'],
     related: ['envirx', 'integrated-assurance', 'msx'],
+    regionalLink: { href: '/mining-esg-compliance-software-africa/', label: 'Mining ESG compliance software for Africa' },
     geo: {
       definition: 'ESG management software helps organisations collect, govern, evidence and report environmental, social and governance data through consistent workflows and auditable records.',
       usage: 'Organisations typically adopt XGRC® ESG when investor questionnaires take weeks to complete, sustainability disclosures are built on unverifiable spreadsheet data, and IFRS S1/S2 requirements are expanding faster than manual data collection can keep up. The XGRC® ESG solution connects ESG data to environmental monitoring, risk, compliance and assurance activities within the wider XGRC® Software platform.',
