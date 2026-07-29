@@ -51,10 +51,10 @@ export const solutions = [
   { name: 'ENVIRX®', slug: 'envirx', tag: 'Environmental', blurb: 'Environmental compliance and performance monitoring with auditable environmental records.' },
   { name: 'XGRC® Compliance Hub', slug: 'compliance-hub', tag: 'Third-party', blurb: 'Supplier, contractor, and third-party compliance through structured onboarding, vetting, and ongoing assurance.', available: true },
   { name: 'XLOGIC®', slug: 'xlogic', tag: 'Governance Execution', blurb: 'Converts policies, frameworks, controls and obligations into structured workflows with accountability, evidence capture and auditability.', available: true },
-  { name: 'MAIA®', slug: 'maia', tag: 'Governed AI', blurb: 'Governed AI for GRC — combining business intelligence, data views and intelligent agents, with a full AI interaction audit trail.' },
+  { name: 'MAIA®', slug: 'maia', tag: 'Governed AI', blurb: 'Governed AI for GRC, combining business intelligence, data views and intelligent agents, with a full AI interaction audit trail.' },
   { name: 'Libryo', slug: 'libryo', tag: 'Partner', blurb: 'Jurisdiction-specific regulatory intelligence embedded directly within XGRC®.', partner: true },
   { name: 'Hakware', slug: 'hakware', tag: 'Partner', blurb: 'AI-powered penetration testing and unified vulnerability visibility across your environment.', partner: true },
-  { name: 'XRM', slug: 'xrm', tag: 'Sales & CRM', blurb: 'A structured, auditable CRM for leads, opportunities, quotes and customer relationships — built with the same governance discipline as the rest of XGRC® Software.' }
+  { name: 'XRM', slug: 'xrm', tag: 'Sales & CRM', blurb: 'A structured, auditable CRM for leads, opportunities, quotes and customer relationships, built with the same governance discipline as the rest of XGRC® Software.' }
 ];
 
 // Rich solution detail data — powers /solutions/[slug] pages.
@@ -70,7 +70,7 @@ export const solutionDetails = {
     tag: 'Safety, Health, Environment & Quality',
     metaTitle: 'SHEQ Software for Safety, Health, Environment & Quality | SHEQX® — XGRC®',
     headline: 'SHEQ compliance that closes actions, not just spreadsheets.',
-    lede: 'SHEQX® aggregates safety, health, environment, and quality data into one auditable platform — giving you the visibility to prevent incidents, close non-conformances, and sustain ISO certification without the administrative drag.',
+    lede: 'SHEQX® aggregates safety, health, environment, and quality data into one auditable platform, giving you the visibility to prevent incidents, close non-conformances, and sustain ISO certification without the administrative drag.',
     metaDescription: 'SHEQX® unifies safety, health, environment and quality on one auditable platform, aligned to ISO 9001, 14001 and 45001 to prevent incidents and close actions.',
     challenges: [
       { title: 'Incidents tracked in email', body: 'Safety events get logged then forgotten. No closure, no pattern analysis, no learning.' },
@@ -78,7 +78,7 @@ export const solutionDetails = {
       { title: 'Permits expire unnoticed', body: 'Legal appointments, MSDSs, and operational permits lapse because nobody owns the expiry calendar.' },
       { title: 'Actions with no accountability', body: 'Corrective actions raised, assigned, then orphaned. Months later, the same issue recurs.' },
     ],
-    overview: 'SHEQX® manages the complete SHEQ lifecycle — from hazard identification and incident capture through risk treatment, compliance monitoring, and ISO-aligned audit management — across every site and business unit on one platform.',
+    overview: 'SHEQX® manages the complete SHEQ lifecycle, from hazard identification and incident capture through risk treatment, compliance monitoring, and ISO-aligned audit management, across every site and business unit on one platform.',
     stats: [
       { value: '24', label: 'Modules' },
       { value: 'ISO 9001', label: '14001 · 45001' },
@@ -97,10 +97,10 @@ export const solutionDetails = {
     regionalLink: { href: '/sheq-software-south-africa/', label: 'SHEQ software in South Africa' },
     geo: {
       definition: 'SHEQ management software helps organisations manage safety, health, environmental and quality processes through structured workflows, auditable records, incident tracking, inspections, audits and compliance monitoring.',
-      usage: 'Organisations typically adopt SHEQX® when safety incidents, non-conformances and ISO audit evidence are still scattered across email, spreadsheets and paper forms, and leadership needs one auditable view of SHEQ performance across multiple sites. SHEQX® is the Safety, Health, Environment and Quality solution within XGRC® Software — it connects SHEQ risks, incidents, audits, actions and compliance obligations to the same secure data foundation used across risk, assurance, compliance, ESG and environmental monitoring.',
-      notThis: 'SHEQX® is not a standalone incident logbook or a generic form-builder. It is a full SHEQ management system that stays connected to XGRC®\'s wider risk, compliance and assurance data — usable on its own or alongside other XGRC® solutions such as MSX®, ERM or ENVIRX®.',
+      usage: 'Organisations typically adopt SHEQX® when safety incidents, non-conformances and ISO audit evidence are still scattered across email, spreadsheets and paper forms, and leadership needs one auditable view of SHEQ performance across multiple sites. SHEQX® is the Safety, Health, Environment and Quality solution within XGRC® Software, it connects SHEQ risks, incidents, audits, actions and compliance obligations to the same secure data foundation used across risk, assurance, compliance, ESG and environmental monitoring.',
+      notThis: 'SHEQX® is not a standalone incident logbook or a generic form-builder. It is a full SHEQ management system that stays connected to XGRC®\'s wider risk, compliance and assurance data, usable on its own or alongside other XGRC® solutions such as MSX®, ERM or ENVIRX®.',
       faqs: [
-        { q: 'What is SHEQX® used for?', a: 'SHEQX® manages the complete SHEQ lifecycle — hazard identification, incident capture, risk treatment, permits, inspections, audits and corrective actions — across every site and business unit on one platform.' },
+        { q: 'What is SHEQX® used for?', a: 'SHEQX® manages the complete SHEQ lifecycle, hazard identification, incident capture, risk treatment, permits, inspections, audits and corrective actions, across every site and business unit on one platform.' },
         { q: 'Which ISO standards does SHEQX® support?', a: 'SHEQX® is aligned to ISO 9001, ISO 14001 and ISO 45001, with modules for legal compliance, permit management and ISO-aligned audit management.' },
         { q: 'Can SHEQX® be used without MSX®?', a: 'Yes. SHEQX® is a standalone solution that runs on its own; MSX® is an optional integrated programme for organisations that want multiple management-system disciplines coordinated together.' },
         { q: 'Can SHEQX® connect to ERM and ENVIRX®?', a: 'Yes. SHEQX® shares the same XGRC® data foundation as ERM and ENVIRX®, so SHEQ risks, environmental data and enterprise risk stay linked rather than duplicated across systems.' },
@@ -116,15 +116,15 @@ export const solutionDetails = {
     name: 'MSX®',
     tag: 'Integrated Management System',
     headline: 'One management system. Multiple standards. Less duplicated effort.',
-    lede: 'MSX® merges your governance, risk, compliance, and operational systems into one common framework — eliminating conflicting responsibilities, removing duplicated effort, and giving leadership real-time visibility across all business activities.',
+    lede: 'MSX® merges your governance, risk, compliance, and operational systems into one common framework, eliminating conflicting responsibilities, removing duplicated effort, and giving leadership real-time visibility across all business activities.',
     metaDescription: 'MSX® merges governance, risk, compliance and operational systems into one common framework, removing conflicting responsibilities and duplicated compliance effort.',
     challenges: [
       { title: 'Multiple systems, multiple truths', body: 'ISO 9001, ISO 14001, and ISO 45001 managed in separate tools. The same data entered three times, never reconciled.' },
-      { title: 'Improvement programmes disconnected from risk', body: 'Continual improvement initiatives tracked in isolation — no link to the risks they are supposed to address.' },
+      { title: 'Improvement programmes disconnected from risk', body: 'Continual improvement initiatives tracked in isolation, no link to the risks they are supposed to address.' },
       { title: 'Board reporting takes weeks', body: 'Management performance data lives across departments, systems, and spreadsheets. Consolidation consumes more resource than the analysis.' },
       { title: 'Certification gaps only surface at audit time', body: 'Without continuous monitoring across all ISO requirements, gaps accumulate silently between certification cycles.' },
     ],
-    overview: 'MSX® is the integration layer that unifies multiple ISO management system disciplines into one coordinated programme — with consistent document control, governance workflows, audit management, and performance evaluation across the organisation.',
+    overview: 'MSX® is the integration layer that unifies multiple ISO management system disciplines into one coordinated programme, with consistent document control, governance workflows, audit management, and performance evaluation across the organisation.',
     stats: [
       { value: '25', label: 'Modules' },
       { value: 'Multi-ISO', label: 'In one system' },
@@ -141,13 +141,13 @@ export const solutionDetails = {
     related: ['sheqx', 'erm', 'integrated-assurance'],
     geo: {
       definition: 'MSX® is an integrated programme option within XGRC® Software. It packages selected governance, risk, compliance and management system capabilities into one coordinated programme for organisations that want multiple disciplines implemented together.',
-      usage: 'Organisations typically adopt MSX® once they are running two or more XGRC® solutions — such as SHEQX®, ERM or MSXCyber® — and want a single coordinated programme with shared document control, governance workflows and performance evaluation, instead of managing each discipline in isolation.',
+      usage: 'Organisations typically adopt MSX® once they are running two or more XGRC® solutions, such as SHEQX®, ERM or MSXCyber®, and want a single coordinated programme with shared document control, governance workflows and performance evaluation, instead of managing each discipline in isolation.',
       notThis: 'MSX® is not required to use XGRC® Software. Organisations can start with individual solutions such as SHEQX®, ERM, MSXCyber®, ENVIRX®, ESG or MAIA® and move to a broader integrated programme later.',
       faqs: [
         { q: 'Do I need MSX® to use other XGRC® solutions?', a: 'No. Every XGRC® solution runs independently. MSX® is an optional integration layer for organisations coordinating multiple disciplines together.' },
         { q: 'Which ISO standards does MSX® cover?', a: 'MSX® supports ISO 9001, ISO 14001, ISO 45001 and ISO 22000 within one coordinated management system.' },
         { q: 'What\'s the difference between MSX® and a single solution like SHEQX®?', a: 'SHEQX® manages one discipline (SHEQ) in full depth. MSX® coordinates governance, risk, compliance and operational disciplines together under one programme, sharing document control and reporting.' },
-        { q: 'Can we start with MSX® and add solutions later?', a: 'Yes. MSX® is designed for modular adoption — start with the disciplines you need now and expand without migrating data or rebuilding processes.' },
+        { q: 'Can we start with MSX® and add solutions later?', a: 'Yes. MSX® is designed for modular adoption: start with the disciplines you need now and expand without migrating data or rebuilding processes.' },
       ],
     },
   },
@@ -162,15 +162,15 @@ export const solutionDetails = {
     name: 'MSXCyber®',
     tag: 'Information Security Governance',
     headline: 'ISO 27001 compliance without the spreadsheet chaos.',
-    lede: 'MSXCyber® delivers a complete Information Security Management System aligned to ISO 27001:2022 — with governance, risk management, and audit-ready evidence built in from day one. Data breaches now carry material financial, regulatory and operational consequences — structured ISMS governance is no longer optional.',
+    lede: 'MSXCyber® delivers a complete Information Security Management System aligned to ISO 27001:2022, with governance, risk management, and audit-ready evidence built in from day one. Data breaches now carry material financial, regulatory and operational consequences. Structured ISMS governance is no longer optional.',
     metaDescription: 'MSXCyber® is a complete Information Security Management System aligned to ISO 27001:2022, with governance, risk management and audit-ready evidence built in.',
     challenges: [
       { title: 'ISO 27001 gaps only found at audit', body: 'Without continuous monitoring, control weaknesses accumulate quietly between certification reviews.' },
       { title: 'Asset inventories in spreadsheets', body: 'Assets undocumented, risks unassessed. One security incident reveals just how fragile the inventory actually is.' },
       { title: 'No structured incident response', body: 'When a breach occurs, the response is improvised. Regulatory disclosure obligations are missed. Costs escalate.' },
-      { title: 'GDPR and POPIA obligations untracked', body: 'Data protection compliance managed through email threads — no evidence trail, no audit readiness.' },
+      { title: 'GDPR and POPIA obligations untracked', body: 'Data protection compliance managed through email threads, no evidence trail, no audit readiness.' },
     ],
-    overview: 'MSXCyber® implements the full plan-do-check-act cycle for information security — from asset registration and risk assessment through control implementation, incident management, internal audit, and management review — on a single governed platform.',
+    overview: 'MSXCyber® implements the full plan-do-check-act cycle for information security, from asset registration and risk assessment through control implementation, incident management, internal audit, and management review, on a single governed platform.',
     stats: [
       { value: 'ISO 27001:2022', label: 'Aligned ISMS governance' },
       { value: '4', label: 'Standards supported' },
@@ -186,10 +186,10 @@ export const solutionDetails = {
     related: ['msx', 'erm', 'maia'],
     geo: {
       definition: 'ISMS software helps organisations manage information security governance, risk assessment, controls, incidents, internal audits and evidence required to support an ISO 27001-aligned Information Security Management System.',
-      usage: 'Organisations typically adopt MSXCyber® when ISO 27001 evidence, asset inventories and incident response plans are still managed through spreadsheets and email — and they need continuous, audit-ready ISMS governance rather than a scramble before each certification review.',
-      notThis: 'MSXCyber® supports information security governance and ISO 27001-aligned management processes. It does not replace technical security tools such as firewalls, endpoint protection, vulnerability scanners or SIEM platforms — for offensive security testing and vulnerability scanning, XGRC® partners with Hakware.',
+      usage: 'Organisations typically adopt MSXCyber® when ISO 27001 evidence, asset inventories and incident response plans are still managed through spreadsheets and email, and they need continuous, audit-ready ISMS governance rather than a scramble before each certification review.',
+      notThis: 'MSXCyber® supports information security governance and ISO 27001-aligned management processes. It does not replace technical security tools such as firewalls, endpoint protection, vulnerability scanners or SIEM platforms, for offensive security testing and vulnerability scanning, XGRC® partners with Hakware.',
       faqs: [
-        { q: 'Does MSXCyber® replace our firewall or antivirus software?', a: 'No. MSXCyber® governs your ISMS — risk, controls, incidents and audit evidence. It does not replace technical security tools; it governs the processes around them.' },
+        { q: 'Does MSXCyber® replace our firewall or antivirus software?', a: 'No. MSXCyber® governs your ISMS, risk, controls, incidents and audit evidence. It does not replace technical security tools; it governs the processes around them.' },
         { q: 'Is MSXCyber® aligned to ISO 27001:2022?', a: 'Yes. MSXCyber® implements the full plan-do-check-act cycle aligned to ISO 27001:2022, alongside GDPR, POPIA and NIS Directive requirements.' },
         { q: 'Can MSXCyber® help with GDPR and POPIA compliance?', a: 'Yes. MSXCyber® links data protection obligations, processing records and incident response to the same ISMS governance framework.' },
         { q: 'How does MSXCyber® relate to Hakware?', a: 'MSXCyber® governs your ISMS; Hakware is a partner solution that provides AI-powered penetration testing and vulnerability visibility. Findings from Hakware feed directly into MSXCyber® as governed risks and actions.' },
@@ -207,7 +207,7 @@ export const solutionDetails = {
     tag: 'Enterprise Risk Intelligence',
     metaTitle: 'Enterprise Risk Management Software | XGRC®',
     headline: 'Risk managed at enterprise scale, not spreadsheet scale.',
-    lede: 'A structured, auditable approach to enterprise, operational, and project risk — aligned to ISO 31000 and COSO ERM — with board-level dashboards, risk appetite monitoring, and corrective action tracking built in.',
+    lede: 'A structured, auditable approach to enterprise, operational, and project risk, aligned to ISO 31000 and COSO ERM, with board-level dashboards, risk appetite monitoring, and corrective action tracking built in.',
     metaDescription: 'Enterprise risk management aligned to ISO 31000 and COSO, with board dashboards, risk appetite monitoring and a full audit trail across enterprise and project risk.',
     challenges: [
       { title: 'Risk registers nobody maintains', body: 'Annual reviews produce impressive registers that are outdated before they are presented. Residual risk is never re-assessed.' },
@@ -215,7 +215,7 @@ export const solutionDetails = {
       { title: 'KRIs reported in isolation', body: 'Key risk indicators tracked separately from the risks they monitor. Early warning signals go unnoticed until they become incidents.' },
       { title: 'Risk and assurance disconnected', body: 'The audit plan bears no relationship to the risk register. High-risk areas go unaudited. Low-risk areas receive excess coverage.' },
     ],
-    overview: 'XGRC® ERM provides a complete enterprise risk management platform — from risk identification and appetite-setting through treatment planning, KRI monitoring, and board-level reporting — with every element linked to governance, controls, and assurance.',
+    overview: 'XGRC® ERM provides a complete enterprise risk management platform, from risk identification and appetite-setting through treatment planning, KRI monitoring, and board-level reporting, with every element linked to governance, controls, and assurance.',
     stats: [
       { value: 'ISO 31000', label: '& COSO ERM' },
       { value: 'Real-time', label: 'Board dashboards' },
@@ -232,12 +232,12 @@ export const solutionDetails = {
     geo: {
       definition: 'Enterprise risk management software helps organisations identify, assess, treat, monitor and report on risks across business units, projects, strategic objectives and operational environments.',
       usage: 'Organisations typically adopt XGRC® ERM when risk registers are maintained annually in spreadsheets, risk appetite thresholds are set but not enforced, and the board has no real-time view of residual risk. The XGRC® ERM solution connects enterprise risk to controls, assurance, compliance obligations, incidents and actions within the same secure data foundation used across XGRC® Software.',
-      notThis: 'ERM is not a static annual risk register exercise. It is a live risk management system with board dashboards, KRI monitoring and appetite-breach alerts — designed to stay current between review cycles, not just at them.',
+      notThis: 'ERM is not a static annual risk register exercise. It is a live risk management system with board dashboards, KRI monitoring and appetite-breach alerts, designed to stay current between review cycles, not just at them.',
       faqs: [
         { q: 'Is XGRC® ERM aligned to ISO 31000?', a: 'Yes. ERM is aligned to ISO 31000 and COSO ERM, with King V and IFRS-aligned reporting for South African organisations.' },
         { q: 'Can ERM link to our internal audit function?', a: 'Yes. ERM connects directly to Integrated Assurance, so the audit plan reflects the current risk landscape rather than last year\'s assumptions.' },
         { q: 'Does ERM support board-level reporting?', a: 'Yes. ERM includes real-time board dashboards, risk appetite monitoring and trend analysis built for board and audit committee reporting.' },
-        { q: 'How is ERM different from a risk spreadsheet?', a: 'ERM keeps risk data live and linked — appetite breaches, KRI thresholds and treatment plans are monitored continuously, with full audit trails, rather than reconciled manually once a year.' },
+        { q: 'How is ERM different from a risk spreadsheet?', a: 'ERM keeps risk data live and linked, appetite breaches, KRI thresholds and treatment plans are monitored continuously, with full audit trails, rather than reconciled manually once a year.' },
       ],
     },
   },
@@ -250,7 +250,7 @@ export const solutionDetails = {
     name: 'Integrated Assurance',
     tag: 'Internal Audit & Combined Assurance',
     headline: 'One audit plan. Four lines of defence. Zero gaps.',
-    lede: 'Coordinate internal audit and combined assurance across your organisation — linked directly to risks, controls, and corrective actions — so every line of defence operates from the same picture of what needs assurance.',
+    lede: 'Coordinate internal audit and combined assurance across your organisation, linked directly to risks, controls, and corrective actions, so every line of defence operates from the same picture of what needs assurance.',
     metaDescription: 'Coordinate internal audit and combined assurance, linked to risks, controls and actions, so every line of defence works from one shared view.',
     challenges: [
       { title: 'Audit findings that do not close risks', body: 'Internal audit operates independently from the risk register. Findings are raised, management responds, risks stay open.' },
@@ -258,7 +258,7 @@ export const solutionDetails = {
       { title: 'Coverage gaps and duplication', body: 'High-risk areas receive no audit attention. Low-risk areas audited three times by different lines. Nobody has a consolidated view.' },
       { title: 'Reactive audit planning', body: 'Annual plans built from intuition and last year\'s plan, not from the current risk landscape. Emerging risks go unaudited.' },
     ],
-    overview: 'XGRC® Integrated Assurance manages the complete internal audit lifecycle — from risk-based planning and fieldwork through findings management, corrective actions, and board reporting — with a combined assurance matrix that maps every assurance provider to the risks they cover.',
+    overview: 'XGRC® Integrated Assurance manages the complete internal audit lifecycle, from risk-based planning and fieldwork through findings management, corrective actions, and board reporting, with a combined assurance matrix that maps every assurance provider to the risks they cover.',
     stats: [
       { value: '4', label: 'Lines of defence' },
       { value: 'Risk-based', label: 'Audit planning' },
@@ -278,8 +278,8 @@ export const solutionDetails = {
       notThis: 'Integrated Assurance is not a standalone audit-management tool disconnected from risk. It maintains a live combined assurance matrix mapping every assurance provider to the risks they cover, so coverage gaps and duplication are visible, not discovered at the board meeting.',
       faqs: [
         { q: 'Which standards does Integrated Assurance align to?', a: 'Integrated Assurance is aligned to IIA Standards, ISO 19011, King V and the PFMA for public sector organisations.' },
-        { q: 'Does Integrated Assurance replace our internal audit team?', a: 'No. It gives your internal audit function risk-based planning, fieldwork and findings-tracking tools — the audit team still does the work, with better data and less manual reconciliation.' },
-        { q: 'What is a combined assurance matrix?', a: 'It\'s a live map of every assurance provider — internal audit, risk, compliance, external audit — against the risks they cover, so coverage gaps and duplication are visible in real time, not just at year-end.' },
+        { q: 'Does Integrated Assurance replace our internal audit team?', a: 'No. It gives your internal audit function risk-based planning, fieldwork and findings-tracking tools, the audit team still does the work, with better data and less manual reconciliation.' },
+        { q: 'What is a combined assurance matrix?', a: 'It\'s a live map of every assurance provider, internal audit, risk, compliance, external audit, against the risks they cover, so coverage gaps and duplication are visible in real time, not just at year-end.' },
         { q: 'Can Integrated Assurance connect to our risk register?', a: 'Yes. Findings, corrective actions and audit coverage all link directly to the same risk register used in XGRC® ERM.' },
       ],
     },
@@ -295,7 +295,7 @@ export const solutionDetails = {
     tag: 'Environmental Compliance & Monitoring',
     metaTitle: 'Environmental Compliance Software | ENVIRX® — XGRC®',
     headline: 'Environmental compliance you can demonstrate, not just claim.',
-    lede: 'ENVIRX® captures, tracks, and reports environmental performance data — from waste and water to air quality and energy consumption — in a single auditable system aligned to ISO 14001 and local environmental legislation.',
+    lede: 'ENVIRX® captures, tracks, and reports environmental performance data, from waste and water to air quality and energy consumption, in a single auditable system aligned to ISO 14001 and local environmental legislation.',
     metaDescription: 'ENVIRX® captures, tracks and reports environmental performance data, from waste and water to air and energy, in one auditable system aligned to ISO 14001.',
     challenges: [
       { title: 'Monitoring data scattered across sites', body: 'Each facility tracks environmental data differently. Consolidated reporting requires weeks of manual reconciliation.' },
@@ -303,7 +303,7 @@ export const solutionDetails = {
       { title: 'Targets set but not monitored', body: 'Reduction commitments made to stakeholders and regulators. Progress is invisible until the annual sustainability report.' },
       { title: 'Legal requirements change faster than compliance registers', body: 'Environmental legislation is updated continuously. Manual tracking cannot keep pace.' },
     ],
-    overview: 'ENVIRX® manages the complete environmental compliance and performance programme — from legal obligation tracking and environmental monitoring data capture through incident reporting, objectives management, and regulatory reporting — all linked to your ISO 14001 management system.',
+    overview: 'ENVIRX® manages the complete environmental compliance and performance programme, from legal obligation tracking and environmental monitoring data capture through incident reporting, objectives management, and regulatory reporting, all linked to your ISO 14001 management system.',
     stats: [
       { value: 'ISO 14001', label: 'Aligned' },
       { value: 'Multi-site', label: 'Monitoring' },
@@ -322,10 +322,10 @@ export const solutionDetails = {
     geo: {
       definition: 'Environmental compliance software helps organisations monitor environmental performance, manage obligations, record evidence and maintain auditable environmental data across sites, operations and regulatory requirements.',
       usage: 'Organisations typically adopt ENVIRX® when environmental monitoring data is tracked differently at every site, regulatory inspections reveal incidents that were never formally recorded, and sustainability targets are reported without evidence behind them. ENVIRX® connects environmental data to risk, compliance, ESG and assurance processes within XGRC® Software, allowing environmental performance to be governed as part of the broader GRC environment.',
-      notThis: 'ENVIRX® is not just an emissions spreadsheet replacement. It is a full environmental compliance and performance system — covering air, water, noise, biodiversity and energy monitoring alongside legal obligation tracking — aligned to ISO 14001 and local environmental legislation.',
+      notThis: 'ENVIRX® is not just an emissions spreadsheet replacement. It is a full environmental compliance and performance system, covering air, water, noise, biodiversity and energy monitoring alongside legal obligation tracking, aligned to ISO 14001 and local environmental legislation.',
       faqs: [
         { q: 'Which regulations does ENVIRX® help track?', a: 'ENVIRX® tracks environmental legal obligations aligned to ISO 14001, NEMA, King V and the GHG Protocol, with continuous updates as legislation changes.' },
-        { q: 'Can ENVIRX® monitor multiple sites?', a: 'Yes. ENVIRX® consolidates environmental monitoring data — air, water, noise, biodiversity, energy — across every site into one auditable system.' },
+        { q: 'Can ENVIRX® monitor multiple sites?', a: 'Yes. ENVIRX® consolidates environmental monitoring data, air, water, noise, biodiversity, energy, across every site into one auditable system.' },
         { q: 'Does ENVIRX® feed into our ESG reporting?', a: 'Yes. ENVIRX® shares the same data foundation as XGRC® ESG, so environmental monitoring data flows directly into sustainability disclosures without re-entry.' },
         { q: 'Is ENVIRX® aligned to ISO 14001?', a: 'Yes. ENVIRX® is built around ISO 14001 environmental management requirements, with legal compliance and audit management included.' },
       ],
@@ -341,7 +341,7 @@ export const solutionDetails = {
     name: 'ESG',
     tag: 'Environmental, Social & Governance Reporting',
     headline: 'ESG reporting that survives investor scrutiny.',
-    lede: 'Collect, manage, and report ESG data in a structured, auditable way — aligned to GRI, IFRS S1/S2, and CDP — so your sustainability disclosures are backed by evidence, not just intention.',
+    lede: 'Collect, manage, and report ESG data in a structured, auditable way, aligned to GRI, IFRS S1/S2, and CDP, so your sustainability disclosures are backed by evidence, not just intention.',
     metaDescription: 'Collect, manage and report ESG data in a structured, auditable way, aligned to GRI, IFRS S1/S2 and CDP, so sustainability disclosures are backed by evidence.',
     challenges: [
       { title: 'Disclosures built on unverifiable data', body: 'ESG reports assembled from manually collected spreadsheets. Investors and auditors increasingly ask for evidence. Evidence is not there.' },
@@ -349,7 +349,7 @@ export const solutionDetails = {
       { title: 'Targets without audit trails', body: 'Net-zero commitments and social targets made publicly. Progress tracked informally. Assurance providers have nothing to work with.' },
       { title: 'Regulatory disclosure obligations missed', body: 'IFRS S1 and S2 requirements are expanding. Organisations without structured ESG data collection cannot comply in time.' },
     ],
-    overview: 'XGRC® ESG provides a structured platform for collecting, managing, and reporting environmental, social, and governance data across the organisation — with multi-framework alignment, Scope 1/2/3 emissions tracking, and assurance-ready audit trails.',
+    overview: 'XGRC® ESG provides a structured platform for collecting, managing, and reporting environmental, social, and governance data across the organisation, with multi-framework alignment, Scope 1/2/3 emissions tracking, and assurance-ready audit trails.',
     stats: [
       { value: 'GRI', label: '& IFRS S1/S2' },
       { value: 'Scope 1·2·3', label: 'Emissions tracking' },
@@ -367,7 +367,7 @@ export const solutionDetails = {
     geo: {
       definition: 'ESG management software helps organisations collect, govern, evidence and report environmental, social and governance data through consistent workflows and auditable records.',
       usage: 'Organisations typically adopt XGRC® ESG when investor questionnaires take weeks to complete, sustainability disclosures are built on unverifiable spreadsheet data, and IFRS S1/S2 requirements are expanding faster than manual data collection can keep up. The XGRC® ESG solution connects ESG data to environmental monitoring, risk, compliance and assurance activities within the wider XGRC® Software platform.',
-      notThis: 'ESG is not a report-writing tool bolted on at year-end. It is a continuous data-collection and governance system — with Scope 1/2/3 emissions tracking, materiality assessment and assurance-ready audit trails — built to withstand investor and auditor scrutiny, not just produce a document.',
+      notThis: 'ESG is not a report-writing tool bolted on at year-end. It is a continuous data-collection and governance system, with Scope 1/2/3 emissions tracking, materiality assessment and assurance-ready audit trails, built to withstand investor and auditor scrutiny, not just produce a document.',
       faqs: [
         { q: 'Which ESG frameworks does XGRC® ESG support?', a: 'XGRC® ESG aligns to GRI Standards, IFRS S1 & S2, CDP, IIRC 6 Capitals, the UN SDGs and JSE Sustainability requirements.' },
         { q: 'Can XGRC® ESG track Scope 1, 2 and 3 emissions?', a: 'Yes. Emissions tracking across all three scopes is built into the platform, alongside energy, water and waste monitoring.' },
@@ -387,7 +387,7 @@ export const solutionDetails = {
     tag: 'Supplier & Third-Party Compliance',
     metaTitle: 'Compliance Hub | Supplier Compliance Workflows | XGRC®',
     headline: 'Your supply chain\'s compliance posture, visible in real time.',
-    lede: 'Structured onboarding, vetting, and ongoing compliance management for suppliers, contractors, and third parties — with automated document expiry tracking, risk scoring, and compliance dashboards that give you a live view of your entire supply chain.',
+    lede: 'Structured onboarding, vetting, and ongoing compliance management for suppliers, contractors, and third parties, with automated document expiry tracking, risk scoring, and compliance dashboards that give you a live view of your entire supply chain.',
     metaDescription: 'XGRC® Compliance Hub manages vetting and ongoing compliance for suppliers, contractors and third parties, with document expiry tracking and risk scoring.',
     challenges: [
       { title: 'Certificates expire without warning', body: 'Supplier documents managed through email. Nobody owns the expiry calendar. A non-compliant contractor arrives on site.' },
@@ -395,7 +395,7 @@ export const solutionDetails = {
       { title: 'No real-time supply chain view', body: 'You cannot answer the question "which of our active contractors are currently compliant?" without running a spreadsheet exercise.' },
       { title: 'Incidents reveal undiscovered gaps', body: 'A site incident exposes a contractor whose safety certification lapsed three months ago. Nobody noticed.' },
     ],
-    overview: 'XGRC® Compliance Hub provides a structured portal for supplier and contractor onboarding, document verification, and ongoing compliance monitoring — with automated expiry alerts, risk-based scoring, and real-time dashboards that replace email-based compliance management.',
+    overview: 'XGRC® Compliance Hub provides a structured portal for supplier and contractor onboarding, document verification, and ongoing compliance monitoring, with automated expiry alerts, risk-based scoring, and real-time dashboards that replace email-based compliance management.',
     stats: [
       { value: 'Automated', label: 'Expiry alerts' },
       { value: 'Risk-scored', label: 'Suppliers' },
@@ -412,9 +412,9 @@ export const solutionDetails = {
     geo: {
       definition: 'Compliance Hub is an available solution within XGRC® Software that supports supplier, contractor and third-party compliance workflows, including onboarding, vetting, document collection, evidence management and ongoing assurance.',
       usage: 'Organisations typically adopt Compliance Hub when supplier and contractor documents are managed through email with no owner for expiry dates, onboarding takes weeks of manual verification, and a site incident reveals a contractor\'s safety certification lapsed months earlier unnoticed.',
-      notThis: 'Compliance Hub is not a standalone procurement system or ERP replacement. It supports compliance workflows around supplier, contractor and third-party governance within XGRC® Software — working alongside your existing procurement processes, not replacing them.',
+      notThis: 'Compliance Hub is not a standalone procurement system or ERP replacement. It supports compliance workflows around supplier, contractor and third-party governance within XGRC® Software, working alongside your existing procurement processes, not replacing them.',
       faqs: [
-        { q: 'Does Compliance Hub replace our procurement system?', a: 'No. Compliance Hub manages compliance workflows — onboarding, vetting, document expiry, risk scoring — alongside your existing procurement system, not instead of it.' },
+        { q: 'Does Compliance Hub replace our procurement system?', a: 'No. Compliance Hub manages compliance workflows, onboarding, vetting, document expiry, risk scoring, alongside your existing procurement system, not instead of it.' },
         { q: 'Can Compliance Hub score supplier risk automatically?', a: 'Yes. Suppliers are risk-scored with monitoring frequency adjusted accordingly, so high-risk contractors get closer attention automatically.' },
         { q: 'What happens when a supplier document is about to expire?', a: 'Compliance Hub tracks document expiry automatically and triggers renewal alerts before certificates lapse, rather than discovering the gap after an incident.' },
         { q: 'Which standards does Compliance Hub align to?', a: 'Compliance Hub supports ISO 9001, ISO 45001, POPIA and B-BBEE compliance requirements for supplier and third-party management.' },
@@ -429,7 +429,7 @@ export const solutionDetails = {
     name: 'XLOGIC®',
     tag: 'Governance Execution',
     headline: 'Policies that work. Controls that are actually enforced.',
-    lede: 'XLOGIC® converts governance frameworks, policies, and controls into structured, enforceable workflows — so compliance is built into how work gets done, not bolted on afterwards through audits.',
+    lede: 'XLOGIC® converts governance frameworks, policies, and controls into structured, enforceable workflows, so compliance is built into how work gets done, not bolted on afterwards through audits.',
     metaDescription: 'XLOGIC® converts governance frameworks, policies and controls into structured, enforceable workflows, so compliance is built into how work gets done.',
     challenges: [
       { title: 'Policies approved and filed, never operationalised', body: 'Documents are published. Employees are notified. Controls are never implemented. The gap between policy and practice grows with every update.' },
@@ -437,7 +437,7 @@ export const solutionDetails = {
       { title: 'Evidence collected reactively', body: 'Compliance evidence gathered when an audit is announced, not continuously as work is performed. Evidence quality reflects urgency, not accuracy.' },
       { title: 'Controls that exist on paper only', body: 'Internal audit reveals controls that are documented but not operating effectively. Management responses are familiar words.' },
     ],
-    overview: 'XLOGIC® is the governance execution layer — it takes the policies, frameworks, and controls defined in XGRC® and converts them into structured workflows with accountability, evidence capture, and continuous compliance monitoring built in.',
+    overview: 'XLOGIC® is the governance execution layer. It takes the policies, frameworks, and controls defined in XGRC® and converts them into structured workflows with accountability, evidence capture, and continuous compliance monitoring built in.',
     stats: [
       { value: 'Policy-to', label: 'Workflow conversion' },
       { value: 'Continuous', label: 'Evidence capture' },
@@ -453,9 +453,9 @@ export const solutionDetails = {
     geo: {
       definition: 'XLOGIC® is a governance execution solution within XGRC® Software that converts policies, frameworks, controls and obligations into structured workflows with accountability, evidence capture and auditability.',
       usage: 'Organisations typically adopt XLOGIC® when policies are approved and filed but never operationalised, governance frameworks are documented at board level but disconnected from daily operations, and compliance evidence is gathered reactively only once an audit is announced.',
-      notThis: 'XLOGIC® is not a document repository. It helps organisations operationalise governance by linking policies, controls and obligations to real work, accountability and evidence — so compliance is built into how work gets done, not filed away after the fact.',
+      notThis: 'XLOGIC® is not a document repository. It helps organisations operationalise governance by linking policies, controls and obligations to real work, accountability and evidence, so compliance is built into how work gets done, not filed away after the fact.',
       faqs: [
-        { q: 'How is XLOGIC® different from a document management system?', a: 'A document system stores policies. XLOGIC® converts them into structured, assigned, trackable workflows with continuous evidence capture — the difference between filing a policy and operationalising it.' },
+        { q: 'How is XLOGIC® different from a document management system?', a: 'A document system stores policies. XLOGIC® converts them into structured, assigned, trackable workflows with continuous evidence capture, the difference between filing a policy and operationalising it.' },
         { q: 'Which frameworks does XLOGIC® support?', a: 'XLOGIC® supports King V, ISO 9001, ISO 27001 and COSO-aligned governance structures.' },
         { q: 'Can XLOGIC® show whether a control is actually working?', a: 'Yes. Control effectiveness tracking and continuous evidence collection show whether controls operate in practice, not just whether they\'re documented.' },
         { q: 'Do we need MSX® to use XLOGIC®?', a: 'No. XLOGIC® runs independently and connects to MSX®, ERM and Integrated Assurance where organisations use those solutions too.' },
@@ -471,8 +471,8 @@ export const solutionDetails = {
     youtubeId: 'inqCqT0uW2k',
     name: 'MAIA®',
     tag: 'Governed AI for GRC',
-    headline: 'The intelligence of governance — governed, audited, accountable.',
-    lede: 'MAIA® is governed AI for GRC, embedded within XGRC® to help decision-makers interact with governance records, risks, policies, and compliance data. Faster insight. Better decisions. Full auditability — through controlled, audited AI integrations with a complete interaction audit trail.',
+    headline: 'The intelligence of governance, governed, audited, accountable.',
+    lede: 'MAIA® is governed AI for GRC, embedded within XGRC® to help decision-makers interact with governance records, risks, policies, and compliance data. Faster insight. Better decisions. Full auditability, through controlled, audited AI integrations with a complete interaction audit trail.',
     metaDescription: 'MAIA® is governed AI for GRC, embedded in XGRC® so decision-makers can interrogate risks, policies and compliance data with a full audit trail.',
     challenges: [
       { title: 'Answers take days, not minutes', body: 'A board member asks about residual risk in a business unit. The risk manager spends two days compiling a response from multiple systems.' },
@@ -480,7 +480,7 @@ export const solutionDetails = {
       { title: 'AI tools that create new governance risk', body: 'Generic AI tools may operate outside the governance, permission and audit controls required for regulated GRC decisions. Using them for governance decisions creates risk instead of reducing it.' },
       { title: 'Strategic decisions disconnected from operational risk data', body: 'Leadership makes decisions without a live view of the risk and compliance posture. The data exists. Nobody can access it fast enough to matter.' },
     ],
-    overview: 'MAIA® is governed AI embedded within the XGRC® platform, using approved AI services through controlled, audited integrations — with permission alignment, data boundary controls, and full auditability of every AI interaction across risk, compliance, policy, and audit records.',
+    overview: 'MAIA® is governed AI embedded within the XGRC® platform, using approved AI services through controlled, audited integrations, with permission alignment, data boundary controls, and full auditability of every AI interaction across risk, compliance, policy, and audit records.',
     stats: [
       { value: 'Audited', label: 'AI integrations' },
       { value: 'Full', label: 'AI audit trail' },
@@ -488,21 +488,21 @@ export const solutionDetails = {
     ],
     moduleGroups: [
       { category: 'Governance Intelligence', modules: ['Natural Language Risk Queries', 'Policy & Procedure Q&A', 'Compliance Status Summaries', 'Regulatory Change Impact Analysis', 'ESG & SHERQ Insight Engine'] },
-      { category: 'DAVE — Data Integration', modules: ['API Data Connections', 'IoT Device Data', 'Microsoft Power BI', 'Microsoft Power Apps', 'Azure & PowerAutomate', 'XGRC Platform Data', 'Custom Data Requirements'] },
-      { category: 'LUCI — AI Interface', modules: ['DataViews & ML Dashboards', 'Predictive Maintenance AI', 'H&S Assistant Agent', 'Driver Fatigue Monitoring', 'Process Automation Bots', 'Voice Mode Interface'] },
+      { category: 'DAVE: Data Integration', modules: ['API Data Connections', 'IoT Device Data', 'Microsoft Power BI', 'Microsoft Power Apps', 'Azure & PowerAutomate', 'XGRC Platform Data', 'Custom Data Requirements'] },
+      { category: 'LUCI: AI Interface', modules: ['DataViews & ML Dashboards', 'Predictive Maintenance AI', 'H&S Assistant Agent', 'Driver Fatigue Monitoring', 'Process Automation Bots', 'Voice Mode Interface'] },
       { category: 'Governed AI Architecture', modules: ['Data Boundary Enforcement', 'AI Interaction Audit Trail', 'User Permission Alignment', 'Explainable AI Outputs', 'ChatGPT & Azure Integration'] },
     ],
     standards: ['ISO 42001 (targeted 2026)', 'ISO 27001', 'ISO 31000', 'ISO 45001', 'GDPR', 'POPIA'],
     related: ['erm', 'integrated-assurance', 'msxcyber'],
     geo: {
       definition: 'Governed AI for GRC is the controlled use of artificial intelligence to interrogate governance, risk, compliance, audit and policy data within defined permissions, security controls and audit trails.',
-      usage: 'Organisations typically adopt MAIA® when a board question about residual risk takes two days to answer because the risk manager has to compile data manually across systems — and generic AI tools may operate outside the governance, permission and audit controls required for regulated GRC decisions.',
-      notThis: 'MAIA® is not a generic AI chatbot. It is governed AI designed for GRC contexts, operating within XGRC® Software permissions, records and auditability requirements — every interaction is logged, permissioned and auditable.',
+      usage: 'Organisations typically adopt MAIA® when a board question about residual risk takes two days to answer because the risk manager has to compile data manually across systems, and generic AI tools may operate outside the governance, permission and audit controls required for regulated GRC decisions.',
+      notThis: 'MAIA® is not a generic AI chatbot. It is governed AI designed for GRC contexts, operating within XGRC® Software permissions, records and auditability requirements, every interaction is logged, permissioned and auditable.',
       faqs: [
-        { q: 'Does MAIA® send our data to ChatGPT or other AI providers?', a: 'MAIA® uses approved AI services through controlled, audited integrations, with permission alignment and data boundary controls — every AI interaction is logged in a complete audit trail.' },
+        { q: 'Does MAIA® send our data to ChatGPT or other AI providers?', a: 'MAIA® uses approved AI services through controlled, audited integrations, with permission alignment and data boundary controls, every AI interaction is logged in a complete audit trail.' },
         { q: 'Can MAIA® answer questions across all our XGRC® data?', a: 'Yes. MAIA® can query risk registers, policies, audit findings and compliance records across every XGRC® solution your organisation uses.' },
-        { q: 'Is MAIA® certified to ISO/IEC 42001?', a: 'XGRC® is targeting ISO/IEC 42001 certification for September 2026. MAIA® is already built around governed AI principles — permission alignment, audit trails and explainable outputs — ahead of that certification.' },
-        { q: 'Who can access MAIA®\'s answers?', a: 'MAIA® respects existing XGRC® user permissions — it only surfaces data a user is already authorised to see.' },
+        { q: 'Is MAIA® certified to ISO/IEC 42001?', a: 'XGRC® is targeting ISO/IEC 42001 certification for September 2026. MAIA® is already built around governed AI principles, permission alignment, audit trails and explainable outputs, ahead of that certification.' },
+        { q: 'Who can access MAIA®\'s answers?', a: 'MAIA® respects existing XGRC® user permissions. It only surfaces data a user is already authorised to see.' },
       ],
     },
   },
@@ -511,7 +511,7 @@ export const solutionDetails = {
     infographic: '/assets/infographics/libryo-infographic-v3.pdf',
     name: 'Libryo',
     tag: 'Regulatory Intelligence Partner',
-    headline: 'Legal obligations, translated into action — for every site, every jurisdiction.',
+    headline: 'Legal obligations, translated into action, for every site, every jurisdiction.',
     lede: 'Libryo turns dense, constantly-changing EHS legislation into clear, site-specific compliance obligations. XGRC® partners with Libryo to embed jurisdiction-specific regulatory intelligence directly into your legal register, so obligations, tasks, and evidence live on the same platform as the rest of your governance and risk data.',
     metaDescription: 'Libryo turns dense, changing EHS legislation into clear, site-specific compliance obligations, embedded in XGRC® for jurisdiction-specific regulatory tracking.',
     challenges: [
@@ -520,7 +520,7 @@ export const solutionDetails = {
       { title: 'Regulatory changes discovered too late', body: 'A law changes; the business finds out at the next audit, or after an inspector does. There is no early-warning mechanism.' },
       { title: 'Obligations identified, but not actioned', body: 'Legal registers list what must be done. They rarely track who owns it, whether it was done, or what evidence proves it.' },
     ],
-    overview: 'Libryo maintains a continuously-updated database spanning 1,000+ jurisdictions, converting legislation into plain-language obligations mapped to each of your sites. Through the XGRC® partnership, those obligations, regulatory change alerts, and supporting evidence flow directly into your existing legal compliance, task, and audit workflows — no separate system to reconcile.',
+    overview: 'Libryo maintains a continuously-updated database spanning 1,000+ jurisdictions, converting legislation into plain-language obligations mapped to each of your sites. Through the XGRC® partnership, those obligations, regulatory change alerts, and supporting evidence flow directly into your existing legal compliance, task, and audit workflows, no separate system to reconcile.',
     stats: [
       { value: '1,000+', label: 'Jurisdictions tracked' },
       { value: 'Since 2016', label: 'EHS regulatory intelligence' },
@@ -536,7 +536,7 @@ export const solutionDetails = {
     geo: {
       definition: 'Libryo is a partner software solution that provides regulatory intelligence and legal register content to help organisations understand applicable legal obligations across jurisdictions.',
       usage: 'Organisations typically use Libryo, via the XGRC® partnership, when they operate across multiple sites or jurisdictions and legal registers are maintained by hand, regulatory changes are discovered only at audit time, or nobody tracks whether identified legal obligations are actually actioned.',
-      notThis: 'Libryo is a partner software solution, not a native XGRC® Software product. It can extend XGRC® Software deployments where specialist regulatory intelligence is required — obligations, alerts and evidence flow into your existing XGRC® workflows rather than a separate system.',
+      notThis: 'Libryo is a partner software solution, not a native XGRC® Software product. It can extend XGRC® Software deployments where specialist regulatory intelligence is required, obligations, alerts and evidence flow into your existing XGRC® workflows rather than a separate system.',
       faqs: [
         { q: 'Is Libryo a native XGRC® product?', a: 'No. Libryo is a partner software solution. XGRC® partners with Libryo to embed their regulatory intelligence directly into your legal register.' },
         { q: 'How many jurisdictions does Libryo cover?', a: 'Libryo maintains a continuously-updated database spanning 1,000+ jurisdictions, with daily legislative updates.' },
@@ -551,7 +551,7 @@ export const solutionDetails = {
     name: 'Hakware',
     tag: 'AI-Powered Security Testing Partner',
     headline: 'Continuous, AI-driven penetration testing that keeps you one step ahead.',
-    lede: 'Hakware is an AI-powered security management platform that tests your environment the way an attacker would — continuously, not once a year. XGRC® partners with Hakware to bring offensive security testing, unified vulnerability visibility, and dark web monitoring into the same governed environment as your ISMS.',
+    lede: 'Hakware is an AI-powered security management platform that tests your environment the way an attacker would, continuously, not once a year. XGRC® partners with Hakware to bring offensive security testing, unified vulnerability visibility, and dark web monitoring into the same governed environment as your ISMS.',
     metaDescription: 'Hakware is an AI-powered security platform that tests your environment the way an attacker would, continuously rather than once a year, integrated with XGRC®.',
     challenges: [
       { title: 'Penetration tests happen once a year', body: 'Annual pentests produce a point-in-time report. New vulnerabilities in the eleven months between tests go undetected.' },
@@ -559,14 +559,14 @@ export const solutionDetails = {
       { title: 'Manual triage misses what matters', body: 'Security teams are buried in alerts. Human error and alert fatigue mean genuine vulnerabilities slip through.' },
       { title: 'Breaches discovered from the outside', body: 'Leaked credentials and exposed data surface on the dark web long before anyone internally notices the exposure.' },
     ],
-    overview: 'Hakware\'s AI engine (Archangel) runs offensive testing against your external environment the way a real attacker would, while OneView consolidates findings across firewalls, endpoints, cloud, and Microsoft 365 into one picture. Through the XGRC® partnership, findings feed directly into MSXCyber® — turning test results into governed risks, actions, and audit-ready evidence within your ISMS.',
+    overview: 'Hakware\'s AI engine (Archangel) runs offensive testing against your external environment the way a real attacker would, while OneView consolidates findings across firewalls, endpoints, cloud, and Microsoft 365 into one picture. Through the XGRC® partnership, findings feed directly into MSXCyber®, turning test results into governed risks, actions, and audit-ready evidence within your ISMS.',
     stats: [
       { value: 'Continuous', label: 'AI-driven penetration testing' },
       { value: 'Unified', label: 'Vulnerability visibility' },
       { value: 'Governed', label: 'Findings feed into MSXCyber®' },
     ],
     moduleGroups: [
-      { category: 'AI Red Teaming', modules: ['Archangel AI Penetration Testing', 'Hakware Scout — Network Discovery', 'HakObserver — VM-Level Data Collection'] },
+      { category: 'AI Red Teaming', modules: ['Archangel AI Penetration Testing', 'Hakware Scout, Network Discovery', 'HakObserver, VM-Level Data Collection'] },
       { category: 'Unified Visibility', modules: ['OneView Security Dashboard', 'Cloud Manager', 'Endpoint Manager', 'Firewall Manager'] },
       { category: 'Governance & Threat Intel', modules: ['Microsoft 365 Auditor', 'Zero-Day Manager', 'Code Manager', 'Dark Web & Leaked Credential Monitoring'] },
     ],
@@ -575,12 +575,12 @@ export const solutionDetails = {
     geo: {
       definition: 'Hakware is a partner software solution that provides cyber security testing, vulnerability visibility and dark web exposure insight to support broader cyber governance.',
       usage: 'Organisations typically use Hakware, via the XGRC® partnership, when annual penetration tests leave eleven months of blind spots, security data is scattered across firewalls, endpoints, cloud and Microsoft 365 with no single view, and leaked credentials surface on the dark web before anyone internally notices.',
-      notThis: 'Hakware is a partner software solution, not a replacement for MSXCyber® or technical security controls. It supports cyber testing and exposure insight as part of a broader cyber governance approach — findings feed directly into MSXCyber® as governed risks and actions.',
+      notThis: 'Hakware is a partner software solution, not a replacement for MSXCyber® or technical security controls. It supports cyber testing and exposure insight as part of a broader cyber governance approach, findings feed directly into MSXCyber® as governed risks and actions.',
       faqs: [
         { q: 'Is Hakware a native XGRC® product?', a: 'No. Hakware is a partner software solution. XGRC® partners with Hakware to bring their AI-powered testing findings into your governed ISMS via MSXCyber®.' },
         { q: 'How often does Hakware test our environment?', a: 'Continuously, not annually. Hakware\'s AI engine (Archangel) runs offensive testing against your external environment on an ongoing basis, rather than a single point-in-time report.' },
         { q: 'Does Hakware monitor the dark web for our data?', a: 'Yes. Hakware monitors for leaked credentials and exposed data on the dark web, surfacing exposure before it becomes a breach.' },
-        { q: 'How do Hakware\'s findings reach our governance records?', a: 'Through the XGRC® partnership, Hakware\'s findings feed directly into MSXCyber® as governed risks, actions and audit-ready evidence — not a separate, disconnected report.' },
+        { q: 'How do Hakware\'s findings reach our governance records?', a: 'Through the XGRC® partnership, Hakware\'s findings feed directly into MSXCyber® as governed risks, actions and audit-ready evidence, not a separate, disconnected report.' },
       ],
     },
   },
@@ -624,7 +624,7 @@ export const solutionDetails = {
       { category: 'Administration', modules: ['User & Role Management', 'Pipeline & Stage Setup', 'Company Profile'] },
     ],
     standards: ['ISO 27001:2022', 'Multi-tenant SaaS', 'Configurable approvals', 'Full audit trail'],
-    related: [], // no confirmed live data integration with other XGRC solutions yet — leave empty until one exists
+    related: [], // no confirmed live data integration with other XGRC solutions yet, leave empty until one exists
     geo: {
       definition: 'XRM is a customer relationship management (CRM) platform for managing leads, opportunities, accounts, contacts and quotes through a structured, auditable sales process, with configurable approval workflows and governance controls built in from day one.',
       usage: 'Sales teams typically adopt XRM when leads and live opportunities are tracked in the same overcrowded spreadsheet, deal approvals happen informally over email, and management has no real-time view of pipeline health, forecast accuracy or at-risk deals. XRM keeps the entire sales lifecycle, from first contact to closed deal, on one governed platform with a complete audit trail, running on the same ISO/IEC 27001:2022-certified XGRC® infrastructure as the rest of the platform.',
@@ -795,7 +795,7 @@ export const caseStudies = [
     company: 'Sandton Plant Hire',
     sector: 'Plant hire & mining',
     solution: 'SHEQX®',
-    summary: 'Replaced disconnected spreadsheets with SHEQX® — delivering faster SHEQ response times, accurate reporting, and the ability to scale operations without increasing risk exposure.',
+    summary: 'Replaced disconnected spreadsheets with SHEQX®, delivering faster SHEQ response times, accurate reporting, and the ability to scale operations without increasing risk exposure.',
     pdf: true,
   },
   {
@@ -811,7 +811,7 @@ export const caseStudies = [
     company: 'Interwaste',
     sector: 'Waste management',
     solution: 'SHEQX®',
-    summary: 'Unified SHEQ processes across multiple regions — significantly reducing reporting effort, accelerating safety action closure, and increasing near-miss reporting volumes.',
+    summary: 'Unified SHEQ processes across multiple regions, significantly reducing reporting effort, accelerating safety action closure, and increasing near-miss reporting volumes.',
     pdf: true,
   },
   {
@@ -902,7 +902,7 @@ export const articles = [
   {
     slug: 'what-is-grc-software',
     title: 'What Is GRC Software? A Practical Definition',
-    excerpt: 'GRC software brings governance, risk management and compliance onto one connected platform — so risks, controls, obligations and evidence are managed together instead of in disconnected spreadsheets and point tools.',
+    excerpt: 'GRC software brings governance, risk management and compliance onto one connected platform, so risks, controls, obligations and evidence are managed together instead of in disconnected spreadsheets and point tools.',
     category: 'GRC',
     date: '2026-07-22',
     image: 'grc-vs-risk-management-software-why-the-difference-matters.jpg',
@@ -911,7 +911,7 @@ export const articles = [
   {
     slug: 'five-risk-management-process-steps',
     title: 'The Five Risk Management Process Steps',
-    excerpt: 'A structured, repeatable risk management cycle — identify, assess, evaluate treatment, implement and monitor — aligned to ISO 31000, and how to run it on one platform instead of scattered spreadsheets.',
+    excerpt: 'A structured, repeatable risk management cycle, identify, assess, evaluate treatment, implement and monitor, aligned to ISO 31000, and how to run it on one platform instead of scattered spreadsheets.',
     category: 'Risk Management',
     date: '2026-07-22',
     image: 'iso-31000-vs-coso-key-erm-framework-differences.jpg',
@@ -920,7 +920,7 @@ export const articles = [
   {
     slug: 'what-is-governed-ai-for-grc',
     title: 'What Is Governed AI for GRC?',
-    excerpt: 'Generic AI tools create as much governance risk as they solve. Governed AI for GRC is a different category — built for permissions, audit trails, and accountability from the ground up.',
+    excerpt: 'Generic AI tools create as much governance risk as they solve. Governed AI for GRC is a different category, built for permissions, audit trails, and accountability from the ground up.',
     category: 'AI & Governance',
     date: '2026-07-05',
     image: 'what-is-governed-ai-for-grc-v2.jpg',
@@ -956,7 +956,7 @@ export const articles = [
   {
     slug: 'integrated-assurance-vs-internal-audit-software',
     title: 'Integrated Assurance vs Internal Audit Software: Beyond the Audit Plan',
-    excerpt: 'Internal audit software manages the audit function. Integrated assurance connects every line of defence to the same risk picture — closing the gaps between them.',
+    excerpt: 'Internal audit software manages the audit function. Integrated assurance connects every line of defence to the same risk picture, closing the gaps between them.',
     category: 'GRC',
     date: '2026-06-18',
     image: 'integrated-assurance-vs-internal-audit-software-v2.jpg',
@@ -965,13 +965,13 @@ export const articles = [
   {
     slug: 'why-ai-governance-is-becoming-a-competitive-advantage',
     title: 'Why AI Governance Is Becoming a Competitive Advantage',
-    excerpt: 'Organisations that implement effective AI governance are not simply reducing risk — they are creating a stronger foundation for sustainable, responsible growth.',
+    excerpt: 'Organisations that implement effective AI governance are not simply reducing risk; they are creating a stronger foundation for sustainable, responsible growth.',
     category: 'AI & Governance',
     date: '2026-06-15',
   },
   {
     slug: 'esg-reporting-is-no-longer-optional-its-strategic',
-    title: 'ESG Reporting Is No Longer Optional — It\'s Strategic',
+    title: 'ESG Reporting Is No Longer Optional: It\'s Strategic',
     excerpt: 'Investors, regulators, and customers now expect transparent, data-driven ESG accountability. Companies that wait risk reputational harm, regulatory fines, and competitive disadvantage.',
     category: 'ESG',
     date: '2026-06-01',
@@ -993,7 +993,7 @@ export const articles = [
   {
     slug: 'mandatory-esg-reporting-in-southern-africa-how-companies-can-stay-ahead',
     title: 'Mandatory ESG Reporting in Southern Africa: How Companies Can Stay Ahead',
-    excerpt: 'Regulatory ESG disclosure requirements are tightening across Southern Africa. Organisations that wait for final mandates before acting will find themselves behind — and the gap is closing fast.',
+    excerpt: 'Regulatory ESG disclosure requirements are tightening across Southern Africa. Organisations that wait for final mandates before acting will find themselves behind, and the gap is closing fast.',
     category: 'ESG',
     date: '2026-04-20',
   },
@@ -1007,14 +1007,14 @@ export const articles = [
   {
     slug: 'the-hidden-cost-of-cyber-incidents-for-ceos',
     title: 'The Hidden Cost of Cyber Incidents for CEOs',
-    excerpt: 'The direct cost of a cyber incident is visible. The indirect costs — regulatory penalties, customer loss, operational downtime, and reputational damage — are what make the real bill.',
+    excerpt: 'The direct cost of a cyber incident is visible. The indirect costs, regulatory penalties, customer loss, operational downtime, and reputational damage, are what make the real bill.',
     category: 'Cyber',
     date: '2026-03-20',
   },
   {
     slug: 'how-xgrc-grc-solutions-support-mining-indaba-2026-objectives',
     title: 'How XGRC® GRC Solutions Support Mining Indaba 2026 Objectives',
-    excerpt: 'Mining Indaba 2026 makes it clear: governance, sustainability, and risk management are no longer peripheral to mining success — they are central to it.',
+    excerpt: 'Mining Indaba 2026 makes it clear: governance, sustainability, and risk management are no longer peripheral to mining success; they are central to it.',
     category: 'Mining',
     date: '2026-03-05',
   },
@@ -1028,14 +1028,14 @@ export const articles = [
   {
     slug: 'cultivating-a-risk-aware-culture-tackling-the-people-risk-in-enterprise-risk-management',
     title: 'Cultivating a Risk-Aware Culture: Tackling the People Risk in ERM',
-    excerpt: 'Risk frameworks, registers, and tools are essential — but they do not manage risk on their own. People do. Building a risk-aware organisation starts with culture, not software.',
+    excerpt: 'Risk frameworks, registers, and tools are essential, but they do not manage risk on their own. People do. Building a risk-aware organisation starts with culture, not software.',
     category: 'Risk',
     date: '2026-02-03',
   },
   {
     slug: 'building-a-cyber-aware-culture-addressing-the-human-element-of-cyber-risk',
     title: 'Building a Cyber-Aware Culture: Addressing the Human Element of Cyber Risk',
-    excerpt: 'Technical controls can only do so much. The human element remains the most significant variable in cyber risk — and it requires a culture of awareness, not just policy.',
+    excerpt: 'Technical controls can only do so much. The human element remains the most significant variable in cyber risk, and it requires a culture of awareness, not just policy.',
     category: 'Cyber',
     date: '2026-01-20',
   },
@@ -1070,7 +1070,7 @@ export const articles = [
   {
     slug: 'streamlining-iso-27001-compliance-digitally',
     title: 'Streamlining ISO 27001 Compliance Digitally',
-    excerpt: 'ISO 27001 compliance is achievable without the administrative chaos — if the right governance infrastructure is in place from the outset.',
+    excerpt: 'ISO 27001 compliance is achievable without the administrative chaos, if the right governance infrastructure is in place from the outset.',
     category: 'Cyber',
     date: '2025-11-03',
   },
@@ -1098,7 +1098,7 @@ export const articles = [
   {
     slug: 'iso-31000-vs-coso-key-erm-framework-differences',
     title: 'ISO 31000 vs COSO: Key ERM Framework Differences',
-    excerpt: 'ISO 31000 and COSO ERM are both widely adopted risk frameworks — but they are designed with different emphases. Understanding the distinction helps organisations choose the right foundation.',
+    excerpt: 'ISO 31000 and COSO ERM are both widely adopted risk frameworks, but they are designed with different emphases. Understanding the distinction helps organisations choose the right foundation.',
     category: 'ERM',
     date: '2025-09-08',
     relatedSolutions: ['erm', 'msx'],
@@ -1122,7 +1122,7 @@ export const articles = [
   {
     slug: 'grc-vs-risk-management-software-why-the-difference-matters',
     title: 'GRC vs Risk Management Software: Why the Difference Matters',
-    excerpt: 'GRC platforms and risk management software are often conflated. The difference matters — because choosing the wrong category of solution creates the very gaps it was supposed to close.',
+    excerpt: 'GRC platforms and risk management software are often conflated. The difference matters, because choosing the wrong category of solution creates the very gaps it was supposed to close.',
     category: 'GRC',
     date: '2025-07-28',
     relatedSolutions: ['msx', 'erm', 'msxcyber'],
@@ -1130,7 +1130,7 @@ export const articles = [
   {
     slug: 'the-cost-of-fragmented-compliance-why-visibility-matters-more-than-ever',
     title: 'The Cost of Fragmented Compliance: Why Visibility Matters More Than Ever',
-    excerpt: 'When compliance activities are scattered across disconnected systems, visibility disappears — and what leadership cannot see, they cannot govern.',
+    excerpt: 'When compliance activities are scattered across disconnected systems, visibility disappears, and what leadership cannot see, they cannot govern.',
     category: 'GRC',
     date: '2025-07-14',
   },
@@ -1183,61 +1183,61 @@ export const articleFaqs = {
     { q: 'Which XGRC® solution provides SHEQ management?', a: 'SHEQX® is the Safety, Health, Environment and Quality solution within XGRC® Software. It manages the full SHEQ lifecycle across every site and connects to the same secure data foundation used across risk, compliance and assurance.' },
   ],
   'what-is-grc-software': [
-    { q: 'What is GRC software used for?', a: 'GRC software is used to manage governance, risk and compliance on one platform — maintaining policies, risk registers, controls, regulatory obligations, audits and evidence together so they stay linked rather than scattered across spreadsheets and separate tools.' },
-    { q: 'What is the difference between GRC software and risk management software?', a: 'Risk management software focuses on one discipline — identifying, assessing and treating risk. GRC software is broader: it covers governance and compliance as well, and connects risks to the controls, obligations, audits and actions across all three, on a shared data foundation.' },
+    { q: 'What is GRC software used for?', a: 'GRC software is used to manage governance, risk and compliance on one platform, maintaining policies, risk registers, controls, regulatory obligations, audits and evidence together so they stay linked rather than scattered across spreadsheets and separate tools.' },
+    { q: 'What is the difference between GRC software and risk management software?', a: 'Risk management software focuses on one discipline, identifying, assessing and treating risk. GRC software is broader: it covers governance and compliance as well, and connects risks to the controls, obligations, audits and actions across all three, on a shared data foundation.' },
     { q: 'Do we need GRC software if we already use spreadsheets?', a: 'Spreadsheets work until obligations span multiple regulations, audit evidence is assembled from scattered sources, or leadership needs one defensible view of risk and compliance. At that point a spreadsheet stops being a reliable system of record and becomes a source of risk itself.' },
-    { q: 'Does XGRC® provide GRC software?', a: 'Yes. XGRC® Software is a GRC platform whose specialist solutions — enterprise risk management, integrated assurance, SHEQX®, MSXCyber® and others — run on one secure, auditable data foundation so information stays connected across disciplines.' },
+    { q: 'Does XGRC® provide GRC software?', a: 'Yes. XGRC® Software is a GRC platform whose specialist solutions, enterprise risk management, integrated assurance, SHEQX®, MSXCyber® and others, run on one secure, auditable data foundation so information stays connected across disciplines.' },
   ],
   'five-risk-management-process-steps': [
     { q: 'What are the five steps of the risk management process?', a: 'Identify the risks; assess and measure them by likelihood and impact; evaluate treatment options; implement the chosen treatment; and monitor and review the results. ISO 31000 treats these as a continuous cycle rather than a one-off exercise.' },
-    { q: 'What are the four risk treatment options?', a: 'Accept the risk, avoid it by stopping the activity, control (mitigate) it by reducing its likelihood or impact, or transfer it to another party — for example through insurance.' },
+    { q: 'What are the four risk treatment options?', a: 'Accept the risk, avoid it by stopping the activity, control (mitigate) it by reducing its likelihood or impact, or transfer it to another party, for example through insurance.' },
     { q: 'How does ISO 31000 relate to the risk management process?', a: 'ISO 31000 is the international standard for risk management. It frames the process as a continuous cycle and places ongoing monitoring and review at its centre, rather than treating risk assessment as a document filed once a year.' },
     { q: 'How does XGRC® support the risk management process?', a: 'XGRC® Enterprise Risk Management supports the full cycle on one platform, aligned to ISO 31000 and COSO, connecting each risk to the controls that treat it, the actions raised against it, and the assurance activities that test it.' },
   ],
   'what-is-governed-ai-for-grc': [
-    { q: 'Does governed AI mean we can\'t use tools like ChatGPT at all?', a: 'No — it means AI access to governance data happens through controlled, audited integrations rather than unrestricted general-purpose use, so data boundaries and audit trails are maintained.' },
+    { q: 'Does governed AI mean we can\'t use tools like ChatGPT at all?', a: 'No, it means AI access to governance data happens through controlled, audited integrations rather than unrestricted general-purpose use, so data boundaries and audit trails are maintained.' },
     { q: 'How is governed AI different from just restricting who can use AI?', a: 'Access restriction alone doesn\'t create an audit trail or explainable outputs. Governed AI combines permission alignment with logging and explainability, purpose-built for governance contexts.' },
-    { q: 'Is MAIA® available as a standalone product?', a: 'MAIA® is embedded within XGRC® Software and works across whichever XGRC® solutions your organisation already uses — it is not a separate, standalone AI product.' },
+    { q: 'Is MAIA® available as a standalone product?', a: 'MAIA® is embedded within XGRC® Software and works across whichever XGRC® solutions your organisation already uses, it is not a separate, standalone AI product.' },
   ],
   'what-is-iso-42001': [
     { q: 'Is ISO/IEC 42001 mandatory?', a: 'No, it\'s a voluntary international standard, though it is likely to become a procurement expectation for AI-enabled software in the same way ISO 27001 has for information security.' },
-    { q: 'Is XGRC® certified to ISO/IEC 42001 yet?', a: 'Not yet — certification is targeted for September 2026. MAIA® is already built around the standard\'s core principles ahead of that milestone.' },
-    { q: 'How does ISO/IEC 42001 relate to ISO 27001?', a: 'They\'re complementary — ISO 27001 covers information security management broadly, while ISO/IEC 42001 addresses AI-specific governance, risk and oversight requirements.' },
+    { q: 'Is XGRC® certified to ISO/IEC 42001 yet?', a: 'Not yet, certification is targeted for September 2026. MAIA® is already built around the standard\'s core principles ahead of that milestone.' },
+    { q: 'How does ISO/IEC 42001 relate to ISO 27001?', a: 'They\'re complementary, ISO 27001 covers information security management broadly, while ISO/IEC 42001 addresses AI-specific governance, risk and oversight requirements.' },
   ],
   'supplier-compliance-software-vs-procurement-systems': [
     { q: 'Can Compliance Hub integrate with our existing procurement system?', a: 'Compliance Hub is designed to run alongside your procurement system, managing the compliance and risk data procurement systems aren\'t built to track.' },
-    { q: 'Do we need supplier compliance software if we already vet suppliers manually?', a: 'Manual vetting works until volume or site risk grows — the usual trigger is a missed expiry or an incident revealing a gap that manual tracking didn\'t catch in time.' },
-    { q: 'Which industries need this most?', a: 'Any organisation using contractors or suppliers on safety-critical sites — mining, construction, manufacturing and facilities management see this gap most often.' },
+    { q: 'Do we need supplier compliance software if we already vet suppliers manually?', a: 'Manual vetting works until volume or site risk grows, the usual trigger is a missed expiry or an incident revealing a gap that manual tracking didn\'t catch in time.' },
+    { q: 'Which industries need this most?', a: 'Any organisation using contractors or suppliers on safety-critical sites, mining, construction, manufacturing and facilities management see this gap most often.' },
   ],
   'policy-management-vs-governance-execution': [
     { q: 'Do we need to replace our policy management system to use XLOGIC®?', a: 'No. XLOGIC® works alongside existing policy and document management tools, focusing on operationalising the obligations those policies contain.' },
     { q: 'How does XLOGIC® prove a control is actually working?', a: 'Through continuous evidence collection and control effectiveness tracking, rather than relying on a one-time acknowledgement or an annual audit sample.' },
-    { q: 'Is this only relevant for large, complex organisations?', a: 'No — any organisation that has had an audit finding saying a documented control "was not operating effectively" has experienced this exact gap.' },
+    { q: 'Is this only relevant for large, complex organisations?', a: 'No, any organisation that has had an audit finding saying a documented control "was not operating effectively" has experienced this exact gap.' },
   ],
   'integrated-assurance-vs-internal-audit-software': [
-    { q: 'Does Integrated Assurance replace our internal audit software?', a: 'No — it manages the full internal audit lifecycle plus a combined assurance matrix connecting audit, risk, and compliance data, so it extends rather than replaces the audit function.' },
-    { q: 'What is a "line of defence" in this context?', a: 'The four lines of defence model — operational management, risk/compliance functions, internal audit, and external assurance — each providing a layer of oversight over organisational risk.' },
-    { q: 'Can Integrated Assurance work without XGRC® ERM?', a: 'It can, but the combined assurance matrix is strongest when connected to a live risk register — pairing it with XGRC® ERM gives audit planning a current risk picture rather than a static one.' },
+    { q: 'Does Integrated Assurance replace our internal audit software?', a: 'No, it manages the full internal audit lifecycle plus a combined assurance matrix connecting audit, risk, and compliance data, so it extends rather than replaces the audit function.' },
+    { q: 'What is a "line of defence" in this context?', a: 'The four lines of defence model, operational management, risk/compliance functions, internal audit, and external assurance, each providing a layer of oversight over organisational risk.' },
+    { q: 'Can Integrated Assurance work without XGRC® ERM?', a: 'It can, but the combined assurance matrix is strongest when connected to a live risk register, pairing it with XGRC® ERM gives audit planning a current risk picture rather than a static one.' },
   ],
   'iso-31000-vs-coso-key-erm-framework-differences': [
-    { q: 'Do we have to choose between ISO 31000 and COSO ERM?', a: 'No. Most organisations draw on both — ISO 31000\'s flexible risk process alongside COSO\'s governance and internal control structure. XGRC® ERM supports alignment to both frameworks on the same data foundation.' },
+    { q: 'Do we have to choose between ISO 31000 and COSO ERM?', a: 'No. Most organisations draw on both, ISO 31000\'s flexible risk process alongside COSO\'s governance and internal control structure. XGRC® ERM supports alignment to both frameworks on the same data foundation.' },
     { q: 'Which framework is required for JSE-listed or public sector organisations?', a: 'Neither framework is legally mandated, but COSO ERM is commonly expected where strong governance and board oversight are scrutinised, while ISO 31000 is widely referenced as international best practice.' },
     { q: 'Can XGRC® ERM support a framework we haven\'t adopted yet?', a: 'Yes. XGRC® ERM is built around risk identification, assessment, treatment and monitoring workflows that map to both ISO 31000 and COSO, so adopting or switching frameworks doesn\'t require rebuilding your risk register.' },
   ],
   'what-is-sheq-software-complete-guide': [
     { q: 'Is SHEQ software only for large, multi-site organisations?', a: 'No. Single-site organisations benefit too, particularly once ISO certification, audit demands, or incident volumes make spreadsheet-based tracking unreliable. Multi-site operations simply feel the pain sooner.' },
     { q: 'What\'s the difference between SHEQ software and an EHS tool?', a: 'Many EHS tools focus narrowly on environmental, health and safety tracking. SHEQ software additionally covers quality management and connects all four disciplines to a single governance and audit trail.' },
-    { q: 'Does SHEQX® cover all four SHEQ disciplines?', a: 'Yes. SHEQX® manages safety, health, environmental and quality processes — incidents, audits, permits, inspections and corrective actions — within one auditable platform.' },
+    { q: 'Does SHEQX® cover all four SHEQ disciplines?', a: 'Yes. SHEQX® manages safety, health, environmental and quality processes, incidents, audits, permits, inspections and corrective actions, within one auditable platform.' },
   ],
   'erm-software-vs-traditional-risk-tools': [
     { q: 'Can we migrate an existing spreadsheet risk register into ERM software?', a: 'Yes. Existing risks, ratings and treatment plans can be imported into XGRC® ERM as a starting point, then maintained live with audit trails going forward.' },
-    { q: 'Is ERM software only necessary once we\'re a large organisation?', a: 'The trigger is usually complexity, not size — multi-site operations, growing audit demands, or board-level reporting needs typically arrive before headcount does.' },
-    { q: 'Does moving off spreadsheets mean losing flexibility?', a: 'No. XGRC® ERM keeps risk categorisation, scoring and reporting configurable — you gain audit trails and real-time visibility without losing the flexibility spreadsheets offered.' },
+    { q: 'Is ERM software only necessary once we\'re a large organisation?', a: 'The trigger is usually complexity, not size, multi-site operations, growing audit demands, or board-level reporting needs typically arrive before headcount does.' },
+    { q: 'Does moving off spreadsheets mean losing flexibility?', a: 'No. XGRC® ERM keeps risk categorisation, scoring and reporting configurable, you gain audit trails and real-time visibility without losing the flexibility spreadsheets offered.' },
   ],
   'grc-vs-risk-management-software-why-the-difference-matters': [
-    { q: 'Can we start with risk management software and move to GRC later?', a: 'Yes. XGRC® is designed for modular adoption — start with ERM alone, then add governance and compliance-focused solutions like MSXCyber® or Compliance Hub without migrating data.' },
-    { q: 'Is a GRC platform overkill for a single-discipline need?', a: 'Not with XGRC® — each solution (ERM, SHEQX®, MSXCyber®) runs independently. You only get the "platform" benefit — shared data, no duplication — once you adopt more than one.' },
-    { q: 'What\'s the clearest sign we\'ve outgrown standalone risk software?', a: 'When risk, compliance and governance data live in different systems and nobody can produce one consistent, auditable view for the board — that\'s the point a connected GRC platform starts to matter.' },
+    { q: 'Can we start with risk management software and move to GRC later?', a: 'Yes. XGRC® is designed for modular adoption: start with ERM alone, then add governance and compliance-focused solutions like MSXCyber® or Compliance Hub without migrating data.' },
+    { q: 'Is a GRC platform overkill for a single-discipline need?', a: 'Not with XGRC®, each solution (ERM, SHEQX®, MSXCyber®) runs independently. You only get the "platform" benefit, shared data, no duplication, once you adopt more than one.' },
+    { q: 'What\'s the clearest sign we\'ve outgrown standalone risk software?', a: 'When risk, compliance and governance data live in different systems and nobody can produce one consistent, auditable view for the board, that\'s the point a connected GRC platform starts to matter.' },
   ],
 };
 
@@ -1259,42 +1259,42 @@ export const videos = [
   {
     youtubeId: 'inqCqT0uW2k',
     title: 'AI Is Not the Risk. Poor AI Governance Is.',
-    description: 'Why the danger in AI adoption is not the technology itself, but deploying it without permissions, audit trails, or accountability — the governed AI case for MAIA®.',
+    description: 'Why the danger in AI adoption is not the technology itself, but deploying it without permissions, audit trails, or accountability, the governed AI case for MAIA®.',
     category: 'Platform Overview',
     date: '2026-07',
   },
   {
     youtubeId: '5hZX0WIebCo',
     title: "Cyber Risk Doesn't Stay in IT. It's a Business Risk.",
-    description: 'Why cyber risk belongs on the enterprise risk register, not just the IT ticket queue — and how MSXCyber® connects ISO 27001 controls, incidents and evidence in one auditable system.',
+    description: 'Why cyber risk belongs on the enterprise risk register, not just the IT ticket queue, and how MSXCyber® connects ISO 27001 controls, incidents and evidence in one auditable system.',
     category: 'MSXCyber®',
     date: '2026-07',
   },
   {
     youtubeId: 'itta_NfEvOU',
     title: "Compliance Isn't the Problem. Fragmented Systems Are.",
-    description: 'How disconnected spreadsheets and siloed tools — not the compliance requirements themselves — are what actually slow organisations down, and how Compliance Hub brings supplier and third-party compliance onto one platform.',
+    description: 'How disconnected spreadsheets and siloed tools, not the compliance requirements themselves, are what actually slow organisations down, and how Compliance Hub brings supplier and third-party compliance onto one platform.',
     category: 'Compliance Hub',
     date: '2026-07',
   },
   {
     youtubeId: '2GeDzakhgjw',
     title: 'ESG Without Governance Is Just Reporting.',
-    description: 'Why ESG data without governance behind it is just a spreadsheet exercise — and what it takes to turn sustainability disclosures into auditable, defensible evidence.',
+    description: 'Why ESG data without governance behind it is just a spreadsheet exercise, and what it takes to turn sustainability disclosures into auditable, defensible evidence.',
     category: 'ESG',
     date: '2026-07',
   },
   {
     youtubeId: '2qmLbCaUNtw',
     title: 'AI is not the risk. Lack of governance is.',
-    description: 'Our perspective on why AI adoption is not the threat — and why the absence of governance frameworks is the real exposure organisations face right now.',
+    description: 'Our perspective on why AI adoption is not the threat, and why the absence of governance frameworks is the real exposure organisations face right now.',
     category: 'Platform Overview',
     date: '2026-05',
   },
   {
     youtubeId: 'IxTJu0rcqn8',
     title: 'Overcome Fragmented Oversight with a Unified GRC Foundation',
-    description: 'Why disconnected risk, compliance, ESG and cyber data leaves leadership without the clarity to act — and how XGRC® provides one secure, auditable data foundation across every discipline.',
+    description: 'Why disconnected risk, compliance, ESG and cyber data leaves leadership without the clarity to act, and how XGRC® provides one secure, auditable data foundation across every discipline.',
     category: 'Platform Overview',
     date: '2026-03',
   },

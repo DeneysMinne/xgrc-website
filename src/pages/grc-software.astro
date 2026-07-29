@@ -47,15 +47,15 @@ const localFrameworks  = ['POPIA', 'PAIA', 'King V'];
 
 
 const whyPoints = [
-  { stat: '800+',         label: 'Companies',      body: 'Organisations across Africa, Europe, Australia and the Americas trust XGRC® to drive compliance at enterprise scale — a global platform, wherever they operate.' },
+  { stat: '800+',        label: 'Companies',     body: 'Organisations across Africa, Europe, Australia and the Americas trust XGRC® to drive compliance at enterprise scale, a global platform, wherever they operate.' },
   { stat: 'ISO 27001',    label: ':2022 Certified', body: 'The XGRC® platform is certified to the latest international standard for information security management.' },
-  { stat: '1',            label: 'Platform',        body: 'One auditable data layer across governance, risk, compliance, ESG, and data protection — no double-entry, no tool sprawl.' },
-  { stat: 'SA + UK',      label: 'Regulations',     body: 'Purpose-built for South African and UK regulatory environments — POPIA, PAIA, King V, and GDPR, in a single platform.' },
+  { stat: '1',           label: 'Platform',       body: 'One auditable data layer across governance, risk, compliance, ESG, and data protection, no double-entry, no tool sprawl.' },
+  { stat: 'SA + UK',     label: 'Regulations',    body: 'Purpose-built for South African and UK regulatory environments, POPIA, PAIA, King V, and GDPR, in a single platform.' },
 ];
 
 const faqs = [
   { q: 'What is GRC software?', a: 'GRC software brings governance, risk management and compliance activities onto one platform, so policies, risks, controls, audits and obligations are tracked in one auditable place instead of spreadsheets and email. XGRC® adds ESG and data protection (GDPR/POPIA) on the same foundation.' },
-  { q: 'How is XGRC® different from point solutions?', a: 'Most organisations run separate tools for risk, audit, ESG and compliance, each with its own data model. XGRC® connects them on one data layer, so a risk links to its controls, its audit findings, and its remediation actions automatically — no duplicate entry, no reconciliation between systems.' },
+  { q: 'How is XGRC® different from point solutions?', a: 'Most organisations run separate tools for risk, audit, ESG and compliance, each with its own data model. XGRC® connects them on one data layer, so a risk links to its controls, its audit findings, and its remediation actions automatically, no duplicate entry, no reconciliation between systems.' },
   { q: 'Does XGRC® support POPIA and GDPR?', a: 'Yes. XGRC® is purpose-built for South African and UK/EU regulatory environments, with dedicated workflows for POPIA, PAIA, King V and GDPR data protection obligations, including data subject access requests and privacy impact assessments.' },
   { q: 'How long does implementation take?', a: 'Implementation scope depends on how many disciplines (risk, audit, ESG, compliance, safety) and business units you bring onto the platform at once. Most customers start with one discipline live within weeks, then expand module by module rather than a single big-bang rollout.' },
   { q: 'Is XGRC® secure and independently certified?', a: 'Yes. The XGRC® platform is certified to ISO/IEC 27001:2022 for information security management, and customer data is hosted in Azure West Europe (Netherlands).' },
@@ -106,7 +106,7 @@ const schema = JSON.stringify({
       </nav>
       <span class="eyebrow"><span class="dot"></span>GRC Platform</span>
       <h1>Governance, Risk &amp; Compliance.<br>Unified.</h1>
-      <p class="lede">XGRC® is an enterprise GRC platform that brings governance, risk, compliance, ESG and data protection into one auditable system — eliminating silos and giving your organisation a single version of the truth.</p>
+      <p class="lede">XGRC® is an enterprise GRC platform that brings governance, risk, compliance, ESG and data protection into one auditable system, eliminating silos and giving your organisation a single version of the truth.</p>
       <div class="hero-actions">
         <a href="/demo" class="btn btn-primary">Book a Demo</a>
         <a href="/solutions" class="btn btn-ghost">Explore solutions &rarr;</a>
@@ -120,7 +120,7 @@ const schema = JSON.stringify({
       <div class="section-head">
         <span class="eyebrow"><span class="dot"></span>The platform</span>
         <h2>One platform. One source of truth.</h2>
-        <p class="lede">Most organisations run governance, risk, compliance, and ESG in isolation — separate tools, disconnected data, duplicate effort. XGRC® consolidates every discipline into one foundation, so decisions are based on the same data, controls link to the right risks, and your compliance status is always current.</p>
+        <p class="lede">Most organisations run governance, risk, compliance, and ESG in isolation: separate tools, disconnected data, duplicate effort. XGRC® consolidates every discipline into one foundation, so decisions are based on the same data, controls link to the right risks, and your compliance status is always current.</p>
       </div>
       <SsotConvergence />
     </div>
@@ -152,7 +152,7 @@ const schema = JSON.stringify({
       <div class="section-head">
         <span class="eyebrow"><span class="dot"></span>The platform in action</span>
         <h2>Real dashboards. Real decisions.</h2>
-        <p class="lede">Every discipline has a dedicated intelligence layer — executive dashboards built for decision-makers, not data analysts.</p>
+        <p class="lede">Every discipline has a dedicated intelligence layer, executive dashboards built for decision-makers, not data analysts.</p>
       </div>
       <div class="dash-tabs" id="dashTabs">
         <button class="dash-tab is-active" data-img="/assets/screenshots/erm-dashboard.webp" data-label="Enterprise Risk Overview">Enterprise Risk</button>
@@ -180,7 +180,7 @@ const schema = JSON.stringify({
       <div class="section-head">
         <span class="eyebrow"><span class="dot"></span>Standards & regulations</span>
         <h2>Built for global standards and local law.</h2>
-        <p class="lede">XGRC® supports the frameworks your organisation must comply with — from international ISO standards to South African legislation.</p>
+        <p class="lede">XGRC® supports the frameworks your organisation must comply with, from international ISO standards to South African legislation.</p>
       </div>
       <div class="fw-split">
         <div class="fw-panel">
@@ -208,7 +208,7 @@ const schema = JSON.stringify({
         <h2>Outcomes, not just software.</h2>
         <p class="lede">How organisations across manufacturing, mining, logistics, and facilities management use XGRC® in practice.</p>
       </div>
-      <div class="grid cols-3">
+      <div class="cs-grid">
         {caseStudies.map((c) => (
           <div class="card cs-card">
             <div class="cs-meta">
@@ -388,6 +388,10 @@ const schema = JSON.stringify({
   }
 
   /* ── Case studies ────────────────────────────────────── */
+  .cs-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+  .cs-grid .cs-card { flex: 1 1 300px; max-width: calc(33.333% - 11px); }
+  @media (max-width: 900px) { .cs-grid .cs-card { max-width: calc(50% - 8px); } }
+  @media (max-width: 620px) { .cs-grid .cs-card { max-width: 100%; } }
   .cs-card { display: flex; flex-direction: column; }
   .cs-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
   .cs-solution { font-family: var(--font-mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.06em; }
