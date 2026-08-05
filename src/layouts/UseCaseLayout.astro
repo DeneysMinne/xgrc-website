@@ -216,6 +216,9 @@ const schema = {
           <span class="eyebrow"><span class="dot"></span>Related</span>
           <h2>Explore the connected platform.</h2>
         </div>
+        {solution?.regionalLink && (
+          <p class="lede"><a href={solution.regionalLink.href} class="link-arrow">{solution.regionalLink.label} &rarr;</a></p>
+        )}
         <div class="grid cols-3">
           {solution && (
             <a class="card uc-card" href={`/${relatedSolution}/`}>
