@@ -8,7 +8,7 @@ Required env vars (add to /etc/xgrc/forms.env):
   MS_CLIENT_ID      c0d0bbf1-...
   MS_CLIENT_SECRET  <secret>
   MS_SENDER         info@xgrcsoftware.com
-  FORM_TO           deneysm@strategix.co.za
+  FORM_TO           comma-separated list, e.g. deneysm@strategix.co.za,revalisham@strategix.co.za
 
 Optional (server-side GA4 lead tracking via Measurement Protocol):
   GA4_MEASUREMENT_ID  G-XXXXXXXXXX
@@ -71,8 +71,9 @@ def _graph_token() -> str:
 
 
 def _send_email(data: dict) -> None:
-    sender = os.environ.get("MS_SENDER", "info@xgrcsoftware.com")
-    to     = os.environ.get("FORM_TO", "deneysm@strategix.co.za")
+    sender  = os.environ.get("MS_SENDER", "info@xgrcsoftware.com")
+    to_raw  = os.environ.get("FORM_TO", "deneysm@strategix.co.za")
+    to_list = [addr.strip() for addr in to_raw.split(",") if addr.strip()]
 
     if not os.environ.get("MS_TENANT_ID"):
         log.warning("Graph API not configured — submission saved to log only.")
@@ -124,7 +125,7 @@ def _send_email(data: dict) -> None:
         "message": {
             "subject": f"{subject_prefix}: {name} — {company}",
             "body": {"contentType": "HTML", "content": body_html},
-            "toRecipients": [{"emailAddress": {"address": to}}],
+            "toRecipients": [{"emailAddress": {"address": addr}} for addr in to_list],
             "replyTo":      [{"emailAddress": {"address": email}}],
             "from":         {"emailAddress": {"address": sender, "name": "XGRC Website"}},
         },
@@ -137,7 +138,7 @@ def _send_email(data: dict) -> None:
         timeout=15,
     )
     resp.raise_for_status()
-    log.info("Email sent via Graph API to %s for %s", to, email)
+    log.info("Email sent via Graph API to %s for %s", ", ".join(to_list), email)
 
 
 def _send_ga4_event(data: dict) -> None:
