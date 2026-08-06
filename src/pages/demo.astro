@@ -371,6 +371,7 @@ const FORM_ENDPOINT = "/api/demo";
       if (res.ok) {
         form.hidden = true;
         success.hidden = false;
+        window.gtag?.('event', 'conversion', { send_to: 'AW-744549022/kcZiCJvVi90cEJ7Vg-MC' });
       } else {
         throw new Error('non-2xx');
       }

@@ -73,10 +73,12 @@ const orgSchema = JSON.stringify({
     <meta name="twitter:image" content={ogImageURL} />
     <script type="application/ld+json" set:html={orgSchema} />
 
-    <!-- Google Analytics (GA4) — only fires on the real production domain, so
-         staging traffic and local testing never pollute production data. -->
+    <!-- Google Analytics (GA4) + Google Ads conversion tracking — only fires on the
+         real production domain, so staging traffic and local testing never pollute
+         production data or ad conversion counts. -->
     <script>
       const GA_MEASUREMENT_ID = 'G-XKBDKND5LZ';
+      const ADS_CONVERSION_ID = 'AW-744549022';
       const PRODUCTION_HOSTNAMES = ['xgrcsoftware.com', 'www.xgrcsoftware.com'];
       if (PRODUCTION_HOSTNAMES.includes(window.location.hostname)) {
         const tag = document.createElement('script');
@@ -89,6 +91,7 @@ const orgSchema = JSON.stringify({
         window.gtag = gtag;
         gtag('js', new Date());
         gtag('config', GA_MEASUREMENT_ID);
+        gtag('config', ADS_CONVERSION_ID);
       }
     </script>
   </head>
