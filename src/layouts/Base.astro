@@ -89,6 +89,15 @@ const orgSchema = JSON.stringify({
         window.dataLayer = window.dataLayer || [];
         function gtag(...args) { window.dataLayer.push(args); }
         window.gtag = gtag;
+        // No cookie-consent banner on this site yet, so grant default consent
+        // explicitly — otherwise gtag.js silently withholds every hit pending
+        // a consent signal that never arrives, and nothing ever reaches GA4/Ads.
+        gtag('consent', 'default', {
+          ad_storage: 'granted',
+          analytics_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+        });
         gtag('js', new Date());
         gtag('config', GA_MEASUREMENT_ID);
         gtag('config', ADS_CONVERSION_ID);
