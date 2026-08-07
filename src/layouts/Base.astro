@@ -75,17 +75,21 @@ const orgSchema = JSON.stringify({
 
     <!-- Google Analytics (GA4) + Google Ads conversion tracking — only fires on the
          real production domain, so staging traffic and local testing never pollute
-         production data or ad conversion counts. -->
+         production data or ad conversion counts.
+
+         GA4 ID was replaced 2026-08-07: the original (G-XKBDKND5LZ) turned out to be
+         one of two destinations silently fanned out from a shared "Google tag"
+         (GT-NF7MFM6V) that never finished initializing for EITHER destination —
+         confirmed via a clean headless-browser test with zero cookies/extensions.
+         G-VLKD6CDZND is a fresh, standalone property not linked into that shared tag.
+         Also loading GA4 and Ads as two INDEPENDENT Google tags (separate script tags,
+         separate config calls) rather than one riding on the other's loader, so a
+         problem with one destination's container can't stall the other. -->
     <script>
-      const GA_MEASUREMENT_ID = 'G-XKBDKND5LZ';
+      const GA_MEASUREMENT_ID = 'G-VLKD6CDZND';
       const ADS_CONVERSION_ID = 'AW-744549022';
       const PRODUCTION_HOSTNAMES = ['xgrcsoftware.com', 'www.xgrcsoftware.com'];
       if (PRODUCTION_HOSTNAMES.includes(window.location.hostname)) {
-        const tag = document.createElement('script');
-        tag.async = true;
-        tag.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-        document.head.appendChild(tag);
-
         window.dataLayer = window.dataLayer || [];
         function gtag(...args) { window.dataLayer.push(args); }
         window.gtag = gtag;
@@ -99,8 +103,14 @@ const orgSchema = JSON.stringify({
           ad_personalization: 'granted',
         });
         gtag('js', new Date());
-        gtag('config', GA_MEASUREMENT_ID);
-        gtag('config', ADS_CONVERSION_ID);
+
+        for (const id of [GA_MEASUREMENT_ID, ADS_CONVERSION_ID]) {
+          const tag = document.createElement('script');
+          tag.async = true;
+          tag.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+          document.head.appendChild(tag);
+          gtag('config', id);
+        }
       }
     </script>
   </head>
