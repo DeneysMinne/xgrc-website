@@ -1141,6 +1141,15 @@ export const articles = [
     category: 'ESG',
     date: '2025-06-30',
   },
+  {
+    slug: 'why-compliance-visibility-improves-executive-decision-making',
+    title: 'Why Compliance Visibility Improves Executive Decision-Making',
+    excerpt: 'Why compliance visibility is becoming essential for executive decision-making, and how connected governance improves accountability and reduces risk.',
+    category: 'GRC',
+    date: '2026-08-13',
+    image: 'why-compliance-visibility-improves-executive-decision-making.jpg',
+    relatedSolutions: ['compliance-hub', 'erm'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1238,6 +1247,11 @@ export const articleFaqs = {
     { q: 'Can we start with risk management software and move to GRC later?', a: 'Yes. XGRC® is designed for modular adoption: start with ERM alone, then add governance and compliance-focused solutions like MSXCyber® or Compliance Hub without migrating data.' },
     { q: 'Is a GRC platform overkill for a single-discipline need?', a: 'Not with XGRC®, each solution (ERM, SHEQX®, MSXCyber®) runs independently. You only get the "platform" benefit, shared data, no duplication, once you adopt more than one.' },
     { q: 'What\'s the clearest sign we\'ve outgrown standalone risk software?', a: 'When risk, compliance and governance data live in different systems and nobody can produce one consistent, auditable view for the board, that\'s the point a connected GRC platform starts to matter.' },
+  ],
+  'why-compliance-visibility-improves-executive-decision-making': [
+    { q: 'What is compliance visibility?', a: 'Compliance visibility is an organisation\'s ability to monitor, understand, and report on compliance activities, obligations, risks, controls, and performance across the enterprise through a connected governance framework, rather than through separate departmental reports.' },
+    { q: 'Why is compliance visibility important for executives?', a: 'Compliance visibility enables executives to make informed decisions by providing accurate, enterprise-wide insight into regulatory obligations, governance performance, compliance risks, and organisational accountability, instead of isolated reports compiled department by department.' },
+    { q: 'How can organisations improve compliance visibility?', a: 'Organisations can improve compliance visibility by centralising governance information on one platform, integrating compliance with risk management, automating reporting, and giving leadership a live view of obligations, controls, and corrective actions rather than a periodic spreadsheet exercise.' },
   ],
 };
 
