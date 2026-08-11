@@ -1161,6 +1161,15 @@ export const articles = [
     image: 'why-compliance-is-becoming-a-competitive-advantage.jpg',
     relatedSolutions: ['compliance-hub', 'erm'],
   },
+  {
+    slug: 'how-proactive-compliance-reduces-business-risk',
+    title: 'How Proactive Compliance Reduces Business Risk',
+    excerpt: 'How proactive compliance helps organisations spot risks earlier, strengthen governance, and reduce the cost of regulatory and operational failures.',
+    category: 'Risk',
+    date: '2026-08-21',
+    image: 'how-proactive-compliance-reduces-business-risk.jpg',
+    relatedSolutions: ['erm', 'compliance-hub'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1268,6 +1277,11 @@ export const articleFaqs = {
     { q: 'What does compliance as a competitive advantage mean?', a: 'Compliance becomes a competitive advantage when organisations use governance, accountability, and regulatory oversight to strengthen trust, improve decision-making, reduce risk, and support business growth, rather than treating compliance solely as a cost of meeting legal requirements.' },
     { q: 'Why is compliance becoming more strategic?', a: 'Increasing regulatory complexity, digital transformation, and higher stakeholder expectations mean compliance now influences organisational resilience, governance, reputation, and business performance, not just regulatory standing.' },
     { q: 'How can organisations gain a competitive advantage through compliance?', a: 'Organisations can strengthen compliance by improving visibility, integrating compliance with governance and risk management, centralising compliance information, and adopting a connected governance platform instead of disconnected point tools.' },
+  ],
+  'how-proactive-compliance-reduces-business-risk': [
+    { q: 'What is proactive compliance?', a: 'Proactive compliance is the continuous monitoring and management of regulatory obligations, risks, controls, and governance activities to identify potential issues before they become compliance failures or business disruptions, rather than responding only after an audit or incident.' },
+    { q: 'Why is proactive compliance important?', a: 'Proactive compliance helps organisations reduce business risk by identifying issues earlier, improving governance, strengthening operational resilience, and reducing the cost of remediation compared with a reactive, audit-triggered approach.' },
+    { q: 'How can organisations implement proactive compliance?', a: 'Organisations can strengthen proactive compliance by centralising compliance information, continuously monitoring obligations and controls, improving governance visibility, and integrating compliance with broader risk management on one platform rather than periodic spreadsheet reviews.' },
   ],
 };
 
