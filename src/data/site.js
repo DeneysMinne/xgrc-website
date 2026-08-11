@@ -1170,6 +1170,15 @@ export const articles = [
     image: 'how-proactive-compliance-reduces-business-risk.jpg',
     relatedSolutions: ['erm', 'compliance-hub'],
   },
+  {
+    slug: 'building-a-compliance-culture',
+    title: 'Building a Compliance Culture: Why Policy Alone Isn\'t Enough',
+    excerpt: 'A strong compliance culture is not built by policies alone. What actually makes employees understand, trust, and apply governance expectations.',
+    category: 'GRC',
+    date: '2026-08-24',
+    image: 'building-a-compliance-culture.jpg',
+    relatedSolutions: ['xlogic', 'msx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1282,6 +1291,11 @@ export const articleFaqs = {
     { q: 'What is proactive compliance?', a: 'Proactive compliance is the continuous monitoring and management of regulatory obligations, risks, controls, and governance activities to identify potential issues before they become compliance failures or business disruptions, rather than responding only after an audit or incident.' },
     { q: 'Why is proactive compliance important?', a: 'Proactive compliance helps organisations reduce business risk by identifying issues earlier, improving governance, strengthening operational resilience, and reducing the cost of remediation compared with a reactive, audit-triggered approach.' },
     { q: 'How can organisations implement proactive compliance?', a: 'Organisations can strengthen proactive compliance by centralising compliance information, continuously monitoring obligations and controls, improving governance visibility, and integrating compliance with broader risk management on one platform rather than periodic spreadsheet reviews.' },
+  ],
+  'building-a-compliance-culture': [
+    { q: 'What is a compliance culture?', a: 'A compliance culture exists when employees understand what is expected of them, know where to find current governance information, and take responsibility for applying policies in their everyday work, rather than compliance being something only a dedicated team manages.' },
+    { q: 'Why is policy management not enough on its own to build a compliance culture?', a: 'Publishing a policy does not make employees aware of it, tell them what changed, or hold anyone accountable for applying it. Without ownership, accessibility, and consistent communication, policies remain documents rather than practised behaviour.' },
+    { q: 'How does XLOGIC® support compliance culture?', a: 'XLOGIC® converts policies, frameworks, controls, and obligations into structured workflows with clear ownership, evidence capture, and auditability, so governance expectations translate into tracked, accountable action rather than a document filed and forgotten.' },
   ],
 };
 
