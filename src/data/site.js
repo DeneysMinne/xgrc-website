@@ -1152,6 +1152,15 @@ export const articles = [
     image: 'why-compliance-visibility-improves-executive-decision-making.jpg',
     relatedSolutions: ['compliance-hub', 'erm'],
   },
+  {
+    slug: 'why-compliance-is-becoming-a-competitive-advantage',
+    title: 'Why Compliance Is Becoming a Competitive Advantage',
+    excerpt: 'Compliance is evolving beyond regulatory obligations into a competitive advantage that builds trust, improves decisions, and drives performance.',
+    category: 'GRC',
+    date: '2026-08-18',
+    image: 'why-compliance-is-becoming-a-competitive-advantage.jpg',
+    relatedSolutions: ['compliance-hub', 'erm'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1254,6 +1263,11 @@ export const articleFaqs = {
     { q: 'What is compliance visibility?', a: 'Compliance visibility is an organisation\'s ability to monitor, understand, and report on compliance activities, obligations, risks, controls, and performance across the enterprise through a connected governance framework, rather than through separate departmental reports.' },
     { q: 'Why is compliance visibility important for executives?', a: 'Compliance visibility enables executives to make informed decisions by providing accurate, enterprise-wide insight into regulatory obligations, governance performance, compliance risks, and organisational accountability, instead of isolated reports compiled department by department.' },
     { q: 'How can organisations improve compliance visibility?', a: 'Organisations can improve compliance visibility by centralising governance information on one platform, integrating compliance with risk management, automating reporting, and giving leadership a live view of obligations, controls, and corrective actions rather than a periodic spreadsheet exercise.' },
+  ],
+  'why-compliance-is-becoming-a-competitive-advantage': [
+    { q: 'What does compliance as a competitive advantage mean?', a: 'Compliance becomes a competitive advantage when organisations use governance, accountability, and regulatory oversight to strengthen trust, improve decision-making, reduce risk, and support business growth, rather than treating compliance solely as a cost of meeting legal requirements.' },
+    { q: 'Why is compliance becoming more strategic?', a: 'Increasing regulatory complexity, digital transformation, and higher stakeholder expectations mean compliance now influences organisational resilience, governance, reputation, and business performance, not just regulatory standing.' },
+    { q: 'How can organisations gain a competitive advantage through compliance?', a: 'Organisations can strengthen compliance by improving visibility, integrating compliance with governance and risk management, centralising compliance information, and adopting a connected governance platform instead of disconnected point tools.' },
   ],
 };
 
