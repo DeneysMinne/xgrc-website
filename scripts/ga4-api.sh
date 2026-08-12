@@ -22,7 +22,7 @@
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 KEY_FILE="${HERE}/.secrets/gsc-service-account.json"
-PROPERTY="${GA4_PROPERTY_ID:-546134612}"
+PROPERTY="${GA4_PROPERTY_ID:-549035298}"
 SCOPE="https://www.googleapis.com/auth/analytics.readonly"
 BASE="https://analyticsdata.googleapis.com/v1beta/properties/${PROPERTY}"
 
