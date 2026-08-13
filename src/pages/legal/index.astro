@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import { legalDocs } from '../../data/legalContent.js';
 
 const binding = ['data-processing-addendum', 'acceptable-use-policy', 'support-policy'];
+const endUser = ['end-user-licence-agreement'];
 const publicNotices = ['privacy-policy', 'cookie-policy', 'website-terms-of-use', 'privacy-requests', 'paia-manual'];
 const reference = ['contract-framework'];
 
@@ -30,6 +31,28 @@ const docCard = (slug) => ({ slug, ...legalDocs[slug] });
       </div>
       <div class="grid cols-3">
         {binding.map((slug) => {
+          const d = docCard(slug);
+          return (
+            <a class="card doc-card" href={`/legal/${slug}`}>
+              <h3>{d.title}</h3>
+              <p>{d.intro}</p>
+              <span class="link-arrow">Read {d.title} &rarr;</span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>For individual platform users</span>
+        <h2>End User Licence Agreement.</h2>
+        <p class="lede">Accepted individually by every Authorised User the first time they log in to the XGRC® platform, alongside (not instead of) the agreements already in force between Strategix and their organisation.</p>
+      </div>
+      <div class="grid cols-3">
+        {endUser.map((slug) => {
           const d = docCard(slug);
           return (
             <a class="card doc-card" href={`/legal/${slug}`}>

@@ -94,6 +94,28 @@ export const legalDocs = {
     ],
   },
 
+  'end-user-licence-agreement': {
+    title: 'End User Licence Agreement',
+    version: '1.0',
+    lastUpdated: '13 August 2026',
+    effective: '13 August 2026',
+    reference: 'XGRC-EULA-001',
+    intro: `This End User Licence Agreement ("EULA") governs your individual use of the XGRC® platform as an Authorised User. It applies to you personally, in addition to (not instead of) the XGRC® SaaS Agreement, Data Processing Addendum, and Acceptable Use Policy already in force between ${ENTITY} and your employer or organisation ("Customer"). You must accept this EULA the first time you log in to the platform.`,
+    sections: [
+      { h: '1. Who This Applies To', body: `This EULA applies to every individual who is granted access to the XGRC® platform as an Authorised User under a Customer's active subscription. It does not replace the XGRC® SaaS Agreement between ${ENTITY} and the Customer — that agreement, and the policies incorporated into it by reference (the Data Processing Addendum, Acceptable Use Policy, and Support Policy), continue to govern the relationship between the Customer and Strategix. This EULA specifically covers your personal acceptance, as an individual, of the obligations that already apply to Authorised Users under those documents.` },
+      { h: '2. Licence Grant', body: 'Subject to your compliance with this EULA and the Acceptable Use Policy, Strategix grants you a personal, non-exclusive, non-transferable, revocable right to access and use the XGRC® platform for the duration of your authorisation by the Customer, solely for the lawful business purposes for which the Customer licensed the Service. This licence does not grant you any ownership interest in the platform, and terminates automatically if your authorisation is revoked by the Customer or if the Customer\'s subscription ends.' },
+      { h: '3. Your Obligations', body: 'By using the platform, you agree to comply with the Acceptable Use Policy in full. In summary, you must: keep your login credentials confidential and never share them; use the platform only for the purposes authorised by the Customer; not attempt to access data, accounts, or areas of the platform you have not been authorised to use; not attempt to circumvent, probe, or disrupt the platform\'s security; and promptly report any suspected security issue or misuse. The full list of permitted and prohibited use is set out in the Acceptable Use Policy, which forms part of your obligations under this EULA.' },
+      { h: '4. Personal Information About You', body: `${ENTITY} processes limited personal information about you directly — your name, email address, role, and platform activity — in order to provide you with access to the platform, administer your account, and maintain security and audit records. This processing is described in our Privacy Policy. Separately, any Customer Data you enter into or access through the platform in the course of your work (which may include personal information about other individuals) is processed by Strategix strictly on the Customer's instructions, as described in the Data Processing Addendum — Strategix does not use that data for its own purposes.` },
+      { h: '5. Your Rights', body: 'You have rights in relation to your own personal information under POPIA and, where applicable, the GDPR — including the right to request access, correction, or deletion. These rights, and how to exercise them, are described on our Privacy Requests page. Our PAIA Manual explains more broadly how you or any member of the public may request access to records we hold.' },
+      { h: '6. Intellectual Property', body: `All rights, title, and interest in the XGRC® platform, including its software, design, trade marks, and documentation, are owned by or licensed to ${ENTITY}. Nothing in this EULA transfers any such rights to you. You may not copy, reverse engineer, or attempt to derive the source code of the platform.` },
+      { h: '7. No Individual Warranty', body: 'The platform is provided to you under the Customer\'s subscription with Strategix. Strategix gives no warranty to you individually beyond what is set out in the SaaS Agreement between Strategix and the Customer; your use of the platform is subject to the service levels, support terms, and limitations of liability agreed between Strategix and the Customer.' },
+      { h: '8. Termination of Your Access', body: 'Your right to access the platform ends automatically if the Customer revokes your authorisation, if you leave the Customer\'s organisation, or if the Customer\'s subscription with Strategix ends or is suspended. Strategix may also suspend or terminate your individual access, without prior notice where necessary, if you breach this EULA or the Acceptable Use Policy, consistent with the enforcement provisions of the Acceptable Use Policy.' },
+      { h: '9. Changes to this EULA', body: 'Strategix may update this EULA from time to time to reflect changes in the platform, our policies, or applicable law. Where a change is material, we will take reasonable steps to bring it to your attention, which may include asking you to re-accept this EULA at your next login.' },
+      { h: '10. Governing Law', body: 'This EULA is governed by the laws of the Republic of South Africa.' },
+      { h: '11. Related Documents', body: 'This EULA should be read together with our Privacy Policy, Acceptable Use Policy, PAIA Manual, and Data Processing Addendum, all available on our Legal Hub.' },
+    ],
+  },
+
   'acceptable-use-policy': {
     title: 'Acceptable Use Policy',
     version: '2.0',
