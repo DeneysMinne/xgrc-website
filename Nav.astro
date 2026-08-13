@@ -21,6 +21,7 @@ const isActive = (href) => href === '/' ? path === '/' : path.startsWith(href);
       ))}
     </nav>
 
+    <a href="/book-a-meeting" class="btn btn-ghost nav-cta">Book a meeting</a>
     <a href="/#contact" class="btn btn-primary nav-cta">Request demo</a>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
@@ -32,6 +33,7 @@ const isActive = (href) => href === '/' ? path === '/' : path.startsWith(href);
     {nav.map((item) => (
       <a href={item.href} {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{item.label}</a>
     ))}
+    <a href="/book-a-meeting" class="btn btn-ghost">Book a meeting</a>
     <a href="/#contact" class="btn btn-primary">Request demo</a>
   </nav>
 </header>

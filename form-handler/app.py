@@ -13,6 +13,11 @@ Required env vars (add to /etc/xgrc/forms.env):
 Optional (server-side GA4 lead tracking via Measurement Protocol):
   GA4_MEASUREMENT_ID  G-XXXXXXXXXX
   GA4_MP_API_SECRET   <secret>   (GA4 Admin > Data Streams > Measurement Protocol API secrets)
+
+Optional (creates a Lead in XRM under Strategix's own tenant, client_id=9, for
+every submission — ENH-086):
+  XRM_LEAD_API_URL   http://127.0.0.1:5001/api/integrations/website-lead
+  XRM_LEAD_API_KEY   <secret, matches XRM's WEBSITE_LEAD_API_KEY>
 """
 
 import json
@@ -28,6 +33,8 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 LOG_FILE = os.environ.get("FORM_LOG", "/var/log/xgrc-forms/submissions.log")
+XRM_LEAD_API_URL = os.environ.get("XRM_LEAD_API_URL", "http://127.0.0.1:5001/api/integrations/website-lead")
+XRM_LEAD_API_KEY = os.environ.get("XRM_LEAD_API_KEY", "")
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO,
                     format="%(asctime)s %(levelname)s %(message)s")
@@ -187,6 +194,47 @@ def _send_ga4_event(data: dict) -> None:
         log.warning("GA4 MP event failed: %s", exc)
 
 
+def _xrm_lead_category(data: dict) -> str:
+    """Same category logic _send_email already uses for its subject line
+    (app.py above) — reused here so the XRM lead description and the
+    notification email always agree on what kind of submission this was."""
+    category = (data.get("_category") or "").strip()
+    if data.get("_download_url"):
+        return "Resource Download"
+    if category:
+        return category
+    return "Demo Request"
+
+
+def _create_xrm_lead(data: dict) -> None:
+    """Best-effort: create a Lead in XRM (Strategix's own tenant, client_id=9)
+    for this submission. Never allowed to affect the form's response — any
+    failure is caught by the caller and logged, exactly like _send_email and
+    _send_ga4_event. ENH-086."""
+    if not XRM_LEAD_API_KEY:
+        log.warning("XRM lead integration not configured — skipping.")
+        return
+
+    message = data.get("_download_url") or data.get("message", "")
+    payload = {
+        "first_name": data.get("firstName", ""),
+        "last_name": data.get("lastName", ""),
+        "email": data.get("email", ""),
+        "company": data.get("company", ""),
+        "phone": data.get("phone", ""),
+        "category": _xrm_lead_category(data),
+        "message": message,
+    }
+    resp = requests.post(
+        XRM_LEAD_API_URL,
+        json=payload,
+        headers={"X-Integration-Key": XRM_LEAD_API_KEY},
+        timeout=3,
+    )
+    resp.raise_for_status()
+    log.info("XRM lead created: %s", resp.json().get("lead_ref"))
+
+
 ALLOWED_ORIGINS = {
     "https://xgrcsoftware.com", "https://www.xgrcsoftware.com",
     "https://xgrcwebsite.nucleusapps.online", "http://localhost:4321",
@@ -254,6 +302,12 @@ def demo_submit():
     except Exception as exc:
         log.error("Email send failed: %s", exc)
         # Still return success — submission is saved; email failure is ops-side.
+
+    try:
+        _create_xrm_lead(data)
+    except Exception as exc:
+        log.error("XRM lead create failed: %s", exc)
+        # Still return success — email is the existing safety net for this submission.
 
     _send_ga4_event(data)
 
