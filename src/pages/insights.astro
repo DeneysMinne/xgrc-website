@@ -26,6 +26,7 @@ function readTime(slug) {
   return (n % 4) + 5; // 5–8 min
 }
 
+const sortedArticles = [...articles].sort((a, b) => new Date(b.date) - new Date(a.date));
 const categories = ['All', ...Array.from(new Set(articles.map((a) => a.category)))];
 ---
 
@@ -119,7 +120,7 @@ const categories = ['All', ...Array.from(new Set(articles.map((a) => a.category)
       </div>
 
       <div class="article-grid">
-        {articles.map((a) => {
+        {sortedArticles.map((a) => {
           const color = categoryColors[a.category] || '#30e2f4';
           const mins = readTime(a.slug);
           return (
