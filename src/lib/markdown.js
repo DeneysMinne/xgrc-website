@@ -12,6 +12,7 @@
 import { articles, articleFaqs, solutions, solutionDetails } from '../data/site.js';
 import { articleContent } from '../data/articleContent.js';
 import { useCaseRegistry } from '../data/useCaseRegistry.js';
+import { whatsNew } from '../data/whatsNew.js';
 
 const SITE = 'https://xgrcsoftware.com';
 
@@ -128,6 +129,29 @@ export function solutionToMarkdown(slug) {
   if (related.length) parts.push(`## Related solutions\n\n${related.map((l) => `- ${l}`).join('\n')}`);
 
   parts.push(`---\n\nSource: ${SITE}/${slug}`);
+  return parts.filter(Boolean).join('\n\n') + '\n';
+}
+
+// ── What's New ───────────────────────────────────────────────────────────────
+const CATEGORY_LABEL = { new: 'New', improved: 'Improved', fixed: 'Fixed', security: 'Security' };
+
+export function whatsNewToMarkdown(product) {
+  const entries = whatsNew[product];
+  if (!entries || !entries.length) return null;
+  const s = solutions.find((x) => x.slug === product);
+  const d = solutionDetails[product];
+  const name = d?.name || s?.name || product.toUpperCase();
+
+  const items = entries
+    .map((e) => `### ${e.title}\n\n_v${e.version} · ${CATEGORY_LABEL[e.category] || e.category} · ${e.date}_\n\n${inlineHtmlToMarkdown(e.description)}`)
+    .join('\n\n');
+
+  const parts = [
+    `# ${name} — What's New`,
+    'Real updates, shipped and in production — not a roadmap.',
+    items,
+    `---\n\nSource: ${SITE}/whats-new/${product}`,
+  ];
   return parts.filter(Boolean).join('\n\n') + '\n';
 }
 

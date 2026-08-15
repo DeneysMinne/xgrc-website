@@ -1,0 +1,127 @@
+---
+import Base from '../../layouts/Base.astro';
+import { solutions, solutionDetails } from '../../data/site.js';
+import { whatsNew } from '../../data/whatsNew.js';
+
+export function getStaticPaths() {
+  return Object.keys(whatsNew)
+    .filter((key) => whatsNew[key].length > 0)
+    .map((key) => ({ params: { product: key } }));
+}
+
+const { product } = Astro.params;
+const entries = whatsNew[product] || [];
+const detail = solutionDetails[product];
+const sol = solutions.find((s) => s.slug === product);
+const productName = detail?.name || sol?.name || product.toUpperCase();
+
+const CATEGORY_LABEL = { new: 'New', improved: 'Improved', fixed: 'Fixed', security: 'Security' };
+const CATEGORY_COLOR = { new: 'var(--cyan)', improved: 'var(--green)', fixed: '#f5a623', security: '#f5605c' };
+
+function formatDate(d) {
+  return new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: `${productName} — What's New`,
+  itemListElement: entries.map((e, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: e.title,
+    description: e.description,
+  })),
+});
+
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xgrcsoftware.com/' },
+    { '@type': 'ListItem', position: 2, name: productName, item: `https://xgrcsoftware.com/${product}/` },
+    { '@type': 'ListItem', position: 3, name: "What's New" },
+  ],
+});
+---
+
+<Base
+  title={`${productName} — What's New | XGRC®`}
+  description={`Recent updates and improvements shipped to ${productName}.`}
+  mdPath={`/whats-new/${product}.md`}
+>
+  <script type="application/ld+json" set:html={schema} />
+  <script type="application/ld+json" set:html={breadcrumbSchema} />
+
+  <nav class="wn-breadcrumb" aria-label="Breadcrumb">
+    <div class="container wn-breadcrumb-inner">
+      <a href={`/${product}/`}>&larr; {productName}</a>
+      <span aria-hidden="true">/</span>
+      <span>What's New</span>
+    </div>
+  </nav>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>What's New</span>
+        <h1>{productName} — What's New.</h1>
+        <p class="lede">Real updates, shipped and in production — not a roadmap.</p>
+      </div>
+
+      <div class="wn-list">
+        {entries.map((e) => (
+          <div class="wn-item">
+            <div class="wn-meta">
+              <span class="wn-cat" style={`--cat-color: ${CATEGORY_COLOR[e.category] || 'var(--cyan)'}`}>
+                {CATEGORY_LABEL[e.category] || e.category}
+              </span>
+              <span class="wn-version">v{e.version}</span>
+              <span aria-hidden="true">&middot;</span>
+              <span class="wn-date">{formatDate(e.date)}</span>
+            </div>
+            <h3 class="wn-title">{e.title}</h3>
+            <p class="wn-desc">{e.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="wn-cta">
+        <p class="eyebrow"><span class="dot"></span>See it for yourself</p>
+        <h2>{productName} keeps getting better.</h2>
+        <p class="lede">Book a demo to see the current version in action.</p>
+        <div class="wn-cta-btns">
+          <a href="/demo" class="btn btn-primary">Book a demo</a>
+          <a href={`/${product}/`} class="btn btn-ghost">Back to {productName}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .wn-breadcrumb { border-bottom: 1px solid var(--line); padding: 22px 0; }
+  .wn-breadcrumb-inner { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--mute); }
+  .wn-breadcrumb-inner a { color: var(--mute); text-decoration: none; }
+  .wn-breadcrumb-inner a:hover { color: var(--cyan); }
+
+  .wn-list { max-width: 760px; display: flex; flex-direction: column; gap: 28px; }
+  .wn-item { padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+  .wn-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .wn-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--mute); }
+  .wn-cat {
+    font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--cat-color); border: 1px solid var(--cat-color); border-radius: 999px;
+    padding: 2px 9px;
+  }
+  .wn-version { color: var(--faint); }
+  .wn-title { margin: 0 0 6px; font-size: 1.15rem; }
+  .wn-desc { color: var(--mute); font-size: 0.95rem; line-height: 1.6; margin: 0; }
+
+  .wn-cta { max-width: 640px; }
+  .wn-cta-btns { display: flex; gap: 14px; margin-top: 22px; flex-wrap: wrap; }
+</style>
