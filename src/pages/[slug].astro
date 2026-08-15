@@ -295,7 +295,7 @@ const schema = JSON.stringify({
         <div class="whatsnew-teaser-list">
           {recentUpdates.map((u) => (
             <div class="whatsnew-teaser-item">
-              <span class="whatsnew-teaser-version">v{u.version}</span>
+              {u.version !== u.date && <span class="whatsnew-teaser-version">v{u.version}</span>}
               <h3 class="whatsnew-teaser-title">{u.title}</h3>
               <p class="whatsnew-teaser-desc">{u.description}</p>
             </div>

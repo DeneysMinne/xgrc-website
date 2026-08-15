@@ -143,7 +143,10 @@ export function whatsNewToMarkdown(product) {
   const name = d?.name || s?.name || product.toUpperCase();
 
   const items = entries
-    .map((e) => `### ${e.title}\n\n_v${e.version} · ${CATEGORY_LABEL[e.category] || e.category} · ${e.date}_\n\n${inlineHtmlToMarkdown(e.description)}`)
+    .map((e) => {
+      const versionPart = e.version !== e.date ? `v${e.version} · ` : '';
+      return `### ${e.title}\n\n_${versionPart}${CATEGORY_LABEL[e.category] || e.category} · ${e.date}_\n\n${inlineHtmlToMarkdown(e.description)}`;
+    })
     .join('\n\n');
 
   const parts = [

@@ -76,8 +76,8 @@ const breadcrumbSchema = JSON.stringify({
               <span class="wn-cat" style={`--cat-color: ${CATEGORY_COLOR[e.category] || 'var(--cyan)'}`}>
                 {CATEGORY_LABEL[e.category] || e.category}
               </span>
-              <span class="wn-version">v{e.version}</span>
-              <span aria-hidden="true">&middot;</span>
+              {e.version !== e.date && <span class="wn-version">v{e.version}</span>}
+              {e.version !== e.date && <span aria-hidden="true">&middot;</span>}
               <span class="wn-date">{formatDate(e.date)}</span>
             </div>
             <h3 class="wn-title">{e.title}</h3>

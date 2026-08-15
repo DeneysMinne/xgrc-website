@@ -1,9 +1,8 @@
 // GENERATED FILE -- do not hand-edit.
-// Produced by scripts/sync-xrm-release-notes.mjs from xrm_db's
-// xrm_release_note table (rows flagged public_facing). Re-run that script
-// to refresh; the hourly cron job (see xgrc-scheduled-deploys/) already
-// does this automatically. xlogic entries will populate once XLOGIC ships
-// its own release-notes feature.
+// Produced by scripts/sync-release-notes.mjs from XRM's and XLOGIC's own
+// databases (rows flagged public_facing in each). Re-run that script to
+// refresh; the hourly cron job (see xgrc-scheduled-deploys/) already does
+// this automatically.
 
 export const whatsNew = {
   "xrm": [
@@ -78,5 +77,41 @@ export const whatsNew = {
       "description": "Your calendar has been rebuilt around colour-coded layers you switch on and off — tasks, reminders, follow-ups, meetings, deal close dates and quote expiries all in one timeline. Overdue items are flagged, finished ones struck through, and you can drag an item to a new day to reschedule it (moving a deal close date or quote expiry asks first). New Month, Week and Agenda views, a Mine/Team switch, and an admin Calendar Layers settings page to control colours, defaults and reschedule rules."
     }
   ],
-  "xlogic": []
+  "xlogic": [
+    {
+      "version": "2026-08-15",
+      "date": "2026-08-15",
+      "category": "new",
+      "title": "Canvas: connect from any side; a Decision with no real branch is flagged",
+      "description": "A step can now connect on its left or right side, not just top and bottom, so steps in adjacent lanes connect with a straight line. Activating a process now warns if a Decision step has no real branching condition set, or has no outgoing edges at all."
+    },
+    {
+      "version": "2026-08-15",
+      "date": "2026-08-15",
+      "category": "improved",
+      "title": "Cockpit and Lifecycle: real motion, colour and depth",
+      "description": "The Cockpit and \"How XLOGIC works\" pages now use one shared design language - hover feedback, a real chart for trend data, per-stage colour and depth on the lifecycle diagram, and consistent button sizing across screens instead of each page inventing its own."
+    },
+    {
+      "version": "2026-08-13",
+      "date": "2026-08-13",
+      "category": "new",
+      "title": "Clickable links inside Info panels",
+      "description": "When an Info panel tells you to go do something on another screen, it now takes you there directly with a real link, instead of just describing where to look."
+    },
+    {
+      "version": "2026-08-12",
+      "date": "2026-08-12",
+      "category": "new",
+      "title": "Revise an approved process",
+      "description": "An APPROVED process definition never changes in place, but you can now start a real revision from it - a fresh DRAFT pre-populated with its steps and edges, ready to edit and re-activate - instead of having no path to change one at all."
+    },
+    {
+      "version": "2026-08-05",
+      "date": "2026-08-05",
+      "category": "new",
+      "title": "Per-screen Info panels",
+      "description": "Every real screen now has an info icon next to its heading, opening a panel that explains what the screen is for, why it matters, and the common tasks done there."
+    }
+  ]
 };
