@@ -586,6 +586,8 @@ export const solutionDetails = {
   },
 
   xrm: {
+    logo: '/assets/logos/solutions/xrm.png',
+    icon: '/assets/logos/solutions/icons/xrm.png',
     screenshot: '/assets/screenshots/xrm-dashboard.png',
     appUrl: 'xrm.xgrc.cloud',
     poweredBy: 'XGRC®',
