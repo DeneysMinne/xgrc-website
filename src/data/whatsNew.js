@@ -7,6 +7,83 @@
 export const whatsNew = {
   "xrm": [
     {
+      "version": "1.64.0",
+      "date": "2026-08-17",
+      "category": "new",
+      "title": "Bulk-import your Price Lists",
+      "description": "Load price tiers, licence rates, and volume discounts from an Excel file instead of creating them one at a time. Find it on Maintenance > Pricing > Price Lists > Import."
+    },
+    {
+      "version": "1.63.10",
+      "date": "2026-08-15",
+      "category": "improved",
+      "title": "Small polish across Quotes, Calendar, Users, and Dashboard",
+      "description": "Quotes no longer show an FX refresh option when already in your home currency. Calendar's Month view now tells you when a month has nothing scheduled. Users & Licenses has quick tooltips explaining Role vs License. Dashboard empty states across the board now show a matching icon instead of plain text."
+    },
+    {
+      "version": "1.63.8",
+      "date": "2026-08-15",
+      "category": "improved",
+      "title": "Upload documents to an Account, not just a Contact",
+      "description": "Accounts now have the same document upload and linking tools Contacts already had, so contracts, proposals, and other files can live directly on the company record."
+    },
+    {
+      "version": "1.63.7",
+      "date": "2026-08-15",
+      "category": "improved",
+      "title": "Territories can now have a default catch-all",
+      "description": "If you have more than one territory, you can mark one as the Default so new leads and accounts that do not match any rule land there automatically instead of being left with a blank territory."
+    },
+    {
+      "version": "1.63.6",
+      "date": "2026-08-15",
+      "category": "improved",
+      "title": "Clearer pipeline stage deletion, a Subscription billing option, tidier admin dialogs",
+      "description": "Deleting a pipeline stage now tells you upfront exactly how many opportunities are in it, instead of a vague warning. Subscription is now available as a billing type everywhere it was previously missing. Create/Save buttons across Maintenance are now consistent, and the Quotas page no longer clips on narrower screens."
+    },
+    {
+      "version": "1.63.5",
+      "date": "2026-08-15",
+      "category": "improved",
+      "title": "Stuck-in-stage deals now flagged, report tabs show your position, cleaner pipeline chart",
+      "description": "Deals that have not moved out of their current stage now show a Stuck chip on the Opportunities list and Detail page. The Reports tab bar shows which view you are on out of the total. The Deals by Stage chart no longer shows empty bars for stages with nothing in them."
+    },
+    {
+      "version": "1.63.4",
+      "date": "2026-08-15",
+      "category": "improved",
+      "title": "User role changes now appear in the Audit Log",
+      "description": "Changing a team member's role (admin, manager, or user) is now recorded in the Audit Log along with who made the change and when, closing a gap where this specific action was previously invisible."
+    },
+    {
+      "version": "1.63.2",
+      "date": "2026-08-15",
+      "category": "improved",
+      "title": "Starter email templates added",
+      "description": "Three ready-to-use email templates -- Welcome, Follow-up, and Quote Sent -- are now available under Maintenance to Email Templates, so you do not have to write one from scratch before sending your first email from XRM."
+    },
+    {
+      "version": "1.63.1",
+      "date": "2026-08-15",
+      "category": "improved",
+      "title": "Lead Score now reflects real signals, not just a complete profile",
+      "description": "Lead scores used to cluster on the same few numbers because company name and email are required on every lead, so most of the score was earned automatically. The formula now weights phone number, notes, engagements, recent activity, and lead source quality more heavily, so scores genuinely tell hot leads apart from cold ones."
+    },
+    {
+      "version": "1.63.0",
+      "date": "2026-08-15",
+      "category": "improved",
+      "title": "Quota targets no longer go blank when a new month or quarter starts",
+      "description": "Forecast and Dashboard attainment figures used to show as blank the moment a new month or quarter began, until someone manually re-entered every quota by hand. They now automatically show the most recent target until a new one is set, with a clear note that it has been carried forward."
+    },
+    {
+      "version": "1.62.1",
+      "date": "2026-08-15",
+      "category": "fixed",
+      "title": "Fixed three data-accuracy issues found in an internal review",
+      "description": "The Leads page's \"New (Status)\" card was showing the exact same trend percentage as \"Total Leads\" instead of its own. A sales rep's Opportunities pipeline total now matches what they see on their own Dashboard, instead of always showing the whole team's numbers. And a contact's linked accounts list now shows the account type (Customer, Prospect, Partner, etc.) instead of a blank column."
+    },
+    {
       "version": "1.61.0",
       "date": "2026-08-15",
       "category": "improved",
