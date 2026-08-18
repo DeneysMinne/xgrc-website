@@ -249,6 +249,7 @@ const FORM_ENDPOINT = "/api/demo";
       ].filter(Boolean).join(' · ');
 
       const ga = (document.cookie.match(/_ga=GA\d\.\d\.(\d+\.\d+)/) || [])[1];
+      const gclid = (document.cookie.match(/xgrc_gclid=([^;]+)/) || [])[1];
       const body = {
         firstName: fd.get('firstName'),
         lastName:  fd.get('lastName'),
@@ -260,6 +261,7 @@ const FORM_ENDPOINT = "/api/demo";
         _hp: fd.get('_hp') || '',
         _elapsed_ms: Date.now() - _loadT,
         ...(ga ? { _ga_client_id: ga } : {}),
+        ...(gclid ? { _gclid: decodeURIComponent(gclid) } : {}),
       };
 
       const res = await fetch(FORM_ENDPOINT, {

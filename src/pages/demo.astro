@@ -361,6 +361,8 @@ const FORM_ENDPOINT = "/api/demo";
       const body = Object.fromEntries(fd.entries());
       const ga = (document.cookie.match(/_ga=GA\d\.\d\.(\d+\.\d+)/) || [])[1];
       if (ga) body._ga_client_id = ga;
+      const gclid = (document.cookie.match(/xgrc_gclid=([^;]+)/) || [])[1];
+      if (gclid) body._gclid = decodeURIComponent(gclid);
       body._elapsed_ms = Date.now() - _loadT;
       const res  = await fetch(FORM_ENDPOINT, {
         method: 'POST',

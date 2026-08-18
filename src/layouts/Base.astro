@@ -113,6 +113,20 @@ const orgSchema = JSON.stringify({
         }
       }
     </script>
+
+    <!-- Capture the gclid from a paid-search landing click into a first-party
+         cookie, entirely independent of the gtag block above. This is what
+         lets the demo/book-a-meeting forms report a real Google Ads
+         conversion server-side (form-handler/app.py) even while gtag.js
+         itself is silently dropping every browser hit. Runs on every host,
+         not just production — harmless either way. 90-day window: a real
+         ad-click-to-lead gap can outlast the shorter _ga cookie window. -->
+    <script>
+      const gclid = new URLSearchParams(window.location.search).get('gclid');
+      if (gclid) {
+        document.cookie = `xgrc_gclid=${encodeURIComponent(gclid)}; Max-Age=7776000; Path=/; SameSite=Lax`;
+      }
+    </script>
   </head>
   <body>
     {mdURL && (

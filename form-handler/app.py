@@ -18,6 +18,15 @@ Optional (creates a Lead in XRM under Strategix's own tenant, client_id=9, for
 every submission — ENH-086):
   XRM_LEAD_API_URL   http://127.0.0.1:5001/api/integrations/website-lead
   XRM_LEAD_API_KEY   <secret, matches XRM's WEBSITE_LEAD_API_KEY>
+
+Optional (server-side Google Ads conversion reporting via the Data Manager
+API, for demo/book-a-meeting submissions that carry a gclid — bypasses the
+client-side gtag.js pixel, which has been broken since before this campaign
+started; see project_xgrc_google_ads_2026_08 in Claude memory):
+  GOOGLE_ADS_DM_CLIENT_ID              same OAuth client as scripts/google-ads-api.sh
+  GOOGLE_ADS_DM_CLIENT_SECRET          same OAuth client as scripts/google-ads-api.sh
+  GOOGLE_ADS_DM_REFRESH_TOKEN          separate token, scoped to .../auth/datamanager only
+  GOOGLE_ADS_DM_CONVERSION_ACTION_ID   numeric id of the UPLOAD_CLICKS conversion action
 """
 
 import json
@@ -194,6 +203,77 @@ def _send_ga4_event(data: dict) -> None:
         log.warning("GA4 MP event failed: %s", exc)
 
 
+def _send_ads_conversion(data: dict) -> None:
+    """Report a Google Ads conversion server-side via the Data Manager API,
+    keyed off the gclid the form captured from the landing URL (see the
+    cookie-capture script in Base.astro). Entirely independent of the
+    client-side gtag.js pixel, which has been silently dropping every
+    browser hit since before this campaign started — this is the real
+    measurement path while that stays broken, not a duplicate of it.
+
+    Only fires for demo.astro / book-a-meeting.astro submissions (the two
+    forms that carry a gclid) — matches _xrm_lead_category's category
+    convention below. Best-effort, same pattern as _send_ga4_event: any
+    failure is logged and swallowed, never affects the form response.
+    """
+    gclid = (data.get("_gclid") or "").strip()
+    if not gclid:
+        return  # no ad click on record for this lead — nothing to report.
+
+    category = (data.get("_category") or "").strip() or "Demo request"
+    if category not in ("Demo request", "Meeting request"):
+        return
+
+    client_id = os.environ.get("GOOGLE_ADS_DM_CLIENT_ID")
+    client_secret = os.environ.get("GOOGLE_ADS_DM_CLIENT_SECRET")
+    refresh_token = os.environ.get("GOOGLE_ADS_DM_REFRESH_TOKEN")
+    conversion_action_id = os.environ.get("GOOGLE_ADS_DM_CONVERSION_ACTION_ID")
+    if not all([client_id, client_secret, refresh_token, conversion_action_id]):
+        return  # Data Manager API not configured yet — skip silently.
+
+    try:
+        token_resp = requests.post(
+            "https://oauth2.googleapis.com/token",
+            data={
+                "client_id": client_id,
+                "client_secret": client_secret,
+                "refresh_token": refresh_token,
+                "grant_type": "refresh_token",
+            },
+            timeout=5,
+        )
+        access_token = token_resp.json().get("access_token")
+        if not access_token:
+            log.error("Ads conversion upload: token refresh failed: %s", token_resp.text)
+            return
+
+        body = {
+            "destinations": [{
+                "operatingAccount": {"accountType": "GOOGLE_ADS", "accountId": "9599176549"},
+                "loginAccount": {"accountType": "GOOGLE_ADS", "accountId": "8918834747"},
+                "productDestinationId": conversion_action_id,
+            }],
+            "encoding": "HEX",
+            "events": [{
+                "eventTimestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00"),
+                "eventSource": "WEB",
+                "adIdentifiers": {"gclid": gclid},
+            }],
+        }
+        resp = requests.post(
+            "https://datamanager.googleapis.com/v1/events:ingest",
+            headers={"Authorization": f"Bearer {access_token}"},
+            json=body,
+            timeout=5,
+        )
+        if resp.status_code == 200:
+            log.info("Ads conversion sent (category=%s, gclid=%s...)", category, gclid[:12])
+        else:
+            log.error("Ads conversion upload FAILED (%s): %s", resp.status_code, resp.text)
+    except Exception as exc:
+        log.error("Ads conversion upload exception: %s", exc)
+
+
 def _xrm_lead_category(data: dict) -> str:
     """Same category logic _send_email already uses for its subject line
     (app.py above) — reused here so the XRM lead description and the
@@ -310,6 +390,7 @@ def demo_submit():
         # Still return success — email is the existing safety net for this submission.
 
     _send_ga4_event(data)
+    _send_ads_conversion(data)
 
     return jsonify({"ok": True}), 200
 
