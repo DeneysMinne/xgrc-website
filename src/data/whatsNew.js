@@ -156,6 +156,20 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "new",
+      "title": "Overdue tasks with no Escalation step now email the task owner directly",
+      "description": "Escalation is optional when a process is designed. Where a task breaches its SLA target and has no Escalation step configured, the step's owner role is now emailed the moment the breach is recorded, instead of relying only on Worklist or Cockpit to notice it."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "new",
+      "title": "Policy decomposition flags a policy with no approval or decision content",
+      "description": "When a policy is decomposed and none of the extracted requirements involve an approval or a risk-tier condition, XLOGIC now raises a review item in Cockpit rather than staying silent. Confirm the policy genuinely has none, or send it back for another look."
+    },
+    {
       "version": "2026-08-15",
       "date": "2026-08-15",
       "category": "new",
