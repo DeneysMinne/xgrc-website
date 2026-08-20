@@ -127,6 +127,24 @@ const orgSchema = JSON.stringify({
         document.cookie = `xgrc_gclid=${encodeURIComponent(gclid)}; Max-Age=7776000; Path=/; SameSite=Lax`;
       }
     </script>
+
+    <!-- Same first-party-cookie capture, for utm_source/utm_medium/utm_campaign --
+         found missing during XRM ENH-132's Phase 0 validation (2026-08-20): the
+         gclid path above was built for Google Ads' own server-side conversion
+         call, but XRM's Revenue Copilot attribution model reads all three of
+         these fields too (a lead with no gclid, e.g. from LinkedIn or a UTM-
+         tagged newsletter link, would otherwise have zero attribution data).
+         Only set when actually present on the landing URL, so a plain organic
+         visit never overwrites a real value with an empty one. -->
+    <script>
+      const _p = new URLSearchParams(window.location.search);
+      for (const key of ['utm_source', 'utm_medium', 'utm_campaign']) {
+        const value = _p.get(key);
+        if (value) {
+          document.cookie = `xgrc_${key}=${encodeURIComponent(value)}; Max-Age=7776000; Path=/; SameSite=Lax`;
+        }
+      }
+    </script>
   </head>
   <body>
     {mdURL && (

@@ -304,10 +304,18 @@ def _create_xrm_lead(data: dict) -> None:
         "phone": data.get("phone", ""),
         "category": _xrm_lead_category(data),
         "message": message,
-        # XRM ENH-132: forward the gclid captured from the landing URL (see
-        # the cookie-capture script in Base.astro), if this submission had
-        # one. Closes the loop for XRM's own tenant (client_id 9) end to end.
+        # XRM ENH-132: forward the gclid / utm_* fields captured from the
+        # landing URL (see the cookie-capture scripts in Base.astro), if this
+        # submission had any. Closes the loop for XRM's own tenant (client_id
+        # 9) end to end -- utm_source/medium/campaign added 2026-08-20, found
+        # missing during ENH-132's Phase 0 validation (gclid alone misses any
+        # non-Google-Ads channel, e.g. LinkedIn or a UTM-tagged newsletter
+        # link). XRM's integration route reads these under their plain names
+        # (utm_source, not _utm_source) -- see app/integrations/routes.py.
         "gclid": data.get("_gclid") or None,
+        "utm_source": data.get("_utm_source") or None,
+        "utm_medium": data.get("_utm_medium") or None,
+        "utm_campaign": data.get("_utm_campaign") or None,
     }
     resp = requests.post(
         XRM_LEAD_API_URL,

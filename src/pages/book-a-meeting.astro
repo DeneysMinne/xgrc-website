@@ -250,6 +250,11 @@ const FORM_ENDPOINT = "/api/demo";
 
       const ga = (document.cookie.match(/_ga=GA\d\.\d\.(\d+\.\d+)/) || [])[1];
       const gclid = (document.cookie.match(/xgrc_gclid=([^;]+)/) || [])[1];
+      const utmFields = {};
+      for (const key of ['utm_source', 'utm_medium', 'utm_campaign']) {
+        const value = (document.cookie.match(new RegExp(`xgrc_${key}=([^;]+)`)) || [])[1];
+        if (value) utmFields[`_${key}`] = decodeURIComponent(value);
+      }
       const body = {
         firstName: fd.get('firstName'),
         lastName:  fd.get('lastName'),
@@ -262,6 +267,7 @@ const FORM_ENDPOINT = "/api/demo";
         _elapsed_ms: Date.now() - _loadT,
         ...(ga ? { _ga_client_id: ga } : {}),
         ...(gclid ? { _gclid: decodeURIComponent(gclid) } : {}),
+        ...utmFields,
       };
 
       const res = await fetch(FORM_ENDPOINT, {

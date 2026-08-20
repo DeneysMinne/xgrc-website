@@ -363,6 +363,10 @@ const FORM_ENDPOINT = "/api/demo";
       if (ga) body._ga_client_id = ga;
       const gclid = (document.cookie.match(/xgrc_gclid=([^;]+)/) || [])[1];
       if (gclid) body._gclid = decodeURIComponent(gclid);
+      for (const key of ['utm_source', 'utm_medium', 'utm_campaign']) {
+        const value = (document.cookie.match(new RegExp(`xgrc_${key}=([^;]+)`)) || [])[1];
+        if (value) body[`_${key}`] = decodeURIComponent(value);
+      }
       body._elapsed_ms = Date.now() - _loadT;
       const res  = await fetch(FORM_ENDPOINT, {
         method: 'POST',
