@@ -33,6 +33,13 @@ CRON_MARKER="$3"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 NOTIFY_SCRIPT="$SCRIPT_DIR/notify-team-email.py"
 
+# cron runs with a minimal PATH that doesn't include ~/.local/bin, so a
+# bare `claude` call fails with "command not found" and this script
+# reads that empty output as a JSON parse error (see the Aug 21 2026
+# how-proactive-compliance-reduces-business-risk incident). Use the
+# absolute path instead of relying on PATH.
+CLAUDE_BIN="/home/XGRC_Admin/.local/bin/claude"
+
 REPO=/opt/www/XGRC_WEBSITE
 LOG="$REPO/scripts/scheduled-deploy-logs/$SLUG.log"
 mkdir -p "$(dirname "$LOG")"
@@ -103,8 +110,13 @@ commit.
 PROMPT_EOF
 )
 
-OUTPUT=$(claude -p "$PROMPT" --output-format json --permission-mode bypassPermissions --allowedTools "Bash,Read,Edit" 2>>"$LOG")
-echo "$OUTPUT" >> "$LOG"
+if [ -x "$CLAUDE_BIN" ]; then
+  OUTPUT=$("$CLAUDE_BIN" -p "$PROMPT" --output-format json --permission-mode bypassPermissions --allowedTools "Bash,Read,Edit" 2>>"$LOG")
+  echo "$OUTPUT" >> "$LOG"
+else
+  log "FATAL: claude binary not found or not executable at $CLAUDE_BIN"
+  OUTPUT=""
+fi
 
 RESULT_TEXT=$(echo "$OUTPUT" | python3 -c 'import json,sys
 try:
