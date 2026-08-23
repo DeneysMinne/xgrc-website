@@ -158,6 +158,13 @@ export const whatsNew = {
     {
       "version": "2026-08-20",
       "date": "2026-08-20",
+      "category": "fixed",
+      "title": "Clearer explanation when you lack permission for an action",
+      "description": "A permission error used to show a bare technical code with no explanation. It now says what the action needs in plain English, and names which role(s) in your tenant can actually do it - so you know exactly who to ask."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
       "category": "improved",
       "title": "Processes: status badges now explain what they mean",
       "description": "DRAFT, APPROVED, RETIRED, RUNNING, COMPLETED and CANCELLED status badges on the Processes screen now show a one-line explanation of what the status means and what to do next, on hover."
@@ -172,9 +179,9 @@ export const whatsNew = {
     {
       "version": "2026-08-20",
       "date": "2026-08-20",
-      "category": "fixed",
-      "title": "Clearer explanation when you lack permission for an action",
-      "description": "A permission error used to show a bare technical code with no explanation. It now says what the action needs in plain English, and names which role(s) in your tenant can actually do it - so you know exactly who to ask."
+      "category": "new",
+      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
+      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
     },
     {
       "version": "2026-08-20",
@@ -187,8 +194,8 @@ export const whatsNew = {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
-      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
+      "title": "Policy decomposition flags a policy with no approval or decision content",
+      "description": "When a policy is decomposed and none of the extracted requirements involve an approval or a risk-tier condition, XLOGIC now raises a review item in Cockpit rather than staying silent. Confirm the policy genuinely has none, or send it back for another look."
     },
     {
       "version": "2026-08-20",
@@ -200,9 +207,30 @@ export const whatsNew = {
     {
       "version": "2026-08-20",
       "date": "2026-08-20",
-      "category": "new",
-      "title": "Policy decomposition flags a policy with no approval or decision content",
-      "description": "When a policy is decomposed and none of the extracted requirements involve an approval or a risk-tier condition, XLOGIC now raises a review item in Cockpit rather than staying silent. Confirm the policy genuinely has none, or send it back for another look."
+      "category": "improved",
+      "title": "What's New: easier to scan at a glance",
+      "description": "Each entry now shows a clear New/Improved/Fixed/Security label and a matching colour accent, so a release with several changes is easy to scan instead of reading like one continuous block."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "fixed",
+      "title": "Feedback form: Submit is always visible now",
+      "description": "The Submit button used to sit below the bottom of the screen on the Feedback & Bugs form. The description box and screenshot preview take up less room, and Submit always stays in view."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "fixed",
+      "title": "Processes tables no longer overflow the screen",
+      "description": "The Runs table sometimes gave one column most of the row's width, pushing the others out of alignment, and the process list's action buttons could get clipped at the edge. Both tables now share space properly."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "fixed",
+      "title": "\"How XLOGIC works\" step descriptions no longer get cut off",
+      "description": "Some of the longer step descriptions on the How XLOGIC works page were being cut short mid-sentence. The full text now always shows."
     },
     {
       "version": "2026-08-15",
