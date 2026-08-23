@@ -156,6 +156,34 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026-08-23",
+      "date": "2026-08-23",
+      "category": "improved",
+      "title": "\"How XLOGIC works\" is now a live, searchable map of your own tenant",
+      "description": "Every stage now shows your own real, live numbers instead of a static diagram - click any stage to see exactly what it means and jump straight into the real screen. A new global search (Search XLOGIC, or Ctrl+K) finds any module or answers a quick question from anywhere in the app, and a \"Your XLOGIC journey\" badge strip marks real milestones as you reach them."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "new",
+      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
+      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "new",
+      "title": "Process Templates: preview a template before applying it, and ten to choose from",
+      "description": "Every template card now has a Preview button showing its real step-by-step shape (owners, evidence, cadence, SLA) before you commit to it. The catalog also grew from 2 templates to 10: task-with-escalation, evidence-gated release, decision-routed review, two-stage sign-off, incident response, change request lifecycle, third-party risk assessment, and recurring training completion, alongside the original approval-with-evidence and periodic-review-with-escalation."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "new",
+      "title": "Default Lane Groups to get you started",
+      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
+    },
+    {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "fixed",
@@ -173,22 +201,8 @@ export const whatsNew = {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Process Templates: preview a template before applying it, and ten to choose from",
-      "description": "Every template card now has a Preview button showing its real step-by-step shape (owners, evidence, cadence, SLA) before you commit to it. The catalog also grew from 2 templates to 10: task-with-escalation, evidence-gated release, decision-routed review, two-stage sign-off, incident response, change request lifecycle, third-party risk assessment, and recurring training completion, alongside the original approval-with-evidence and periodic-review-with-escalation."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
-      "category": "new",
-      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
-      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
-      "category": "new",
-      "title": "Default Lane Groups to get you started",
-      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
+      "title": "Overdue tasks with no Escalation step now email the task owner directly",
+      "description": "Escalation is optional when a process is designed. Where a task breaches its SLA target and has no Escalation step configured, the step's owner role is now emailed the moment the breach is recorded, instead of relying only on Worklist or Cockpit to notice it."
     },
     {
       "version": "2026-08-20",
@@ -196,13 +210,6 @@ export const whatsNew = {
       "category": "new",
       "title": "Policy decomposition flags a policy with no approval or decision content",
       "description": "When a policy is decomposed and none of the extracted requirements involve an approval or a risk-tier condition, XLOGIC now raises a review item in Cockpit rather than staying silent. Confirm the policy genuinely has none, or send it back for another look."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
-      "category": "new",
-      "title": "Overdue tasks with no Escalation step now email the task owner directly",
-      "description": "Escalation is optional when a process is designed. Where a task breaches its SLA target and has no Escalation step configured, the step's owner role is now emailed the moment the breach is recorded, instead of relying only on Worklist or Cockpit to notice it."
     },
     {
       "version": "2026-08-20",
