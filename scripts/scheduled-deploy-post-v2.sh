@@ -62,6 +62,20 @@ cleanup_cron() {
   log "Removed own crontab entry ($CRON_MARKER)."
 }
 
+share_to_linkedin() {
+  # $1 = slug. Best-effort, same discipline as notify(): a LinkedIn outage
+  # or API error must never be treated as the blog deploy itself failing --
+  # the post is already live on the site regardless of whether this step
+  # works. See scripts/linkedin-share-post.mjs's own header for the
+  # credentials/flow this depends on.
+  if [ ! -f "$REPO/scripts/linkedin-share-post.mjs" ]; then
+    log "WARNING: linkedin-share-post.mjs not found, skipping LinkedIn share."
+    return
+  fi
+  ( cd "$REPO" && node scripts/linkedin-share-post.mjs "$1" ) >> "$LOG" 2>&1 \
+    || log "WARNING: LinkedIn share failed (blog deploy result above still stands)."
+}
+
 cd "$REPO" || { log "FATAL: cannot cd to $REPO"; exit 1; }
 
 log "=== Starting scheduled deploy (claude-assisted v2): commit=$COMMIT slug=$SLUG ==="
@@ -143,6 +157,7 @@ elif printf '%s\n' "$LAST_LINE" | grep -q '^DEPLOY_SUCCESS:'; then
   log "SUCCESS: $LAST_LINE"
   notify "XGRC blog deployed: $SLUG" \
     "<p>The scheduled blog post is now live: <a href=\"https://www.xgrcsoftware.com/insights/$SLUG\">https://www.xgrcsoftware.com/insights/$SLUG</a></p>"
+  share_to_linkedin "$SLUG"
 else
   log "FAILED or unclear result: $LAST_LINE"
   notify "XGRC blog deploy FAILED: $SLUG" \
