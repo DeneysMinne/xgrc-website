@@ -156,6 +156,20 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.08.27",
+      "date": "2026-08-27",
+      "category": "improved",
+      "title": "Audit Trail: KPI row, actor/date filters, and CSV export",
+      "description": "The Audit Trail now opens with a KPI row (events on record, events today, SLA breaches, most active actor), adds actor and date-range filters alongside the existing entity-type filter, and can export the current page to CSV. Click an actor's name or the most-active-actor tile to filter the trail to just their events."
+    },
+    {
+      "version": "2026.08.27",
+      "date": "2026-08-27",
+      "category": "new",
+      "title": "My Profile: track your own XLOGIC journey",
+      "description": "A new personal profile screen shows badges for the first time you did something governance-relevant - imported a policy, gave an approval, filed an attestation, proposed a process, or decided a requirement. Each badge and its count is computed live from your own activity, distinct from the tenant-wide progress on \"How XLOGIC works\". Find it under Overview > My Profile."
+    },
+    {
       "version": "2026-08-23",
       "date": "2026-08-23",
       "category": "improved",
@@ -166,8 +180,8 @@ export const whatsNew = {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
-      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
+      "title": "Default Lane Groups to get you started",
+      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
     },
     {
       "version": "2026-08-20",
@@ -180,8 +194,8 @@ export const whatsNew = {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Default Lane Groups to get you started",
-      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
+      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
+      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
     },
     {
       "version": "2026-08-20",
