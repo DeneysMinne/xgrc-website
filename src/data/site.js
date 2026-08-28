@@ -1220,6 +1220,14 @@ export const articles = [
     date: '2026-09-23',
     relatedSolutions: ['envirx'],
   },
+  {
+    slug: 'hidden-cost-management-systems-silos',
+    title: 'The Hidden Cost of Running Management Systems in Silos',
+    excerpt: 'Fragmented management systems don\'t fail outright, they just get expensive: duplicated documents, repeated audits and manually consolidated reports become ordinary day-to-day work. Here\'s where that hidden cost comes from, and how integration removes it.',
+    category: 'GRC',
+    date: '2026-09-30',
+    relatedSolutions: ['msx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1371,6 +1379,13 @@ export const articleFaqs = {
     { q: 'Why is environmental visibility important?', a: 'Environmental visibility helps organisations understand obligations, risks, controls, actions and performance across operations. This allows management to identify emerging issues earlier and respond before they develop into more significant organisational risks.' },
     { q: 'How can organisations improve environmental governance?', a: 'Organisations can improve environmental governance by centralising environmental information, establishing clear accountability, connecting environmental risks with actions and controls, improving traceability and integrating environmental information into broader governance processes.' },
     { q: 'What is ENVIRX®?', a: 'ENVIRX® by XGRC® Software supports structured environmental governance within the wider XGRC® Platform, helping organisations connect environmental information with responsibilities, actions, risks and governance processes.' },
+  ],
+  'hidden-cost-management-systems-silos': [
+    { q: 'What is an Integrated Management System?', a: 'An Integrated Management System brings the requirements of multiple management standards into one coordinated environment, so common processes are managed consistently rather than independently.' },
+    { q: 'Why do management systems become fragmented?', a: 'Fragmentation usually builds up gradually, as different departments introduce their own spreadsheets, document repositories, audit processes, action trackers and one-off systems to meet individual requirements.' },
+    { q: 'What are the hidden costs of siloed management systems?', a: 'Fragmented systems increase administrative effort through duplicated processes, repeated information requests, version reconciliation, report consolidation, action follow-ups and manual audit preparation, work that adds up even though it rarely appears as a distinct line item.' },
+    { q: 'What are the benefits of integrating management systems?', a: 'Integration reduces unnecessary duplication, establishes more consistent controls, strengthens accountability, improves traceability and gives management a more consolidated view of organisational performance.' },
+    { q: 'What is MSX®?', a: 'MSX® by XGRC® Software provides an integrated environment for managing multiple management-system requirements through a more consistent structure. It operates within the XGRC® Platform and is powered by XLOGIC® Executable Governance Architecture.' },
   ],
 };
 
