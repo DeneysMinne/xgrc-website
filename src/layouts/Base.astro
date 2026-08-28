@@ -145,6 +145,23 @@ const orgSchema = JSON.stringify({
         }
       }
     </script>
+    <!-- A full-page load to a URL with a #hash (e.g. a resource card linking
+         to /use-cases/x/#resource) fights with `scroll-behavior: smooth`
+         (global.css): the browser's native scroll-to-fragment animates while
+         fonts/images below the target are still loading and shifting page
+         height mid-scroll, which can overshoot well past the target — as far
+         as the bottom of the page on a long one. Disable smooth scrolling for
+         that initial jump, then land on the target for real once everything
+         has settled; re-enable smooth scrolling for subsequent in-page clicks. -->
+    <script>
+      if (location.hash) {
+        document.documentElement.classList.add('no-smooth-scroll');
+        window.addEventListener('load', () => {
+          document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: 'start' });
+          document.documentElement.classList.remove('no-smooth-scroll');
+        });
+      }
+    </script>
   </head>
   <body>
     {mdURL && (
