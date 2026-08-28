@@ -1196,6 +1196,14 @@ export const articles = [
     date: '2026-09-02',
     relatedSolutions: ['maia'],
   },
+  {
+    slug: 'why-sheq-incidents-are-often-a-data-problem',
+    title: 'Why SHEQ Incidents Are Often a Data Problem',
+    excerpt: 'Fragmented SHEQ information, scattered across inspections, near misses and corrective action logs, can hide the patterns that signal a serious incident is developing.',
+    category: 'SHEQ',
+    date: '2026-09-09',
+    relatedSolutions: ['sheqx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1326,6 +1334,13 @@ export const articleFaqs = {
     { q: 'What is governed AI?', a: 'Governed AI is the use of artificial intelligence within defined organisational controls, responsibilities and oversight mechanisms, rather than providing unrestricted access to AI capabilities.' },
     { q: 'What is M.A.I.A.®?', a: 'M.A.I.A.® represents XGRC®\'s approach to bringing artificial intelligence into a governed enterprise environment, where intelligence operates within structured organisational controls.' },
     { q: 'How does XLOGIC® support AI governance?', a: 'XLOGIC® Executable Governance Architecture works alongside the XGRC® Platform and M.A.I.A.® to support the broader objective of making AI activity more controlled, accountable and traceable.' },
+  ],
+  'why-sheq-incidents-are-often-a-data-problem': [
+    { q: 'What is SHEQ management?', a: 'SHEQ management refers to the structured management of safety, health, environmental and quality processes across an organisation, including incidents, inspections, risks, corrective actions, audits and compliance requirements.' },
+    { q: 'Why is SHEQ data visibility important?', a: 'SHEQ data visibility helps organisations identify relationships between incidents, near misses, inspections, findings, risks and corrective actions. Greater visibility can help management recognise emerging patterns and intervene earlier.' },
+    { q: 'How can fragmented SHEQ data increase risk?', a: 'When SHEQ information is managed across separate systems or processes, related events may not be recognised as part of the same trend. This can make emerging operational risks more difficult to identify.' },
+    { q: 'Why are corrective actions important in SHEQ management?', a: 'Corrective actions provide a structured response to identified weaknesses or issues. Clear ownership, deadlines and evidence help organisations ensure that identified risks are addressed rather than simply recorded.' },
+    { q: 'What is SHEQX®?', a: 'SHEQX® by XGRC® Software provides a structured environment for bringing SHEQ processes, information, responsibilities and actions together. Powered by the XGRC® Platform and XLOGIC® Executable Governance Architecture, it supports structured, controlled and auditable SHEQ workflows.' },
   ],
 };
 
