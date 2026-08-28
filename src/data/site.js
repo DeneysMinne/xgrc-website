@@ -1204,6 +1204,14 @@ export const articles = [
     date: '2026-09-09',
     relatedSolutions: ['sheqx'],
   },
+  {
+    slug: 'can-your-organisation-prove-it-is-compliant-right-now',
+    title: 'Can Your Organisation Prove It Is Compliant Right Now?',
+    excerpt: 'Knowing that compliance activities are happening isn\'t the same as being able to prove it. Here\'s why connected compliance management, with centralised evidence and continuous visibility, is becoming essential for audits and oversight.',
+    category: 'Compliance Hub',
+    date: '2026-09-16',
+    relatedSolutions: ['compliance-hub'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1341,6 +1349,13 @@ export const articleFaqs = {
     { q: 'How can fragmented SHEQ data increase risk?', a: 'When SHEQ information is managed across separate systems or processes, related events may not be recognised as part of the same trend. This can make emerging operational risks more difficult to identify.' },
     { q: 'Why are corrective actions important in SHEQ management?', a: 'Corrective actions provide a structured response to identified weaknesses or issues. Clear ownership, deadlines and evidence help organisations ensure that identified risks are addressed rather than simply recorded.' },
     { q: 'What is SHEQX®?', a: 'SHEQX® by XGRC® Software provides a structured environment for bringing SHEQ processes, information, responsibilities and actions together. Powered by the XGRC® Platform and XLOGIC® Executable Governance Architecture, it supports structured, controlled and auditable SHEQ workflows.' },
+  ],
+  'can-your-organisation-prove-it-is-compliant-right-now': [
+    { q: 'What is demonstrable compliance?', a: 'Demonstrable compliance means an organisation can provide clear evidence showing how applicable obligations have been identified, assigned, addressed, monitored and supported by appropriate records.' },
+    { q: 'Why is compliance evidence important?', a: 'Compliance evidence allows organisations to demonstrate that required activities and controls have actually been implemented, and it supports audits, regulatory reviews, management oversight and organisational accountability.' },
+    { q: 'What is continuous compliance visibility?', a: 'Continuous compliance visibility means maintaining an ongoing view of obligations, responsible owners, compliance status, evidence, actions and outstanding requirements, rather than assembling this information only during periodic reviews.' },
+    { q: 'How can organisations improve compliance visibility?', a: 'Organisations can improve visibility by centralising compliance information, assigning clear ownership, connecting obligations with evidence and actions, monitoring compliance status and using structured governance workflows.' },
+    { q: 'What is XGRC® Compliance Hub?', a: 'Compliance Hub by XGRC® provides a structured environment for managing compliance obligations, accountability, evidence and status while supporting greater traceability across the organisation.' },
   ],
 };
 
