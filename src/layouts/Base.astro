@@ -73,18 +73,19 @@ const orgSchema = JSON.stringify({
     <meta name="twitter:image" content={ogImageURL} />
     <script type="application/ld+json" set:html={orgSchema} />
 
-    <!-- Google Analytics (GA4) + Google Ads conversion tracking — only fires on the
-         real production domain, so staging traffic and local testing never pollute
+    <!-- Google Analytics (GA4) + Google Ads conversion tracking, gated to the
+         real production domain so staging/local traffic never pollutes
          production data or ad conversion counts.
 
-         GA4 ID was replaced 2026-08-07: the original (G-XKBDKND5LZ) turned out to be
-         one of two destinations silently fanned out from a shared "Google tag"
-         (GT-NF7MFM6V) that never finished initializing for EITHER destination —
-         confirmed via a clean headless-browser test with zero cookies/extensions.
-         G-VLKD6CDZND is a fresh, standalone property not linked into that shared tag.
-         Also loading GA4 and Ads as two INDEPENDENT Google tags (separate script tags,
-         separate config calls) rather than one riding on the other's loader, so a
-         problem with one destination's container can't stall the other. -->
+         Fixed 2026-08-28: a live network probe confirmed the previous version
+         (which loaded gtag.js twice, once per destination, against one shared
+         dataLayer) was silently dropping every hit for both destinations,
+         gtag initialised but /g/collect never fired. This loads gtag.js once
+         and configures both destinations against it, matching Google's
+         documented pattern. GA4 ID G-VLKD6CDZND replaced G-XKBDKND5LZ on
+         2026-08-07 after that earlier ID turned out to be fanned out from a
+         stuck shared "Google tag" container, see git history for that
+         incident if useful, not repeated here. -->
     <script>
       const GA_MEASUREMENT_ID = 'G-VLKD6CDZND';
       const ADS_CONVERSION_ID = 'AW-744549022';
@@ -94,7 +95,7 @@ const orgSchema = JSON.stringify({
         function gtag(...args) { window.dataLayer.push(args); }
         window.gtag = gtag;
         // No cookie-consent banner on this site yet, so grant default consent
-        // explicitly — otherwise gtag.js silently withholds every hit pending
+        // explicitly, otherwise gtag.js silently withholds every hit pending
         // a consent signal that never arrives, and nothing ever reaches GA4/Ads.
         gtag('consent', 'default', {
           ad_storage: 'granted',
@@ -103,14 +104,13 @@ const orgSchema = JSON.stringify({
           ad_personalization: 'granted',
         });
         gtag('js', new Date());
+        gtag('config', GA_MEASUREMENT_ID);
+        gtag('config', ADS_CONVERSION_ID);
 
-        for (const id of [GA_MEASUREMENT_ID, ADS_CONVERSION_ID]) {
-          const tag = document.createElement('script');
-          tag.async = true;
-          tag.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
-          document.head.appendChild(tag);
-          gtag('config', id);
-        }
+        const tag = document.createElement('script');
+        tag.async = true;
+        tag.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+        document.head.appendChild(tag);
       }
     </script>
 
