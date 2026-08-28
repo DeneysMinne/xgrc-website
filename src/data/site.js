@@ -1212,6 +1212,14 @@ export const articles = [
     date: '2026-09-16',
     relatedSolutions: ['compliance-hub'],
   },
+  {
+    slug: 'environmental-risk-is-becoming-enterprise-risk',
+    title: 'Environmental Risk Is Becoming an Enterprise Risk',
+    excerpt: 'Environmental incidents, permits and resource risks increasingly ripple into operations, finance and reputation. Connected environmental governance gives management the visibility to catch these risks before they escalate.',
+    category: 'Environment',
+    date: '2026-09-23',
+    relatedSolutions: ['envirx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1356,6 +1364,13 @@ export const articleFaqs = {
     { q: 'What is continuous compliance visibility?', a: 'Continuous compliance visibility means maintaining an ongoing view of obligations, responsible owners, compliance status, evidence, actions and outstanding requirements, rather than assembling this information only during periodic reviews.' },
     { q: 'How can organisations improve compliance visibility?', a: 'Organisations can improve visibility by centralising compliance information, assigning clear ownership, connecting obligations with evidence and actions, monitoring compliance status and using structured governance workflows.' },
     { q: 'What is XGRC® Compliance Hub?', a: 'Compliance Hub by XGRC® provides a structured environment for managing compliance obligations, accountability, evidence and status while supporting greater traceability across the organisation.' },
+  ],
+  'environmental-risk-is-becoming-enterprise-risk': [
+    { q: 'What is environmental risk management?', a: 'Environmental risk management is the process of identifying, assessing, monitoring and managing environmental risks that may affect an organisation\'s operations, compliance obligations, performance and wider business objectives.' },
+    { q: 'Why is environmental risk becoming an enterprise risk?', a: 'Environmental issues can affect areas beyond environmental compliance, including operational continuity, financial performance, regulatory exposure, stakeholder confidence and organisational resilience.' },
+    { q: 'Why is environmental visibility important?', a: 'Environmental visibility helps organisations understand obligations, risks, controls, actions and performance across operations. This allows management to identify emerging issues earlier and respond before they develop into more significant organisational risks.' },
+    { q: 'How can organisations improve environmental governance?', a: 'Organisations can improve environmental governance by centralising environmental information, establishing clear accountability, connecting environmental risks with actions and controls, improving traceability and integrating environmental information into broader governance processes.' },
+    { q: 'What is ENVIRX®?', a: 'ENVIRX® by XGRC® Software supports structured environmental governance within the wider XGRC® Platform, helping organisations connect environmental information with responsibilities, actions, risks and governance processes.' },
   ],
 };
 
