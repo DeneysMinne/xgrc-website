@@ -75,17 +75,13 @@ const orgSchema = JSON.stringify({
 
     <!-- Google Analytics (GA4) + Google Ads conversion tracking, gated to the
          real production domain so staging/local traffic never pollutes
-         production data or ad conversion counts.
-
-         Fixed 2026-08-28: a live network probe confirmed the previous version
-         (which loaded gtag.js twice, once per destination, against one shared
-         dataLayer) was silently dropping every hit for both destinations,
-         gtag initialised but /g/collect never fired. This loads gtag.js once
-         and configures both destinations against it, matching Google's
-         documented pattern. GA4 ID G-VLKD6CDZND replaced G-XKBDKND5LZ on
-         2026-08-07 after that earlier ID turned out to be fanned out from a
-         stuck shared "Google tag" container, see git history for that
-         incident if useful, not repeated here. -->
+         production data or ad conversion counts. See git history for the
+         incident notes behind this setup, not repeated here deliberately:
+         Google's site tag detection appears to scan raw page source rather
+         than executed JavaScript, so a prior version of this comment that
+         spelled out old, retired measurement/tag IDs as plain text was
+         still being reported by Google as "the tag installed on this site"
+         weeks after those IDs were replaced in the actual running code. -->
     <script>
       const GA_MEASUREMENT_ID = 'G-VLKD6CDZND';
       const ADS_CONVERSION_ID = 'AW-744549022';
