@@ -1188,6 +1188,14 @@ export const articles = [
     image: 'future-of-compliance-strategic-business-asset.jpg',
     relatedSolutions: ['erm', 'msx'],
   },
+  {
+    slug: 'ai-governance-gap-enterprise-ai-risk',
+    title: 'The AI Governance Gap: When Adoption Outpaces Control',
+    excerpt: 'AI is spreading through organisations faster than the policies, oversight and audit trails meant to control it. This piece looks at why that gap is the real enterprise AI risk, and what closing it actually requires.',
+    category: 'AI & Governance',
+    date: '2026-09-02',
+    relatedSolutions: ['maia'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1310,6 +1318,14 @@ export const articleFaqs = {
     { q: 'What is the future of compliance?', a: 'The future of compliance is moving beyond regulatory obligations toward a connected governance approach that supports business resilience, executive decision-making, accountability, and long-term organisational performance, rather than compliance operating as an isolated function.' },
     { q: 'Why is compliance becoming a strategic business asset?', a: 'Compliance provides valuable governance insight that helps organisations manage risk, improve visibility, strengthen stakeholder trust, and make better business decisions, creating measurable business value beyond regulatory compliance alone.' },
     { q: 'How can organisations prepare for the future of compliance?', a: 'Organisations can prepare by integrating compliance with governance and risk management, improving enterprise-wide visibility, strengthening accountability, automating compliance processes, and adopting a connected governance platform.' },
+  ],
+  'ai-governance-gap-enterprise-ai-risk': [
+    { q: 'What is AI governance?', a: 'AI governance refers to the policies, responsibilities, controls and oversight mechanisms organisations use to manage artificial intelligence responsibly within their business environment.' },
+    { q: 'What is the AI governance gap?', a: 'The AI governance gap occurs when organisational adoption of AI develops faster than the governance structures required to control, monitor and oversee its use.' },
+    { q: 'Why is AI governance important?', a: 'AI governance helps organisations maintain accountability, manage access, protect organisational information, introduce appropriate human oversight and improve the traceability of AI-supported activities.' },
+    { q: 'What is governed AI?', a: 'Governed AI is the use of artificial intelligence within defined organisational controls, responsibilities and oversight mechanisms, rather than providing unrestricted access to AI capabilities.' },
+    { q: 'What is M.A.I.A.®?', a: 'M.A.I.A.® represents XGRC®\'s approach to bringing artificial intelligence into a governed enterprise environment, where intelligence operates within structured organisational controls.' },
+    { q: 'How does XLOGIC® support AI governance?', a: 'XLOGIC® Executable Governance Architecture works alongside the XGRC® Platform and M.A.I.A.® to support the broader objective of making AI activity more controlled, accountable and traceable.' },
   ],
 };
 
