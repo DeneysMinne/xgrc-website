@@ -1,0 +1,93 @@
+{
+  "slug": "ai-change-management-checklist",
+  "title": "AI Change Management Checklist",
+  "subtitle": "A practical checklist for governing the introduction of a new AI feature, tool, or capability through change management",
+  "isoTags": ["ISO 42001", "AI Governance", "Change Management", "Data Privacy", "Information Security"],
+  "intro": "Introducing a new AI feature carries risks that a standard IT change request does not capture — data exposure, unreliable output, and unclear accountability for automated decisions. This checklist sets out a practical sequence for assessing and approving an AI-related change before it goes live.",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Scope, Ownership & Risk Classification",
+      "items": [
+        "Describe the AI feature, its purpose, and its intended business benefit",
+        "Obtain business owner / product owner approval for the requirement",
+        "Identify the system owner / technical owner accountable for the change",
+        "Confirm the change type and risk rating, for example normal, major, or high-risk"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "AI Use Case & Business Impact",
+      "items": [
+        "Define the AI use case, for example chatbot, search, summarisation, recommendations, document generation, analytics, or decision support",
+        "Confirm whether the AI output is advisory only or whether it triggers automated actions",
+        "Assess the impact on users, business processes, workflows, and existing controls",
+        "Assess the impact on financial, HR, legal, procurement, customer, or compliance decisions"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Data Privacy & Data Flow",
+      "items": [
+        "Complete a privacy / data protection assessment for the change",
+        "Confirm whether personal, confidential, or sensitive information will be processed by the AI feature",
+        "Document the data flow, including what data is sent to the AI service, where it is processed, and where it is stored",
+        "Confirm with the vendor whether organisational data, prompts, uploads, or outputs will be used to train AI models",
+        "Confirm the hosting location, cloud region, and any cross-border data transfer"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Vendor & Security Review",
+      "items": [
+        "Review the AI vendor's terms, privacy policy, data processing agreement, and SLA",
+        "Have Information Security review the AI feature and its integration",
+        "Confirm authentication, SSO, MFA, and role-based access controls are in place",
+        "Confirm API keys, tokens, and secrets are securely managed",
+        "Confirm data is encrypted in transit and at rest"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Testing & Assurance",
+      "items": [
+        "Test the AI feature for accuracy, hallucinations, inappropriate outputs, and bias",
+        "Confirm testing shows users cannot access unauthorised data through AI prompts or responses",
+        "Complete UAT and obtain sign-off from business users",
+        "Review and approve the updated architecture / integration design"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Operational Readiness",
+      "items": [
+        "Assess the performance, capacity, licensing, and cost impact of the change",
+        "Confirm a clear support model for incidents, incorrect AI outputs, and user queries",
+        "Brief the service desk / support team on the change"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "User Communication & Safeguards",
+      "items": [
+        "Prepare user communication and training, including do's and don'ts for using the AI feature",
+        "Warn users not to enter confidential, personal, or restricted data unless formally approved",
+        "Provide a clear disclaimer that AI outputs must be reviewed and should not be treated as final decisions"
+      ]
+    },
+    {
+      "letter": "H",
+      "title": "Rollout, Rollback & Post-Implementation Monitoring",
+      "items": [
+        "Confirm the AI feature can be disabled quickly through a feature toggle or configuration setting",
+        "Document and, where possible, test a rollback / backout plan",
+        "Consider a pilot or phased rollout before full implementation",
+        "Check the go-live date against business-critical periods, month-end, year-end, or system freeze periods",
+        "Agree a post-implementation review date",
+        "Monitor usage, incidents, costs, accuracy issues, and user feedback after go-live"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

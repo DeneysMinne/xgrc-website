@@ -74,6 +74,9 @@ for (const entry of useCaseRegistry) {
     if (!r.title || !r.checklistSlug || !r.pdfPath) {
       errors.push(`${id}: resource is missing title/checklistSlug/pdfPath`);
     }
+    if (!r.dateAdded) {
+      warnings.push(`${id}: resource has no dateAdded — it will sort last on /resources`);
+    }
     if (r.pdfPath) {
       const pdfFile = path.join(ROOT, 'public', r.pdfPath.replace(/^\//, ''));
       if (!existsSync(pdfFile)) {
