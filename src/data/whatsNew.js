@@ -156,6 +156,13 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.09.03",
+      "date": "2026-09-03",
+      "category": "new",
+      "title": "Process canvas: wider lanes, and connectors you can point where you want",
+      "description": "Two things the canvas would not let you do. Lanes are now resizable: drag the tab on any lane boundary and every lane widens or narrows together, saved against that process and remembered. And a connector no longer has to accept the automatic routing - select it, choose Connection points, and pin which side it leaves the first step from and which side it enters the next one at. Either end can stay on Automatic, so you can straighten one awkward arrow without taking over the rest."
+    },
+    {
       "version": "2026.09.02",
       "date": "2026-09-02",
       "category": "fixed",
@@ -228,13 +235,6 @@ export const whatsNew = {
     {
       "version": "2026-08-20",
       "date": "2026-08-20",
-      "category": "fixed",
-      "title": "Clearer explanation when you lack permission for an action",
-      "description": "A permission error used to show a bare technical code with no explanation. It now says what the action needs in plain English, and names which role(s) in your tenant can actually do it - so you know exactly who to ask."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
       "category": "improved",
       "title": "Processes: status badges now explain what they mean",
       "description": "DRAFT, APPROVED, RETIRED, RUNNING, COMPLETED and CANCELLED status badges on the Processes screen now show a one-line explanation of what the status means and what to do next, on hover."
@@ -259,6 +259,13 @@ export const whatsNew = {
       "category": "new",
       "title": "Default Lane Groups to get you started",
       "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "fixed",
+      "title": "Clearer explanation when you lack permission for an action",
+      "description": "A permission error used to show a bare technical code with no explanation. It now says what the action needs in plain English, and names which role(s) in your tenant can actually do it - so you know exactly who to ask."
     },
     {
       "version": "2026-08-20",
