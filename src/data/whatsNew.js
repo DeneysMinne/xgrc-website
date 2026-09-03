@@ -158,6 +158,13 @@ export const whatsNew = {
     {
       "version": "2026.09.03",
       "date": "2026-09-03",
+      "category": "new",
+      "title": "A step's SLA can be a fixed deadline date, not only a duration",
+      "description": "An SLA target used to have one shape: a number of hours counted from the moment a step's task is created. That is right for \"respond within 24 hours\", but not for work whose deadline is a date in the calendar - a regulatory submission due 30 November, a review that must be tabled before a dated meeting. Authoring a step now offers both: \"Within a period\" (hours or days, as before) or \"By a date\", with a date picker. A step carries one or the other, never both, and a fixed date is refused on a recurring step because one date cannot be the deadline for every occurrence. Whichever you choose becomes the task's real due date, so overdue counts, SLA breach escalation and the Worklist's soonest-first ordering all work exactly as they already did. The deadline also travels into exported process documents, process templates and the ownership report, and MAIA can set one when it drafts a process for you."
+    },
+    {
+      "version": "2026.09.03",
+      "date": "2026-09-03",
       "category": "improved",
       "title": "Search connectors and stored procedures",
       "description": "One XGRC Awesome API credential creates one connector per stored procedure, so the Connectors list grows quickly and had no way to search it. There is now a search box that matches connector name, stored procedure, endpoint and type. Editing a connector also offers the same searchable stored-procedure list the add form does, instead of asking you to type the name from memory."
@@ -291,20 +298,6 @@ export const whatsNew = {
     {
       "version": "2026-08-20",
       "date": "2026-08-20",
-      "category": "improved",
-      "title": "Processes: status badges now explain what they mean",
-      "description": "DRAFT, APPROVED, RETIRED, RUNNING, COMPLETED and CANCELLED status badges on the Processes screen now show a one-line explanation of what the status means and what to do next, on hover."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
-      "category": "new",
-      "title": "Process Templates: preview a template before applying it, and ten to choose from",
-      "description": "Every template card now has a Preview button showing its real step-by-step shape (owners, evidence, cadence, SLA) before you commit to it. The catalog also grew from 2 templates to 10: task-with-escalation, evidence-gated release, decision-routed review, two-stage sign-off, incident response, change request lifecycle, third-party risk assessment, and recurring training completion, alongside the original approval-with-evidence and periodic-review-with-escalation."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
       "category": "new",
       "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
       "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
@@ -322,6 +315,20 @@ export const whatsNew = {
       "category": "fixed",
       "title": "Clearer explanation when you lack permission for an action",
       "description": "A permission error used to show a bare technical code with no explanation. It now says what the action needs in plain English, and names which role(s) in your tenant can actually do it - so you know exactly who to ask."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "new",
+      "title": "Process Templates: preview a template before applying it, and ten to choose from",
+      "description": "Every template card now has a Preview button showing its real step-by-step shape (owners, evidence, cadence, SLA) before you commit to it. The catalog also grew from 2 templates to 10: task-with-escalation, evidence-gated release, decision-routed review, two-stage sign-off, incident response, change request lifecycle, third-party risk assessment, and recurring training completion, alongside the original approval-with-evidence and periodic-review-with-escalation."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "improved",
+      "title": "Processes: status badges now explain what they mean",
+      "description": "DRAFT, APPROVED, RETIRED, RUNNING, COMPLETED and CANCELLED status badges on the Processes screen now show a one-line explanation of what the status means and what to do next, on hover."
     },
     {
       "version": "2026-08-20",
