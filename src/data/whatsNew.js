@@ -158,6 +158,13 @@ export const whatsNew = {
     {
       "version": "2026.09.03",
       "date": "2026-09-03",
+      "category": "improved",
+      "title": "The Process Canvas has a new, tidier toolset",
+      "description": "The canvas toolbar used to be twenty-odd buttons wrapped across three rows, with tools for the selected connection appearing and disappearing in the middle of them. It is now organised the way design tools like Canva organise theirs. The header holds only what applies to the whole process: Present, Comments, warnings, Share (export a document, or the ownership report) and a menu for Journey and templates. The left rail has two tabs, Build (the step palette) and Ask MAIA. Undo, Tidy up, Recenter and the orientation flip float top-left inside the canvas. Select a step or a connection and its own tools appear in one bar along the top of the canvas; the tiny icons on every card are gone, and double-clicking a card edits it. Zoom, fit-to-screen and a lock sit bottom-right, and nowhere else. Positions now save themselves a moment after you stop dragging, with Saving and Saved shown in the header - there is no Save layout button to remember. Also fixed: Insert step here opened a form that could not be completed without typing an SLA by hand; choosing a step type now fills its defaults."
+    },
+    {
+      "version": "2026.09.03",
+      "date": "2026-09-03",
       "category": "new",
       "title": "A step's SLA can be a fixed deadline date, not only a duration",
       "description": "An SLA target used to have one shape: a number of hours counted from the moment a step's task is created. That is right for \"respond within 24 hours\", but not for work whose deadline is a date in the calendar - a regulatory submission due 30 November, a review that must be tabled before a dated meeting. Authoring a step now offers both: \"Within a period\" (hours or days, as before) or \"By a date\", with a date picker. A step carries one or the other, never both, and a fixed date is refused on a recurring step because one date cannot be the deadline for every occurrence. Whichever you choose becomes the task's real due date, so overdue counts, SLA breach escalation and the Worklist's soonest-first ordering all work exactly as they already did. The deadline also travels into exported process documents, process templates and the ownership report, and MAIA can set one when it drafts a process for you."
