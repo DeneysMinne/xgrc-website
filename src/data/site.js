@@ -1194,6 +1194,7 @@ export const articles = [
     excerpt: 'AI is spreading through organisations faster than the policies, oversight and audit trails meant to control it. This piece looks at why that gap is the real enterprise AI risk, and what closing it actually requires.',
     category: 'AI & Governance',
     date: '2026-09-02',
+    image: 'ai-governance-gap-enterprise-ai-risk.jpg',
     relatedSolutions: ['maia'],
   },
 ];

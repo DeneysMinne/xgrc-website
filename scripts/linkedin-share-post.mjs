@@ -182,7 +182,29 @@ async function postToTarget({ label, accessToken, authorUrn, article, articleUrl
     try {
       thumbnailUrn = await uploadImage(accessToken, authorUrn, imagePath)
     } catch (err) {
-      console.error(`[${label}] Could not upload thumbnail image (${imagePath}), posting without one: ${err.message}`)
+      console.error(`ALERT: [${label}] Could not upload thumbnail image (${imagePath}), posting without one: ${err.message}`)
+    }
+  } else {
+    // article.image is how src/data/site.js opts an article into a thumbnail.
+    // src/pages/insights/[slug].astro already falls back to `${slug}.jpg`
+    // for the on-site hero when image: isn't set, so an omitted field never
+    // breaks the site itself -- but this script had no equivalent fallback,
+    // so the exact same omission silently produced a thumbnail-less LinkedIn
+    // post (confirmed live 2026-09-02, ai-governance-gap-enterprise-ai-risk:
+    // the file existed in IMAGES_DIR the whole time). Mirror the astro
+    // fallback here, across the same extensions the site's images actually
+    // use, so a missing field degrades nothing -- then still alert, since
+    // article.image should be set explicitly and this masks that it wasn't.
+    const candidate = ['jpg', 'jpeg', 'png', 'webp']
+      .map((ext) => `${article.slug}.${ext}`)
+      .find((name) => fs.existsSync(path.join(IMAGES_DIR, name)))
+    if (candidate) {
+      console.error(`ALERT: [${label}] "${article.slug}" has no image: set in src/data/site.js, but ${candidate} exists in ${IMAGES_DIR} -- used it as a fallback thumbnail. Add image: '${candidate}' to its entry so this isn't relying on a fallback.`)
+      try {
+        thumbnailUrn = await uploadImage(accessToken, authorUrn, path.join(IMAGES_DIR, candidate))
+      } catch (err) {
+        console.error(`ALERT: [${label}] Could not upload fallback thumbnail image (${candidate}), posting without one: ${err.message}`)
+      }
     }
   }
 
@@ -243,7 +265,7 @@ async function main() {
     if (result.status === 'fulfilled') {
       anySucceeded = true
     } else {
-      console.error(`[${targets[i].label}] LinkedIn share failed: ${result.reason?.message ?? result.reason}`)
+      console.error(`ALERT: [${targets[i].label}] LinkedIn share failed: ${result.reason?.message ?? result.reason}`)
     }
   })
 

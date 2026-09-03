@@ -68,12 +68,32 @@ share_to_linkedin() {
   # the post is already live on the site regardless of whether this step
   # works. See scripts/linkedin-share-post.mjs's own header for the
   # credentials/flow this depends on.
+  #
+  # linkedin-share-post.mjs only exits non-zero if EVERY target failed, by
+  # design -- one target's outage must never look like the whole share
+  # failed. That meant a single dead credential (e.g. a revoked personal
+  # refresh token) could sit broken for weeks with only a line in a log
+  # file nobody checks day to day (see the ai-governance-gap-enterprise-ai-risk
+  # incident, 2026-09-02: personal share silently failed while org share
+  # "succeeded", so nothing ever surfaced it). The script marks anything
+  # worth a human's attention with an "ALERT:" line regardless of overall
+  # exit code -- grep for that instead of relying on the exit code alone.
   if [ ! -f "$REPO/scripts/linkedin-share-post.mjs" ]; then
     log "WARNING: linkedin-share-post.mjs not found, skipping LinkedIn share."
     return
   fi
-  ( cd "$REPO" && node scripts/linkedin-share-post.mjs "$1" ) >> "$LOG" 2>&1 \
-    || log "WARNING: LinkedIn share failed (blog deploy result above still stands)."
+  local li_output
+  li_output=$( cd "$REPO" && node scripts/linkedin-share-post.mjs "$1" 2>&1 )
+  printf '%s\n' "$li_output" >> "$LOG"
+  local alerts
+  alerts=$(printf '%s\n' "$li_output" | grep '^ALERT:')
+  if [ -n "$alerts" ]; then
+    log "WARNING: LinkedIn share for $1 needs attention -- see ALERT lines above."
+    local alerts_html
+    alerts_html=$(printf '%s\n' "$alerts" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')
+    notify "XGRC blog: LinkedIn share problem for $1" \
+      "<p>The blog post <strong>$1</strong> deployed fine, but LinkedIn sharing hit a problem:</p><pre>$alerts_html</pre><p>Full log: $LOG</p>"
+  fi
 }
 
 cd "$REPO" || { log "FATAL: cannot cd to $REPO"; exit 1; }
