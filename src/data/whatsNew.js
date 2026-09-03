@@ -158,6 +158,13 @@ export const whatsNew = {
     {
       "version": "2026.09.03",
       "date": "2026-09-03",
+      "category": "new",
+      "title": "Training manuals are downloadable from Help",
+      "description": "Open the Info panel on any screen (the information icon next to the heading) and scroll to Training manuals: two PowerPoint decks with real screenshots, ready to download or present from. The Process Canvas Training Manual walks through building a governed process from scratch and every tool on the canvas; the New Tenant Go-Live Training Manual covers setup, governance, processes, execution, access control and insight for a new tenant. The manual most relevant to the screen you are on is listed first. Both decks are rebuilt with every release, so what you download always matches the product you are using."
+    },
+    {
+      "version": "2026.09.03",
+      "date": "2026-09-03",
       "category": "improved",
       "title": "The Process Canvas has a new, tidier toolset",
       "description": "The canvas toolbar used to be twenty-odd buttons wrapped across three rows, with tools for the selected connection appearing and disappearing in the middle of them. It is now organised the way design tools like Canva organise theirs. The header holds only what applies to the whole process: Present, Comments, warnings, Share (export a document, or the ownership report) and a menu for Journey and templates. The left rail has two tabs, Build (the step palette) and Ask MAIA. Undo, Tidy up, Recenter and the orientation flip float top-left inside the canvas. Select a step or a connection and its own tools appear in one bar along the top of the canvas; the tiny icons on every card are gone, and double-clicking a card edits it. Zoom, fit-to-screen and a lock sit bottom-right, and nowhere else. Positions now save themselves a moment after you stop dragging, with Saving and Saved shown in the header - there is no Save layout button to remember. Also fixed: Insert step here opened a form that could not be completed without typing an SLA by hand; choosing a step type now fills its defaults."
@@ -306,15 +313,15 @@ export const whatsNew = {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
-      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
+      "title": "Default Lane Groups to get you started",
+      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
     },
     {
       "version": "2026-08-20",
       "date": "2026-08-20",
-      "category": "new",
-      "title": "Default Lane Groups to get you started",
-      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
+      "category": "improved",
+      "title": "Processes: status badges now explain what they mean",
+      "description": "DRAFT, APPROVED, RETIRED, RUNNING, COMPLETED and CANCELLED status badges on the Processes screen now show a one-line explanation of what the status means and what to do next, on hover."
     },
     {
       "version": "2026-08-20",
@@ -333,9 +340,9 @@ export const whatsNew = {
     {
       "version": "2026-08-20",
       "date": "2026-08-20",
-      "category": "improved",
-      "title": "Processes: status badges now explain what they mean",
-      "description": "DRAFT, APPROVED, RETIRED, RUNNING, COMPLETED and CANCELLED status badges on the Processes screen now show a one-line explanation of what the status means and what to do next, on hover."
+      "category": "new",
+      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
+      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
     },
     {
       "version": "2026-08-20",
