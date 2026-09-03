@@ -158,6 +158,20 @@ export const whatsNew = {
     {
       "version": "2026.09.03",
       "date": "2026-09-03",
+      "category": "fixed",
+      "title": "The \"Running instances\" tile counts only runs that are actually running",
+      "description": "The tile counted every run the list happened to return, whatever its state, so a cancelled or completed run could still be reported as running. It now counts running instances only, across all of your processes rather than the first page of them, and the Runs tab opens on Running so the number and the list beneath it agree. Choose \"All runs\" for completed and cancelled ones."
+    },
+    {
+      "version": "2026.09.03",
+      "date": "2026-09-03",
+      "category": "improved",
+      "title": "Processes now show which standard they serve",
+      "description": "The Processes screen never said what a process was for. Each definition and each run now shows the standard and clause its requirement cites - for example \"ISO/IEC 42001:2023 AI Management System - 6.1.4\" - with the clause title on hover, and a run also shows the requirement it exists to satisfy. A requirement that cites internal policy rather than an external standard shows a dash rather than a guess."
+    },
+    {
+      "version": "2026.09.03",
+      "date": "2026-09-03",
       "category": "new",
       "title": "Process canvas: wider lanes, and connectors you can point where you want",
       "description": "Two things the canvas would not let you do. Lanes are now resizable: drag the tab on any lane boundary and every lane widens or narrows together, saved against that process and remembered. And a connector no longer has to accept the automatic routing - select it, choose Connection points, and pin which side it leaves the first step from and which side it enters the next one at. Either end can stay on Automatic, so you can straighten one awkward arrow without taking over the rest."
@@ -235,6 +249,13 @@ export const whatsNew = {
     {
       "version": "2026-08-20",
       "date": "2026-08-20",
+      "category": "fixed",
+      "title": "Clearer explanation when you lack permission for an action",
+      "description": "A permission error used to show a bare technical code with no explanation. It now says what the action needs in plain English, and names which role(s) in your tenant can actually do it - so you know exactly who to ask."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
       "category": "improved",
       "title": "Processes: status badges now explain what they mean",
       "description": "DRAFT, APPROVED, RETIRED, RUNNING, COMPLETED and CANCELLED status badges on the Processes screen now show a one-line explanation of what the status means and what to do next, on hover."
@@ -243,8 +264,8 @@ export const whatsNew = {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
-      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
+      "title": "Default Lane Groups to get you started",
+      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
     },
     {
       "version": "2026-08-20",
@@ -257,22 +278,8 @@ export const whatsNew = {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Default Lane Groups to get you started",
-      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
-      "category": "fixed",
-      "title": "Clearer explanation when you lack permission for an action",
-      "description": "A permission error used to show a bare technical code with no explanation. It now says what the action needs in plain English, and names which role(s) in your tenant can actually do it - so you know exactly who to ask."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
-      "category": "new",
-      "title": "Overdue tasks with no Escalation step now email the task owner directly",
-      "description": "Escalation is optional when a process is designed. Where a task breaches its SLA target and has no Escalation step configured, the step's owner role is now emailed the moment the breach is recorded, instead of relying only on Worklist or Cockpit to notice it."
+      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
+      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
     },
     {
       "version": "2026-08-20",
@@ -280,6 +287,13 @@ export const whatsNew = {
       "category": "new",
       "title": "Policy decomposition flags a policy with no approval or decision content",
       "description": "When a policy is decomposed and none of the extracted requirements involve an approval or a risk-tier condition, XLOGIC now raises a review item in Cockpit rather than staying silent. Confirm the policy genuinely has none, or send it back for another look."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "new",
+      "title": "Overdue tasks with no Escalation step now email the task owner directly",
+      "description": "Escalation is optional when a process is designed. Where a task breaches its SLA target and has no Escalation step configured, the step's owner role is now emailed the moment the breach is recorded, instead of relying only on Worklist or Cockpit to notice it."
     },
     {
       "version": "2026-08-20",
