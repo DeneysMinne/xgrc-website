@@ -156,6 +156,55 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.09.02",
+      "date": "2026-09-02",
+      "category": "fixed",
+      "title": "An open tab keeps working across a release",
+      "description": "A tab left open while a new version was released could hit a dead end on its next screen and show an error over work that had in fact succeeded. Previous versions' files are now kept available, and the app recovers by itself if it ever meets one that is missing."
+    },
+    {
+      "version": "2026.09.02",
+      "date": "2026-09-02",
+      "category": "improved",
+      "title": "A user's email address can be corrected",
+      "description": "A mistyped address could only be fixed by deactivating the account and creating another, which lost that person's history. Administrators can now correct it in place from the Users screen: the same person keeps their tasks, approvals and audit trail, any outstanding password-reset link stops working, and the change is recorded with both addresses. Signing in is also no longer case-sensitive."
+    },
+    {
+      "version": "2026.09.02",
+      "date": "2026-09-02",
+      "category": "new",
+      "title": "One email address can sign in to more than one organisation",
+      "description": "If your address has an account in several organisations, signing in now asks which one you want rather than choosing for you. A single account is unaffected: you go straight in as before. Forgotten-password requests now send one link per account, each naming its organisation."
+    },
+    {
+      "version": "2026.09.02",
+      "date": "2026-09-02",
+      "category": "new",
+      "title": "Support access: your provider can help inside your site, without an account in it",
+      "description": "A consultant from your provider can now work in your site under their own name - no user account here, no licensed seat used, and every action recorded in your audit trail against them. They can configure and advise; they cannot approve, attest or complete your work on your behalf. Support access is on by default and you can switch it off at any time on the Organisation Profile, which ends any session in progress immediately. That screen also lists who has had access and when they last used it."
+    },
+    {
+      "version": "2026.08.31",
+      "date": "2026-08-31",
+      "category": "improved",
+      "title": "Step SLAs can be entered in days as well as hours",
+      "description": "A step's SLA target had to be typed in hours, so a two-week deadline meant working out 336. The editor now takes days or hours, converting for you. The stored value is unchanged, so nothing about existing SLAs or escalation moves."
+    },
+    {
+      "version": "2026.08.31",
+      "date": "2026-08-31",
+      "category": "fixed",
+      "title": "Process canvas: undo now covers a newly drawn connection",
+      "description": "Adding a connection could not be undone - Ctrl+Z skipped straight past it to the previous change. Drawing an edge now records a proper undo entry, and the confirmation says so."
+    },
+    {
+      "version": "2026.08.31",
+      "date": "2026-08-31",
+      "category": "fixed",
+      "title": "Process canvas: rewiring an edge to a different step now works",
+      "description": "Dragging an edge's endpoint onto another step reported success but silently created a new edge instead: the drag anchor sits on the same pixel as the destination step's own connection handle, and the handle won every time. Select an edge and use Rewire to pick a new From/To step - it goes through the same, already-correct rewire path the gesture was meant to reach."
+    },
+    {
       "version": "2026.08.27",
       "date": "2026-08-27",
       "category": "improved",
@@ -179,9 +228,23 @@ export const whatsNew = {
     {
       "version": "2026-08-20",
       "date": "2026-08-20",
+      "category": "fixed",
+      "title": "Clearer explanation when you lack permission for an action",
+      "description": "A permission error used to show a bare technical code with no explanation. It now says what the action needs in plain English, and names which role(s) in your tenant can actually do it - so you know exactly who to ask."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "improved",
+      "title": "Processes: status badges now explain what they mean",
+      "description": "DRAFT, APPROVED, RETIRED, RUNNING, COMPLETED and CANCELLED status badges on the Processes screen now show a one-line explanation of what the status means and what to do next, on hover."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
       "category": "new",
-      "title": "Default Lane Groups to get you started",
-      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
+      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
+      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
     },
     {
       "version": "2026-08-20",
@@ -194,22 +257,8 @@ export const whatsNew = {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
-      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
-      "category": "fixed",
-      "title": "Clearer explanation when you lack permission for an action",
-      "description": "A permission error used to show a bare technical code with no explanation. It now says what the action needs in plain English, and names which role(s) in your tenant can actually do it - so you know exactly who to ask."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
-      "category": "improved",
-      "title": "Processes: status badges now explain what they mean",
-      "description": "DRAFT, APPROVED, RETIRED, RUNNING, COMPLETED and CANCELLED status badges on the Processes screen now show a one-line explanation of what the status means and what to do next, on hover."
+      "title": "Default Lane Groups to get you started",
+      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
     },
     {
       "version": "2026-08-20",
