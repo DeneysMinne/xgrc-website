@@ -158,6 +158,48 @@ export const whatsNew = {
     {
       "version": "2026.09.03",
       "date": "2026-09-03",
+      "category": "improved",
+      "title": "Search connectors and stored procedures",
+      "description": "One XGRC Awesome API credential creates one connector per stored procedure, so the Connectors list grows quickly and had no way to search it. There is now a search box that matches connector name, stored procedure, endpoint and type. Editing a connector also offers the same searchable stored-procedure list the add form does, instead of asking you to type the name from memory."
+    },
+    {
+      "version": "2026.09.03",
+      "date": "2026-09-03",
+      "category": "fixed",
+      "title": "The canvas zoom controls stay on screen",
+      "description": "The canvas pane was sized from a fixed guess at how much page sat above it, so on a laptop its bottom-left zoom controls hung below the window - and because the canvas uses the wheel to zoom, the page could not be scrolled to reach them. The pane is now measured against its real position, so the controls are always visible. There is also a named Zoom out / Fit to screen / Zoom in group in the toolbar, the zoom range is wider (0.2 to 2.5), and a zoom button at its limit now reads as unavailable instead of looking broken."
+    },
+    {
+      "version": "2026.09.03",
+      "date": "2026-09-03",
+      "category": "fixed",
+      "title": "Flipping a diagram's orientation now moves the connection points with it",
+      "description": "Converting a process between top-to-bottom and left-to-right kept every edge's anchor points on their literal sides, so a converted diagram drew its lines looping around the cards instead of flowing across them. The routing rules now follow the orientation - flow leaves the side the process is heading towards and arrives at the opposite one - and a connection point you pinned yourself rotates with the diagram rather than staying put."
+    },
+    {
+      "version": "2026.09.03",
+      "date": "2026-09-03",
+      "category": "fixed",
+      "title": "The Organization Profile logo field shows the whole logo",
+      "description": "The logo preview cropped a wide logo into a small square and sat awkwardly against the file picker. It is now a proper frame that fits the whole image, with the file's name, pixel dimensions and size beside it, and clearly labelled Replace and Remove actions."
+    },
+    {
+      "version": "2026.09.03",
+      "date": "2026-09-03",
+      "category": "improved",
+      "title": "Requirement actions are named, and retiring one explains itself and can be undone",
+      "description": "On a policy's requirements list, the two unlabelled icon buttons are gone. Actions now carry names, and retiring a requirement asks first and says what it does: the requirement leaves the live set, any AI process proposal still waiting on it is rejected, and a process already built from it keeps running. Nothing is deleted. A new \"Show retired\" switch brings retired requirements back into view, where they can be reactivated."
+    },
+    {
+      "version": "2026.09.03",
+      "date": "2026-09-03",
+      "category": "improved",
+      "title": "A policy's text is now laid out for reading, and the original file can be downloaded",
+      "description": "A policy's extracted text is now laid out for reading: numbered clause headings, list items and real paragraphs, with the hard line wrapping from the original file undone. The exact, unaltered text is one click away under \"Exact text\", because a reviewer checking an AI proposal's source quote needs the characters the AI actually read. Every policy imported as a file can also be downloaded again from its own page. Extraction flattens tables and numbering, so where wording has to be trusted word for word, the original document is now there to open."
+    },
+    {
+      "version": "2026.09.03",
+      "date": "2026-09-03",
       "category": "fixed",
       "title": "The \"Running instances\" tile counts only runs that are actually running",
       "description": "The tile counted every run the list happened to return, whatever its state, so a cancelled or completed run could still be reported as running. It now counts running instances only, across all of your processes rather than the first page of them, and the Runs tab opens on Running so the number and the list beneath it agree. Choose \"All runs\" for completed and cancelled ones."
@@ -249,23 +291,9 @@ export const whatsNew = {
     {
       "version": "2026-08-20",
       "date": "2026-08-20",
-      "category": "fixed",
-      "title": "Clearer explanation when you lack permission for an action",
-      "description": "A permission error used to show a bare technical code with no explanation. It now says what the action needs in plain English, and names which role(s) in your tenant can actually do it - so you know exactly who to ask."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
       "category": "improved",
       "title": "Processes: status badges now explain what they mean",
       "description": "DRAFT, APPROVED, RETIRED, RUNNING, COMPLETED and CANCELLED status badges on the Processes screen now show a one-line explanation of what the status means and what to do next, on hover."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
-      "category": "new",
-      "title": "Default Lane Groups to get you started",
-      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
     },
     {
       "version": "2026-08-20",
@@ -280,6 +308,20 @@ export const whatsNew = {
       "category": "new",
       "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
       "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "new",
+      "title": "Default Lane Groups to get you started",
+      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "fixed",
+      "title": "Clearer explanation when you lack permission for an action",
+      "description": "A permission error used to show a bare technical code with no explanation. It now says what the action needs in plain English, and names which role(s) in your tenant can actually do it - so you know exactly who to ask."
     },
     {
       "version": "2026-08-20",
