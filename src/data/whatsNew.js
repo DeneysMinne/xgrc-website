@@ -156,6 +156,27 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.09.15",
+      "date": "2026-09-15",
+      "category": "new",
+      "title": "Build a process with no compliance obligation behind it",
+      "description": "New Process no longer requires picking an existing compliance requirement. Every tenant now has a standing \"Internal business processes\" requirement to build against - budgeting, onboarding, or anything that exists for the business's own reasons rather than an external standard, law, or contract."
+    },
+    {
+      "version": "2026.09.15",
+      "date": "2026-09-15",
+      "category": "new",
+      "title": "Name the application or technology a step happens in",
+      "description": "A new Setup list, Application / Technology, records which system a step is actually carried out in - Salesforce, Microsoft Dynamics, XGRC, or your own entries. Purely descriptive, no integration required. Five common starting points are pre-loaded, and you can add or retire your own from Administration."
+    },
+    {
+      "version": "2026.09.15",
+      "date": "2026-09-15",
+      "category": "fixed",
+      "title": "Connectors show which way a process flows",
+      "description": "Every connector line on the Process Canvas now ends in an arrowhead, and a step that starts or ends a process is flagged with a small start/end marker - so a flow's direction and boundaries are visible at a glance, not just implied by position."
+    },
+    {
       "version": "2026.09.03",
       "date": "2026-09-03",
       "category": "new",
