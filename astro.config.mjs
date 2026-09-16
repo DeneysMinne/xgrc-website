@@ -9,9 +9,13 @@ export default defineConfig({
   integrations: [
     sitemap({
       // Keep utility pages out of the sitemap — it should list content pages,
-      // not login/retired-product URLs. /login is still linked from the nav +
-      // footer on every page, so Google discovers it without a sitemap entry.
-      filter: (page) => !page.includes('/login') && !page.includes('/pix'),
+      // not login/retired-product/preview URLs. /login is still linked from
+      // the nav + footer on every page, so Google discovers it without a
+      // sitemap entry. /preview holds unlisted internal tools (not linked
+      // anywhere, also carries its own noindex meta tag) — kept out here too
+      // as defense in depth, though raw public/ files aren't Astro routes so
+      // this filter likely never sees them anyway.
+      filter: (page) => !page.includes('/login') && !page.includes('/pix') && !page.includes('/preview'),
     }),
   ],
 });

@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>XGRC Licensing Quote Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  :root {
+    --void:#060f1c; --abyss:#0a1729; --panel:rgba(255,255,255,0.035); --panel-hover:rgba(255,255,255,0.06);
+    --line:rgba(120,170,200,0.14); --line-strong:rgba(120,170,200,0.28);
+    --cyan:#30e2f4; --cyan-hi:#7af3ff; --blue:#269ec6; --deep:#005ca9;
+    --green:#2fe88a; --green-hi:#5cffa8; --green-ink:#04130b;
+    --ink:#eaf3f7; --mute:#8499aa; --faint:#56697a;
+    --radius-lg:22px; --radius-md:14px; --radius-sm:10px; --maxw:1200px;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--void); color:var(--ink); font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,h4 { font-family:'Outfit',system-ui,sans-serif; margin:0; }
+  .mono { font-family:'JetBrains Mono',monospace; font-variant-numeric:tabular-nums; }
+  .eyebrow { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.6px; text-transform:uppercase; color:var(--cyan); }
+  input[type="number"], input[type="text"] { font-family:'JetBrains Mono',monospace; }
+  ::placeholder { color:var(--faint); }
+  .qtyinput { width:64px; background:var(--abyss); border:1px solid var(--line-strong); border-radius:8px; color:var(--ink); padding:7px 8px; font-size:13px; text-align:right; }
+  .qtyinput:disabled { opacity:0.55; }
+  .qtyinput-sm { width:56px; background:var(--void); border:1px solid var(--line-strong); border-radius:6px; color:var(--ink); padding:6px 7px; font-size:12.5px; text-align:right; }
+  .brandmark { width:26px; height:26px; border-radius:7px; position:relative; display:inline-block; background:conic-gradient(from 210deg,var(--deep),var(--cyan),var(--blue),var(--deep)); }
+  .brandmark::after { content:''; position:absolute; inset:7px; background:var(--void); border-radius:3px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-lg); padding:20px; }
+  .row { display:flex; align-items:center; gap:10px; }
+  .curr-btn { padding:8px 14px; border-radius:8px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); cursor:pointer; font-size:12.5px; font-family:inherit; }
+  .curr-btn.active { border-color:var(--cyan); background:rgba(48,226,244,0.12); color:var(--cyan-hi); font-weight:700; }
+  button { font-family:'Inter',sans-serif; }
+  .btn-primary { padding:11px 20px; border-radius:var(--radius-sm); border:none; background:var(--green); color:var(--green-ink); font-weight:700; font-size:13px; cursor:pointer; white-space:nowrap; box-shadow:0 0 26px rgba(47,232,138,0.34); }
+  .btn-primary:disabled { background:var(--line-strong); color:var(--faint); box-shadow:none; cursor:not-allowed; }
+  .btn-ghost { padding:11px 20px; border-radius:var(--radius-sm); border:1px solid var(--line-strong); background:transparent; color:var(--mute); font-weight:600; font-size:13px; cursor:pointer; white-space:nowrap; }
+  .btn-ghost:disabled { color:var(--faint); cursor:not-allowed; opacity:0.6; }
+  .tier-card { position:relative; background:var(--panel); border-radius:var(--radius-lg); padding:20px; border:1px solid var(--line); }
+  .tier-card.active { border:2px solid var(--cyan); box-shadow:0 0 0 1px rgba(48,226,244,0.12); }
+  .ribbon { display:none; position:absolute; top:-10px; right:16px; background:var(--cyan); color:#04101b; font-size:9.5px; font-weight:800; letter-spacing:0.5px; padding:3px 8px; border-radius:5px; }
+  .tier-card.active .ribbon { display:block; }
+  #toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--abyss); border:1px solid var(--cyan); color:var(--ink); padding:12px 20px; border-radius:10px; font-size:13px; opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; z-index:50; }
+  #toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+  .info-wrap { position:relative; display:inline-flex; align-items:center; vertical-align:middle; }
+  .info-icon { width:15px; height:15px; border-radius:50%; background:var(--line-strong); color:var(--ink); font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; display:inline-flex; align-items:center; justify-content:center; cursor:help; margin-left:6px; flex-shrink:0; user-select:none; }
+  .info-icon:hover, .info-wrap.open .info-icon { background:var(--cyan); color:#04101b; }
+  .info-tip { display:none; position:absolute; z-index:30; bottom:135%; left:0; width:250px; background:var(--abyss); border:1px solid var(--line-strong); border-radius:10px; padding:11px 13px; font-size:11.5px; line-height:1.5; color:var(--mute); font-family:'Inter',sans-serif; box-shadow:0 10px 28px rgba(0,0,0,.45); white-space:normal; }
+  .info-tip .draft-flag { display:block; margin-top:6px; color:#e0a45c; font-style:italic; font-size:10.5px; }
+  .info-wrap:hover .info-tip, .info-wrap.open .info-tip { display:block; }
+</style>
+</head>
+<body>
+
+<div style="width:100%;min-height:100vh;background:var(--void);position:relative;">
+  <div style="position:absolute;top:0;left:0;right:0;height:420px;background:radial-gradient(60% 100% at 18% 0%, rgba(48,226,244,0.10), transparent 60%), radial-gradient(50% 100% at 85% 0%, rgba(38,158,198,0.08), transparent 60%);pointer-events:none;"></div>
+
+  <div style="position:relative;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px;border-bottom:1px solid var(--line);">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="brandmark"></div>
+      <div style="font-family:'Outfit';font-weight:700;font-size:15px;"><span style="color:var(--cyan);">X</span><span style="color:var(--ink);">GRC Software</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:28px;">
+      <div style="font-size:13px;color:var(--mute);">Solutions</div>
+      <div style="font-size:13px;color:var(--mute);">Pricing</div>
+      <div style="font-size:13px;color:var(--mute);">Contact</div>
+      <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--mute);border:1px solid var(--line-strong);border-radius:20px;padding:5px 12px;">INTERNAL &middot; SALES PREVIEW</div>
+    </div>
+  </div>
+
+  <div style="position:relative;padding:40px 40px 28px 40px;">
+    <div class="eyebrow">LICENSING</div>
+    <h1 style="font-size:32px;font-weight:800;margin-top:10px;">Quote Calculator</h1>
+    <div style="font-size:14.5px;color:var(--mute);margin-top:8px;max-width:640px;line-height:1.5;">Configure a seat and module mix and see which XGRC package it lands on, and the price, instantly.</div>
+  </div>
+
+  <div style="position:relative;max-width:var(--maxw);margin:0 auto;padding:0 40px 80px 40px;">
+    <div style="display:grid;grid-template-columns:400px 1fr;gap:24px;align-items:start;" id="grid-root">
+
+      <!-- LEFT -->
+      <div style="display:flex;flex-direction:column;gap:16px;">
+
+        <div class="card">
+          <div class="eyebrow" style="margin-bottom:12px;">Currency</div>
+          <div style="display:flex;gap:8px;">
+            <button class="curr-btn" data-curr="ZAR">R ZAR</button>
+            <button class="curr-btn" data-curr="USD">$ USD</button>
+            <button class="curr-btn" data-curr="GBP">&pound; GBP</button>
+            <button class="curr-btn" data-curr="EUR">&euro; EUR</button>
+          </div>
+          <div style="font-size:10.5px;color:var(--faint);margin-top:10px;font-style:italic;">Real per-currency list prices from the XGRC price book — not FX conversions. Admin, XLOGIC and Asgard are new/unpriced items shown as placeholders.</div>
+        </div>
+
+        <div class="card">
+          <div class="eyebrow" style="margin-bottom:14px;">Seats</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Admin<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Full administrative access — system configuration, integrations, API keys and maintenance settings. Every site needs at least one Admin; this is the person who sets things up and keeps it running.</span></span> <span class="mono" id="price-admin" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Config, API &amp; maintenance access — one per site</div></div><input type="number" min="0" id="q-admin" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Core<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">The standard full-access user. Can use every module — create, edit, complete work — but cannot change system configuration, integrations or API keys. Most people in the organisation should be Core users.</span></span> <span class="mono" id="price-core" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Full module access, no configuration</div></div><input type="number" min="0" id="q-core" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Lite<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A reduced-access user for people who only need to view information or perform a small set of actions, not full platform access.<span class="draft-flag">Draft — please confirm exactly what Lite users can and can't do.</span></span></span> <span class="mono" id="price-lite" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Legacy Limited-tier access</div></div><input type="number" min="0" id="q-lite" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Task User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Access to the Action and Dashboard areas only — for people who complete assigned tasks and check dashboards, without needing the rest of the platform.</span></span> <span class="mono" id="price-task" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Combined Action + Dashboard access</div></div><input type="number" min="0" id="q-task" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Team User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A lightweight license for employees who occasionally interact with the system — for example responding to a single request — rather than people who work in it daily.<span class="draft-flag">Draft — please confirm the exact scope.</span></span></span> <span class="mono" id="price-team" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Employee-tier access</div></div><input type="number" min="0" id="q-team" class="qtyinput"></div>
+            <div style="height:1px;background:var(--line);margin:2px 0;"></div>
+            <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;">Multi-site (Enterprise)</div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">LUCI<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Full admin access at this user's home site, plus the ability to see and manage other sites in the same account — built for people overseeing several sites, like a group risk manager, without buying a separate license per site.</span></span> <span class="mono" id="price-luci" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Admin access across multiple sites — moves quote to Enterprise</div></div><input type="number" min="0" id="q-luci" class="qtyinput"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="eyebrow" style="margin-bottom:14px;">Modules &amp; Packages</div>
+          <div style="font-size:10.5px;color:var(--faint);margin-bottom:14px;">Every module has its own seat allocation — it doesn't have to match your Core count.</div>
+
+          <div class="row" style="background:var(--abyss);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:12px;">
+            <div style="width:17px;height:17px;border-radius:4px;background:var(--line-strong);flex-shrink:0;"></div>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:600;color:var(--faint);">SHEQX Baseline</div><div style="font-size:11px;color:var(--faint);">Included in every package</div></div>
+          </div>
+
+          <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;">Adds to XGRC Plus</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
+
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">ENVIRX<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Environmental management — track environmental risks, incidents, permits and compliance obligations.</span></span> <span class="mono" id="price-envirx" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Environmental management module</div></div><input type="number" min="0" id="q-envirx" class="qtyinput"></div>
+            <div id="note-envirx-linked" style="display:none;font-size:10.5px;color:var(--cyan);margin-top:-6px;">= Core seats, via Integrated Assurance</div>
+
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">ERM<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Enterprise Risk Management — a structured risk register to identify, assess, treat and monitor risks across the business.</span></span> <span class="mono" id="price-erm" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Enterprise risk management module</div></div><input type="number" min="0" id="q-erm" class="qtyinput"></div>
+            <div id="note-erm-linked" style="display:none;font-size:10.5px;color:var(--cyan);margin-top:-6px;">= Core seats, via Integrated Assurance</div>
+
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Integrated Assurance<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Brings audit, risk and compliance findings together into one assurance view. Because assurance reporting relies on ENVIRX and ERM data, selecting this automatically includes both across your whole Core user base.</span></span> <span class="mono" id="price-assurance" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Auto-includes ENVIRX + ERM at your Core count</div></div><input type="number" min="0" id="q-assurance" class="qtyinput"></div>
+
+            <div style="height:1px;background:var(--line);margin:4px 0;"></div>
+
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">MAIA — Full User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A person who can actively use the MAIA AI copilot — ask questions, generate reports, get recommendations. At least one Full User is required before MAIA can be added at all; there's no upper limit.</span></span> <span class="mono" id="price-maiafull" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">1 or more required to enable MAIA — no upper limit</div></div><input type="number" min="0" id="q-maiafull" class="qtyinput"></div>
+
+            <div id="maia-extra" style="display:none;flex-direction:column;gap:9px;padding:12px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;">
+              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">Data User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Someone who can view MAIA's outputs and insights, without the full interactive copilot access a Full User has.</span></span> <span class="mono" id="price-maiadatauser" style="color:var(--faint);"></span><div style="font-size:10.5px;color:var(--faint);">Optional, additional seats</div></div><input type="number" min="0" id="q-maiadatauser" class="qtyinput-sm"></div>
+              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">Data Used<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">An estimate of how much data MAIA will process monthly (e.g. documents or records analysed). This is billed on usage, not per person — going over the estimate is billed as extra data tokens.</span></span> <span class="mono" id="price-maiadataused" style="color:var(--faint);"></span>/unit<div style="font-size:10.5px;color:var(--faint);">Estimated monthly processing volume</div></div><input type="number" min="0" id="q-maiadataused" class="qtyinput-sm"></div>
+              <div style="font-size:10.5px;color:var(--faint);font-style:italic;">Usage beyond this estimate is billed via additional data tokens.</div>
+            </div>
+          </div>
+
+          <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;">Adds to XGRC Enterprise</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="font-size:12.5px;font-weight:600;">Hakware<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A separate cyber-security platform (vulnerability and pentest management), licensed by number of monitored domains and number of users.</span></span></div>
+            <div style="display:flex;flex-direction:column;gap:8px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;padding:10px 12px;">
+              <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">Domains<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Each domain Hakware actively monitors for security issues.</span></span> <span class="mono" id="price-hkwdomain" style="color:var(--faint);"></span> each</div><input type="number" min="0" id="q-hkwdomains" class="qtyinput-sm"></div>
+              <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">Hakware Users<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">People who need access to Hakware's own security dashboard and reporting, separate from XGRC user seats.</span></span> <span class="mono" id="price-hkwuser" style="color:var(--faint);"></span>/seat</div><input type="number" min="0" id="q-hkwusers" class="qtyinput-sm"></div>
+            </div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">XLOGIC<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">XGRC's core governance, risk and compliance platform. Pricing for including it in a combined quote is still being finalised.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">GRC platform — pricing to be finalised</div></div><input type="number" min="0" id="q-xlogic" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Asgard<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A new XGRC product, launching soon. Details and pricing to follow.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">New product, launching soon</div></div><input type="number" min="0" id="q-asgard" class="qtyinput"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="eyebrow" style="margin-bottom:14px;">Add-ons</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">HACCP<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Hazard Analysis &amp; Critical Control Points — a food-safety risk framework, included at no extra cost.<span class="draft-flag">Draft — please confirm this matches how XGRC's HACCP add-on works.</span></span></span></div><div style="font-size:11px;color:var(--faint);">Free — no tier impact</div></div><input type="number" min="0" id="q-haccp" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">BOWTIE<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A visual risk-analysis method mapping the causes and consequences around a central risk event, included at no extra cost.<span class="draft-flag">Draft — please confirm this matches XGRC's BOWTIE add-on.</span></span></span></div><div style="font-size:11px;color:var(--faint);">Free — no tier impact</div></div><input type="number" min="0" id="q-bowtie" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Compliance Hub<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A central place to track regulatory obligations and compliance status. Free to use — but because it draws on Plus-tier data, selecting it moves your quote to XGRC Plus.</span></span></div><div style="font-size:11px;color:var(--cyan);">Free — but moves your quote to XGRC Plus</div></div><input type="number" min="0" id="q-compliancehub" class="qtyinput"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+
+        <div class="card" style="border:1px solid var(--cyan);padding:24px 28px;box-shadow:0 0 0 1px rgba(48,226,244,0.10), 0 12px 32px rgba(0,0,0,0.35);">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div class="eyebrow" style="margin-bottom:8px;">Recommended Package</div>
+              <div id="tier-full" style="font-size:20px;font-weight:800;color:var(--cyan-hi);font-family:'Outfit';"></div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:11px;color:var(--mute);">Monthly total</div>
+              <div class="mono" id="hero-total" style="font-size:34px;font-weight:700;line-height:1.15;"></div>
+              <div style="font-size:11px;color:var(--faint);">ex VAT</div>
+            </div>
+          </div>
+
+          <div style="height:1px;background:var(--line);margin:18px 0;"></div>
+
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;justify-content:space-between;font-size:13px;"><span style="color:var(--mute);">Seats subtotal</span><span class="mono" id="seat-subtotal"></span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;"><span style="color:var(--mute);">Modules subtotal</span><span class="mono" id="module-subtotal"></span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;"><span style="color:var(--mute);">Monthly list value</span><span class="mono" id="list-value"></span></div>
+            <div style="margin-top:6px;">
+              <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:var(--mute);">Volume discount</span><span class="mono" id="discount-pct" style="color:var(--cyan);font-weight:700;"></span></div>
+              <div style="height:6px;background:var(--line);border-radius:3px;overflow:hidden;"><div id="discount-bar" style="height:100%;border-radius:3px;background:var(--cyan);width:0%;"></div></div>
+              <div style="font-size:10.5px;color:var(--faint);margin-top:5px;">Thresholds are evaluated in ZAR (5% at R50,000, +2.5% per further R10,000, capped at 40%), then applied to your selected currency.</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-top:8px;padding-top:10px;border-top:1px dashed var(--line);"><span>Discounted monthly total</span><span class="mono" id="discounted-monthly" style="color:var(--cyan-hi);"></span></div>
+          </div>
+
+          <div style="height:1px;background:var(--line);margin:18px 0;"></div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+              <div id="annual-track" style="width:38px;height:22px;border-radius:11px;padding:2px;cursor:pointer;background:rgba(120,170,200,0.28);transition:background .15s;"><div id="annual-knob" style="width:18px;height:18px;border-radius:50%;background:var(--void);transition:transform .15s;"></div></div>
+              <div><div style="font-size:13px;font-weight:600;">Annual commitment</div><div style="font-size:11px;color:var(--faint);">Further 10% off the discounted monthly value</div></div>
+            </label>
+            <div style="text-align:right;"><div style="font-size:11px;color:var(--mute);">Annual total</div><div class="mono" id="annual-total" style="font-size:18px;font-weight:700;"></div></div>
+          </div>
+
+          <div style="height:1px;background:var(--line);margin:18px 0;"></div>
+
+          <div style="display:flex;gap:10px;align-items:center;">
+            <input type="text" id="client-name" placeholder="Client / prospect name" style="flex:1;background:var(--abyss);border:1px solid var(--line-strong);border-radius:var(--radius-sm);color:var(--ink);padding:11px 14px;font-size:13px;">
+            <button id="btn-save" class="btn-primary" disabled>Save</button>
+            <button id="btn-download" class="btn-ghost" disabled>Download PDF</button>
+          </div>
+          <div id="name-hint" style="font-size:11px;color:var(--faint);margin-top:8px;">A client / prospect name is required before you can save or download this quote.</div>
+        </div>
+
+        <div>
+          <div class="eyebrow" style="margin-bottom:12px;">All Packages Compared</div>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;">
+            <div class="tier-card" id="card-standard">
+              <div class="ribbon">RECOMMENDED</div>
+              <div style="font-size:15px;font-weight:800;margin-bottom:4px;font-family:'Outfit';">XGRC Standard</div>
+              <div style="font-size:11.5px;color:var(--mute);margin-bottom:14px;">SHEQX baseline, seats added as needed</div>
+              <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;color:var(--mute);">
+                <div>&#10003; SHEQX baseline modules</div>
+                <div>&#10003; Admin, Core, Lite, Task &amp; Team seats</div>
+                <div>&#10003; HACCP &amp; BOWTIE add-ons</div>
+              </div>
+              <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-standard" style="color:var(--mute);"></span>/seat</div>
+            </div>
+            <div class="tier-card" id="card-plus">
+              <div class="ribbon">RECOMMENDED</div>
+              <div style="font-size:15px;font-weight:800;margin-bottom:4px;font-family:'Outfit';">XGRC Plus</div>
+              <div style="font-size:11.5px;color:var(--mute);margin-bottom:14px;">Standard + risk &amp; assurance modules</div>
+              <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;color:var(--mute);">
+                <div>&#10003; Everything in Standard</div>
+                <div>&#10003; ENVIRX, ERM (own seat counts)</div>
+                <div>&#10003; Integrated Assurance (bundles ENVIRX+ERM at Core count)</div>
+                <div>&#10003; MAIA AI copilot (1+ Full Users)</div>
+              </div>
+              <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-plus" style="color:var(--mute);"></span>/seat</div>
+            </div>
+            <div class="tier-card" id="card-enterprise">
+              <div class="ribbon">RECOMMENDED</div>
+              <div style="font-size:15px;font-weight:800;margin-bottom:4px;font-family:'Outfit';">XGRC Enterprise</div>
+              <div style="font-size:11.5px;color:var(--mute);margin-bottom:14px;">Plus + multi-site &amp; group products</div>
+              <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;color:var(--mute);">
+                <div>&#10003; Everything in Plus</div>
+                <div>&#10003; Hakware (own domain/user counts)</div>
+                <div>&#10003; LUCI multi-site admin seats</div>
+                <div>&#10003; XLOGIC &amp; Asgard (pricing TBD)</div>
+              </div>
+              <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-enterprise" style="color:var(--mute);"></span>/seat (LUCI)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="background:var(--abyss);padding:16px 20px;">
+          <div class="eyebrow" style="margin-bottom:10px;">Notes for the rep</div>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--mute);">
+            <div>&middot; Every module and add-on has its own seat count — it does not need to match your Core count.</div>
+            <div>&middot; Selecting Integrated Assurance auto-includes ENVIRX and ERM at your full Core seat count; without it, ENVIRX/ERM can be sized independently.</div>
+            <div>&middot; Task User includes both Action and Dashboard access, combined.</div>
+            <div>&middot; MAIA requires 1 or more Full Users, with no upper limit; Data User and Data Used are optional on top of that.</div>
+            <div>&middot; Compliance Hub is free, but selecting it still moves the quote to XGRC Plus.</div>
+            <div>&middot; Volume discount is driven by total monthly list value in ZAR, not seat count.</div>
+            <div>&middot; Annual commitment applies a further 10% to the already-discounted monthly value, compounding.</div>
+            <div>&middot; Prices are real per-currency list prices from the XGRC price book — except Admin, XLOGIC and Asgard, which are new/unpriced placeholders.</div>
+            <div>&middot; ENVIRX/ERM ZAR price uses the corrected R139 figure — the foreign-currency figures have not yet been re-confirmed against that correction.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const PRICES = {
+  admin:        { ZAR: 500,      USD: 40,     GBP: 31,     EUR: 35     },
+  core:         { ZAR: 413.27,   USD: 33.07,  GBP: 25.72,  EUR: 29.40  },
+  lite:         { ZAR: 207.21,   USD: 15.92,  GBP: 12.87,  EUR: 14.70  },
+  task:         { ZAR: 82.43,    USD: 6.12,   GBP: 4.90,   EUR: 5.52   },
+  team:         { ZAR: 6.87,     USD: 0.58,   GBP: 0.47,   EUR: 0.52   },
+  luci:         { ZAR: 617.05,   USD: 49.00,  GBP: 39.20,  EUR: 44.10  },
+  envirx:       { ZAR: 139.00,   USD: 11.45,  GBP: 11.45,  EUR: 11.45  },
+  erm:          { ZAR: 139.00,   USD: 11.45,  GBP: 11.45,  EUR: 11.45  },
+  assurance:    { ZAR: 413.27,   USD: 33.07,  GBP: 25.72,  EUR: 29.40  },
+  maiaFull:     { ZAR: 13992.00, USD: 746.41, GBP: 597.13, EUR: 671.77 },
+  maiaDataUser: { ZAR: 1075.90,  USD: 57.24,  GBP: 45.79,  EUR: 51.52  },
+  maiaDataUsed: { ZAR: 15.15,    USD: 0.80,   GBP: 0.64,   EUR: 0.72   },
+  hkwDomain:    { ZAR: 1795.00,  USD: 100.00, GBP: 100.00, EUR: 100.00 },
+  hkwUser:      { ZAR: 180.00,   USD: 10.00,  GBP: 10.00,  EUR: 10.00  }
+};
+const SYM = { ZAR: 'R', USD: '$', GBP: '£', EUR: '€' };
+
+const state = {
+  currency: 'ZAR',
+  clientName: '',
+  seats: { admin: 5, core: 150, lite: 20, task: 30, team: 15, luci: 2 },
+  modules: {
+    envirx: 10, erm: 10, assurance: 20,
+    maiaFullUser: 2, maiaDataUser: 8, maiaDataUsed: 500,
+    hkwDomains: 3, hkwUsers: 25,
+    xlogic: 0, asgard: 0
+  },
+  addons: { haccp: 0, bowtie: 0, complianceHub: 0 },
+  annual: false
+};
+
+function formatNum(v) {
+  const parts = (Math.round((Number(v) || 0) * 100) / 100).toFixed(2).split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return parts[0] + '.' + parts[1];
+}
+function priceStr(map) { return SYM[state.currency] + ' ' + formatNum(map[state.currency]); }
+function amountStr(v) { return SYM[state.currency] + ' ' + formatNum(v); }
+
+function computeDerived() {
+  const s = state.seats, m = state.modules, a = state.addons, cur = state.currency, P = PRICES;
+
+  const seatZAR = s.admin*P.admin.ZAR + s.core*P.core.ZAR + s.lite*P.lite.ZAR + s.task*P.task.ZAR + s.team*P.team.ZAR + s.luci*P.luci.ZAR;
+  const seatCur = s.admin*P.admin[cur] + s.core*P.core[cur] + s.lite*P.lite[cur] + s.task*P.task[cur] + s.team*P.team[cur] + s.luci*P.luci[cur];
+
+  const assuranceOn = m.assurance > 0;
+  const effEnvirx = assuranceOn ? s.core : m.envirx;
+  const effErm = assuranceOn ? s.core : m.erm;
+
+  const maiaOn = m.maiaFullUser > 0;
+  const maiaZAR = maiaOn ? (m.maiaFullUser*P.maiaFull.ZAR + m.maiaDataUser*P.maiaDataUser.ZAR + m.maiaDataUsed*P.maiaDataUsed.ZAR) : 0;
+  const maiaCur = maiaOn ? (m.maiaFullUser*P.maiaFull[cur] + m.maiaDataUser*P.maiaDataUser[cur] + m.maiaDataUsed*P.maiaDataUsed[cur]) : 0;
+
+  const hkwZAR = m.hkwDomains*P.hkwDomain.ZAR + m.hkwUsers*P.hkwUser.ZAR;
+  const hkwCur = m.hkwDomains*P.hkwDomain[cur] + m.hkwUsers*P.hkwUser[cur];
+
+  const moduleZAR = effEnvirx*P.envirx.ZAR + effErm*P.erm.ZAR + m.assurance*P.assurance.ZAR + maiaZAR + hkwZAR;
+  const moduleCur = effEnvirx*P.envirx[cur] + effErm*P.erm[cur] + m.assurance*P.assurance[cur] + maiaCur + hkwCur;
+
+  const listValueZAR = seatZAR + moduleZAR;
+  const listValueCur = seatCur + moduleCur;
+
+  let discountPct = 0;
+  if (listValueZAR >= 50000) {
+    const steps = Math.floor((listValueZAR - 50000) / 10000);
+    discountPct = Math.min(5 + steps*2.5, 40);
+  }
+  const discountedMonthlyCur = listValueCur * (1 - discountPct/100);
+  const annualTotalCur = state.annual ? discountedMonthlyCur*0.9*12 : discountedMonthlyCur*12;
+
+  const isEnterprise = m.hkwDomains>0 || m.hkwUsers>0 || m.xlogic>0 || m.asgard>0 || s.luci>0;
+  const isPlus = !isEnterprise && (effEnvirx>0 || effErm>0 || m.assurance>0 || maiaOn || a.complianceHub>0);
+  const isStandard = !isEnterprise && !isPlus;
+  const tier = isEnterprise ? 'Enterprise' : (isPlus ? 'Plus' : 'Standard');
+
+  return { s, m, a, cur, assuranceOn, effEnvirx, effErm, maiaOn, seatCur, moduleCur, listValueCur, discountPct,
+           discountedMonthlyCur, annualTotalCur, isStandard, isPlus, isEnterprise, tierFull: 'XGRC ' + tier };
+}
+
+function el(id) { return document.getElementById(id); }
+
+function render() {
+  const d = computeDerived();
+
+  // currency buttons
+  document.querySelectorAll('.curr-btn').forEach(b => b.classList.toggle('active', b.dataset.curr === state.currency));
+
+  // price labels
+  el('price-admin').textContent = priceStr(PRICES.admin);
+  el('price-core').textContent = priceStr(PRICES.core);
+  el('price-lite').textContent = priceStr(PRICES.lite);
+  el('price-task').textContent = priceStr(PRICES.task);
+  el('price-team').textContent = priceStr(PRICES.team);
+  el('price-luci').textContent = priceStr(PRICES.luci);
+  el('price-envirx').textContent = priceStr(PRICES.envirx);
+  el('price-erm').textContent = priceStr(PRICES.erm);
+  el('price-assurance').textContent = priceStr(PRICES.assurance);
+  el('price-maiafull').textContent = priceStr(PRICES.maiaFull);
+  el('price-maiadatauser').textContent = priceStr(PRICES.maiaDataUser);
+  el('price-maiadataused').textContent = priceStr(PRICES.maiaDataUsed);
+  el('price-hkwdomain').textContent = priceStr(PRICES.hkwDomain);
+  el('price-hkwuser').textContent = priceStr(PRICES.hkwUser);
+
+  // seat inputs (only sync if not currently focused, to avoid fighting user typing)
+  syncInput('q-admin', state.seats.admin);
+  syncInput('q-core', state.seats.core);
+  syncInput('q-lite', state.seats.lite);
+  syncInput('q-task', state.seats.task);
+  syncInput('q-team', state.seats.team);
+  syncInput('q-luci', state.seats.luci);
+
+  // envirx/erm linked state
+  const envirxInput = el('q-envirx'), ermInput = el('q-erm');
+  envirxInput.disabled = d.assuranceOn;
+  ermInput.disabled = d.assuranceOn;
+  syncInput('q-envirx', d.effEnvirx);
+  syncInput('q-erm', d.effErm);
+  el('note-envirx-linked').style.display = d.assuranceOn ? 'block' : 'none';
+  el('note-erm-linked').style.display = d.assuranceOn ? 'block' : 'none';
+  syncInput('q-assurance', state.modules.assurance);
+
+  syncInput('q-maiafull', state.modules.maiaFullUser);
+  syncInput('q-maiadatauser', state.modules.maiaDataUser);
+  syncInput('q-maiadataused', state.modules.maiaDataUsed);
+  el('maia-extra').style.display = d.maiaOn ? 'flex' : 'none';
+
+  syncInput('q-hkwdomains', state.modules.hkwDomains);
+  syncInput('q-hkwusers', state.modules.hkwUsers);
+  syncInput('q-xlogic', state.modules.xlogic);
+  syncInput('q-asgard', state.modules.asgard);
+
+  syncInput('q-haccp', state.addons.haccp);
+  syncInput('q-bowtie', state.addons.bowtie);
+  syncInput('q-compliancehub', state.addons.complianceHub);
+
+  el('tier-full').textContent = d.tierFull;
+  el('hero-total').textContent = amountStr(d.discountedMonthlyCur);
+  el('seat-subtotal').textContent = amountStr(d.seatCur);
+  el('module-subtotal').textContent = amountStr(d.moduleCur);
+  el('list-value').textContent = amountStr(d.listValueCur);
+  el('discount-pct').textContent = d.discountPct.toFixed(1) + '%';
+  el('discount-bar').style.width = Math.min((d.discountPct/40)*100, 100) + '%';
+  el('discounted-monthly').textContent = amountStr(d.discountedMonthlyCur);
+  el('annual-total').textContent = amountStr(d.annualTotalCur);
+
+  el('annual-track').style.background = state.annual ? 'var(--cyan)' : 'rgba(120,170,200,0.28)';
+  el('annual-knob').style.transform = state.annual ? 'translateX(16px)' : 'translateX(0px)';
+
+  el('card-standard').classList.toggle('active', d.isStandard);
+  el('card-plus').classList.toggle('active', d.isPlus);
+  el('card-enterprise').classList.toggle('active', d.isEnterprise);
+  el('from-standard').textContent = priceStr(PRICES.core);
+  el('from-plus').textContent = priceStr(PRICES.envirx);
+  el('from-enterprise').textContent = priceStr(PRICES.luci);
+
+  const hasName = state.clientName.trim().length > 0;
+  el('btn-save').disabled = !hasName;
+  el('btn-download').disabled = !hasName;
+  el('name-hint').style.color = hasName ? 'var(--faint)' : '#e0a45c';
+}
+
+function syncInput(id, val) {
+  const input = el(id);
+  if (document.activeElement === input) return; // don't fight the user mid-edit
+  if (String(input.value) !== String(val)) input.value = val;
+}
+
+function bindQty(id, setter) {
+  el(id).addEventListener('input', (e) => {
+    const n = Math.max(0, parseInt(e.target.value, 10) || 0);
+    setter(n);
+    render();
+  });
+}
+
+bindQty('q-admin', n => state.seats.admin = n);
+bindQty('q-core', n => state.seats.core = n);
+bindQty('q-lite', n => state.seats.lite = n);
+bindQty('q-task', n => state.seats.task = n);
+bindQty('q-team', n => state.seats.team = n);
+bindQty('q-luci', n => state.seats.luci = n);
+
+bindQty('q-envirx', n => state.modules.envirx = n);
+bindQty('q-erm', n => state.modules.erm = n);
+bindQty('q-assurance', n => state.modules.assurance = n);
+
+bindQty('q-maiafull', n => {
+  state.modules.maiaFullUser = n;
+  if (n === 0) { state.modules.maiaDataUser = 0; state.modules.maiaDataUsed = 0; }
+});
+bindQty('q-maiadatauser', n => state.modules.maiaDataUser = n);
+bindQty('q-maiadataused', n => state.modules.maiaDataUsed = n);
+
+bindQty('q-hkwdomains', n => state.modules.hkwDomains = n);
+bindQty('q-hkwusers', n => state.modules.hkwUsers = n);
+bindQty('q-xlogic', n => state.modules.xlogic = n);
+bindQty('q-asgard', n => state.modules.asgard = n);
+
+bindQty('q-haccp', n => state.addons.haccp = n);
+bindQty('q-bowtie', n => state.addons.bowtie = n);
+bindQty('q-compliancehub', n => state.addons.complianceHub = n);
+
+document.querySelectorAll('.curr-btn').forEach(b => b.addEventListener('click', () => { state.currency = b.dataset.curr; render(); }));
+
+el('annual-track').addEventListener('click', () => { state.annual = !state.annual; render(); });
+
+el('client-name').addEventListener('input', (e) => { state.clientName = e.target.value; render(); });
+
+function showToast(msg) {
+  const t = el('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(showToast._h);
+  showToast._h = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+el('btn-save').addEventListener('click', () => {
+  const name = state.clientName.trim();
+  if (!name) return;
+  try {
+    const key = 'xgrc-quotes';
+    const existing = JSON.parse(localStorage.getItem(key) || '[]');
+    existing.push({ name, savedAt: new Date().toISOString(), currency: state.currency, state: JSON.parse(JSON.stringify(state)) });
+    localStorage.setItem(key, JSON.stringify(existing));
+    showToast('Quote saved locally for ' + name);
+  } catch (err) {
+    showToast('Could not save locally in this browser');
+  }
+});
+
+function buildLineItems(d) {
+  const items = [];
+  const push = (label, qty, priceMap) => { if (qty > 0) items.push({ label, qty, unit: priceStr(priceMap), total: amountStr(qty * priceMap[state.currency]) }); };
+  push('Admin seats', d.s.admin, PRICES.admin);
+  push('Core seats', d.s.core, PRICES.core);
+  push('Lite seats', d.s.lite, PRICES.lite);
+  push('Task User seats', d.s.task, PRICES.task);
+  push('Team User seats', d.s.team, PRICES.team);
+  push('LUCI seats', d.s.luci, PRICES.luci);
+  push('ENVIRX seats', d.effEnvirx, PRICES.envirx);
+  push('ERM seats', d.effErm, PRICES.erm);
+  push('Integrated Assurance seats', d.m.assurance, PRICES.assurance);
+  push('MAIA — Full User', d.m.maiaFullUser, PRICES.maiaFull);
+  push('MAIA — Data User', d.m.maiaDataUser, PRICES.maiaDataUser);
+  push('MAIA — Data Used (units)', d.m.maiaDataUsed, PRICES.maiaDataUsed);
+  push('Hakware — Domains', d.m.hkwDomains, PRICES.hkwDomain);
+  push('Hakware — Users', d.m.hkwUsers, PRICES.hkwUser);
+  if (d.m.xlogic > 0) items.push({ label: 'XLOGIC seats', qty: d.m.xlogic, unit: '[TBD]', total: '[TBD]' });
+  if (d.m.asgard > 0) items.push({ label: 'Asgard seats', qty: d.m.asgard, unit: '[TBD]', total: '[TBD]' });
+  if (d.a.haccp > 0) items.push({ label: 'HACCP', qty: d.a.haccp, unit: 'Free', total: 'Free' });
+  if (d.a.bowtie > 0) items.push({ label: 'BOWTIE', qty: d.a.bowtie, unit: 'Free', total: 'Free' });
+  if (d.a.complianceHub > 0) items.push({ label: 'Compliance Hub', qty: d.a.complianceHub, unit: 'Free', total: 'Free' });
+  return items;
+}
+
+el('btn-download').addEventListener('click', () => {
+  const name = state.clientName.trim();
+  if (!name) return;
+  if (!window.jspdf) { showToast('PDF library did not load — check your internet connection'); return; }
+  const d = computeDerived();
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+  let y = 56;
+
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(20); doc.setTextColor(20, 30, 40);
+  doc.text('XGRC Licensing Quote', 40, y); y += 26;
+
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(11); doc.setTextColor(90, 100, 110);
+  doc.text('Prepared for: ' + name, 40, y); y += 16;
+  doc.text('Date: ' + new Date().toLocaleDateString(), 40, y); y += 16;
+  doc.text('Currency: ' + state.currency, 40, y); y += 24;
+
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(14); doc.setTextColor(20, 30, 40);
+  doc.text('Recommended package: ' + d.tierFull, 40, y); y += 26;
+
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+  doc.text('Item', 40, y); doc.text('Qty', 300, y, { align: 'right' }); doc.text('Unit', 390, y, { align: 'right' }); doc.text('Line total', 500, y, { align: 'right' });
+  y += 6; doc.setDrawColor(210); doc.line(40, y, 500, y); y += 14;
+
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(50, 60, 70);
+  buildLineItems(d).forEach(li => {
+    doc.text(li.label, 40, y);
+    doc.text(String(li.qty), 300, y, { align: 'right' });
+    doc.text(li.unit, 390, y, { align: 'right' });
+    doc.text(li.total, 500, y, { align: 'right' });
+    y += 16;
+    if (y > 760) { doc.addPage(); y = 56; }
+  });
+
+  y += 8; doc.setDrawColor(210); doc.line(40, y, 500, y); y += 18;
+
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(11); doc.setTextColor(20, 30, 40);
+  doc.text('Monthly list value', 40, y); doc.text(amountStr(d.listValueCur), 500, y, { align: 'right' }); y += 16;
+  doc.text('Volume discount (' + d.discountPct.toFixed(1) + '%)', 40, y); y += 16;
+  doc.setFont('helvetica', 'bold');
+  doc.text('Discounted monthly total', 40, y); doc.text(amountStr(d.discountedMonthlyCur), 500, y, { align: 'right' }); y += 22;
+
+  doc.setFont('helvetica', 'normal');
+  doc.text(state.annual ? 'Annual commitment (10% further discount applied)' : 'Annual total (no annual commitment)', 40, y); y += 16;
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(12);
+  doc.text('Annual total', 40, y); doc.text(amountStr(d.annualTotalCur), 500, y, { align: 'right' });
+
+  y += 30;
+  doc.setFont('helvetica', 'italic'); doc.setFontSize(9); doc.setTextColor(140, 150, 160);
+  doc.text('This quote is a working draft for internal review and is subject to final confirmation.', 40, y);
+
+  const safeName = name.replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '');
+  doc.save('XGRC-Quote-' + safeName + '.pdf');
+  showToast('PDF downloaded for ' + name);
+});
+
+document.querySelectorAll('.info-icon').forEach(icon => {
+  icon.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const wrap = icon.closest('.info-wrap');
+    const wasOpen = wrap.classList.contains('open');
+    document.querySelectorAll('.info-wrap.open').forEach(w => w.classList.remove('open'));
+    if (!wasOpen) wrap.classList.add('open');
+  });
+});
+document.addEventListener('click', () => document.querySelectorAll('.info-wrap.open').forEach(w => w.classList.remove('open')));
+
+render();
+</script>
+</body>
+</html>
