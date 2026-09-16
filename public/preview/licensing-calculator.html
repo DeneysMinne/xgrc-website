@@ -28,6 +28,7 @@
   .qtyinput { width:64px; background:var(--abyss); border:1px solid var(--line-strong); border-radius:8px; color:var(--ink); padding:7px 8px; font-size:13px; text-align:right; }
   .qtyinput:disabled { opacity:0.55; }
   .qtyinput-sm { width:56px; background:var(--void); border:1px solid var(--line-strong); border-radius:6px; color:var(--ink); padding:6px 7px; font-size:12.5px; text-align:right; }
+  .chkbox { width:18px; height:18px; accent-color: var(--cyan); cursor:pointer; flex-shrink:0; }
   .brandmark { width:26px; height:26px; border-radius:7px; position:relative; display:inline-block; background:conic-gradient(from 210deg,var(--deep),var(--cyan),var(--blue),var(--deep)); }
   .brandmark::after { content:''; position:absolute; inset:7px; background:var(--void); border-radius:3px; }
   .card { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-lg); padding:20px; }
@@ -91,7 +92,7 @@
             <button class="curr-btn" data-curr="GBP">&pound; GBP</button>
             <button class="curr-btn" data-curr="EUR">&euro; EUR</button>
           </div>
-          <div style="font-size:10.5px;color:var(--faint);margin-top:10px;font-style:italic;">Real per-currency list prices from the XGRC price book, not FX conversions. Admin, XLOGIC and Asgard are new/unpriced items shown as placeholders.</div>
+          <div style="font-size:10.5px;color:var(--faint);margin-top:10px;font-style:italic;">Real per-currency list prices from the XGRC price book, not FX conversions. Admin and Compliance Hub use placeholder pricing pending confirmation; XLOGIC and Asgard are entirely unpriced.</div>
         </div>
 
         <div class="card">
@@ -128,6 +129,8 @@
 
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Integrated Assurance<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Brings audit, risk and compliance findings together into one assurance view. Because assurance reporting relies on ENVIRX and ERM data, selecting this automatically includes both across your whole Core user base.</span></span> <span class="mono" id="price-assurance" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Auto-includes ENVIRX + ERM at your Core count</div></div><input type="number" min="0" id="q-assurance" class="qtyinput"></div>
 
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Compliance Hub<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A structured external portal where your suppliers, contractors and customers upload and maintain their own compliance documentation, while your team validates and monitors it. Flat monthly fee regardless of how many external parties use it.</span></span> <span class="mono" id="price-compliancehub" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Flat fee, moves your quote to XGRC Plus</div></div><input type="checkbox" id="toggle-compliancehub" class="chkbox"></div>
+
             <div style="height:1px;background:var(--line);margin:4px 0;"></div>
 
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">MAIA Full User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A person who can actively use the MAIA AI copilot: ask questions, generate reports, get recommendations. At least one Full User is required before MAIA can be added at all; there's no upper limit.</span></span> <span class="mono" id="price-maiafull" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">1 or more required to enable MAIA, no upper limit</div></div><input type="number" min="0" id="q-maiafull" class="qtyinput"></div>
@@ -156,7 +159,6 @@
           <div style="display:flex;flex-direction:column;gap:10px;">
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">HACCP<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Hazard Analysis and Critical Control Points: a food-safety risk framework, included at no extra cost.<span class="draft-flag">Draft: please confirm this matches how XGRC's HACCP add-on works.</span></span></span></div><div style="font-size:11px;color:var(--faint);">Free, no tier impact</div></div><input type="number" min="0" id="q-haccp" class="qtyinput"></div>
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">BOWTIE<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A visual risk-analysis method mapping the causes and consequences around a central risk event, included at no extra cost.<span class="draft-flag">Draft: please confirm this matches XGRC's BOWTIE add-on.</span></span></span></div><div style="font-size:11px;color:var(--faint);">Free, no tier impact</div></div><input type="number" min="0" id="q-bowtie" class="qtyinput"></div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Compliance Hub<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A central place to track regulatory obligations and compliance status. Free to use, but because it draws on Plus-tier data, selecting it moves your quote to XGRC Plus.</span></span></div><div style="font-size:11px;color:var(--cyan);">Free, but moves your quote to XGRC Plus</div></div><input type="number" min="0" id="q-compliancehub" class="qtyinput"></div>
           </div>
         </div>
 
@@ -256,12 +258,12 @@
         <div class="card" style="background:var(--abyss);padding:16px 20px;">
           <div class="eyebrow" style="margin-bottom:10px;">Notes</div>
           <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--mute);">
-            <div>&middot; ENVIRX, ERM, Integrated Assurance, HACCP, BOWTIE and Compliance Hub each have their own seat count; it does not need to match your Core count, but cannot exceed it.</div>
+            <div>&middot; ENVIRX, ERM, Integrated Assurance, HACCP and BOWTIE each have their own seat count; it does not need to match your Core count, but cannot exceed it.</div>
             <div>&middot; Selecting Integrated Assurance auto-includes ENVIRX and ERM at your full Core seat count; without it, ENVIRX/ERM can be sized independently.</div>
             <div>&middot; Every license type, including Lite, Task User and Team User, also includes a standard baseline: Documents, Help Centre, Support, Broadcasting, Incident Quick Log, SBO, Near Miss Quick Log and Employee Portal.</div>
             <div>&middot; Team User is not a quantity you choose freely; it is every employee record without another license, once employee access is switched on. Employee records themselves cost nothing; only enabling their access is billed.</div>
             <div>&middot; MAIA requires 1 or more Full Users, with no upper limit; Data User and Data Used are optional on top of that.</div>
-            <div>&middot; Compliance Hub is free, but selecting it still moves the quote to XGRC Plus.</div>
+            <div>&middot; Compliance Hub is a flat monthly fee, not a per-seat cost, but still moves your quote to XGRC Plus.</div>
             <div>&middot; Volume discount is driven by total monthly list value, not seat count.</div>
             <div>&middot; Annual commitment applies a further 10% to the already-discounted monthly value, compounding.</div>
             <div>&middot; Prices are real per-currency list prices from the XGRC price book, except Admin, XLOGIC and Asgard, which are new/unpriced placeholders.</div>
@@ -286,6 +288,7 @@ const PRICES = {
   envirx:       { ZAR: 139.00,   USD: 11.45,  GBP: 11.45,  EUR: 11.45  },
   erm:          { ZAR: 139.00,   USD: 11.45,  GBP: 11.45,  EUR: 11.45  },
   assurance:    { ZAR: 413.27,   USD: 33.07,  GBP: 25.72,  EUR: 29.40  },
+  complianceHub:{ ZAR: 1500.00,  USD: 120.00, GBP: 93.00,  EUR: 107.00 },
   maiaFull:     { ZAR: 13992.00, USD: 746.41, GBP: 597.13, EUR: 671.77 },
   maiaDataUser: { ZAR: 1075.90,  USD: 57.24,  GBP: 45.79,  EUR: 51.52  },
   maiaDataUsed: { ZAR: 15.15,    USD: 0.80,   GBP: 0.64,   EUR: 0.72   },
@@ -302,9 +305,10 @@ const state = {
     envirx: 0, erm: 0, assurance: 0,
     maiaFullUser: 0, maiaDataUser: 0, maiaDataUsed: 0,
     hkwDomains: 0, hkwUsers: 0,
-    xlogic: 0, asgard: 0
+    xlogic: 0, asgard: 0,
+    complianceHub: false
   },
-  addons: { haccp: 0, bowtie: 0, complianceHub: 0 },
+  addons: { haccp: 0, bowtie: 0 },
   annual: false
 };
 
@@ -333,8 +337,8 @@ function computeDerived() {
   const hkwZAR = m.hkwDomains*P.hkwDomain.ZAR + m.hkwUsers*P.hkwUser.ZAR;
   const hkwCur = m.hkwDomains*P.hkwDomain[cur] + m.hkwUsers*P.hkwUser[cur];
 
-  const moduleZAR = effEnvirx*P.envirx.ZAR + effErm*P.erm.ZAR + m.assurance*P.assurance.ZAR + maiaZAR + hkwZAR;
-  const moduleCur = effEnvirx*P.envirx[cur] + effErm*P.erm[cur] + m.assurance*P.assurance[cur] + maiaCur + hkwCur;
+  const moduleZAR = effEnvirx*P.envirx.ZAR + effErm*P.erm.ZAR + m.assurance*P.assurance.ZAR + maiaZAR + hkwZAR + (m.complianceHub ? P.complianceHub.ZAR : 0);
+  const moduleCur = effEnvirx*P.envirx[cur] + effErm*P.erm[cur] + m.assurance*P.assurance[cur] + maiaCur + hkwCur + (m.complianceHub ? P.complianceHub[cur] : 0);
 
   const listValueZAR = seatZAR + moduleZAR;
   const listValueCur = seatCur + moduleCur;
@@ -348,7 +352,7 @@ function computeDerived() {
   const annualTotalCur = state.annual ? discountedMonthlyCur*0.9*12 : discountedMonthlyCur*12;
 
   const isEnterprise = m.hkwDomains>0 || m.hkwUsers>0 || m.xlogic>0 || m.asgard>0 || s.luci>0;
-  const isPlus = !isEnterprise && (effEnvirx>0 || effErm>0 || m.assurance>0 || maiaOn || a.complianceHub>0);
+  const isPlus = !isEnterprise && (effEnvirx>0 || effErm>0 || m.assurance>0 || maiaOn || m.complianceHub);
   const isStandard = !isEnterprise && !isPlus;
   const tier = isEnterprise ? 'Enterprise' : (isPlus ? 'Plus' : 'Standard');
 
@@ -410,7 +414,8 @@ function render() {
 
   syncInput('q-haccp', state.addons.haccp);
   syncInput('q-bowtie', state.addons.bowtie);
-  syncInput('q-compliancehub', state.addons.complianceHub);
+  el('toggle-compliancehub').checked = state.modules.complianceHub;
+  el('price-compliancehub').textContent = priceStr(PRICES.complianceHub);
 
   el('tier-full').textContent = d.tierFull;
   el('hero-total').textContent = amountStr(d.discountedMonthlyCur);
@@ -470,7 +475,6 @@ bindQty('q-core', n => {
   state.modules.assurance = Math.min(state.modules.assurance, n);
   state.addons.haccp = Math.min(state.addons.haccp, n);
   state.addons.bowtie = Math.min(state.addons.bowtie, n);
-  state.addons.complianceHub = Math.min(state.addons.complianceHub, n);
 });
 bindQty('q-lite', n => state.seats.lite = n);
 bindQty('q-task', n => state.seats.task = n);
@@ -495,7 +499,7 @@ bindQty('q-asgard', n => state.modules.asgard = n);
 
 bindCappedQty('q-haccp', n => state.addons.haccp = n);
 bindCappedQty('q-bowtie', n => state.addons.bowtie = n);
-bindCappedQty('q-compliancehub', n => state.addons.complianceHub = n);
+el('toggle-compliancehub').addEventListener('change', (e) => { state.modules.complianceHub = e.target.checked; render(); });
 
 document.querySelectorAll('.curr-btn').forEach(b => b.addEventListener('click', () => { state.currency = b.dataset.curr; render(); }));
 
@@ -546,7 +550,7 @@ function buildLineItems(d) {
   if (d.m.asgard > 0) items.push({ label: 'Asgard seats', qty: d.m.asgard, unit: '[TBD]', total: '[TBD]' });
   if (d.a.haccp > 0) items.push({ label: 'HACCP', qty: d.a.haccp, unit: 'Free', total: 'Free' });
   if (d.a.bowtie > 0) items.push({ label: 'BOWTIE', qty: d.a.bowtie, unit: 'Free', total: 'Free' });
-  if (d.a.complianceHub > 0) items.push({ label: 'Compliance Hub', qty: d.a.complianceHub, unit: 'Free', total: 'Free' });
+  if (d.m.complianceHub) items.push({ label: 'Compliance Hub', qty: 1, unit: priceStr(PRICES.complianceHub), total: amountStr(PRICES.complianceHub[state.currency]) });
   return items;
 }
 
