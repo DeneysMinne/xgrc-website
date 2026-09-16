@@ -254,20 +254,18 @@
         </div>
 
         <div class="card" style="background:var(--abyss);padding:16px 20px;">
-          <div class="eyebrow" style="margin-bottom:10px;">Notes for the rep</div>
+          <div class="eyebrow" style="margin-bottom:10px;">Notes</div>
           <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--mute);">
-            <div>&middot; Every module and add-on has its own seat count; it does not need to match your Core count.</div>
+            <div>&middot; ENVIRX, ERM, Integrated Assurance, HACCP, BOWTIE and Compliance Hub each have their own seat count; it does not need to match your Core count, but cannot exceed it.</div>
             <div>&middot; Selecting Integrated Assurance auto-includes ENVIRX and ERM at your full Core seat count; without it, ENVIRX/ERM can be sized independently.</div>
-            <div>&middot; Task User includes both Action and Dashboard access, combined.</div>
             <div>&middot; Every license type, including Lite, Task User and Team User, also includes a standard baseline: Documents, Help Centre, Support, Broadcasting, Incident Quick Log, SBO, Near Miss Quick Log and Employee Portal.</div>
             <div>&middot; Team User is not a quantity you choose freely; it is every employee record without another license, once employee access is switched on. Employee records themselves cost nothing; only enabling their access is billed.</div>
             <div>&middot; MAIA requires 1 or more Full Users, with no upper limit; Data User and Data Used are optional on top of that.</div>
             <div>&middot; Compliance Hub is free, but selecting it still moves the quote to XGRC Plus.</div>
-            <div>&middot; Volume discount is driven by total monthly list value in ZAR, not seat count.</div>
+            <div>&middot; Volume discount is driven by total monthly list value, not seat count.</div>
             <div>&middot; Annual commitment applies a further 10% to the already-discounted monthly value, compounding.</div>
             <div>&middot; Prices are real per-currency list prices from the XGRC price book, except Admin, XLOGIC and Asgard, which are new/unpriced placeholders.</div>
-            <div>&middot; ENVIRX/ERM ZAR price uses the corrected R139 figure; the foreign-currency figures have not yet been re-confirmed against that correction.</div>
-          </div>
+                      </div>
         </div>
 
       </div>
@@ -454,16 +452,34 @@ function bindQty(id, setter) {
   });
 }
 
+function bindCappedQty(id, setVal) {
+  el(id).addEventListener('input', (e) => {
+    const raw = Math.max(0, parseInt(e.target.value, 10) || 0);
+    const capped = Math.min(raw, state.seats.core);
+    setVal(capped);
+    if (capped !== raw) e.target.value = capped;
+    render();
+  });
+}
+
 bindQty('q-admin', n => state.seats.admin = n);
-bindQty('q-core', n => state.seats.core = n);
+bindQty('q-core', n => {
+  state.seats.core = n;
+  state.modules.envirx = Math.min(state.modules.envirx, n);
+  state.modules.erm = Math.min(state.modules.erm, n);
+  state.modules.assurance = Math.min(state.modules.assurance, n);
+  state.addons.haccp = Math.min(state.addons.haccp, n);
+  state.addons.bowtie = Math.min(state.addons.bowtie, n);
+  state.addons.complianceHub = Math.min(state.addons.complianceHub, n);
+});
 bindQty('q-lite', n => state.seats.lite = n);
 bindQty('q-task', n => state.seats.task = n);
 bindQty('q-team', n => state.seats.team = n);
 bindQty('q-luci', n => state.seats.luci = n);
 
-bindQty('q-envirx', n => state.modules.envirx = n);
-bindQty('q-erm', n => state.modules.erm = n);
-bindQty('q-assurance', n => state.modules.assurance = n);
+bindCappedQty('q-envirx', n => state.modules.envirx = n);
+bindCappedQty('q-erm', n => state.modules.erm = n);
+bindCappedQty('q-assurance', n => state.modules.assurance = n);
 
 bindQty('q-maiafull', n => {
   state.modules.maiaFullUser = n;
@@ -477,9 +493,9 @@ bindQty('q-hkwusers', n => state.modules.hkwUsers = n);
 bindQty('q-xlogic', n => state.modules.xlogic = n);
 bindQty('q-asgard', n => state.modules.asgard = n);
 
-bindQty('q-haccp', n => state.addons.haccp = n);
-bindQty('q-bowtie', n => state.addons.bowtie = n);
-bindQty('q-compliancehub', n => state.addons.complianceHub = n);
+bindCappedQty('q-haccp', n => state.addons.haccp = n);
+bindCappedQty('q-bowtie', n => state.addons.bowtie = n);
+bindCappedQty('q-compliancehub', n => state.addons.complianceHub = n);
 
 document.querySelectorAll('.curr-btn').forEach(b => b.addEventListener('click', () => { state.currency = b.dataset.curr; render(); }));
 
