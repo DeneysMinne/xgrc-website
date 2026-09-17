@@ -361,7 +361,7 @@
               <div class="pill-row">
                 <span class="pill pill-cyber">Hakware</span><span class="pill">LUCI</span><span class="pill">XLOGIC®</span><span class="pill">AI Governance</span><span class="pill">Asgard</span><span class="pill pill-mute">RESTful API</span>
               </div>
-              <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-enterprise" style="color:var(--mute);"></span>/tenant (Admin + LUCI, the lowest-cost path in). Hakware, XLOGIC®, AI Governance or Asgard can also unlock Enterprise; exact price depends on what you select.</div>
+              <div id="enterprise-price-note" style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);"></div>
             </div>
           </div>
         </div>
@@ -574,7 +574,9 @@ function render() {
   el('card-enterprise').classList.toggle('active', d.isEnterprise);
   el('from-standard').textContent = priceStr(PRICES.admin);
   el('from-plus').textContent = amountStr(PRICES.admin[state.currency] + PRICES.envirx[state.currency]);
-  el('from-enterprise').textContent = amountStr(PRICES.admin[state.currency] + PRICES.luci[state.currency]);
+  el('enterprise-price-note').innerHTML = d.isEnterprise
+    ? ('Your current configuration: <span class="mono" style="color:var(--mute);">' + amountStr(d.listValueCur) + '</span>/tenant before discount.')
+    : ('There is no single Enterprise starting price: LUCI is priced per seat (' + priceStr(PRICES.luci) + '), Hakware by domains and users, while XLOGIC®, AI Governance and Asgard are still unpriced placeholders. Add one to see your real price.');
 
   const hasName = state.clientName.trim().length > 0;
   el('btn-save').disabled = !hasName;
