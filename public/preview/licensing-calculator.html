@@ -187,8 +187,9 @@
               <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">Hakware Users<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">People who need access to Hakware's own security dashboard and reporting, separate from XGRC® user seats.</span></span> <span class="mono" id="price-hkwuser" style="color:var(--faint);"></span>/seat</div><input type="number" min="0" id="q-hkwusers" class="qtyinput-sm"></div>
             </div>
             <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin:4px 0 2px;">AI Governance Framework<span class="info-wrap"><span class="info-icon" style="margin-left:5px;">i</span><span class="info-tip">Supports alignment to ISO/IEC 42001, the international standard for AI management systems, covering AI governance, oversight and change management.</span></span></div>
-            <div style="font-size:13.5px;font-weight:600;margin-bottom:6px;">XLOGIC®<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">XGRC®'s governance-execution and policy-to-workflow platform: a governed policy &rarr; requirement &rarr; process &rarr; task engine with quorum sign-off and a full audit trail. Its own independent user base, not a subset of your Core or Admin seats.</span></span></div>
-            <div style="display:flex;flex-direction:column;gap:8px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;padding:10px 12px;">
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">XLOGIC®<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">XGRC®'s governance-execution and policy-to-workflow platform: a governed policy &rarr; requirement &rarr; process &rarr; task engine with quorum sign-off and a full audit trail. Its own independent user base, not a subset of your Core or Admin seats.</span></span></div><div style="font-size:11px;color:var(--faint);">Enable XLOGIC® for this tenant?</div></div><input type="checkbox" id="toggle-xlogic" class="chkbox"></div>
+
+            <div id="xlogic-extra" style="display:none;flex-direction:column;gap:8px;padding:12px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;">
               <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">XLOGIC® Admin<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Sets up XLOGIC®: users, roles, AI provider and connector configuration, starts process instances. Does not hold approval authority, by design (separation of duties).</span></span> <span class="mono" id="price-xlogicadmin" style="color:var(--faint);"></span>/seat</div><input type="number" min="0" id="q-xlogicadmin" class="qtyinput-sm"></div>
               <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">XLOGIC® Governance User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Proposes and edits requirements and processes, completes tasks, attaches evidence, and, when assigned governance-lead authority, approves and attests. The seat XLOGIC®'s audit trail exists for.</span></span> <span class="mono" id="price-xlogicgovernance" style="color:var(--faint);"></span>/seat</div><input type="number" min="0" id="q-xlogicgovernance" class="qtyinput-sm"></div>
               <div class="row"><div style="flex:1;font-size:11.5px;color:var(--faint);">XLOGIC® Viewer<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Read-only access to process diagrams, evidence and audit history. Included at no extra cost for Core and Admin users once you're on XGRC® Plus or Enterprise; provisioning is manual today, pending a direct login link between XGRC® and XLOGIC®.</span></span></div><span class="badge-usage" style="background:rgba(47,232,138,0.12);color:var(--green-hi);">Included on Plus/Enterprise</span></div>
@@ -451,7 +452,7 @@ const state = {
     envirx: 0, erm: 0, assurance: 0,
     maiaEnabled: false, maiaFullUser: 0, maiaDataUser: 0, maiaDataBuckets: 0,
     hkwDomains: 0, hkwUsers: 0,
-    xlogicAdmin: 0, xlogicGovernance: 0, asgard: false, aiGovernance: false,
+    xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgard: false, aiGovernance: false,
     complianceHub: false
   },
   addons: { haccp: 0, bowtie: 0 },
@@ -555,6 +556,8 @@ function render() {
   syncInput('q-hkwusers', state.modules.hkwUsers);
   el('price-xlogicadmin').textContent = priceStr(PRICES.xlogicAdmin);
   el('price-xlogicgovernance').textContent = priceStr(PRICES.xlogicGovernance);
+  el('toggle-xlogic').checked = state.modules.xlogicEnabled;
+  el('xlogic-extra').style.display = state.modules.xlogicEnabled ? 'flex' : 'none';
   syncInput('q-xlogicadmin', state.modules.xlogicAdmin);
   syncInput('q-xlogicgovernance', state.modules.xlogicGovernance);
   el('toggle-aigovernance').checked = state.modules.aiGovernance;
@@ -697,6 +700,15 @@ el('q-maiadataused').addEventListener('input', (e) => {
 
 bindQty('q-hkwdomains', n => state.modules.hkwDomains = n);
 bindQty('q-hkwusers', n => state.modules.hkwUsers = n);
+el('toggle-xlogic').addEventListener('change', (e) => {
+  const on = e.target.checked;
+  state.modules.xlogicEnabled = on;
+  if (!on) {
+    state.modules.xlogicAdmin = 0;
+    state.modules.xlogicGovernance = 0;
+  }
+  render();
+});
 bindQty('q-xlogicadmin', n => state.modules.xlogicAdmin = n);
 bindQty('q-xlogicgovernance', n => state.modules.xlogicGovernance = n);
 el('toggle-aigovernance').addEventListener('change', (e) => { state.modules.aiGovernance = e.target.checked; render(); });
@@ -732,7 +744,7 @@ function defaultState() {
       envirx: 0, erm: 0, assurance: 0,
       maiaEnabled: false, maiaFullUser: 0, maiaDataUser: 0, maiaDataBuckets: 0,
       hkwDomains: 0, hkwUsers: 0,
-      xlogicAdmin: 0, xlogicGovernance: 0, asgard: false, aiGovernance: false,
+      xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgard: false, aiGovernance: false,
       complianceHub: false
     },
     addons: { haccp: 0, bowtie: 0 },
