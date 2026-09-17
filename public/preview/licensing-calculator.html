@@ -58,6 +58,10 @@
   .notes-list li { margin-bottom:8px; }
   .notes-list li:last-child { margin-bottom:0; }
   .notes-list li::marker { color:var(--cyan); }
+  .pill { display:inline-flex; align-items:center; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.3px; background:rgba(48,226,244,0.10); color:var(--cyan-hi); padding:3px 8px; border-radius:5px; white-space:nowrap; }
+  .pill-row { display:flex; flex-wrap:wrap; gap:6px; }
+  .info-tip-list { display:none; position:absolute; z-index:30; bottom:135%; left:0; width:230px; max-height:260px; overflow-y:auto; background:var(--abyss); border:1px solid var(--line-strong); border-radius:10px; padding:10px 12px; font-size:11px; line-height:1.65; color:var(--mute); font-family:'Inter',sans-serif; box-shadow:0 10px 28px rgba(0,0,0,.45); }
+  .info-wrap:hover .info-tip-list, .info-wrap.open .info-tip-list { display:block; }
 </style>
 </head>
 <body>
@@ -239,10 +243,26 @@
               <div class="ribbon">RECOMMENDED</div>
               <div style="font-size:15px;font-weight:800;margin-bottom:4px;font-family:'Outfit';">XGRC Standard</div>
               <div style="font-size:11.5px;color:var(--mute);margin-bottom:14px;">SHEQX baseline, seats added as needed</div>
+
+              <div class="info-wrap" style="cursor:help;margin-bottom:14px;">
+                <span style="font-family:'Outfit';font-size:24px;font-weight:800;color:var(--cyan-hi);">56</span>
+                <span style="font-size:11.5px;color:var(--mute);margin-left:4px;">core modules</span>
+                <span class="info-icon">i</span>
+                <span class="info-tip-list">Access Control<br>Actions<br>Asset Management<br>Audits<br>Bowtie<br>Broadcasting<br>Calibration<br>Change Management<br>Community Management<br>Contractor Management<br>Covid Management<br>Covid Questionnaire<br>Customer Management<br>Dashboards<br>Document Template Control<br>Documents<br>Emergency Preparedness<br>Employee Manager Portal<br>Employee Portal<br>Government Management<br>HACCP<br>Help Centre<br>Incident Quick Log<br>Incidents<br>Inspection Quick Log<br>Inspections<br>Legal and Other Requirements<br>Legal Appointments<br>Medical Surveillance<br>Meeting Manager<br>Monitoring<br>Near Miss Report<br>Non-Conformances<br>Objectives<br>On Site<br>On Site Management<br>Operational Risk<br>Opportunity For Improvement<br>Permits<br>POD<br>PPE Register<br>Profile<br>Release Notes<br>Report Builder<br>Risk Assessments<br>SBO<br>SDS<br>Shareholder Management<br>Strategy<br>Suggestions<br>Supplier Management<br>Temperature Reading<br>Training<br>Union Management<br>Vulnerability Management<br>Work Order</span>
+              </div>
+
+              <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Compliance frameworks covered</div>
+              <div class="pill-row" style="margin-bottom:10px;">
+                <span class="pill">ISO 9001</span><span class="pill">ISO 14001</span><span class="pill">ISO 45001</span><span class="pill">ISO 22000</span>
+              </div>
+              <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Disciplines</div>
+              <div class="pill-row" style="margin-bottom:14px;">
+                <span class="pill">SHE</span><span class="pill">SHEQ</span><span class="pill">SHERQ</span>
+              </div>
+
               <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;color:var(--mute);">
-                <div>&#10003; SHEQX baseline modules</div>
                 <div>&#10003; Admin, Core, Lite, Task &amp; Team seats</div>
-                <div>&#10003; HACCP &amp; BOWTIE add-ons</div>
+                <div>&#10003; RESTful Open API</div>
               </div>
               <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-standard" style="color:var(--mute);"></span>/seat</div>
             </div>
@@ -256,8 +276,9 @@
                 <div>&#10003; Integrated Assurance (bundles ENVIRX+ERM at Core count)</div>
                 <div>&#10003; Compliance Hub (flat monthly fee)</div>
                 <div>&#10003; MAIA AI copilot (1+ Full Users)</div>
+                <div>&#10003; RESTful Open API</div>
               </div>
-              <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-plus" style="color:var(--mute);"></span>/seat</div>
+              <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-plus" style="color:var(--mute);"></span>/seat &middot; requires a Core seat</div>
             </div>
             <div class="tier-card" id="card-enterprise">
               <div class="ribbon">RECOMMENDED</div>
@@ -268,9 +289,19 @@
                 <div>&#10003; Hakware (own domain/user counts)</div>
                 <div>&#10003; LUCI multi-tenant admin seats</div>
                 <div>&#10003; XLOGIC &amp; Asgard (pricing TBD)</div>
+                <div>&#10003; RESTful Open API</div>
               </div>
               <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-enterprise" style="color:var(--mute);"></span>/seat (LUCI)</div>
             </div>
+          </div>
+        </div>
+
+        <div class="card" style="background:var(--abyss);padding:14px 20px;">
+          <div style="display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:11.5px;color:var(--mute);">
+            <span class="pill">ISO 27001:2022 Certified</span>
+            <span>Hosted on Microsoft Azure, West Europe (Netherlands)</span>
+            <span style="color:var(--faint);">&middot;</span>
+            <span>ISO 42001 certification targeted October 2026</span>
           </div>
         </div>
 
@@ -464,7 +495,7 @@ function render() {
   el('card-plus').classList.toggle('active', d.isPlus);
   el('card-enterprise').classList.toggle('active', d.isEnterprise);
   el('from-standard').textContent = priceStr(PRICES.core);
-  el('from-plus').textContent = priceStr(PRICES.envirx);
+  el('from-plus').textContent = amountStr(PRICES.core[state.currency] + PRICES.envirx[state.currency]);
   el('from-enterprise').textContent = priceStr(PRICES.luci);
 
   const hasName = state.clientName.trim().length > 0;
