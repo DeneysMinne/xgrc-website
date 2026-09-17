@@ -199,14 +199,6 @@
           </div>
         </div>
 
-        <div class="card">
-          <div class="eyebrow" style="margin-bottom:14px;">Add-ons</div>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">HACCP<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Hazard Analysis and Critical Control Points: a food-safety risk framework, included at no extra cost.<span class="draft-flag">Draft: please confirm this matches how XGRC®'s HACCP add-on works.</span></span></span></div><div style="font-size:11px;color:var(--faint);">Free, no tier impact</div></div><input type="number" min="0" id="q-haccp" class="qtyinput"></div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">BOWTIE<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A visual risk-analysis method mapping the causes and consequences around a central risk event, included at no extra cost.<span class="draft-flag">Draft: please confirm this matches XGRC®'s BOWTIE add-on.</span></span></span></div><div style="font-size:11px;color:var(--faint);">Free, no tier impact</div></div><input type="number" min="0" id="q-bowtie" class="qtyinput"></div>
-          </div>
-        </div>
-
       </div>
 
       <!-- RIGHT -->
@@ -311,10 +303,10 @@
               <div class="info-wrap" style="cursor:help;margin-bottom:6px;">
                 <span style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;">Disciplines</span>
                 <span class="info-icon">i</span>
-                <span class="info-tip">SHE = Safety, Health, Environment. SHEQ adds Quality. SHERQ adds Risk. XGRC® Standard supports all three overlapping discipline models.</span>
+                <span class="info-tip">SHE = Safety, Health, Environment. SHEQ adds Quality. SHERQ adds Risk. HACCP and BOWTIE risk methodologies are included at no extra cost. XGRC® Standard supports all these overlapping discipline and risk models.</span>
               </div>
               <div class="pill-row" style="margin-bottom:8px;">
-                <span class="pill">SHE</span><span class="pill">SHEQ</span><span class="pill">SHERQ</span>
+                <span class="pill">SHE</span><span class="pill">SHEQ</span><span class="pill">SHERQ</span><span class="pill">HACCP</span><span class="pill">BOWTIE</span>
               </div>
               <div class="pill-row" style="margin-bottom:14px;">
                 <span class="pill pill-mute">SAFETY</span><span class="pill pill-mute">HEALTH</span><span class="pill pill-mute">ENVIRONMENT</span><span class="pill pill-mute">RISK</span><span class="pill pill-mute">QUALITY</span>
@@ -397,7 +389,8 @@
         <div class="card" style="background:var(--abyss);padding:16px 20px;">
           <div class="eyebrow" style="margin-bottom:10px;">Notes</div>
           <ul class="notes-list">
-            <li>ENVIRX®, ERM, Integrated Assurance, HACCP and BOWTIE each have their own seat count; it does not need to match your Core and Admin count combined, but cannot exceed it. Admin already has full Core capability, so both count toward the pool.</li>
+            <li>ENVIRX®, ERM and Integrated Assurance each have their own seat count; it does not need to match your Core and Admin count combined, but cannot exceed it. Admin already has full Core capability, so both count toward the pool.</li>
+            <li>HACCP and BOWTIE are included discipline/risk methodologies at no extra cost, not seat-based selections.</li>
             <li>Every licence type, including Lite, Task User and Team User, also includes a standard baseline: Documents, Help Centre, Support, Broadcasting, Incident Quick Log, SBO, Near Miss Quick Log and Employee Portal.</li>
             <li>Team User is an estimated total employee headcount, not a quantity chosen freely. The product reconciles it against employees already licensed under another seat type once provisioned, so nobody is billed twice. Employee records themselves cost nothing; only enabling their access is billed.</li>
             <li>MAIA® is switched on with a single tickbox, which opens up its user fields; a minimum of 1 Full User and 1 Data Bucket (50GB) applies while it's enabled, with no upper limit. Data User seats and extra Data Buckets are optional on top of that. Data Buckets is the one usage-based line item in this quote; every other line is a fixed commitment regardless of actual use.</li>
@@ -464,7 +457,6 @@ const state = {
     xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgard: false, aiGovernance: false,
     complianceHub: false
   },
-  addons: { haccp: 0, bowtie: 0 },
   annual: false
 };
 
@@ -479,7 +471,7 @@ function priceStr(map) { return SYM[state.currency] + ' ' + formatNum(map[state.
 function amountStr(v) { return SYM[state.currency] + ' ' + formatNum(v); }
 
 function computeDerived() {
-  const s = state.seats, m = state.modules, a = state.addons, cur = state.currency, P = PRICES;
+  const s = state.seats, m = state.modules, cur = state.currency, P = PRICES;
 
   const seatCur = s.admin*P.admin[cur] + s.core*P.core[cur] + s.lite*P.lite[cur] + s.task*P.task[cur] + s.team*P.team[cur] + s.luci*P.luci[cur];
 
@@ -510,7 +502,7 @@ function computeDerived() {
   const isStandard = !isEnterprise && !isPlus;
   const tier = isEnterprise ? 'Enterprise' : (isPlus ? 'Plus' : 'Standard');
 
-  return { s, m, a, cur, th, effEnvirx, effErm, maiaOn, seatCur, moduleCur, listValueCur, discountPct,
+  return { s, m, cur, th, effEnvirx, effErm, maiaOn, seatCur, moduleCur, listValueCur, discountPct,
            discountedMonthlyCur, annualTotalCur, isStandard, isPlus, isEnterprise, tierFull: 'XGRC® ' + tier };
 }
 
@@ -572,8 +564,6 @@ function render() {
   el('toggle-aigovernance').checked = state.modules.aiGovernance;
   el('toggle-asgard').checked = state.modules.asgard;
 
-  syncInput('q-haccp', state.addons.haccp);
-  syncInput('q-bowtie', state.addons.bowtie);
   el('toggle-compliancehub').checked = state.modules.complianceHub;
   el('price-compliancehub').textContent = priceStr(PRICES.complianceHub);
 
@@ -634,8 +624,6 @@ function reclampCappedFields() {
   state.modules.envirx = Math.min(state.modules.envirx, cap);
   state.modules.erm = Math.min(state.modules.erm, cap);
   state.modules.assurance = Math.min(state.modules.assurance, cap);
-  state.addons.haccp = Math.min(state.addons.haccp, cap);
-  state.addons.bowtie = Math.min(state.addons.bowtie, cap);
 }
 
 function bindCappedQty(id, setVal) {
@@ -723,8 +711,6 @@ bindQty('q-xlogicgovernance', n => state.modules.xlogicGovernance = n);
 el('toggle-aigovernance').addEventListener('change', (e) => { state.modules.aiGovernance = e.target.checked; render(); });
 el('toggle-asgard').addEventListener('change', (e) => { state.modules.asgard = e.target.checked; render(); });
 
-bindCappedQty('q-haccp', n => state.addons.haccp = n);
-bindCappedQty('q-bowtie', n => state.addons.bowtie = n);
 el('toggle-compliancehub').addEventListener('change', (e) => { state.modules.complianceHub = e.target.checked; render(); });
 
 document.querySelectorAll('.curr-btn').forEach(b => b.addEventListener('click', () => { state.currency = b.dataset.curr; render(); }));
@@ -756,7 +742,6 @@ function defaultState() {
       xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgard: false, aiGovernance: false,
       complianceHub: false
     },
-    addons: { haccp: 0, bowtie: 0 },
     annual: false
   };
 }
@@ -796,7 +781,6 @@ function loadQuote(entry) {
   state.clientName = snap.clientName;
   state.seats = Object.assign({ teamEnabled: false }, snap.seats);
   state.modules = Object.assign({ complianceHub: false }, snap.modules);
-  state.addons = Object.assign({}, snap.addons);
   state.annual = snap.annual;
   el('client-name').value = state.clientName;
   render();
@@ -861,8 +845,6 @@ function buildLineItems(d) {
   const items = [...buildSeatItems(d), ...buildModuleItems(d)];
   if (d.m.aiGovernance) items.push({ label: 'AI Governance', qty: 1, unit: '[TBD]', total: '[TBD]' });
   if (d.m.asgard) items.push({ label: 'Asgard', qty: 1, unit: '[TBD]', total: '[TBD]' });
-  if (d.a.haccp > 0) items.push({ label: 'HACCP', qty: d.a.haccp, unit: 'Free', total: 'Free' });
-  if (d.a.bowtie > 0) items.push({ label: 'BOWTIE', qty: d.a.bowtie, unit: 'Free', total: 'Free' });
   return items;
 }
 
