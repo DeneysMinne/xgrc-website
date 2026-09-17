@@ -102,7 +102,7 @@
             <button class="curr-btn" data-curr="GBP">&pound; GBP</button>
             <button class="curr-btn" data-curr="EUR">&euro; EUR</button>
           </div>
-          <div style="font-size:10.5px;color:var(--faint);margin-top:10px;font-style:italic;">Real per-currency list prices from the XGRC price book, not FX conversions. Admin and Compliance Hub use placeholder pricing pending confirmation; XLOGIC and Asgard are entirely unpriced.</div>
+          <div style="font-size:10.5px;color:var(--faint);margin-top:10px;font-style:italic;">Real per-currency list prices from the XGRC price book, not FX conversions. Admin and Compliance Hub use placeholder pricing pending confirmation; XLOGIC, AI Governance and Asgard are entirely unpriced.</div>
         </div>
 
         <div class="card">
@@ -165,8 +165,10 @@
               <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">Domains<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Each domain Hakware actively monitors for security issues.</span></span> <span class="mono" id="price-hkwdomain" style="color:var(--faint);"></span> each</div><input type="number" min="0" id="q-hkwdomains" class="qtyinput-sm"></div>
               <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">Hakware Users<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">People who need access to Hakware's own security dashboard and reporting, separate from XGRC user seats.</span></span> <span class="mono" id="price-hkwuser" style="color:var(--faint);"></span>/seat</div><input type="number" min="0" id="q-hkwusers" class="qtyinput-sm"></div>
             </div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">XLOGIC<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">XGRC's core governance, risk and compliance platform. Pricing for including it in a combined quote is still being finalised. Its own independent user base, not a subset of your Core or Admin seats.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">GRC platform, pricing to be finalised</div></div><input type="number" min="0" id="q-xlogic" class="qtyinput"></div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Asgard<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A new XGRC product, launching soon. Details and pricing to follow. Its own independent user base, not a subset of your Core or Admin seats.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">New product, launching soon</div></div><input type="number" min="0" id="q-asgard" class="qtyinput"></div>
+            <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin:4px 0 2px;">AI Compliance</div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">XLOGIC<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">XGRC's core governance, risk and compliance platform. Pricing for including it in a combined quote is still being finalised. A flat selection, like Compliance Hub, not seat-based.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">GRC platform, pricing to be finalised</div></div><input type="checkbox" id="toggle-xlogic" class="chkbox"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">AI Governance<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A new XGRC product for AI governance and oversight, launching soon. Details and pricing to follow. A flat selection, like Compliance Hub, not seat-based.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">New product, launching soon</div></div><input type="checkbox" id="toggle-aigovernance" class="chkbox"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Asgard<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A new XGRC product, launching soon. Details and pricing to follow. A flat selection, like Compliance Hub, not seat-based.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">New product, launching soon</div></div><input type="checkbox" id="toggle-asgard" class="chkbox"></div>
           </div>
         </div>
 
@@ -321,23 +323,22 @@
               <div style="font-size:11.5px;color:var(--mute);margin-bottom:14px;">Plus + multi-tenant &amp; group products</div>
 
               <div class="info-wrap" style="cursor:help;margin-bottom:14px;">
-                <span style="font-family:'Outfit';font-size:24px;font-weight:800;color:var(--cyan-hi);">+4</span>
+                <span style="font-family:'Outfit';font-size:24px;font-weight:800;color:var(--cyan-hi);">+5</span>
                 <span style="font-size:11.5px;color:var(--mute);margin-left:4px;">capabilities added</span>
                 <span class="info-icon">i</span>
-                <span class="info-tip-list">Hakware: penetration testing &amp; vulnerability management<br>LUCI: multi-tenant admin access<br>XLOGIC: governance execution, policy-to-workflow<br>Asgard: new product, launching soon</span>
+                <span class="info-tip-list">Hakware: penetration testing &amp; vulnerability management<br>LUCI: multi-tenant admin access<br>XLOGIC: governance execution, policy-to-workflow<br>AI Governance: AI oversight, launching soon<br>Asgard: new product, launching soon</span>
               </div>
 
               <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">New capabilities unlocked</div>
               <div class="pill-row" style="margin-bottom:14px;">
-                <span class="pill">Multi-tenant</span><span class="pill">Penetration Testing</span><span class="pill">Vulnerability Management</span><span class="pill">Policy-to-Workflow</span>
+                <span class="pill">Multi-tenant</span><span class="pill">Penetration Testing</span><span class="pill">Vulnerability Management</span><span class="pill">Policy-to-Workflow</span><span class="pill">AI Governance</span>
               </div>
 
               <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;color:var(--mute);">
                 <div>&#10003; Everything in Plus</div>
                 <div>&#10003; Hakware: AI-powered penetration testing &amp; vulnerability visibility (own domain/user counts)</div>
                 <div>&#10003; LUCI: multi-tenant admin seats across sites</div>
-                <div>&#10003; XLOGIC: governance execution, policy-to-workflow (pricing TBD)</div>
-                <div>&#10003; Asgard: new product, launching soon (pricing TBD)</div>
+                <div>&#10003; AI Compliance: XLOGIC, AI Governance &amp; Asgard (pricing TBD)</div>
                 <div>&#10003; RESTful Open API</div>
               </div>
               <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-enterprise" style="color:var(--mute);"></span>/tenant (Admin + LUCI)</div>
@@ -363,7 +364,8 @@
             <li>Team User is an estimated total employee headcount, not a quantity chosen freely. The product reconciles it against employees already licensed under another seat type once provisioned, so nobody is billed twice. Employee records themselves cost nothing; only enabling their access is billed.</li>
             <li>MAIA requires 1 or more Full Users, with no upper limit; Data User and Data Used are optional on top of that. Data Used is the one usage-based line item in this quote, billed in 50GB buckets (partial buckets round up); every other line is a fixed commitment regardless of actual use.</li>
             <li>Compliance Hub is a flat monthly fee, not a per-seat cost, but still moves your quote to XGRC Plus.</li>
-            <li>MAIA, Hakware, XLOGIC and Asgard seat counts are independent of your Core and Admin count; they represent separate user bases, not a subset of those seats.</li>
+            <li>MAIA and Hakware seat counts are independent of your Core and Admin count; they represent separate user bases, not a subset of those seats.</li>
+            <li>XLOGIC, AI Governance and Asgard are flat selections, like Compliance Hub, not seat-based; pricing for all three is still to be finalised.</li>
             <li>Volume discount thresholds are set independently per currency, not converted from ZAR, the same way list prices are.</li>
             <li>Annual commitment applies a further 10% to the already-discounted monthly value, compounding.</li>
             <li>Prices are real per-currency list prices from the XGRC price book, except Admin, XLOGIC and Asgard, which are new/unpriced placeholders.</li>
@@ -416,7 +418,7 @@ const state = {
     envirx: 0, erm: 0, assurance: 0,
     maiaFullUser: 0, maiaDataUser: 0, maiaDataUsed: 0,
     hkwDomains: 0, hkwUsers: 0,
-    xlogic: 0, asgard: 0,
+    xlogic: false, asgard: false, aiGovernance: false,
     complianceHub: false
   },
   addons: { haccp: 0, bowtie: 0 },
@@ -458,7 +460,7 @@ function computeDerived() {
   const discountedMonthlyCur = listValueCur * (1 - discountPct/100);
   const annualTotalCur = state.annual ? discountedMonthlyCur*0.9*12 : discountedMonthlyCur*12;
 
-  const isEnterprise = m.hkwDomains>0 || m.hkwUsers>0 || m.xlogic>0 || m.asgard>0 || s.luci>0;
+  const isEnterprise = m.hkwDomains>0 || m.hkwUsers>0 || m.xlogic || m.asgard || m.aiGovernance || s.luci>0;
   const isPlus = !isEnterprise && (effEnvirx>0 || effErm>0 || m.assurance>0 || maiaOn || m.complianceHub);
   const isStandard = !isEnterprise && !isPlus;
   const tier = isEnterprise ? 'Enterprise' : (isPlus ? 'Plus' : 'Standard');
@@ -521,8 +523,9 @@ function render() {
 
   syncInput('q-hkwdomains', state.modules.hkwDomains);
   syncInput('q-hkwusers', state.modules.hkwUsers);
-  syncInput('q-xlogic', state.modules.xlogic);
-  syncInput('q-asgard', state.modules.asgard);
+  el('toggle-xlogic').checked = state.modules.xlogic;
+  el('toggle-aigovernance').checked = state.modules.aiGovernance;
+  el('toggle-asgard').checked = state.modules.asgard;
 
   syncInput('q-haccp', state.addons.haccp);
   syncInput('q-bowtie', state.addons.bowtie);
@@ -635,8 +638,9 @@ bindQty('q-maiadataused', n => state.modules.maiaDataUsed = n);
 
 bindQty('q-hkwdomains', n => state.modules.hkwDomains = n);
 bindQty('q-hkwusers', n => state.modules.hkwUsers = n);
-bindQty('q-xlogic', n => state.modules.xlogic = n);
-bindQty('q-asgard', n => state.modules.asgard = n);
+el('toggle-xlogic').addEventListener('change', (e) => { state.modules.xlogic = e.target.checked; render(); });
+el('toggle-aigovernance').addEventListener('change', (e) => { state.modules.aiGovernance = e.target.checked; render(); });
+el('toggle-asgard').addEventListener('change', (e) => { state.modules.asgard = e.target.checked; render(); });
 
 bindCappedQty('q-haccp', n => state.addons.haccp = n);
 bindCappedQty('q-bowtie', n => state.addons.bowtie = n);
@@ -665,7 +669,7 @@ function defaultState() {
       envirx: 0, erm: 0, assurance: 0,
       maiaFullUser: 0, maiaDataUser: 0, maiaDataUsed: 0,
       hkwDomains: 0, hkwUsers: 0,
-      xlogic: 0, asgard: 0,
+      xlogic: false, asgard: false, aiGovernance: false,
       complianceHub: false
     },
     addons: { haccp: 0, bowtie: 0 },
@@ -757,8 +761,9 @@ function buildLineItems(d) {
   }
   push('Hakware Domains', d.m.hkwDomains, PRICES.hkwDomain);
   push('Hakware Users', d.m.hkwUsers, PRICES.hkwUser);
-  if (d.m.xlogic > 0) items.push({ label: 'XLOGIC seats', qty: d.m.xlogic, unit: '[TBD]', total: '[TBD]' });
-  if (d.m.asgard > 0) items.push({ label: 'Asgard seats', qty: d.m.asgard, unit: '[TBD]', total: '[TBD]' });
+  if (d.m.xlogic) items.push({ label: 'XLOGIC', qty: 1, unit: '[TBD]', total: '[TBD]' });
+  if (d.m.aiGovernance) items.push({ label: 'AI Governance', qty: 1, unit: '[TBD]', total: '[TBD]' });
+  if (d.m.asgard) items.push({ label: 'Asgard', qty: 1, unit: '[TBD]', total: '[TBD]' });
   if (d.a.haccp > 0) items.push({ label: 'HACCP', qty: d.a.haccp, unit: 'Free', total: 'Free' });
   if (d.a.bowtie > 0) items.push({ label: 'BOWTIE', qty: d.a.bowtie, unit: 'Free', total: 'Free' });
   if (d.m.complianceHub) items.push({ label: 'Compliance Hub', qty: 1, unit: priceStr(PRICES.complianceHub), total: amountStr(PRICES.complianceHub[state.currency]) });
