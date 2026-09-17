@@ -181,8 +181,9 @@
 
           <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;">Adds to XGRC® Enterprise</div>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <div style="font-size:12.5px;font-weight:600;">Hakware<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A separate cyber-security platform (vulnerability and pentest management), licensed by number of monitored domains and number of users. Its own independent user base, not a subset of your Core or Admin seats.</span></span></div>
-            <div style="display:flex;flex-direction:column;gap:8px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;padding:10px 12px;">
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">HAKWARE<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A separate cyber-security platform (vulnerability and pentest management), licensed by number of monitored domains and number of users. Its own independent user base, not a subset of your Core or Admin seats.</span></span></div><div style="font-size:11px;color:var(--faint);">Enable Hakware for this tenant?</div></div><input type="checkbox" id="toggle-hakware" class="chkbox"></div>
+
+            <div id="hakware-extra" style="display:none;flex-direction:column;gap:8px;padding:10px 12px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;">
               <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">Domains<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Each domain Hakware actively monitors for security issues.</span></span> <span class="mono" id="price-hkwdomain" style="color:var(--faint);"></span> each</div><input type="number" min="0" id="q-hkwdomains" class="qtyinput-sm"></div>
               <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">Hakware Users<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">People who need access to Hakware's own security dashboard and reporting, separate from XGRC® user seats.</span></span> <span class="mono" id="price-hkwuser" style="color:var(--faint);"></span>/seat</div><input type="number" min="0" id="q-hkwusers" class="qtyinput-sm"></div>
             </div>
@@ -453,7 +454,7 @@ const state = {
   modules: {
     envirx: 0, erm: 0, assurance: 0,
     maiaEnabled: false, maiaFullUser: 0, maiaDataUser: 0, maiaDataBuckets: 0,
-    hkwDomains: 0, hkwUsers: 0,
+    hakwareEnabled: false, hkwDomains: 0, hkwUsers: 0,
     xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgard: false, aiGovernance: false,
     complianceHub: false
   },
@@ -553,6 +554,8 @@ function render() {
   const bucketsGb = state.modules.maiaDataBuckets * 50;
   el('maiadataused-buckets').textContent = d.maiaOn ? ('~' + bucketsGb + 'GB estimated') : '';
 
+  el('toggle-hakware').checked = state.modules.hakwareEnabled;
+  el('hakware-extra').style.display = state.modules.hakwareEnabled ? 'flex' : 'none';
   syncInput('q-hkwdomains', state.modules.hkwDomains);
   syncInput('q-hkwusers', state.modules.hkwUsers);
   el('price-xlogicadmin').textContent = priceStr(PRICES.xlogicAdmin);
@@ -695,6 +698,15 @@ el('q-maiadataused').addEventListener('input', (e) => {
   render();
 });
 
+el('toggle-hakware').addEventListener('change', (e) => {
+  const on = e.target.checked;
+  state.modules.hakwareEnabled = on;
+  if (!on) {
+    state.modules.hkwDomains = 0;
+    state.modules.hkwUsers = 0;
+  }
+  render();
+});
 bindQty('q-hkwdomains', n => state.modules.hkwDomains = n);
 bindQty('q-hkwusers', n => state.modules.hkwUsers = n);
 el('toggle-xlogic').addEventListener('change', (e) => {
@@ -738,7 +750,7 @@ function defaultState() {
     modules: {
       envirx: 0, erm: 0, assurance: 0,
       maiaEnabled: false, maiaFullUser: 0, maiaDataUser: 0, maiaDataBuckets: 0,
-      hkwDomains: 0, hkwUsers: 0,
+      hakwareEnabled: false, hkwDomains: 0, hkwUsers: 0,
       xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgard: false, aiGovernance: false,
       complianceHub: false
     },
