@@ -74,8 +74,12 @@
   .info-tip-list::-webkit-scrollbar-thumb { background:var(--line-strong); border-radius:4px; }
   .info-tip-list::-webkit-scrollbar-thumb:hover { background:var(--cyan); }
   .info-wrap:hover .info-tip-list, .info-wrap.open .info-tip-list { display:block; }
-  .subtotal-row { display:flex; justify-content:space-between; align-items:center; font-size:13px; cursor:pointer; user-select:none; }
-  .subtotal-chevron { display:inline-block; font-size:9px; color:var(--faint); margin-left:6px; transition:transform .15s; }
+  .subtotal-row { display:flex; justify-content:space-between; align-items:center; font-size:13px; cursor:pointer; user-select:none; padding:4px 6px; margin:0 -6px; border-radius:6px; transition:background .15s; }
+  .subtotal-row:hover { background:rgba(48,226,244,0.08); }
+  .subtotal-row:hover .subtotal-label { color:var(--cyan-hi); }
+  .subtotal-label { color:var(--mute); transition:color .15s; }
+  .subtotal-chevron { display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%; background:var(--line-strong); color:var(--ink); font-family:'JetBrains Mono',monospace; font-size:9px; margin-left:8px; transition:transform .15s, background .15s, color .15s; flex-shrink:0; }
+  .subtotal-row:hover .subtotal-chevron { background:var(--cyan); color:#04101b; }
   .subtotal-chevron.open { transform:rotate(90deg); }
   .subtotal-breakdown { display:none; flex-direction:column; gap:4px; margin:8px 0 4px 4px; padding-left:10px; border-left:1px solid var(--line); }
   .subtotal-breakdown.open { display:flex; }
@@ -234,11 +238,11 @@
 
           <div style="display:flex;flex-direction:column;gap:9px;">
             <div>
-              <div class="subtotal-row" id="toggle-seats-breakdown"><span style="color:var(--mute);">Seats subtotal<span class="subtotal-chevron" id="seats-chevron">&#9656;</span></span><span class="mono" id="seat-subtotal"></span></div>
+              <div class="subtotal-row" id="toggle-seats-breakdown"><span class="subtotal-label">Seats subtotal <span class="subtotal-chevron" id="seats-chevron">&#9656;</span></span><span class="mono" id="seat-subtotal"></span></div>
               <div class="subtotal-breakdown" id="seats-breakdown"></div>
             </div>
             <div>
-              <div class="subtotal-row" id="toggle-modules-breakdown"><span style="color:var(--mute);">Modules subtotal<span class="subtotal-chevron" id="modules-chevron">&#9656;</span></span><span class="mono" id="module-subtotal"></span></div>
+              <div class="subtotal-row" id="toggle-modules-breakdown"><span class="subtotal-label">Modules subtotal <span class="subtotal-chevron" id="modules-chevron">&#9656;</span></span><span class="mono" id="module-subtotal"></span></div>
               <div class="subtotal-breakdown" id="modules-breakdown"></div>
             </div>
             <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;"><span style="color:var(--mute);">Monthly list value</span><span class="mono" id="list-value"></span></div>
