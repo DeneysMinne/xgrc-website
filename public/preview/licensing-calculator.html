@@ -153,7 +153,7 @@
 
             <div id="maia-extra" style="display:none;flex-direction:column;gap:9px;padding:12px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;">
               <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">Data User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Someone who can view MAIA's outputs and insights, without the full interactive copilot access a Full User has.</span></span> <span class="mono" id="price-maiadatauser" style="color:var(--faint);"></span><div style="font-size:10.5px;color:var(--faint);">Optional, additional seats</div></div><input type="number" min="0" id="q-maiadatauser" class="qtyinput-sm"></div>
-              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">Data Used<span class="badge-usage">Usage-based</span><span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">An estimate of how much data MAIA will process monthly (e.g. documents or records analysed). Unlike every other line item, this is billed on usage, not a fixed seat commitment; going over the estimate is billed as extra data tokens.</span></span> <span class="mono" id="price-maiadataused" style="color:var(--faint);"></span>/unit<div style="font-size:10.5px;color:var(--faint);">Estimated monthly processing volume</div></div><input type="number" min="0" id="q-maiadataused" class="qtyinput-sm"></div>
+              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">Data Used<span class="badge-usage">Usage-based</span><span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">An estimate of how much data MAIA will process monthly, in GB. Unlike every other line item, this is billed on usage, not a fixed seat commitment; going over the estimate is billed as extra data tokens.</span></span> <span class="mono" id="price-maiadataused" style="color:var(--faint);"></span>/GB<div style="font-size:10.5px;color:var(--faint);">Estimated monthly data volume, in GB</div></div><input type="number" min="0" id="q-maiadataused" class="qtyinput-sm"></div>
               <div style="font-size:10.5px;color:var(--faint);font-style:italic;">Usage beyond this estimate is billed via additional data tokens.</div>
             </div>
           </div>
@@ -237,25 +237,46 @@
         </div>
 
         <div>
-          <div class="eyebrow" style="margin-bottom:12px;">All Packages Compared</div>
+          <div class="eyebrow" style="margin-bottom:6px;">All Packages Compared</div>
+          <div style="font-size:11.5px;color:var(--faint);margin-bottom:12px;max-width:640px;">One connected governance, risk and compliance platform: the package scales with how much of it you switch on.</div>
           <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;">
             <div class="tier-card" id="card-standard">
               <div class="ribbon">RECOMMENDED</div>
               <div style="font-size:15px;font-weight:800;margin-bottom:4px;font-family:'Outfit';">XGRC Standard</div>
               <div style="font-size:11.5px;color:var(--mute);margin-bottom:14px;">SHEQX baseline, seats added as needed</div>
 
-              <div class="info-wrap" style="cursor:help;margin-bottom:14px;">
+              <div class="info-wrap" style="cursor:help;margin-bottom:10px;">
                 <span style="font-family:'Outfit';font-size:24px;font-weight:800;color:var(--cyan-hi);">56</span>
                 <span style="font-size:11.5px;color:var(--mute);margin-left:4px;">core modules</span>
                 <span class="info-icon">i</span>
                 <span class="info-tip-list">Access Control<br>Actions<br>Asset Management<br>Audits<br>Bowtie<br>Broadcasting<br>Calibration<br>Change Management<br>Community Management<br>Contractor Management<br>Covid Management<br>Covid Questionnaire<br>Customer Management<br>Dashboards<br>Document Template Control<br>Documents<br>Emergency Preparedness<br>Employee Manager Portal<br>Employee Portal<br>Government Management<br>HACCP<br>Help Centre<br>Incident Quick Log<br>Incidents<br>Inspection Quick Log<br>Inspections<br>Legal and Other Requirements<br>Legal Appointments<br>Medical Surveillance<br>Meeting Manager<br>Monitoring<br>Near Miss Report<br>Non-Conformances<br>Objectives<br>On Site<br>On Site Management<br>Operational Risk<br>Opportunity For Improvement<br>Permits<br>POD<br>PPE Register<br>Profile<br>Release Notes<br>Report Builder<br>Risk Assessments<br>SBO<br>SDS<br>Shareholder Management<br>Strategy<br>Suggestions<br>Supplier Management<br>Temperature Reading<br>Training<br>Union Management<br>Vulnerability Management<br>Work Order</span>
               </div>
 
-              <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Compliance frameworks covered</div>
-              <div class="pill-row" style="margin-bottom:10px;">
-                <span class="pill">ISO 9001</span><span class="pill">ISO 14001</span><span class="pill">ISO 45001</span><span class="pill">ISO 22000</span>
+              <div class="info-wrap" style="cursor:help;margin-bottom:14px;">
+                <span style="font-family:'Outfit';font-size:24px;font-weight:800;color:var(--cyan-hi);">17</span>
+                <span style="font-size:11.5px;color:var(--mute);margin-left:4px;">frameworks &amp; standards</span>
+                <span class="info-icon">i</span>
+                <span class="info-tip-list" style="width:260px;">
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.5px;color:var(--cyan);text-transform:uppercase;margin-bottom:3px;">Governance &amp; Risk</div>
+                  King V<br>COSO<br>ISO 31000
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.5px;color:var(--cyan);text-transform:uppercase;margin:8px 0 3px;">Quality, Safety &amp; Environment</div>
+                  ISO 9001<br>ISO 14001<br>ISO 45001<br>ISO 22000
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.5px;color:var(--cyan);text-transform:uppercase;margin:8px 0 3px;">Data Protection</div>
+                  POPIA<br>PAIA<br>GDPR
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.5px;color:var(--cyan);text-transform:uppercase;margin:8px 0 3px;">ESG &amp; Sustainability</div>
+                  GRI Standards<br>IFRS S1 &amp; S2<br>CDP<br>IIRC 6 Capitals<br>UN SDGs<br>JSE Sustainability<br>Carbon Tax Act
+                </span>
               </div>
-              <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Disciplines</div>
+
+              <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Headline frameworks</div>
+              <div class="pill-row" style="margin-bottom:10px;">
+                <span class="pill">ISO 9001</span><span class="pill">ISO 14001</span><span class="pill">ISO 45001</span><span class="pill">ISO 22000</span><span class="pill">King V</span>
+              </div>
+              <div class="info-wrap" style="cursor:help;margin-bottom:6px;">
+                <span style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;">Disciplines</span>
+                <span class="info-icon">i</span>
+                <span class="info-tip">SHE = Safety, Health, Environment. SHEQ adds Quality. SHERQ adds Risk. XGRC Standard supports all three overlapping discipline models.</span>
+              </div>
               <div class="pill-row" style="margin-bottom:14px;">
                 <span class="pill">SHE</span><span class="pill">SHEQ</span><span class="pill">SHERQ</span>
               </div>
@@ -272,10 +293,11 @@
               <div style="font-size:11.5px;color:var(--mute);margin-bottom:14px;">Standard + risk &amp; assurance modules</div>
               <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;color:var(--mute);">
                 <div>&#10003; Everything in Standard</div>
-                <div>&#10003; ENVIRX, ERM (own seat counts)</div>
-                <div>&#10003; Integrated Assurance (bundles ENVIRX+ERM at Core count)</div>
-                <div>&#10003; Compliance Hub (flat monthly fee)</div>
-                <div>&#10003; MAIA AI copilot (1+ Full Users)</div>
+                <div>&#10003; ENVIRX: environmental &amp; carbon compliance (ISO 14001, NEMA, GHG Protocol, Carbon Tax Act)</div>
+                <div>&#10003; ERM: enterprise risk management (ISO 31000, COSO)</div>
+                <div>&#10003; Integrated Assurance: combined assurance (King V, IIA Standards, ISO 19011), bundles ENVIRX+ERM at Core count</div>
+                <div>&#10003; Compliance Hub: supplier/contractor/third-party compliance, flat monthly fee</div>
+                <div>&#10003; MAIA AI copilot: governed AI (ISO 42001 targeted 2026, POPIA, GDPR), 1+ Full Users</div>
                 <div>&#10003; RESTful Open API</div>
               </div>
               <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-plus" style="color:var(--mute);"></span>/seat &middot; requires a Core seat</div>
@@ -286,9 +308,10 @@
               <div style="font-size:11.5px;color:var(--mute);margin-bottom:14px;">Plus + multi-tenant &amp; group products</div>
               <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;color:var(--mute);">
                 <div>&#10003; Everything in Plus</div>
-                <div>&#10003; Hakware (own domain/user counts)</div>
-                <div>&#10003; LUCI multi-tenant admin seats</div>
-                <div>&#10003; XLOGIC &amp; Asgard (pricing TBD)</div>
+                <div>&#10003; Hakware: AI-powered penetration testing &amp; vulnerability visibility (own domain/user counts)</div>
+                <div>&#10003; LUCI: multi-tenant admin seats across sites</div>
+                <div>&#10003; XLOGIC: governance execution, policy-to-workflow (pricing TBD)</div>
+                <div>&#10003; Asgard: new product, launching soon (pricing TBD)</div>
                 <div>&#10003; RESTful Open API</div>
               </div>
               <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-enterprise" style="color:var(--mute);"></span>/seat (LUCI)</div>
@@ -685,7 +708,7 @@ function buildLineItems(d) {
   push('Integrated Assurance seats', d.m.assurance, PRICES.assurance);
   push('MAIA Full User', d.m.maiaFullUser, PRICES.maiaFull);
   push('MAIA Data User', d.m.maiaDataUser, PRICES.maiaDataUser);
-  push('MAIA Data Used (units, usage-based)', d.m.maiaDataUsed, PRICES.maiaDataUsed);
+  push('MAIA Data Used (GB, usage-based)', d.m.maiaDataUsed, PRICES.maiaDataUsed);
   push('Hakware Domains', d.m.hkwDomains, PRICES.hkwDomain);
   push('Hakware Users', d.m.hkwUsers, PRICES.hkwUser);
   if (d.m.xlogic > 0) items.push({ label: 'XLOGIC seats', qty: d.m.xlogic, unit: '[TBD]', total: '[TBD]' });
