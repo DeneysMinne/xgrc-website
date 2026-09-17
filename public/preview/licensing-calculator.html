@@ -54,6 +54,10 @@
   .info-tip { display:none; position:absolute; z-index:30; bottom:135%; left:0; width:250px; background:var(--abyss); border:1px solid var(--line-strong); border-radius:10px; padding:11px 13px; font-size:11.5px; line-height:1.5; color:var(--mute); font-family:'Inter',sans-serif; box-shadow:0 10px 28px rgba(0,0,0,.45); white-space:normal; }
   .info-tip .draft-flag { display:block; margin-top:6px; color:#e0a45c; font-style:italic; font-size:10.5px; }
   .info-wrap:hover .info-tip, .info-wrap.open .info-tip { display:block; }
+  .notes-list { margin:0; padding-left:20px; font-size:12px; color:var(--mute); line-height:1.55; }
+  .notes-list li { margin-bottom:8px; }
+  .notes-list li:last-child { margin-bottom:0; }
+  .notes-list li::marker { color:var(--cyan); }
 </style>
 </head>
 <body>
@@ -105,7 +109,7 @@
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Lite<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Full functionality within up to 3 modules of the administrator's choosing, on top of the standard baseline every user gets (see notes below). A module-count cap, not a reduced-capability user.</span></span> <span class="mono" id="price-lite" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Legacy Limited-tier access</div></div><input type="number" min="0" id="q-lite" class="qtyinput"></div>
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Task User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Combines the old Action user (create, receive and close actions, log quick incidents and near misses) with the old Dashboard/Exec user (assigned dashboards), plus the standard baseline every user gets (see notes below).</span></span> <span class="mono" id="price-task" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Combined Action + Dashboard access</div></div><input type="number" min="0" id="q-task" class="qtyinput"></div>
 
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Team User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">An estimated total employee headcount who'll get baseline system access (create, receive and close actions, log quick incidents and near misses), for quoting purposes. Once provisioned, the product reconciles this against employees already licensed under another seat type, so you are not billed twice for someone who already has an Admin, Core, Lite, Task User or LUCI license. Employee records themselves are free; only enabling access is billed.</span></span> <span class="mono" id="price-team" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Do you want all employees to access the system?</div></div><input type="checkbox" id="toggle-employee-access" class="chkbox"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Team User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">An estimated total employee headcount who'll get baseline system access (create, receive and close actions, log quick incidents and near misses), for quoting purposes. Once provisioned, the product reconciles this against employees already licensed under another seat type, so you are not billed twice for someone who already has an Admin, Core, Lite, Task User or LUCI licence. Employee records themselves are free; only enabling access is billed.</span></span> <span class="mono" id="price-team" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Do you want all employees to access the system?</div></div><input type="checkbox" id="toggle-employee-access" class="chkbox"></div>
             <div id="employee-count-wrap" class="row" style="display:none;padding-left:4px;">
               <div style="flex:1;font-size:12px;color:var(--mute);">Total number of employees</div>
               <input type="number" min="0" id="q-team" class="qtyinput-sm">
@@ -113,7 +117,7 @@
 
             <div style="height:1px;background:var(--line);margin:2px 0;"></div>
             <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;">Multi-tenant (Enterprise)</div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">LUCI<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Full admin access at this user's home tenant, plus the ability to see and manage other tenants in the same account, built for people overseeing several tenants, like a group risk manager, without buying a separate license per tenant.</span></span> <span class="mono" id="price-luci" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Admin access across multiple tenants, moves quote to Enterprise</div></div><input type="number" min="0" id="q-luci" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">LUCI<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Full admin access at this user's home tenant, plus the ability to see and manage other tenants in the same account, built for people overseeing several tenants, like a group risk manager, without buying a separate licence per tenant.</span></span> <span class="mono" id="price-luci" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Admin access across multiple tenants, moves quote to Enterprise</div></div><input type="number" min="0" id="q-luci" class="qtyinput"></div>
           </div>
         </div>
 
@@ -272,19 +276,19 @@
 
         <div class="card" style="background:var(--abyss);padding:16px 20px;">
           <div class="eyebrow" style="margin-bottom:10px;">Notes</div>
-          <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--mute);">
-            <div>&middot; ENVIRX, ERM, Integrated Assurance, HACCP and BOWTIE each have their own seat count; it does not need to match your Core count, but cannot exceed it.</div>
-            <div>&middot; Selecting Integrated Assurance auto-includes ENVIRX and ERM at your full Core seat count; without it, ENVIRX/ERM can be sized independently.</div>
-            <div>&middot; Every license type, including Lite, Task User and Team User, also includes a standard baseline: Documents, Help Centre, Support, Broadcasting, Incident Quick Log, SBO, Near Miss Quick Log and Employee Portal.</div>
-            <div>&middot; Team User is an estimated total employee headcount, not a quantity chosen freely. The product reconciles it against employees already licensed under another seat type once provisioned, so nobody is billed twice. Employee records themselves cost nothing; only enabling their access is billed.</div>
-            <div>&middot; MAIA requires 1 or more Full Users, with no upper limit; Data User and Data Used are optional on top of that. Data Used is the one usage-based line item in this quote; every other line is a fixed commitment regardless of actual use.</div>
-            <div>&middot; Compliance Hub is a flat monthly fee, not a per-seat cost, but still moves your quote to XGRC Plus.</div>
-            <div>&middot; MAIA, Hakware, XLOGIC and Asgard seat counts are independent of your Core count; they represent separate user bases, not a subset of your Core seats.</div>
-            <div>&middot; Volume discount thresholds are set independently per currency, not converted from ZAR, the same way list prices are.</div>
-            <div>&middot; Annual commitment applies a further 10% to the already-discounted monthly value, compounding.</div>
-            <div>&middot; Prices are real per-currency list prices from the XGRC price book, except Admin, XLOGIC and Asgard, which are new/unpriced placeholders.</div>
-            <div>&middot; Billing terms: licenses are billed monthly in arrears and are payable whether or not a seat was used that month. Annual commitment is invoiced as a single amount, paid in advance.</div>
-          </div>
+          <ul class="notes-list">
+            <li>ENVIRX, ERM, Integrated Assurance, HACCP and BOWTIE each have their own seat count; it does not need to match your Core count, but cannot exceed it.</li>
+            <li>Selecting Integrated Assurance auto-includes ENVIRX and ERM at your full Core seat count; without it, ENVIRX/ERM can be sized independently.</li>
+            <li>Every licence type, including Lite, Task User and Team User, also includes a standard baseline: Documents, Help Centre, Support, Broadcasting, Incident Quick Log, SBO, Near Miss Quick Log and Employee Portal.</li>
+            <li>Team User is an estimated total employee headcount, not a quantity chosen freely. The product reconciles it against employees already licensed under another seat type once provisioned, so nobody is billed twice. Employee records themselves cost nothing; only enabling their access is billed.</li>
+            <li>MAIA requires 1 or more Full Users, with no upper limit; Data User and Data Used are optional on top of that. Data Used is the one usage-based line item in this quote; every other line is a fixed commitment regardless of actual use.</li>
+            <li>Compliance Hub is a flat monthly fee, not a per-seat cost, but still moves your quote to XGRC Plus.</li>
+            <li>MAIA, Hakware, XLOGIC and Asgard seat counts are independent of your Core count; they represent separate user bases, not a subset of your Core seats.</li>
+            <li>Volume discount thresholds are set independently per currency, not converted from ZAR, the same way list prices are.</li>
+            <li>Annual commitment applies a further 10% to the already-discounted monthly value, compounding.</li>
+            <li>Prices are real per-currency list prices from the XGRC price book, except Admin, XLOGIC and Asgard, which are new/unpriced placeholders.</li>
+            <li>Billing terms: licences are billed monthly in arrears and are payable whether or not a seat was used that month. Annual commitment is invoiced as a single amount, paid in advance.</li>
+          </ul>
         </div>
 
       </div>
@@ -710,7 +714,7 @@ el('btn-download').addEventListener('click', () => {
 
   y += 26;
   doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(140, 150, 160);
-  doc.text('Billing terms: licenses are billed monthly in arrears and are payable whether or not a', 40, y); y += 12;
+  doc.text('Billing terms: licences are billed monthly in arrears and are payable whether or not a', 40, y); y += 12;
   doc.text('seat was used that month. Annual commitment is invoiced as a single amount, paid in advance.', 40, y); y += 18;
 
   doc.setFont('helvetica', 'italic');
