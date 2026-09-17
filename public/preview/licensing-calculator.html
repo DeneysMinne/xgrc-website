@@ -153,7 +153,7 @@
 
             <div id="maia-extra" style="display:none;flex-direction:column;gap:9px;padding:12px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;">
               <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">Data User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Someone who can view MAIA's outputs and insights, without the full interactive copilot access a Full User has.</span></span> <span class="mono" id="price-maiadatauser" style="color:var(--faint);"></span><div style="font-size:10.5px;color:var(--faint);">Optional, additional seats</div></div><input type="number" min="0" id="q-maiadatauser" class="qtyinput-sm"></div>
-              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">Data Used<span class="badge-usage">Usage-based</span><span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">An estimate of how much data MAIA will process monthly, in GB. Unlike every other line item, this is billed on usage, not a fixed seat commitment; going over the estimate is billed as extra data tokens.</span></span> <span class="mono" id="price-maiadataused" style="color:var(--faint);"></span>/GB<div style="font-size:10.5px;color:var(--faint);">Estimated monthly data volume, in GB</div></div><input type="number" min="0" id="q-maiadataused" class="qtyinput-sm"></div>
+              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">Data Used<span class="badge-usage">Usage-based</span><span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">An estimate of how much data MAIA will process monthly, in GB. Billed in 50GB buckets (covers Hot-tier LRS storage, API ingress, API egress and transactions); partial buckets round up to the next full bucket. Unlike every other line item, this is usage-based, not a fixed seat commitment.</span></span> <span class="mono" id="price-maiadataused" style="color:var(--faint);"></span>/50GB<div style="font-size:10.5px;color:var(--faint);">Estimated monthly volume, in GB (billed in 50GB buckets) <span id="maiadataused-buckets"></span></div></div><input type="number" min="0" id="q-maiadataused" class="qtyinput-sm"></div>
               <div style="font-size:10.5px;color:var(--faint);font-style:italic;">Usage beyond this estimate is billed via additional data tokens.</div>
             </div>
           </div>
@@ -361,7 +361,7 @@
             <li>Selecting Integrated Assurance auto-includes ENVIRX and ERM at your full Core + Admin seat count; without it, ENVIRX/ERM can be sized independently.</li>
             <li>Every licence type, including Lite, Task User and Team User, also includes a standard baseline: Documents, Help Centre, Support, Broadcasting, Incident Quick Log, SBO, Near Miss Quick Log and Employee Portal.</li>
             <li>Team User is an estimated total employee headcount, not a quantity chosen freely. The product reconciles it against employees already licensed under another seat type once provisioned, so nobody is billed twice. Employee records themselves cost nothing; only enabling their access is billed.</li>
-            <li>MAIA requires 1 or more Full Users, with no upper limit; Data User and Data Used are optional on top of that. Data Used is the one usage-based line item in this quote; every other line is a fixed commitment regardless of actual use.</li>
+            <li>MAIA requires 1 or more Full Users, with no upper limit; Data User and Data Used are optional on top of that. Data Used is the one usage-based line item in this quote, billed in 50GB buckets (partial buckets round up); every other line is a fixed commitment regardless of actual use.</li>
             <li>Compliance Hub is a flat monthly fee, not a per-seat cost, but still moves your quote to XGRC Plus.</li>
             <li>MAIA, Hakware, XLOGIC and Asgard seat counts are independent of your Core and Admin count; they represent separate user bases, not a subset of those seats.</li>
             <li>Volume discount thresholds are set independently per currency, not converted from ZAR, the same way list prices are.</li>
@@ -392,11 +392,12 @@ const PRICES = {
   complianceHub:{ ZAR: 1500.00,  USD: 120.00, GBP: 93.00,  EUR: 107.00 },
   maiaFull:     { ZAR: 13992.00, USD: 746.41, GBP: 597.13, EUR: 671.77 },
   maiaDataUser: { ZAR: 1075.90,  USD: 57.24,  GBP: 45.79,  EUR: 51.52  },
-  maiaDataUsed: { ZAR: 15.15,    USD: 0.80,   GBP: 0.64,   EUR: 0.72   },
+  maiaDataUsedBucket: { ZAR: 775.00, USD: 62.00,  GBP: 48.00,  EUR: 55.00  },
   hkwDomain:    { ZAR: 1795.00,  USD: 100.00, GBP: 100.00, EUR: 100.00 },
   hkwUser:      { ZAR: 180.00,   USD: 10.00,  GBP: 10.00,  EUR: 10.00  }
 };
 const SYM = { ZAR: 'R', USD: '$', GBP: '£', EUR: '€' };
+function maiaBuckets(gb) { return Math.ceil((Number(gb) || 0) / 50); }
 
 // Discount thresholds are set independently per currency (not FX-converted),
 // the same principle already used for the list prices themselves.
@@ -440,7 +441,7 @@ function computeDerived() {
   const effErm = assuranceOn ? (s.core + s.admin) : m.erm;
 
   const maiaOn = m.maiaFullUser > 0;
-  const maiaCur = maiaOn ? (m.maiaFullUser*P.maiaFull[cur] + m.maiaDataUser*P.maiaDataUser[cur] + m.maiaDataUsed*P.maiaDataUsed[cur]) : 0;
+  const maiaCur = maiaOn ? (m.maiaFullUser*P.maiaFull[cur] + m.maiaDataUser*P.maiaDataUser[cur] + maiaBuckets(m.maiaDataUsed)*P.maiaDataUsedBucket[cur]) : 0;
 
   const hkwCur = m.hkwDomains*P.hkwDomain[cur] + m.hkwUsers*P.hkwUser[cur];
 
@@ -486,7 +487,7 @@ function render() {
   el('price-assurance').textContent = priceStr(PRICES.assurance);
   el('price-maiafull').textContent = priceStr(PRICES.maiaFull);
   el('price-maiadatauser').textContent = priceStr(PRICES.maiaDataUser);
-  el('price-maiadataused').textContent = priceStr(PRICES.maiaDataUsed);
+  el('price-maiadataused').textContent = priceStr(PRICES.maiaDataUsedBucket);
   el('price-hkwdomain').textContent = priceStr(PRICES.hkwDomain);
   el('price-hkwuser').textContent = priceStr(PRICES.hkwUser);
 
@@ -515,6 +516,8 @@ function render() {
   syncInput('q-maiadatauser', state.modules.maiaDataUser);
   syncInput('q-maiadataused', state.modules.maiaDataUsed);
   el('maia-extra').style.display = d.maiaOn ? 'flex' : 'none';
+  const buckets = maiaBuckets(state.modules.maiaDataUsed);
+  el('maiadataused-buckets').textContent = state.modules.maiaDataUsed > 0 ? ('= ' + buckets + ' bucket' + (buckets === 1 ? '' : 's')) : '';
 
   syncInput('q-hkwdomains', state.modules.hkwDomains);
   syncInput('q-hkwusers', state.modules.hkwUsers);
@@ -742,7 +745,10 @@ function buildLineItems(d) {
   push('Integrated Assurance seats', d.m.assurance, PRICES.assurance);
   push('MAIA Full User', d.m.maiaFullUser, PRICES.maiaFull);
   push('MAIA Data User', d.m.maiaDataUser, PRICES.maiaDataUser);
-  push('MAIA Data Used (GB, usage-based)', d.m.maiaDataUsed, PRICES.maiaDataUsed);
+  if (d.m.maiaDataUsed > 0) {
+    const buckets = maiaBuckets(d.m.maiaDataUsed);
+    items.push({ label: 'MAIA Data Used (' + d.m.maiaDataUsed + 'GB, ' + buckets + ' x 50GB bucket' + (buckets === 1 ? '' : 's') + ')', qty: buckets, unit: priceStr(PRICES.maiaDataUsedBucket), total: amountStr(buckets * PRICES.maiaDataUsedBucket[state.currency]) });
+  }
   push('Hakware Domains', d.m.hkwDomains, PRICES.hkwDomain);
   push('Hakware Users', d.m.hkwUsers, PRICES.hkwUser);
   if (d.m.xlogic > 0) items.push({ label: 'XLOGIC seats', qty: d.m.xlogic, unit: '[TBD]', total: '[TBD]' });
