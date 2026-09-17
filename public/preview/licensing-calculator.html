@@ -127,7 +127,7 @@
 
         <div class="card">
           <div class="eyebrow" style="margin-bottom:14px;">Modules &amp; Packages</div>
-          <div style="font-size:10.5px;color:var(--faint);margin-bottom:14px;">Every module has its own seat allocation; it doesn't have to match your Core count.</div>
+          <div style="font-size:10.5px;color:var(--faint);margin-bottom:14px;">Every module has its own seat allocation; it doesn't have to match your Core + Admin count.</div>
 
           <div style="background:var(--abyss);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:12px;">
             <div style="font-size:13px;font-weight:600;color:var(--faint);">SHEQX Baseline <span class="badge-usage" style="background:rgba(47,232,138,0.12);color:var(--green-hi);">Included</span></div>
@@ -138,12 +138,12 @@
           <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
 
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">ENVIRX<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Environmental management: track environmental risks, incidents, permits and compliance obligations.</span></span> <span class="mono" id="price-envirx" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Environmental management module</div></div><input type="number" min="0" id="q-envirx" class="qtyinput"></div>
-            <div id="note-envirx-linked" style="display:none;font-size:10.5px;color:var(--cyan);margin-top:-6px;">= Core seats, via Integrated Assurance</div>
+            <div id="note-envirx-linked" style="display:none;font-size:10.5px;color:var(--cyan);margin-top:-6px;">= Core + Admin seats, via Integrated Assurance</div>
 
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">ERM<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Enterprise Risk Management: a structured risk register to identify, assess, treat and monitor risks across the business.</span></span> <span class="mono" id="price-erm" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Enterprise risk management module</div></div><input type="number" min="0" id="q-erm" class="qtyinput"></div>
-            <div id="note-erm-linked" style="display:none;font-size:10.5px;color:var(--cyan);margin-top:-6px;">= Core seats, via Integrated Assurance</div>
+            <div id="note-erm-linked" style="display:none;font-size:10.5px;color:var(--cyan);margin-top:-6px;">= Core + Admin seats, via Integrated Assurance</div>
 
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Integrated Assurance<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Brings audit, risk and compliance findings together into one assurance view. Because assurance reporting relies on ENVIRX and ERM data, selecting this automatically includes both across your whole Core user base.</span></span> <span class="mono" id="price-assurance" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Auto-includes ENVIRX + ERM at your Core count</div></div><input type="number" min="0" id="q-assurance" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Integrated Assurance<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Brings audit, risk and compliance findings together into one assurance view. Because assurance reporting relies on ENVIRX and ERM data, selecting this automatically includes both across your whole Core + Admin user base (Admin already has full Core capability).</span></span> <span class="mono" id="price-assurance" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Auto-includes ENVIRX + ERM at your Core + Admin count</div></div><input type="number" min="0" id="q-assurance" class="qtyinput"></div>
 
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Compliance Hub<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A structured external portal where your suppliers, contractors and customers upload and maintain their own compliance documentation, while your team validates and monitors it. Flat monthly fee regardless of how many external parties use it.</span></span> <span class="mono" id="price-compliancehub" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Flat fee, moves your quote to XGRC Plus</div></div><input type="checkbox" id="toggle-compliancehub" class="chkbox"></div>
 
@@ -160,13 +160,13 @@
 
           <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;">Adds to XGRC Enterprise</div>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <div style="font-size:12.5px;font-weight:600;">Hakware<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A separate cyber-security platform (vulnerability and pentest management), licensed by number of monitored domains and number of users. Its own independent user base, not a subset of your Core seats.</span></span></div>
+            <div style="font-size:12.5px;font-weight:600;">Hakware<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A separate cyber-security platform (vulnerability and pentest management), licensed by number of monitored domains and number of users. Its own independent user base, not a subset of your Core or Admin seats.</span></span></div>
             <div style="display:flex;flex-direction:column;gap:8px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;padding:10px 12px;">
               <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">Domains<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Each domain Hakware actively monitors for security issues.</span></span> <span class="mono" id="price-hkwdomain" style="color:var(--faint);"></span> each</div><input type="number" min="0" id="q-hkwdomains" class="qtyinput-sm"></div>
               <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">Hakware Users<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">People who need access to Hakware's own security dashboard and reporting, separate from XGRC user seats.</span></span> <span class="mono" id="price-hkwuser" style="color:var(--faint);"></span>/seat</div><input type="number" min="0" id="q-hkwusers" class="qtyinput-sm"></div>
             </div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">XLOGIC<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">XGRC's core governance, risk and compliance platform. Pricing for including it in a combined quote is still being finalised. Its own independent user base, not a subset of your Core seats.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">GRC platform, pricing to be finalised</div></div><input type="number" min="0" id="q-xlogic" class="qtyinput"></div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Asgard<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A new XGRC product, launching soon. Details and pricing to follow. Its own independent user base, not a subset of your Core seats.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">New product, launching soon</div></div><input type="number" min="0" id="q-asgard" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">XLOGIC<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">XGRC's core governance, risk and compliance platform. Pricing for including it in a combined quote is still being finalised. Its own independent user base, not a subset of your Core or Admin seats.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">GRC platform, pricing to be finalised</div></div><input type="number" min="0" id="q-xlogic" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Asgard<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A new XGRC product, launching soon. Details and pricing to follow. Its own independent user base, not a subset of your Core or Admin seats.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">New product, launching soon</div></div><input type="number" min="0" id="q-asgard" class="qtyinput"></div>
           </div>
         </div>
 
@@ -285,27 +285,53 @@
                 <div>&#10003; Admin, Core, Lite, Task &amp; Team seats</div>
                 <div>&#10003; RESTful Open API</div>
               </div>
-              <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-standard" style="color:var(--mute);"></span>/seat</div>
+              <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-standard" style="color:var(--mute);"></span>/tenant (Admin, the mandatory minimum)</div>
             </div>
             <div class="tier-card" id="card-plus">
               <div class="ribbon">RECOMMENDED</div>
               <div style="font-size:15px;font-weight:800;margin-bottom:4px;font-family:'Outfit';">XGRC Plus</div>
               <div style="font-size:11.5px;color:var(--mute);margin-bottom:14px;">Standard + risk &amp; assurance modules</div>
+
+              <div class="info-wrap" style="cursor:help;margin-bottom:14px;">
+                <span style="font-family:'Outfit';font-size:24px;font-weight:800;color:var(--cyan-hi);">+5</span>
+                <span style="font-size:11.5px;color:var(--mute);margin-left:4px;">capabilities added</span>
+                <span class="info-icon">i</span>
+                <span class="info-tip-list">ENVIRX: environmental &amp; carbon compliance<br>ERM: enterprise risk management<br>Integrated Assurance: combined assurance<br>Compliance Hub: third-party compliance<br>MAIA: governed AI copilot</span>
+              </div>
+
+              <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">New frameworks unlocked</div>
+              <div class="pill-row" style="margin-bottom:14px;">
+                <span class="pill">ISO 31000</span><span class="pill">NEMA</span><span class="pill">Carbon Tax Act</span><span class="pill">ISO 42001 (2026)</span>
+              </div>
+
               <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;color:var(--mute);">
                 <div>&#10003; Everything in Standard</div>
                 <div>&#10003; ENVIRX: environmental &amp; carbon compliance (ISO 14001, NEMA, GHG Protocol, Carbon Tax Act)</div>
                 <div>&#10003; ERM: enterprise risk management (ISO 31000, COSO)</div>
-                <div>&#10003; Integrated Assurance: combined assurance (King V, IIA Standards, ISO 19011), bundles ENVIRX+ERM at Core count</div>
+                <div>&#10003; Integrated Assurance: combined assurance (King V, IIA Standards, ISO 19011), bundles ENVIRX+ERM at Core+Admin count</div>
                 <div>&#10003; Compliance Hub: supplier/contractor/third-party compliance, flat monthly fee</div>
                 <div>&#10003; MAIA AI copilot: governed AI (ISO 42001 targeted 2026, POPIA, GDPR), 1+ Full Users</div>
                 <div>&#10003; RESTful Open API</div>
               </div>
-              <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-plus" style="color:var(--mute);"></span>/seat &middot; requires a Core seat</div>
+              <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-plus" style="color:var(--mute);"></span>/tenant (Admin + ENVIRX)</div>
             </div>
             <div class="tier-card" id="card-enterprise">
               <div class="ribbon">RECOMMENDED</div>
               <div style="font-size:15px;font-weight:800;margin-bottom:4px;font-family:'Outfit';">XGRC Enterprise</div>
               <div style="font-size:11.5px;color:var(--mute);margin-bottom:14px;">Plus + multi-tenant &amp; group products</div>
+
+              <div class="info-wrap" style="cursor:help;margin-bottom:14px;">
+                <span style="font-family:'Outfit';font-size:24px;font-weight:800;color:var(--cyan-hi);">+4</span>
+                <span style="font-size:11.5px;color:var(--mute);margin-left:4px;">capabilities added</span>
+                <span class="info-icon">i</span>
+                <span class="info-tip-list">Hakware: penetration testing &amp; vulnerability management<br>LUCI: multi-tenant admin access<br>XLOGIC: governance execution, policy-to-workflow<br>Asgard: new product, launching soon</span>
+              </div>
+
+              <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">New capabilities unlocked</div>
+              <div class="pill-row" style="margin-bottom:14px;">
+                <span class="pill">Multi-tenant</span><span class="pill">Penetration Testing</span><span class="pill">Vulnerability Management</span><span class="pill">Policy-to-Workflow</span>
+              </div>
+
               <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;color:var(--mute);">
                 <div>&#10003; Everything in Plus</div>
                 <div>&#10003; Hakware: AI-powered penetration testing &amp; vulnerability visibility (own domain/user counts)</div>
@@ -314,7 +340,7 @@
                 <div>&#10003; Asgard: new product, launching soon (pricing TBD)</div>
                 <div>&#10003; RESTful Open API</div>
               </div>
-              <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-enterprise" style="color:var(--mute);"></span>/seat (LUCI)</div>
+              <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-enterprise" style="color:var(--mute);"></span>/tenant (Admin + LUCI)</div>
             </div>
           </div>
         </div>
@@ -331,13 +357,13 @@
         <div class="card" style="background:var(--abyss);padding:16px 20px;">
           <div class="eyebrow" style="margin-bottom:10px;">Notes</div>
           <ul class="notes-list">
-            <li>ENVIRX, ERM, Integrated Assurance, HACCP and BOWTIE each have their own seat count; it does not need to match your Core count, but cannot exceed it.</li>
-            <li>Selecting Integrated Assurance auto-includes ENVIRX and ERM at your full Core seat count; without it, ENVIRX/ERM can be sized independently.</li>
+            <li>ENVIRX, ERM, Integrated Assurance, HACCP and BOWTIE each have their own seat count; it does not need to match your Core and Admin count combined, but cannot exceed it. Admin already has full Core capability, so both count toward the pool.</li>
+            <li>Selecting Integrated Assurance auto-includes ENVIRX and ERM at your full Core + Admin seat count; without it, ENVIRX/ERM can be sized independently.</li>
             <li>Every licence type, including Lite, Task User and Team User, also includes a standard baseline: Documents, Help Centre, Support, Broadcasting, Incident Quick Log, SBO, Near Miss Quick Log and Employee Portal.</li>
             <li>Team User is an estimated total employee headcount, not a quantity chosen freely. The product reconciles it against employees already licensed under another seat type once provisioned, so nobody is billed twice. Employee records themselves cost nothing; only enabling their access is billed.</li>
             <li>MAIA requires 1 or more Full Users, with no upper limit; Data User and Data Used are optional on top of that. Data Used is the one usage-based line item in this quote; every other line is a fixed commitment regardless of actual use.</li>
             <li>Compliance Hub is a flat monthly fee, not a per-seat cost, but still moves your quote to XGRC Plus.</li>
-            <li>MAIA, Hakware, XLOGIC and Asgard seat counts are independent of your Core count; they represent separate user bases, not a subset of your Core seats.</li>
+            <li>MAIA, Hakware, XLOGIC and Asgard seat counts are independent of your Core and Admin count; they represent separate user bases, not a subset of those seats.</li>
             <li>Volume discount thresholds are set independently per currency, not converted from ZAR, the same way list prices are.</li>
             <li>Annual commitment applies a further 10% to the already-discounted monthly value, compounding.</li>
             <li>Prices are real per-currency list prices from the XGRC price book, except Admin, XLOGIC and Asgard, which are new/unpriced placeholders.</li>
@@ -410,8 +436,8 @@ function computeDerived() {
   const seatCur = s.admin*P.admin[cur] + s.core*P.core[cur] + s.lite*P.lite[cur] + s.task*P.task[cur] + s.team*P.team[cur] + s.luci*P.luci[cur];
 
   const assuranceOn = m.assurance > 0;
-  const effEnvirx = assuranceOn ? s.core : m.envirx;
-  const effErm = assuranceOn ? s.core : m.erm;
+  const effEnvirx = assuranceOn ? (s.core + s.admin) : m.envirx;
+  const effErm = assuranceOn ? (s.core + s.admin) : m.erm;
 
   const maiaOn = m.maiaFullUser > 0;
   const maiaCur = maiaOn ? (m.maiaFullUser*P.maiaFull[cur] + m.maiaDataUser*P.maiaDataUser[cur] + m.maiaDataUsed*P.maiaDataUsed[cur]) : 0;
@@ -517,9 +543,9 @@ function render() {
   el('card-standard').classList.toggle('active', d.isStandard);
   el('card-plus').classList.toggle('active', d.isPlus);
   el('card-enterprise').classList.toggle('active', d.isEnterprise);
-  el('from-standard').textContent = priceStr(PRICES.core);
-  el('from-plus').textContent = amountStr(PRICES.core[state.currency] + PRICES.envirx[state.currency]);
-  el('from-enterprise').textContent = priceStr(PRICES.luci);
+  el('from-standard').textContent = priceStr(PRICES.admin);
+  el('from-plus').textContent = amountStr(PRICES.admin[state.currency] + PRICES.envirx[state.currency]);
+  el('from-enterprise').textContent = amountStr(PRICES.admin[state.currency] + PRICES.luci[state.currency]);
 
   const hasName = state.clientName.trim().length > 0;
   el('btn-save').disabled = !hasName;
@@ -541,10 +567,21 @@ function bindQty(id, setter) {
   });
 }
 
+function capPool() { return state.seats.core + state.seats.admin; }
+
+function reclampCappedFields() {
+  const cap = capPool();
+  state.modules.envirx = Math.min(state.modules.envirx, cap);
+  state.modules.erm = Math.min(state.modules.erm, cap);
+  state.modules.assurance = Math.min(state.modules.assurance, cap);
+  state.addons.haccp = Math.min(state.addons.haccp, cap);
+  state.addons.bowtie = Math.min(state.addons.bowtie, cap);
+}
+
 function bindCappedQty(id, setVal) {
   el(id).addEventListener('input', (e) => {
     const raw = Math.max(0, parseInt(e.target.value, 10) || 0);
-    const capped = Math.min(raw, state.seats.core);
+    const capped = Math.min(raw, capPool());
     setVal(capped);
     if (capped !== raw) e.target.value = capped;
     render();
@@ -556,16 +593,13 @@ el('q-admin').addEventListener('input', (e) => {
   const floored = Math.max(1, raw);
   state.seats.admin = floored;
   if (floored !== raw) e.target.value = floored;
+  reclampCappedFields();
   render();
 });
 
 bindQty('q-core', n => {
   state.seats.core = n;
-  state.modules.envirx = Math.min(state.modules.envirx, n);
-  state.modules.erm = Math.min(state.modules.erm, n);
-  state.modules.assurance = Math.min(state.modules.assurance, n);
-  state.addons.haccp = Math.min(state.addons.haccp, n);
-  state.addons.bowtie = Math.min(state.addons.bowtie, n);
+  reclampCappedFields();
 });
 bindQty('q-lite', n => state.seats.lite = n);
 bindQty('q-task', n => state.seats.task = n);
