@@ -621,8 +621,14 @@ bindCappedQty('q-erm', n => state.modules.erm = n);
 bindCappedQty('q-assurance', n => state.modules.assurance = n);
 
 bindQty('q-maiafull', n => {
+  const wasOff = state.modules.maiaFullUser === 0;
   state.modules.maiaFullUser = n;
-  if (n === 0) { state.modules.maiaDataUser = 0; state.modules.maiaDataUsed = 0; }
+  if (n === 0) {
+    state.modules.maiaDataUser = 0;
+    state.modules.maiaDataUsed = 0;
+  } else if (wasOff) {
+    state.modules.maiaDataUsed = 50; // default to 1 bucket (50GB) the moment MAIA turns on
+  }
 });
 bindQty('q-maiadatauser', n => state.modules.maiaDataUser = n);
 bindQty('q-maiadataused', n => state.modules.maiaDataUsed = n);
