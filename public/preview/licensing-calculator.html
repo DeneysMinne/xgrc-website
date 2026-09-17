@@ -251,7 +251,7 @@
               <div style="height:6px;background:var(--line);border-radius:3px;overflow:hidden;"><div id="discount-bar" style="height:100%;border-radius:3px;background:var(--cyan);width:0%;"></div></div>
               <div id="discount-caption" style="font-size:10.5px;color:var(--faint);margin-top:5px;"></div>
             </div>
-            <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-top:8px;padding-top:10px;border-top:1px dashed var(--line);"><span>Discounted monthly total</span><span class="mono" id="discounted-monthly" style="color:var(--cyan-hi);"></span></div>
+            <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-top:8px;padding-top:10px;border-top:1px dashed var(--line);"><span id="discounted-monthly-label">Monthly total</span><span class="mono" id="discounted-monthly" style="color:var(--cyan-hi);"></span></div>
           </div>
 
           <div style="height:1px;background:var(--line);margin:18px 0;"></div>
@@ -580,6 +580,7 @@ function render() {
   el('discount-bar').style.width = Math.min((d.discountPct/40)*100, 100) + '%';
   el('discount-caption').textContent = '5% at ' + amountStr(d.th.base) + ', +2.5% per further ' + amountStr(d.th.step) + ', capped at 40%.';
   el('discounted-monthly').textContent = amountStr(d.discountedMonthlyCur);
+  el('discounted-monthly-label').textContent = d.discountPct > 0 ? 'Discounted monthly total' : 'Monthly total';
   el('annual-total').textContent = amountStr(d.annualTotalCur);
 
   el('annual-track').style.background = state.annual ? 'var(--cyan)' : 'rgba(120,170,200,0.28)';
@@ -895,7 +896,7 @@ el('btn-download').addEventListener('click', () => {
   doc.text('Monthly list value', 40, y); doc.text(amountStr(d.listValueCur), 500, y, { align: 'right' }); y += 16;
   doc.text('Volume discount (' + d.discountPct.toFixed(1) + '%)', 40, y); y += 16;
   doc.setFont('helvetica', 'bold');
-  doc.text('Discounted monthly total', 40, y); doc.text(amountStr(d.discountedMonthlyCur), 500, y, { align: 'right' }); y += 22;
+  doc.text(d.discountPct > 0 ? 'Discounted monthly total' : 'Monthly total', 40, y); doc.text(amountStr(d.discountedMonthlyCur), 500, y, { align: 'right' }); y += 22;
 
   doc.setFont('helvetica', 'normal');
   doc.text(state.annual ? 'Annual commitment (10% further discount applied)' : 'Annual total (no annual commitment)', 40, y); y += 16;
