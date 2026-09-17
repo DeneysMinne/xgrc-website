@@ -138,12 +138,10 @@
           <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
 
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">ENVIRX<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Environmental management: track environmental risks, incidents, permits and compliance obligations.</span></span> <span class="mono" id="price-envirx" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Environmental management module</div></div><input type="number" min="0" id="q-envirx" class="qtyinput"></div>
-            <div id="note-envirx-linked" style="display:none;font-size:10.5px;color:var(--cyan);margin-top:-6px;">= Core + Admin seats, via Integrated Assurance</div>
 
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">ERM<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Enterprise Risk Management: a structured risk register to identify, assess, treat and monitor risks across the business.</span></span> <span class="mono" id="price-erm" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Enterprise risk management module</div></div><input type="number" min="0" id="q-erm" class="qtyinput"></div>
-            <div id="note-erm-linked" style="display:none;font-size:10.5px;color:var(--cyan);margin-top:-6px;">= Core + Admin seats, via Integrated Assurance</div>
 
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Integrated Assurance<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Brings audit, risk and compliance findings together into one assurance view. Because assurance reporting relies on ENVIRX and ERM data, selecting this automatically includes both across your whole Core + Admin user base (Admin already has full Core capability).</span></span> <span class="mono" id="price-assurance" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Auto-includes ENVIRX + ERM at your Core + Admin count</div></div><input type="number" min="0" id="q-assurance" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Integrated Assurance<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Brings audit, risk and compliance findings together into one assurance view, aligned to King V, IIA Standards and ISO 19011. Sized independently: select ENVIRX and/or ERM separately if you also need those modules on their own.</span></span> <span class="mono" id="price-assurance" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Combined assurance module, sized independently</div></div><input type="number" min="0" id="q-assurance" class="qtyinput"></div>
 
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Compliance Hub<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A structured external portal where your suppliers, contractors and customers upload and maintain their own compliance documentation, while your team validates and monitors it. Flat monthly fee regardless of how many external parties use it.</span></span> <span class="mono" id="price-compliancehub" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Flat fee, moves your quote to XGRC Plus</div></div><input type="checkbox" id="toggle-compliancehub" class="chkbox"></div>
 
@@ -310,7 +308,7 @@
                 <div>&#10003; Everything in Standard</div>
                 <div>&#10003; ENVIRX: environmental &amp; carbon compliance (ISO 14001, NEMA, GHG Protocol, Carbon Tax Act)</div>
                 <div>&#10003; ERM: enterprise risk management (ISO 31000, COSO)</div>
-                <div>&#10003; Integrated Assurance: combined assurance (King V, IIA Standards, ISO 19011), bundles ENVIRX+ERM at Core+Admin count</div>
+                <div>&#10003; Integrated Assurance: combined assurance (King V, IIA Standards, ISO 19011)</div>
                 <div>&#10003; Compliance Hub: supplier/contractor/third-party compliance, flat monthly fee</div>
                 <div>&#10003; MAIA AI copilot: governed AI (ISO 42001 targeted 2026, POPIA, GDPR), 1+ Full Users</div>
                 <div>&#10003; RESTful Open API</div>
@@ -359,7 +357,6 @@
           <div class="eyebrow" style="margin-bottom:10px;">Notes</div>
           <ul class="notes-list">
             <li>ENVIRX, ERM, Integrated Assurance, HACCP and BOWTIE each have their own seat count; it does not need to match your Core and Admin count combined, but cannot exceed it. Admin already has full Core capability, so both count toward the pool.</li>
-            <li>Selecting Integrated Assurance auto-includes ENVIRX and ERM at your full Core + Admin seat count; without it, ENVIRX/ERM can be sized independently.</li>
             <li>Every licence type, including Lite, Task User and Team User, also includes a standard baseline: Documents, Help Centre, Support, Broadcasting, Incident Quick Log, SBO, Near Miss Quick Log and Employee Portal.</li>
             <li>Team User is an estimated total employee headcount, not a quantity chosen freely. The product reconciles it against employees already licensed under another seat type once provisioned, so nobody is billed twice. Employee records themselves cost nothing; only enabling their access is billed.</li>
             <li>MAIA requires 1 or more Full Users, with no upper limit; Data User and Data Used are optional on top of that. Data Used is the one usage-based line item in this quote, billed in 50GB buckets (partial buckets round up); every other line is a fixed commitment regardless of actual use.</li>
@@ -438,9 +435,8 @@ function computeDerived() {
 
   const seatCur = s.admin*P.admin[cur] + s.core*P.core[cur] + s.lite*P.lite[cur] + s.task*P.task[cur] + s.team*P.team[cur] + s.luci*P.luci[cur];
 
-  const assuranceOn = m.assurance > 0;
-  const effEnvirx = assuranceOn ? (s.core + s.admin) : m.envirx;
-  const effErm = assuranceOn ? (s.core + s.admin) : m.erm;
+  const effEnvirx = m.envirx;
+  const effErm = m.erm;
 
   const maiaOn = m.maiaFullUser > 0;
   const maiaCur = maiaOn ? (m.maiaFullUser*P.maiaFull[cur] + m.maiaDataUser*P.maiaDataUser[cur] + maiaBuckets(m.maiaDataUsed)*P.maiaDataUsedBucket[cur]) : 0;
@@ -465,7 +461,7 @@ function computeDerived() {
   const isStandard = !isEnterprise && !isPlus;
   const tier = isEnterprise ? 'Enterprise' : (isPlus ? 'Plus' : 'Standard');
 
-  return { s, m, a, cur, th, assuranceOn, effEnvirx, effErm, maiaOn, seatCur, moduleCur, listValueCur, discountPct,
+  return { s, m, a, cur, th, effEnvirx, effErm, maiaOn, seatCur, moduleCur, listValueCur, discountPct,
            discountedMonthlyCur, annualTotalCur, isStandard, isPlus, isEnterprise, tierFull: 'XGRC ' + tier };
 }
 
@@ -504,14 +500,8 @@ function render() {
   el('toggle-employee-access').checked = state.seats.teamEnabled;
   el('employee-count-wrap').style.display = state.seats.teamEnabled ? 'flex' : 'none';
 
-  // envirx/erm linked state
-  const envirxInput = el('q-envirx'), ermInput = el('q-erm');
-  envirxInput.disabled = d.assuranceOn;
-  ermInput.disabled = d.assuranceOn;
-  syncInput('q-envirx', d.effEnvirx);
-  syncInput('q-erm', d.effErm);
-  el('note-envirx-linked').style.display = d.assuranceOn ? 'block' : 'none';
-  el('note-erm-linked').style.display = d.assuranceOn ? 'block' : 'none';
+  syncInput('q-envirx', state.modules.envirx);
+  syncInput('q-erm', state.modules.erm);
   syncInput('q-assurance', state.modules.assurance);
 
   syncInput('q-maiafull', state.modules.maiaFullUser);
