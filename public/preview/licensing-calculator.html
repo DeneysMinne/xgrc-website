@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>XGRC Licensing Quote Calculator</title>
+<title>XGRC® Licensing Quote Calculator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
@@ -30,8 +30,9 @@
   .qtyinput-sm { width:56px; background:var(--void); border:1px solid var(--line-strong); border-radius:6px; color:var(--ink); padding:6px 7px; font-size:12.5px; text-align:right; }
   .chkbox { width:18px; height:18px; accent-color: var(--cyan); cursor:pointer; flex-shrink:0; }
   .badge-usage { font-family:'JetBrains Mono',monospace; font-size:9px; background:rgba(48,226,244,0.15); color:var(--cyan); padding:2px 6px; border-radius:4px; margin-left:6px; letter-spacing:0.5px; text-transform:uppercase; }
-  .brandmark { width:26px; height:26px; border-radius:7px; position:relative; display:inline-block; background:conic-gradient(from 210deg,var(--deep),var(--cyan),var(--blue),var(--deep)); }
-  .brandmark::after { content:''; position:absolute; inset:7px; background:var(--void); border-radius:3px; }
+  .brand-icon { height:30px; width:auto; display:block; }
+  .bw-x { background:linear-gradient(180deg, var(--cyan), #eaf05a); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .bw-reg { font-size:0.55em; font-weight:600; color:var(--ink); vertical-align:super; margin-left:2px; }
   .card { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-lg); padding:20px; }
   .row { display:flex; align-items:center; gap:10px; }
   .curr-btn { padding:8px 14px; border-radius:8px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); cursor:pointer; font-size:12.5px; font-family:inherit; }
@@ -71,8 +72,8 @@
 
   <div style="position:relative;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px;border-bottom:1px solid var(--line);">
     <div style="display:flex;align-items:center;gap:10px;">
-      <div class="brandmark"></div>
-      <div style="font-family:'Outfit';font-weight:700;font-size:15px;"><span style="color:var(--cyan);">X</span><span style="color:var(--ink);">GRC Software</span></div>
+      <img src="/assets/logos/brand/xgrc-icon-white.png" alt="" aria-hidden="true" class="brand-icon">
+      <div style="font-family:'Outfit';font-weight:700;font-size:16px;"><span class="bw-x">X</span><span style="color:var(--ink);">GRC</span><sup class="bw-reg">®</sup><span style="color:var(--ink);"> Software</span></div>
     </div>
     <div style="display:flex;align-items:center;gap:28px;">
       <div style="font-size:13px;color:var(--mute);">Solutions</div>
@@ -85,7 +86,7 @@
   <div style="position:relative;padding:40px 40px 28px 40px;">
     <div class="eyebrow">LICENSING</div>
     <h1 style="font-size:32px;font-weight:800;margin-top:10px;">Quote Calculator</h1>
-    <div style="font-size:14.5px;color:var(--mute);margin-top:8px;max-width:640px;line-height:1.5;">Configure a seat and module mix and see which XGRC package it lands on, and the price, instantly.</div>
+    <div style="font-size:14.5px;color:var(--mute);margin-top:8px;max-width:640px;line-height:1.5;">Configure a seat and module mix and see which XGRC® package it lands on, and the price, instantly.</div>
   </div>
 
   <div style="position:relative;max-width:var(--maxw);margin:0 auto;padding:0 40px 80px 40px;">
@@ -102,18 +103,18 @@
             <button class="curr-btn" data-curr="GBP">&pound; GBP</button>
             <button class="curr-btn" data-curr="EUR">&euro; EUR</button>
           </div>
-          <div style="font-size:10.5px;color:var(--faint);margin-top:10px;font-style:italic;">Real per-currency list prices from the XGRC price book, not FX conversions. Admin and Compliance Hub use placeholder pricing pending confirmation; XLOGIC, AI Governance and Asgard are entirely unpriced.</div>
+          <div style="font-size:10.5px;color:var(--faint);margin-top:10px;font-style:italic;">Real per-currency list prices from the XGRC® price book, not FX conversions. Admin and Compliance Hub use placeholder pricing pending confirmation; XLOGIC®, AI Governance and Asgard are entirely unpriced.</div>
         </div>
 
         <div class="card">
           <div class="eyebrow" style="margin-bottom:14px;">Seats</div>
           <div style="display:flex;flex-direction:column;gap:12px;">
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Admin<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Full Administration panel access: Company Maintenance, Business Units, Employee Management, Categories, System Settings, Help Desk, Client Manager and Client Request, plus everything a Core user can do. Every tenant needs a minimum of one Admin; this is the person who sets things up and keeps it running.</span></span> <span class="mono" id="price-admin" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Config, API and maintenance access, minimum of 1 per tenant</div></div><input type="number" min="1" id="q-admin" class="qtyinput"></div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Core<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">The standard full-access user. Can use every module: create, edit, complete work. Cannot change system configuration, integrations or API keys. Most people in the organisation should be Core users.</span></span> <span class="mono" id="price-core" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Full module access, no configuration</div></div><input type="number" min="0" id="q-core" class="qtyinput"></div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Lite<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Full functionality within up to 3 modules of the administrator's choosing, on top of the standard baseline every user gets (see notes below). A module-count cap, not a reduced-capability user.</span></span> <span class="mono" id="price-lite" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Legacy Limited-tier access</div></div><input type="number" min="0" id="q-lite" class="qtyinput"></div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Task User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Combines the old Action user (create, receive and close actions, log quick incidents and near misses) with the old Dashboard/Exec user (assigned dashboards), plus the standard baseline every user gets (see notes below).</span></span> <span class="mono" id="price-task" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Combined Action + Dashboard access</div></div><input type="number" min="0" id="q-task" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Admin<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Full Administration panel access: Company Maintenance, Business Units, Employee Management, Categories, System Settings, Help Desk, Client Manager and Client Request, plus everything a Core user can do. Every tenant needs a minimum of one Admin; this is the person who sets things up and keeps it running.<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--line);"><div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--faint);margin-bottom:4px;">Baseline modules included</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;font-size:10px;"><div>Documents</div><div>Help Centre</div><div>Support</div><div>Broadcasting</div><div>Incident Quick Log</div><div>SBO</div><div>Near Miss Quick Log</div><div>Employee Portal</div></div></div></span></span> <span class="mono" id="price-admin" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Config, API and maintenance access, minimum of 1 per tenant</div></div><input type="number" min="1" id="q-admin" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Core<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A full-access user who can create, edit and complete work in all 56 core modules. Cannot change system configuration, integrations or API keys. Most people in your organisation should be Core users.<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--line);"><div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--faint);margin-bottom:4px;">Baseline modules included</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;font-size:10px;"><div>Documents</div><div>Help Centre</div><div>Support</div><div>Broadcasting</div><div>Incident Quick Log</div><div>SBO</div><div>Near Miss Quick Log</div><div>Employee Portal</div></div></div></span></span> <span class="mono" id="price-core" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Full module access, no configuration</div></div><input type="number" min="0" id="q-core" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Lite<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Choose up to 3 modules from XGRC's full list of 56 core modules for this user, with full functionality inside those 3. A module-count cap, not a reduced-capability user.<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--line);"><div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--faint);margin-bottom:4px;">Baseline modules included</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;font-size:10px;"><div>Documents</div><div>Help Centre</div><div>Support</div><div>Broadcasting</div><div>Incident Quick Log</div><div>SBO</div><div>Near Miss Quick Log</div><div>Employee Portal</div></div></div></span></span> <span class="mono" id="price-lite" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Legacy Limited-tier access</div></div><input type="number" min="0" id="q-lite" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Task User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Combines the old Action user (create, receive and close actions, log quick incidents and near misses) with the old Dashboard/Exec user (assigned dashboards).<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--line);"><div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--faint);margin-bottom:4px;">Baseline modules included</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;font-size:10px;"><div>Documents</div><div>Help Centre</div><div>Support</div><div>Broadcasting</div><div>Incident Quick Log</div><div>SBO</div><div>Near Miss Quick Log</div><div>Employee Portal</div></div></div></span></span> <span class="mono" id="price-task" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Combined Action + Dashboard access</div></div><input type="number" min="0" id="q-task" class="qtyinput"></div>
 
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Team User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">An estimated total employee headcount who'll get baseline system access (create, receive and close actions, log quick incidents and near misses), for quoting purposes. Once provisioned, the product reconciles this against employees already licensed under another seat type, so you are not billed twice for someone who already has an Admin, Core, Lite, Task User or LUCI licence. Employee records themselves are free; only enabling access is billed.</span></span> <span class="mono" id="price-team" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Do you want all employees to access the system?</div></div><input type="checkbox" id="toggle-employee-access" class="chkbox"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Team User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">An estimated total employee headcount who'll get baseline system access (create, receive and close actions, log quick incidents and near misses), for quoting purposes. Once provisioned, the product reconciles this against employees already licensed under another seat type, so you are not billed twice for someone who already has an Admin, Core, Lite, Task User or LUCI licence. Employee records themselves are free; only enabling access is billed.<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--line);"><div style="font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--faint);margin-bottom:4px;">Baseline modules included</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;color:var(--cyan);font-family:'JetBrains Mono',monospace;font-size:10px;"><div>Documents</div><div>Help Centre</div><div>Support</div><div>Broadcasting</div><div>Incident Quick Log</div><div>SBO</div><div>Near Miss Quick Log</div><div>Employee Portal</div></div></div></span></span> <span class="mono" id="price-team" style="color:var(--faint);font-weight:400;"></span>/employee</div><div style="font-size:11px;color:var(--faint);">Do you want all employees to access the system?</div></div><input type="checkbox" id="toggle-employee-access" class="chkbox"></div>
             <div id="employee-count-wrap" class="row" style="display:none;padding-left:4px;">
               <div style="flex:1;font-size:12px;color:var(--mute);">Total number of employees</div>
               <input type="number" min="0" id="q-team" class="qtyinput-sm">
@@ -121,7 +122,7 @@
 
             <div style="height:1px;background:var(--line);margin:2px 0;"></div>
             <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;">Multi-tenant (Enterprise)</div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">LUCI<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Full admin access at this user's home tenant, plus the ability to see and manage other tenants in the same account, built for people overseeing several tenants, like a group risk manager, without buying a separate licence per tenant.</span></span> <span class="mono" id="price-luci" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Admin access across multiple tenants, moves quote to Enterprise</div></div><input type="number" min="0" id="q-luci" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">LUCI<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Full admin access at this user's home tenant, plus the ability to see and manage other tenants in the same account, built for people overseeing several tenants, like a group risk manager, without buying a separate licence per tenant.</span></span> <span class="mono" id="price-luci" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Admin access across multiple tenants, moves quote to Enterprise</div></div><input type="number" min="0" id="q-luci" class="qtyinput"></div>
           </div>
         </div>
 
@@ -130,41 +131,42 @@
           <div style="font-size:10.5px;color:var(--faint);margin-bottom:14px;">Every module has its own seat allocation; it doesn't have to match your Core + Admin count.</div>
 
           <div style="background:var(--abyss);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:12px;">
-            <div style="font-size:13px;font-weight:600;color:var(--faint);">SHEQX Baseline <span class="badge-usage" style="background:rgba(47,232,138,0.12);color:var(--green-hi);">Included</span></div>
+            <div style="font-size:13px;font-weight:600;color:var(--faint);">SHEQX® Baseline <span class="badge-usage" style="background:rgba(47,232,138,0.12);color:var(--green-hi);">Included</span></div>
             <div style="font-size:11px;color:var(--faint);">Included in every package</div>
           </div>
 
-          <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;">Adds to XGRC Plus</div>
+          <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;">Adds to XGRC® Plus</div>
           <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
 
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">ENVIRX<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Environmental management: track environmental risks, incidents, permits and compliance obligations.</span></span> <span class="mono" id="price-envirx" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Environmental management module</div></div><input type="number" min="0" id="q-envirx" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">ENVIRX®<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Environmental management: track environmental risks, incidents, permits and compliance obligations.</span></span> <span class="mono" id="price-envirx" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Environmental management module</div></div><input type="number" min="0" id="q-envirx" class="qtyinput"></div>
 
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">ERM<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Enterprise Risk Management: a structured risk register to identify, assess, treat and monitor risks across the business.</span></span> <span class="mono" id="price-erm" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Enterprise risk management module</div></div><input type="number" min="0" id="q-erm" class="qtyinput"></div>
 
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Integrated Assurance<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Brings audit, risk and compliance findings together into one assurance view, aligned to King V, IIA Standards and ISO 19011. Sized independently: select ENVIRX and/or ERM separately if you also need those modules on their own.</span></span> <span class="mono" id="price-assurance" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Combined assurance module, sized independently</div></div><input type="number" min="0" id="q-assurance" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">INTEGRATED ASSURANCE<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Brings audit, risk and compliance findings together into one assurance view, aligned to KING V, IIA Standards and ISO 19011. Sized independently: select ENVIRX and/or ERM separately if you also need those modules on their own.</span></span> <span class="mono" id="price-assurance" style="color:var(--faint);font-weight:400;"></span>/seat</div><div style="font-size:11px;color:var(--faint);">Combined assurance module, sized independently</div></div><input type="number" min="0" id="q-assurance" class="qtyinput"></div>
 
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Compliance Hub<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A structured external portal where your suppliers, contractors and customers upload and maintain their own compliance documentation, while your team validates and monitors it. Flat monthly fee regardless of how many external parties use it.</span></span> <span class="mono" id="price-compliancehub" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Flat fee, moves your quote to XGRC Plus</div></div><input type="checkbox" id="toggle-compliancehub" class="chkbox"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">COMPLIANCE HUB<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A structured external portal where your suppliers, contractors and customers upload and maintain their own compliance documentation, while your team validates and monitors it. Flat monthly fee regardless of how many external parties use it.</span></span> <span class="mono" id="price-compliancehub" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Flat fee, moves your quote to XGRC® Plus</div></div><input type="checkbox" id="toggle-compliancehub" class="chkbox"></div>
 
             <div style="height:1px;background:var(--line);margin:4px 0;"></div>
 
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">MAIA Full User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A person who can actively use the MAIA AI copilot: ask questions, generate reports, get recommendations. At least one Full User is required before MAIA can be added at all; there's no upper limit.</span></span> <span class="mono" id="price-maiafull" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">1 or more required to enable MAIA, no upper limit</div></div><input type="number" min="0" id="q-maiafull" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">MAIA®<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">XGRC®'s AI copilot: ask questions, generate reports and get recommendations, grounded in your own governance, risk and compliance data.</span></span></div><div style="font-size:11px;color:var(--faint);">Enable MAIA® for this tenant?</div></div><input type="checkbox" id="toggle-maia" class="chkbox"></div>
 
             <div id="maia-extra" style="display:none;flex-direction:column;gap:9px;padding:12px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;">
-              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">Data User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Someone who can view MAIA's outputs and insights, without the full interactive copilot access a Full User has.</span></span> <span class="mono" id="price-maiadatauser" style="color:var(--faint);"></span><div style="font-size:10.5px;color:var(--faint);">Optional, additional seats</div></div><input type="number" min="0" id="q-maiadatauser" class="qtyinput-sm"></div>
-              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">Data Used<span class="badge-usage">Usage-based</span><span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">An estimate of how much data MAIA will process monthly, in GB. Billed in 50GB buckets (covers Hot-tier LRS storage, API ingress, API egress and transactions); partial buckets round up to the next full bucket. Unlike every other line item, this is usage-based, not a fixed seat commitment.</span></span> <span class="mono" id="price-maiadataused" style="color:var(--faint);"></span>/50GB<div style="font-size:10.5px;color:var(--faint);">Estimated monthly volume, in GB (billed in 50GB buckets) <span id="maiadataused-buckets"></span></div></div><input type="number" min="0" id="q-maiadataused" class="qtyinput-sm"></div>
+              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">MAIA® FULL USER<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A person who can actively use the MAIA® AI copilot: ask questions, generate reports, get recommendations. A minimum of 1 Full User is required while MAIA® is enabled; no upper limit.</span></span> <span class="mono" id="price-maiafull" style="color:var(--faint);"></span><div style="font-size:10.5px;color:var(--faint);">Minimum of 1 while MAIA® is enabled</div></div><input type="number" min="1" id="q-maiafull" class="qtyinput-sm"></div>
+              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">Data User<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Someone who can view MAIA®'s outputs and insights, without the full interactive copilot access a Full User has.</span></span> <span class="mono" id="price-maiadatauser" style="color:var(--faint);"></span><div style="font-size:10.5px;color:var(--faint);">Optional, additional seats</div></div><input type="number" min="0" id="q-maiadatauser" class="qtyinput-sm"></div>
+              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">Data Buckets<span class="badge-usage">Usage-based</span><span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Estimated monthly data volume, in 50GB buckets (covers Hot-tier LRS storage, API ingress, API egress and transactions). Defaults to 1 bucket the moment MAIA® is enabled; increase if you expect more volume.</span></span> <span class="mono" id="price-maiadataused" style="color:var(--faint);"></span>/bucket<div style="font-size:10.5px;color:var(--faint);">1 bucket = 50GB <span id="maiadataused-buckets"></span></div></div><input type="number" min="1" id="q-maiadataused" class="qtyinput-sm"></div>
               <div style="font-size:10.5px;color:var(--faint);font-style:italic;">Usage beyond this estimate is billed via additional data tokens.</div>
             </div>
           </div>
 
-          <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;">Adds to XGRC Enterprise</div>
+          <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;">Adds to XGRC® Enterprise</div>
           <div style="display:flex;flex-direction:column;gap:10px;">
             <div style="font-size:12.5px;font-weight:600;">Hakware<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A separate cyber-security platform (vulnerability and pentest management), licensed by number of monitored domains and number of users. Its own independent user base, not a subset of your Core or Admin seats.</span></span></div>
             <div style="display:flex;flex-direction:column;gap:8px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;padding:10px 12px;">
               <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">Domains<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Each domain Hakware actively monitors for security issues.</span></span> <span class="mono" id="price-hkwdomain" style="color:var(--faint);"></span> each</div><input type="number" min="0" id="q-hkwdomains" class="qtyinput-sm"></div>
-              <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">Hakware Users<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">People who need access to Hakware's own security dashboard and reporting, separate from XGRC user seats.</span></span> <span class="mono" id="price-hkwuser" style="color:var(--faint);"></span>/seat</div><input type="number" min="0" id="q-hkwusers" class="qtyinput-sm"></div>
+              <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">Hakware Users<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">People who need access to Hakware's own security dashboard and reporting, separate from XGRC® user seats.</span></span> <span class="mono" id="price-hkwuser" style="color:var(--faint);"></span>/seat</div><input type="number" min="0" id="q-hkwusers" class="qtyinput-sm"></div>
             </div>
             <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin:4px 0 2px;">AI Governance Framework<span class="info-wrap"><span class="info-icon" style="margin-left:5px;">i</span><span class="info-tip">Supports alignment to ISO/IEC 42001, the international standard for AI management systems, covering AI governance, oversight and change management.</span></span></div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">XLOGIC<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">XGRC's core governance, risk and compliance platform. Pricing for including it in a combined quote is still being finalised. A flat selection, like Compliance Hub, not seat-based.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">GRC platform, pricing to be finalised</div></div><input type="checkbox" id="toggle-xlogic" class="chkbox"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">XLOGIC®<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">XGRC®'s core governance, risk and compliance platform. Pricing for including it in a combined quote is still being finalised. A flat selection, like Compliance Hub, not seat-based.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">GRC platform, pricing to be finalised</div></div><input type="checkbox" id="toggle-xlogic" class="chkbox"></div>
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">AI Governance<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A new XGRC product for AI governance and oversight, launching soon. Details and pricing to follow. A flat selection, like Compliance Hub, not seat-based.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">New product, launching soon</div></div><input type="checkbox" id="toggle-aigovernance" class="chkbox"></div>
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Asgard<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A new XGRC product, launching soon. Details and pricing to follow. A flat selection, like Compliance Hub, not seat-based.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">New product, launching soon</div></div><input type="checkbox" id="toggle-asgard" class="chkbox"></div>
           </div>
@@ -173,8 +175,8 @@
         <div class="card">
           <div class="eyebrow" style="margin-bottom:14px;">Add-ons</div>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">HACCP<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Hazard Analysis and Critical Control Points: a food-safety risk framework, included at no extra cost.<span class="draft-flag">Draft: please confirm this matches how XGRC's HACCP add-on works.</span></span></span></div><div style="font-size:11px;color:var(--faint);">Free, no tier impact</div></div><input type="number" min="0" id="q-haccp" class="qtyinput"></div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">BOWTIE<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A visual risk-analysis method mapping the causes and consequences around a central risk event, included at no extra cost.<span class="draft-flag">Draft: please confirm this matches XGRC's BOWTIE add-on.</span></span></span></div><div style="font-size:11px;color:var(--faint);">Free, no tier impact</div></div><input type="number" min="0" id="q-bowtie" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">HACCP<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">Hazard Analysis and Critical Control Points: a food-safety risk framework, included at no extra cost.<span class="draft-flag">Draft: please confirm this matches how XGRC®'s HACCP add-on works.</span></span></span></div><div style="font-size:11px;color:var(--faint);">Free, no tier impact</div></div><input type="number" min="0" id="q-haccp" class="qtyinput"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">BOWTIE<span class="info-wrap"><span class="info-icon">i</span><span class="info-tip">A visual risk-analysis method mapping the causes and consequences around a central risk event, included at no extra cost.<span class="draft-flag">Draft: please confirm this matches XGRC®'s BOWTIE add-on.</span></span></span></div><div style="font-size:11px;color:var(--faint);">Free, no tier impact</div></div><input type="number" min="0" id="q-bowtie" class="qtyinput"></div>
           </div>
         </div>
 
@@ -242,8 +244,8 @@
           <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;">
             <div class="tier-card" id="card-standard">
               <div class="ribbon">RECOMMENDED</div>
-              <div style="font-size:15px;font-weight:800;margin-bottom:4px;font-family:'Outfit';">XGRC Standard</div>
-              <div style="font-size:11.5px;color:var(--mute);margin-bottom:14px;">SHEQX baseline, seats added as needed</div>
+              <div style="font-size:15px;font-weight:800;margin-bottom:4px;font-family:'Outfit';">XGRC® Standard</div>
+              <div style="font-size:11.5px;color:var(--mute);margin-bottom:14px;">SHEQX® baseline, seats added as needed</div>
 
               <div class="info-wrap" style="cursor:help;margin-bottom:10px;">
                 <span style="font-family:'Outfit';font-size:24px;font-weight:800;color:var(--cyan-hi);">56</span>
@@ -258,7 +260,7 @@
                 <span class="info-icon">i</span>
                 <span class="info-tip-list" style="width:260px;">
                   <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.5px;color:var(--cyan);text-transform:uppercase;margin-bottom:3px;">Governance &amp; Risk</div>
-                  King V<br>COSO<br>ISO 31000
+                  KING V<br>COSO<br>ISO 31000
                   <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.5px;color:var(--cyan);text-transform:uppercase;margin:8px 0 3px;">Quality, Safety &amp; Environment</div>
                   ISO 9001<br>ISO 14001<br>ISO 45001<br>ISO 22000
                   <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.5px;color:var(--cyan);text-transform:uppercase;margin:8px 0 3px;">Data Protection</div>
@@ -270,12 +272,12 @@
 
               <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Headline frameworks</div>
               <div class="pill-row" style="margin-bottom:10px;">
-                <span class="pill">ISO 9001</span><span class="pill">ISO 14001</span><span class="pill">ISO 45001</span><span class="pill">ISO 22000</span><span class="pill">King V</span>
+                <span class="pill">ISO 9001</span><span class="pill">ISO 14001</span><span class="pill">ISO 45001</span><span class="pill">ISO 22000</span><span class="pill">KING V</span>
               </div>
               <div class="info-wrap" style="cursor:help;margin-bottom:6px;">
                 <span style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;">Disciplines</span>
                 <span class="info-icon">i</span>
-                <span class="info-tip">SHE = Safety, Health, Environment. SHEQ adds Quality. SHERQ adds Risk. XGRC Standard supports all three overlapping discipline models.</span>
+                <span class="info-tip">SHE = Safety, Health, Environment. SHEQ adds Quality. SHERQ adds Risk. XGRC® Standard supports all three overlapping discipline models.</span>
               </div>
               <div class="pill-row" style="margin-bottom:14px;">
                 <span class="pill">SHE</span><span class="pill">SHEQ</span><span class="pill">SHERQ</span>
@@ -289,14 +291,16 @@
             </div>
             <div class="tier-card" id="card-plus">
               <div class="ribbon">RECOMMENDED</div>
-              <div style="font-size:15px;font-weight:800;margin-bottom:4px;font-family:'Outfit';">XGRC Plus</div>
+              <div style="font-size:15px;font-weight:800;margin-bottom:4px;font-family:'Outfit';">XGRC® Plus</div>
               <div style="font-size:11.5px;color:var(--mute);margin-bottom:14px;">Standard + risk &amp; assurance modules</div>
+
+              <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(48,226,244,0.10);border:1px solid rgba(48,226,244,0.28);border-radius:7px;padding:5px 11px;margin-bottom:14px;font-size:12px;font-weight:700;color:var(--cyan-hi);">&#10003; Everything in XGRC® Standard, plus:</div>
 
               <div class="info-wrap" style="cursor:help;margin-bottom:14px;">
                 <span style="font-family:'Outfit';font-size:24px;font-weight:800;color:var(--cyan-hi);">+5</span>
                 <span style="font-size:11.5px;color:var(--mute);margin-left:4px;">capabilities added</span>
                 <span class="info-icon">i</span>
-                <span class="info-tip-list">ENVIRX: environmental &amp; carbon compliance<br>ERM: enterprise risk management<br>Integrated Assurance: combined assurance<br>Compliance Hub: third-party compliance<br>MAIA: governed AI copilot</span>
+                <span class="info-tip-list">ENVIRX®: environmental &amp; carbon compliance<br>ERM: enterprise risk management<br>Integrated Assurance: combined assurance<br>Compliance Hub: third-party compliance<br>MAIA®: governed AI copilot</span>
               </div>
 
               <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">New frameworks unlocked</div>
@@ -304,27 +308,28 @@
                 <span class="pill">ISO 31000</span><span class="pill">NEMA</span><span class="pill">Carbon Tax Act</span><span class="pill">ISO 42001 (2026)</span>
               </div>
 
-              <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;color:var(--mute);">
-                <div>&#10003; Everything in Standard</div>
-                <div>&#10003; ENVIRX: environmental &amp; carbon compliance (ISO 14001, NEMA, GHG Protocol, Carbon Tax Act)</div>
-                <div>&#10003; ERM: enterprise risk management (ISO 31000, COSO)</div>
-                <div>&#10003; Integrated Assurance: combined assurance (King V, IIA Standards, ISO 19011)</div>
-                <div>&#10003; Compliance Hub: supplier/contractor/third-party compliance, flat monthly fee</div>
-                <div>&#10003; MAIA AI copilot: governed AI (ISO 42001 targeted 2026, POPIA, GDPR), 1+ Full Users</div>
-                <div>&#10003; RESTful Open API</div>
+              <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;">
+                <div style="color:var(--green-hi);">&#10003; ENVIRX®: environmental &amp; carbon compliance (ISO 14001, NEMA, GHG Protocol, Carbon Tax Act)</div>
+                <div style="color:var(--cyan-hi);">&#10003; ERM: enterprise risk management (ISO 31000, COSO)</div>
+                <div style="color:var(--cyan-hi);">&#10003; Integrated Assurance: combined assurance (KING V, IIA Standards, ISO 19011)</div>
+                <div style="color:var(--cyan-hi);">&#10003; Compliance Hub: supplier/contractor/third-party compliance, flat monthly fee</div>
+                <div style="color:var(--cyan-hi);">&#10003; MAIA® AI copilot: governed AI (ISO 42001 targeted 2026, POPIA, GDPR), 1+ Full Users</div>
+                <div style="color:var(--mute);">&#10003; RESTful Open API</div>
               </div>
               <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-plus" style="color:var(--mute);"></span>/tenant (Admin + ENVIRX)</div>
             </div>
             <div class="tier-card" id="card-enterprise">
               <div class="ribbon">RECOMMENDED</div>
-              <div style="font-size:15px;font-weight:800;margin-bottom:4px;font-family:'Outfit';">XGRC Enterprise</div>
+              <div style="font-size:15px;font-weight:800;margin-bottom:4px;font-family:'Outfit';">XGRC® Enterprise</div>
               <div style="font-size:11.5px;color:var(--mute);margin-bottom:14px;">Plus + multi-tenant &amp; group products</div>
+
+              <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(48,226,244,0.10);border:1px solid rgba(48,226,244,0.28);border-radius:7px;padding:5px 11px;margin-bottom:14px;font-size:12px;font-weight:700;color:var(--cyan-hi);">&#10003; Everything in XGRC® Plus, plus:</div>
 
               <div class="info-wrap" style="cursor:help;margin-bottom:14px;">
                 <span style="font-family:'Outfit';font-size:24px;font-weight:800;color:var(--cyan-hi);">+5</span>
                 <span style="font-size:11.5px;color:var(--mute);margin-left:4px;">capabilities added</span>
                 <span class="info-icon">i</span>
-                <span class="info-tip-list">Hakware: penetration testing &amp; vulnerability management<br>LUCI: multi-tenant admin access<br>XLOGIC: governance execution, policy-to-workflow<br>AI Governance: AI oversight, launching soon<br>Asgard: new product, launching soon</span>
+                <span class="info-tip-list">Hakware: penetration testing &amp; vulnerability management<br>LUCI: multi-tenant admin access<br>XLOGIC®: governance execution, policy-to-workflow<br>AI Governance: AI oversight, launching soon<br>Asgard: new product, launching soon</span>
               </div>
 
               <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">New capabilities unlocked</div>
@@ -332,14 +337,13 @@
                 <span class="pill">Multi-tenant</span><span class="pill">Penetration Testing</span><span class="pill">Vulnerability Management</span><span class="pill">Policy-to-Workflow</span><span class="pill">AI Governance</span>
               </div>
 
-              <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;color:var(--mute);">
-                <div>&#10003; Everything in Plus</div>
-                <div>&#10003; Hakware: AI-powered penetration testing &amp; vulnerability visibility (own domain/user counts)</div>
-                <div>&#10003; LUCI: multi-tenant admin seats across sites</div>
-                <div>&#10003; AI Governance Framework: XLOGIC, AI Governance &amp; Asgard (pricing TBD)</div>
-                <div>&#10003; RESTful Open API</div>
+              <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;">
+                <div style="color:var(--blue);">&#10003; Hakware: AI-powered penetration testing &amp; vulnerability visibility (own domain/user counts)</div>
+                <div style="color:var(--cyan-hi);">&#10003; LUCI: multi-tenant admin seats across sites</div>
+                <div style="color:var(--cyan-hi);">&#10003; AI Governance Framework: XLOGIC®, AI Governance &amp; Asgard (pricing TBD)</div>
+                <div style="color:var(--mute);">&#10003; RESTful Open API</div>
               </div>
-              <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-enterprise" style="color:var(--mute);"></span>/tenant (Admin + LUCI)</div>
+              <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-enterprise" style="color:var(--mute);"></span>/tenant (Admin + LUCI, the lowest-cost path in). Hakware, XLOGIC®, AI Governance or Asgard can also unlock Enterprise; exact price depends on what you select.</div>
             </div>
           </div>
         </div>
@@ -356,21 +360,25 @@
         <div class="card" style="background:var(--abyss);padding:16px 20px;">
           <div class="eyebrow" style="margin-bottom:10px;">Notes</div>
           <ul class="notes-list">
-            <li>ENVIRX, ERM, Integrated Assurance, HACCP and BOWTIE each have their own seat count; it does not need to match your Core and Admin count combined, but cannot exceed it. Admin already has full Core capability, so both count toward the pool.</li>
+            <li>ENVIRX®, ERM, Integrated Assurance, HACCP and BOWTIE each have their own seat count; it does not need to match your Core and Admin count combined, but cannot exceed it. Admin already has full Core capability, so both count toward the pool.</li>
             <li>Every licence type, including Lite, Task User and Team User, also includes a standard baseline: Documents, Help Centre, Support, Broadcasting, Incident Quick Log, SBO, Near Miss Quick Log and Employee Portal.</li>
             <li>Team User is an estimated total employee headcount, not a quantity chosen freely. The product reconciles it against employees already licensed under another seat type once provisioned, so nobody is billed twice. Employee records themselves cost nothing; only enabling their access is billed.</li>
-            <li>MAIA requires 1 or more Full Users, with no upper limit; Data User and Data Used are optional on top of that. Data Used is the one usage-based line item in this quote, billed in 50GB buckets (partial buckets round up); every other line is a fixed commitment regardless of actual use.</li>
-            <li>Compliance Hub is a flat monthly fee, not a per-seat cost, but still moves your quote to XGRC Plus.</li>
-            <li>MAIA and Hakware seat counts are independent of your Core and Admin count; they represent separate user bases, not a subset of those seats.</li>
-            <li>XLOGIC, AI Governance and Asgard are flat selections, like Compliance Hub, not seat-based; pricing for all three is still to be finalised.</li>
+            <li>MAIA® is switched on with a single tickbox, which opens up its user fields; a minimum of 1 Full User and 1 Data Bucket (50GB) applies while it's enabled, with no upper limit. Data User seats and extra Data Buckets are optional on top of that. Data Buckets is the one usage-based line item in this quote; every other line is a fixed commitment regardless of actual use.</li>
+            <li>Compliance Hub is a flat monthly fee, not a per-seat cost, but still moves your quote to XGRC® Plus.</li>
+            <li>MAIA® and Hakware seat counts are independent of your Core and Admin count; they represent separate user bases, not a subset of those seats.</li>
+            <li>XLOGIC®, AI Governance and Asgard are flat selections, like Compliance Hub, not seat-based; pricing for all three is still to be finalised.</li>
             <li>Volume discount thresholds are set independently per currency, not converted from ZAR, the same way list prices are.</li>
             <li>Annual commitment applies a further 10% to the already-discounted monthly value, compounding.</li>
-            <li>Prices are real per-currency list prices from the XGRC price book, except Admin, XLOGIC and Asgard, which are new/unpriced placeholders.</li>
+            <li>Prices are real per-currency list prices from the XGRC® price book, except Admin, XLOGIC® and Asgard, which are new/unpriced placeholders.</li>
             <li>Billing terms: licences are billed monthly in arrears and are payable whether or not a seat was used that month. Annual commitment is invoiced as a single amount, paid in advance.</li>
           </ul>
         </div>
 
       </div>
+    </div>
+
+    <div style="max-width:var(--maxw);margin:0 auto;padding:20px 40px 36px;text-align:center;border-top:1px solid var(--line);">
+      <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance®</div>
     </div>
   </div>
 </div>
@@ -396,8 +404,6 @@ const PRICES = {
   hkwUser:      { ZAR: 180.00,   USD: 10.00,  GBP: 10.00,  EUR: 10.00  }
 };
 const SYM = { ZAR: 'R', USD: '$', GBP: '£', EUR: '€' };
-function maiaBuckets(gb) { return Math.ceil((Number(gb) || 0) / 50); }
-
 // Discount thresholds are set independently per currency (not FX-converted),
 // the same principle already used for the list prices themselves.
 const DISCOUNT_THRESHOLDS = {
@@ -413,7 +419,7 @@ const state = {
   seats: { admin: 1, core: 0, lite: 0, task: 0, team: 0, teamEnabled: false, luci: 0 },
   modules: {
     envirx: 0, erm: 0, assurance: 0,
-    maiaFullUser: 0, maiaDataUser: 0, maiaDataUsed: 0,
+    maiaEnabled: false, maiaFullUser: 0, maiaDataUser: 0, maiaDataBuckets: 0,
     hkwDomains: 0, hkwUsers: 0,
     xlogic: false, asgard: false, aiGovernance: false,
     complianceHub: false
@@ -438,8 +444,8 @@ function computeDerived() {
   const effEnvirx = m.envirx;
   const effErm = m.erm;
 
-  const maiaOn = m.maiaFullUser > 0;
-  const maiaCur = maiaOn ? (m.maiaFullUser*P.maiaFull[cur] + m.maiaDataUser*P.maiaDataUser[cur] + maiaBuckets(m.maiaDataUsed)*P.maiaDataUsedBucket[cur]) : 0;
+  const maiaOn = m.maiaEnabled;
+  const maiaCur = maiaOn ? (m.maiaFullUser*P.maiaFull[cur] + m.maiaDataUser*P.maiaDataUser[cur] + m.maiaDataBuckets*P.maiaDataUsedBucket[cur]) : 0;
 
   const hkwCur = m.hkwDomains*P.hkwDomain[cur] + m.hkwUsers*P.hkwUser[cur];
 
@@ -462,7 +468,7 @@ function computeDerived() {
   const tier = isEnterprise ? 'Enterprise' : (isPlus ? 'Plus' : 'Standard');
 
   return { s, m, a, cur, th, effEnvirx, effErm, maiaOn, seatCur, moduleCur, listValueCur, discountPct,
-           discountedMonthlyCur, annualTotalCur, isStandard, isPlus, isEnterprise, tierFull: 'XGRC ' + tier };
+           discountedMonthlyCur, annualTotalCur, isStandard, isPlus, isEnterprise, tierFull: 'XGRC® ' + tier };
 }
 
 function el(id) { return document.getElementById(id); }
@@ -504,12 +510,13 @@ function render() {
   syncInput('q-erm', state.modules.erm);
   syncInput('q-assurance', state.modules.assurance);
 
+  el('toggle-maia').checked = state.modules.maiaEnabled;
   syncInput('q-maiafull', state.modules.maiaFullUser);
   syncInput('q-maiadatauser', state.modules.maiaDataUser);
-  syncInput('q-maiadataused', state.modules.maiaDataUsed);
+  syncInput('q-maiadataused', state.modules.maiaDataBuckets);
   el('maia-extra').style.display = d.maiaOn ? 'flex' : 'none';
-  const buckets = maiaBuckets(state.modules.maiaDataUsed);
-  el('maiadataused-buckets').textContent = state.modules.maiaDataUsed > 0 ? ('= ' + buckets + ' bucket' + (buckets === 1 ? '' : 's')) : '';
+  const bucketsGb = state.modules.maiaDataBuckets * 50;
+  el('maiadataused-buckets').textContent = d.maiaOn ? ('~' + bucketsGb + 'GB estimated') : '';
 
   syncInput('q-hkwdomains', state.modules.hkwDomains);
   syncInput('q-hkwusers', state.modules.hkwUsers);
@@ -613,18 +620,35 @@ bindCappedQty('q-envirx', n => state.modules.envirx = n);
 bindCappedQty('q-erm', n => state.modules.erm = n);
 bindCappedQty('q-assurance', n => state.modules.assurance = n);
 
-bindQty('q-maiafull', n => {
-  const wasOff = state.modules.maiaFullUser === 0;
-  state.modules.maiaFullUser = n;
-  if (n === 0) {
+el('toggle-maia').addEventListener('change', (e) => {
+  const on = e.target.checked;
+  state.modules.maiaEnabled = on;
+  if (on) {
+    state.modules.maiaFullUser = Math.max(1, state.modules.maiaFullUser);
+    state.modules.maiaDataBuckets = Math.max(1, state.modules.maiaDataBuckets || 1);
+  } else {
+    state.modules.maiaFullUser = 0;
     state.modules.maiaDataUser = 0;
-    state.modules.maiaDataUsed = 0;
-  } else if (wasOff) {
-    state.modules.maiaDataUsed = 50; // default to 1 bucket (50GB) the moment MAIA turns on
+    state.modules.maiaDataBuckets = 0;
   }
+  render();
+});
+
+el('q-maiafull').addEventListener('input', (e) => {
+  const raw = Math.max(0, parseInt(e.target.value, 10) || 0);
+  const floored = Math.max(1, raw);
+  state.modules.maiaFullUser = floored;
+  if (floored !== raw) e.target.value = floored;
+  render();
 });
 bindQty('q-maiadatauser', n => state.modules.maiaDataUser = n);
-bindQty('q-maiadataused', n => state.modules.maiaDataUsed = n);
+el('q-maiadataused').addEventListener('input', (e) => {
+  const raw = Math.max(0, parseInt(e.target.value, 10) || 0);
+  const floored = Math.max(1, raw);
+  state.modules.maiaDataBuckets = floored;
+  if (floored !== raw) e.target.value = floored;
+  render();
+});
 
 bindQty('q-hkwdomains', n => state.modules.hkwDomains = n);
 bindQty('q-hkwusers', n => state.modules.hkwUsers = n);
@@ -657,7 +681,7 @@ function defaultState() {
     seats: { admin: 1, core: 0, lite: 0, task: 0, team: 0, teamEnabled: false, luci: 0 },
     modules: {
       envirx: 0, erm: 0, assurance: 0,
-      maiaFullUser: 0, maiaDataUser: 0, maiaDataUsed: 0,
+      maiaEnabled: false, maiaFullUser: 0, maiaDataUser: 0, maiaDataBuckets: 0,
       hkwDomains: 0, hkwUsers: 0,
       xlogic: false, asgard: false, aiGovernance: false,
       complianceHub: false
@@ -740,18 +764,18 @@ function buildLineItems(d) {
   push('Task User seats', d.s.task, PRICES.task);
   push('Team User seats (estimated headcount)', d.s.team, PRICES.team);
   push('LUCI seats', d.s.luci, PRICES.luci);
-  push('ENVIRX seats', d.effEnvirx, PRICES.envirx);
+  push('ENVIRX® seats', d.effEnvirx, PRICES.envirx);
   push('ERM seats', d.effErm, PRICES.erm);
   push('Integrated Assurance seats', d.m.assurance, PRICES.assurance);
-  push('MAIA Full User', d.m.maiaFullUser, PRICES.maiaFull);
-  push('MAIA Data User', d.m.maiaDataUser, PRICES.maiaDataUser);
-  if (d.m.maiaDataUsed > 0) {
-    const buckets = maiaBuckets(d.m.maiaDataUsed);
-    items.push({ label: 'MAIA Data Used (' + d.m.maiaDataUsed + 'GB, ' + buckets + ' x 50GB bucket' + (buckets === 1 ? '' : 's') + ')', qty: buckets, unit: priceStr(PRICES.maiaDataUsedBucket), total: amountStr(buckets * PRICES.maiaDataUsedBucket[state.currency]) });
+  push('MAIA® Full User', d.m.maiaFullUser, PRICES.maiaFull);
+  push('MAIA® Data User', d.m.maiaDataUser, PRICES.maiaDataUser);
+  if (d.m.maiaDataBuckets > 0) {
+    const buckets = d.m.maiaDataBuckets;
+    items.push({ label: 'MAIA® Data Buckets (' + buckets + ' x 50GB bucket' + (buckets === 1 ? '' : 's') + ')', qty: buckets, unit: priceStr(PRICES.maiaDataUsedBucket), total: amountStr(buckets * PRICES.maiaDataUsedBucket[state.currency]) });
   }
   push('Hakware Domains', d.m.hkwDomains, PRICES.hkwDomain);
   push('Hakware Users', d.m.hkwUsers, PRICES.hkwUser);
-  if (d.m.xlogic) items.push({ label: 'XLOGIC', qty: 1, unit: '[TBD]', total: '[TBD]' });
+  if (d.m.xlogic) items.push({ label: 'XLOGIC®', qty: 1, unit: '[TBD]', total: '[TBD]' });
   if (d.m.aiGovernance) items.push({ label: 'AI Governance', qty: 1, unit: '[TBD]', total: '[TBD]' });
   if (d.m.asgard) items.push({ label: 'Asgard', qty: 1, unit: '[TBD]', total: '[TBD]' });
   if (d.a.haccp > 0) items.push({ label: 'HACCP', qty: d.a.haccp, unit: 'Free', total: 'Free' });
@@ -770,7 +794,7 @@ el('btn-download').addEventListener('click', () => {
   let y = 56;
 
   doc.setFont('helvetica', 'bold'); doc.setFontSize(20); doc.setTextColor(20, 30, 40);
-  doc.text('XGRC Licensing Quote', 40, y); y += 26;
+  doc.text('XGRC® Licensing Quote', 40, y); y += 26;
 
   doc.setFont('helvetica', 'normal'); doc.setFontSize(11); doc.setTextColor(90, 100, 110);
   doc.text('Prepared for: ' + name, 40, y); y += 16;
