@@ -13,8 +13,9 @@
   :root {
     --void:#060f1c; --abyss:#0a1729; --panel:rgba(255,255,255,0.035); --panel-hover:rgba(255,255,255,0.06);
     --line:rgba(120,170,200,0.14); --line-strong:rgba(120,170,200,0.28);
-    --cyan:#30e2f4; --cyan-hi:#7af3ff; --blue:#269ec6; --deep:#005ca9;
+    --cyan:#30e2f4; --cyan-hi:#7af3ff; --blue:#269ec6; --blue-hi:#7fd4ef; --deep:#005ca9;
     --green:#2fe88a; --green-hi:#5cffa8; --green-ink:#04130b;
+    --cyber:#16d9a8; --cyber-hi:#5dfcd6;
     --ink:#eaf3f7; --mute:#8499aa; --faint:#56697a;
     --radius-lg:22px; --radius-md:14px; --radius-sm:10px; --maxw:1200px;
   }
@@ -43,6 +44,8 @@
   .btn-ghost { padding:11px 20px; border-radius:var(--radius-sm); border:1px solid var(--line-strong); background:transparent; color:var(--mute); font-weight:600; font-size:13px; cursor:pointer; white-space:nowrap; }
   .btn-ghost:disabled { color:var(--faint); cursor:not-allowed; opacity:0.6; }
   .btn-ghost-sm { padding:6px 14px; border-radius:8px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); font-weight:600; font-size:12px; cursor:pointer; white-space:nowrap; }
+  .btn-secondary { padding:11px 20px; border-radius:var(--radius-sm); border:1.5px solid var(--cyan); background:rgba(48,226,244,0.10); color:var(--cyan-hi); font-weight:700; font-size:13px; cursor:pointer; white-space:nowrap; }
+  .btn-secondary:hover { background:rgba(48,226,244,0.18); }
   .tier-card { position:relative; background:var(--panel); border-radius:var(--radius-lg); padding:20px; border:1px solid var(--line); }
   .tier-card.active { border:2px solid var(--cyan); box-shadow:0 0 0 1px rgba(48,226,244,0.12); }
   .ribbon { display:none; position:absolute; top:-10px; right:16px; background:var(--cyan); color:#04101b; font-size:9.5px; font-weight:800; letter-spacing:0.5px; padding:3px 8px; border-radius:5px; }
@@ -60,9 +63,23 @@
   .notes-list li:last-child { margin-bottom:0; }
   .notes-list li::marker { color:var(--cyan); }
   .pill { display:inline-flex; align-items:center; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.3px; background:rgba(48,226,244,0.10); color:var(--cyan-hi); padding:3px 8px; border-radius:5px; white-space:nowrap; }
+  .pill-green { background:rgba(47,232,138,0.12); color:var(--green-hi); }
+  .pill-cyber { background:rgba(22,217,168,0.14); color:var(--cyber-hi); }
+  .pill-blue { background:rgba(38,158,198,0.16); color:var(--blue-hi); }
+  .pill-mute { background:rgba(120,170,200,0.10); color:var(--mute); }
   .pill-row { display:flex; flex-wrap:wrap; gap:6px; }
-  .info-tip-list { display:none; position:absolute; z-index:30; bottom:135%; left:0; width:230px; max-height:260px; overflow-y:auto; background:var(--abyss); border:1px solid var(--line-strong); border-radius:10px; padding:10px 12px; font-size:11px; line-height:1.65; color:var(--mute); font-family:'Inter',sans-serif; box-shadow:0 10px 28px rgba(0,0,0,.45); }
+  .info-tip-list { display:none; position:absolute; z-index:30; top:135%; left:0; width:230px; max-height:min(280px, 45vh); overflow-y:auto; background:var(--abyss); border:1px solid var(--line-strong); border-radius:10px; padding:10px 12px; font-size:11px; line-height:1.65; color:var(--mute); font-family:'Inter',sans-serif; box-shadow:0 10px 28px rgba(0,0,0,.45); scrollbar-width:thin; scrollbar-color:var(--cyan) var(--abyss); }
+  .info-tip-list::-webkit-scrollbar { width:7px; }
+  .info-tip-list::-webkit-scrollbar-track { background:var(--abyss); }
+  .info-tip-list::-webkit-scrollbar-thumb { background:var(--line-strong); border-radius:4px; }
+  .info-tip-list::-webkit-scrollbar-thumb:hover { background:var(--cyan); }
   .info-wrap:hover .info-tip-list, .info-wrap.open .info-tip-list { display:block; }
+  .subtotal-row { display:flex; justify-content:space-between; align-items:center; font-size:13px; cursor:pointer; user-select:none; }
+  .subtotal-chevron { display:inline-block; font-size:9px; color:var(--faint); margin-left:6px; transition:transform .15s; }
+  .subtotal-chevron.open { transform:rotate(90deg); }
+  .subtotal-breakdown { display:none; flex-direction:column; gap:4px; margin:8px 0 4px 4px; padding-left:10px; border-left:1px solid var(--line); }
+  .subtotal-breakdown.open { display:flex; }
+  .subtotal-line { display:flex; justify-content:space-between; font-size:11px; color:var(--faint); gap:10px; }
 </style>
 </head>
 <body>
@@ -202,7 +219,7 @@
 
           <div style="display:flex;gap:10px;align-items:center;">
             <input type="text" id="client-name" placeholder="Client / prospect name" style="flex:1;background:var(--abyss);border:1px solid var(--line-strong);border-radius:var(--radius-sm);color:var(--ink);padding:11px 14px;font-size:13px;">
-            <button id="btn-newquote" class="btn-ghost-sm">New Quote</button>
+            <button id="btn-newquote" class="btn-secondary">New Quote</button>
             <button id="btn-save" class="btn-primary" disabled>Save</button>
             <button id="btn-download" class="btn-ghost" disabled>Download PDF</button>
           </div>
@@ -211,8 +228,14 @@
           <div style="height:1px;background:var(--line);margin:18px 0;"></div>
 
           <div style="display:flex;flex-direction:column;gap:9px;">
-            <div style="display:flex;justify-content:space-between;font-size:13px;"><span style="color:var(--mute);">Seats subtotal</span><span class="mono" id="seat-subtotal"></span></div>
-            <div style="display:flex;justify-content:space-between;font-size:13px;"><span style="color:var(--mute);">Modules subtotal</span><span class="mono" id="module-subtotal"></span></div>
+            <div>
+              <div class="subtotal-row" id="toggle-seats-breakdown"><span style="color:var(--mute);">Seats subtotal<span class="subtotal-chevron" id="seats-chevron">&#9656;</span></span><span class="mono" id="seat-subtotal"></span></div>
+              <div class="subtotal-breakdown" id="seats-breakdown"></div>
+            </div>
+            <div>
+              <div class="subtotal-row" id="toggle-modules-breakdown"><span style="color:var(--mute);">Modules subtotal<span class="subtotal-chevron" id="modules-chevron">&#9656;</span></span><span class="mono" id="module-subtotal"></span></div>
+              <div class="subtotal-breakdown" id="modules-breakdown"></div>
+            </div>
             <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;"><span style="color:var(--mute);">Monthly list value</span><span class="mono" id="list-value"></span></div>
             <div style="margin-top:6px;">
               <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:var(--mute);">Volume discount</span><span class="mono" id="discount-pct" style="color:var(--cyan);font-weight:700;"></span></div>
@@ -251,7 +274,7 @@
                 <span style="font-family:'Outfit';font-size:24px;font-weight:800;color:var(--cyan-hi);">56</span>
                 <span style="font-size:11.5px;color:var(--mute);margin-left:4px;">core modules</span>
                 <span class="info-icon">i</span>
-                <span class="info-tip-list">Access Control<br>Actions<br>Asset Management<br>Audits<br>Bowtie<br>Broadcasting<br>Calibration<br>Change Management<br>Community Management<br>Contractor Management<br>Covid Management<br>Covid Questionnaire<br>Customer Management<br>Dashboards<br>Document Template Control<br>Documents<br>Emergency Preparedness<br>Employee Manager Portal<br>Employee Portal<br>Government Management<br>HACCP<br>Help Centre<br>Incident Quick Log<br>Incidents<br>Inspection Quick Log<br>Inspections<br>Legal and Other Requirements<br>Legal Appointments<br>Medical Surveillance<br>Meeting Manager<br>Monitoring<br>Near Miss Report<br>Non-Conformances<br>Objectives<br>On Site<br>On Site Management<br>Operational Risk<br>Opportunity For Improvement<br>Permits<br>POD<br>PPE Register<br>Profile<br>Release Notes<br>Report Builder<br>Risk Assessments<br>SBO<br>SDS<br>Shareholder Management<br>Strategy<br>Suggestions<br>Supplier Management<br>Temperature Reading<br>Training<br>Union Management<br>Vulnerability Management<br>Work Order</span>
+                <span class="info-tip-list"><div style="font-size:9px;color:var(--faint);font-style:italic;margin-bottom:6px;">Scroll for the full list &#9662;</div>Access Control<br>Actions<br>Asset Management<br>Audits<br>Bowtie<br>Broadcasting<br>Calibration<br>Change Management<br>Community Management<br>Contractor Management<br>Covid Management<br>Covid Questionnaire<br>Customer Management<br>Dashboards<br>Document Template Control<br>Documents<br>Emergency Preparedness<br>Employee Manager Portal<br>Employee Portal<br>Government Management<br>HACCP<br>Help Centre<br>Incident Quick Log<br>Incidents<br>Inspection Quick Log<br>Inspections<br>Legal and Other Requirements<br>Legal Appointments<br>Medical Surveillance<br>Meeting Manager<br>Monitoring<br>Near Miss Report<br>Non-Conformances<br>Objectives<br>On Site<br>On Site Management<br>Operational Risk<br>Opportunity For Improvement<br>Permits<br>POD<br>PPE Register<br>Profile<br>Release Notes<br>Report Builder<br>Risk Assessments<br>SBO<br>SDS<br>Shareholder Management<br>Strategy<br>Suggestions<br>Supplier Management<br>Temperature Reading<br>Training<br>Union Management<br>Vulnerability Management<br>Work Order</span>
               </div>
 
               <div class="info-wrap" style="cursor:help;margin-bottom:14px;">
@@ -259,6 +282,7 @@
                 <span style="font-size:11.5px;color:var(--mute);margin-left:4px;">frameworks &amp; standards</span>
                 <span class="info-icon">i</span>
                 <span class="info-tip-list" style="width:260px;">
+                  <div style="font-size:9px;color:var(--faint);font-style:italic;margin-bottom:6px;">Scroll for the full list &#9662;</div>
                   <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.5px;color:var(--cyan);text-transform:uppercase;margin-bottom:3px;">Governance &amp; Risk</div>
                   KING V<br>COSO<br>ISO 31000
                   <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.5px;color:var(--cyan);text-transform:uppercase;margin:8px 0 3px;">Quality, Safety &amp; Environment</div>
@@ -283,9 +307,9 @@
                 <span class="pill">SHE</span><span class="pill">SHEQ</span><span class="pill">SHERQ</span>
               </div>
 
-              <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;color:var(--mute);">
-                <div>&#10003; Admin, Core, Lite, Task &amp; Team seats</div>
-                <div>&#10003; RESTful Open API</div>
+              <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Seat types</div>
+              <div class="pill-row">
+                <span class="pill pill-blue">Admin</span><span class="pill pill-blue">Core</span><span class="pill pill-blue">Lite</span><span class="pill pill-blue">Task</span><span class="pill pill-blue">Team</span><span class="pill pill-mute">RESTful API</span>
               </div>
               <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-standard" style="color:var(--mute);"></span>/tenant (Admin, the mandatory minimum)</div>
             </div>
@@ -308,13 +332,9 @@
                 <span class="pill">ISO 31000</span><span class="pill">NEMA</span><span class="pill">Carbon Tax Act</span><span class="pill">ISO 42001 (2026)</span>
               </div>
 
-              <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;">
-                <div style="color:var(--green-hi);">&#10003; ENVIRX®: environmental &amp; carbon compliance (ISO 14001, NEMA, GHG Protocol, Carbon Tax Act)</div>
-                <div style="color:var(--cyan-hi);">&#10003; ERM: enterprise risk management (ISO 31000, COSO)</div>
-                <div style="color:var(--cyan-hi);">&#10003; Integrated Assurance: combined assurance (KING V, IIA Standards, ISO 19011)</div>
-                <div style="color:var(--cyan-hi);">&#10003; Compliance Hub: supplier/contractor/third-party compliance, flat monthly fee</div>
-                <div style="color:var(--cyan-hi);">&#10003; MAIA® AI copilot: governed AI (ISO 42001 targeted 2026, POPIA, GDPR), 1+ Full Users</div>
-                <div style="color:var(--mute);">&#10003; RESTful Open API</div>
+              <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Modules added</div>
+              <div class="pill-row">
+                <span class="pill pill-green">ENVIRX®</span><span class="pill">ERM</span><span class="pill">Integrated Assurance</span><span class="pill">Compliance Hub</span><span class="pill">MAIA®</span><span class="pill pill-mute">RESTful API</span>
               </div>
               <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-plus" style="color:var(--mute);"></span>/tenant (Admin + ENVIRX)</div>
             </div>
@@ -337,11 +357,9 @@
                 <span class="pill">Multi-tenant</span><span class="pill">Penetration Testing</span><span class="pill">Vulnerability Management</span><span class="pill">Policy-to-Workflow</span><span class="pill">AI Governance</span>
               </div>
 
-              <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;">
-                <div style="color:var(--blue);">&#10003; Hakware: AI-powered penetration testing &amp; vulnerability visibility (own domain/user counts)</div>
-                <div style="color:var(--cyan-hi);">&#10003; LUCI: multi-tenant admin seats across sites</div>
-                <div style="color:var(--cyan-hi);">&#10003; AI Governance Framework: XLOGIC®, AI Governance &amp; Asgard (pricing TBD)</div>
-                <div style="color:var(--mute);">&#10003; RESTful Open API</div>
+              <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Products added</div>
+              <div class="pill-row">
+                <span class="pill pill-cyber">Hakware</span><span class="pill">LUCI</span><span class="pill">XLOGIC®</span><span class="pill">AI Governance</span><span class="pill">Asgard</span><span class="pill pill-mute">RESTful API</span>
               </div>
               <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);">From <span class="mono" id="from-enterprise" style="color:var(--mute);"></span>/tenant (Admin + LUCI, the lowest-cost path in). Hakware, XLOGIC®, AI Governance or Asgard can also unlock Enterprise; exact price depends on what you select.</div>
             </div>
@@ -427,6 +445,8 @@ const state = {
   addons: { haccp: 0, bowtie: 0 },
   annual: false
 };
+
+const uiState = { seatsOpen: false, modulesOpen: false };
 
 function formatNum(v) {
   const parts = (Math.round((Number(v) || 0) * 100) / 100).toFixed(2).split('.');
@@ -533,6 +553,12 @@ function render() {
   el('hero-total').textContent = amountStr(d.discountedMonthlyCur);
   el('seat-subtotal').textContent = amountStr(d.seatCur);
   el('module-subtotal').textContent = amountStr(d.moduleCur);
+  renderBreakdown('seats-breakdown', buildSeatItems(d), 'No seats yet, other than the mandatory Admin');
+  renderBreakdown('modules-breakdown', buildModuleItems(d), 'No modules selected yet');
+  el('seats-breakdown').classList.toggle('open', uiState.seatsOpen);
+  el('seats-chevron').classList.toggle('open', uiState.seatsOpen);
+  el('modules-breakdown').classList.toggle('open', uiState.modulesOpen);
+  el('modules-chevron').classList.toggle('open', uiState.modulesOpen);
   el('list-value').textContent = amountStr(d.listValueCur);
   el('discount-pct').textContent = d.discountPct.toFixed(1) + '%';
   el('discount-bar').style.width = Math.min((d.discountPct/40)*100, 100) + '%';
@@ -664,6 +690,9 @@ document.querySelectorAll('.curr-btn').forEach(b => b.addEventListener('click', 
 
 el('annual-track').addEventListener('click', () => { state.annual = !state.annual; render(); });
 
+el('toggle-seats-breakdown').addEventListener('click', () => { uiState.seatsOpen = !uiState.seatsOpen; render(); });
+el('toggle-modules-breakdown').addEventListener('click', () => { uiState.modulesOpen = !uiState.modulesOpen; render(); });
+
 el('client-name').addEventListener('input', (e) => { state.clientName = e.target.value; render(); });
 
 function showToast(msg) {
@@ -755,18 +784,24 @@ function renderRecentQuotes() {
   });
 }
 
-function buildLineItems(d) {
+function buildSeatItems(d) {
   const items = [];
   const push = (label, qty, priceMap) => { if (qty > 0) items.push({ label, qty, unit: priceStr(priceMap), total: amountStr(qty * priceMap[state.currency]) }); };
-  push('Admin seats', d.s.admin, PRICES.admin);
-  push('Core seats', d.s.core, PRICES.core);
-  push('Lite seats', d.s.lite, PRICES.lite);
-  push('Task User seats', d.s.task, PRICES.task);
-  push('Team User seats (estimated headcount)', d.s.team, PRICES.team);
-  push('LUCI seats', d.s.luci, PRICES.luci);
-  push('ENVIRX® seats', d.effEnvirx, PRICES.envirx);
-  push('ERM seats', d.effErm, PRICES.erm);
-  push('Integrated Assurance seats', d.m.assurance, PRICES.assurance);
+  push('Admin', d.s.admin, PRICES.admin);
+  push('Core', d.s.core, PRICES.core);
+  push('Lite', d.s.lite, PRICES.lite);
+  push('Task User', d.s.task, PRICES.task);
+  push('Team User (estimated headcount)', d.s.team, PRICES.team);
+  push('LUCI', d.s.luci, PRICES.luci);
+  return items;
+}
+
+function buildModuleItems(d) {
+  const items = [];
+  const push = (label, qty, priceMap) => { if (qty > 0) items.push({ label, qty, unit: priceStr(priceMap), total: amountStr(qty * priceMap[state.currency]) }); };
+  push('ENVIRX®', d.effEnvirx, PRICES.envirx);
+  push('ERM', d.effErm, PRICES.erm);
+  push('Integrated Assurance', d.m.assurance, PRICES.assurance);
   push('MAIA® Full User', d.m.maiaFullUser, PRICES.maiaFull);
   push('MAIA® Data User', d.m.maiaDataUser, PRICES.maiaDataUser);
   if (d.m.maiaDataBuckets > 0) {
@@ -775,13 +810,29 @@ function buildLineItems(d) {
   }
   push('Hakware Domains', d.m.hkwDomains, PRICES.hkwDomain);
   push('Hakware Users', d.m.hkwUsers, PRICES.hkwUser);
+  if (d.m.complianceHub) items.push({ label: 'Compliance Hub', qty: 1, unit: priceStr(PRICES.complianceHub), total: amountStr(PRICES.complianceHub[state.currency]) });
+  return items;
+}
+
+function buildLineItems(d) {
+  const items = [...buildSeatItems(d), ...buildModuleItems(d)];
   if (d.m.xlogic) items.push({ label: 'XLOGIC®', qty: 1, unit: '[TBD]', total: '[TBD]' });
   if (d.m.aiGovernance) items.push({ label: 'AI Governance', qty: 1, unit: '[TBD]', total: '[TBD]' });
   if (d.m.asgard) items.push({ label: 'Asgard', qty: 1, unit: '[TBD]', total: '[TBD]' });
   if (d.a.haccp > 0) items.push({ label: 'HACCP', qty: d.a.haccp, unit: 'Free', total: 'Free' });
   if (d.a.bowtie > 0) items.push({ label: 'BOWTIE', qty: d.a.bowtie, unit: 'Free', total: 'Free' });
-  if (d.m.complianceHub) items.push({ label: 'Compliance Hub', qty: 1, unit: priceStr(PRICES.complianceHub), total: amountStr(PRICES.complianceHub[state.currency]) });
   return items;
+}
+
+function renderBreakdown(elId, items, emptyLabel) {
+  const el2 = el(elId);
+  if (!items.length) {
+    el2.innerHTML = '<div class="subtotal-line" style="font-style:italic;">' + escapeHtml(emptyLabel) + '</div>';
+    return;
+  }
+  el2.innerHTML = items.map(li =>
+    '<div class="subtotal-line"><span>' + escapeHtml(li.label) + ' (' + li.qty + ' &times; ' + escapeHtml(li.unit) + ')</span><span class="mono">' + escapeHtml(li.total) + '</span></div>'
+  ).join('');
 }
 
 el('btn-download').addEventListener('click', () => {
