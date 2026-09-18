@@ -90,7 +90,7 @@
   .btn-ghost:not(:disabled):hover { background:rgba(48,226,244,0.10); }
 
   @media (max-width: 900px) {
-    #grid-root, #tier-grid { grid-template-columns: 1fr !important; }
+    #grid-root, #tier-grid, #trust-grid { grid-template-columns: 1fr !important; }
   }
   @media (max-width: 720px) {
     #site-header { padding: 0 16px !important; }
@@ -283,7 +283,10 @@
           <div id="recent-quotes-list" style="display:flex;flex-direction:column;gap:8px;"></div>
         </div>
 
-        <div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
           <div class="eyebrow" style="margin-bottom:6px;">All Packages Compared</div>
           <div style="font-size:11.5px;color:var(--faint);margin-bottom:12px;max-width:640px;">One connected governance, risk and compliance platform: the package scales with how much of it you switch on.</div>
           <div id="tier-grid" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;">
@@ -403,16 +406,43 @@
           </div>
         </div>
 
-        <div class="card" style="background:var(--abyss);padding:14px 20px;">
-          <div style="display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:11.5px;color:var(--mute);">
+    <div class="card" style="margin-top:16px;background:var(--abyss);padding:20px 24px;">
+          <div class="eyebrow" style="margin-bottom:10px;">Security &amp; Trust</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:11.5px;color:var(--mute);margin-bottom:16px;">
             <span class="pill">ISO 27001:2022 Certified</span>
             <span>Hosted on Microsoft Azure, West Europe (Netherlands)</span>
             <span style="color:var(--faint);">&middot;</span>
             <span>ISO 42001 certification targeted October 2026</span>
           </div>
+          <div id="trust-grid" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;">
+            <div>
+              <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Platform security</div>
+              <ul class="notes-list" style="font-size:11.5px;">
+                <li>Role-based access control, least privilege and multi-factor authentication for administrative access.</li>
+                <li>Multi-tenant architecture with strict logical data isolation between customers.</li>
+                <li>Data encrypted in transit (TLS 1.2+) and at rest using industry-standard algorithms.</li>
+              </ul>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Monitoring &amp; resilience</div>
+              <ul class="notes-list" style="font-size:11.5px;">
+                <li>Security event monitoring, audit logging and alerting.</li>
+                <li>Regular vulnerability scanning, patch management and penetration testing.</li>
+                <li>Documented business continuity and disaster recovery, with tested backup procedures.</li>
+              </ul>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Data protection &amp; assurance</div>
+              <ul class="notes-list" style="font-size:11.5px;">
+                <li>Data Processing Addendum satisfying POPIA section 21, with a 72-hour security incident notification commitment.</li>
+                <li>Primary subprocessors are Microsoft Azure and Microsoft 365; customers get advance notice of any material change.</li>
+                <li>Certification evidence and audit summaries available on reasonable written request.</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-        <div class="card" style="background:var(--abyss);padding:16px 20px;">
+    <div class="card" style="margin-top:16px;background:var(--abyss);padding:16px 20px;">
           <div class="eyebrow" style="margin-bottom:10px;">Notes</div>
           <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;">Pricing &amp; seats</div>
           <ul class="notes-list" style="margin-bottom:16px;">
@@ -437,9 +467,6 @@
             <li>Billing terms: licences are billed monthly in arrears and are payable whether or not a seat was used that month. Annual commitment is invoiced as a single amount, paid in advance.</li>
           </ul>
         </div>
-
-      </div>
-    </div>
 
     <div id="site-footer" style="max-width:var(--maxw);margin:0 auto;padding:20px 40px 36px;text-align:center;border-top:1px solid var(--line);">
       <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance®</div>
