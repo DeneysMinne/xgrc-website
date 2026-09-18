@@ -224,6 +224,23 @@
             </div>
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">AI Governance<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">A new XGRC product for AI governance and oversight, launching soon. Details and pricing to follow. A flat selection, like Compliance Hub, not seat-based.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">New product, launching soon</div></div><input type="checkbox" id="toggle-aigovernance" class="chkbox"></div>
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Asgard<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">A new XGRC product, launching soon. Details and pricing to follow. A flat selection, like Compliance Hub, not seat-based.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">New product, launching soon</div></div><input type="checkbox" id="toggle-asgard" class="chkbox"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">MSX®<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">An integration layer that coordinates multiple XGRC® disciplines (SHEQX®, ERM, MSXCyber®, etc.) into one programme. Not a seat-based product; pricing to be finalised.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">Multi-discipline integration programme, pricing to be finalised</div></div><input type="checkbox" id="toggle-msx" class="chkbox"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">MSXCyber®<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">XGRC®'s Information Security Management System, aligned to ISO 27001:2022. Complements Hakware: MSXCyber® governs your ISMS, Hakware provides the penetration testing and vulnerability visibility. Pricing to be finalised.</span></span> <span class="mono" style="color:var(--faint);font-weight:400;">[price TBD]</span></div><div style="font-size:11px;color:var(--faint);">ISO 27001:2022 ISMS, pricing to be finalised</div></div><input type="checkbox" id="toggle-msxcyber" class="chkbox"></div>
+          </div>
+
+          <div style="height:1px;background:var(--line);margin:14px 0 10px;"></div>
+          <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;">Available on every plan</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">XRM<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">A structured, auditable CRM for leads, opportunities, quotes and customer relationships. Its own independent user base, available on every XGRC® plan; does not require Plus or Enterprise.</span></span></div><div style="font-size:11px;color:var(--faint);">Enable XRM for this tenant?</div></div><span class="subtotal-chevron" id="xrm-toggle-chevron" style="margin-left:0;margin-right:8px;">&#9656;</span><input type="checkbox" id="toggle-xrm" class="chkbox"></div>
+
+            <div id="xrm-extra" style="display:none;flex-direction:column;gap:8px;padding:12px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;">
+              <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">XRM Tenant Admin<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">Configures the XRM tenant and manages users and licences.</span></span> <span class="mono" id="price-xrmtenantadmin" style="color:var(--faint);"></span>/seat</div><input type="number" min="0" id="q-xrmtenantadmin" class="qtyinput-sm"></div>
+              <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">XRM Sales User<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">Works leads, opportunities and quotes day to day. The primary XRM seat.</span></span> <span class="mono" id="price-xrmsalesuser" style="color:var(--faint);"></span>/seat</div><input type="number" min="0" id="q-xrmsalesuser" class="qtyinput-sm"></div>
+              <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">XRM Approver<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">Reviews and approves quotes and deals via XRM's approval workflows.</span></span> <span class="mono" id="price-xrmapprover" style="color:var(--faint);"></span>/seat</div><input type="number" min="0" id="q-xrmapprover" class="qtyinput-sm"></div>
+              <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">XRM Viewer<span class="badge-usage" style="background:rgba(47,232,138,0.12);color:var(--green-hi);">Free</span><span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">Read-only reporting access. No charge per seat.</span></span></div><input type="number" min="0" id="q-xrmviewer" class="qtyinput-sm"></div>
+            </div>
+
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Libryo<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">Jurisdiction-specific regulatory intelligence, embedded directly within XGRC®. A true third-party partner solution: pricing depends on jurisdiction and is quoted separately by Libryo, not fixed in this price book.</span></span></div><div style="font-size:11px;color:var(--faint);">Available on every plan, quoted separately based on jurisdiction</div></div><span class="badge-usage" style="background:rgba(120,170,200,0.16);color:var(--blue-hi);">Quoted separately</span></div>
           </div>
         </div>
 
@@ -502,7 +519,11 @@ const PRICES = {
   hkwDomain:    { ZAR: 1795.00,  USD: 100.00, GBP: 100.00, EUR: 100.00 },
   hkwUser:      { ZAR: 180.00,   USD: 10.00,  GBP: 10.00,  EUR: 10.00  },
   xlogicAdmin:      { ZAR: 550.00, USD: 44.00, GBP: 34.00, EUR: 39.00 },
-  xlogicGovernance: { ZAR: 650.00, USD: 52.00, GBP: 40.00, EUR: 46.00 }
+  xlogicGovernance: { ZAR: 650.00, USD: 52.00, GBP: 40.00, EUR: 46.00 },
+  xrmTenantAdmin: { ZAR: 650.00, USD: 52.00, GBP: 40.00, EUR: 46.00 },
+  xrmSalesUser:   { ZAR: 650.00, USD: 52.00, GBP: 40.00, EUR: 46.00 },
+  xrmApprover:    { ZAR: 500.00, USD: 40.00, GBP: 31.00, EUR: 36.00 },
+  xrmViewer:      { ZAR: 0.00,   USD: 0.00,  GBP: 0.00,  EUR: 0.00  }
 };
 const SYM = { ZAR: 'R', USD: '$', GBP: '£', EUR: '€' };
 // Discount thresholds are set independently per currency (not FX-converted),
@@ -522,7 +543,8 @@ const state = {
     envirx: 0, erm: 0, assurance: 0,
     maiaEnabled: false, maiaFullUser: 0, maiaDataUser: 0, maiaDataBuckets: 0,
     hakwareEnabled: false, hkwDomains: 0, hkwUsers: 0,
-    xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgard: false, aiGovernance: false,
+    xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgard: false, aiGovernance: false, msx: false, msxcyber: false,
+    xrmEnabled: false, xrmTenantAdmin: 0, xrmSalesUser: 0, xrmApprover: 0, xrmViewer: 0,
     complianceHub: false
   },
   annual: false
@@ -551,8 +573,9 @@ function computeDerived() {
 
   const hkwCur = m.hkwDomains*P.hkwDomain[cur] + m.hkwUsers*P.hkwUser[cur];
   const xlogicCur = m.xlogicAdmin*P.xlogicAdmin[cur] + m.xlogicGovernance*P.xlogicGovernance[cur];
+  const xrmCur = m.xrmTenantAdmin*P.xrmTenantAdmin[cur] + m.xrmSalesUser*P.xrmSalesUser[cur] + m.xrmApprover*P.xrmApprover[cur] + m.xrmViewer*P.xrmViewer[cur];
 
-  const moduleCur = effEnvirx*P.envirx[cur] + effErm*P.erm[cur] + m.assurance*P.assurance[cur] + maiaCur + hkwCur + xlogicCur + (m.complianceHub ? P.complianceHub[cur] : 0);
+  const moduleCur = effEnvirx*P.envirx[cur] + effErm*P.erm[cur] + m.assurance*P.assurance[cur] + maiaCur + hkwCur + xlogicCur + xrmCur + (m.complianceHub ? P.complianceHub[cur] : 0);
 
   const listValueCur = seatCur + moduleCur;
 
@@ -565,7 +588,7 @@ function computeDerived() {
   const discountedMonthlyCur = listValueCur * (1 - discountPct/100);
   const annualTotalCur = state.annual ? discountedMonthlyCur*0.9*12 : discountedMonthlyCur*12;
 
-  const isEnterprise = m.hkwDomains>0 || m.hkwUsers>0 || m.xlogicAdmin>0 || m.xlogicGovernance>0 || m.asgard || m.aiGovernance || s.luci>0;
+  const isEnterprise = m.hkwDomains>0 || m.hkwUsers>0 || m.xlogicAdmin>0 || m.xlogicGovernance>0 || m.asgard || m.aiGovernance || m.msx || m.msxcyber || s.luci>0;
   const isPlus = !isEnterprise && (effEnvirx>0 || effErm>0 || m.assurance>0 || maiaOn || m.complianceHub);
   const isStandard = !isEnterprise && !isPlus;
   const tier = isEnterprise ? 'Enterprise' : (isPlus ? 'Plus' : 'Standard');
@@ -636,6 +659,19 @@ function render() {
   syncInput('q-xlogicgovernance', state.modules.xlogicGovernance);
   el('toggle-aigovernance').checked = state.modules.aiGovernance;
   el('toggle-asgard').checked = state.modules.asgard;
+  el('toggle-msx').checked = state.modules.msx;
+  el('toggle-msxcyber').checked = state.modules.msxcyber;
+
+  el('price-xrmtenantadmin').textContent = priceStr(PRICES.xrmTenantAdmin);
+  el('price-xrmsalesuser').textContent = priceStr(PRICES.xrmSalesUser);
+  el('price-xrmapprover').textContent = priceStr(PRICES.xrmApprover);
+  el('toggle-xrm').checked = state.modules.xrmEnabled;
+  el('xrm-toggle-chevron').classList.toggle('open', state.modules.xrmEnabled);
+  el('xrm-extra').style.display = state.modules.xrmEnabled ? 'flex' : 'none';
+  syncInput('q-xrmtenantadmin', state.modules.xrmTenantAdmin);
+  syncInput('q-xrmsalesuser', state.modules.xrmSalesUser);
+  syncInput('q-xrmapprover', state.modules.xrmApprover);
+  syncInput('q-xrmviewer', state.modules.xrmViewer);
 
   el('toggle-compliancehub').checked = state.modules.complianceHub;
   el('price-compliancehub').textContent = priceStr(PRICES.complianceHub);
@@ -800,6 +836,24 @@ bindQty('q-xlogicadmin', n => state.modules.xlogicAdmin = n);
 bindQty('q-xlogicgovernance', n => state.modules.xlogicGovernance = n);
 el('toggle-aigovernance').addEventListener('change', (e) => { state.modules.aiGovernance = e.target.checked; render(); });
 el('toggle-asgard').addEventListener('change', (e) => { state.modules.asgard = e.target.checked; render(); });
+el('toggle-msx').addEventListener('change', (e) => { state.modules.msx = e.target.checked; render(); });
+el('toggle-msxcyber').addEventListener('change', (e) => { state.modules.msxcyber = e.target.checked; render(); });
+
+el('toggle-xrm').addEventListener('change', (e) => {
+  const on = e.target.checked;
+  state.modules.xrmEnabled = on;
+  if (!on) {
+    state.modules.xrmTenantAdmin = 0;
+    state.modules.xrmSalesUser = 0;
+    state.modules.xrmApprover = 0;
+    state.modules.xrmViewer = 0;
+  }
+  render();
+});
+bindQty('q-xrmtenantadmin', n => state.modules.xrmTenantAdmin = n);
+bindQty('q-xrmsalesuser', n => state.modules.xrmSalesUser = n);
+bindQty('q-xrmapprover', n => state.modules.xrmApprover = n);
+bindQty('q-xrmviewer', n => state.modules.xrmViewer = n);
 
 el('toggle-compliancehub').addEventListener('change', (e) => { state.modules.complianceHub = e.target.checked; render(); });
 
@@ -829,7 +883,8 @@ function defaultState() {
       envirx: 0, erm: 0, assurance: 0,
       maiaEnabled: false, maiaFullUser: 0, maiaDataUser: 0, maiaDataBuckets: 0,
       hakwareEnabled: false, hkwDomains: 0, hkwUsers: 0,
-      xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgard: false, aiGovernance: false,
+      xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgard: false, aiGovernance: false, msx: false, msxcyber: false,
+      xrmEnabled: false, xrmTenantAdmin: 0, xrmSalesUser: 0, xrmApprover: 0, xrmViewer: 0,
       complianceHub: false
     },
     annual: false
@@ -927,6 +982,10 @@ function buildModuleItems(d) {
   push('Hakware Users', d.m.hkwUsers, PRICES.hkwUser);
   push('XLOGIC® Admin', d.m.xlogicAdmin, PRICES.xlogicAdmin);
   push('XLOGIC® Governance User', d.m.xlogicGovernance, PRICES.xlogicGovernance);
+  push('XRM Tenant Admin', d.m.xrmTenantAdmin, PRICES.xrmTenantAdmin);
+  push('XRM Sales User', d.m.xrmSalesUser, PRICES.xrmSalesUser);
+  push('XRM Approver', d.m.xrmApprover, PRICES.xrmApprover);
+  if (d.m.xrmViewer > 0) items.push({ label: 'XRM Viewer', qty: d.m.xrmViewer, unit: 'Free', total: 'Free' });
   if (d.m.complianceHub) items.push({ label: 'Compliance Hub', qty: 1, unit: priceStr(PRICES.complianceHub), total: amountStr(PRICES.complianceHub[state.currency]) });
   return items;
 }
@@ -935,6 +994,9 @@ function buildLineItems(d) {
   const items = [...buildSeatItems(d), ...buildModuleItems(d)];
   if (d.m.aiGovernance) items.push({ label: 'AI Governance', qty: 1, unit: '[TBD]', total: '[TBD]' });
   if (d.m.asgard) items.push({ label: 'Asgard', qty: 1, unit: '[TBD]', total: '[TBD]' });
+  if (d.m.msx) items.push({ label: 'MSX®', qty: 1, unit: '[TBD]', total: '[TBD]' });
+  if (d.m.msxcyber) items.push({ label: 'MSXCyber®', qty: 1, unit: '[TBD]', total: '[TBD]' });
+  items.push({ label: 'Libryo (third-party)', qty: 1, unit: 'Quoted separately', total: 'Quoted separately' });
   return items;
 }
 
