@@ -135,6 +135,18 @@
   </div>
 
   <div id="content-wrap" style="position:relative;max-width:var(--maxw);margin:0 auto;padding:0 40px 80px 40px;">
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="eyebrow" style="margin-bottom:8px;">Quick Start</div>
+      <div style="font-size:11.5px;color:var(--faint);margin-bottom:12px;max-width:640px;">Pre-fill a typical seat and module mix for a legacy solution, then adjust as needed. Sets Admin/Core/Lite/Task seats, ENVIRX®, ERM, Integrated Assurance and Hakware to that solution's mix each time; everything else (MAIA®, XLOGIC®, Compliance Hub and the rest) is left as-is.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button type="button" class="btn-ghost-sm preset-btn" data-preset="sheqx">SHEQX®</button>
+        <button type="button" class="btn-ghost-sm preset-btn" data-preset="msx">MSX®</button>
+        <button type="button" class="btn-ghost-sm preset-btn" data-preset="msxcyber">MSXCyber®</button>
+        <button type="button" class="btn-ghost-sm preset-btn" data-preset="esg">ESG</button>
+      </div>
+    </div>
+
     <div style="display:grid;grid-template-columns:400px 1fr;gap:24px;align-items:start;" id="grid-root">
 
       <!-- LEFT ROW 1: Currency + Seats -->
@@ -570,6 +582,12 @@ const ASGARD_TIERS = {
   team:       { label: 'Team',       baseKey: 'asgardBaseTeam',       seatKey: 'asgardSeatTeam',       seatCap: 50,       calls: '8,000 calls/seat/month',  overageKey: 'asgardOverageTeam' },
   enterprise: { label: 'Enterprise', baseKey: 'asgardBaseEnterprise', seatKey: 'asgardSeatEnterprise', seatCap: Infinity, calls: '12,000 calls/seat/month', overageKey: 'asgardOverageEnterprise' }
 };
+const SEAT_PRESETS = {
+  sheqx:    { label: 'SHEQX®',    seats: { admin: 1, core: 5, lite: 10, task: 10 }, modules: { envirx: 0, erm: 0, assurance: 0 }, hakware: false },
+  msx:      { label: 'MSX®',      seats: { admin: 1, core: 5, lite: 10, task: 10 }, modules: { envirx: 6, erm: 6, assurance: 6 }, hakware: false },
+  msxcyber: { label: 'MSXCyber®', seats: { admin: 1, core: 5, lite: 10, task: 10 }, modules: { envirx: 0, erm: 6, assurance: 6 }, hakware: { domains: 1, users: 1 } },
+  esg:      { label: 'ESG',       seats: { admin: 1, core: 5, lite: 10, task: 10 }, modules: { envirx: 6, erm: 6, assurance: 6 }, hakware: false }
+};
 const SYM = { ZAR: 'R', USD: '$', GBP: '£', EUR: '€' };
 // Discount thresholds are set independently per currency (not FX-converted),
 // the same principle already used for the list prices themselves.
@@ -952,6 +970,28 @@ bindQty('q-xrmviewer', n => state.modules.xrmViewer = n);
 el('toggle-compliancehub').addEventListener('change', (e) => { state.modules.complianceHub = e.target.checked; render(); });
 
 document.querySelectorAll('.curr-btn').forEach(b => b.addEventListener('click', () => { state.currency = b.dataset.curr; render(); }));
+
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const preset = SEAT_PRESETS[btn.dataset.preset];
+    Object.assign(state.seats, preset.seats);
+    state.modules.envirx = preset.modules.envirx;
+    state.modules.erm = preset.modules.erm;
+    state.modules.assurance = preset.modules.assurance;
+    if (preset.hakware) {
+      state.modules.hakwareEnabled = true;
+      state.modules.hkwDomains = preset.hakware.domains;
+      state.modules.hkwUsers = preset.hakware.users;
+    } else {
+      state.modules.hakwareEnabled = false;
+      state.modules.hkwDomains = 0;
+      state.modules.hkwUsers = 0;
+    }
+    reclampCappedFields();
+    render();
+    showToast('Pre-filled seats for ' + preset.label);
+  });
+});
 
 el('annual-track').addEventListener('click', () => { state.annual = !state.annual; render(); });
 
