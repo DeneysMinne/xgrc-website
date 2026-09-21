@@ -7,6 +7,20 @@
 export const whatsNew = {
   "xrm": [
     {
+      "version": "1.67.0",
+      "date": "2026-09-21",
+      "category": "new",
+      "title": "Snooze staleness on long-cycle deals",
+      "description": "A deal genuinely expected to sit still for a while, such as an extended trial or proof of concept, can now be snoozed until a chosen date so it stops being flagged Stuck or Stale in the meantime. The flag comes back automatically once that date passes."
+    },
+    {
+      "version": "1.67.0",
+      "date": "2026-09-21",
+      "category": "new",
+      "title": "Mark deals as Won directly",
+      "description": "Opportunities now have a Mark Won button right alongside Mark Lost, so closing a deal is one click instead of a workaround."
+    },
+    {
       "version": "1.64.0",
       "date": "2026-08-17",
       "category": "new",
