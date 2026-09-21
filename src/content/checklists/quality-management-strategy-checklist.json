@@ -1,0 +1,72 @@
+{
+  "slug": "quality-management-strategy-checklist",
+  "title": "Quality Management Strategy Checklist",
+  "subtitle": "Running quality as an operating strategy, not just an annual certification exercise",
+  "isoTags": ["ISO 9001", "Quality Management", "QMS", "Continual Improvement"],
+  "intro": "Passing an ISO 9001 audit proves your documentation holds up once a year. It does not prove quality is actually managed the other 364 days. This checklist covers the operational side of a quality management strategy — the practices that keep a QMS genuinely running between audits.",
+  "pageBreakAfter": "C",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Objectives & Leadership",
+      "items": [
+        "Cascade quality objectives from organisational strategy down to team-level, measurable targets",
+        "Review quality objectives against live operational data, not only ahead of an audit",
+        "Confirm leadership owns quality performance, not only the QA/quality department",
+        "Set targets that are specific and measurable, not generic statements of intent"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Supplier & Incoming Quality",
+      "items": [
+        "Define a formal supplier evaluation process before onboarding, not just on first failure",
+        "Track incoming-material or incoming-service quality against defined acceptance criteria",
+        "Set an escalation path when a supplier repeatedly fails quality checks",
+        "Review supplier performance on a set cadence, not only when a problem occurs"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Process Standardisation",
+      "items": [
+        "Standardise critical processes so output quality does not depend on who is on shift",
+        "Maintain calibration records for equipment that affects product or service quality",
+        "Link calibration and maintenance schedules to the processes that depend on them",
+        "Review process deviations for patterns across shifts, sites or teams"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Nonconformance & Root Cause",
+      "items": [
+        "Investigate the root cause of every nonconformance, not just the immediate symptom",
+        "Verify a corrective action actually resolved the root cause before marking it closed",
+        "Track recurrence of the same or similar nonconformances over time",
+        "Escalate a nonconformance that keeps recurring despite prior corrective action"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Continuous Improvement & Culture",
+      "items": [
+        "Give frontline employees a clear channel to raise quality issues and suggestions",
+        "Feed employee-raised issues into the same improvement pipeline as formal audit findings",
+        "Recognise and act on suggestions, not just collect them",
+        "Track improvement initiatives through to measured effect, not just completion"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Reporting & Governance",
+      "items": [
+        "Report quality performance to leadership on a set cadence, not only pre-audit",
+        "Make quality data visible across departments, not siloed within QA",
+        "Review the quality strategy itself periodically, not only the QMS documentation",
+        "Confirm quality metrics tie back to real customer or operational outcomes, not just internal process compliance"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}

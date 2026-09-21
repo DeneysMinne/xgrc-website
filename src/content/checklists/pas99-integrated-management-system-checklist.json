@@ -1,0 +1,82 @@
+{
+  "slug": "pas99-integrated-management-system-checklist",
+  "title": "PAS 99 Integrated Management System Readiness Checklist",
+  "subtitle": "A practical checklist for integrating ISO 9001, 14001, 45001 and 22000 into one common framework",
+  "isoTags": ["PAS 99", "ISO 9001", "ISO 14001", "ISO 45001", "ISO 22000"],
+  "intro": "PAS 99 is BSI's specification for integrating two or more management system standards into one common framework, built around the shared high-level structure modern ISO standards already have. This checklist covers what integration actually requires, standard by standard and clause by clause.",
+  "pageBreakAfter": "D",
+  "sections": [
+    {
+      "letter": "A",
+      "title": "Scope & Common Structure",
+      "items": [
+        "List every management system standard currently certified or targeted for integration",
+        "Confirm each standard's clause structure against PAS 99's common framework",
+        "Identify which clauses are already genuinely shared versus duplicated across standards",
+        "Define the scope of the integrated system — sites, business units, processes covered"
+      ]
+    },
+    {
+      "letter": "B",
+      "title": "Policy & Objectives",
+      "items": [
+        "Replace separate policies per standard with one integrated policy statement",
+        "Set integrated objectives that address requirements from every standard in scope",
+        "Confirm leadership commitment covers the integrated system, not one certificate at a time",
+        "Communicate the integrated policy and objectives to all affected roles"
+      ]
+    },
+    {
+      "letter": "C",
+      "title": "Document Control",
+      "items": [
+        "Identify procedures that currently exist once per standard and consolidate where genuinely shared",
+        "Establish one document control and version management process across the integrated system",
+        "Remove duplicate or conflicting versions of the same procedure held under different standards",
+        "Confirm document access reflects the integrated structure, not the old per-standard silos"
+      ]
+    },
+    {
+      "letter": "D",
+      "title": "Risk & Planning",
+      "items": [
+        "Assess risks and opportunities across the integrated scope, not per standard",
+        "Confirm legal and other requirements are tracked once across all applicable standards",
+        "Plan changes to the management system with impact assessed across every integrated standard",
+        "Align planning cycles so all standards are considered together, not on separate timelines"
+      ]
+    },
+    {
+      "letter": "E",
+      "title": "Operational Control",
+      "items": [
+        "Map operational controls that serve more than one standard and run them as one process",
+        "Confirm competence, training and awareness requirements are addressed once across the integrated scope",
+        "Standardise supplier and outsourced-process controls across every relevant standard",
+        "Ensure emergency preparedness and change management cover the full integrated scope"
+      ]
+    },
+    {
+      "letter": "F",
+      "title": "Consolidated Audit Programme",
+      "items": [
+        "Build one internal audit programme covering every certified standard in the integration",
+        "Confirm auditor competence spans the standards being audited together, or assign appropriately",
+        "Audit shared processes once against the combined requirements, not once per standard",
+        "Track findings against the integrated system, with a clear line back to the specific standard(s) affected"
+      ]
+    },
+    {
+      "letter": "G",
+      "title": "Management Review & Improvement",
+      "items": [
+        "Hold one management review covering every standard in the integrated system",
+        "Report performance, nonconformances and audit results across all standards in a single dataset",
+        "Track corrective actions and continual improvement across the integrated system, not per silo",
+        "Confirm certification bodies' surveillance schedules are coordinated where possible"
+      ]
+    }
+  ],
+  "version": "v1.0",
+  "classification": "Public"
+}
