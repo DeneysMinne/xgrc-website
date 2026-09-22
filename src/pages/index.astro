@@ -52,6 +52,20 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
     </div>
   </section>
 
+  <!-- C2. AI Governance — new solution, promoted alongside MAIA® -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="card ai-gov">
+        <div>
+          <span class="eyebrow"><span class="dot"></span>New · AI Governance</span>
+          <h2>The AI register says what AI you run. XGRC says whether it's governed.</h2>
+          <p class="lede">Govern every AI system your organisation builds or uses against the EU AI Act and ISO/IEC 42001 — classification, impact assessment, risk, controls, human oversight, incidents and change, all mapped to your AI register.</p>
+          <a href="/ai-governance/" class="link-arrow">Explore AI Governance →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Problem + pillars -->
   <section class="section">
     <div class="container">
@@ -175,6 +189,10 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
   .maia { background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02)); border-color: var(--line-strong); }
   .maia h2 { margin-bottom: 0.4em; }
   .maia .lede { margin-bottom: 18px; }
+  /* ── C2. AI Governance card ───────────────────────────── */
+  .ai-gov { background: linear-gradient(120deg, rgba(47,232,138,0.06), rgba(48,226,244,0.03)); border-color: var(--line-strong); }
+  .ai-gov h2 { margin-bottom: 0.4em; }
+  .ai-gov .lede { margin-bottom: 18px; }
   .cta { text-align: center; padding: clamp(36px, 6vw, 64px); background: linear-gradient(160deg, rgba(47,232,138,0.07), rgba(48,226,244,0.03)); border-color: var(--line-strong); }
   .cta .lede { margin: 12px auto 26px; }
   .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }

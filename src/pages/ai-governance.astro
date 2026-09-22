@@ -2,6 +2,12 @@
 import Base from '../layouts/Base.astro';
 import { brand } from '../data/site.js';
 
+const dashboardViews = [
+  { label: 'Estate Overview', img: '/assets/screenshots/ai-governance-dashboard-estate.webp', urlLabel: 'AI Governance · Estate Overview' },
+  { label: 'AI System Register', img: '/assets/screenshots/ai-governance-dashboard-register.webp', urlLabel: 'AI Governance · System Register & KPIs' },
+  { label: 'Module Detail', img: '/assets/screenshots/ai-governance-dashboard-module.webp', urlLabel: 'AI Governance · Classification Coverage' },
+];
+
 const whoFor = [
   { tag: 'Providers', title: 'You build or badge an AI system.', body: 'You develop AI in-house, or you substantially modify, rebrand, or put your own name on someone else\'s model. The law can treat you as the manufacturer — the full obligation set is yours.' },
   { tag: 'Deployers', title: 'You use someone else\'s AI.', body: 'You run AI built by a vendor or partner — a screening tool, a chatbot, a fraud model. Deployer obligations are lighter than a provider\'s, but they are real, and most organisations underestimate them.' },
@@ -436,6 +442,34 @@ const schema = JSON.stringify({
     </div>
   </section>
 
+  <!-- ── Dashboard showcase ───────────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>See it in action</span>
+        <h2>The whole estate, or one module, in one view.</h2>
+        <p class="lede">Estate-wide health across every AI system, the register they came from, and drill-down detail on a single KPI — all drawn live from the modules above.</p>
+      </div>
+      <div class="dash-tabs" id="aigDashTabs">
+        {dashboardViews.map((d, i) => (
+          <button class={`dash-tab ${i === 0 ? 'is-active' : ''}`} data-img={d.img} data-label={d.urlLabel}>{d.label}</button>
+        ))}
+      </div>
+      <div class="dash-frame">
+        <div class="dash-chrome">
+          <span class="dc-dot dc-red"></span>
+          <span class="dc-dot dc-yellow"></span>
+          <span class="dc-dot dc-green"></span>
+          <span class="dc-url" id="aigDashUrl">{dashboardViews[0].urlLabel}</span>
+        </div>
+        <div class="dash-screen">
+          <img id="aigDashImg" src={dashboardViews[0].img} alt="XGRC AI Governance dashboard" width="1900" height="1080" loading="lazy" />
+        </div>
+      </div>
+      <p class="dash-disclaimer">Illustrative demonstration data.</p>
+    </div>
+  </section>
+
   <!-- ── Checklist callout ────────────────────────────────── -->
   <section class="section--tight">
     <div class="container">
@@ -481,6 +515,25 @@ const schema = JSON.stringify({
     </div>
   </section>
 </Base>
+
+<script>
+  const aigTabs = document.querySelectorAll('#aigDashTabs .dash-tab');
+  const aigImg = document.getElementById('aigDashImg');
+  const aigUrl = document.getElementById('aigDashUrl');
+  aigTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      aigTabs.forEach((t) => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      aigImg.classList.add('is-switching');
+      setTimeout(() => {
+        aigImg.src = tab.dataset.img;
+        aigImg.alt = tab.dataset.label;
+        aigUrl.textContent = tab.dataset.label;
+        aigImg.classList.remove('is-switching');
+      }, 220);
+    });
+  });
+</script>
 
 <style>
   .aig-hero { padding: 130px 0 60px; }
@@ -579,6 +632,64 @@ const schema = JSON.stringify({
     white-space: nowrap;
   }
   .chain-arrow { color: var(--faint); font-size: 0.9rem; }
+
+  /* ── Dashboard showcase ────────────────────────────────── */
+  .dash-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .dash-tab {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--mute);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 9px 20px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: var(--font-body);
+  }
+  .dash-tab:hover { color: var(--ink); border-color: var(--line-strong); }
+  .dash-tab.is-active { background: rgba(48,226,244,0.08); border-color: rgba(48,226,244,0.4); color: var(--cyan); }
+  .dash-frame {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(48,226,244,0.15);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
+  }
+  .dash-chrome {
+    background: rgba(8,16,32,0.98);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid rgba(48,226,244,0.08);
+  }
+  .dc-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  .dc-red    { background: #ff5f57; }
+  .dc-yellow { background: #febc2e; }
+  .dc-green  { background: #28c840; }
+  .dc-url {
+    flex: 1;
+    margin-left: 12px;
+    background: rgba(6,15,28,0.7);
+    border: 1px solid rgba(48,226,244,0.08);
+    border-radius: 5px;
+    padding: 5px 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--faint);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dash-screen { line-height: 0; }
+  .dash-screen img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.25s ease;
+  }
+  .dash-screen img.is-switching { opacity: 0; }
+  .dash-disclaimer { font-family: var(--font-mono); font-size: 11px; color: var(--faint); margin-top: 10px; }
 
   /* ── Checklist callout ─────────────────────────────────── */
   .checklist-callout { display: flex; flex-direction: column; gap: 8px; padding: 28px 32px; }
