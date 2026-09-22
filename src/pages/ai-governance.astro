@@ -2,6 +2,13 @@
 import Base from '../layouts/Base.astro';
 import { brand } from '../data/site.js';
 
+const whoFor = [
+  { tag: 'Providers', title: 'You build or badge an AI system.', body: 'You develop AI in-house, or you substantially modify, rebrand, or put your own name on someone else\'s model. The law can treat you as the manufacturer — the full obligation set is yours.' },
+  { tag: 'Deployers', title: 'You use someone else\'s AI.', body: 'You run AI built by a vendor or partner — a screening tool, a chatbot, a fraud model. Deployer obligations are lighter than a provider\'s, but they are real, and most organisations underestimate them.' },
+  { tag: 'Embedded AI', title: 'Your SaaS tools have AI features you didn\'t ask for.', body: 'A CRM with a scoring model, an HR platform with a resume screener, a support tool with an auto-responder — AI arrives inside software you already bought. That still counts, and still needs classifying.' },
+  { tag: 'Regulated & high-risk sectors', title: 'You operate where AI decisions affect people directly.', body: 'Hiring, credit, insurance, healthcare, education, critical infrastructure, law enforcement-adjacent use. These are the sectors where the EU AI Act\'s high-risk category is most likely to apply.' },
+];
+
 const laws = [
   {
     tag: 'ISO/IEC 42001',
@@ -224,7 +231,6 @@ const modules = [
     num: 11,
     title: 'Register Connection',
     tagline: "Keeps XGRC's copy of the AI inventory in step with the register that owns it.",
-    builtLast: true,
     body: [
       'The technical detail of what AI you run — the systems, the models, the providers, what each one is permitted to reach — lives in the separate AI register, not in XGRC. That separation is deliberate: one system of record, not two competing ones.',
       'This module keeps XGRC\'s reference copy current, so every piece of governance attaches to the right system, and so changes made over there surface here as something to review.',
@@ -239,7 +245,6 @@ const modules = [
       'When a system is retired, its reference is deactivated — but its entire governance history remains, permanently.',
       'If the register cannot be reached, XGRC carries on using its last known copy and shows plainly when it last synchronised.',
     ],
-    note: 'Built last, by design. It depends on the register being ready, so the other ten modules are built against an agreed reference and this connects them at the end.',
   },
 ];
 
@@ -257,6 +262,7 @@ const chain = [
 ];
 
 const faqs = [
+  { q: 'How is this different from MAIA®?', a: "MAIA® is governed AI you use inside XGRC — an AI copilot with a full interaction audit trail. AI Governance is broader: it governs every AI system your organisation builds or uses, whether that's MAIA®, a third-party model, or something built in-house, against the EU AI Act and ISO/IEC 42001. You don't need MAIA® to use AI Governance, and using MAIA® doesn't remove the need for it — MAIA® is itself one more AI system that goes through the same classification, risk and compliance process as any other." },
   { q: 'Does XGRC replace our AI inventory or AI register?', a: 'No. The AI register stays the single source of truth for what AI exists — the systems, models, providers and data access. XGRC never duplicates that. It attaches governance on top: classification, compliance, impact, risk, controls, oversight, incidents and change, all mapped back to the register\'s own inventory.' },
   { q: 'Does this cover both ISO/IEC 42001 and the EU AI Act?', a: 'Yes, and deliberately as two distinct layers. ISO/IEC 42001 certifies the organisation — policy, accountability, competence, internal audit, management review. The EU AI Act regulates individual systems — which category a system falls into and what that requires. The suite answers both, which is why some modules look at the company (AI Management System) and others look at one system at a time (Classification, Impact Assessment, Controls).' },
   { q: 'What happens if an AI system is modified or repurposed after it was classified?', a: 'Change Governance catches it. A new model version, a widened purpose, a new data source or more autonomy is judged in governance terms, and the module decides which reviews that change actually forces — a risk review, a full reclassification, an oversight review — rather than the change quietly going unassessed.' },
@@ -313,7 +319,27 @@ const schema = JSON.stringify({
       <p class="lede">Two laws now govern artificial intelligence: ISO/IEC 42001 certifies your organisation as a whole, and the EU AI Act regulates each AI system individually. XGRC's AI Governance solution answers both — assessed, risk-managed, controlled, monitored, approved and provable — without duplicating the technical inventory your AI register already holds.</p>
       <div class="hero-actions">
         <a href="/demo" class="btn btn-primary">Book a demo</a>
-        <a href="/solutions" class="btn btn-ghost">Explore solutions &rarr;</a>
+        <a href="/use-cases/ai-governance-readiness/#resource" class="btn btn-ghost">Download the readiness checklist</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Who this is for ──────────────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Who this is for</span>
+        <h2>If any of this is true, AI Governance applies to you.</h2>
+        <p class="lede">A lot of organisations assume AI regulation is only for the companies building foundation models. It reaches much further than that.</p>
+      </div>
+      <div class="grid cols-2">
+        {whoFor.map((w) => (
+          <div class="card who-card">
+            <span class="tag">{w.tag}</span>
+            <h3>{w.title}</h3>
+            <p>{w.body}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -374,10 +400,7 @@ const schema = JSON.stringify({
             <summary>
               <span class="module-no">{String(m.num).padStart(2, '0')}</span>
               <span class="module-summary-text">
-                <span class="module-title-row">
-                  {m.title}
-                  {m.builtLast && <span class="built-last-badge">Built last</span>}
-                </span>
+                <span class="module-title-row">{m.title}</span>
                 <span class="module-tagline">{m.tagline}</span>
               </span>
             </summary>
@@ -409,6 +432,18 @@ const schema = JSON.stringify({
             {i < chain.length - 1 && <span class="chain-arrow" aria-hidden="true">&rarr;</span>}
           </>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Checklist callout ────────────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="card checklist-callout">
+        <span class="tag">Free download</span>
+        <h3>AI Governance Readiness Checklist</h3>
+        <p>ISO/IEC 42001 and EU AI Act, in one practical checklist — classification, compliance, impact assessment, controls, oversight, risk, incidents and change.</p>
+        <a href="/use-cases/ai-governance-readiness/#resource" class="link-arrow">Download the checklist &rarr;</a>
       </div>
     </div>
   </section>
@@ -459,6 +494,7 @@ const schema = JSON.stringify({
   .crumbs b { color: var(--mute); font-weight: 500; }
 
   .law-card p { color: var(--mute); }
+  .who-card p { color: var(--mute); }
   .divide-card p { color: var(--mute); }
   .divide-card--xgrc { border-color: rgba(48,226,244,0.3); background: rgba(48,226,244,0.03); }
   .divide-card--xgrc .tag { color: var(--cyan); }
@@ -492,16 +528,7 @@ const schema = JSON.stringify({
     margin-top: 2px;
   }
   .module-summary-text { flex: 1; display: flex; flex-direction: column; gap: 4px; }
-  .module-title-row { font-weight: 600; color: var(--ink); font-size: 1.02rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .built-last-badge {
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.04em;
-    color: var(--faint);
-    border: 1px solid var(--line);
-    border-radius: 100px;
-    padding: 2px 9px;
-  }
+  .module-title-row { font-weight: 600; color: var(--ink); font-size: 1.02rem; }
   .module-tagline { color: var(--mute); font-size: 0.92rem; }
   .module-item summary::after {
     content: '+';
@@ -552,6 +579,12 @@ const schema = JSON.stringify({
     white-space: nowrap;
   }
   .chain-arrow { color: var(--faint); font-size: 0.9rem; }
+
+  /* ── Checklist callout ─────────────────────────────────── */
+  .checklist-callout { display: flex; flex-direction: column; gap: 8px; padding: 28px 32px; }
+  .checklist-callout .tag { margin-bottom: 2px; }
+  .checklist-callout h3 { margin: 0; }
+  .checklist-callout p { color: var(--mute); margin: 0 0 6px; }
 
   /* ── FAQ ───────────────────────────────────────────────── */
   .faq-block .eyebrow { margin-bottom: 12px; }
