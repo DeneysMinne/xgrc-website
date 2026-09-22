@@ -1,0 +1,566 @@
+---
+import Base from '../layouts/Base.astro';
+import { brand } from '../data/site.js';
+
+const laws = [
+  {
+    tag: 'ISO/IEC 42001',
+    title: 'Certifies the organisation.',
+    body: 'Do you run AI responsibly as a business? ISO/IEC 42001 is an AI management system standard — policy, accountability, competence, internal audit, management review. It is assessed and certified at the organisation level, the same way ISO 9001 or ISO 27001 are.',
+  },
+  {
+    tag: 'EU AI Act',
+    title: 'Regulates the system.',
+    body: 'Is this particular AI allowed, and what must you prove about it? The EU AI Act looks at one AI system at a time — what it does, who it affects, and which obligations that specific use triggers, from banned practices through to high-risk requirements.',
+  },
+];
+
+const modules = [
+  {
+    num: 1,
+    title: 'EU AI Act Classification',
+    tagline: 'Works out which category of the law each AI system falls into — and records why.',
+    body: [
+      'The law does not treat all AI the same. A handful of uses are banned outright. A defined set is "high-risk" and carries heavy obligations. Some systems only need to tell people they are talking to a machine. Most are left alone entirely.',
+      'This module decides which of those applies to each of your systems. The decision matters enormously — it determines everything you owe for that system — so the module records not just the answer but the reasoning and the legal references behind it, in a form you can defend to a regulator years later.',
+    ],
+    steps: [
+      'Choose the AI system being assessed.',
+      "State your role for it. Are you the one who built or badged it, or the one using someone else's? The law imposes very different duties on each.",
+      'Answer a guided series of questions. Each answer decides what comes next, so you are never asked about things that do not apply to you.',
+      'The module first checks for banned uses. If it finds one, it stops there and raises it — nothing else matters until that is resolved.',
+      'If not banned, it determines whether the system is high-risk, and records exactly which part of the law makes it so.',
+      'It checks whether you owe people transparency — telling them they are dealing with AI, or that content was generated.',
+      'It checks whether the general-purpose AI model rules apply.',
+      'It produces a result: the category, the reasoning, and the legal basis.',
+      'From that result it automatically builds the list of requirements you now have to meet, so nobody assembles it by hand.',
+      'Someone senior approves the classification. It is then locked and stamped with the version of the questions used.',
+      'If the system later changes in a way that could alter the answer, it is flagged for re-classification rather than quietly going stale.',
+    ],
+    note: "Why step 2 matters more than it looks. If you take someone else's AI, substantially modify it, change what it is used for, or put your own name on it, the law can treat you as the manufacturer — and you inherit the full obligation set. Organisations routinely cross that line without realising.",
+  },
+  {
+    num: 2,
+    title: 'Compliance & Applicability',
+    tagline: 'Turns each law or standard into a checklist, and records how you are actually doing against it.',
+    body: [
+      'Knowing which rules apply is only half the job. You then have to show whether you meet them, item by item, with evidence. This module holds each framework as a structured set of requirements, decides which genuinely apply to you, records your position against each, and gathers the proof.',
+      'It also produces the Statement of Applicability — the document an ISO 42001 auditor asks for first. It lists every control in the standard and states whether you apply it or exclude it, with a reason for each. Without it, a certification audit does not meaningfully begin.',
+    ],
+    steps: [
+      'Pick the AI system and the frameworks in play — the EU AI Act, ISO 42001, data protection law, your own internal policy.',
+      'The requirement list loads, including anything the classification module determined applies.',
+      'For each requirement, mark whether it applies to you. If it does not, you must say why — an unexplained exclusion is one of the easiest ways to fail an audit.',
+      'For each requirement that does apply, record where you stand: met, partly met, not met, or not yet assessed.',
+      'Attach the evidence — a policy, a test result, a log extract, a training record, an approval.',
+      'Where there is a shortfall, raise an action against it with an owner and a deadline.',
+      'The module calculates your overall position and shows where the weight of the gap sits.',
+      'For ISO 42001 it produces the Statement of Applicability directly from those decisions.',
+      'Someone approves the assessment. It is versioned and locked.',
+      'A review date is set. When it falls due — or something changes — a new version starts, and the approved one stays untouched as the historical record.',
+    ],
+  },
+  {
+    num: 3,
+    title: 'Impact Assessment',
+    tagline: 'Asks who could be harmed by an AI system, how badly, and whether your safeguards are enough.',
+    body: [
+      'Compliance asks whether something is permitted. Impact assessment asks a harder question: who does this affect, and what could it do to them? That includes people who never chose to interact with it — a job applicant screened by a model, a patient triaged by one, a community affected by a decision.',
+      'This covers both the ISO impact assessment and the Fundamental Rights Impact Assessment the AI Act requires of certain organisations using high-risk systems.',
+    ],
+    steps: [
+      'Start an assessment for a system, noting where it is in its life — being designed, tested, running live, or changing.',
+      'Identify who is affected: employees, customers, the public — and specifically anyone vulnerable, such as children, patients or applicants.',
+      'Work through the areas where harm can arise: privacy, bias, discrimination, safety, financial loss, dignity, accessibility, employment, environment.',
+      'For each one, describe what could happen, what would cause it, and who it lands on.',
+      'Rate it as it would be with no safeguards at all — how likely, and how severe.',
+      'Record what you already have in place to reduce it.',
+      'Rate it again with those safeguards counted.',
+      'Decide whether what remains is acceptable. If it is not, treatment is required and actions are raised.',
+      'Someone approves it, and the assessment is versioned.',
+      'It is revisited when the system changes, when something goes wrong, or when its review date arrives.',
+    ],
+    note: 'Rating twice is the point. Scoring before and after safeguards is what shows your controls are doing real work. A single score proves nothing about whether you have earned the position you are claiming.',
+  },
+  {
+    num: 4,
+    title: 'Controls & Evidence',
+    tagline: 'One library of safeguards, mapped to every rule each one satisfies, with the proof attached.',
+    body: [
+      'A control is something you actually do to keep an AI system safe — a review step before release, a bias test, a restriction on what data it can reach, a log of every decision it makes. The awkward part is that one control usually satisfies several different rules at once, across several different frameworks.',
+      'So the module keeps a single library, maps each control to every requirement it helps satisfy, and holds the evidence once. You define the control once and it answers to all of them.',
+    ],
+    steps: [
+      'Create a control, or adopt one from the library.',
+      'Map it to every requirement it helps satisfy — it can answer to the AI Act, ISO 42001 and your own policy simultaneously.',
+      'Assign it to the AI systems it covers, with an owner and how often it must be tested.',
+      'Assess it in three separate ways: is it well designed, is it actually in place, and is it working? These are different questions, and a control can pass one while failing another.',
+      'Attach the evidence — the test result, the log, the sign-off.',
+      'Evidence carries a validity period, so proof that has gone stale is visible instead of quietly assumed good.',
+      'Where a control is weak, missing or untested, raise an action.',
+      'Because of the mapping, a failing control instantly shows every requirement now exposed — across every framework at once.',
+    ],
+  },
+  {
+    num: 5,
+    title: 'Human Oversight',
+    tagline: 'Records that a person genuinely watched over the AI and could step in — not just that they theoretically could.',
+    body: [
+      'For high-risk systems the law requires meaningful human oversight: someone competent who understands the system, can interpret what it produces, and has the authority to override it or stop it. Crucially, you must be able to prove this happened. A policy saying oversight exists is not evidence of oversight.',
+      'This module records the oversight itself — and works whether that oversight happens inside XGRC or in a separate system the organisation already uses.',
+    ],
+    steps: [
+      'Define the arrangement for a system: who oversees it, what authority they hold, and what training qualifies them.',
+      'Record oversight events as they happen — a review, an approval, an override, a suspension.',
+      'Where oversight happens in another tool, connect it and events flow in automatically. Where there is no such tool, people record them here directly.',
+      'Each event captures who acted, when, what was in front of them, and what they decided.',
+      'Overrides and interventions are highlighted — those are the events that prove the oversight is real rather than nominal.',
+      'Each record links back to the system, its classification, and the requirement it satisfies.',
+      'Absence is visible: a high-risk system with no oversight events stands out immediately.',
+      'Oversight activity feeds the monitoring picture and the management review.',
+    ],
+  },
+  {
+    num: 6,
+    title: 'AI Risk Management',
+    tagline: 'The risk discipline you already run, pointed at the ways AI specifically fails.',
+    body: [
+      'AI introduces failure modes conventional risk registers were not written for: biased outputs, confident fabrication, data leaking through a model, performance drifting as the world changes, staff trusting the machine more than they should, a provider disappearing.',
+      'Rather than a separate AI risk system, this uses the risk engine and scoring you already have. AI risk then sits alongside every other business risk, in the same register, scored the same way — visible to the same board report instead of hidden in a silo.',
+    ],
+    steps: [
+      'Raise a risk and tag it to an AI system and an AI risk category.',
+      'Describe it exactly as you describe any other risk — the risk, its cause, its consequence.',
+      'Score it before controls.',
+      'Link the controls that address it.',
+      'Score it again with those controls counted.',
+      'Compare what remains against your tolerance. Over the line means treatment is required.',
+      'Assign an owner, a treatment plan and actions.',
+      'Set a review date.',
+      'Risks can also arrive automatically — raised by an impact assessment, an incident, a monitoring breach, or a change to the system.',
+    ],
+  },
+  {
+    num: 7,
+    title: 'Incident Governance',
+    tagline: 'Captures what went wrong, drives the investigation, and runs the regulatory clock.',
+    body: [
+      'When an AI system causes harm — a wrong decision, a discriminatory outcome, a data leak, a safety event — you need to capture it, understand it, fix it, and in some cases tell a regulator within a short and legally fixed window.',
+      'The deadlines are the part organisations most often miss. So the reporting clock is part of the record from the moment the incident is logged, not something remembered later.',
+    ],
+    steps: [
+      'Log the incident against the AI system, recording which model version was running at the time.',
+      'Classify what kind of incident it is and how severe.',
+      'Assess immediately whether people were affected, how many, and whether a regulator must be notified.',
+      'If notification is required, the clock starts and the deadline is tracked in plain sight.',
+      'Decide whether the system should be suspended while you investigate.',
+      'Investigate and establish the root cause.',
+      'Raise corrective actions.',
+      'Feed the outcome back: does the risk assessment need redoing? The impact assessment? The compliance position?',
+      'Close the incident only once those reassessments are complete.',
+      "The whole chain stays on that system's record permanently.",
+    ],
+  },
+  {
+    num: 8,
+    title: 'Change Governance',
+    tagline: 'Catches changes to an AI system and decides which of them force a fresh review.',
+    body: [
+      'AI systems change constantly — a new model version, a new data source, a different provider, a widened purpose, more autonomy. Most changes are harmless. A few quietly turn a low-concern system into a regulated one, and the organisation carries on as though nothing happened.',
+      'This module catches every change, judges it in governance terms, and forces the reviews that the change actually warrants.',
+    ],
+    steps: [
+      'A change arrives — raised by someone here, or picked up automatically from the AI register.',
+      'It is described in governance terms rather than technical ones: did the purpose change? The model? The provider? What data it can reach? How independently it acts?',
+      'Rules decide what that means. A new sensitive data source demands a risk review. A changed purpose demands a full reassessment. More autonomy demands an oversight review.',
+      'The required reviews are created automatically and assigned to owners.',
+      'Until they are done, the change stays visibly open against that system.',
+      'Where the change is significant enough, approval is required before it can proceed.',
+      'The reviews complete, the affected assessments update, and the change closes.',
+      'Everything is retained — what changed, what it triggered, and who decided.',
+    ],
+    note: 'This is the module that keeps the rest honest. Every other assessment is a snapshot of a system at a point in time. Without change governance, those snapshots silently describe a system that no longer exists.',
+  },
+  {
+    num: 9,
+    title: 'AI Management System',
+    tagline: 'The organisation-level layer — the part that actually gets certified.',
+    body: [
+      'Every module above looks at individual AI systems. This one looks at the company. ISO 42001 certifies an organisation, not a product: does it have an AI policy, named accountable people, measurable objectives, competent staff, internal audits, and management that reviews all of it regularly?',
+      'This is what an auditor examines when deciding whether to certify you, and it is the piece most AI governance tooling leaves out entirely.',
+    ],
+    steps: [
+      'Define the scope — which parts of the business, and which AI systems, the management system covers.',
+      'Record the context: the pressures you operate under, and who has a stake in how you use AI.',
+      'Publish the AI policy and its supporting policies, held under proper version control.',
+      'Name the roles — who owns AI governance, risk, compliance, data and security.',
+      'Set measurable objectives and track progress against them.',
+      'Record competence and awareness, including the AI literacy obligation that has applied since early 2025.',
+      'Run internal audits to a programme, and record what they find.',
+      'Hold management reviews on a schedule, with the inputs the standard requires — risk position, incidents, audit results, objectives, regulatory change.',
+      'Record the decisions and actions that come out of those reviews.',
+      'Handle anything that fell short through corrective action, and show it was closed out.',
+    ],
+  },
+  {
+    num: 10,
+    title: 'Dashboard & System Profile',
+    tagline: 'The single place to look — the whole estate at a glance, or one system in full.',
+    body: [
+      'The dashboard answers "how are we doing overall?". The system profile answers "what is the complete story on this one system?". Between them they are the view an executive, an auditor and a regulator each want.',
+      'Neither holds any data of its own. Everything is drawn from the modules above, so nothing is ever maintained in two places or allowed to disagree with itself.',
+    ],
+    steps: [
+      'Open the dashboard and see the estate: how many AI systems, how many live, how many high-risk, how many overdue an assessment.',
+      'See the position across compliance, risk, impact, controls, incidents and monitoring together.',
+      'Each system carries a simple health status — green, amber or red — driven by rules you set rather than a fixed formula.',
+      'Drill from the whole organisation, down to a business unit, down to a single system.',
+      "On a system's profile, see everything about it on one page: classification, assessments, risks, controls, oversight, incidents, changes, actions, documents and its full history.",
+      'Anything overdue, breached or unassessed surfaces without anyone having to hunt for it.',
+      'Export for a board pack, an audit, or a regulator.',
+    ],
+  },
+  {
+    num: 11,
+    title: 'Register Connection',
+    tagline: "Keeps XGRC's copy of the AI inventory in step with the register that owns it.",
+    builtLast: true,
+    body: [
+      'The technical detail of what AI you run — the systems, the models, the providers, what each one is permitted to reach — lives in the separate AI register, not in XGRC. That separation is deliberate: one system of record, not two competing ones.',
+      'This module keeps XGRC\'s reference copy current, so every piece of governance attaches to the right system, and so changes made over there surface here as something to review.',
+    ],
+    steps: [
+      'The register remains the authority on what AI exists.',
+      'XGRC pulls the list in on a schedule, on demand, or is notified the moment something changes.',
+      'Each system gets a reference record here. Imported details are read-only — you change them where they are owned, not in two places.',
+      'Each is mapped to a business unit and an owner, so your existing access rules apply automatically.',
+      'Every governance record in every module attaches to that reference.',
+      'When something changes in the register, XGRC records the change and decides whether it needs a governance review.',
+      'When a system is retired, its reference is deactivated — but its entire governance history remains, permanently.',
+      'If the register cannot be reached, XGRC carries on using its last known copy and shows plainly when it last synchronised.',
+    ],
+    note: 'Built last, by design. It depends on the register being ready, so the other ten modules are built against an agreed reference and this connects them at the end.',
+  },
+];
+
+const chain = [
+  'What AI systems exist',
+  'Which rules apply to each',
+  'What impacts they carry',
+  'What risks they pose',
+  'What controls are in place',
+  'What evidence supports those controls',
+  'Whether the controls work',
+  'Whether the system remains compliant',
+  'What went wrong and what changed',
+  'What was decided, by whom, and when',
+];
+
+const faqs = [
+  { q: 'Does XGRC replace our AI inventory or AI register?', a: 'No. The AI register stays the single source of truth for what AI exists — the systems, models, providers and data access. XGRC never duplicates that. It attaches governance on top: classification, compliance, impact, risk, controls, oversight, incidents and change, all mapped back to the register\'s own inventory.' },
+  { q: 'Does this cover both ISO/IEC 42001 and the EU AI Act?', a: 'Yes, and deliberately as two distinct layers. ISO/IEC 42001 certifies the organisation — policy, accountability, competence, internal audit, management review. The EU AI Act regulates individual systems — which category a system falls into and what that requires. The suite answers both, which is why some modules look at the company (AI Management System) and others look at one system at a time (Classification, Impact Assessment, Controls).' },
+  { q: 'What happens if an AI system is modified or repurposed after it was classified?', a: 'Change Governance catches it. A new model version, a widened purpose, a new data source or more autonomy is judged in governance terms, and the module decides which reviews that change actually forces — a risk review, a full reclassification, an oversight review — rather than the change quietly going unassessed.' },
+  { q: "Can XGRC prove human oversight actually happened, not just that a policy exists?", a: 'Yes. Human Oversight records real events — a review, an approval, an override, a suspension — each capturing who acted, when, and what they decided. A high-risk system with no recorded oversight events stands out immediately, instead of a policy document being treated as proof on its own.' },
+  { q: 'Do we need a separate risk register for AI?', a: 'No. AI Risk Management uses the same risk engine and scoring you already run for every other business risk, tagged to AI-specific categories such as biased output, data leakage and model drift. AI risk sits in the same register, scored the same way, visible in the same board report.' },
+  { q: "What if we use someone else's AI model rather than building our own?", a: "Your role changes what you owe. Classification asks this directly: are you the one who built or badged the system, or the one deploying someone else's? If you substantially modify a third-party model, change what it's used for, or put your own name on it, the law can treat you as the manufacturer — inheriting the full obligation set, which organisations routinely cross without realising." },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'XGRC® AI Governance',
+      applicationCategory: 'BusinessApplication',
+      description: 'AI governance software covering EU AI Act classification, ISO/IEC 42001 compliance, impact assessment, AI-specific risk management, controls, human oversight, incident governance and change governance, connected to your AI register.',
+      operatingSystem: 'Web',
+      provider: { '@type': 'Organization', name: 'XGRC® Software', url: 'https://xgrcsoftware.com' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xgrcsoftware.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Solutions', item: 'https://xgrcsoftware.com/solutions/' },
+        { '@type': 'ListItem', position: 3, name: 'AI Governance' },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+<Base
+  title="AI Governance Software | ISO/IEC 42001 & EU AI Act | XGRC®"
+  description="Govern how you build and use AI: EU AI Act classification, ISO/IEC 42001 compliance, impact assessment, AI-specific risk, controls and evidence, human oversight, incidents and change — connected to your AI register."
+  ogImage="/assets/og/og-maia.jpg"
+>
+  <script type="application/ld+json" set:html={schema} />
+
+  <!-- ── Hero ───────────────────────────────────────────── -->
+  <section class="aig-hero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span><a href="/solutions">Solutions</a><span>/</span><b>AI Governance</b>
+      </nav>
+      <span class="eyebrow"><span class="dot"></span>Solution &middot; AI Governance</span>
+      <h1>The AI register says what AI you run.<br>XGRC says whether it's governed.</h1>
+      <p class="lede">Two laws now govern artificial intelligence: ISO/IEC 42001 certifies your organisation as a whole, and the EU AI Act regulates each AI system individually. XGRC's AI Governance solution answers both — assessed, risk-managed, controlled, monitored, approved and provable — without duplicating the technical inventory your AI register already holds.</p>
+      <div class="hero-actions">
+        <a href="/demo" class="btn btn-primary">Book a demo</a>
+        <a href="/solutions" class="btn btn-ghost">Explore solutions &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The two laws ─────────────────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Two laws, one answer</span>
+        <h2>The suite has to answer both.</h2>
+        <p class="lede">Some modules look at the company. Others look at one AI system at a time. That split is deliberate — it mirrors how the law itself is structured.</p>
+      </div>
+      <div class="grid cols-2">
+        {laws.map((l) => (
+          <div class="card law-card">
+            <span class="tag">{l.tag}</span>
+            <h3>{l.title}</h3>
+            <p>{l.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The dividing line ────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>The dividing line</span>
+        <h2>Two questions. Two systems. Never duplicated.</h2>
+      </div>
+      <div class="grid cols-2">
+        <div class="card divide-card">
+          <span class="tag">The AI register</span>
+          <h3>"What AI exists?"</h3>
+          <p>A separate application — the AI register — holds the technical facts: what AI you run, which models, which provider, what data each one can reach.</p>
+        </div>
+        <div class="card divide-card divide-card--xgrc">
+          <span class="tag">XGRC</span>
+          <h3>"Is it properly governed?"</h3>
+          <p>Assessed, risk-managed, controlled, monitored, approved, and provable. XGRC never duplicates the register — it attaches governance to it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The eleven modules (accordion) ───────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>How the AI suite works</span>
+        <h2>Eleven modules. Plain language. No technical detail.</h2>
+        <p class="lede">What each one is for, and the steps someone actually goes through to use it.</p>
+      </div>
+      <div class="module-list">
+        {modules.map((m) => (
+          <details class="module-item" id={`m${m.num}`}>
+            <summary>
+              <span class="module-no">{String(m.num).padStart(2, '0')}</span>
+              <span class="module-summary-text">
+                <span class="module-title-row">
+                  {m.title}
+                  {m.builtLast && <span class="built-last-badge">Built last</span>}
+                </span>
+                <span class="module-tagline">{m.tagline}</span>
+              </span>
+            </summary>
+            <div class="module-body">
+              {m.body.map((p) => (<p class="lede">{p}</p>))}
+              <div class="module-steps-head">How it works</div>
+              <ol class="module-steps">
+                {m.steps.map((s) => (<li>{s}</li>))}
+              </ol>
+              {m.note && <p class="module-note">{m.note}</p>}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The chain ────────────────────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>End to end</span>
+        <h2>What the suite lets a client demonstrate.</h2>
+      </div>
+      <div class="chain-flow">
+        {chain.map((c, i) => (
+          <>
+            <span class="chain-chip">{c}</span>
+            {i < chain.length - 1 && <span class="chain-arrow" aria-hidden="true">&rarr;</span>}
+          </>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ──────────────────────────────────────────────── -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="faq-block">
+        <span class="eyebrow"><span class="dot"></span>Frequently asked</span>
+        <h2>Common questions.</h2>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ──────────────────────────────────────────────── -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="card cta">
+        <h2>See AI governance that attaches to your register, not around it.</h2>
+        <p class="lede">Book a demo to see EU AI Act classification, ISO/IEC 42001 compliance, impact assessment, risk, controls and oversight running as one connected system.</p>
+        <div class="cta-actions">
+          <a href="/demo" class="btn btn-primary">Request a live demo</a>
+          <a href="/solutions" class="btn btn-ghost">See all solutions</a>
+        </div>
+        <p class="contactline">{brand.email} &middot; {brand.phone}</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .aig-hero { padding: 130px 0 60px; }
+  .aig-hero h1 { margin: 14px 0 18px; }
+  .aig-hero .lede { max-width: 720px; }
+  .hero-actions { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+
+  .crumbs { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-bottom: 22px; }
+  .crumbs a { color: var(--faint); text-decoration: none; }
+  .crumbs a:hover { color: var(--cyan); }
+  .crumbs b { color: var(--mute); font-weight: 500; }
+
+  .law-card p { color: var(--mute); }
+  .divide-card p { color: var(--mute); }
+  .divide-card--xgrc { border-color: rgba(48,226,244,0.3); background: rgba(48,226,244,0.03); }
+  .divide-card--xgrc .tag { color: var(--cyan); }
+
+  /* ── Module accordion ─────────────────────────────────── */
+  .module-list { display: flex; flex-direction: column; gap: 12px; }
+  .module-item {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--panel);
+    padding: 20px 22px;
+    scroll-margin-top: 100px;
+  }
+  .module-item[open] { border-color: var(--line-strong); }
+  .module-item summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .module-item summary::-webkit-details-marker { display: none; }
+  .module-no {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--cyan);
+    border: 1px solid rgba(48,226,244,0.3);
+    border-radius: 6px;
+    padding: 4px 8px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .module-summary-text { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+  .module-title-row { font-weight: 600; color: var(--ink); font-size: 1.02rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .built-last-badge {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    color: var(--faint);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 2px 9px;
+  }
+  .module-tagline { color: var(--mute); font-size: 0.92rem; }
+  .module-item summary::after {
+    content: '+';
+    font-family: var(--font-mono);
+    color: var(--cyan);
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    margin-left: auto;
+  }
+  .module-item[open] summary::after { transform: rotate(45deg); }
+  .module-body { padding: 20px 0 4px 52px; }
+  .module-body .lede { color: var(--mute); font-size: 0.95rem; margin-bottom: 14px; }
+  .module-steps-head {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 18px 0 10px;
+  }
+  .module-steps { padding-left: 22px; display: flex; flex-direction: column; gap: 8px; }
+  .module-steps li { color: var(--mute); font-size: 0.92rem; line-height: 1.55; padding-left: 4px; }
+  .module-steps li::marker { color: var(--cyan); font-family: var(--font-mono); font-size: 0.85em; }
+  .module-note {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-left: 2px solid var(--cyan);
+    background: rgba(48,226,244,0.04);
+    color: var(--mute);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    border-radius: 0 8px 8px 0;
+  }
+  @media (max-width: 640px) {
+    .module-body { padding-left: 0; }
+  }
+
+  /* ── Chain flow ────────────────────────────────────────── */
+  .chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 4px; }
+  .chain-chip {
+    font-size: 0.88rem;
+    color: var(--mute);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 8px 16px;
+    white-space: nowrap;
+  }
+  .chain-arrow { color: var(--faint); font-size: 0.9rem; }
+
+  /* ── FAQ ───────────────────────────────────────────────── */
+  .faq-block .eyebrow { margin-bottom: 12px; }
+  .faq-block h2 { margin-bottom: 16px; }
+
+  /* ── CTA (shared pattern) ──────────────────────────────── */
+  .cta { text-align: center; padding: clamp(36px, 6vw, 64px); background: linear-gradient(160deg, rgba(47,232,138,0.07), rgba(48,226,244,0.03)); border-color: var(--line-strong); }
+  .cta h2 { margin-bottom: 14px; max-width: 620px; margin-left: auto; margin-right: auto; }
+  .cta .lede { margin: 0 auto 26px; max-width: 540px; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .contactline { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
+</style>

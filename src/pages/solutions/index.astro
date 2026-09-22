@@ -44,7 +44,7 @@ const partnerSolutions = solutions.filter((s) => s.partner);
       </div>
       <div class="grid cols-3">
         {nativeSolutions.map((s) => {
-          const hasDetail = !!solutionDetails[s.slug];
+          const hasDetail = !!solutionDetails[s.slug] || !!s.customPage;
           const Tag = hasDetail ? 'a' : 'div';
           return (
             <Tag
@@ -73,7 +73,7 @@ const partnerSolutions = solutions.filter((s) => s.partner);
       </div>
       <div class="grid cols-3">
         {availableSolutions.map((s) => {
-          const hasDetail = !!solutionDetails[s.slug];
+          const hasDetail = !!solutionDetails[s.slug] || !!s.customPage;
           const Tag = hasDetail ? 'a' : 'div';
           return (
             <Tag
@@ -102,7 +102,7 @@ const partnerSolutions = solutions.filter((s) => s.partner);
       </div>
       <div class="grid cols-3">
         {partnerSolutions.map((s) => {
-          const hasDetail = !!solutionDetails[s.slug];
+          const hasDetail = !!solutionDetails[s.slug] || !!s.customPage;
           const Tag = hasDetail ? 'a' : 'div';
           return (
             <Tag

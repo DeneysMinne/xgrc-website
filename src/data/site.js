@@ -52,6 +52,7 @@ export const solutions = [
   { name: 'XGRC® Compliance Hub', slug: 'compliance-hub', tag: 'Third-party', blurb: 'Supplier, contractor, and third-party compliance through structured onboarding, vetting, and ongoing assurance.', available: true },
   { name: 'XLOGIC®', slug: 'xlogic', tag: 'Governance Execution', blurb: 'Converts policies, frameworks, controls and obligations into structured workflows with accountability, evidence capture and auditability.', available: true },
   { name: 'MAIA®', slug: 'maia', tag: 'Governed AI', blurb: 'Governed AI for GRC, combining business intelligence, data views and intelligent agents, with a full AI interaction audit trail.' },
+  { name: 'AI Governance', slug: 'ai-governance', tag: 'AI Governance', blurb: 'Governs how you build and use AI: EU AI Act classification, ISO/IEC 42001 compliance, impact assessment, risk, controls and evidence, mapped to your AI register.', customPage: true },
   { name: 'Libryo', slug: 'libryo', tag: 'Partner', blurb: 'Jurisdiction-specific regulatory intelligence embedded directly within XGRC®.', partner: true },
   { name: 'Hakware', slug: 'hakware', tag: 'Partner', blurb: 'AI-powered penetration testing and unified vulnerability visibility across your environment.', partner: true },
   { name: 'XRM', slug: 'xrm', tag: 'Sales & CRM', blurb: 'A structured, auditable CRM for leads, opportunities, quotes and customer relationships, built with the same governance discipline as the rest of XGRC® Software.' }
