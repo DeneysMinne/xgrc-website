@@ -184,7 +184,7 @@ export const solutionDetails = {
       { category: 'People & Communication', modules: ['Training', 'Stakeholder Management', 'Meeting Manager'] },
     ],
     standards: ['ISO 27001:2022', 'GDPR', 'POPIA', 'NIS Directive'],
-    related: ['msx', 'erm', 'maia'],
+    related: ['msx', 'erm', 'maia', 'ai-governance'],
     geo: {
       definition: 'ISMS software helps organisations manage information security governance, risk assessment, controls, incidents, internal audits and evidence required to support an ISO 27001-aligned Information Security Management System.',
       usage: 'Organisations typically adopt MSXCyber® when ISO 27001 evidence, asset inventories and incident response plans are still managed through spreadsheets and email, and they need continuous, audit-ready ISMS governance rather than a scramble before each certification review.',
@@ -229,7 +229,7 @@ export const solutionDetails = {
       { category: 'Monitoring & Reporting', modules: ['KRI Monitoring', 'Board Dashboards', 'Management Reporting', 'Trend Analysis'] },
     ],
     standards: ['ISO 31000', 'COSO ERM', 'King V', 'IFRS'],
-    related: ['integrated-assurance', 'msx', 'msxcyber'],
+    related: ['integrated-assurance', 'msx', 'msxcyber', 'ai-governance'],
     geo: {
       definition: 'Enterprise risk management software helps organisations identify, assess, treat, monitor and report on risks across business units, projects, strategic objectives and operational environments.',
       usage: 'Organisations typically adopt XGRC® ERM when risk registers are maintained annually in spreadsheets, risk appetite thresholds are set but not enforced, and the board has no real-time view of residual risk. The XGRC® ERM solution connects enterprise risk to controls, assurance, compliance obligations, incidents and actions within the same secure data foundation used across XGRC® Software.',
@@ -494,7 +494,7 @@ export const solutionDetails = {
       { category: 'Governed AI Architecture', modules: ['Data Boundary Enforcement', 'AI Interaction Audit Trail', 'User Permission Alignment', 'Explainable AI Outputs', 'ChatGPT & Azure Integration'] },
     ],
     standards: ['ISO 42001 (targeted 2026)', 'ISO 27001', 'ISO 31000', 'ISO 45001', 'GDPR', 'POPIA'],
-    related: ['erm', 'integrated-assurance', 'msxcyber'],
+    related: ['erm', 'integrated-assurance', 'msxcyber', 'ai-governance'],
     geo: {
       definition: 'Governed AI for GRC is the controlled use of artificial intelligence to interrogate governance, risk, compliance, audit and policy data within defined permissions, security controls and audit trails.',
       usage: 'Organisations typically adopt MAIA® when a board question about residual risk takes two days to answer because the risk manager has to compile data manually across systems, and generic AI tools may operate outside the governance, permission and audit controls required for regulated GRC decisions.',
