@@ -1606,6 +1606,15 @@ export const articles = [
     image: 'what-would-an-ai-sheq-agent-actually-do.jpg',
     relatedSolutions: ['maia', 'sheqx'],
   },
+  {
+    slug: 'why-integrated-assurance-matters-in-the-age-of-ai',
+    title: 'Why Integrated Assurance Matters in the Age of AI',
+    excerpt: 'AI governance sets the guardrails, but assurance proves they work. Why integrated assurance matters as AI adoption grows, and how connected risks, controls, evidence and findings strengthen oversight.',
+    category: 'GRC',
+    date: '2026-10-15',
+    image: 'why-integrated-assurance-matters-in-the-age-of-ai.jpg',
+    relatedSolutions: ['integrated-assurance', 'ai-governance'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1876,6 +1885,13 @@ export const articleFaqs = {
     { q: 'How could AI help with incident management?', a: 'AI could help users review incident information, identify similar historical events, highlight recurring themes, surface relevant records and support investigation and corrective-action processes.' },
     { q: 'How does MAIA® relate to an AI SHEQ agent?', a: 'MAIA® is the governed AI embedded in XGRC®. It supports natural language risk queries, policy and procedure Q&A, compliance status summaries, an ESG & SHERQ insight engine and an H&S Assistant Agent, with permission alignment, explainable outputs and a full AI interaction audit trail.' },
     { q: 'Why is governance important for AI SHEQ agents?', a: 'AI agents may interact with sensitive organisational information and support important operational processes. Access controls, human oversight, accountability, monitoring and auditability are therefore essential to responsible AI use.' },
+  ],
+  'why-integrated-assurance-matters-in-the-age-of-ai': [
+    { q: 'What is integrated assurance?', a: 'Integrated assurance is a coordinated approach that connects assurance activities across different organisational functions to provide greater visibility over risks, controls, findings and governance effectiveness.' },
+    { q: 'Why is integrated assurance important for AI?', a: 'AI risks can affect information security, compliance, operations, risk management and other areas at the same time. Integrated assurance helps organisations coordinate how these interconnected risks and controls are assessed.' },
+    { q: 'What is the difference between AI governance and AI assurance?', a: 'AI governance establishes how AI should be managed through policies, responsibilities, risks and controls. AI assurance evaluates whether those governance mechanisms and controls are operating as intended.' },
+    { q: 'What role does internal audit play in AI governance?', a: 'Internal audit can provide independent assurance over relevant aspects of AI governance, including risk management, control effectiveness, accountability, policy implementation, evidence and corrective actions.' },
+    { q: 'Why is evidence important for AI assurance?', a: 'Evidence allows organisations to demonstrate that governance activities and controls are actually taking place. It supports auditability, accountability, traceability and better-informed assurance conclusions.' },
   ],
 };
 
