@@ -2367,4 +2367,129 @@ Bring Your Management Systems Together
 
 Running multiple management standards does not have to mean running multiple disconnected management environments. MSX® by XGRC® Software helps organisations bring management-system requirements into a more integrated structure, supporting controlled workflows, clearer accountability and greater traceability. The opportunity is not simply to replace spreadsheets or consolidate systems; it is to reduce fragmentation and build a management environment that works more effectively as a whole. Speak to an XGRC® specialist to find out how MSX® can help your organisation move from siloed management processes toward a more integrated, controlled and auditable management environment.`,
 
+'cybersecurity-awareness-month-from-awareness-to-action': `Awareness Is Important. Action Is What Reduces Risk
+
+October is Cybersecurity Awareness Month, and in many organisations the pattern is familiar. Employees receive reminders about suspicious emails, password security is discussed, phishing simulations may be conducted and cybersecurity tips are shared across internal communication channels. These activities are valuable, but there is an important question organisations should ask: what happens after the awareness campaign ends?
+
+Cybersecurity cannot be strengthened through awareness alone. Employees may understand that phishing is dangerous, but organisations still need effective access controls. Teams may understand that sensitive information needs to be protected, but responsibilities still need to be clearly defined. Leadership may understand that cyber risk is increasing, but they still need visibility over whether critical controls are working. The real objective of Cybersecurity Awareness Month should therefore be to turn awareness into action.
+
+Cybersecurity Is a Business Risk
+
+Cybersecurity was once largely treated as a technical responsibility, and that distinction is becoming increasingly difficult to maintain. Modern organisations depend on technology for communication, financial transactions, operations, customer interactions, document management, supply chains, reporting and decision-making, so a cybersecurity incident can affect far more than the IT environment.
+
+An incident can disrupt operations, expose sensitive information, damage customer relationships, create compliance concerns, interrupt supply chains and affect organisational reputation, often with significant financial consequences (a theme explored in <a href="/insights/the-hidden-cost-of-cyber-incidents-for-ceos/">the hidden cost of cyber incidents for CEOs</a>). Cybersecurity should therefore be understood as a business risk that requires organisational governance. IT remains an important part of the solution, but responsibility cannot stop with IT.
+
+The Human Element Still Matters
+
+Many cybersecurity incidents begin with an ordinary action. An employee clicks a link, a password is shared, a suspicious attachment is opened, information is sent to the wrong person, an unapproved application is installed or sensitive information is entered into a public AI platform. This is why employee awareness remains essential, and why <a href="/insights/building-a-cyber-aware-culture-addressing-the-human-element-of-cyber-risk/">building a cyber-aware culture</a> matters.
+
+But organisations should be careful not to treat employees as the entire cybersecurity problem. People operate within the systems, processes, policies and controls established by the organisation. Strong cybersecurity therefore requires both cyber-aware people and well-governed processes: employees need to know what is expected of them, and organisations need to make secure behaviour practical, understandable and supported by appropriate controls.
+
+Start With One Simple Question
+
+A useful Cybersecurity Awareness Month exercise is to ask whether everyone in the organisation knows what to do when something suspicious happens. Consider a suspicious email. The follow-up questions quickly reveal how mature the response really is:
+
+- Does the employee know where to report it?
+- What happens after it is reported, and who investigates?
+- Is the incident recorded and the risk assessed?
+- Are affected systems identified?
+- Are corrective actions assigned?
+- Does management receive information when required?
+- Is evidence maintained?
+- Does the organisation learn from what happened?
+
+These questions reveal an important difference between cybersecurity awareness and cybersecurity governance. Awareness helps someone recognise the problem. Governance, supported by a clear <a href="/use-cases/incident-management/">incident management</a> process, determines what happens next.
+
+Turn Cyber Risks into Clear Responsibilities
+
+Identifying cybersecurity risks is only useful when someone is responsible for managing them. Every significant cybersecurity risk should have appropriate ownership, and the same applies to controls and corrective actions. For example, an organisation may identify phishing as a significant risk. Employee training may be one control, email security technology another, multi-factor authentication a further layer of protection and incident reporting procedures another still. Each activity needs appropriate responsibility, and organisations should be able to understand:
+
+- What the risk is
+- Who owns the risk
+- Which controls manage it
+- Who is responsible for those controls
+- Whether the controls are operating
+- What evidence exists
+- What happens when a weakness is identified
+- Which actions remain outstanding
+
+This creates accountability. Through structured <a href="/use-cases/risk-management/">risk management</a>, cybersecurity moves from being something the organisation is concerned about to something it is actively managing.
+
+Know What You Are Protecting
+
+Organisations cannot effectively protect information they do not understand, and information now exists across increasingly complex environments. It may sit within internal systems, cloud applications, employee devices, third-party platforms, email accounts, shared folders, databases and AI applications. Organisations therefore need visibility over their important information assets and the risks associated with them.
+
+Useful questions include what information is important, where it is located, who has access to it, how it is protected, which third parties interact with it and what would happen if it became unavailable, inaccurate or exposed. Cybersecurity becomes much more meaningful when security controls are connected to the information and business processes they are intended to protect, including the suppliers who handle it.
+
+Do Not Ignore Shadow IT and Shadow AI
+
+One of the biggest challenges facing modern organisations is the speed at which employees can adopt technology. A new cloud application can sometimes be introduced within minutes, and AI has accelerated this challenge even further. Employees can access generative AI tools directly from a web browser and begin using them for everyday activities, such as:
+
+- Summarising documents
+- Analysing data
+- Drafting communications
+- Reviewing contracts
+- Generating reports
+- Researching topics
+- Processing customer information
+
+The productivity benefits can be significant. But when the organisation does not know which AI systems employees are using, Shadow AI becomes a cybersecurity and governance concern, because sensitive organisational information could move into applications that have not been formally assessed or approved.
+
+Cybersecurity Awareness Month provides an ideal opportunity to educate employees about responsible AI use alongside traditional cybersecurity awareness. The message should not simply be "do not use AI". A more sustainable message is "use AI within clearly defined organisational guardrails", backed by a structured approach to <a href="/ai-governance/">AI governance</a>.
+
+Move From Policies to Controls
+
+Most organisations have cybersecurity policies, but having a policy does not necessarily mean the underlying risk is being effectively managed. Consider a policy stating that employees must use strong passwords: the organisation still needs controls and processes to support that requirement. The same principle applies to access management, information classification, incident reporting, third-party security, remote working and AI use.
+
+Effective governance creates a clear chain from requirement to risk, control, responsibility, monitoring, evidence and improvement. This is where cybersecurity becomes operational. Instead of policies existing separately from everyday activities, governance requirements become connected to the responsibilities and controls that deliver them.
+
+Test Whether Your Controls Actually Work
+
+A control can exist without being effective. An organisation may have implemented multi-factor authentication, but is it applied to all relevant accounts? Employees may complete cybersecurity awareness training, but are completion rates monitored? An incident-response procedure may exist, but has it been tested? A supplier may have completed a cybersecurity questionnaire, but are significant third-party risks being monitored? An AI policy may have been approved, but are employees following it?
+
+Cybersecurity governance should therefore include monitoring, internal audit, assurance, management review and corrective action. The question should not simply be "do we have a control?" It should be "can we demonstrate that the control is working?"
+
+ISO/IEC 27001: Turning Cybersecurity into a Management System
+
+Cybersecurity Awareness Month also provides an opportunity to consider a more structured approach to information security. ISO/IEC 27001 provides a management-system framework for managing information security, and an Information Security Management System helps organisations move beyond isolated cybersecurity activities by establishing a systematic approach to risk, controls, accountability, monitoring, evaluation and continual improvement.
+
+This matters because cybersecurity is never finished. New employees join, systems and suppliers change, threats evolve, AI applications emerge and new vulnerabilities are discovered. Controls that were effective yesterday may need to be reconsidered tomorrow. A management-system approach recognises this reality, so cybersecurity becomes a continuous organisational process rather than a once-a-year initiative. For organisations starting that journey, <a href="/use-cases/iso-27001-readiness/">ISO 27001 readiness</a> is a practical place to begin.
+
+Leadership Needs Cybersecurity Visibility
+
+Executives and boards do not need to know the technical details of every cybersecurity control, but they do need appropriate visibility over material cyber risk. Leadership should be able to answer questions such as:
+
+- What are our most significant information security risks?
+- Which critical controls are not operating effectively?
+- What significant incidents have occurred?
+- Which corrective actions remain unresolved?
+- Are there material third-party risks?
+- Where are our most significant vulnerabilities?
+- Are employees following our AI governance requirements?
+- Where do we have assurance gaps?
+
+This transforms cybersecurity reporting from technical information into governance information, and that allows leadership to make better-informed decisions.
+
+How MSXCyber® Supports Structured Cybersecurity Governance
+
+Cybersecurity becomes difficult to govern when information is distributed across spreadsheets, emails, documents, registers and disconnected systems. <a href="/msxcyber/">MSXCyber® by XGRC® Software</a> supports organisations in managing information security governance through a structured and connected environment, aligned to ISO 27001:2022. Within the broader XGRC® Governance, Risk and Compliance Platform, organisations can bring together information relating to:
+
+- Risks
+- Controls
+- Policies
+- Responsibilities
+- Actions
+- Findings
+- Audits
+- Evidence
+- Monitoring
+- Management reporting
+
+This creates greater visibility across information security activities and helps organisations establish clearer accountability. Instead of cybersecurity activities operating independently, organisations can create stronger connections between the risks they identify, the controls they implement, the people responsible and the evidence required to demonstrate governance.
+
+Make October the Beginning, Not the End
+
+Cybersecurity Awareness Month creates a valuable opportunity to bring attention to cyber risk, but a secure organisation is not created in one month. It is built through thousands of decisions made throughout the year: when employees know how to respond to suspicious activity, when cybersecurity risks have clear owners, when critical controls are monitored, when incidents result in organisational learning, when AI is introduced within appropriate guardrails, when leadership has visibility and when the organisation continually evaluates and improves its information security environment. Awareness starts the conversation. Governance turns that conversation into action.
+
+This Cybersecurity Awareness Month, move beyond simply reminding employees to "be cyber aware". Ask whether your organisation can demonstrate that cybersecurity risks are identified, responsibilities are assigned, controls are monitored, actions are completed and leadership has the visibility it needs. <a href="/contact/">Speak to an XGRC® specialist</a> to see how MSXCyber® supports a structured, connected and auditable approach to information security governance.`,
 };
