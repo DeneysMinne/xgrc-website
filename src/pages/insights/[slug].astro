@@ -310,10 +310,14 @@ const catColor = categoryColors[article.category] || '#30e2f4';
 
   /* ── Hero Image ─────────────────────────────────────── */
   .art-img-wrap { padding-bottom: 52px; }
+  /* Show the whole image at its own proportions. The hero images carry
+     their message in the picture itself (caption, product logo), so any
+     crop loses content. The old max-height + object-fit: cover, with the
+     width/height attributes never overridden, kept the height while the
+     width shrank on phones and cut them to a narrow middle strip. */
   .art-hero-img {
     width: 100%;
-    max-height: 520px;
-    object-fit: cover;
+    height: auto;
     border-radius: var(--radius-lg, 12px);
     display: block;
     border: 1px solid var(--line);
