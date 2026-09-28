@@ -493,7 +493,7 @@ export const solutionDetails = {
       { category: 'LUCI: AI Interface', modules: ['DataViews & ML Dashboards', 'Predictive Maintenance AI', 'H&S Assistant Agent', 'Driver Fatigue Monitoring', 'Process Automation Bots', 'Voice Mode Interface'] },
       { category: 'Governed AI Architecture', modules: ['Data Boundary Enforcement', 'AI Interaction Audit Trail', 'User Permission Alignment', 'Explainable AI Outputs', 'ChatGPT & Azure Integration'] },
     ],
-    standards: ['ISO 42001 (targeted 2026)', 'ISO 27001', 'ISO 31000', 'ISO 45001', 'GDPR', 'POPIA'],
+    standards: ['ISO/IEC 42001 (certification in progress)', 'ISO 27001', 'ISO 31000', 'ISO 45001', 'GDPR', 'POPIA'],
     related: ['erm', 'integrated-assurance', 'msxcyber', 'ai-governance'],
     geo: {
       definition: 'Governed AI for GRC is the controlled use of artificial intelligence to interrogate governance, risk, compliance, audit and policy data within defined permissions, security controls and audit trails.',
@@ -502,7 +502,7 @@ export const solutionDetails = {
       faqs: [
         { q: 'Does MAIA® send our data to ChatGPT or other AI providers?', a: 'MAIA® uses approved AI services through controlled, audited integrations, with permission alignment and data boundary controls, every AI interaction is logged in a complete audit trail.' },
         { q: 'Can MAIA® answer questions across all our XGRC® data?', a: 'Yes. MAIA® can query risk registers, policies, audit findings and compliance records across every XGRC® solution your organisation uses.' },
-        { q: 'Is MAIA® certified to ISO/IEC 42001?', a: 'XGRC® is targeting ISO/IEC 42001 certification for September 2026. MAIA® is already built around governed AI principles, permission alignment, audit trails and explainable outputs, ahead of that certification.' },
+        { q: 'Is MAIA® certified to ISO/IEC 42001?', a: 'Not yet. XGRC® ISO/IEC 42001:2023 certification is in progress. MAIA® is already built around governed AI principles, permission alignment, audit trails and explainable outputs, ahead of that certification.' },
         { q: 'Who can access MAIA®\'s answers?', a: 'MAIA® respects existing XGRC® user permissions. It only surfaces data a user is already authorised to see.' },
       ],
     },
@@ -1282,7 +1282,7 @@ export const articleFaqs = {
   ],
   'what-is-iso-42001': [
     { q: 'Is ISO/IEC 42001 mandatory?', a: 'No, it\'s a voluntary international standard, though it is likely to become a procurement expectation for AI-enabled software in the same way ISO 27001 has for information security.' },
-    { q: 'Is XGRC® certified to ISO/IEC 42001 yet?', a: 'Not yet, certification is targeted for September 2026. MAIA® is already built around the standard\'s core principles ahead of that milestone.' },
+    { q: 'Is XGRC® certified to ISO/IEC 42001 yet?', a: 'Not yet. XGRC® ISO/IEC 42001:2023 certification is in progress. MAIA® is already built around the standard\'s core principles ahead of that milestone.' },
     { q: 'How does ISO/IEC 42001 relate to ISO 27001?', a: 'They\'re complementary, ISO 27001 covers information security management broadly, while ISO/IEC 42001 addresses AI-specific governance, risk and oversight requirements.' },
   ],
   'supplier-compliance-software-vs-procurement-systems': [
