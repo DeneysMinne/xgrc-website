@@ -3340,4 +3340,96 @@ Seeing It Assembled
 XGRC®'s <a href="/tour/esg.html">ESG Performance dashboard</a> brings these pieces together: pillar trend lines against target, an assurance-readiness view across framework, data and Scope 3 coverage, a focus-area section for KPIs in breach or on watch, and a materiality matrix ranking topics by impact and stakeholder importance.
 
 It is one of seventeen live, interactive examples in the <a href="/tour/">XGRC® dashboard tour</a>, each built on fictitious data so you can filter, search and explore freely.`,
+'iso-42001-implementation-ai-governance': `The Real Test Comes After the AI Policy Is Approved
+
+Your organisation has approved an AI policy and a pilot has passed review. Then a supplier changes its model, a team connects another data source, and an assistant that once drafted recommendations gains permission to act on them. Who checks whether the original approval still makes sense?
+
+<a href="https://www.cisa.gov/cybersecurity-awareness-month" rel="noopener">Cybersecurity Awareness Month</a> is an opportunity to ask that question. October's awareness activities can open the discussion, but the answer needs to work after the campaign ends. Implementing <a href="https://www.iso.org/standard/42001" rel="noopener">ISO/IEC 42001</a> is about establishing an AI management system; maintaining it is about keeping that system effective as AI use changes. The new XGRC® <a href="/ai-governance/">AI Governance</a> solution supports that goal by connecting AI governance with the responsibilities, risks, controls, evidence and assurance already needed to run the business.
+
+Understand What ISO/IEC 42001 Actually Addresses
+
+ISO/IEC 42001:2023 specifies requirements for an Artificial Intelligence Management System, or AIMS. It applies to organisations providing or using AI-based products and services, not only to businesses that build models. (If you need the fundamentals first, start with <a href="/insights/what-is-iso-42001/">what ISO/IEC 42001 is and who it applies to</a>; this article focuses on how to implement and maintain it.)
+
+Its management-system structure covers context, leadership, planning, support, operation, performance evaluation and improvement. These are connected management responsibilities, not a list of settings to switch on in a software product. A company using a third-party AI assistant still needs to govern its own use, responsibilities and controls, because the supplier's assurance does not answer every question about the customer's deployment.
+
+Start With the AI You Actually Use
+
+Define the scope of the management system and understand the organisation's role in each AI use case. A credible implementation begins with a gap assessment rather than an assumption that existing IT controls cover everything, which is the purpose of an <a href="/use-cases/ai-governance-readiness/">AI governance readiness</a> exercise. A practical starting record should identify the business purpose, accountable owner, provider, information used, affected process, permitted actions and current approval status.
+
+For example, a support assistant drafting a response is not the same use case as an assistant sending that response without review. The model could be identical while the operational exposure is different. Include AI already embedded in purchased software, and avoid building a register that records only the tools with an obvious AI label while missing the decisions and actions they influence.
+
+Turn Leadership Commitment Into Operating Decisions
+
+Leadership must support the programme with clear responsibilities, resources and objectives. <a href="https://www.bsigroup.com/en-GB/insights-and-media/insights/blogs/iso-iec-42001-why-certify-your-ai-procedures-and-getting-started-with-bsi/" rel="noopener">BSI's implementation guidance</a> places that commitment before the work of deploying and evaluating the management system. Translate it into decisions people can use: who may approve a new use case, who accepts residual risk, who owns supplier assurance and who can pause an agent that behaves unexpectedly.
+
+Separate accountability for a business outcome from responsibility for a technical control. The business owner should not assume IT approved the purpose simply because IT enabled the connection. Training should reflect those roles, since a person approving an AI-supported decision needs different competence from someone maintaining its access controls.
+
+Assess Risks and Impacts, Not Just Cybersecurity
+
+An AI system may be well protected against unauthorised access and still produce unreliable, unfair or unsuitable outcomes. The <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" rel="noopener">NIST AI Risk Management Framework</a> takes a trustworthiness perspective that extends beyond security to validity, reliability, transparency and harmful bias.
+
+AI risk assessment and AI system impact assessment answer related but different questions. Alongside organisational exposure, consider the effects of AI on individuals, groups and society; <a href="https://www.iso.org/standard/42005" rel="noopener">ISO/IEC 42005</a> provides guidance on identifying, evaluating and documenting those impacts throughout the lifecycle. Consider an assistant that helps prioritise customer complaints. A security assessment might examine who can access the records, but an impact assessment should also ask whether the system could consistently deprioritise a group of customers or make it difficult for a person to challenge an outcome. Record the reasoning, the controls and the conditions under which the assessment must be reconsidered.
+
+Select Controls and Explain Your Choices
+
+Annex A provides reference controls, while Annex B provides implementation guidance. Select controls according to the assessed risks and the organisation's role in the AI lifecycle, recognising that additional controls may be needed, and maintain a statement of applicability that explains the controls selected and any justified exclusions. This is not permission to treat the management-system requirements as optional.
+
+For each selected control, establish what it is meant to achieve, who operates it and what demonstrates that it works. A control named "human review" is too vague unless the workflow explains who reviews what, at which point and with what authority. Keep each control decision traceable as the use case develops.
+
+How the New XGRC® AI Governance Solution Supports the AIMS
+
+The new XGRC® AI Governance solution gives organisations a focused way to bring AI-related governance into their wider governance, risk and compliance programme. The objective is not another policy folder. It is a connected view of what has been approved, who is responsible, which controls apply and what evidence supports the decision.
+
+The broader <a href="/grc-software/">XGRC® GRC platform</a> connects policies, risks, controls, responsibilities, actions, audits and assurance, and the management-system capabilities of <a href="/msx/">MSX®</a> support controlled documentation, training, performance evaluation and improvement. A practical implementation links three parts of the programme:
+
+- The decision: the AI use case, its owner, scope, risk and impact assessments, treatment decisions and approval conditions
+- The work: policies, controls, responsible people, review activities, changes, incidents, exceptions and corrective actions
+- The evidence: assessment records, approvals, control reviews, audit findings, management decisions and follow-up results
+
+Connect each AI governance requirement to an accountable person and evidence of the work performed. A review finding should lead to an owned action, and closing the action should include evidence that the weakness has been addressed.
+
+XGRC®'s published <a href="/use-cases/ai-change-management/">AI change management</a> approach already links AI-related changes to classification, risk review, business and technical approvals, testing, rollout and post-launch monitoring. This is particularly useful when an approved AI use case changes its data sources, permissions or decision authority. The governance and technical roles remain distinct, however. AI Governance supports the management of requirements, decisions and evidence, while permissions, filtering and access revocation must still be enforced by the relevant identity, application and security controls. A recorded approval is not an access restriction.
+
+Make the Management System Work for a Real Use Case
+
+Consider an illustrative procurement assistant that reviews supplier submissions and drafts a comparison for a buyer. The business owner defines its permitted purpose, and the assessment examines confidential information, unreliable summaries, supplier-document manipulation and the consequences of an incorrect recommendation. Approval conditions might restrict the assistant to named document collections, require a buyer to check material statements and prohibit changes to supplier or payment records.
+
+Then test a material change: the business wants the assistant to approve suppliers, not merely compare them. That is not a minor wording update, because it changes the decision authority. The organisation should revisit the assessment, control design, competence and approval conditions before allowing the expanded use. The management system earns its value when a change in capability triggers a change in governance.
+
+Maintaining the System Is a Different Job
+
+A functioning AIMS needs evaluation and improvement, not just an initial implementation. Internal audits and management reviews help establish whether it is operating as intended. The following is a suggested operating rhythm, not a timetable prescribed by ISO/IEC 42001:
+
+- When a material event occurs: review the effect of a new use case, changed model, new data source, expanded permission, incident or significant supplier change, and decide whether the existing approval remains valid
+- Monthly, where appropriate: review exceptions, overdue actions, unreviewed changes and evidence gaps, focusing on items that require a decision
+- Quarterly, where appropriate: bring business, technology and risk owners together to challenge whether objectives and risk treatments remain suitable, and escalate issues that exceed agreed authority or tolerance
+- At planned audit and management-review intervals: evaluate the management system, record decisions, allocate resources and track improvement actions through to verified outcomes
+
+Adapt the frequency to the use case and its consequences. Within XGRC®, connect review findings to the affected risks, controls and corrective actions, and keep the management decision with its supporting evidence, so the next reviewer can understand not only what changed, but why.
+
+Measure Whether Governance Works
+
+Define measures that reveal whether the operating model is effective. Useful examples include the proportion of in-scope use cases with a current owner and assessment, material changes reviewed before release, overdue high-priority actions and recurring incidents. For an action-taking agent, the time needed to revoke access may be more useful than the number of AI policies published. For a decision-support system, sampling the quality of human review may reveal more than counting how often someone clicked an approval button.
+
+These are suggested measures, not prescribed certification targets, and a high completion rate does not by itself explain whether a control achieved its purpose.
+
+Connect AI Governance With the Existing Management System
+
+ISO/IEC 42001 is intended to work within an organisation's wider management structure, and its harmonised approach supports integration with other management systems. Reuse suitable processes for controlled documents, competence, supplier review, incident handling, audits and corrective action, then add the AI-specific context those processes need.
+
+For example, an information-security incident involving an agent may also reveal a weak AI approval decision, so one event can require both technical remediation and a change to the permitted use case. Connected records help prevent separate teams from closing their own actions while the underlying problem remains unresolved.
+
+Prepare for Certification Without Treating It as the Finish Line
+
+Before seeking certification, establish whether the scoped management system has been implemented and whether there is evidence of operation, review and improvement. A folder of templates is not the same as a working programme.
+
+Certification is performed by an external certification body, not by ISO itself. Software adoption does not award certification, and a supplier's certificate does not transfer to your organisation. Nor should certification be presented as proof that every AI output is correct, every deployment is secure or every legal obligation has been met. The organisation remains responsible for its use of AI and the controls around it.
+
+XGRC® is taking the same route itself. Already certified to ISO 27001:2022, XGRC® will be certified to ISO/IEC 42001:2023 by the end of October 2026, applying the approach described in this article to its own AI management system.
+
+Make AI Governance Work Beyond October
+
+Use Cybersecurity Awareness Month to select one material AI use case and follow it through ownership, assessment, approval, controls, monitoring and review. Then use that experience to establish a repeatable programme across the organisation. The objective is not simply to say that AI is governed; it is to show how that governance works when people, systems and risks change.
+
+<a href="/contact/">Speak to an XGRC® specialist</a> about implementing and maintaining your AIMS with the new AI Governance solution.`,
 };
