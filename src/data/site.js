@@ -1607,6 +1607,15 @@ export const articles = [
     image: 'how-to-read-a-risk-heat-map.jpg',
     relatedSolutions: ['erm'],
   },
+  {
+    slug: 'ai-agent-security-api-keys',
+    title: 'What Happens When an AI Agent Has Your Keys?',
+    excerpt: 'AI agents need access, not your real API keys. Learn how stolen keys and manipulated agents differ, how to build an access boundary the agent cannot rewrite, and how Asgard keeps credentials vaulted and scoped.',
+    category: 'Cyber',
+    date: '2026-10-06',
+    image: 'ai-agent-security-api-keys.jpg',
+    relatedSolutions: ['ai-governance', 'msxcyber'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1850,6 +1859,13 @@ export const articleFaqs = {
     { q: 'What do the colours on a risk heat map mean?', a: 'Colours represent risk score bands, typically low (1 to 5, green), moderate (6 to 11, yellow or amber), high (12 to 19, orange) and critical (20 to 25, red). The exact cut-offs vary by organisation and risk appetite, but the same scale should be used consistently across every risk reported into one pack.' },
     { q: 'What is the difference between inherent and residual risk?', a: 'Inherent risk is the exposure before any controls are applied. Residual risk is what remains after controls, mitigations and existing safeguards are taken into account. Plotting both on matching heat maps shows whether controls are actually reducing exposure, not just whether a risk exists.' },
     { q: 'How is a risk score calculated on a heat map?', a: 'Risk score is calculated by multiplying the likelihood rating by the impact rating, each scored 1 to 5, giving a result between 1 and 25. That score determines which band, and therefore which colour, the risk falls into on the map.' },
+  ],
+  'ai-agent-security-api-keys': [
+    { q: 'Can an attacker misuse an AI agent without stealing its API key?', a: 'Yes. A manipulated agent may use its existing permissions to perform an unauthorised action. Keeping credentials secret and restricting what the agent can do are separate, complementary controls.' },
+    { q: 'Is it safe to paste an API key into an AI chat?', a: 'No. Do not place production secrets in prompts, chat histories or model-visible instructions. Use approved integrations and managed secret handling, and treat an exposed key as a security event that follows your revocation and investigation process.' },
+    { q: 'Does read-only access remove the risk?', a: 'No. It limits changes, but the agent may still read sensitive information. The permitted records, recipients and output destinations also matter, so read-only access should be narrow enough for the approved task.' },
+    { q: 'Does MFA protect an API key after it has been issued?', a: 'Not by itself. MFA protects the relevant authentication steps, but an issued credential may be usable without another interactive challenge. Restrict its scope and lifetime, monitor its use and verify revocation behaviour.' },
+    { q: 'How does Asgard protect AI-agent access?', a: 'Asgard, the XGRC® AI agents platform, holds upstream API keys and OAuth tokens in an encrypted Vault, gives agents scoped Asgard keys, brokers managed tool calls through Bifröst and applies Heimdall filters. Central revocation and action logs support access control and investigation. The scope of each grant and the security of the broker still matter.' },
   ],
 };
 
