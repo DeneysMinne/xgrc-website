@@ -1314,6 +1314,15 @@ export const articles = [
     image: 'iso-42001-implementation-ai-governance.jpg',
     relatedSolutions: ['ai-governance', 'maia'],
   },
+  {
+    slug: 'iso-42001-vs-iso-27001',
+    title: 'ISO/IEC 42001 vs ISO/IEC 27001: What\'s the Difference?',
+    excerpt: 'ISO 42001 vs ISO 27001: one governs artificial intelligence, the other information security. Learn how an AI management system differs from an ISMS, where the two overlap, and why a connected approach to both makes sense.',
+    category: 'AI & Governance',
+    date: '2026-10-27',
+    image: 'iso-42001-vs-iso-27001.jpg',
+    relatedSolutions: ['ai-governance', 'msxcyber'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1541,6 +1550,13 @@ export const articleFaqs = {
     { q: 'Do we need every Annex A control?', a: 'Select the controls appropriate to your risks and role in the AI lifecycle, document why they apply and justify exclusions. Additional controls may be needed, and risk-based control selection does not make the management-system requirements optional.' },
     { q: 'How does the new XGRC® AI Governance solution help?', a: 'It brings AI-related governance into the wider XGRC® programme, connecting policies, risks, controls, responsibilities, actions, audits and evidence. Applying that structure to AI ownership, assessment, approval, change and review keeps the management system traceable as AI use evolves.' },
     { q: 'Does implementing the software make us certified?', a: 'No. The organisation must implement and operate the management system, and an external certification body assesses conformity within the agreed scope. Software supports the work and its evidence; it does not replace either.' },
+  ],
+  'iso-42001-vs-iso-27001': [
+    { q: 'What is the main difference between ISO/IEC 42001 and ISO/IEC 27001?', a: 'ISO/IEC 42001 sets requirements for an Artificial Intelligence Management System (AIMS), while ISO/IEC 27001 sets requirements for an Information Security Management System (ISMS). They cover different areas of governance but intersect wherever AI systems use or process organisational information.' },
+    { q: 'Does ISO/IEC 27001 cover AI governance?', a: 'Not fully. ISO/IEC 27001 focuses on information security management. Information security is an important part of responsible AI use, but AI governance extends into areas such as impact, human oversight and accountability for AI-supported decisions, so an ISMS alone should not be assumed to address every AI governance requirement.' },
+    { q: 'Does ISO/IEC 42001 replace ISO/IEC 27001?', a: 'No. The standards have different purposes: ISO/IEC 42001 addresses AI management, while ISO/IEC 27001 addresses information security management.' },
+    { q: 'Can ISO/IEC 42001 and ISO/IEC 27001 work together?', a: 'Yes. Both follow a management system approach, so organisations using AI can connect related AI governance and information security processes, particularly around risk, information, responsibilities, controls, monitoring, evidence and continual improvement.' },
+    { q: 'Which standard should an organisation implement?', a: 'That depends on its objectives, context, risks and applicable requirements. Organisations seeking structured AI management should consider ISO/IEC 42001, while those seeking structured information security management should consider ISO/IEC 27001. Where both areas are material, a connected approach may be appropriate.' },
   ],
 };
 
