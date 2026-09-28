@@ -1367,6 +1367,15 @@ export const articles = [
     date: '2026-09-30',
     relatedSolutions: ['msx'],
   },
+  {
+    slug: 'cybersecurity-awareness-month-from-awareness-to-action',
+    title: 'Cybersecurity Awareness Month: From Awareness to Action',
+    excerpt: 'Cybersecurity Awareness Month should go beyond reminders. Learn how organisations can turn cyber awareness into action through clear ownership, tested controls, Shadow AI guardrails and leadership visibility.',
+    category: 'Cyber',
+    date: '2026-10-01',
+    image: 'cybersecurity-awareness-month-from-awareness-to-action.jpg',
+    relatedSolutions: ['msxcyber', 'hakware'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1571,6 +1580,13 @@ export const articleFaqs = {
     { q: 'What are the hidden costs of siloed management systems?', a: 'Fragmented systems increase administrative effort through duplicated processes, repeated information requests, version reconciliation, report consolidation, action follow-ups and manual audit preparation, work that adds up even though it rarely appears as a distinct line item.' },
     { q: 'What are the benefits of integrating management systems?', a: 'Integration reduces unnecessary duplication, establishes more consistent controls, strengthens accountability, improves traceability and gives management a more consolidated view of organisational performance.' },
     { q: 'What is MSX®?', a: 'MSX® by XGRC® Software provides an integrated environment for managing multiple management-system requirements through a more consistent structure. It operates within the XGRC® Platform and is powered by XLOGIC® Executable Governance Architecture.' },
+  ],
+  'cybersecurity-awareness-month-from-awareness-to-action': [
+    { q: 'Why is Cybersecurity Awareness Month important?', a: 'Cybersecurity Awareness Month, held every October, helps organisations reinforce secure behaviours, educate employees about evolving threats and encourage greater awareness of individual and organisational cybersecurity responsibilities.' },
+    { q: 'Is cybersecurity only the responsibility of IT?', a: 'No. IT and information security teams play important roles, but employees, management, risk functions and leadership also influence cybersecurity. Effective cybersecurity requires shared responsibility with clearly defined accountability.' },
+    { q: 'What is Shadow AI?', a: 'Shadow AI generally refers to the use of AI tools or applications outside an organisation\'s approved technology and governance environment. It can create concerns around information security, privacy, compliance and organisational oversight.' },
+    { q: 'How can organisations turn cybersecurity awareness into action?', a: 'By connecting awareness activities to practical governance: identifying risks, assigning ownership, implementing controls, monitoring effectiveness, maintaining evidence, managing incidents and addressing identified weaknesses.' },
+    { q: 'How does ISO/IEC 27001 support cybersecurity?', a: 'ISO/IEC 27001 provides a structured Information Security Management System approach that helps organisations systematically manage information security risks and continually improve their information security environment.' },
   ],
 };
 
