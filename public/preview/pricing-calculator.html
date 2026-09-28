@@ -307,6 +307,18 @@
             </label>
             <div style="text-align:right;"><div style="font-size:11px;color:var(--mute);">Annual total</div><div class="mono" id="annual-total" style="font-size:18px;font-weight:700;"></div><div style="font-size:11px;color:var(--faint);">Excl. VAT</div></div>
           </div>
+
+          <div id="lockin-section" style="display:none;">
+            <div style="height:1px;background:var(--line);margin:14px 0;"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                <div id="lockin-track" tabindex="0" role="switch" aria-checked="false" style="width:38px;height:22px;border-radius:11px;padding:2px;cursor:pointer;background:rgba(120,170,200,0.28);transition:background .15s;"><div id="lockin-knob" style="width:18px;height:18px;border-radius:50%;background:var(--void);transition:transform .15s;"></div></div>
+                <div><div style="font-size:13px;font-weight:600;">3-year price certainty</div><div style="font-size:11px;color:var(--faint);">Increases capped at 5%/year for 3 years, vs our standard 7-8% annual increase</div></div>
+              </label>
+              <div style="text-align:right;"><div style="font-size:11px;color:var(--mute);">3-year total</div><div class="mono" id="lockin-total" style="font-size:18px;font-weight:700;"></div><div style="font-size:11px;color:var(--faint);">Excl. VAT</div></div>
+            </div>
+            <div id="lockin-detail" style="display:none;font-size:11px;color:var(--faint);margin-top:10px;line-height:1.7;"></div>
+          </div>
         </div>
 
         <div class="card" id="recent-quotes-card" style="display:none;">
@@ -585,10 +597,13 @@ const state = {
     xrmEnabled: false, xrmTenantAdmin: 0, xrmSalesUser: 0, xrmApprover: 0, xrmViewer: 0,
     complianceHub: false
   },
-  annual: false
+  annual: false,
+  lockin3yr: false
 };
 
 const uiState = { seatsOpen: false, modulesOpen: false };
+const STANDARD_ANNUAL_INCREASE = 0.075;
+const LOCKIN_ANNUAL_INCREASE = 0.05;
 
 function formatNum(v) {
   const parts = (Math.round((Number(v) || 0) * 100) / 100).toFixed(2).split('.');
@@ -629,13 +644,24 @@ function computeDerived() {
   const discountedMonthlyCur = listValueCur * (1 - discountPct/100);
   const annualTotalCur = state.annual ? discountedMonthlyCur*0.9*12 : discountedMonthlyCur*12;
 
+  const lockinActive = state.annual && state.lockin3yr;
+  const lockinYear1 = annualTotalCur;
+  const lockinYear2 = lockinYear1 * (1 + LOCKIN_ANNUAL_INCREASE);
+  const lockinYear3 = lockinYear2 * (1 + LOCKIN_ANNUAL_INCREASE);
+  const lockinThreeYearTotal = lockinYear1 + lockinYear2 + lockinYear3;
+  const standardYear2 = lockinYear1 * (1 + STANDARD_ANNUAL_INCREASE);
+  const standardYear3 = standardYear2 * (1 + STANDARD_ANNUAL_INCREASE);
+  const standardThreeYearTotal = lockinYear1 + standardYear2 + standardYear3;
+  const lockinSaving = standardThreeYearTotal - lockinThreeYearTotal;
+
   const isEnterprise = m.hkwDomains>0 || m.hkwUsers>0 || m.xlogicAdmin>0 || m.xlogicGovernance>0 || m.asgardEnabled || m.aiGovernance || s.luci>0;
   const isPlus = !isEnterprise && (effEnvirx>0 || effErm>0 || m.assurance>0 || maiaOn || m.complianceHub);
   const isStandard = !isEnterprise && !isPlus;
   const tier = isEnterprise ? 'Enterprise' : (isPlus ? 'Plus' : 'Standard');
 
   return { s, m, cur, th, effEnvirx, effErm, maiaOn, seatCur, moduleCur, listValueCur, discountPct,
-           discountedMonthlyCur, annualTotalCur, isStandard, isPlus, isEnterprise, tierFull: 'XGRC® ' + tier };
+           discountedMonthlyCur, annualTotalCur, isStandard, isPlus, isEnterprise, tierFull: 'XGRC® ' + tier,
+           lockinActive, lockinYear1, lockinYear2, lockinYear3, lockinThreeYearTotal, standardThreeYearTotal, lockinSaving };
 }
 
 function el(id) { return document.getElementById(id); }
@@ -760,6 +786,20 @@ function render() {
   el('annual-track').style.background = state.annual ? 'var(--cyan)' : 'rgba(120,170,200,0.28)';
   el('annual-track').setAttribute('aria-checked', String(state.annual));
   el('annual-knob').style.transform = state.annual ? 'translateX(16px)' : 'translateX(0px)';
+
+  el('lockin-section').style.display = state.annual ? 'block' : 'none';
+  el('lockin-track').style.background = state.lockin3yr ? 'var(--cyan)' : 'rgba(120,170,200,0.28)';
+  el('lockin-track').setAttribute('aria-checked', String(state.lockin3yr));
+  el('lockin-knob').style.transform = state.lockin3yr ? 'translateX(16px)' : 'translateX(0px)';
+  el('lockin-total').textContent = state.lockin3yr ? amountStr(d.lockinThreeYearTotal) : amountStr(d.annualTotalCur*3);
+  el('lockin-detail').style.display = state.lockin3yr ? 'block' : 'none';
+  if (state.lockin3yr) {
+    el('lockin-detail').innerHTML =
+      'Year 1: ' + amountStr(d.lockinYear1) + '  &middot;  ' +
+      'Year 2: ' + amountStr(d.lockinYear2) + ' (+5%)  &middot;  ' +
+      'Year 3: ' + amountStr(d.lockinYear3) + ' (+5%)' +
+      '<br>Estimated saving over 3 years vs a typical 7.5% annual increase: <span style="color:var(--green-hi);font-weight:600;">' + amountStr(d.lockinSaving) + '</span>';
+  }
 
   el('card-standard').classList.toggle('active', d.isStandard);
   el('card-plus').classList.toggle('active', d.isPlus);
@@ -975,7 +1015,8 @@ document.querySelectorAll('.preset-btn').forEach(btn => {
   });
 });
 
-el('annual-track').addEventListener('click', () => { state.annual = !state.annual; render(); });
+el('annual-track').addEventListener('click', () => { state.annual = !state.annual; if (!state.annual) state.lockin3yr = false; render(); });
+el('lockin-track').addEventListener('click', () => { state.lockin3yr = !state.lockin3yr; render(); });
 
 el('toggle-seats-breakdown').addEventListener('click', () => { uiState.seatsOpen = !uiState.seatsOpen; render(); });
 el('toggle-modules-breakdown').addEventListener('click', () => { uiState.modulesOpen = !uiState.modulesOpen; render(); });
@@ -1003,7 +1044,8 @@ function defaultState() {
       xrmEnabled: false, xrmTenantAdmin: 0, xrmSalesUser: 0, xrmApprover: 0, xrmViewer: 0,
       complianceHub: false
     },
-    annual: false
+    annual: false,
+    lockin3yr: false
   };
 }
 
@@ -1043,6 +1085,7 @@ function loadQuote(entry) {
   state.seats = Object.assign({ teamEnabled: false }, snap.seats);
   state.modules = Object.assign({ complianceHub: false }, snap.modules);
   state.annual = snap.annual;
+  state.lockin3yr = snap.lockin3yr || false;
   el('client-name').value = state.clientName;
   render();
   showToast('Loaded quote for ' + entry.name);
@@ -1182,6 +1225,17 @@ el('btn-download').addEventListener('click', () => {
   doc.text(state.annual ? 'Annual commitment (additional 10% discount applied)' : 'Annual total (no annual commitment)', 40, y); y += 16;
   doc.setFont('helvetica', 'bold'); doc.setFontSize(12);
   doc.text('Annual total', 40, y); doc.text(amountStr(d.annualTotalCur), 500, y, { align: 'right' });
+
+  if (d.lockinActive) {
+    y += 22;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(50, 60, 70);
+    doc.text('3-year price certainty: increases capped at 5%/year for 3 years', 40, y); y += 16;
+    doc.text('Year 1: ' + amountStr(d.lockinYear1), 40, y);
+    doc.text('Year 2: ' + amountStr(d.lockinYear2), 220, y);
+    doc.text('Year 3: ' + amountStr(d.lockinYear3), 400, y); y += 16;
+    doc.setFont('helvetica', 'bold');
+    doc.text('3-year total', 40, y); doc.text(amountStr(d.lockinThreeYearTotal), 500, y, { align: 'right' });
+  }
 
   y += 26;
   doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(140, 150, 160);
