@@ -1269,6 +1269,15 @@ export const articles = [
     image: 'cybersecurity-awareness-month-from-awareness-to-action.jpg',
     relatedSolutions: ['msxcyber', 'hakware'],
   },
+  {
+    slug: 'ai-agent-security-api-keys',
+    title: 'What Happens When an AI Agent Has Your Keys?',
+    excerpt: 'AI agents need access, not your real API keys. Learn how stolen keys and manipulated agents differ, how to build an access boundary the agent cannot rewrite, and how Asgard keeps credentials vaulted and scoped.',
+    category: 'Cyber',
+    date: '2026-10-06',
+    image: 'ai-agent-security-api-keys.jpg',
+    relatedSolutions: ['ai-governance', 'msxcyber'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1461,6 +1470,13 @@ export const articleFaqs = {
     { q: 'What is Shadow AI?', a: 'Shadow AI generally refers to the use of AI tools or applications outside an organisation\'s approved technology and governance environment. It can create concerns around information security, privacy, compliance and organisational oversight.' },
     { q: 'How can organisations turn cybersecurity awareness into action?', a: 'By connecting awareness activities to practical governance: identifying risks, assigning ownership, implementing controls, monitoring effectiveness, maintaining evidence, managing incidents and addressing identified weaknesses.' },
     { q: 'How does ISO/IEC 27001 support cybersecurity?', a: 'ISO/IEC 27001 provides a structured Information Security Management System approach that helps organisations systematically manage information security risks and continually improve their information security environment.' },
+  ],
+  'ai-agent-security-api-keys': [
+    { q: 'Can an attacker misuse an AI agent without stealing its API key?', a: 'Yes. A manipulated agent may use its existing permissions to perform an unauthorised action. Keeping credentials secret and restricting what the agent can do are separate, complementary controls.' },
+    { q: 'Is it safe to paste an API key into an AI chat?', a: 'No. Do not place production secrets in prompts, chat histories or model-visible instructions. Use approved integrations and managed secret handling, and treat an exposed key as a security event that follows your revocation and investigation process.' },
+    { q: 'Does read-only access remove the risk?', a: 'No. It limits changes, but the agent may still read sensitive information. The permitted records, recipients and output destinations also matter, so read-only access should be narrow enough for the approved task.' },
+    { q: 'Does MFA protect an API key after it has been issued?', a: 'Not by itself. MFA protects the relevant authentication steps, but an issued credential may be usable without another interactive challenge. Restrict its scope and lifetime, monitor its use and verify revocation behaviour.' },
+    { q: 'How does Asgard protect AI-agent access?', a: 'Asgard, the XGRC® AI agents platform, holds upstream API keys and OAuth tokens in an encrypted Vault, gives agents scoped Asgard keys, brokers managed tool calls through Bifröst and applies Heimdall filters. Central revocation and action logs support access control and investigation. The scope of each grant and the security of the broker still matter.' },
   ],
 };
 
