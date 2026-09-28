@@ -174,7 +174,7 @@ CONFIG.afterInit = function(ctx){
       var ragHexLocal = {green:'#2fe88a',amber:'#ffb648',red:'#ff5470'};
       var head = '<tr><th>Site</th>' + pillarCols.map(function(p){return '<th>'+p+'</th>';}).join('') + '</tr>';
       var rows = sites.map(function(s,si){
-        return '<tr><td>'+s+'</td>' + matrix[si].map(function(r){ return '<td><span class="rag-dot" style="background:'+ragHexLocal[r]+';"></span></td>'; }).join('') + '</tr>';
+        return '<tr><td>'+s+'</td>' + matrix[si].map(function(r, mi){ var lab = {green:'On target',amber:'Watch',red:'Breach'}[r], sym = {green:'✓',amber:'!',red:'✕'}[r]; return '<td><span class="rag-sym" style="background:'+ragHexLocal[r]+';" role="img" aria-label="'+s+', '+pillarCols[mi]+': '+lab+'" title="'+lab+'">'+sym+'</span></td>'; }).join('') + '</tr>';
       }).join('');
       document.getElementById('extra-section').innerHTML = '<div class="card"><h3 style="text-align:left;margin-bottom:4px;">Site × pillar status</h3><div class="hint" style="margin-bottom:10px;">Which pillar is failing, at which site</div><table class="matrix-table">'+head+rows+'</table></div>';
     

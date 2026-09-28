@@ -268,7 +268,7 @@ CONFIG.afterInit = function(ctx){
     '<tr><th>AI system</th><th>AI Governance classification</th><th>XLOGIC workflow</th><th>Asgard tier</th><th>Provider</th></tr>' +
     SYSTEMS.map(s => `<tr data-sid="${s.id}">
       <td style="font-weight:600;">${s.name}</td>
-      <td><span class="rag-dot" style="background:${ragHex[s.aiGovRag]};margin-right:6px;"></span>${s.aiGov}</td>
+      <td><span class="rag-sym" style="background:${ragHex[s.aiGovRag]};margin-right:8px;" role="img" aria-label="${{green:'On target',amber:'Watch',red:'Breach'}[s.aiGovRag]}" title="${{green:'On target',amber:'Watch',red:'Breach'}[s.aiGovRag]}">${{green:'✓',amber:'!',red:'✕'}[s.aiGovRag]}</span>${s.aiGov}</td>
       <td><span style="color:${xlogicColor[s.xlogic]};">${s.xlogic}</span></td>
       <td>${s.asgard === 'Not onboarded' ? '<span style="color:var(--faint);">Not onboarded</span>' : s.asgard}</td>
       <td style="color:var(--mute);">${s.provider}</td>

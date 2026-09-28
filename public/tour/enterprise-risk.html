@@ -4,11 +4,29 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>XGRC&reg; Enterprise Risk Intelligence</title>
+<title>Enterprise Risk Intelligence | XGRC® live dashboard tour</title>
+<meta name="description" content="Interactive demonstration of the XGRC® Enterprise Risk dashboard across nine industries. Every company and figure is fictitious.">
+<link rel="icon" href="/favicon.ico">
+<script>
+  (function () {
+    if (!['xgrcsoftware.com', 'www.xgrcsoftware.com'].includes(window.location.hostname)) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('consent', 'default', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+    gtag('js', new Date());
+    gtag('config', 'G-E8SHSDL5C4');
+    gtag('config', 'AW-744549022');
+    var tag = document.createElement('script'); tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-E8SHSDL5C4';
+    document.head.appendChild(tag);
+  })();
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="dash-shell.css?v=8">
+<link rel="stylesheet" href="tour-shell.css?v=9">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
 <style>
   body { overflow-x:hidden; }
@@ -27,14 +45,14 @@
   @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
   .ermnav-tabs { max-width:1400px; margin:0 auto; padding:0 28px 12px; display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; }
   .ermnav-tabs::-webkit-scrollbar { display:none; }
-  .ind-tab { font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.2px; padding:8px 14px; border-radius:9px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); white-space:nowrap; flex-shrink:0; }
-  .ind-tab.active { background:rgba(255,182,72,0.14); border-color:var(--amber); color:var(--amber-hi); }
+  .ind-tab { font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.2px; padding:7px 13px; border-radius:20px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); white-space:nowrap; flex-shrink:0; }
+  .ind-tab.active { background:rgba(48,226,244,0.12); border-color:var(--cyan); color:var(--cyan-hi); }
   .ermnav-controls { max-width:1400px; margin:0 auto; padding:12px 28px; display:flex; align-items:center; gap:32px; flex-wrap:wrap; border-top:1px solid var(--line); }
   .ctrl-group { display:flex; align-items:center; gap:12px; }
   .ctrl-label { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.9px; text-transform:uppercase; color:var(--faint); white-space:nowrap; }
   .ctrl-pills { display:flex; gap:6px; }
   .ctrl-pill { font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:6px 12px; border-radius:8px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); }
-  .ctrl-pill.active { border-color:var(--blue-hi); color:var(--blue-hi); background:rgba(127,212,239,0.08); }
+  .ctrl-pill.active { border-color:var(--cyan); color:var(--cyan-hi); background:rgba(48,226,244,0.10); }
   .consolidation-pill { font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:6px 13px; border-radius:20px; border:1px solid rgba(47,232,138,0.4); background:rgba(47,232,138,0.1); color:var(--green-hi); }
 
   .erm-main { position:relative; z-index:2; max-width:1400px; margin:0 auto; padding:30px 28px 60px; }
@@ -132,6 +150,32 @@
   .activity-dot { width:7px; height:7px; border-radius:50%; background:var(--cyan); margin-top:5px; flex-shrink:0; box-shadow:0 0 6px var(--cyan); }
   .activity-text { font-size:11.5px; color:var(--mute); line-height:1.5; }
   .activity-time { font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--faint); margin-top:2px; }
+
+  .view-toggle { display:flex; gap:4px; background:rgba(255,255,255,0.02); border:1px solid var(--line); border-radius:20px; padding:3px; flex-shrink:0; }
+  .vt { font-family:'JetBrains Mono',monospace; font-size:10px; padding:5px 11px; border-radius:16px; border:none; background:transparent; color:var(--mute); }
+  .vt.active { background:rgba(48,226,244,0.14); color:var(--cyan-hi); box-shadow:inset 0 0 0 1px rgba(48,226,244,0.4); }
+  .heatmap { display:grid; grid-template-columns:22px repeat(5, minmax(0,1fr)); gap:4px; margin-top:4px; }
+  .heatmap .ax { font-family:'JetBrains Mono',monospace; font-size:8.5px; color:var(--faint); display:flex; align-items:center; justify-content:center; text-align:center; }
+  .heatmap .ax.y { writing-mode:vertical-rl; transform:rotate(180deg); }
+  .heatmap .cell { aspect-ratio:1.6; min-height:30px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-family:'Outfit'; font-weight:800; font-size:15px; color:rgba(6,15,28,0.92); position:relative; }
+  .heatmap .cell.empty { color:transparent; }
+  .heatmap .z1 { background:rgba(47,232,138,0.30); } .heatmap .z2 { background:rgba(214,222,94,0.45); }
+  .heatmap .z3 { background:rgba(255,182,72,0.70); } .heatmap .z4 { background:rgba(255,84,112,0.82); }
+  .heatmap .cell.has { box-shadow:inset 0 0 0 2px rgba(255,255,255,0.55); }
+  .heatmap .xl { grid-column:2 / span 5; font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--faint); text-align:center; letter-spacing:0.5px; text-transform:uppercase; margin-top:2px; }
+  .heat-legend { display:flex; flex-wrap:wrap; gap:12px; margin-top:12px; font-size:10.5px; color:var(--mute); }
+  .heat-legend i { display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+  .heat-legend .z1 { background:rgba(47,232,138,0.30); } .heat-legend .z2 { background:rgba(214,222,94,0.45); } .heat-legend .z3 { background:rgba(255,182,72,0.70); } .heat-legend .z4 { background:rgba(255,84,112,0.82); }
+  @media (max-width:720px) {
+    .ermnav-top, .ermnav-tabs, .ermnav-controls, .erm-main { padding-left:16px; padding-right:16px; }
+    .ermnav { position:relative; }
+    .ermnav-context { margin-left:0; width:100%; justify-content:space-between; white-space:normal; }
+    .ermnav-controls { gap:14px; }
+    .board-decision { max-width:100%; flex:1 1 100%; flex-shrink:1; }
+    .board-grid { grid-template-columns:1fr !important; }
+    .erm-card { min-width:0; }
+    .surface-wrap canvas, #assurance-svg { max-width:100%; height:auto; }
+  }
 </style>
 </head>
 <body>
@@ -140,16 +184,18 @@
 
 <header class="ermnav">
   <div class="ermnav-top">
-    <div class="ermnav-brand">
-      <img src="/assets/logos/brand/xgrc-icon-white.png" alt="" aria-hidden="true" class="brand-icon">
-      <span class="erm-badge">ERM &middot; Enterprise Risk Intelligence</span>
-      <a href="dashboards.html" class="erm-crumb">&larr; Dashboard Gallery</a>
+    <div class="brand">
+      <a class="home" href="/" aria-label="XGRC® Software home"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" class="brand-icon"></a>
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">Enterprise Risk Intelligence</div>
+        <div class="crumb"><a href="/tour/">&larr; All dashboards</a> &middot; <a href="/erm/">About ERM</a></div>
+      </div>
     </div>
     <div class="ermnav-persona" id="persona-toggle">
       <button class="persona-btn active" data-persona="0">Executive &middot; C-Suite</button>
       <button class="persona-btn" data-persona="1">Operations &middot; Management</button>
     </div>
-    <div class="ermnav-context"><span class="live-dot"></span><span id="ctx-company"></span></div>
+    <div class="ermnav-context"><span id="ctx-company"></span><a class="btn-go" href="/demo/">Book a demo</a></div>
   </div>
   <div class="ermnav-tabs" id="industry-tabs"></div>
   <div class="ermnav-controls">
@@ -179,11 +225,16 @@
   <div class="board-grid">
     <div class="erm-card" id="card-surface">
       <div class="erm-card-head">
-        <div><h3>Risk Landscape</h3><div class="cs">Dynamic 3D risk-density surface</div></div>
-        <span class="erm-pill">Critical Risks &#9662;</span>
+        <div><h3>Risk Landscape</h3><div class="cs" id="landscape-cs">Residual risk by likelihood and impact</div></div>
+        <div class="view-toggle" role="group" aria-label="Landscape view">
+          <button type="button" class="vt active" data-view="heat" aria-pressed="true">Heat map</button>
+          <button type="button" class="vt" data-view="surface" aria-pressed="false">3D view</button>
+        </div>
       </div>
-      <div class="surface-wrap"><canvas id="surface-canvas" width="560" height="220"></canvas></div>
-      <div class="surface-legend"><span class="lo">LOW</span><div class="bar"></div><span class="hi">CRITICAL</span></div>
+      <div id="heat-view"><div class="heatmap" id="heatmap" role="table" aria-label="Risk heat map"></div>
+        <div class="heat-legend"><span><i class="z1"></i>Low</span><span><i class="z2"></i>Moderate</span><span><i class="z3"></i>Above appetite (10+)</span><span><i class="z4"></i>Critical (15+)</span></div></div>
+      <div id="surface-view" hidden><div class="surface-wrap"><canvas id="surface-canvas" width="560" height="220"></canvas></div>
+      <div class="surface-legend"><span class="lo">LOW</span><div class="bar"></div><span class="hi">CRITICAL</span></div></div>
       <div class="surface-caption" id="surface-caption"></div>
     </div>
 
@@ -239,6 +290,16 @@
 
 </main>
 
+<section class="tour-cta" aria-label="Next step">
+  <div class="tour-cta-inner">
+    <div>
+      <h2>Put your own risk register behind this view</h2>
+      <p>Enterprise, operational and project risk aligned to ISO 31000 and COSO, with appetite, KRIs and combined assurance in one place. This dashboard uses fictitious companies; a demo uses your data.</p>
+    </div>
+    <div class="acts"><a class="btn-go" href="/demo/">See it with your data</a><a class="btn" href="/erm/">About ERM</a><a class="btn" href="/tour/">All dashboards</a></div>
+  </div>
+</section>
+
 <div id="site-footer">
   <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
   <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of enterprise risk appetite, treatment velocity, assurance coverage and board-level escalation, per industry, in one screen.</div>
@@ -248,9 +309,9 @@
 const RAG = { green:'#2fe88a', greenHi:'#5cffa8', amber:'#ffb648', amberHi:'#ffd18a', red:'#ff5470', redHi:'#ff8fa3', cyan:'#30e2f4', cyanHi:'#7af3ff', blueHi:'#7fd4ef', faint:'#56697a', mute:'#8499aa' };
 
 const INDUSTRIES = [
-  { id:'mining', tab:'Mining & Infrastructure', company:'Meridian Industrial Group', ticker:'JSE: MIG', sector:'Mining & Metals', framework:'ISO 31000 / COSO ERM',
+  { id:'mining', tab:'Mining & Infrastructure', company:'Meridian Industrial Group', sector:'Mining & Metals', framework:'ISO 31000 / COSO ERM',
     appetite:13.00, residualTrend:[14.18,12.90,11.93],
-    risksOnRegister:10, aboveAppetite:8, kriBreach:{n:4,of:8}, criticalEmerging:{critical:4,emerging:7}, assurance:82, assuranceDelta:9.3,
+    risksOnRegister:10, aboveAppetite:4, kriBreach:{n:4,of:8}, criticalEmerging:{critical:4,emerging:7}, assurance:82, assuranceDelta:9.3,
     controls:{eff:74,iss:16,def:10},
     topRisks:[
       {name:'Commodity Price Volatility',cat:'Financial',sev:'CRITICAL'},
@@ -263,9 +324,9 @@ const INDUSTRIES = [
     businessUnits:['Northern Cape Operations','Bushveld Complex'],
     ops:{overdueReviews:6,openActions:14,controlCoverage:88,incidentsQtr:5,escalations:4,avgTreatDays:9.4}
   },
-  { id:'manufacturing', tab:'Manufacturing & Industrial', company:'Atlas Precision Manufacturing', ticker:'JSE: APM', sector:'Manufacturing & Industrial', framework:'ISO 31000 / COSO ERM',
+  { id:'manufacturing', tab:'Manufacturing & Industrial', company:'Atlas Precision Manufacturing', sector:'Manufacturing & Industrial', framework:'ISO 31000 / COSO ERM',
     appetite:8.50, residualTrend:[9.80,8.02,7.42],
-    risksOnRegister:9, aboveAppetite:5, kriBreach:{n:3,of:9}, criticalEmerging:{critical:3,emerging:6}, assurance:78, assuranceDelta:6.1,
+    risksOnRegister:9, aboveAppetite:4, kriBreach:{n:3,of:9}, criticalEmerging:{critical:3,emerging:6}, assurance:78, assuranceDelta:6.1,
     controls:{eff:71,iss:19,def:10},
     topRisks:[
       {name:'Supply Chain Disruption',cat:'Operational',sev:'CRITICAL'},
@@ -278,7 +339,7 @@ const INDUSTRIES = [
     businessUnits:['Gauteng Fabrication Plant','Coastal Assembly Division'],
     ops:{overdueReviews:4,openActions:11,controlCoverage:84,incidentsQtr:3,escalations:2,avgTreatDays:7.1}
   },
-  { id:'holding', tab:'Holding & Investment Groups', company:'Cornerstone Capital Holdings', ticker:'JSE: CCH', sector:'Diversified Holdings', framework:'ISO 31000 / King IV / COSO ERM',
+  { id:'holding', tab:'Holding & Investment Groups', company:'Cornerstone Capital Holdings', sector:'Diversified Holdings', framework:'ISO 31000 / King IV / COSO ERM',
     appetite:22.00, residualTrend:[19.50,16.91,15.64],
     risksOnRegister:14, aboveAppetite:6, kriBreach:{n:2,of:10}, criticalEmerging:{critical:3,emerging:9}, assurance:88, assuranceDelta:4.8,
     controls:{eff:80,iss:13,def:7},
@@ -293,9 +354,9 @@ const INDUSTRIES = [
     businessUnits:['Financial Services Cluster','Industrial Holdings Cluster'],
     ops:{overdueReviews:3,openActions:9,controlCoverage:91,incidentsQtr:1,escalations:2,avgTreatDays:6.0}
   },
-  { id:'pharma', tab:'Facilities, Pharma & Waste', company:'Vireo Pharma & Facilities Group', ticker:'JSE: VPF', sector:'Pharmaceuticals & Facilities', framework:'ISO 31000 / ICH Q9 / COSO ERM',
+  { id:'pharma', tab:'Facilities, Pharma & Waste', company:'Vireo Pharma & Facilities Group', sector:'Pharmaceuticals & Facilities', framework:'ISO 31000 / ICH Q9 / COSO ERM',
     appetite:6.20, residualTrend:[7.10,6.03,5.58],
-    risksOnRegister:11, aboveAppetite:7, kriBreach:{n:5,of:9}, criticalEmerging:{critical:5,emerging:6}, assurance:76, assuranceDelta:7.5,
+    risksOnRegister:11, aboveAppetite:5, kriBreach:{n:5,of:9}, criticalEmerging:{critical:5,emerging:6}, assurance:76, assuranceDelta:7.5,
     controls:{eff:69,iss:20,def:11},
     topRisks:[
       {name:'GMP Compliance Breach',cat:'Regulatory',sev:'CRITICAL'},
@@ -308,9 +369,9 @@ const INDUSTRIES = [
     businessUnits:['Sterile Manufacturing Site','Waste Treatment Division'],
     ops:{overdueReviews:7,openActions:16,controlCoverage:82,incidentsQtr:4,escalations:5,avgTreatDays:10.2}
   },
-  { id:'food', tab:'Food & Agriculture', company:'Harvestland Agri Group', ticker:'JSE: HAG', sector:'Food & Agriculture', framework:'ISO 31000 / GFSI / COSO ERM',
+  { id:'food', tab:'Food & Agriculture', company:'Harvestland Agri Group', sector:'Food & Agriculture', framework:'ISO 31000 / GFSI / COSO ERM',
     appetite:5.40, residualTrend:[6.30,5.36,4.96],
-    risksOnRegister:10, aboveAppetite:6, kriBreach:{n:3,of:8}, criticalEmerging:{critical:3,emerging:8}, assurance:80, assuranceDelta:5.9,
+    risksOnRegister:10, aboveAppetite:4, kriBreach:{n:3,of:8}, criticalEmerging:{critical:3,emerging:8}, assurance:80, assuranceDelta:5.9,
     controls:{eff:73,iss:17,def:10},
     topRisks:[
       {name:'Climate & Drought Exposure',cat:'ESG & Climate',sev:'CRITICAL'},
@@ -323,9 +384,9 @@ const INDUSTRIES = [
     businessUnits:['Western Cape Crop Estates','Free State Livestock Division'],
     ops:{overdueReviews:5,openActions:12,controlCoverage:86,incidentsQtr:3,escalations:3,avgTreatDays:8.0}
   },
-  { id:'wine', tab:'Wine & Fruit Production', company:'Cape Orchard Estates', ticker:'JSE: COE', sector:'Wine & Fruit Production', framework:'ISO 31000 / GFSI / COSO ERM',
+  { id:'wine', tab:'Wine & Fruit Production', company:'Cape Orchard Estates', sector:'Wine & Fruit Production', framework:'ISO 31000 / GFSI / COSO ERM',
     appetite:3.10, residualTrend:[3.60,3.07,2.84],
-    risksOnRegister:8, aboveAppetite:4, kriBreach:{n:2,of:7}, criticalEmerging:{critical:2,emerging:5}, assurance:84, assuranceDelta:3.7,
+    risksOnRegister:8, aboveAppetite:3, kriBreach:{n:2,of:7}, criticalEmerging:{critical:2,emerging:5}, assurance:84, assuranceDelta:3.7,
     controls:{eff:77,iss:14,def:9},
     topRisks:[
       {name:'Frost & Extreme Weather Damage',cat:'ESG & Climate',sev:'CRITICAL'},
@@ -338,9 +399,9 @@ const INDUSTRIES = [
     businessUnits:['Stellenbosch Estate Cluster','Citrus Export Division'],
     ops:{overdueReviews:2,openActions:7,controlCoverage:89,incidentsQtr:2,escalations:1,avgTreatDays:5.4}
   },
-  { id:'logistics', tab:'Logistics & Warehousing', company:'Transkaroo Logistics Group', ticker:'JSE: TLG', sector:'Logistics & Distribution', framework:'ISO 31000 / COSO ERM',
+  { id:'logistics', tab:'Logistics & Warehousing', company:'Transkaroo Logistics Group', sector:'Logistics & Distribution', framework:'ISO 31000 / COSO ERM',
     appetite:4.80, residualTrend:[5.60,4.67,4.32],
-    risksOnRegister:9, aboveAppetite:5, kriBreach:{n:4,of:8}, criticalEmerging:{critical:3,emerging:6}, assurance:79, assuranceDelta:6.6,
+    risksOnRegister:9, aboveAppetite:4, kriBreach:{n:4,of:8}, criticalEmerging:{critical:3,emerging:6}, assurance:79, assuranceDelta:6.6,
     controls:{eff:72,iss:18,def:10},
     topRisks:[
       {name:'Fleet & Route Security Incidents',cat:'Operational',sev:'CRITICAL'},
@@ -353,9 +414,9 @@ const INDUSTRIES = [
     businessUnits:['National Freight Corridor','Cross-Border Division'],
     ops:{overdueReviews:4,openActions:13,controlCoverage:85,incidentsQtr:4,escalations:3,avgTreatDays:7.8}
   },
-  { id:'oilgas', tab:'Lubricants, Oil & Gas', company:'Karoo Energy & Lubricants', ticker:'JSE: KEL', sector:'Oil, Gas & Lubricants', framework:'ISO 31000 / COSO ERM',
+  { id:'oilgas', tab:'Lubricants, Oil & Gas', company:'Karoo Energy & Lubricants', sector:'Oil, Gas & Lubricants', framework:'ISO 31000 / COSO ERM',
     appetite:9.60, residualTrend:[10.80,9.55,8.83],
-    risksOnRegister:12, aboveAppetite:7, kriBreach:{n:5,of:10}, criticalEmerging:{critical:5,emerging:7}, assurance:81, assuranceDelta:8.2,
+    risksOnRegister:12, aboveAppetite:5, kriBreach:{n:5,of:10}, criticalEmerging:{critical:5,emerging:7}, assurance:81, assuranceDelta:8.2,
     controls:{eff:75,iss:15,def:10},
     topRisks:[
       {name:'Process Safety & Major Incident Risk',cat:'HSE',sev:'CRITICAL'},
@@ -368,9 +429,9 @@ const INDUSTRIES = [
     businessUnits:['Coastal Refining Complex','Inland Distribution Network'],
     ops:{overdueReviews:6,openActions:15,controlCoverage:87,incidentsQtr:3,escalations:4,avgTreatDays:9.0}
   },
-  { id:'tech', tab:'Science, IT & Telecoms', company:'Nexora Technology Group', ticker:'JSE: NXT', sector:'Science, IT & Telecoms', framework:'ISO 31000 / NIST CSF / COSO ERM',
+  { id:'tech', tab:'Science, IT & Telecoms', company:'Nexora Technology Group', sector:'Science, IT & Telecoms', framework:'ISO 31000 / NIST CSF / COSO ERM',
     appetite:4.20, residualTrend:[4.60,3.30,3.05],
-    risksOnRegister:9, aboveAppetite:3, kriBreach:{n:2,of:9}, criticalEmerging:{critical:4,emerging:9}, assurance:86, assuranceDelta:5.0,
+    risksOnRegister:9, aboveAppetite:3, kriBreach:{n:2,of:9}, criticalEmerging:{critical:2,emerging:9}, assurance:86, assuranceDelta:5.0,
     controls:{eff:79,iss:14,def:7},
     topRisks:[
       {name:'Cyber Ransomware & Data Breach',cat:'Cyber',sev:'CRITICAL'},
@@ -424,19 +485,59 @@ function currentData(){
   const prevUtil = Math.round((prevResidual/appetite)*100);
   const delta2 = round1(((util-prevUtil)/prevUtil)*100);
   return {
-    id:d.id, company:d.company, ticker:d.ticker, sector:d.sector, framework:d.framework,
+    id:d.id, company:d.company, sector:d.sector, framework:d.framework,
     residual, appetite, util, headroom: appetite-residual, delta1, delta2,
     risksOnRegister: Math.max(1,Math.round(d.risksOnRegister*mult)),
-    aboveAppetite: Math.max(0,Math.round(d.aboveAppetite*mult)),
+    aboveAppetite: Math.min(Math.max(0,Math.round(d.aboveAppetite*mult)), Math.max(1,Math.round(d.risksOnRegister*mult))),
     kriBreach: { n: Math.max(0,Math.round(d.kriBreach.n*mult)), of: Math.max(1,Math.round(d.kriBreach.of*mult)) },
-    criticalEmerging: { critical: Math.max(0,Math.round(d.criticalEmerging.critical*mult)), emerging: Math.max(0,Math.round(d.criticalEmerging.emerging*mult)) },
+    criticalEmerging: { critical: Math.min(Math.max(0,Math.round(d.criticalEmerging.critical*mult)), Math.max(0,Math.round(d.aboveAppetite*mult))), emerging: Math.max(0,Math.round(d.criticalEmerging.emerging*mult)) },
     assurance: d.assurance, assuranceDelta: d.assuranceDelta,
     controls: d.controls,
-    topRisks: d.topRisks, peakRisks: d.peakRisks,
+    // top-four severities follow the reconciled critical count, so the ranking never contradicts the tiles
+    topRisks: d.topRisks.map((r,i)=>Object.assign({}, r, { sev: i < Math.min(Math.max(0,Math.round(d.criticalEmerging.critical*mult)), Math.max(0,Math.round(d.aboveAppetite*mult))) ? 'CRITICAL' : 'HIGH' })), peakRisks: d.peakRisks,
     sourceFlows: d.sourceFlows, businessUnits: d.businessUnits,
     ops: d.ops, residualTrend: d.residualTrend, appetiteBase: d.appetite
   };
 }
+
+
+/* ---------- 5x5 likelihood x impact heat map ----------
+   Places every register risk in a cell so the zones reconcile with the tiles:
+   critical risks score 15+, other above-appetite risks score 10-14, the rest below 10. */
+const HEAT_CELLS = {
+  critical: [[4,4],[5,4],[4,5],[5,3],[3,5],[5,5]],
+  above:    [[4,3],[3,4],[5,2],[2,5]],
+  below:    [[3,3],[3,2],[2,3],[4,2],[2,4],[2,2],[3,1],[1,3],[4,1],[1,4],[2,1],[1,2],[1,1],[5,1],[1,5]]
+};
+function zoneOf(l,i){ const sc=l*i; return sc>=15?'z4':sc>=10?'z3':sc>=5?'z2':'z1'; }
+function renderHeatmap(d){
+  const counts = {};
+  const place = (list, n) => { for (let k=0;k<n;k++){ const c=list[k % list.length]; const key=c[0]+'-'+c[1]; counts[key]=(counts[key]||0)+1; } };
+  const crit = d.criticalEmerging.critical, above = d.aboveAppetite, reg = d.risksOnRegister;
+  place(HEAT_CELLS.critical, crit);
+  place(HEAT_CELLS.above, Math.max(0, above - crit));
+  place(HEAT_CELLS.below, Math.max(0, reg - above));
+  const L = ['Almost certain','Likely','Possible','Unlikely','Rare'];
+  let html = '';
+  for (let l=5;l>=1;l--){
+    html += `<div class="ax y" title="Likelihood: ${L[5-l]}">L${l}</div>`;
+    for (let i=1;i<=5;i++){
+      const n = counts[l+'-'+i]||0, z = zoneOf(l,i);
+      const label = `Likelihood ${l}, impact ${i}, score ${l*i}: ${n} risk${n===1?'':'s'}`;
+      html += `<div class="cell ${z} ${n?'has':'empty'}" role="cell" aria-label="${label}" title="${label}">${n||'0'}</div>`;
+    }
+  }
+  html += `<div></div>` + [1,2,3,4,5].map(i=>`<div class="ax">I${i}</div>`).join('');
+  html += `<div class="xl">Impact &rarr; &nbsp;·&nbsp; Likelihood &uarr; &nbsp;·&nbsp; ${reg} risks on register</div>`;
+  document.getElementById('heatmap').innerHTML = html;
+}
+document.querySelectorAll('.vt').forEach(btn => btn.addEventListener('click', () => {
+  const v = btn.dataset.view;
+  document.querySelectorAll('.vt').forEach(b => { const on = b === btn; b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on)); });
+  document.getElementById('heat-view').hidden = v !== 'heat';
+  document.getElementById('surface-view').hidden = v !== 'surface';
+  document.getElementById('landscape-cs').textContent = v === 'heat' ? 'Residual risk by likelihood and impact' : 'Illustrative 3D density of the same register';
+}));
 
 /* ---------- Isometric risk-density surface ---------- */
 function heightAt(u,v,factor){
@@ -602,7 +703,7 @@ function render(){
   const d = currentData();
   const persona = state.persona;
 
-  document.getElementById('ctx-company').textContent = `${d.company} · ${d.ticker}`;
+  document.getElementById('ctx-company').textContent = `${d.company} (fictitious)`;
   document.querySelectorAll('.ind-tab').forEach(el=>el.classList.toggle('active', parseInt(el.dataset.i)===state.industry));
   document.querySelectorAll('.ctrl-pill').forEach(el=>el.classList.toggle('active', parseInt(el.dataset.y)===state.year));
   document.getElementById('bu-pill').textContent = state.bu===0 ? 'Group · All Business Units' : d.businessUnits[state.bu-1];
@@ -611,7 +712,7 @@ function render(){
 
   const tolerance = d.util < 70 ? 'well within board tolerance' : d.util < 100 ? 'within board tolerance' : 'above board tolerance and requires escalation';
   document.getElementById('board-decision').innerHTML = persona===0
-    ? `<b>Board decision:</b> residual exposure ${fmtBn(d.residual)} at ${d.util}% of appetite, ${tolerance}. Greatest single risk: <b>${d.peakRisks[0]}</b>.`
+    ? `<b>Board decision:</b> residual exposure ${fmtBn(d.residual)} at ${d.util}% of appetite, ${tolerance}. Highest-rated risk: <b>${d.topRisks[0].name}</b>.`
     : `<b>Action queue:</b> ${d.ops.openActions} treatment actions open, ${d.ops.overdueReviews} risk reviews overdue, ${d.ops.escalations} risks escalated to EXCO this period.`;
 
   const band = document.getElementById('kpi-band');
@@ -621,7 +722,7 @@ function render(){
       <div class="kpi-tile"><div class="lbl">Risk Appetite Utilisation</div><div class="val">${d.util}%</div><div class="sub">appetite ${fmtBn(d.appetite)}</div><span class="kpi-chip ${d.delta2<=0?'green':'red'}">${d.delta2<=0?'↓':'↑'} ${Math.abs(d.delta2)}%</span></div>
       <div class="kpi-tile"><div class="lbl">Risks Above Appetite</div><div class="val">${d.aboveAppetite}</div><div class="sub">of ${d.risksOnRegister} enterprise risks</div><span class="kpi-chip red">${d.criticalEmerging.critical} critical</span></div>
       <div class="kpi-tile"><div class="lbl">KRIs in Breach</div><div class="val">${d.kriBreach.n}</div><div class="sub">of ${d.kriBreach.of} key indicators</div><span class="kpi-chip neutral">tolerance</span></div>
-      <div class="kpi-tile"><div class="lbl">Critical &amp; Emerging</div><div class="val">${d.criticalEmerging.critical+d.criticalEmerging.emerging}</div><div class="sub">${d.criticalEmerging.critical} critical · ${d.criticalEmerging.emerging} accelerating</div><span class="kpi-chip amber">velocity ↑</span></div>
+      <div class="kpi-tile"><div class="lbl">Critical Risks</div><div class="val">${d.criticalEmerging.critical}</div><div class="sub">plus ${d.criticalEmerging.emerging} emerging on the watchling</div><span class="kpi-chip amber">velocity ↑</span></div>
       <div class="kpi-tile"><div class="lbl">Combined Assurance</div><div class="val">${d.assurance}%</div><div class="sub">three-lines coverage</div><span class="kpi-chip green">↑ ${d.assuranceDelta}%</span></div>
     `;
   } else {
@@ -636,9 +737,10 @@ function render(){
     `;
   }
 
+  renderHeatmap(d);
   const factor = Math.max(0.6, Math.min(1.15, d.aboveAppetite/d.risksOnRegister + 0.3));
   drawSurface(document.getElementById('surface-canvas'), factor, [{u:0.72,v:0.68},{u:0.58,v:0.86}]);
-  document.getElementById('surface-caption').innerHTML = `<span class="dotc"></span>Peak density: <b style="color:var(--ink)">${d.peakRisks[0]}</b>, <b style="color:var(--ink)">${d.peakRisks[1]}</b>`;
+  document.getElementById('surface-caption').innerHTML = `<span class="dotc"></span>Highest rated: <b style="color:var(--ink)">${d.topRisks[0].name}</b>, <b style="color:var(--ink)">${d.topRisks[1].name}</b>. Emerging watchlist: <b style="color:var(--ink)">${d.peakRisks[0]}</b>.`;
 
   document.getElementById('gauge-wrap').innerHTML = buildGauge(d.util);
   document.getElementById('appetite-stats').innerHTML = `
@@ -666,7 +768,7 @@ function render(){
   document.getElementById('profile-tiles').innerHTML = `
     <div class="profile-tile"><div class="v orange">${d.risksOnRegister}</div><div class="l">Risks on Register</div></div>
     <div class="profile-tile"><div class="v orange">${d.aboveAppetite}</div><div class="l">Above Appetite</div></div>
-    <div class="profile-tile"><div class="v orange">${d.criticalEmerging.emerging}</div><div class="l">Emerging (&uarr; velocity)</div></div>
+    <div class="profile-tile"><div class="v orange">${d.criticalEmerging.emerging}</div><div class="l">Emerging (watchlist)</div></div>
     <div class="profile-tile"><div class="v green">${d.assurance}%</div><div class="l">Assurance Coverage</div></div>
   `;
 

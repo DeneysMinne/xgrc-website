@@ -292,8 +292,11 @@ function init(CONFIG){
 
     doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(10,20,35);
     doc.text('Where leadership should focus', 40, y); y += 18;
+    // jsPDF's built-in Helvetica only covers Windows-1252: swap symbols it cannot draw.
+    const pdfSafe = t => String(t).replace(/≤/g,'at most ').replace(/≥/g,'at least ').replace(/−/g,'-').replace(/×/g,'x').replace(/÷/g,'/').replace(/→/g,'->').replace(/\s+/g,' ').trim();
     EXC.forEach(e=>{
-      const body = `${e.kpi.name}: ${e.kpi.valueLabel} against a target of ${e.kpi.target}. Owner ${e.kpi.owner}, raised ${fmtDate(e.raisedDate)} (${e.ageDays} days open), ${e.status.toLowerCase()}.`;
+      const target = e.kpi.target === 'Monitor' ? 'monitored, with no fixed target' : 'against a target of ' + e.kpi.target;
+      const body = pdfSafe(`${e.kpi.name}: ${e.kpi.valueLabel}, ${target}. Owner ${e.kpi.owner}. Raised ${fmtDate(e.raisedDate)}, ${e.ageDays} days ago. Status: ${e.status.toLowerCase()}.`);
       doc.setFontSize(9.5);
       const lines = doc.splitTextToSize(body, W - 95 - 40);
       need(lines.length * 12 + 6);
@@ -308,9 +311,9 @@ function init(CONFIG){
     for (let i = 1; i <= pages; i++){
       doc.setPage(i);
       const canFade = typeof doc.GState === 'function' && typeof doc.setGState === 'function';
-      if (canFade) doc.setGState(new doc.GState({ opacity: 0.07 }));
+      if (canFade) doc.setGState(new doc.GState({ opacity: 0.045 }));
       doc.setFont('helvetica','bold'); doc.setFontSize(54); doc.setTextColor(canFade ? 10 : 236, canFade ? 20 : 239, canFade ? 35 : 243);
-      doc.text('DEMONSTRATION DATA', W/2, H/2, { align:'center', angle:35 });
+      doc.text('DEMONSTRATION DATA', W/2 - 10, H/2 + 150, { align:'center', angle:35 });
       if (canFade) doc.setGState(new doc.GState({ opacity: 1 }));
       doc.setFont('helvetica','normal'); doc.setFontSize(8.5); doc.setTextColor(120,130,145);
       doc.text(`XGRC® demonstration dashboard. Fictitious data, not a real organisation. xgrcsoftware.com/tour  |  Page ${i} of ${pages}`, 40, H - 32);
