@@ -42,6 +42,11 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+/* The `hidden` attribute must always win. Component rules like
+   `.demo-form { display: flex }` otherwise override it, which is how every
+   form stayed on screen after a successful submit (spinner still turning,
+   the thank-you card pushed below it), so people submitted again. */
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 html.no-smooth-scroll { scroll-behavior: auto; }
 [id] { scroll-margin-top: 90px; }

@@ -58,6 +58,21 @@ const FORM_ENDPOINT = "/api/demo";
           </div>
 
           <div class="field">
+            <label for="heardAbout">How did you hear about us? <span class="opt">(optional)</span></label>
+            <select id="heardAbout" name="heardAbout">
+              <option value="">Select…</option>
+              <option>Google search</option>
+              <option>Google ad</option>
+              <option>LinkedIn</option>
+              <option>Referral or word of mouth</option>
+              <option>Strategix or a partner</option>
+              <option>Event or conference</option>
+              <option>AI assistant (e.g. ChatGPT)</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
             <label for="message">What are you trying to solve? <span class="opt">(optional)</span></label>
             <textarea id="message" name="message" rows="4" placeholder="e.g. We need to consolidate our SHEQ and audit processes across 12 sites..."></textarea>
           </div>
@@ -190,7 +205,7 @@ const FORM_ENDPOINT = "/api/demo";
   .req { color: var(--cyan); }
   .opt { color: var(--faint); font-weight: 400; font-size: 12px; }
 
-  input, textarea {
+  input, textarea, select {
     width: 100%;
     background: rgba(255, 255, 255, 0.035);
     border: 1px solid var(--line);
@@ -204,7 +219,9 @@ const FORM_ENDPOINT = "/api/demo";
     resize: vertical;
   }
   input::placeholder, textarea::placeholder { color: var(--faint); }
-  input:focus, textarea:focus {
+  select { cursor: pointer; }
+  select option { background: var(--bg, #0a1220); color: var(--ink); }
+  input:focus, textarea:focus, select:focus {
     border-color: var(--cyan);
     background: rgba(48, 226, 244, 0.04);
   }
@@ -361,12 +378,7 @@ const FORM_ENDPOINT = "/api/demo";
       const body = Object.fromEntries(fd.entries());
       const ga = (document.cookie.match(/_ga=GA\d\.\d\.(\d+\.\d+)/) || [])[1];
       if (ga) body._ga_client_id = ga;
-      const gclid = (document.cookie.match(/xgrc_gclid=([^;]+)/) || [])[1];
-      if (gclid) body._gclid = decodeURIComponent(gclid);
-      for (const key of ['utm_source', 'utm_medium', 'utm_campaign']) {
-        const value = (document.cookie.match(new RegExp(`xgrc_${key}=([^;]+)`)) || [])[1];
-        if (value) body[`_${key}`] = decodeURIComponent(value);
-      }
+      Object.assign(body, window.xgrcAttribution?.() || {});
       body._elapsed_ms = Date.now() - _loadT;
       const res  = await fetch(FORM_ENDPOINT, {
         method: 'POST',
@@ -377,6 +389,7 @@ const FORM_ENDPOINT = "/api/demo";
       if (res.ok) {
         form.hidden = true;
         success.hidden = false;
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
         window.gtag?.('event', 'conversion', { send_to: 'AW-744549022/kcZiCJvVi90cEJ7Vg-MC' });
       } else {
         throw new Error('non-2xx');

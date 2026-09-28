@@ -358,6 +358,7 @@ const schema = {
           _download_url: window.location.origin + pdfPath,
           _source_page: pageUrl,
           _ga_client_id: (document.cookie.match(/_ga=GA\d\.\d\.(\d+\.\d+)/) || [])[1] || '',
+          ...(window.xgrcAttribution?.() || {}),
           _hp: (data.get('_hp') || '').toString(),
           _elapsed_ms: Date.now() - _loadT,
         }),

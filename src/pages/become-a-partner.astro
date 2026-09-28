@@ -90,6 +90,21 @@ const solutions = ['SHEQX®', 'MSX®', 'MSXCyber®', 'ENVIRX®', 'ERM', 'ESG', '
           </div>
 
           <div class="field">
+            <label for="heardAbout">How did you hear about us? <span class="opt">(optional)</span></label>
+            <select id="heardAbout" name="heardAbout">
+              <option value="">Select…</option>
+              <option>Google search</option>
+              <option>Google ad</option>
+              <option>LinkedIn</option>
+              <option>Referral or word of mouth</option>
+              <option>Strategix or a partner</option>
+              <option>Event or conference</option>
+              <option>AI assistant (e.g. ChatGPT)</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
             <label for="message">Tell us about your business <span class="opt">(optional)</span></label>
             <textarea id="message" name="message" rows="4" placeholder="e.g. We're a GRC consultancy serving mining and manufacturing clients across Southern Africa and want to add a platform to our offering."></textarea>
           </div>
@@ -283,6 +298,8 @@ const solutions = ['SHEQX®', 'MSX®', 'MSXCyber®', 'ENVIRX®', 'ERM', 'ESG', '
         _hp: fd.get('_hp') || '',
         _elapsed_ms: Date.now() - _loadT,
         ...(ga ? { _ga_client_id: ga } : {}),
+        heardAbout: fd.get('heardAbout') || '',
+        ...(window.xgrcAttribution?.() || {}),
       };
 
       const res = await fetch(FORM_ENDPOINT, {
@@ -294,6 +311,7 @@ const solutions = ['SHEQX®', 'MSX®', 'MSXCyber®', 'ENVIRX®', 'ERM', 'ESG', '
       if (res.ok) {
         form.hidden = true;
         success.hidden = false;
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } else {
         throw new Error('non-2xx');
       }

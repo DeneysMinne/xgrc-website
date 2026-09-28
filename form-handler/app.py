@@ -29,6 +29,7 @@ started; see project_xgrc_google_ads_2026_08 in Claude memory):
   GOOGLE_ADS_DM_CONVERSION_ACTION_ID   numeric id of the UPLOAD_CLICKS conversion action
 """
 
+import html
 import json
 import logging
 import os
@@ -68,6 +69,71 @@ def _log_submission(data: dict) -> None:
     log.info("Submission logged: %s <%s>", data.get("firstName"), data.get("email"))
 
 
+REPEAT_WINDOW_SECONDS = 24 * 3600
+
+
+def _submission_key(data: dict) -> tuple:
+    """Same person asking for the same thing: email + category + download."""
+    return (
+        (data.get("email") or "").strip().lower(),
+        _xrm_lead_category(data),
+        (data.get("_download_url") or "").strip(),
+    )
+
+
+def _is_repeat(data: dict) -> bool:
+    """True if the same submission (see _submission_key) was logged in the
+    last 24 hours. Call BEFORE _log_submission. People were resubmitting the
+    demo form because it never visibly changed after a successful submit,
+    which created up to three identical XRM leads per person. Reads only the
+    tail of the log; any read problem means "not a repeat", so a real lead is
+    never dropped."""
+    key = _submission_key(data)
+    if not key[0]:
+        return False
+    cutoff = time.time() - REPEAT_WINDOW_SECONDS
+    try:
+        with open(LOG_FILE, "rb") as f:
+            f.seek(0, os.SEEK_END)
+            f.seek(max(0, f.tell() - 512 * 1024))
+            lines = f.read().decode("utf-8", "replace").splitlines()
+    except OSError:
+        return False
+    for line in reversed(lines):
+        try:
+            entry = json.loads(line)
+            ts = datetime.fromisoformat(entry["ts"]).timestamp()
+        except (ValueError, KeyError, TypeError):
+            continue
+        if ts < cutoff:
+            break
+        if _submission_key(entry) == key:
+            return True
+    return False
+
+
+def _source_summary(data: dict) -> list:
+    """(label, value) pairs saying where this lead came from, from the
+    attribution fields every form sends (window.xgrcAttribution() in
+    Base.astro) plus the "How did you hear about us?" answer."""
+    rows = []
+    heard = (data.get("heardAbout") or "").strip()
+    if heard:
+        rows.append(("Heard about us", heard))
+    if data.get("_gclid") or data.get("_gbraid") or data.get("_wbraid"):
+        rows.append(("Google Ads", "Yes, arrived from an ad click"))
+    utm = " / ".join(v for v in (data.get("_utm_source"), data.get("_utm_medium"), data.get("_utm_campaign")) if v)
+    if utm:
+        rows.append(("Campaign", utm))
+    if data.get("_first_referrer"):
+        rows.append(("First came from", data["_first_referrer"]))
+    if data.get("_landing_page"):
+        rows.append(("First page seen", data["_landing_page"]))
+    if data.get("_source_page"):
+        rows.append(("Submitted on", data["_source_page"]))
+    return rows
+
+
 def _graph_token() -> str:
     tenant_id     = os.environ["MS_TENANT_ID"]
     client_id     = os.environ["MS_CLIENT_ID"]
@@ -102,6 +168,12 @@ def _send_email(data: dict) -> None:
     email        = data.get("email", "")
     download_url = data.get("_download_url", "")
     category     = (data.get("_category") or "").strip()
+    repeat       = bool(data.get("_repeat"))
+    source_rows  = "".join(
+        f'<tr><td style="padding:8px 0;color:#7a9ab5;vertical-align:top">{html.escape(label)}</td>'
+        f'<td>{html.escape(str(value))}</td></tr>'
+        for label, value in _source_summary(data)
+    )
 
     if download_url:
         download_block = f"""
@@ -118,6 +190,8 @@ def _send_email(data: dict) -> None:
     else:
         download_block = ""
         subject_prefix = "Demo request"
+    if repeat:
+        subject_prefix = f"Repeat submission ({subject_prefix})"
 
     body_html = f"""
     <div style="font-family:sans-serif;max-width:600px;background:#060f1c;color:#c8d8e8;padding:32px;border-radius:12px">
@@ -128,8 +202,10 @@ def _send_email(data: dict) -> None:
         <tr><td style="padding:8px 0;color:#7a9ab5">Company</td><td>{company}</td></tr>
         <tr><td style="padding:8px 0;color:#7a9ab5">Phone</td><td>{phone}</td></tr>
         <tr><td style="padding:8px 0;color:#7a9ab5;vertical-align:top">Message</td><td>{message}</td></tr>
+        {source_rows}
         {download_block}
       </table>
+      {'<p style="margin-top:20px;color:#f4c430">Same person, same request within 24 hours. No new XRM lead was created; the first one is already there.</p>' if repeat else ''}
       <p style="margin-top:24px;font-size:12px;color:#4a6a8a">
         Submitted {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} via xgrcwebsite.nucleusapps.online
       </p>
@@ -296,6 +372,9 @@ def _create_xrm_lead(data: dict) -> None:
         return
 
     message = data.get("_download_url") or data.get("message", "")
+    source = _source_summary(data)
+    if source:
+        message = (message + "\n\nSource:\n" + "\n".join(f"{k}: {v}" for k, v in source)).strip()
     payload = {
         "first_name": data.get("firstName", ""),
         "last_name": data.get("lastName", ""),
@@ -387,6 +466,7 @@ def demo_submit():
     if "@" not in email or "." not in email.split("@")[-1]:
         return jsonify({"ok": False, "error": "Invalid email address."}), 400
 
+    data["_repeat"] = _is_repeat(data)
     _log_submission(data)
 
     try:
@@ -394,6 +474,12 @@ def demo_submit():
     except Exception as exc:
         log.error("Email send failed: %s", exc)
         # Still return success — submission is saved; email failure is ops-side.
+
+    if data["_repeat"]:
+        # Already a lead in XRM and already counted as a conversion; the
+        # email above (marked as a repeat) carries anything new they wrote.
+        log.info("Repeat submission from <%s>, no new XRM lead", email)
+        return jsonify({"ok": True}), 200
 
     try:
         _create_xrm_lead(data)

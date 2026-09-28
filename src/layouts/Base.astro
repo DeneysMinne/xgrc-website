@@ -113,36 +113,44 @@ const orgSchema = JSON.stringify({
       }
     </script>
 
-    <!-- Capture the gclid from a paid-search landing click into a first-party
-         cookie, entirely independent of the gtag block above. This is what
-         lets the demo/book-a-meeting forms report a real Google Ads
-         conversion server-side (form-handler/app.py) even while gtag.js
-         itself is silently dropping every browser hit. Runs on every host,
-         not just production — harmless either way. 90-day window: a real
-         ad-click-to-lead gap can outlast the shorter _ga cookie window. -->
+    <!-- Lead attribution, captured into first-party cookies (90 days) and
+         read by every form via window.xgrcAttribution(). No gtag
+         dependency, so it works even when analytics is blocked or broken.
+         - Ad click IDs: gclid, plus gbraid/wbraid, which Google sends
+           instead of gclid on some clicks (Peak Timbers' 24 Sep ad click
+           carried only gbraid, so nothing was recorded).
+         - utm_* tags.
+         Both are only set when present on the URL, so a later organic visit
+         never wipes a real value. Landing page and referring site are
+         first-touch: set once, on the first visit from outside the site.
+         Keeps the xgrc_gclid / xgrc_utm_* cookie names form-handler and
+         earlier forms already use. -->
     <script>
-      const gclid = new URLSearchParams(window.location.search).get('gclid');
-      if (gclid) {
-        document.cookie = `xgrc_gclid=${encodeURIComponent(gclid)}; Max-Age=7776000; Path=/; SameSite=Lax`;
-      }
-    </script>
-
-    <!-- Same first-party-cookie capture, for utm_source/utm_medium/utm_campaign --
-         found missing during XRM ENH-132's Phase 0 validation (2026-08-20): the
-         gclid path above was built for Google Ads' own server-side conversion
-         call, but XRM's Revenue Copilot attribution model reads all three of
-         these fields too (a lead with no gclid, e.g. from LinkedIn or a UTM-
-         tagged newsletter link, would otherwise have zero attribution data).
-         Only set when actually present on the landing URL, so a plain organic
-         visit never overwrites a real value with an empty one. -->
-    <script>
-      const _p = new URLSearchParams(window.location.search);
-      for (const key of ['utm_source', 'utm_medium', 'utm_campaign']) {
-        const value = _p.get(key);
-        if (value) {
-          document.cookie = `xgrc_${key}=${encodeURIComponent(value)}; Max-Age=7776000; Path=/; SameSite=Lax`;
+      (function () {
+        const MAX_AGE = 7776000;
+        const set = (k, v) => { document.cookie = `xgrc_${k}=${encodeURIComponent(v)}; Max-Age=${MAX_AGE}; Path=/; SameSite=Lax`; };
+        const get = (k) => { const m = document.cookie.match(new RegExp(`(?:^|; )xgrc_${k}=([^;]*)`)); return m ? decodeURIComponent(m[1]) : ''; };
+        const p = new URLSearchParams(window.location.search);
+        const TRACKED = ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        for (const key of TRACKED) {
+          const value = p.get(key);
+          if (value) set(key, value);
         }
-      }
+        const ref = document.referrer || '';
+        const external = ref && !ref.startsWith(window.location.origin);
+        if (!get('landing_page') && (external || !ref)) {
+          set('landing_page', (window.location.pathname + window.location.search).slice(0, 300));
+          set('first_referrer', external ? ref.slice(0, 300) : '(direct)');
+        }
+        window.xgrcAttribution = function () {
+          const out = {};
+          for (const key of [...TRACKED, 'landing_page', 'first_referrer']) {
+            const value = get(key);
+            if (value) out[`_${key}`] = value;
+          }
+          return out;
+        };
+      })();
     </script>
     <!-- A full-page load to a URL with a #hash (e.g. a resource card linking
          to /use-cases/x/#resource) fights with `scroll-behavior: smooth`

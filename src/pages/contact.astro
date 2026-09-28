@@ -67,6 +67,21 @@ const reasons = [
           </div>
 
           <div class="field">
+            <label for="heardAbout">How did you hear about us? <span class="opt">(optional)</span></label>
+            <select id="heardAbout" name="heardAbout">
+              <option value="">Select…</option>
+              <option>Google search</option>
+              <option>Google ad</option>
+              <option>LinkedIn</option>
+              <option>Referral or word of mouth</option>
+              <option>Strategix or a partner</option>
+              <option>Event or conference</option>
+              <option>AI assistant (e.g. ChatGPT)</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
             <label for="message">Message <span class="req" aria-hidden="true">*</span></label>
             <textarea id="message" name="message" rows="4" required placeholder="How can we help?"></textarea>
           </div>
@@ -247,6 +262,7 @@ const reasons = [
     try {
       const fd   = new FormData(form);
       const body = Object.fromEntries(fd.entries());
+      Object.assign(body, window.xgrcAttribution?.() || {});
       body._elapsed_ms = Date.now() - _loadT;
       const res  = await fetch(FORM_ENDPOINT, {
         method: 'POST',
@@ -257,6 +273,7 @@ const reasons = [
       if (res.ok) {
         form.hidden = true;
         success.hidden = false;
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } else {
         throw new Error('non-2xx');
       }
