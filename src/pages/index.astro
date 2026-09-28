@@ -4,7 +4,8 @@ import Hero from '../components/Hero.astro';
 import SsotConvergence from '../components/SsotConvergence.astro';
 import Testimonials from '../components/Testimonials.astro';
 import LogoTile from '../components/LogoTile.astro';
-import { pillars, solutions, stats, brand } from '../data/site.js';
+import { pillars, solutions, stats, brand, tourDashboards } from '../data/site.js';
+import TourStrip from '../components/TourStrip.astro';
 
 const trustedLogos = [
   { name: 'Fraser Alexander', logo: 'Fraser-Alexander.jpg' },
@@ -122,8 +123,16 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
     </div>
   </section>
 
+  <!-- Live dashboard tour strip -->
+  <TourStrip
+    items={['enterprise-risk', 'sherq', 'ai-governance', 'vendor-risk'].map((s) => tourDashboards.find((d) => d.slug === s))}
+    eyebrow="Explore the platform live"
+    heading="Click through real dashboards. No sign-up."
+    lede="Seven interactive demonstration dashboards with fictitious data: filter them, open any KPI and export a board pack."
+  />
+
   <!-- E. Testimonials (renders nothing if array is empty) -->
-  <Testimonials />
+  <Testimonials variant="home" />
 
   <!-- Contact CTA -->
   <section class="section" id="contact">

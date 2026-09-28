@@ -152,8 +152,8 @@ main { position:relative; z-index:2; max-width:var(--maxw); margin:0 auto; paddi
 .mtags { display:flex; gap:6px; flex-wrap:wrap; margin-top:12px; }
 .mtag { font-family:'JetBrains Mono',monospace; font-size:9.5px; background:rgba(48,226,244,0.10); color:var(--cyan-hi); padding:3px 9px; border-radius:20px; }
 
-.toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(120%); background:var(--abyss); border:1px solid var(--line-strong); color:var(--ink); padding:12px 20px; border-radius:12px; font-size:12.5px; z-index:60; transition:transform .25s ease; box-shadow:0 12px 30px rgba(0,0,0,.4); }
-.toast.show { transform:translateX(-50%) translateY(0); }
+.toast { position:fixed; bottom:24px; left:50%; visibility:hidden; opacity:0; transform:translateX(-50%) translateY(16px); background:var(--abyss); border:1px solid var(--line-strong); color:var(--ink); padding:12px 20px; border-radius:12px; font-size:12.5px; z-index:60; transition:transform .25s ease, opacity .25s ease, visibility .25s; box-shadow:0 12px 30px rgba(0,0,0,.4); }
+.toast.show { visibility:visible; opacity:1; transform:translateX(-50%) translateY(0); }
 
 /* Extra insight section (below Leadership Focus) */
 .extra-section { margin-bottom:40px; }

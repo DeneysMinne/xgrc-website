@@ -77,9 +77,9 @@ const img = (slug) => `/assets/tour/${slug}-v1.webp`;
         <h2>Three things worth clicking.</h2>
       </div>
       <div class="tour-steps">
-        <div><span class="n">01</span><h3>Filter to what matters</h3><p>Use the tabs, the breach and watch filters or the search box to narrow any dashboard to one pillar, owner or status.</p></div>
-        <div><span class="n">02</span><h3>Open any KPI</h3><p>Every tile opens its definition, owner, refresh cadence and the exact calculation behind the number.</p></div>
-        <div><span class="n">03</span><h3>Export a board pack</h3><p>Generate the PDF a board would receive, with every open exception, its owner and how long it has been open.</p></div>
+        <div><h3>Filter to what matters</h3><p>Use the tabs, the breach and watch filters or the search box to narrow any dashboard to one pillar, owner or status.</p></div>
+        <div><h3>Open any KPI</h3><p>Every tile opens its definition, owner, refresh cadence and the exact calculation behind the number.</p></div>
+        <div><h3>Export a board pack</h3><p>Generate the PDF a board would receive, with every open exception, its owner and how long it has been open.</p></div>
       </div>
     </div>
   </section>
@@ -131,12 +131,11 @@ const img = (slug) => `/assets/tour/${slug}-v1.webp`;
   .tour-card h3 a { color: var(--ink); text-decoration: none; }
   .tour-card h3 a:hover { color: var(--cyan-hi); }
   .tour-card p { font-size: 0.92rem; color: var(--mute); }
-  .tour-meta { margin-top: auto; padding-top: 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 11px; color: var(--faint); }
+  .tour-meta { margin-top: auto; padding-top: 16px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--faint); }
 
   .tour-try .tour-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
   .tour-steps > div { border-top: 1px solid var(--line-strong); padding-top: 18px; }
-  .tour-steps .n { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); }
-  .tour-steps h3 { font-size: 1.1rem; margin: 8px 0 8px; }
+  .tour-steps h3 { font-size: 1.1rem; margin: 0 0 8px; }
   .tour-steps p { color: var(--mute); font-size: 0.95rem; }
 
   .tour-cta { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; border: 1px solid rgba(47, 232, 138, 0.35); border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(47, 232, 138, 0.08), rgba(48, 226, 244, 0.05)); padding: clamp(24px, 4vw, 40px); }

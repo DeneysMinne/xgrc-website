@@ -2,16 +2,56 @@
 import { testimonials } from '../data/site.js';
 // Renders nothing if the array is empty — no placeholder content ever ships.
 if (testimonials.length === 0) return;
+
+// variant="home": measured-results band + three quotes, linking to the full set.
+// variant="all" (default): every testimonial, used on /customers.
+interface Props { variant?: 'home' | 'all' }
+const { variant = 'all' } = Astro.props;
+
+const byName = (name) => {
+  const t = testimonials.find((x) => x.name === name);
+  if (!t) throw new Error(`Testimonial not found: ${name}`);
+  return t;
+};
+// Each figure is the outcome already published on that customer's testimonial.
+const results = [
+  { value: '30%', what: 'less administrative workload', t: byName('Lucky Ncayiyana'), product: 'SHEQX® + ENVIRX®' },
+  { value: '70%', what: 'less time preparing for compliance audits', t: byName('Ryan Palmer'), product: 'SHEQX® + ISO 9001' },
+  { value: '70%', what: 'less time on compliance reporting', t: byName('Herford Dennis'), product: 'XGRC® platform' },
+  { value: '40%', what: 'fewer product non-conformances', t: byName('Chad Cardoso'), product: 'SHEQX® + ISO 9001' },
+];
+const homeQuotes = ['Clinton Venter', 'Larna Jodamus', 'Juan Dorfling'].map(byName);
+const shown = variant === 'home' ? homeQuotes : testimonials;
 ---
 
-<section class="section testimonials-section">
+{variant === 'home' && (
+  <section class="section results-section" aria-labelledby="results-h">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Measured results</span>
+        <h2 id="results-h">Results our customers have measured.</h2>
+      </div>
+      <ul class="results">
+        {results.map((r) => (
+          <li class="result">
+            <span class="r-val">{r.value}</span>
+            <span class="r-what">{r.what}</span>
+            <span class="r-who">{r.t.company} · {r.product}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<section class="section testimonials-section" id={variant === 'all' ? 'stories' : undefined}>
   <div class="container">
     <div class="section-head">
       <span class="eyebrow"><span class="dot"></span>What customers say</span>
-      <h2>Real outcomes, real organisations.</h2>
+      <h2>{variant === 'home' ? 'Real outcomes, real organisations.' : 'Customer stories.'}</h2>
     </div>
     <div class="grid cols-3 testimonials-grid">
-      {testimonials.map((t) => (
+      {shown.map((t) => (
         <figure class="card testimonial-card">
           <blockquote class="t-quote">"{t.quote}"</blockquote>
           {t.outcome && (
@@ -24,10 +64,23 @@ if (testimonials.length === 0) return;
         </figure>
       ))}
     </div>
+    {variant === 'home' && (
+      <p class="t-more"><a class="link-arrow" href="/customers/#stories">Read all {testimonials.length} customer stories →</a></p>
+    )}
   </div>
 </section>
 
 <style>
+  .results-section { padding-top: clamp(24px, 4vw, 48px); padding-bottom: clamp(24px, 4vw, 48px); }
+  .results { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .result { display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--panel); padding: clamp(18px, 2.4vw, 26px); }
+  .r-val { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.4rem, 4.4vw, 3.4rem); line-height: 1; color: var(--green); letter-spacing: -0.02em; }
+  .r-what { color: var(--ink); font-size: 1rem; line-height: 1.4; }
+  .r-who { margin-top: auto; padding-top: 6px; font-family: var(--font-mono); font-size: 11px; color: var(--faint); letter-spacing: 0.03em; }
+  .t-more { margin-top: 28px; }
+  @media (max-width: 960px) { .results { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 480px) { .results { grid-template-columns: minmax(0, 1fr); } }
+
   .testimonials-section { padding-top: 0; }
 
   .testimonial-card {
