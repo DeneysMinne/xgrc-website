@@ -1305,6 +1305,15 @@ export const articles = [
     image: 'why-integrated-assurance-matters-in-the-age-of-ai.jpg',
     relatedSolutions: ['integrated-assurance', 'ai-governance'],
   },
+  {
+    slug: 'iso-42001-implementation-ai-governance',
+    title: 'Implementing and Maintaining ISO/IEC 42001',
+    excerpt: 'A practical guide to implementing and maintaining ISO/IEC 42001:2023: scope real AI use, assess risks and impacts, select controls, keep evidence current as AI changes, and prepare for certification without treating it as the finish line.',
+    category: 'AI & Governance',
+    date: '2026-10-20',
+    image: 'iso-42001-implementation-ai-governance.jpg',
+    relatedSolutions: ['ai-governance', 'maia'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1525,6 +1534,13 @@ export const articleFaqs = {
     { q: 'What is the difference between AI governance and AI assurance?', a: 'AI governance establishes how AI should be managed through policies, responsibilities, risks and controls. AI assurance evaluates whether those governance mechanisms and controls are operating as intended.' },
     { q: 'What role does internal audit play in AI governance?', a: 'Internal audit can provide independent assurance over relevant aspects of AI governance, including risk management, control effectiveness, accountability, policy implementation, evidence and corrective actions.' },
     { q: 'Why is evidence important for AI assurance?', a: 'Evidence allows organisations to demonstrate that governance activities and controls are actually taking place. It supports auditability, accountability, traceability and better-informed assurance conclusions.' },
+  ],
+  'iso-42001-implementation-ai-governance': [
+    { q: 'Is ISO/IEC 42001 only for AI developers?', a: 'No. It is intended for organisations providing or using AI-based products and services. Scope the management system around your actual role and activities.' },
+    { q: 'Can ISO/IEC 42001 be integrated with an existing management system?', a: 'Yes. Its harmonised structure supports integration, and existing management processes may be reused where suitable, but AI-specific risks, impacts and controls still need attention.' },
+    { q: 'Do we need every Annex A control?', a: 'Select the controls appropriate to your risks and role in the AI lifecycle, document why they apply and justify exclusions. Additional controls may be needed, and risk-based control selection does not make the management-system requirements optional.' },
+    { q: 'How does the new XGRC® AI Governance solution help?', a: 'It brings AI-related governance into the wider XGRC® programme, connecting policies, risks, controls, responsibilities, actions, audits and evidence. Applying that structure to AI ownership, assessment, approval, change and review keeps the management system traceable as AI use evolves.' },
+    { q: 'Does implementing the software make us certified?', a: 'No. The organisation must implement and operate the management system, and an external certification body assesses conformity within the agreed scope. Software supports the work and its evidence; it does not replace either.' },
   ],
 };
 
