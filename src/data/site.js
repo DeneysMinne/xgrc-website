@@ -1704,6 +1704,15 @@ export const articles = [
     imageAlt: 'Man on a phone call in a dim office beside glowing icons for help desk identity verification steps',
     relatedSolutions: ['msxcyber'],
   },
+  {
+    slug: 'king-v-and-the-rise-of-ai-governance',
+    title: 'King V and the Rise of AI Governance',
+    excerpt: 'King V applies to financial years beginning on or after 1 January 2026. Here is why AI governance is becoming a board-level issue under an outcomes-based code, and how accountability, human oversight and assurance make it real.',
+    category: 'AI & Governance',
+    date: '2026-10-29',
+    image: 'king-v-and-the-rise-of-ai-governance.jpg',
+    relatedSolutions: ['ai-governance', 'integrated-assurance', 'msx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2014,6 +2023,13 @@ export const articleFaqs = {
     { q: 'Does multi-factor authentication stop help desk social engineering?', a: 'Not on its own. MFA protects the login, but if an attacker can persuade the help desk to reset or re-register the second factor, they receive a fully working account. MFA needs to be paired with a strict identity verification process for resets, such as calling back on a known number and requiring a second approver for privileged accounts.' },
     { q: 'How should a help desk verify a caller\'s identity?', a: 'Avoid anything an attacker can look up or buy, such as ID numbers, staff numbers or dates of birth. Use a call-back to a number already held on record, confirmation from the person\'s line manager, or a video call with photo ID for high-risk requests. Notify the account owner through a separate channel after any reset, so an unauthorised change is spotted quickly.' },
     { q: 'How often should we test the service desk against social engineering?', a: 'Test at least annually and after any significant change to the service desk, such as outsourcing, a new identity platform or staff turnover. Treat each test as a control test: record the result, raise corrective actions for any failures and track them to closure. Repeated testing shows whether the process is holding, not just whether it is documented.' },
+  ],
+  'king-v-and-the-rise-of-ai-governance': [
+    { q: 'What is AI governance?', a: 'AI governance is the set of policies, responsibilities, risk management processes, controls, oversight mechanisms and assurance activities an organisation uses to manage how artificial intelligence is introduced and used.' },
+    { q: 'How does King V relate to AI governance?', a: 'King V, launched by the IoDSA on 31 October 2025 and applying to financial years beginning on or after 1 January 2026, is a voluntary, outcomes-based governance code. Because AI increasingly influences strategy, risk, decisions and stakeholder outcomes, boards applying King V need visibility, accountability and assurance over how AI is used.' },
+    { q: 'Why should boards care about AI governance?', a: 'AI can affect organisational risk, operations, information, compliance, decision-making and stakeholder outcomes. Boards therefore need appropriate visibility and assurance over material AI use and the risks associated with it.' },
+    { q: 'Is AI governance only an IT responsibility?', a: 'No. Technology teams play an important role, but effective AI governance may involve the board, executives, risk, compliance, information security, legal, internal audit and operational functions.' },
+    { q: 'How can organisations strengthen AI governance?', a: 'Start by identifying where AI is used, then establish clear ownership, define policies, assess risks, implement appropriate controls, maintain human oversight, monitor performance, retain evidence and integrate AI into existing governance and assurance processes.' },
   ],
 };
 
