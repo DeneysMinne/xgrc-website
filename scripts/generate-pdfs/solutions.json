@@ -3,7 +3,7 @@
   "name": "SHEQX®",
   "tag": "Safety, Health, Environment & Quality",
   "headline": "SHEQ compliance that closes actions, not just spreadsheets.",
-  "lede": "SHEQX® aggregates safety, health, environment, and quality data into one auditable platform — giving you the visibility to prevent incidents, close non-conformances, and sustain ISO certification without the administrative drag.",
+  "lede": "SHEQX® aggregates safety, health, environment, and quality data into one auditable platform, giving you the visibility to prevent incidents, close non-conformances, and sustain ISO certification without the administrative drag.",
   "logo": "/assets/logos/solutions/sheqx.png",
   "standards": [
    "ISO 9001",
@@ -98,7 +98,7 @@
   "name": "MSX®",
   "tag": "Integrated Management System",
   "headline": "One management system. Multiple standards. Less duplicated effort.",
-  "lede": "MSX® merges your governance, risk, compliance, and operational systems into one common framework — eliminating conflicting responsibilities, removing duplicated effort, and giving leadership real-time visibility across all business activities.",
+  "lede": "MSX® merges your governance, risk, compliance, and operational systems into one common framework, eliminating conflicting responsibilities, removing duplicated effort, and giving leadership real-time visibility across all business activities.",
   "logo": "/assets/logos/solutions/msx.png",
   "standards": [
    "ISO 9001",
@@ -164,7 +164,7 @@
    },
    {
     "title": "Improvement programmes disconnected from risk",
-    "body": "Continual improvement initiatives tracked in isolation — no link to the risks they are supposed to address."
+    "body": "Continual improvement initiatives tracked in isolation, no link to the risks they are supposed to address."
    },
    {
     "title": "Board reporting takes weeks",
@@ -194,7 +194,7 @@
   "name": "MSXCyber®",
   "tag": "Information Security Governance",
   "headline": "ISO 27001 compliance without the spreadsheet chaos.",
-  "lede": "MSXCyber® delivers a complete Information Security Management System aligned to ISO 27001:2022 — with governance, risk management, and audit-ready evidence built in from day one. Data breaches now carry material financial, regulatory and operational consequences — structured ISMS governance is no longer optional.",
+  "lede": "MSXCyber® delivers a complete Information Security Management System aligned to ISO 27001:2022, with governance, risk management, and audit-ready evidence built in from day one. Data breaches now carry material financial, regulatory and operational consequences. Structured ISMS governance is no longer optional.",
   "logo": "/assets/logos/solutions/msxcyber.png",
   "standards": [
    "ISO 27001:2022",
@@ -255,7 +255,7 @@
    },
    {
     "title": "GDPR and POPIA obligations untracked",
-    "body": "Data protection compliance managed through email threads — no evidence trail, no audit readiness."
+    "body": "Data protection compliance managed through email threads, no evidence trail, no audit readiness."
    }
   ],
   "stats": [
@@ -277,7 +277,7 @@
   "name": "Enterprise Risk Management",
   "tag": "Enterprise Risk Intelligence",
   "headline": "Risk managed at enterprise scale, not spreadsheet scale.",
-  "lede": "A structured, auditable approach to enterprise, operational, and project risk — aligned to ISO 31000 and COSO ERM — with board-level dashboards, risk appetite monitoring, and corrective action tracking built in.",
+  "lede": "A structured, auditable approach to enterprise, operational, and project risk, aligned to ISO 31000 and COSO ERM, with board-level dashboards, risk appetite monitoring, and corrective action tracking built in.",
   "logo": "/assets/logos/solutions/erm.png",
   "standards": [
    "ISO 31000",
@@ -360,7 +360,7 @@
   "name": "Integrated Assurance",
   "tag": "Internal Audit & Combined Assurance",
   "headline": "One audit plan. Four lines of defence. Zero gaps.",
-  "lede": "Coordinate internal audit and combined assurance across your organisation — linked directly to risks, controls, and corrective actions — so every line of defence operates from the same picture of what needs assurance.",
+  "lede": "Coordinate internal audit and combined assurance across your organisation, linked directly to risks, controls, and corrective actions, so every line of defence operates from the same picture of what needs assurance.",
   "logo": "/assets/logos/solutions/integrated-assurance.png",
   "standards": [
    "IIA Standards",
@@ -443,7 +443,7 @@
   "name": "ENVIRX®",
   "tag": "Environmental Compliance & Monitoring",
   "headline": "Environmental compliance you can demonstrate, not just claim.",
-  "lede": "ENVIRX® captures, tracks, and reports environmental performance data — from waste and water to air quality and energy consumption — in a single auditable system aligned to ISO 14001 and local environmental legislation.",
+  "lede": "ENVIRX® captures, tracks, and reports environmental performance data, from waste and water to air quality and energy consumption, in a single auditable system aligned to ISO 14001 and local environmental legislation.",
   "logo": "/assets/logos/solutions/envirx.png",
   "standards": [
    "ISO 14001",
@@ -537,7 +537,7 @@
   "name": "ESG",
   "tag": "Environmental, Social & Governance Reporting",
   "headline": "ESG reporting that survives investor scrutiny.",
-  "lede": "Collect, manage, and report ESG data in a structured, auditable way — aligned to GRI, IFRS S1/S2, and CDP — so your sustainability disclosures are backed by evidence, not just intention.",
+  "lede": "Collect, manage, and report ESG data in a structured, auditable way, aligned to GRI, IFRS S1/S2, and CDP, so your sustainability disclosures are backed by evidence, not just intention.",
   "logo": "/assets/logos/solutions/esg.png",
   "standards": [
    "GRI Standards",
@@ -631,7 +631,7 @@
   "name": "XGRC® Compliance Hub",
   "tag": "Supplier & Third-Party Compliance",
   "headline": "Your supply chain's compliance posture, visible in real time.",
-  "lede": "Structured onboarding, vetting, and ongoing compliance management for suppliers, contractors, and third parties — with automated document expiry tracking, risk scoring, and compliance dashboards that give you a live view of your entire supply chain.",
+  "lede": "Structured onboarding, vetting, and ongoing compliance management for suppliers, contractors, and third parties, with automated document expiry tracking, risk scoring, and compliance dashboards that give you a live view of your entire supply chain.",
   "logo": "/assets/logos/solutions/compliance-hub.png",
   "standards": [
    "ISO 9001",
@@ -714,7 +714,7 @@
   "name": "XLOGIC®",
   "tag": "Governance Execution",
   "headline": "Policies that work. Controls that are actually enforced.",
-  "lede": "XLOGIC® converts governance frameworks, policies, and controls into structured, enforceable workflows — so compliance is built into how work gets done, not bolted on afterwards through audits.",
+  "lede": "XLOGIC® converts governance frameworks, policies, and controls into structured, enforceable workflows, so compliance is built into how work gets done, not bolted on afterwards through audits.",
   "logo": "/assets/logos/solutions/xlogic.png",
   "standards": [
    "King V",
@@ -787,8 +787,8 @@
  "maia": {
   "name": "MAIA®",
   "tag": "Governed AI for GRC",
-  "headline": "The intelligence of governance — governed, audited, accountable.",
-  "lede": "MAIA® is governed AI for GRC, embedded within XGRC® to help decision-makers interact with governance records, risks, policies, and compliance data. Faster insight. Better decisions. Full auditability — through controlled, audited AI integrations with a complete interaction audit trail.",
+  "headline": "The intelligence of governance, governed, audited, accountable.",
+  "lede": "MAIA® is governed AI for GRC, embedded within XGRC® to help decision-makers interact with governance records, risks, policies, and compliance data. Faster insight. Better decisions. Full auditability, through controlled, audited AI integrations with a complete interaction audit trail.",
   "logo": "/assets/logos/solutions/maia.png",
   "standards": [
    "ISO 42001 (targeted 2026)",
@@ -810,7 +810,7 @@
     ]
    },
    {
-    "category": "DAVE — Data Integration",
+    "category": "DAVE: Data Integration",
     "modules": [
      "API Data Connections",
      "IoT Device Data",
@@ -822,7 +822,7 @@
     ]
    },
    {
-    "category": "LUCI — AI Interface",
+    "category": "LUCI: AI Interface",
     "modules": [
      "DataViews & ML Dashboards",
      "Predictive Maintenance AI",
@@ -879,7 +879,7 @@
  "libryo": {
   "name": "Libryo",
   "tag": "Regulatory Intelligence Partner",
-  "headline": "Legal obligations, translated into action — for every site, every jurisdiction.",
+  "headline": "Legal obligations, translated into action, for every site, every jurisdiction.",
   "lede": "Libryo turns dense, constantly-changing EHS legislation into clear, site-specific compliance obligations. XGRC® partners with Libryo to embed jurisdiction-specific regulatory intelligence directly into your legal register, so obligations, tasks, and evidence live on the same platform as the rest of your governance and risk data.",
   "logo": null,
   "standards": [
@@ -951,7 +951,7 @@
   "name": "Hakware",
   "tag": "AI-Powered Security Testing Partner",
   "headline": "Continuous, AI-driven penetration testing that keeps you one step ahead.",
-  "lede": "Hakware is an AI-powered security management platform that tests your environment the way an attacker would — continuously, not once a year. XGRC® partners with Hakware to bring offensive security testing, unified vulnerability visibility, and dark web monitoring into the same governed environment as your ISMS.",
+  "lede": "Hakware is an AI-powered security management platform that tests your environment the way an attacker would, continuously, not once a year. XGRC® partners with Hakware to bring offensive security testing, unified vulnerability visibility, and dark web monitoring into the same governed environment as your ISMS.",
   "logo": null,
   "standards": [
    "ISO 27001",
@@ -963,8 +963,8 @@
     "category": "AI Red Teaming",
     "modules": [
      "Archangel AI Penetration Testing",
-     "Hakware Scout — Network Discovery",
-     "HakObserver — VM-Level Data Collection"
+     "Hakware Scout, Network Discovery",
+     "HakObserver, VM-Level Data Collection"
     ]
    },
    {
@@ -1024,7 +1024,7 @@
   "tag": "Sales Pipeline & Customer Management",
   "headline": "Pipeline discipline, not pipeline guesswork.",
   "lede": "XRM gives your sales team one governed system to qualify leads, progress opportunities, generate quotes and close deals, with the approval workflows, audit trail and real-time visibility leadership actually needs. Built and run on the same ISO/IEC 27001:2022-certified XGRC® infrastructure as the rest of the platform, not a bolted-on CRM that quietly becomes another unmanaged spreadsheet.",
-  "logo": null,
+  "logo": "/assets/logos/solutions/xrm.png",
   "standards": [
    "ISO 27001:2022",
    "Multi-tenant SaaS",

@@ -25,7 +25,7 @@ TARGETS = ['sheqx', 'msx', 'msxcyber', 'erm', 'envirx', 'esg', 'maia', 'libryo',
 # Output filename version per slug. Bump when a fresh URL is needed to bust the
 # Cloudflare edge cache (a URL already served is cached ~4h and we can't purge).
 # erm is v3 because erm-*-v2 was already published+cached with an earlier design.
-VERSION = {'erm': 'v4'}
+VERSION = {'erm': 'v4', 'esg': 'v4'}
 DEFAULT_VERSION = 'v3'
 
 

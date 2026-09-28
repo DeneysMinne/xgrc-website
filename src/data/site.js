@@ -334,7 +334,7 @@ export const solutionDetails = {
   },
 
   esg: {
-    infographic: '/assets/infographics/esg-infographic-v3.pdf',
+    infographic: '/assets/infographics/esg-infographic-v4.pdf',
     logo: '/assets/logos/solutions/esg.png',
     icon: '/assets/logos/solutions/icons/esg.png',
     screenshot: '/assets/screenshots/esg-dashboard.webp',
