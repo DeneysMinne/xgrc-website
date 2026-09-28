@@ -8,6 +8,14 @@
 > compliance, risk, internal audit and SHEQ/EHS teams at mid-to-large enterprises.
 > Part of the Strategix Group.
 
+## Platform facts
+
+- Deployment: cloud SaaS on Microsoft Azure (West Europe, Netherlands); certified to ISO/IEC 27001:2022.
+- Sign-in: single sign-on for the XGRC® platform with Microsoft Entra ID (Azure Active Directory).
+- Languages: English, Portuguese, French and Spanish; further languages on request.
+- Mobile: SHEQX® has native iOS and Android apps with offline data capture for sites with no signal.
+- Buying: priced per user, per month (quote on request). Free demo, then a free proof-of-value trial once an NDA is signed. Typical SHEQX® go-live is 4 to 8 weeks.
+
 ## Platform
 
 - [GRC Platform overview](https://xgrcsoftware.com/grc-software): How the XGRC® platform connects governance, risk and compliance on one data foundation.
