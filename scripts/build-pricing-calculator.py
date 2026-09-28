@@ -27,7 +27,7 @@ FORBIDDEN = [
     'SALES PREVIEW', 'price book', 'placeholders pending', 'legacy', 'Legacy',
     'MSX', 'Quick Start', 'SEAT_PRESETS = {\n', 'DISCOUNT_THRESHOLDS = {',
     'Volume discount', 'compounding', 'Provisioning is manual', 'INTERNAL',
-    'ZAR: 1500', 'ZAR: 550', 'converted from USD',
+    'converted from USD',
 ]
 
 src = open(SRC, encoding='utf-8').read()

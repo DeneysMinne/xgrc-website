@@ -209,7 +209,7 @@ At a structural level, it mirrors other ISO management-system standards: documen
 
 How XGRC® Is Preparing
 
-XGRC® ISO/IEC 42001:2023 certification is in progress. MAIA®, XGRC®'s <a href="/maia">governed AI for GRC</a>, is already built around the principles the standard requires — permission alignment, a complete AI interaction audit trail, explainable outputs, and controlled, audited AI integrations — ahead of formal certification.
+XGRC® will be certified to ISO/IEC 42001:2023 by the end of October 2026. MAIA®, XGRC®'s <a href="/maia">governed AI for GRC</a>, is already built around the principles the standard requires — permission alignment, a complete AI interaction audit trail, explainable outputs, and controlled, audited AI integrations — ahead of formal certification.
 
 ISO/IEC 42001 will do for AI governance what ISO 27001 did for information security: turn an assumed good practice into a demonstrable, auditable standard. Organisations evaluating AI-enabled governance tools should be asking vendors where they stand against it now, not after certification becomes the market expectation.`,
 
