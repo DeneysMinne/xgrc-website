@@ -7,6 +7,13 @@
 export const whatsNew = {
   "xrm": [
     {
+      "version": "1.68.0",
+      "date": "2026-09-28",
+      "category": "new",
+      "title": "Get an email every time a deal is won",
+      "description": "Choose who hears about every win in Sales Configuration, under Deal Won Emails. Everyone on the list gets an email when a deal is closed as Won, and after you mark a deal as Won you are taken straight back to your Opportunities list."
+    },
+    {
       "version": "1.67.0",
       "date": "2026-09-21",
       "category": "new",
