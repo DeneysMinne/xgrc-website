@@ -88,7 +88,10 @@ const orgSchema = JSON.stringify({
       const PRODUCTION_HOSTNAMES = ['xgrcsoftware.com', 'www.xgrcsoftware.com'];
       if (PRODUCTION_HOSTNAMES.includes(window.location.hostname)) {
         window.dataLayer = window.dataLayer || [];
-        function gtag(...args) { window.dataLayer.push(args); }
+        // Must push the `arguments` object itself. gtag.js silently ignores
+        // plain arrays, so a rest-parameter version (`...args`) loads the
+        // library but never sends a single hit.
+        function gtag() { window.dataLayer.push(arguments); }
         window.gtag = gtag;
         // No cookie-consent banner on this site yet, so grant default consent
         // explicitly, otherwise gtag.js silently withholds every hit pending
