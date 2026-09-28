@@ -1,6 +1,6 @@
 # Review-site listing drafts: XGRC® and SHEQX®
 
-Draft copy for G2, Capterra (Gartner Digital Markets, which also syndicates to GetApp and Software Advice) and South African software directories. Every claim below is taken from the XGRC website source (`src/data/site.js`, `src/data/useCaseRegistry.js`, `src/pages/trust.astro`, `src/pages/sheq-software-south-africa.astro`, `public/llms.txt`). Anything the repo does not state is marked **TO CONFIRM**. Check each field against the directory's own character limits before pasting.
+Draft copy for G2, Capterra (which also syndicates to GetApp and Software Advice; all three were bought by G2 from Gartner in February 2026) and South African software directories. Every claim below is taken from the XGRC website source (`src/data/site.js`, `src/data/useCaseRegistry.js`, `src/pages/trust.astro`, `src/pages/sheq-software-south-africa.astro`, `public/llms.txt`). Facts the website does not state (company sizes, mobile apps, offline capture, languages, SSO, pricing, trial, support, training, implementation time) were confirmed by Deneys on 2026-09-28. Check each field against the directory's own character limits before pasting.
 
 ---
 
@@ -82,7 +82,7 @@ Mining and infrastructure; manufacturing and industrial; steel manufacturing and
 
 ### Company size
 
-Mid-to-large enterprises (stated in `public/llms.txt`). **TO CONFIRM:** exact employee bands for the directory form (for example 51 to 200, 201 to 1,000, 1,000+), and whether small businesses should be selected.
+Tick **51 to 200, 201 to 1,000 and 1,000+ employees**. Do not select small businesses (1 to 50). (Confirmed by Deneys, 2026-09-28.)
 
 ### Deployment and regions
 
@@ -90,23 +90,24 @@ Mid-to-large enterprises (stated in `public/llms.txt`). **TO CONFIRM:** exact em
 - Security: platform certified to ISO/IEC 27001:2022
 - Offices: Johannesburg and Cape Town (South Africa); Milton Keynes (United Kingdom)
 - Served: more than 800 companies across five continents
-- **TO CONFIRM:** whether on-premise or private-cloud deployment is offered
-- **TO CONFIRM:** mobile apps (iOS or Android) versus mobile-friendly web; the site only states mobile-friendly capture and "mobile functionality"
-- **TO CONFIRM:** supported languages (the site does not list any beyond English)
+- Deployment options: **cloud only** (SaaS, web-based). No on-premise or private-cloud option listed.
+- Mobile: **native iOS and Android apps**, plus web access
+- Offline: **offline data capture** in the mobile apps (for sites with no signal)
+- Languages: **English, Portuguese, French and Spanish**; the platform is multilingual and can be translated into further languages on client request
+- Single sign-on: **SSO with Microsoft Entra ID (Azure Active Directory)**
 
 ### Commercial fields
 
-- **TO CONFIRM:** pricing model and starting price (not published on the site)
-- **TO CONFIRM:** free trial or free version (none stated)
-- **TO CONFIRM:** support channels and hours (the site lists info@xgrcsoftware.com and +27 (0)87 802 0179)
-- **TO CONFIRM:** training options (the site references training and implementation partners but no formal offer)
-- **TO CONFIRM:** single sign-on support (not stated on the site)
+- Pricing model: **per user, per month, subscription**. Price: **contact for a quote** (no public starting price until the new tier model is sales-reviewed)
+- Free demo: **yes**. Free trial: **yes, as a proof of value (POV)**, arranged after a demonstration and online meeting, once an NDA and related agreements are signed. Free version: **no**
+- Support: **email, phone, in-app help desk and knowledge base**, business hours (SAST). info@xgrcsoftware.com, +27 (0)87 802 0179
+- Training: **live online training, in-person training, documentation and videos**
 
 ### Category suggestions
 
 - **G2:** GRC Platforms; Enterprise Risk Management; Audit Management; Compliance Management; Policy Management; Vendor Security and Privacy Assessment (or Third Party and Supplier Risk Management); ESG Reporting; EHS Management (list SHEQX® separately, see below)
 - **Capterra:** GRC Software; Risk Management Software; Compliance Software; Audit Software; Policy Management Software; Vendor Management Software; ESG Software
-- **TO CONFIRM:** exact category names at the time of submission, as both sites rename and merge categories periodically
+- Deneys chose the **broad** set (6 to 8 categories). Check the exact names in each portal when submitting, as both sites rename and merge categories periodically
 
 ---
 
@@ -185,23 +186,23 @@ Manufacturing; plant hire and mining; cold chain logistics; waste management; fa
 
 ### Company size
 
-Suitable for single-site and multi-site organisations (the site FAQ states single-site organisations benefit too; multi-site operations are the core use case). **TO CONFIRM:** employee bands for the directory form.
+Suitable for single-site and multi-site organisations; multi-site operations are the core use case. Tick **51 to 200, 201 to 1,000 and 1,000+ employees**.
 
 ### Deployment and regions
 
-As for the XGRC® platform above (cloud SaaS on Microsoft Azure, West Europe region; ISO/IEC 27001:2022). **TO CONFIRM:** native mobile apps versus mobile-friendly web; offline capture (not stated anywhere on the site, do not claim it unless confirmed).
+As for the XGRC® platform above: cloud SaaS on Microsoft Azure (West Europe), ISO/IEC 27001:2022, **native iOS and Android apps with offline capture**, English, Portuguese, French and Spanish, and SSO with Microsoft Entra ID (Azure AD).
 
 ### Commercial fields
 
-- **TO CONFIRM:** pricing model and starting price
-- **TO CONFIRM:** free trial or demo-only
-- **TO CONFIRM:** typical implementation time
+- Pricing model: **per user, per month, subscription**; contact for a quote
+- Free demo: **yes**. Free trial: **yes, as a proof of value** after a demo and signed NDA
+- Typical implementation: **4 to 8 weeks** from signed contract to go-live (longer for large multi-site rollouts)
 
 ### Category suggestions
 
 - **G2:** EHS Management; Incident Management (check this is the safety category, not IT incident management); Quality Management System (QMS); Audit Management; Environmental Management
 - **Capterra:** EHS Software; Safety Management Software; Incident Management Software; Quality Management Software; Audit Software; Inspection Software
-- **TO CONFIRM:** exact category names at submission
+- Broad set (Deneys' choice). Confirm the exact names in each portal at submission
 
 ---
 
@@ -209,14 +210,13 @@ As for the XGRC® platform above (cloud SaaS on Microsoft Azure, West Europe reg
 
 | Directory | Why | Status |
 | --- | --- | --- |
-| G2 | Largest B2B software review site; free vendor profile | Confirmed platform |
-| Capterra (Gartner Digital Markets) | One free listing syndicates to Capterra, GetApp and Software Advice | Confirmed platform |
-| Microsoft AppSource / Azure Marketplace | XGRC® is hosted on Azure and has a Power BI connector; relevant to Microsoft-centric buyers | Verify eligibility and listing type |
-| TrustRadius | Enterprise-focused review site, useful for GRC buyers | Verify |
-| SaaSworthy | Free SaaS directory with category pages for GRC and EHS | Verify |
-| SAIOSH (South African Institute of Occupational Safety and Health) | Professional body for SA SHEQ practitioners; check for supplier or corporate member listings | Verify |
-| IRMSA (Institute of Risk Management South Africa) | SA risk profession body; check for corporate membership or sponsor listing | Verify |
-| SHEQ-focused SA trade media (for example SHEQ Management magazine) | Supplier directory or editorial listing aimed at SA SHEQ managers | Verify that a directory exists and its terms |
+| G2 | Largest B2B software review site; free vendor profile | **Doing:** Deneys registering |
+| Capterra (now owned by G2, with GetApp and Software Advice) | Existing XGRC account with customer reviews | **Existing:** update the profile with this copy |
+| Google Business Profile | Existing profile with some reviews | **Existing** |
+| Microsoft AppSource | Azure-hosted, Azure AD SSO, Power BI connector; enterprise IT buyers browse it. Needs a Microsoft Partner Center account | **Chosen** |
+| SAIOSH (South African Institute of Occupational Safety and Health) | Reaches SA SHEQ practitioners; check supplier or corporate member listings | **Chosen** |
+| IRMSA (Institute of Risk Management South Africa) | Reaches SA risk professionals; check corporate membership or sponsor listing | **Chosen** |
+| TrustRadius, SaaSworthy, SoftwareSuggest | Lower value in SA | Not now |
 
 Note: the Google Business Profile is already in progress separately and is a review surface in its own right.
 
@@ -224,7 +224,7 @@ Note: the Google Business Profile is already in progress separately and is a rev
 
 ## 4. Customer review-request email template
 
-Before sending, check the current G2 and Capterra review guidelines. Both prohibit vendors from offering their own incentives, writing or editing reviews, or asking only for positive reviews. **TO CONFIRM:** whether to send this to a broader customer list rather than only 3 to 5 hand-picked customers, since both sites discourage selective solicitation.
+Before sending, check the current G2 and Capterra review guidelines. Both prohibit vendors from offering their own incentives, writing or editing reviews, or asking only for positive reviews. Send to **all active customer contacts** (Deneys' decision), not a hand-picked few, in line with both sites' rules on selective solicitation.
 
 **Subject:** Would you share your experience of XGRC® on G2?
 
@@ -250,19 +250,6 @@ info@xgrcsoftware.com | +27 (0)87 802 0179
 
 ---
 
-## Summary of items to confirm
+## Decisions (2026-09-28)
 
-1. Company size bands for directory forms (XGRC® and SHEQX®)
-2. Whether on-premise or private-cloud deployment is offered
-3. Native mobile apps (iOS or Android) versus mobile-friendly web
-4. Offline capture for SHEQX® (not stated on the site)
-5. Supported languages
-6. Pricing model and starting price
-7. Free trial or free version
-8. Support channels and hours
-9. Training offering
-10. Single sign-on support
-11. Typical SHEQX® implementation time
-12. Exact G2 and Capterra category names at submission
-13. Eligibility for Microsoft AppSource / Azure Marketplace, TrustRadius, SaaSworthy, SAIOSH, IRMSA and SA SHEQ trade-media listings
-14. Whether to send the review request to a broader customer list, in line with G2 and Capterra rules on selective solicitation
+All 14 open items were answered by Deneys on 2026-09-28 and are written into the sections above. Note: mobile apps, offline capture, languages and SSO are **not yet stated on the website**, so the listings now say more than the site does. Worth adding them to the site so the two agree.
