@@ -1409,144 +1409,157 @@ The future of compliance is no longer defined by collecting more information. It
 
 Organisations that prioritise compliance visibility will be better positioned to strengthen governance, improve accountability, respond to change, and build long-term resilience. Because better decisions begin with better visibility.`,
 
-'why-compliance-is-becoming-a-competitive-advantage': `For many years, compliance was viewed as a necessary business function focused on meeting regulatory obligations, passing audits, and avoiding penalties. Organisations invested in policies, controls, and reporting primarily to satisfy regulators rather than create business value.
+'why-compliance-is-becoming-a-competitive-advantage': `Picture a supplier selection meeting. The commercial offer is strong and the proposed service meets the need. Then the buyer asks for evidence: who can access its information, how contractors are approved, and what happens when an important control fails. The answer can change the conversation.
 
-While meeting regulatory requirements remains essential, the role of compliance is changing.
+A promise asks the buyer to accept uncertainty. A clear explanation, supported by current evidence, gives the buyer something it can assess. That is the commercial opportunity in compliance: not a certificate used as a sales badge, and not a claim that good governance guarantees growth. Compliance becomes a competitive advantage when it helps an organisation demonstrate that it can deliver what it promises, within the conditions its customers require. The advantage is not having more compliance documents. It is being easier to trust for the right reasons.
 
-Today's organisations operate in a far more complex environment. Expanding regulations, increasing stakeholder expectations, digital transformation, and global supply chains mean compliance now influences far more than legal obligations. It affects governance, operational resilience, business performance, and organisational reputation.
+Compliance Is a Business Capability, Not Just an Audit Event
 
-As a result, forward-thinking organisations are no longer asking "how do we stay compliant?" Instead, they are asking "how can compliance help us become a stronger business?" This shift is transforming compliance from a cost of doing business into a strategic capability that supports long-term success. It is closely related to the maturity question covered in <a href="/insights/what-is-grc-software">what is GRC software</a>: the more connected an organisation's governance, risk, and compliance activities are, the more that connection itself becomes a source of advantage.
+A useful compliance programme connects applicable requirements with responsibilities, everyday work and evidence. <a href="https://www.iso.org/standard/75080.html" rel="noopener">ISO 37301</a> provides a management-system approach to establishing, evaluating and improving that programme, with integrity and stakeholder trust among its stated benefits. If you are still defining the scope of that capability, our guide to <a href="/insights/what-is-grc-software/">what GRC software is</a> sets out how governance, risk and compliance fit together.
 
-The Shift from Reactive to Strategic Compliance
+In commercial terms, start with three questions. What must we meet to do the work? What have we agreed to deliver? What can we demonstrate today? Keep those answers separate. An internal policy, a customer contract and a certification requirement may overlap, but they are not interchangeable, and a well-written policy does not prove that a customer-specific condition has been met. This is the gap between writing rules and running them, explored further in <a href="/insights/policy-management-vs-governance-execution/">policy management versus governance execution</a>.
 
-Traditional compliance programmes were often reactive. Organisations responded to regulatory changes, prepared for scheduled audits, and addressed issues after they had already occurred. That approach is no longer sustainable.
+The distinction helps commercial teams avoid selling a level of assurance that operations cannot support. It also gives operations a clearer view of the commitments the business is making on its behalf.
 
-Regulatory expectations are increasing, business environments are evolving faster than ever, and organisations face greater scrutiny from customers, investors, regulators, and business partners. Modern compliance requires continuous oversight rather than periodic reviews. It must provide leadership with visibility into risks, obligations, controls, and organisational performance before issues escalate.
+Why Your Customer Cares About Your Controls
 
-When compliance becomes integrated into governance and decision-making, it moves beyond preventing regulatory breaches. It becomes a business capability that supports resilience, accountability, and growth.
+For technology relationships, the buyer's assessment extends into the supplier's own practices. <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1305.pdf" rel="noopener">NIST's supply-chain guidance</a> recommends setting requirements according to supplier criticality and specifying how acceptable security practices will be evidenced. It treats this as an ongoing relationship, not only an onboarding exercise. The commercial implication is straightforward: a supplier able to answer relevant questions with reliable evidence removes one source of uncertainty from the buying decision.
 
-Why Compliance Creates Competitive Advantage
+The same reasoning applies to a facilities contract or a manufacturing supply agreement. A buyer may need to understand how work is authorised, how quality problems are handled, or whether staff are competent for the task. The relevant proof will differ, so the response should be tailored rather than copied from a generic assurance pack. Ask what decision the customer is trying to make, then provide the evidence needed for that decision, without overwhelming the customer or exposing sensitive internal records.
 
-Compliance is often associated with reducing risk, but its value extends much further. When embedded into everyday business operations, compliance helps organisations make better decisions, strengthen governance, and build confidence among stakeholders.
+Where the Commercial Value Can Appear
 
-Strong compliance capabilities enable organisations to:
+There are three places to look for value in your own business. These are mechanisms to test, not promised outcomes.
 
-- Build trust with customers, investors, and regulators
-- Improve executive decision-making
-- Identify risks before they escalate
-- Strengthen organisational resilience
-- Support sustainable business growth
-- Enhance operational efficiency
+- Qualification: where a buyer specifies mandatory conditions, meeting and demonstrating them can decide whether you remain eligible
+- Review effort: a maintained evidence pack can reduce repeated requests to technical, compliance and operational teams
+- Delivery confidence: bringing contractual commitments into the operating process helps the delivery team understand what was promised
 
-These benefits create lasting competitive advantages that extend well beyond regulatory compliance.
+Extra marketing cannot substitute for an unmet entry requirement. The review-effort benefit comes from reusing reviewed information, while checking that its scope still matches the proposed service. And delivery confidence creates a basis for resolving exceptions before they become disputes at renewal.
 
-Trust Is a Business Asset
+Compliance does not replace price, service quality or product fit. It can support those strengths by making the associated commitments more credible. In a market where all credible suppliers already meet the same threshold, differentiation must come from how reliably they operate, not from claiming the threshold itself is unique.
 
-Trust has become one of the most valuable assets an organisation can possess. Customers want confidence that their information is protected. Investors seek organisations with strong governance. Regulators expect accountability and transparency, while business partners increasingly evaluate compliance maturity before entering strategic relationships.
+A Certificate Helps, but Scope Still Matters
 
-Strong compliance demonstrates that an organisation operates responsibly, consistently, and ethically. This strengthens credibility, enhances brand reputation, and builds confidence among stakeholders. Organisations that consistently demonstrate effective governance are often better positioned to attract investment, secure partnerships, retain customers, and protect their reputation during periods of uncertainty. Policy governance is one of the clearest signals of that maturity, and where policies quietly stop translating into practice is covered in <a href="/insights/policy-management-vs-governance-execution">policy management versus governance execution</a>.
+ISO describes <a href="https://www.iso.org/certification.html" rel="noopener">certification</a> as independent written assurance that specified requirements have been met, carried out by external bodies rather than by ISO itself. When presenting a certificate, check the named entity, covered activities, sites and validity, and explain how that scope relates to the service being offered. Do not let a logo imply that every product, location or customer requirement has been independently assessed.
 
-Better Visibility Leads to Better Decisions
+The same discipline applies to audit summaries and testing reports. Describe what was examined, when it was examined and any material limitations. A buyer needs an accurate basis for its decision, not the broadest claim the sales team can construct. A precise statement of assurance is often more useful than an absolute claim that cannot withstand follow-up questions.
 
-Compliance programmes generate valuable information about organisational performance. Risk assessments, audit findings, policy compliance, corrective actions, and regulatory obligations all provide insight into how effectively an organisation is operating.
+An Illustrative Supplier Decision
 
-However, when this information is spread across spreadsheets, disconnected systems, and individual departments, leadership struggles to obtain a complete picture. Limited visibility slows decision-making and creates unnecessary complexity.
+Consider two suppliers bidding for a multi-site service contract. This is an illustrative example, not a customer case study. Both provide a policy pack and competitive pricing. The first cannot confirm whether the same procedures operate at each proposed site: its evidence sits with individual managers, and outstanding actions are difficult to reconcile.
 
-By centralising compliance information, organisations gain greater visibility into emerging compliance risks, outstanding obligations, control effectiveness, audit readiness, and areas requiring executive attention. When leaders have access to timely, accurate information, they can make more confident decisions that support both governance and business objectives.
+The second supplier shows the relevant responsibilities, training records, review results and open actions for the sites in scope. It identifies one unresolved issue, explains the interim restriction and names an accountable owner and agreed completion date.
 
-Proactive Compliance Reduces Risk
+The second supplier has not proved that nothing will go wrong. It has made its position easier to evaluate. The buyer can distinguish a controlled, disclosed exception from an unknown gap and decide whether the proposed arrangement is acceptable. That is evidence-led commercial confidence, and the benefit depends on the quality of the underlying work, not the design of the presentation.
 
-Reactive compliance often identifies issues only after an audit, incident, or regulatory review. Proactive compliance focuses on continuous monitoring, allowing organisations to identify potential problems before they become costly business disruptions.
+Build an Evidence Pack That Operations Can Defend
 
-This approach helps organisations detect compliance gaps earlier, reduce operational risk, improve regulatory readiness, strengthen internal controls, and lower remediation costs. Preventing issues before they escalate protects both organisational performance and stakeholder confidence.
+Start with the assurance questions that recur in actual customer reviews. For each material claim, identify the responsible owner, supporting record, scope and review date. Keep open issues connected to their actions rather than hiding them in a separate tracker.
 
-Compliance Enables Sustainable Growth
+An approved response should remain linked to its source. If a service changes, a control fails or a certificate expires, the commercial explanation must be reconsidered. Reusing a once-correct answer without checking it is not efficient compliance.
 
-Growth creates new opportunities, but it also introduces additional complexity. Expanding into new markets, launching new products, adopting emerging technologies, or working with additional suppliers all increase regulatory obligations.
+Separate information suitable for public use from material that needs controlled disclosure. A high-level security statement and a detailed vulnerability report serve different audiences, so share only what is appropriate for the relationship and purpose. <a href="https://www.theiia.org/globalassets/documents/resources/the-iias-three-lines-model-an-update-of-the-three-lines-of-defense-july-2020/three-lines-model-updated-english.pdf" rel="noopener">The IIA's Three Lines Model</a> also distinguishes management's responsibilities from independent internal audit assurance. Commercial teams should preserve that distinction: a manager's statement and an independent assurance conclusion are different forms of evidence. Coordinating internal audit and combined assurance, as <a href="/integrated-assurance/">Integrated Assurance</a> does, helps keep the two clearly labelled.
 
-Organisations with mature compliance programmes can manage this complexity more effectively because governance processes, accountability structures, and compliance controls are already embedded within the business. Rather than slowing innovation, effective compliance enables organisations to pursue growth with greater confidence while maintaining appropriate governance and oversight.
+Reduce Duplication Without Weakening the Requirement
 
-How XGRC® Helps Organisations Strengthen Compliance
+An improvement programme should examine unnecessary effort as well as missing controls. If three teams request the same training evidence, establish whether one reviewed record can support all three needs. If each business unit uses a different supplier assessment, identify which questions must be consistent and which genuinely depend on the service or risk.
 
-Many organisations attempt to improve compliance by introducing additional reporting tools or isolated systems. Unfortunately, this often creates more fragmentation and reduces visibility.
+Do not merge requirements merely because their wording looks similar. Check the intended outcome, covered population, frequency and evidence expected; a shared process is useful only when it satisfies each applicable purpose. This is where compliance can support margin as well as credibility: less repeated collection and reconciliation may free skilled people for assessment and improvement. Measure that effect locally rather than attaching an assumed saving to every automated task.
 
-XGRC® Software connects compliance, risk, audit, and operational oversight in one governance environment, so organisations can integrate governance information across the enterprise instead of managing compliance as a standalone activity. Within that environment, <a href="/compliance-hub">XGRC® Compliance Hub</a> gives supplier and third-party compliance the same live visibility as every other category of risk, rather than leaving it in email and spreadsheets.
+How XGRC® Supports Evidence-Led Compliance
 
-This enables organisations to centralise compliance information, improve enterprise-wide visibility, strengthen governance oversight, simplify reporting, enhance audit readiness, improve executive decision-making, and reduce administrative effort. By connecting governance activities, XGRC® helps organisations transform compliance from an operational obligation into a strategic business capability.
+<a href="/grc-software/">The XGRC® platform</a> connects governance, risk, compliance and assurance records, including policies, controls, obligations, audits and corrective actions. That gives teams a shared basis for understanding what a requirement relates to and what work supports it. Turned the other way, the <a href="/compliance-hub/">XGRC® Compliance Hub</a> applies the same discipline to your own suppliers and contractors, with structured onboarding, document expiry tracking and risk scoring.
 
-The Future of Compliance
+<a href="/msx/">MSX®</a> supports organisations coordinating several management disciplines through shared document control, governance workflows, audit management and performance evaluation. It offers a way to manage related activities together rather than creating a separate programme for each standard.
 
-As regulatory complexity continues to grow, organisations will need more than policies and periodic audits. They will need connected governance, real-time visibility, and stronger accountability.
+Apply those capabilities to a commercial requirement: connect the commitment to its owner, relevant controls and supporting records, and when a review identifies a weakness, retain the finding and the action needed to address it. The software supports the evidence and the workflow. People still need to interpret requirements, perform the work, review claims and decide what can responsibly be communicated to a customer.
 
-The organisations that embrace compliance as a strategic capability will be better positioned to strengthen resilience, improve decision-making, build stakeholder trust, and adapt to changing business environments. Those that continue treating compliance solely as a regulatory requirement risk missing the broader business value it can deliver.
+Measure the Advantage Rather Than Assume It
 
-Because in today's business environment, compliance is no longer simply about meeting obligations. It is becoming a genuine competitive advantage.`,
+Use a small set of measures tied to the commercial process: the time needed to answer material assurance questions, repeated evidence requests, bid delays caused by unresolved compliance gaps, and hours spent rebuilding information already held elsewhere. Pair those measures with quality checks. A faster response is not an improvement if it contains an outdated claim, and a higher qualification rate does not prove compliance caused more sales, because pricing, demand and product fit also affect the result.
 
-'how-proactive-compliance-reduces-business-risk': `Today's organisations operate in an environment where business risks evolve continuously. Regulatory requirements are becoming more complex, cyber threats are increasing, third-party ecosystems are expanding, and stakeholder expectations continue to grow.
+Review a sample of completed opportunities with sales, operations and compliance. Ask which evidence helped, which questions exposed a genuine weakness, and what should change before the next proposal.
 
-In this environment, organisations can no longer afford to manage compliance as a reactive process.
+Make Compliance Part of the Customer Promise
 
-Traditionally, compliance activities were triggered by audits, regulatory inspections, or incidents that had already occurred. Teams focused on correcting issues after they were identified, often investing significant time and resources into remediation. While this approach may have been sufficient in the past, it is no longer sustainable.
+Choose one important customer requirement and follow it from the proposal into delivery. Can the organisation show who owns it, how it is met and what evidence supports the answer? That is a practical place to begin. Build a repeatable response around real operating capability, then improve it as customer expectations and services change.
 
-Leading organisations are adopting a different approach. They are embedding proactive compliance into their governance strategy to identify risks earlier, strengthen accountability, and improve business resilience before problems escalate. Rather than responding to compliance failures, proactive organisations work to prevent them.
+Trust is not created by saying the business is compliant. It is strengthened when the business can explain and demonstrate what that means. <a href="/demo/">Speak to an XGRC® specialist</a> about connecting compliance evidence with commercial and operational performance.`,
 
-The Difference Between Reactive and Proactive Compliance
+'how-proactive-compliance-reduces-business-risk': `A critical contractor's document is approaching expiry. A system change introduces broader access. A recurring inspection finding remains open because nobody has decided what happens next. Each situation presents an opportunity to act, and the opportunity is lost when a warning remains in a spreadsheet, an inbox or a report without reaching someone who can change the outcome.
 
-Reactive compliance focuses on responding to issues after they have occurred. This often includes addressing audit findings, responding to regulatory investigations, updating policies after legislative changes, correcting compliance failures, and managing incidents after business disruption. While these activities remain important, they rarely prevent future issues.
+Proactive compliance is the discipline of identifying those conditions, assessing their significance and acting before a requirement is missed or an exposure grows. It is not a promise to predict every incident. A warning reduces risk only when it leads to an effective decision or control.
 
-Proactive compliance takes a different approach. Instead of waiting for problems to emerge, organisations continuously monitor compliance activities, assess risks, track obligations, and strengthen governance before issues impact the business. This enables leadership teams to make informed decisions based on current information rather than historical events. The underlying cycle behind that shift, identify, assess, treat, implement, and monitor, is set out in <a href="/insights/five-risk-management-process-steps">the five risk management process steps</a>.
+Move From a Calendar to an Operating Process
 
-Why Reactive Compliance Increases Business Risk
+A calendar can tell the organisation when a review is due. It cannot, by itself, establish whether the requirement still fits the activity, whether the control works or whether a change needs approval.
 
-Many organisations believe they have effective compliance programmes because they successfully complete annual audits or meet regulatory reporting deadlines. However, these milestones often provide only a snapshot of compliance performance.
+<a href="https://www.iso.org/standard/75080.html" rel="noopener">ISO 37301</a> treats compliance as a management system that is evaluated and improved. <a href="https://www.iso.org/standard/65694.html" rel="noopener">ISO 31000</a> provides a complementary process for identifying, assessing, treating and monitoring risk, set out step by step in <a href="/insights/five-risk-management-process-steps/">the five risk management process steps</a>. Together, these approaches support ongoing management rather than a rush to prepare for an annual audit.
 
-Between audits, risks continue to evolve. New regulations are introduced. Business processes change. Suppliers are added. Technology is updated. Without continuous oversight, organisations may remain unaware of compliance gaps until an incident, regulatory review, or operational failure exposes them.
+Start with a material obligation and the activity it affects. Identify the event that could cause non-compliance, the control intended to address it and the evidence needed to judge performance. Then establish what triggers action. A missed review, an expanded service, a new supplier or a control failure may each require a different response. A date-based reminder is useful, but it is only one kind of trigger.
 
-This reactive approach can result in regulatory penalties, operational disruption, reputational damage, increased remediation costs, delayed decision-making, and reduced stakeholder confidence. The longer risks remain undetected, the greater their potential impact on the organisation.
+Distinguish Prevention, Detection and Correction
 
-Early Risk Identification Strengthens Governance
+Use three questions when designing a process. What prevents the problem? Examples include restricting access to approved operations, checking authorisation before work begins and requiring approval before a material change is released. What reveals a problem or a weakening control? Examples include reconciling access against approved roles, reviewing overdue inspections and checking for repeated exceptions. What limits harm and stops recurrence? Examples include withdrawing access, suspending affected work, investigating the cause and verifying the corrective action.
 
-One of the greatest advantages of proactive compliance is visibility. When organisations continuously monitor compliance obligations, controls, and risk indicators, they gain earlier insight into emerging issues.
+A report produced after a breach is not the same as a control that prevents the breach. Yet detective and corrective controls still matter, because prevention can fail. Assess the complete arrangement rather than choosing a single control and assuming the risk is covered. In health and safety, <a href="https://www.hse.gov.uk/leadership/plan-do-check-act/check.htm" rel="noopener">HSE guidance</a> calls for both preventive information and incident data, together with reviews of control effectiveness. That principle is equally useful when designing a broader compliance dashboard.
 
-This allows leadership teams to identify compliance gaps before audits, detect control failures sooner, monitor changes in regulatory obligations, track corrective actions more effectively, and prioritise risks based on business impact. Early identification gives organisations more time to respond, reducing the likelihood that minor issues become significant business problems. Strong governance depends on timely information, and proactive compliance provides the visibility needed to make better decisions, the same visibility gap explored in <a href="/insights/what-is-enterprise-risk-management">what is enterprise risk management</a>.
+An Illustrative Supplier Change
 
-Proactive Compliance Improves Operational Resilience
+Imagine a supplier approved to provide a limited support service. It later proposes remote access to production systems to speed up fault resolution. This is an illustrative scenario, not a reported incident. The commercial relationship has not changed its name, but the exposure has changed substantially, and simply renewing the supplier's annual questionnaire would miss the new access decision.
 
-Business resilience depends on more than responding effectively to disruption. It requires organisations to anticipate challenges and prepare for them before they occur.
+A proactive process brings the proposed change to the service owner, security team and relevant risk owner before access is enabled. They determine the permitted systems and actions, the approval conditions, the monitoring required and how access will end. The outcome might be a restricted connection, additional safeguards or a decision not to proceed. The important point is timing: the control decision precedes the access, rather than following an incident.
 
-Proactive compliance supports resilience by embedding governance into everyday operations. Instead of viewing compliance as a periodic activity, organisations continuously evaluate whether policies, controls, and processes remain effective as the business evolves. This enables organisations to adapt more quickly to regulatory changes, business expansion, new technologies, supplier risks, and internal process changes. As a result, organisations become more agile while maintaining strong governance.
+<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1305.pdf" rel="noopener">NIST's technology supply-chain guidance</a> similarly links supplier requirements to criticality and potential impact, with monitoring across the relationship. An initial assessment should not be treated as permanent approval for every later use. The <a href="/compliance-hub/">XGRC® Compliance Hub</a> supports that ongoing view of suppliers and contractors, with structured onboarding, document expiry tracking and risk scoring.
 
-Better Compliance Leads to Better Business Decisions
+Give Each Signal an Owner and a Response
 
-Compliance programmes generate valuable information about organisational performance. Risk assessments, audit findings, policy compliance, and control effectiveness all provide important insights. However, these insights only create value when leadership has access to them.
+For every high-priority warning, define who receives it, who decides, what happens while the matter is unresolved and when escalation is required. A useful operating record connects the affected requirement, risk, control, responsible person, due date and evidence. It should also distinguish a proposed action from an implemented control: logging a remediation task does not make the exposure smaller until the relevant change takes effect.
 
-When compliance information is fragmented across multiple systems and departments, executives often lack a complete picture of organisational risk. Proactive compliance centralises governance information, providing greater visibility across the enterprise. Leadership teams can better understand where compliance risks are emerging, which obligations require immediate attention, whether controls are operating effectively, how corrective actions are progressing, and where additional governance is needed. This improves decision-making while strengthening organisational accountability.
+<a href="https://www.theiia.org/globalassets/documents/resources/the-iias-three-lines-model-an-update-of-the-three-lines-of-defense-july-2020/three-lines-model-updated-english.pdf" rel="noopener">The IIA's Three Lines Model</a> places risk management within management's responsibilities. Specialist compliance and risk roles provide support and challenge, while internal audit provides independent assurance. Escalating an issue to compliance does not transfer the operational owner's responsibility.
 
-Compliance Becomes a Driver of Business Performance
+Where an internal exception is permitted, make its scope, conditions and expiry explicit. Do not use an exception record as a substitute for meeting a mandatory requirement, and make sure uncertainty about what is permitted reaches the appropriate specialist before work proceeds.
 
-Many organisations still view compliance as a cost centre. Forward-thinking organisations recognise that effective compliance supports broader business objectives.
+Prioritise the Consequence, Not the Number of Alerts
 
-When governance processes are embedded into business operations, organisations can reduce operational inefficiencies, improve audit readiness, strengthen stakeholder trust, support strategic growth, protect organisational reputation, and improve long-term resilience. Rather than restricting innovation, proactive compliance enables organisations to pursue new opportunities with greater confidence because governance keeps pace with change.
+A dashboard with hundreds of overdue items can conceal the issue that matters most. Assess warnings in context: which process is affected, what could happen, how quickly the exposure could develop and what other controls remain effective. A single failed access restriction on a critical system may require more urgent attention than many low-impact administrative tasks. This is the same consequence-led thinking that underpins <a href="/insights/what-is-enterprise-risk-management/">enterprise risk management</a>.
 
-Technology Enables Continuous Compliance
+Use leading indicators to examine whether important controls are being maintained, such as overdue critical tests, unreviewed access changes and repeated temporary exceptions. Pair them with outcomes such as incidents, service interruptions or repeated non-conformances. These are suggested measures, not universal thresholds.
 
-Managing proactive compliance manually becomes increasingly difficult as organisations grow. Multiple regulations, business units, jurisdictions, suppliers, and operational processes create significant complexity. Disconnected spreadsheets and manual reporting rarely provide the visibility needed to manage modern compliance programmes effectively.
+Interpret movement carefully. More reported near misses could reflect improved reporting, greater exposure or both. Fewer alerts could reflect better controls or a monitoring failure. Before declaring success, check the source data and what changed in the process.
 
-Technology enables organisations to move from periodic compliance reviews to continuous governance, centralising compliance obligations, monitoring regulatory changes, automating workflows, improving enterprise-wide visibility, tracking corrective actions, and supporting audit readiness. Technology allows compliance teams to spend less time managing administration and more time reducing organisational risk.
+AI-Agent Access Makes Prevention Especially Concrete
 
-How XGRC® Helps Organisations Build Proactive Compliance
+An AI agent connected to business tools creates an access decision, not just a productivity decision. <a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" rel="noopener">OWASP identifies excessive functionality, permissions and autonomy</a> as causes of excessive agency. A manipulated or mistaken agent may misuse legitimate access without first stealing a credential.
 
-Many organisations attempt to improve compliance by introducing additional reporting tools. Unfortunately, disconnected systems often create more complexity rather than greater visibility.
+This is a specific area where Asgard, the XGRC® AI agents platform, fits. Upstream credentials are kept in an encrypted Vault rather than handed to the agent. Each agent uses a scoped Asgard key mapped to approved grants, and tool calls pass through Bifröst, where Heimdall filters apply allow and deny rules, redaction and PII removal. Guardrails, central revocation and action logs add further safeguards. For example, an agent approved to read operational records need not receive permission to amend them merely because the same application supports both actions.
 
-XGRC® Software connects compliance, risk, audit, policies, controls, and operational oversight on one governance environment, so organisations can embed governance across the enterprise instead of managing compliance as isolated activities. Within that environment, <a href="/erm">XGRC® Enterprise Risk Management</a> gives risks a live register and appetite thresholds rather than an annually reviewed spreadsheet, and <a href="/compliance-hub">XGRC® Compliance Hub</a> extends the same proactive monitoring to supplier and third-party compliance.
+The limits still matter. A scoped key remains sensitive, authorised actions can still be misused, and access outside the brokered route needs its own controls. Asgard is relevant to controlled AI-agent access; it is not a substitute for the organisation's wider compliance programme. Asgard is available on XGRC® Enterprise, and you can <a href="/contact/">contact XGRC®</a> to learn more about its controlled access model.
 
-This enables organisations to improve compliance visibility, monitor obligations continuously, strengthen governance oversight, reduce administrative effort, improve executive reporting, and track corrective actions. By integrating compliance into broader governance processes, organisations can identify risks earlier, strengthen resilience, and reduce the likelihood of costly compliance failures.
+Test the Control Before Depending on It
 
-The Future of Compliance Is Proactive
+A control description explains what should happen. A test examines what does happen. For a critical workflow, try an authorised action and a prohibited one under controlled conditions. Check whether a revoked grant stops access, whether an overdue approval reaches the right person and whether an escalation is visible to someone with authority to respond.
 
-As regulatory expectations continue to increase, organisations cannot rely on reactive compliance alone. The ability to identify risks early, maintain continuous oversight, and respond quickly to change is becoming essential for long-term success.
+Keep the test result linked to the control and its scope. A successful test of one integration does not establish that every integration behaves the same way. If a test fails, record the exposure, interim treatment, accountable owner and retest requirement. HSE's guidance also calls for periodic audits of management structures and risk controls, and the practical lesson is to examine operation, not just the existence of a procedure. Closing an action is an administrative event. Verifying the fix is a control decision.
 
-Organisations that adopt proactive compliance will be better positioned to strengthen governance, improve resilience, protect stakeholder trust, and support sustainable growth. Because reducing business risk is no longer about reacting faster. It is about anticipating risk before it becomes a business problem.`,
+How XGRC® Connects Early Warnings to Accountable Work
+
+XGRC®'s <a href="/use-cases/risk-management/">risk management</a> capabilities connect risk registers with controls, mitigation actions and assurance information. This supports a consistent view of exposure across business units rather than disconnected lists with different meanings, and <a href="/erm/">XGRC® Enterprise Risk Management</a> extends that view to enterprise, operational and project risk on the same auditable platform.
+
+Its <a href="/use-cases/internal-controls/">internal controls</a> capabilities support named ownership, risk-based testing schedules, deficiency tracking and verified remediation. Teams can connect a failed test to the affected control and risk, then track the work required to address it. Applied to the supplier example, that means retaining the assessment, access conditions, test results and follow-up actions against the relevant risk and owners, and revisiting them when the service changes.
+
+The distinction between governance and enforcement remains important. XGRC® supports the management process and its evidence. The relevant operational, identity or security system must enforce the actual access restriction, work authorisation or technical control.
+
+Make the Next Review a Prevention Exercise
+
+Select one critical process and trace the last material change or exception. Ask whether the organisation identified the exposure before it took effect, assigned the right decision-maker, implemented the response and verified the result. Use what you find to improve that workflow. A practical starting point is one requirement, one owner, one tested control and one reliable escalation route. Expand only when the process works, rather than creating a large register that nobody maintains.
+
+Measure the time from warning to decision, the age of unresolved high-priority deficiencies and the recurrence of previously closed issues. These measures help test whether attention is turning into risk reduction, not merely more reporting.
+
+Act While There Is Still Time to Change the Outcome
+
+Proactive compliance is not about producing more warnings. It is about ensuring that important warnings reach someone who can act, with the authority and evidence needed to make a sound decision. The goal is not to discover yesterday's problem more efficiently, but to make a better decision while the outcome can still be changed. <a href="/demo/">Speak to an XGRC® specialist</a> about connecting compliance risks, control testing and corrective actions across your organisation.`,
 
 'building-a-compliance-culture': `A strong compliance culture is not created by policies alone.
 
@@ -1616,65 +1629,87 @@ When employees understand organisational expectations, have access to current in
 
 The result is stronger accountability, more consistent decision-making, reduced compliance risk, and a more resilient organisation.`,
 
-'future-of-compliance-strategic-business-asset': `For decades, compliance was largely viewed as a necessary business function, one focused on satisfying regulatory requirements, avoiding penalties, and passing audits. It was often perceived as a cost centre that operated independently from the organisation's broader strategic objectives.
+'future-of-compliance-strategic-business-asset': `A board is considering a new market, a major supplier or an AI-enabled service. The financial case is prepared and the delivery plan looks achievable. Only then is the compliance team asked to review a decision that is nearly complete.
 
-That perception is rapidly changing.
+There is a better point to contribute: while the options are still being designed. At that stage compliance can show which requirements affect each option, what must change before the business can proceed, which controls already provide a foundation, and where the evidence is too weak to support confidence. The future of compliance should be judged by that contribution. Not by how many reports the function produces, but by whether its knowledge improves the choices the organisation makes.
 
-Today's organisations face increasing regulatory complexity, evolving stakeholder expectations, digital transformation, cybersecurity threats, and growing pressure to demonstrate strong governance. Compliance is no longer confined to legal obligations; it now influences operational resilience, executive decision-making, corporate reputation, and long-term business success.
+From Reporting Activity to Informing Strategy
 
-Forward-thinking organisations are recognising that compliance can deliver far more than regulatory assurance. When integrated into governance and business strategy, compliance becomes a strategic asset that enables organisations to reduce risk, improve performance, build stakeholder trust, and create sustainable competitive advantage. The future of compliance is not about managing regulations more efficiently. It is about using compliance to create stronger, smarter, and more resilient organisations.
+<a href="https://www.coso.org/enterprise-risk-management" rel="noopener">COSO's enterprise risk management framework</a> explicitly connects risk with strategy-setting and performance. <a href="https://www.iso.org/standard/75080.html" rel="noopener">ISO 37301</a> provides a management-system approach for evaluating and improving compliance. Neither idea requires compliance to operate as a separate year-end reporting exercise, and the relationship between the two disciplines is explored further in <a href="/insights/erm-vs-grc/">ERM versus GRC</a>.
 
-The Traditional View of Compliance Is No Longer Enough
+Bring compliance knowledge into planning. A requirement may affect a launch date, delivery model, supplier choice or resource allocation, so make those constraints visible while the design can still change. Commercial attractiveness does not make an unmet mandatory requirement acceptable. Where the position is unclear, obtain specialist interpretation before treating an internal approval as authority to proceed.
 
-Historically, compliance programmes were designed to respond to external requirements. Policies were updated when regulations changed. Audits were prepared periodically. Reporting was often manual and retrospective. Success was measured by avoiding regulatory findings rather than improving business performance.
+What Makes Compliance Information a Strategic Asset
 
-While these activities remain essential, they are increasingly insufficient in today's business environment. Organisations now operate across multiple jurisdictions, manage extensive third-party networks, adopt emerging technologies, and respond to constantly changing regulatory expectations. Compliance can no longer operate in isolation. It must become part of how organisations govern, manage risk, and make strategic decisions, the same shift covered from the risk side in <a href="/insights/erm-vs-grc">ERM versus GRC</a>.
+A document is not strategically valuable merely because it is stored centrally. Its value depends on whether someone can use it to make a better decision. Link a service obligation to its owner, relevant controls, current evidence and unresolved findings, and the record can then help answer a practical question: are we ready to expand this service?
 
-Why Compliance Is Becoming a Strategic Business Asset
+Here, a strategic asset means reliable organisational knowledge and the processes that maintain it. It is not an accounting claim. Choose a real decision and ask what information would change it, then build the connections needed to answer that question rather than collecting every field the software allows. The same evidence that supports a decision internally can also support customers' decisions, which is <a href="/insights/why-compliance-is-becoming-a-competitive-advantage/">why compliance is becoming a competitive advantage</a>.
 
-Modern compliance provides valuable insight into how an organisation operates. It connects information relating to regulatory obligations, internal controls, business risks, audit findings, policies and procedures, operational performance, and corrective actions.
+Put Compliance Into the Investment Case
 
-When these governance activities are connected, compliance becomes a source of business intelligence rather than simply a reporting function. Leadership gains a clearer understanding of organisational performance, emerging risks, and governance maturity. Instead of reacting to problems, organisations can identify opportunities to improve resilience, strengthen accountability, and support business growth. This is where compliance begins to create strategic value.
+Consider an illustrative proposal to launch a managed service across several customer sites. One option launches every site together. Another begins with a limited group while the organisation completes training, supplier checks and control testing for the remaining locations. A third changes the service design to avoid an activity the business is not ready to govern.
 
-Compliance Supports Better Executive Decision-Making
+A strategic compliance contribution explains the conditions and trade-offs attached to each option. It sets out which requirements apply and which can already be demonstrated, what work remains and who owns it, and where the plan depends on a supplier or an external approval. The board can then compare options using more than projected revenue and implementation cost, considering readiness, delivery constraints and uncertainty as part of the decision itself.
 
-Executives make decisions that affect every aspect of the organisation. Whether entering new markets, investing in technology, acquiring businesses, or responding to regulatory change, leadership requires accurate and timely information.
+A group-wide compliance percentage cannot show those trade-offs. Leadership needs the conditions attached to the proposed activity.
 
-Fragmented compliance data limits visibility and increases uncertainty. Connected compliance enables executives to understand where compliance risks are emerging, which obligations require attention, whether controls remain effective, how governance performance is evolving, and where resources should be prioritised. By providing reliable governance insight, compliance supports faster, more confident, and better-informed decision-making.
+Connect the Records Without Erasing Their Differences
 
-Trust Is Becoming a Competitive Differentiator
+Connect each obligation to the affected process, risk, controls, owner, evidence and assurance results. Reviewers should be able to trace the decision and understand what has changed.
 
-Stakeholders increasingly expect organisations to demonstrate responsible governance. Customers want assurance that their information is protected. Investors evaluate governance maturity before making investment decisions. Business partners assess compliance capabilities when selecting suppliers. Regulators expect transparency and accountability.
+Do not confuse connection with equivalence. Similar obligations may apply to different entities, populations or periods, and one control might support both but require separate evidence. Preserve the source, applicability and mapping rationale, together with material changes and decisions. Simpler reporting must not erase distinctions that matter.
 
-A mature compliance programme demonstrates that an organisation manages its responsibilities consistently and ethically. This strengthens stakeholder confidence and protects organisational reputation. As trust becomes a key differentiator, compliance evolves from an internal function into a business capability that supports sustainable growth.
+More Continuous Does Not Mean Everything Must Be Live
 
-Technology Is Redefining Compliance
+Compliance information becomes useful when it is refreshed at the pace of the risk and the decision. That does not mean every control needs second-by-second monitoring. An access change may need immediate review. A supplier assurance record may need reassessment after a material change. A strategic commitment may need attention through scheduled management review. Define the trigger and the responsible person for each, rather than applying one interval to everything.
 
-Manual compliance processes struggle to keep pace with today's business environment. Disconnected spreadsheets, email approvals, and isolated reporting systems often create inefficiencies, reduce visibility, and increase administrative effort.
+Also make the age and completeness of evidence visible. A dashboard refreshed this morning can still contain an assessment that no longer reflects the service. A status should distinguish supported confidence from an untested assumption.
 
-Modern governance technology enables organisations to move beyond reactive compliance. By centralising governance information and automating routine activities, organisations can improve compliance visibility, monitor obligations continuously, strengthen governance oversight, simplify reporting, enhance accountability, support executive dashboards, and improve audit readiness. Technology enables compliance teams to focus less on administration and more on strategic risk management and business improvement, including newer categories such as <a href="/insights/what-is-governed-ai-for-grc">governed AI for GRC</a>.
+AI Can Assist the Work, but It Also Needs Governance
 
-Compliance and Governance Must Work Together
+AI creates two separate questions for the compliance function: how might it assist the work, and how should the organisation govern its own AI use?
 
-Compliance is most effective when integrated into broader governance processes. Rather than operating independently, compliance should work alongside risk management, internal audit, policy management, operational resilience, and corporate governance.
+For the first question, candidate uses include summarising records, grouping similar findings and preparing questions for review. Treat these as assistive tasks to evaluate, not permission for a model to decide that an obligation has been met, and check the source, completeness and suitability of material outputs before relying on them. That is the principle behind <a href="/insights/what-is-governed-ai-for-grc/">governed AI for GRC</a>.
 
-This integrated approach creates a connected governance environment where information flows across the organisation rather than remaining isolated within individual departments. The benefits include better organisational visibility, improved collaboration, stronger accountability, faster response to change, more effective risk management, and greater operational resilience. Connected governance transforms compliance into a strategic capability that supports enterprise-wide performance.
+For the second question, the <a href="https://www.nist.gov/itl/ai-risk-management-framework" rel="noopener">NIST AI Risk Management Framework</a> provides voluntary guidance for incorporating trustworthiness into AI design, use and evaluation, and <a href="https://www.iso.org/standard/42001" rel="noopener">ISO/IEC 42001:2023</a> sets requirements for an AI management system. Both support a structured approach rather than adding AI without an operating framework. In practice, keep ownership, approved purpose, risk and impact assessment, controls, changes and evidence connected. A new data source or permission can change an approved use case even when the product name stays the same.
 
-How XGRC® Helps Organisations Prepare for the Future
+<a href="/ai-governance/">XGRC® AI Governance</a> belongs in that wider programme, applying the connected-governance approach to the decisions, responsibilities and evidence around AI. XGRC®'s <a href="/use-cases/ai-change-management/">AI change management</a> process supports classification, review, approvals, testing and post-launch monitoring. AI-assisted compliance and governance of AI are different activities, and neither removes accountable judgement.
 
-The future of compliance requires more than additional reporting tools. It requires connected governance.
+Assurance Must Remain Able to Challenge the Story
 
-<a href="/grc-software">XGRC® Software</a> connects compliance, risk, audit, policies, controls, and operational oversight within a single environment. <a href="/erm">Enterprise Risk Management</a> gives that environment a live risk register and appetite monitoring, and <a href="/msx">MSX®</a> coordinates multiple governance disciplines into one programme rather than a set of disconnected tools.
+<a href="https://www.theiia.org/globalassets/documents/resources/the-iias-three-lines-model-an-update-of-the-three-lines-of-defense-july-2020/three-lines-model-updated-english.pdf" rel="noopener">The IIA's Three Lines Model</a> distinguishes management's ownership of risk from internal audit's independent assurance. Coordination supports governance, but it must not turn the control owner into the independent assessor of their own work.
 
-This enables organisations to centralise compliance activities, improve enterprise-wide visibility, strengthen governance oversight, enhance executive reporting, increase accountability, improve decision-making, support continuous compliance, and build long-term organisational resilience. By connecting governance information across the enterprise, XGRC® helps organisations transform compliance from a regulatory obligation into a strategic business asset.
+Apply that distinction to shared reporting. Show who performed a test, what it covered, the result and any limitation. Where several teams rely on one piece of work, make that reliance visible and assess whether it meets each team's purpose. Do not let a combined dashboard suggest assurance where none exists: an untested critical control should remain visible as an uncertainty, even if every surrounding administrative task is complete.
 
-The Future Belongs to Organisations That See Compliance Differently
+How XGRC® Supports the Shift
 
-The organisations that thrive over the coming decade will not be those that simply keep pace with regulations. They will be those that recognise compliance as a strategic enabler of business success.
+<a href="/grc-software/">XGRC® Software</a> links governance, risk, compliance and assurance information, including obligations, controls, audits and actions. This supports a connected view of the records needed for oversight and decision-making. <a href="/erm/">XGRC® Enterprise Risk Management</a>, aligned to ISO 31000 and COSO, manages enterprise, operational and project risk on the same auditable platform.
 
-By embedding compliance into governance, improving visibility, strengthening accountability, and supporting informed decision-making, organisations can create lasting value beyond regulatory requirements. Compliance is no longer just about avoiding penalties. It is about enabling resilience, building trust, supporting innovation, and driving sustainable business performance.
+<a href="/msx/">MSX®</a> supports a coordinated management programme with shared document control, governance workflows and performance evaluation. <a href="/integrated-assurance/">Integrated Assurance</a> connects audit planning, testing, findings and corrective actions with risks and assurance coverage.
 
-The future of compliance has already begun. The organisations that embrace it today will be better prepared for tomorrow.`,
+Use those capabilities to answer a strategic question. For a proposed expansion, identify the relevant requirements, the controls already tested, the open findings and the work needed before approval. Retain the decision and revisit its conditions when circumstances change. The platform provides structure and visibility. It does not replace a competent assessment, implement every operational control or make a business decision on leadership's behalf.
+
+Start With One Decision, Then Build the Capability
+
+Start with one material decision. The following 90-day approach is a suggested exercise, not a timetable prescribed by a standard.
+
+First, define the decision and its evidence. Choose a launch, contract renewal or operational change. Identify the requirements that influence it, the responsible owners and the information leadership actually needs, rather than the information that is easiest to produce.
+
+Next, connect and challenge the records. Link the relevant controls, assessments and findings to that decision. Test a sample of the evidence, identify gaps and assign the work needed to resolve them to named owners with realistic dates.
+
+Then, use the result in a live review. Present the options, conditions and remaining uncertainty to the people making the decision. Record the decision, its rationale and the events that would trigger reconsideration, so the conditions can be revisited when circumstances change.
+
+Test the approach before expanding it.
+
+Measure Decision Quality, Not Reporting Volume
+
+Useful measures might include material decisions reviewed before commitment, actions completed before a launch condition takes effect, and significant changes that received timely reassessment. Check the quality behind the number. Was the review capable of changing the proposal, or did it simply endorse an existing decision? Did a closed action include credible evidence? Was an uncertainty clearly reported or absorbed into an average score?
+
+Show where better information changed a choice and where the process still needs improvement. Do not assign precise financial benefits to avoided problems without a defensible basis.
+
+Make Compliance Useful Before the Commitment
+
+The future of compliance is a capability that helps leadership understand what the business can responsibly do next, what conditions apply and what evidence supports that judgement. Bring compliance into the decision while there is still a decision to shape. <a href="/demo/">Speak to an XGRC® specialist</a> about connecting compliance, management systems and assurance to your strategic decisions.`,
 'ai-governance-gap-enterprise-ai-risk': `AI Adoption Is Moving Faster Than Governance
 
 Artificial intelligence is entering organisations at extraordinary speed. Employees are using it to research information, analyse data, create content, summarise documents, draft policies and support decisions, while organisations are also beginning to weave AI into workflows, customer experiences and operational processes.
