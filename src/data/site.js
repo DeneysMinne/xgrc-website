@@ -1287,6 +1287,15 @@ export const articles = [
     image: 'building-a-culture-of-cyber-resilience.jpg',
     relatedSolutions: ['msxcyber', 'integrated-assurance'],
   },
+  {
+    slug: 'what-would-an-ai-sheq-agent-actually-do',
+    title: 'What Would an AI SHEQ Agent Actually Do?',
+    excerpt: 'What could an AI SHEQ agent do for incident management, risk identification and corrective actions, and where does MAIA® fit today? Why human oversight and governance must stay central.',
+    category: 'SHEQ',
+    date: '2026-10-13',
+    image: 'what-would-an-ai-sheq-agent-actually-do.jpg',
+    relatedSolutions: ['maia', 'sheqx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1493,6 +1502,13 @@ export const articleFaqs = {
     { q: 'How is AI changing cyber resilience?', a: 'AI introduces new opportunities and risks. Employees may use AI systems to process organisational information, while unapproved AI applications can create information security and governance concerns. Organisations therefore need appropriate AI policies, risk assessments and guardrails.' },
     { q: 'What is the role of ISO/IEC 27001 in cyber resilience?', a: 'ISO/IEC 27001 provides a structured management-system approach for managing information security risks, responsibilities, controls, monitoring, audits, corrective actions and continual improvement, giving resilience a repeatable foundation.' },
     { q: 'How can organisations improve cyber resilience?', a: 'Through employee awareness, structured risk management, clearly assigned responsibilities, appropriate security controls, incident management, continual monitoring, assurance and connected governance.' },
+  ],
+  'what-would-an-ai-sheq-agent-actually-do': [
+    { q: 'What is an AI SHEQ agent?', a: 'An AI SHEQ agent is an intelligent digital assistant that could support Safety, Health, Environment and Quality processes by helping users interact with SHEQ information, identify patterns, summarise information and surface relevant records.' },
+    { q: 'Can AI replace SHEQ professionals?', a: 'AI should support rather than replace SHEQ professionals. Human judgement, expertise, accountability and oversight remain essential, particularly for safety-critical and high-impact decisions.' },
+    { q: 'How could AI help with incident management?', a: 'AI could help users review incident information, identify similar historical events, highlight recurring themes, surface relevant records and support investigation and corrective-action processes.' },
+    { q: 'How does MAIA® relate to an AI SHEQ agent?', a: 'MAIA® is the governed AI embedded in XGRC®. It supports natural language risk queries, policy and procedure Q&A, compliance status summaries, an ESG & SHERQ insight engine and an H&S Assistant Agent, with permission alignment, explainable outputs and a full AI interaction audit trail.' },
+    { q: 'Why is governance important for AI SHEQ agents?', a: 'AI agents may interact with sensitive organisational information and support important operational processes. Access controls, human oversight, accountability, monitoring and auditability are therefore essential to responsible AI use.' },
   ],
 };
 

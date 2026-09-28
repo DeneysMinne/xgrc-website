@@ -2683,4 +2683,138 @@ Make Cyber Resilience a Business Habit
 Cybersecurity cannot end when October does. Cyber resilience is built through everyday decisions: an employee questioning a suspicious email, a manager understanding the information risks within their department, clear rules around AI use, a control owner taking responsibility for an outstanding action, leadership asking whether significant cyber risks are being effectively managed, internal audit providing assurance over the controls that matter and an organisation learning from incidents rather than simply recording them. Awareness may begin with people, but cyber resilience is built through connected governance.
 
 <a href="/contact/">Speak to an XGRC® specialist</a> to discover how MSXCyber® can help your organisation connect information security risks, policies, controls, responsibilities, actions, audits and evidence, and build a more resilient approach to information security that lasts well beyond October.`,
+'what-would-an-ai-sheq-agent-actually-do': `AI Is Changing the Way Organisations Manage SHEQ
+
+Artificial intelligence is becoming increasingly integrated into everyday business processes. From analysing large volumes of information to summarising documents and identifying patterns, AI is creating new opportunities for organisations to work more efficiently and make better-informed decisions. For Safety, Health, Environment and Quality (SHEQ) teams, this raises an interesting question about what an AI SHEQ agent could actually do.
+
+SHEQ professionals already manage significant volumes of information across incidents, inspections, audits, risk assessments, corrective actions, compliance requirements and operational activities. The challenge is often not a lack of information. It is identifying what matters, connecting related information and ensuring the right people act on it at the right time, which is why many <a href="/insights/why-sheq-incidents-are-often-a-data-problem/">SHEQ incidents are often a data problem</a> as much as an operational one.
+
+An AI SHEQ agent could support this process by helping users interact with SHEQ information more intelligently. However, the objective should not be to replace SHEQ professionals or remove human judgement from important decisions. The opportunity is to use AI to assist people while maintaining appropriate governance, accountability and human oversight.
+
+What Is an AI SHEQ Agent?
+
+An AI SHEQ agent can be understood as an intelligent digital assistant designed to support specific activities within SHEQ management processes. Rather than simply storing information, an AI-enabled system could help users understand, navigate and act on the information already available within their SHEQ environment. Depending on how the technology is configured and governed, an AI SHEQ agent could assist users by:
+
+- Summarising information
+- Identifying relevant records
+- Highlighting trends or patterns
+- Supporting investigations
+- Surfacing outstanding actions
+- Helping users navigate SHEQ information
+- Providing contextual insights
+- Supporting reporting
+- Escalating information for human attention
+
+The important distinction is that an AI agent does not need to become the final decision-maker. It can operate as an intelligence layer supporting the people responsible for SHEQ management.
+
+Supporting Incident Management
+
+Incident management is one area where AI assistance could provide significant value. When an incident occurs, organisations may need to capture information, classify the event, investigate, identify contributing factors, assign corrective actions and monitor those actions through to completion. The process can involve significant amounts of information, much of it spread across the stages of the <a href="/use-cases/incident-management/">incident management</a> lifecycle.
+
+An AI SHEQ agent could potentially help users review incident information and surface relevant context. For example, it could assist in identifying similar historical incidents, highlighting recurring themes, summarising investigation information or drawing attention to related outstanding actions. This could help teams move from simply recording incidents towards learning more effectively from organisational SHEQ data.
+
+Identifying Patterns Across SHEQ Information
+
+Individual SHEQ events rarely tell the entire story. One minor incident may appear insignificant, while several similar incidents across different sites, departments or periods may indicate something more important. The same principle applies to:
+
+- Near misses
+- Audit findings
+- Inspection observations
+- Non-conformances
+- Corrective actions
+- Risk assessments
+- Environmental events
+- Quality issues
+
+When information is fragmented or reviewed individually, patterns can be difficult to identify. AI could assist by analysing connected information and highlighting similarities, recurring issues or emerging trends that may deserve further investigation. The AI does not determine whether something constitutes an unacceptable risk. Instead, it helps bring potentially relevant information to the attention of the people responsible for making that assessment.
+
+Supporting Risk Identification
+
+Risk management requires organisations to continuously identify, assess, monitor and respond to changing conditions. AI could support SHEQ professionals by helping them identify information that may indicate an emerging risk. For example, an increase in similar near misses, repeated inspection findings, recurring corrective actions or common incident characteristics could warrant additional attention, and an AI SHEQ agent could help surface these relationships.
+
+This creates an opportunity to move beyond asking "What happened?" towards asking "What is the information telling us could happen next?" This does not mean AI should automatically determine risk ratings or make critical safety decisions. Human expertise, organisational context and professional judgement remain essential. AI can strengthen the information available to support those decisions.
+
+Helping Manage Corrective Actions
+
+Corrective actions are fundamental to effective SHEQ management. However, organisations can struggle when actions are distributed across different departments, sites, spreadsheets, emails or systems. Actions may become overdue, similar actions may repeatedly be created, and underlying problems may remain unresolved. An AI SHEQ agent could potentially help users understand the broader context surrounding <a href="/use-cases/action-management/">corrective actions</a> by highlighting:
+
+- Outstanding actions
+- Repeated corrective actions
+- Similar actions across different incidents
+- Recurring findings
+- Relevant historical information
+- Areas requiring management attention
+
+This could give SHEQ teams greater visibility into whether corrective actions are simply being completed or whether they are contributing to meaningful organisational improvement.
+
+Making SHEQ Information Easier to Access
+
+SHEQ management systems can contain large volumes of valuable organisational information. The challenge is finding the right information when it is needed. Users may need to navigate dashboards, registers, reports, documents, incidents, audits, risks and actions to answer relatively straightforward questions. An AI SHEQ agent could create a more conversational way of interacting with this information. A manager could ask questions such as:
+
+- What are our most common incident types?
+- Which corrective actions are overdue?
+- Are we seeing recurring findings across our sites?
+- Show me incidents related to this risk.
+- Summarise the key SHEQ issues requiring management attention.
+
+This kind of interaction is not purely hypothetical. MAIA®, the governed AI embedded in XGRC®, already supports natural language risk queries, policy and procedure Q&A, and compliance status summaries, alongside an ESG & SHERQ insight engine and an H&S Assistant Agent. Instead of manually compiling information from multiple records, users can ask questions in plain language and review what comes back, within the permissions they already hold. The value is not simply faster search. It is making organisational SHEQ information more accessible and useful.
+
+Where MAIA® Fits Today
+
+<a href="/maia/">MAIA®</a> is not a generic chatbot bolted onto SHEQ data. It is governed AI for GRC, built into XGRC® and designed to operate inside the same controls as the rest of the platform. In practice that means:
+
+- Natural language risk queries
+- Policy and procedure Q&A
+- Compliance status summaries
+- An ESG & SHERQ insight engine
+- An H&S Assistant Agent
+- Permission alignment, so users only see what they are entitled to see
+- Data boundary enforcement
+- Explainable outputs
+- A full AI interaction audit trail
+
+Those last four points matter as much as the first five. An AI assistant that can answer SHEQ questions is useful, but one whose answers respect user permissions, stay within defined data boundaries, can be explained and are recorded for later review is one that a SHEQ function can actually govern. That is the thinking behind <a href="/insights/what-is-governed-ai-for-grc/">governed AI for GRC</a>, and it is why MAIA® is positioned as an assistant to SHEQ professionals rather than a substitute for them.
+
+Human Oversight Remains Essential
+
+AI can process information quickly, but speed does not equal accountability. SHEQ decisions can have significant consequences for employees, operations, the environment, customers and the organisation itself. For this reason, appropriate human oversight should remain central to AI-assisted SHEQ management.
+
+An AI agent may identify a pattern, but a person determines its significance. AI may suggest relevant information, but a competent professional evaluates it. AI may assist with an investigation, but the responsible person remains accountable for the outcome. This principle is particularly important when AI is used in safety-critical environments. AI should assist SHEQ decisions, not make important decisions unchecked.
+
+Governance Must Sit Around the AI Agent
+
+Introducing an AI agent into SHEQ processes creates new governance responsibilities. Organisations need to consider not only what the technology can do, but what it should be permitted to do. Clear AI guardrails may be required around:
+
+- Access to information
+- User permissions
+- Data protection
+- Approved AI activities
+- Human approval requirements
+- Accountability
+- Monitoring
+- Escalation
+- Recordkeeping
+- Auditability
+
+There should also be clarity regarding responsibility. Organisations need to decide who owns the AI agent, who determines which information it can access, who reviews its outputs, which decisions require human approval, and what happens when the AI produces an incorrect or inappropriate recommendation. These questions are fundamental to responsible AI adoption.
+
+From Reactive SHEQ to Intelligent SHEQ
+
+Traditional SHEQ management has often been reactive. An incident happens, it is investigated, a corrective action is assigned, a report is produced and the organisation moves forward. <a href="/insights/digital-sheq-management/">Digital SHEQ management</a> has already improved this process by centralising information and creating greater visibility.
+
+AI introduces the possibility of taking this evolution further. When incidents, risks, audits, inspections, actions and other SHEQ information exist within a connected environment, AI could potentially help organisations identify relationships across that information. The progression becomes capture, connect, analyse, identify, assist, human decision and action. This creates the foundation for more intelligent SHEQ management. Rather than AI replacing the SHEQ professional, technology can help the SHEQ professional see more of what is happening across the organisation.
+
+How SHEQX® Supports Connected SHEQ Management
+
+The value of AI depends heavily on the quality and structure of the information available to it. Fragmented spreadsheets, disconnected systems and isolated records make it difficult to establish consistent organisational visibility.
+
+<a href="/sheqx/">SHEQX® by XGRC® Software</a> provides organisations with a structured environment for managing Safety, Health, Environment and Quality processes within a connected governance platform. SHEQ information can be managed through structured workflows, responsibilities, actions, controls and records, helping organisations create greater visibility and accountability across their operations. This connected foundation is what gives MAIA® something meaningful to work with. The goal is not simply to add AI to existing processes. It is to ensure AI operates within an environment where information is structured, controlled, traceable and governed.
+
+The Future of SHEQ Is Human-Governed and AI-Assisted
+
+AI has the potential to change how organisations interact with SHEQ information. It could help professionals find information faster, identify patterns earlier, understand organisational data more effectively and focus attention on the areas that require it most. But the future of SHEQ should not be about handing responsibility to AI. It should be about combining human expertise with intelligent technology.
+
+The most effective AI SHEQ agent will therefore not be the one that attempts to replace the SHEQ professional. It will be the one that helps them make better-informed decisions while maintaining clear accountability, governance and human oversight. AI assists. People decide. Governance remains.
+
+Speak to an XGRC® specialist to see how MAIA® and SHEQX® work together to give your SHEQ team governed, AI-assisted access to connected SHEQ information. <a href="/contact/">Contact us</a> or <a href="/demo/">book a demo</a>.`,
 };
