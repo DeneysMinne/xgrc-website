@@ -2792,4 +2792,97 @@ What a Well-Reconciled Heat Map Should Do
 The number of risks plotted on the map should match the number of risks on the register behind it, for both the inherent and residual versions. If a heat map shows nineteen risks and the register lists twenty-three, something in the reporting pipeline is dropping or double-counting records, and that is a data quality problem a committee should ask about directly.
 
 The clearest way to see this in practice is to look at a live example rather than a static picture. XGRC®'s <a href="/tour/it-risk-performance.html">IT Risk & Performance Committee dashboard</a> plots inherent and residual risk on matching 5x5 heat maps side by side, with the risk count behind each half stated explicitly so the reconciliation is visible, not assumed. It is one of seventeen interactive examples in the full <a href="/tour/">XGRC® dashboard tour</a>, each built on fictitious data so you can explore freely.`,
+'ai-agent-security-api-keys': `The New Access Question
+
+An employee asks an AI agent to save an hour of work. To help, the agent is connected to email, customer records and a shared document store. The task sounds modest; the access behind it may not be.
+
+October is <a href="https://www.cisa.gov/cybersecurity-awareness-month" rel="noopener">Cybersecurity Awareness Month</a>, and organisations should add a new question to familiar discussions about passwords and phishing (the first step in <a href="/insights/cybersecurity-awareness-month-from-awareness-to-action/">moving from awareness to action</a>): what authority have we given our AI agents? An agent can use connected tools to read information or perform actions, and, as Microsoft's guidance on <a href="https://learn.microsoft.com/en-us/security/zero-trust/sfi/least-privilege-for-ai-agents" rel="noopener">least privilege for AI agents</a> explains, its reach depends on the identities, permissions and restrictions behind those tools, not just the task typed into a chat window.
+
+An API Key Is More Than a Technical Setting
+
+An application programming interface, or API, allows software systems to communicate, and API keys and access tokens can authorise that communication. Depending on the service and permissions, they may allow an agent to retrieve records, update information, send messages or consume paid services. Not every credential grants unrestricted access: a narrowly scoped token and a shared administrator credential create very different exposures.
+
+The useful question is therefore not simply whether an agent has a key. It is what that credential permits, for which resources, for how long, and under whose responsibility. A request to prepare a report should not quietly become permission to change the underlying business records.
+
+Two Different Failures: A Stolen Key and a Misused Agent
+
+The first failure is credential theft: a key or token is exposed through an insecure configuration, log, repository or compromised runtime, and an attacker uses it outside the agent.
+
+The second failure does not require the attacker to obtain the secret. A manipulated agent may use its legitimate connection to perform an illegitimate action. OWASP describes <a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" rel="noopener">excessive agency</a> in terms of unnecessary capabilities, permissions or autonomy, and protecting the credential alone does not remove that risk. One route is indirect prompt injection: instructions hidden in material the agent reads can try to redirect its behaviour. A supplier document, retrieved webpage or message should be treated as data to assess, not as authority to change the agent's task or permissions. A secret can remain hidden while the authority behind it is misused.
+
+This Is More Than a Hypothetical Concern
+
+In February 2026, Check Point Research published <a href="https://research.checkpoint.com/2026/rce-and-api-token-exfiltration-through-claude-code-project-files-cve-2025-59536/" rel="noopener">findings on Claude Code vulnerabilities</a> involving malicious project configurations, code execution and API-key theft. The researchers reported working with Anthropic to remediate the issues.
+
+The lesson is not that those specific flaws remain open. It is that files and integrations around an AI tool can become part of the security boundary. In the researchers' example, a stolen key could expose shared workspace resources and consume API credits, so the impact extended beyond a single conversation. Security reviews must examine the agent's runtime, connectors and configuration as well as the model itself.
+
+A Procurement Assistant Shows the Business Risk
+
+Consider this illustrative scenario, not a reported incident. A procurement team introduces an agent to summarise supplier submissions, which needs read access to approved documents. To accelerate the pilot, someone connects it through a service account that can also edit supplier records. Now imagine an untrusted submission causes the agent to attempt a change to a supplier's payment details. Three separate questions matter:
+
+- Can the agent request the change?
+- Does the receiving system allow it?
+- Is an independent approval required before the change takes effect?
+
+A sentence telling the agent to be careful is not an answer to any of them. A better design gives the agent only the documents it needs, removes supplier-edit permissions and routes any proposed master-data change through an authorised person. The business retains the useful automation without handing over an unrelated financial authority.
+
+Encryption and MFA Are Not the Whole Answer
+
+Encryption protects secrets in storage or transit, but it does not decide whether a requested business action is appropriate, and a compromised runtime that can retrieve a secret may still misuse it.
+
+Multi-factor authentication remains important for people and administrators, but an API call using an already-issued key or token will not necessarily trigger another human check. Workloads need their own credential and authorisation controls. Similarly, keeping a key out of the chat window is sensible but incomplete, because the agent might reach it through a file-reading or execution tool. Secrets should remain outside model-visible prompts and outputs, with access controlled by trusted components, as the <a href="https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html" rel="noopener">OWASP Secrets Management Cheat Sheet</a> sets out.
+
+Build an Access Boundary the Agent Cannot Rewrite
+
+Start with the approved business task and work backwards to the smallest set of actions needed to complete it.
+
+Separate identity from convenience. Give each agent or workload a clearly attributable identity and a named owner, separate development from production, and avoid borrowing a person's broad access simply because it already works.
+
+Keep secrets behind controlled integrations. Where feasible, use workload identity and short-lived credentials instead of long-lived shared keys. Where a static key is unavoidable, protect, restrict, monitor and rotate it through a managed process.
+
+Enforce permissions outside the model. The receiving application or a trusted control service must validate the permitted resource and action, because a prompt is not an authorisation engine. Read, write, delete, export and send should not be treated as one permission.
+
+Make approval specific. High-impact actions should require an authorised person's approval of the actual operation and its material details. A broad instruction to proceed should not silently approve every later action in a changing workflow.
+
+Check the integration boundary. Connectors must handle tokens correctly and validate the intended recipient. The Model Context Protocol's <a href="https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices" rel="noopener">security best practices</a> explicitly warn against token passthrough and explain why credentials intended for one service must not be blindly accepted or forwarded elsewhere. These controls reduce exposure; they do not make an agent infallible.
+
+How Asgard Keeps the Underlying Credentials Out of the Agent
+
+Asgard is the XGRC® AI agents platform. Organisations set up per-discipline agents within XGRC®, such as a SHEQ Agent, a Risk Agent or an Audit Agent, and Asgard provides a built-in secure access layer for those agents. That layer separates the ability to use a connected tool from possession of that tool's real API key or OAuth token.
+
+The upstream credentials remain encrypted in Asgard's Vault. The agent receives a separate, scoped Asgard key that maps to an approved grant, and that grant defines the connections, operations and companies the agent may access. Access is denied unless it has been granted. This changes the arrangement from "give the agent our credentials" to "let the agent request a specific, controlled action".
+
+Bifröst is the controlled route for tool calls managed through Asgard: an agent connects using its scoped key, and the request crosses that boundary rather than using the upstream credential directly. Heimdall filters apply controls to requests and responses in transit, including allow and deny rules, redaction and removal of personally identifiable information before a request reaches a tool or a response returns. Asgard controls access through a brokered path, rather than only observing an agent after it has received direct credentials.
+
+Asgard's guardrail set adds further layers around the scoped-access model: DLP and redaction, injection scanning, human-in-the-loop controls, auto-quarantine, just-in-time grants, action quotas, shadow mode, trust tiers and an attack simulator. Data loss prevention and redaction address information handling, while human involvement and scoped grants address authority. The combination matters because keeping a secret hidden and controlling how its authority is used are different security jobs. In the procurement example, that means granting the operations needed to read supplier submissions, but not those that change supplier or payment records.
+
+Asgard also provides a central kill-switch to revoke or rotate an agent's access, and it logs the actions it brokers. Administrators can withdraw an agent's brokered access without changing each downstream application's credential merely to stop that agent. The boundary matters: an Asgard revocation applies to access managed through Asgard. It does not undo completed actions, retrieve information already disclosed or invalidate unrelated credentials issued outside that route. Its logs can support investigations and governance evidence, for example alongside <a href="/ai-governance/">AI Governance</a> records and an ISO 27001 programme in <a href="/msxcyber/">MSXCyber® by XGRC® Software</a>, but they do not by themselves establish compliance or guarantee an audit result.
+
+What If an Agent or Asgard Is Compromised?
+
+A scoped Asgard key is still a security-sensitive credential. If stolen, it could be used to request operations within its grant, subject to the controls that remain effective. Treat it as a secret, restrict the grant and test revocation: the benefit is a narrower, centrally controlled access path, not a harmless key. A compromised agent can also misuse actions it is legitimately allowed to perform, and scanning and human review reduce particular risks without removing every possible misuse.
+
+The broker itself therefore becomes an important security dependency. Protect its administration and vault, restrict the permissions of upstream credentials, and plan how to revoke those credentials at the source if the broker is compromised. Centralisation makes controls easier to manage, but it also concentrates responsibility. Before production use, test the failure conditions: a stolen agent key, a prohibited action, a revoked grant and an unavailable broker. Confirm that the agent cannot bypass the managed route using another credential or connection.
+
+Rehearse Containment Before You Need It
+
+Choose one connected agent and run an exercise that assumes its credentials or runtime have been compromised. It should establish whether the team can stop the affected workflow, revoke relevant keys and grants, investigate activity, preserve useful evidence and restore service through a trusted route.
+
+Do not assume that closing a chat, uninstalling a connector or changing a password removes every issued token; verify what happens to existing sessions and downstream access. The result should be a named response owner and a tested containment process, not another document nobody has rehearsed.
+
+Give Employees a Better Access Conversation
+
+Before connecting an AI agent, an employee should be able to answer three questions:
+
+- What information and actions am I authorising?
+- Who has approved this connection and owns the risk?
+- How do I report a concern and get access stopped?
+
+Managers should then check that permissions still match the task and that significant actions can be traced to the relevant agent and owner. This is where <a href="/insights/building-a-cyber-aware-culture-addressing-the-human-element-of-cyber-risk/">cyber awareness becomes operational</a>, and it closes part of the <a href="/insights/ai-governance-gap-enterprise-ai-risk/">AI governance gap</a> many enterprises now face.
+
+Give AI a Task, Not Unlimited Access
+
+The value of an AI agent should come from the work it completes, not the volume of access it accumulates. This Cybersecurity Awareness Month, review one live agent from end to end: its purpose, identity, credentials, permissions, approval rules and containment process. Useful automation needs clear authority, enforceable limits and accountable people.
+
+Asgard is available on XGRC® Enterprise. <a href="/contact/">Speak to an XGRC® specialist about Asgard</a> and how scoped, brokered access can help your organisation put AI agents to work safely.`,
 };
