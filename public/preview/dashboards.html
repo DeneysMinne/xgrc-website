@@ -2,126 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow, noarchive">
-<title>XGRC® Dashboard Gallery</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
-<style>
-  :root {
-    --void:#060f1c; --abyss:#0a1729; --panel:rgba(255,255,255,0.035); --panel-hover:rgba(255,255,255,0.06);
-    --line:rgba(120,170,200,0.14); --line-strong:rgba(120,170,200,0.28);
-    --cyan:#30e2f4; --cyan-hi:#7af3ff; --blue:#269ec6; --blue-hi:#7fd4ef; --deep:#005ca9;
-    --green:#2fe88a; --green-hi:#5cffa8; --green-ink:#04130b;
-    --amber:#ffb648; --amber-hi:#ffd18a;
-    --red:#ff5470; --red-hi:#ff8fa3;
-    --cyber:#16d9a8; --cyber-hi:#5dfcd6;
-    --ink:#eaf3f7; --mute:#8499aa; --faint:#56697a;
-    --radius-lg:22px; --radius-md:14px; --radius-sm:10px; --maxw:1200px;
-  }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--void); color:var(--ink); font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
-  h1,h2,h3,h4 { font-family:'Outfit',system-ui,sans-serif; margin:0; }
-  .mono { font-family:'JetBrains Mono',monospace; font-variant-numeric:tabular-nums; }
-  .eyebrow { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.6px; text-transform:uppercase; color:var(--cyan); }
-  a { color:inherit; text-decoration:none; }
-
-  body::before {
-    content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
-    background:
-      radial-gradient(circle at 12% -10%, rgba(48,226,244,0.14), transparent 42%),
-      radial-gradient(circle at 90% 0%, rgba(47,232,138,0.10), transparent 45%);
-  }
-
-  #banner { position:relative; z-index:2; background:rgba(255,182,72,0.08); border-bottom:1px solid rgba(255,182,72,0.25); text-align:center; padding:8px 16px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.4px; color:var(--amber-hi); }
-
-  header.top { position:relative; z-index:2; max-width:var(--maxw); margin:0 auto; padding:28px 40px 0; display:flex; align-items:center; justify-content:space-between; gap:16px; }
-  .brand { display:flex; align-items:center; gap:10px; }
-  .brand-icon { width:30px; height:30px; }
-
-  main { position:relative; z-index:2; max-width:var(--maxw); margin:0 auto; padding:52px 40px 40px; }
-  .hero h1 { font-size:38px; font-weight:800; line-height:1.15; max-width:720px; }
-  .hero h1 span { background:linear-gradient(90deg,var(--cyan-hi),var(--green-hi)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .hero p { max-width:620px; color:var(--mute); font-size:15px; line-height:1.6; margin-top:14px; }
-
-  .statrow { display:flex; gap:28px; margin-top:28px; flex-wrap:wrap; }
-  .statrow .s { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--faint); letter-spacing:0.3px; }
-  .statrow .s b { display:block; font-family:'Outfit'; font-size:22px; font-weight:800; color:var(--ink); }
-
-  .grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; margin-top:44px; }
-  @media (max-width:900px) { .grid { grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:640px) { .grid { grid-template-columns:1fr; } header.top{padding:24px 20px 0;} main{padding:36px 20px;} .hero h1{font-size:29px;} }
-
-  .tile { position:relative; border-radius:var(--radius-lg); border:1px solid var(--line-strong); background:linear-gradient(160deg, var(--panel), rgba(255,255,255,0.01)); padding:22px; min-height:190px; display:flex; flex-direction:column; transition:transform .18s ease, border-color .18s ease, background .18s ease; overflow:hidden; }
-  .tile::after { content:''; position:absolute; inset:0; background:radial-gradient(circle at 100% 0%, rgba(48,226,244,0.10), transparent 55%); opacity:0; transition:opacity .18s ease; }
-  a.tile:hover { transform:translateY(-3px); border-color:rgba(48,226,244,0.45); background:linear-gradient(160deg, var(--panel-hover), rgba(255,255,255,0.02)); }
-  a.tile:hover::after { opacity:1; }
-  .tile.disabled { opacity:0.55; cursor:default; }
-  .tile-badge { align-self:flex-start; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.6px; text-transform:uppercase; padding:3px 9px; border-radius:20px; margin-bottom:14px; }
-  .badge-live { background:rgba(47,232,138,0.14); color:var(--green-hi); border:1px solid rgba(47,232,138,0.35); }
-  .badge-soon { background:rgba(120,170,200,0.10); color:var(--faint); border:1px solid var(--line-strong); }
-  .tile h3 { font-size:18px; font-weight:700; margin-bottom:8px; }
-  .tile p { font-size:12.5px; color:var(--mute); line-height:1.55; flex:1; }
-  .tile .cta { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--cyan-hi); letter-spacing:0.4px; margin-top:14px; display:flex; align-items:center; gap:6px; }
-  .tile .tag { position:absolute; top:24px; right:22px; max-width:44%; text-align:right; font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--faint); letter-spacing:0.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-
-  #site-footer { position:relative; z-index:2; max-width:var(--maxw); margin:20px auto 0; padding:20px 40px 36px; text-align:center; border-top:1px solid var(--line); }
-</style>
+<meta name="robots" content="noindex">
+<title>Moved to the XGRC® live dashboard tour</title>
+<link rel="canonical" href="https://xgrcsoftware.com/tour/">
+<meta http-equiv="refresh" content="0; url=/tour/">
+<script>location.replace('/tour/' + location.hash);</script>
 </head>
-<body>
-
-<div id="banner">DEMONSTRATION GALLERY &mdash; every figure on every dashboard here is fictitious and illustrative, not connected to any live system or customer</div>
-
-<header class="top">
-  <div class="brand">
-    <img src="/assets/logos/brand/xgrc-icon-white.png" alt="" aria-hidden="true" class="brand-icon">
-    <div style="font-family:'Outfit';font-weight:700;font-size:16px;"><span style="color:var(--cyan-hi);">X</span><span style="color:var(--ink);">GRC</span><sup style="font-size:9px;color:var(--faint);">®</sup><span style="color:var(--ink);"> Software</span></div>
-  </div>
-  <div class="eyebrow">Partner Preview</div>
-</header>
-
-<main>
-  <div class="hero">
-    <div class="eyebrow" style="margin-bottom:14px;">Dashboard Gallery</div>
-    <h1>Executive dashboards, <span>built on XGRC.</span></h1>
-    <p>Ten fully interactive dashboards showing how XGRC turns governance, risk, safety and ESG data into board-ready insight, with drill-down, filtering and exception tracking built in, not mocked up. Every figure shown is illustrative and not connected to any live tenant or customer.</p>
-    <div class="statrow">
-      <div class="s"><b>10</b>Dashboards</div>
-      <div class="s"><b>201</b>KPIs modelled</div>
-      <div class="s"><b>48</b>Exceptions auto-raised</div>
-    </div>
-  </div>
-
-  <div class="grid" id="tile-grid"></div>
-</main>
-
-<div id="site-footer">
-  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
-</div>
-
-<script>
-const TILES = [
-  { name:'AI Governance KPI Dashboard', desc:'59 KPIs correlating AI Governance, XLOGIC&reg; governance-execution, Asgard AI agents and MAIA&reg;’s governed copilot &mdash; one screen, RAG-driven, with auto-raised exceptions for leadership.', tag:'AI Governance × XLOGIC × Asgard × MAIA', href:'ai-governance-dashboard.html', live:true },
-  { name:'SHERQ Landscape', desc:'Safety, Health, Environment, Risk and Quality in one integrated operational view &mdash; from LTIFR and permit-to-work through to certification status.', tag:'SHERQ', href:'sherq-landscape-dashboard.html', live:true },
-  { name:'Enterprise Risk Intelligence', desc:'Board-grade ERM across 9 industries, with a risk appetite gauge, 3D risk-density landscape, combined assurance mapping and executive vs operations views.', tag:'ERM', href:'enterprise-risk-dashboard.html', live:true },
-  { name:'Vendor &amp; Third-Party Risk', desc:'Vendor risk tiering, due-diligence currency, ongoing monitoring and concentration exposure across your supply chain.', tag:'Vendor Risk', href:'vendor-risk-dashboard.html', live:true },
-  { name:'ESG Performance', desc:'Emissions, social and governance KPIs tracked against targets, with framework-mapped disclosure readiness.', tag:'ESG', href:'esg-performance-dashboard.html', live:true },
-  { name:'Incident &amp; Near-Miss Trends', desc:'Volume, severity mix and closure velocity across incidents and near misses, with recurring root-cause clustering.', tag:'Incidents', href:'incident-trends-dashboard.html', live:true },
-  { name:'Policy Lifecycle Health', desc:'Policy review currency, acknowledgement coverage, waiver hygiene and overdue-review ageing across the policy estate.', tag:'Policy', href:'policy-lifecycle-dashboard.html', live:true },
-  { name:'Governance &amp; Compliance Scorecard', desc:'Gauge-and-trend executive scorecard for policy compliance, training completion and overdue corrective actions, sliced by industry and department.', tag:'Governance', href:'compliance-scorecard-dashboard.html', live:true },
-  { name:'IT Service &amp; Vendor Risk Operations', desc:'Service-health gauges, problem and incident trends, and vendor payment exposure in one operational view, sliced by industry and department.', tag:'IT & Vendor Risk', href:'it-service-ops-dashboard.html', live:true },
-  { name:'Strategic Balanced Scorecard', desc:'A 16-KPI Financial, Customer, Internal Process and Learning &amp; Growth scorecard with period-by-period RAG heatmapping and drill-down detail.', tag:'Strategy', href:'balanced-scorecard-dashboard.html', live:true },
-];
-
-const grid = document.getElementById('tile-grid');
-grid.innerHTML = TILES.map(t => {
-  const tag = t.live
-    ? `<a class="tile" href="${t.href}"><span class="tag">${t.tag}</span><span class="tile-badge badge-live">Live demo</span><h3>${t.name}</h3><p>${t.desc}</p><div class="cta">Open dashboard &rarr;</div></a>`
-    : `<div class="tile disabled"><span class="tag">${t.tag}</span><span class="tile-badge badge-soon">Coming soon</span><h3>${t.name}</h3><p>${t.desc}</p></div>`;
-  return tag;
-}).join('');
-</script>
-
+<body style="background:#060f1c;color:#eaf3f7;font-family:system-ui,sans-serif;padding:40px">
+<p>This dashboard has moved to the <a style="color:#30e2f4" href="/tour/">XGRC® live dashboard tour</a>.</p>
 </body>
 </html>

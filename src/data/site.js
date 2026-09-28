@@ -1675,3 +1675,30 @@ export const offices = [
   { city: 'Cape Town', address: '7th Floor, The Cliffs, Niagara Road, Tyger Falls, Off Carl Cronje Drive, Tygervalley, Cape Town, 7530', phone: '+27 (0)87 802 0179' },
   { city: 'United Kingdom', address: 'Regus Milton Keynes, Atterbury Lakes, Fairbourne Drive, Milton Keynes, MK10 9RG', phone: '+44 161 706 1345' }
 ];
+
+// Live dashboard tour (/tour/). Standalone demonstration dashboards in public/tour/,
+// all data fictitious. kpis/exceptions are the audited counts from each dashboard's own
+// CONFIG (checked by the tour test script), so the gallery never overstates them.
+export const tourDashboards = [
+  { slug: 'enterprise-risk', title: 'Enterprise Risk Intelligence', tag: 'ERM', solution: 'erm', solutionLabel: 'ERM', href: '/erm/',
+    blurb: 'Board-level risk appetite, a 5x5 heat map, KRIs and combined assurance, across nine industries and three reporting years.',
+    shows: ['Risk appetite', 'Heat map', 'Combined assurance'], kpis: null, exceptions: null, industries: 9 },
+  { slug: 'sherq', title: 'SHERQ Landscape', tag: 'SHEQ', solution: 'sheqx', solutionLabel: 'SHEQX®', href: '/sheqx/',
+    blurb: 'Safety, health, environment, risk and quality in one view, from LTIFR and permits to certification status, site by site.',
+    shows: ['LTIFR', 'Site x pillar status', 'Board pack PDF'], kpis: 22, exceptions: 7 },
+  { slug: 'ai-governance', title: 'AI Governance KPI Dashboard', tag: 'AI Governance', solution: 'ai-governance', solutionLabel: 'AI Governance', href: '/ai-governance/',
+    blurb: 'EU AI Act classification, ISO/IEC 42001 controls and evidence, with XLOGIC®, Asgard and MAIA® signals correlated per AI system.',
+    shows: ['EU AI Act', 'ISO/IEC 42001', 'Cross-system gaps'], kpis: 59, exceptions: 8 },
+  { slug: 'incidents', title: 'Incident & Near-Miss Trends', tag: 'Incidents', solution: 'sheqx', solutionLabel: 'Incident management', href: '/use-cases/incident-management/',
+    blurb: 'Volume, severity and closure speed across sites, the near-miss ratio as a leading indicator, and root causes ranked by impact.',
+    shows: ['Near-miss ratio', 'Root-cause Pareto', 'Site heat grid'], kpis: 19, exceptions: 7 },
+  { slug: 'vendor-risk', title: 'Vendor & Third-Party Risk', tag: 'Third-party', solution: 'compliance-hub', solutionLabel: 'Compliance Hub', href: '/compliance-hub/',
+    blurb: 'Supplier tiering, due-diligence currency, spend concentration and contract renewals, with the vendors that need attention first.',
+    shows: ['Risk tiering', 'Spend concentration', 'Renewals due'], kpis: 20, exceptions: 7 },
+  { slug: 'esg', title: 'ESG Performance', tag: 'ESG', solution: 'esg', solutionLabel: 'ESG', href: '/esg/',
+    blurb: 'Environmental, social and governance KPIs against targets, a materiality matrix and disclosure readiness for GRI and ISSB.',
+    shows: ['Materiality', 'Disclosure readiness', 'Targets'], kpis: 18, exceptions: 6 },
+  { slug: 'policy-lifecycle', title: 'Policy Lifecycle Health', tag: 'Policy', solution: 'xlogic', solutionLabel: 'Policy management', href: '/use-cases/policy-management/',
+    blurb: 'Review currency, acknowledgement by department, waivers and upcoming reviews for the whole policy estate.',
+    shows: ['Review currency', 'Acknowledgements', 'Waivers'], kpis: 18, exceptions: 6 },
+];

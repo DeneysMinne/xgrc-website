@@ -1,0 +1,155 @@
+---
+import Base from '../layouts/Base.astro';
+import { tourDashboards } from '../data/site.js';
+
+const [featured, ...rest] = tourDashboards;
+const totalKpis = tourDashboards.reduce((n, d) => n + (d.kpis || 0), 0);
+const img = (slug) => `/assets/tour/${slug}-v1.webp`;
+---
+
+<Base
+  title="Live Dashboard Tour | XGRC® Software"
+  description="Click through seven interactive XGRC® dashboards: enterprise risk, SHERQ, AI governance, incidents, vendor risk, ESG and policy. Fictitious data, real product."
+>
+  <section class="tour-hero">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>Live dashboard tour</span>
+      <h1>Click through XGRC® <em>the way your board would.</em></h1>
+      <p class="lede">Seven interactive dashboards built on the XGRC® platform. Filter them, drill into any KPI to see how it is calculated, switch industries, and export a board pack. No sign-up needed.</p>
+      <div class="tour-actions">
+        <a class="btn btn-primary" href={`/tour/${featured.slug}.html`}>Open the Enterprise Risk dashboard</a>
+        <a class="btn btn-ghost" href="/demo/">Book a demo with your data</a>
+      </div>
+      <div class="telemetry tour-telemetry">
+        <span><b>{tourDashboards.length}</b> dashboards</span>
+        <span><b>{totalKpis}</b> KPIs modelled</span>
+        <span><b>{featured.industries}</b> industries</span>
+        <span><b>PDF</b> board-pack export</span>
+      </div>
+      <p class="tour-notice" role="note">Every company, person and figure in these dashboards is fictitious and illustrative. Nothing is connected to a live system or to any customer.</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <article class="tour-featured">
+        <a class="tour-shot tour-shot--lg" href={`/tour/${featured.slug}.html`} aria-label={`Open ${featured.title}`}>
+          <img src={img(featured.slug)} width="960" height="600" alt={`${featured.title} dashboard, showing risk appetite, a heat map and combined assurance`} loading="eager" />
+        </a>
+        <div class="tour-featured-body">
+          <span class="tag">{featured.tag} · Featured</span>
+          <h2>{featured.title}</h2>
+          <p>{featured.blurb}</p>
+          <ul class="tour-chips">{featured.shows.map((s) => <li>{s}</li>)}</ul>
+          <div class="tour-links">
+            <a class="btn btn-primary" href={`/tour/${featured.slug}.html`}>Open dashboard</a>
+            <a class="link-arrow" href={featured.href}>About {featured.solutionLabel} →</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="tour-grid">
+        {rest.map((d) => (
+          <article class="tour-card">
+            <a class="tour-shot" href={`/tour/${d.slug}.html`} aria-label={`Open ${d.title}`}>
+              <img src={img(d.slug)} width="960" height="600" alt={`${d.title} dashboard preview`} loading="lazy" />
+            </a>
+            <div class="tour-card-body">
+              <span class="tag">{d.tag}</span>
+              <h3><a href={`/tour/${d.slug}.html`}>{d.title}</a></h3>
+              <p>{d.blurb}</p>
+              <ul class="tour-chips">{d.shows.map((s) => <li>{s}</li>)}</ul>
+              <div class="tour-meta">
+                <span>{d.kpis} KPIs · {d.exceptions} open exceptions</span>
+                <a class="link-arrow" href={d.href}>{d.solutionLabel} →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight tour-try">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>What to try</span>
+        <h2>Three things worth clicking.</h2>
+      </div>
+      <div class="tour-steps">
+        <div><span class="n">01</span><h3>Filter to what matters</h3><p>Use the tabs, the breach and watch filters or the search box to narrow any dashboard to one pillar, owner or status.</p></div>
+        <div><span class="n">02</span><h3>Open any KPI</h3><p>Every tile opens its definition, owner, refresh cadence and the exact calculation behind the number.</p></div>
+        <div><span class="n">03</span><h3>Export a board pack</h3><p>Generate the PDF a board would receive, with every open exception, its owner and how long it has been open.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="tour-cta">
+        <div>
+          <h2>See it with your own data.</h2>
+          <p>A 30-minute walkthrough with an XGRC® specialist, on your registers, your sites and your frameworks.</p>
+        </div>
+        <div class="tour-actions">
+          <a class="btn btn-primary" href="/demo/">Book a demo</a>
+          <a class="btn btn-ghost" href="/solutions/">Explore solutions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .tour-hero { padding: clamp(56px, 9vw, 104px) 0 clamp(24px, 4vw, 40px); }
+  .tour-hero h1 { margin: 18px 0 16px; max-width: 18ch; text-wrap: balance; }
+  .tour-hero h1 em { font-style: normal; color: var(--cyan); }
+  .tour-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .tour-telemetry { margin-top: 26px; }
+  .tour-notice { margin-top: 18px; font-size: 0.85rem; color: var(--faint); max-width: 70ch; }
+
+  .tour-shot { display: block; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--line-strong); background: var(--abyss); aspect-ratio: 8 / 5; }
+  .tour-shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; transition: transform 0.5s var(--ease); }
+  .tour-shot:hover img, .tour-shot:focus-visible img { transform: scale(1.03); }
+  .tour-shot:focus-visible { outline: 2px solid var(--green-hi); outline-offset: 3px; }
+
+  .tour-featured { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(22px, 4vw, 44px); align-items: center; padding-bottom: clamp(36px, 5vw, 56px); margin-bottom: clamp(36px, 5vw, 56px); border-bottom: 1px solid var(--line); }
+  .tour-shot--lg { box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(48, 226, 244, 0.10); }
+  .tour-featured-body h2 { margin: 6px 0 12px; font-size: clamp(1.7rem, 3vw, 2.3rem); }
+  .tour-featured-body p { color: var(--mute); }
+  .tag { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); }
+  .tour-links { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 22px; }
+
+  .tour-chips { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tour-chips li { font-family: var(--font-mono); font-size: 10.5px; color: var(--mute); border: 1px solid var(--line); border-radius: 100px; padding: 4px 10px; }
+
+  .tour-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .tour-card { display: flex; flex-direction: column; gap: 16px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 14px 14px 20px; transition: border-color 0.35s var(--ease), background 0.35s var(--ease); }
+  .tour-card:hover { border-color: var(--line-strong); background: var(--panel-hover); }
+  .tour-card-body { display: flex; flex-direction: column; flex: 1; padding: 0 6px; }
+  .tour-card h3 { font-size: 1.15rem; margin: 6px 0 8px; }
+  .tour-card h3 a { color: var(--ink); text-decoration: none; }
+  .tour-card h3 a:hover { color: var(--cyan-hi); }
+  .tour-card p { font-size: 0.92rem; color: var(--mute); }
+  .tour-meta { margin-top: auto; padding-top: 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 11px; color: var(--faint); }
+
+  .tour-try .tour-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .tour-steps > div { border-top: 1px solid var(--line-strong); padding-top: 18px; }
+  .tour-steps .n { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); }
+  .tour-steps h3 { font-size: 1.1rem; margin: 8px 0 8px; }
+  .tour-steps p { color: var(--mute); font-size: 0.95rem; }
+
+  .tour-cta { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; border: 1px solid rgba(47, 232, 138, 0.35); border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(47, 232, 138, 0.08), rgba(48, 226, 244, 0.05)); padding: clamp(24px, 4vw, 40px); }
+  .tour-cta h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+  .tour-cta p { color: var(--mute); margin-top: 8px; max-width: 52ch; }
+  .tour-cta .tour-actions { margin-top: 0; }
+
+  @media (max-width: 960px) {
+    .tour-featured { grid-template-columns: 1fr; }
+    .tour-grid, .tour-try .tour-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 620px) {
+    .tour-grid, .tour-try .tour-steps { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { .tour-shot img { transition: none; } .tour-shot:hover img { transform: none; } }
+</style>
