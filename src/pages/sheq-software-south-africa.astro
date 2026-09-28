@@ -8,6 +8,22 @@ const faqs = [
   { q: 'Does SHEQX® support the OHS Act and legal appointments?', a: 'Yes. SHEQX® manages legal appointments, MSDS records, permits, inspections and incidents aligned to the Occupational Health and Safety Act (Act 85 of 1993), with clear ownership and expiry tracking so appointments and permits never lapse unnoticed.' },
   { q: 'Is SHEQX® suitable for mining, construction and high-risk sectors?', a: 'Yes. SHEQX® is used across construction, logistics, manufacturing and industrial services, with modules for incident management, risk assessment, emergency preparedness, medical surveillance and ISO-aligned audits that suit high-risk, multi-site operations.' },
   { q: 'Can SHEQX® give group-level visibility across multiple sites?', a: 'Yes. SHEQX® consolidates SHEQ performance across every site and business unit into real-time dashboards, so group SHEQ managers see incidents, non-conformances and audit findings across the organisation from one place.' },
+  { q: 'What is SHEQ management software?', a: 'SHEQ management software helps organisations manage safety, health, environmental and quality processes through structured workflows, auditable records, incident tracking, inspections, audits and compliance monitoring, so the SHEQ management system runs on one connected set of records instead of spreadsheets, email and paper forms.' },
+  { q: 'How do we consolidate SHEQ across multiple sites onto one system?', a: 'Agree a common framework first (incident categories, severity ratings, the risk matrix and action statuses), map the group, business unit and site structure, migrate live records such as open actions, legal registers, appointments and permits, then pilot at one or two sites before rolling out in waves. SHEQX® keeps site-specific legal registers, permits and appointments within the same platform that gives the group its consolidated view.' },
+];
+
+const consolidation = [
+  { t: 'One common SHEQ framework', b: 'Incident categories, severity ratings, risk scoring and action statuses defined once, so performance at every site can be compared fairly.' },
+  { t: 'Site-level ownership', b: 'Each site keeps its own legal register, permits, legal appointments and inspections, owned by the people accountable for them, inside the same platform.' },
+  { t: 'Group-wide visibility', b: 'Real-time dashboards roll incidents, non-conformances, audit findings and open actions up from site to business unit to group, without manual consolidation.' },
+  { t: 'Patterns across operations', b: 'A near miss at one site is seen alongside similar events elsewhere, so a problem developing at several operations is caught before it becomes a serious incident.' },
+];
+
+const reading = [
+  { href: '/insights/what-is-sheq', t: 'What is SHEQ?', b: 'What SHEQ means, how it differs from HSE and SHERQ, and how a SHEQ management system works under South African law.' },
+  { href: '/insights/how-to-consolidate-sheq-management-across-multiple-sites', t: 'Consolidating SHEQ across multiple sites', b: 'A practical, step-by-step approach to moving every site onto one SHEQ system without losing local ownership.' },
+  { href: '/insights/why-incident-reporting-is-critical-in-sheq-management', t: 'Why incident reporting is critical', b: 'The legal and operational case for incident and near miss reporting, and how to turn reports into closed actions.' },
+  { href: '/insights/what-is-sheq-software-complete-guide', t: 'What is SHEQ software?', b: 'What modern SHEQ software does, and what it should deliver for compliance-driven organisations.' },
 ];
 
 const schema = JSON.stringify({
@@ -25,8 +41,8 @@ const laws = [
 ---
 
 <Base
-  title="SHEQ Software in South Africa | Safety, Health, Environment & Quality | XGRC® SHEQX®"
-  description="SHEQ software for South African operations, aligned to the OHS Act, the Mine Health and Safety Act and ISO 45001, 9001 and 14001. Trusted by Servest, Sandton Plant Hire and Interwaste."
+  title="SHEQ Software South Africa | SHEQ Management Software | SHEQX®"
+  description="SHEQ software for South Africa: manage safety, health, environment and quality across every site on one auditable system, aligned to the OHS Act and ISO 45001, 9001 and 14001."
 >
   <script type="application/ld+json" set:html={schema} />
 
@@ -35,7 +51,7 @@ const laws = [
     <div class="container geo-hero-inner">
       <div class="breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>SHEQ software (South Africa)</span></div>
       <h1>SHEQ software built for South African operations.</h1>
-      <p class="lede">Safety, health, environment and quality data scattered across email, spreadsheets and paper forms does not survive an inspection. SHEQX® gives South African operations one auditable system that closes actions, sustains ISO certification and evidences compliance with the OHS Act and the Mine Health and Safety Act.</p>
+      <p class="lede">Safety, health, environment and quality data scattered across email, spreadsheets and paper forms does not survive an inspection. SHEQX® is SHEQ management software that gives South African operations one auditable system, across every site, that closes actions, sustains ISO certification and evidences compliance with the OHS Act and the Mine Health and Safety Act.</p>
       <div class="geo-actions">
         <a href="/demo" class="btn btn-primary">Request a demo</a>
         <a href="/sheqx/" class="btn btn-ghost">Explore SHEQX® &rarr;</a>
@@ -72,6 +88,22 @@ const laws = [
     </div>
   </section>
 
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Multi-site SHEQ consolidation</span>
+        <h2>One SHEQ management system across every site.</h2>
+        <p class="lede">Growing groups often end up with a different SHEQ system at every site: separate spreadsheets, separate forms and separate ways of scoring risk. SHEQX® brings every site and business unit onto one platform with a common framework, while each site keeps ownership of its own obligations. Interwaste used SHEQX® to unify SHEQ processes across multiple regions, reducing reporting effort, accelerating safety action closure and increasing near-miss reporting volumes.</p>
+      </div>
+      <div class="grid cols-2">
+        {consolidation.map((c) => (
+          <div class="card"><h3>{c.t}</h3><p class="mute">{c.b}</p></div>
+        ))}
+      </div>
+      <a href="/insights/how-to-consolidate-sheq-management-across-multiple-sites" class="link-arrow consolidation-link">How to consolidate SHEQ management across multiple sites &rarr;</a>
+    </div>
+  </section>
+
   <ProofCards companies={["Servest", "Sandton Plant Hire", "Interwaste"]} heading="South African operations already running on SHEQX®." />
 
   <section class="section--tight">
@@ -79,6 +111,21 @@ const laws = [
       <div class="section-head"><span class="eyebrow"><span class="dot"></span>Frequently asked</span><h2>SHEQ software in South Africa.</h2></div>
       <div class="faq-list">
         {faqs.map((f) => (<details class="faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>SHEQ guides</span>
+        <h2>Understand SHEQ before you choose software.</h2>
+        <p class="lede">Practical guides from the XGRC® team on SHEQ management, incident reporting and running SHEQ across multiple sites.</p>
+      </div>
+      <div class="grid cols-2">
+        {reading.map((r) => (
+          <a href={r.href} class="card reading-card"><h3>{r.t}</h3><p class="mute">{r.b}</p><span class="reading-arrow">Read the guide &rarr;</span></a>
+        ))}
       </div>
     </div>
   </section>
@@ -120,5 +167,9 @@ const laws = [
   .cta-block h2 { margin-bottom: 14px; max-width: 580px; margin-left: auto; margin-right: auto; }
   .cta-block .lede { margin: 0 auto 28px; max-width: 540px; }
   .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .consolidation-link { display: inline-block; margin-top: 22px; }
+  .reading-card { display: block; text-decoration: none; color: inherit; transition: border-color 0.2s; }
+  .reading-card:hover { border-color: var(--cyan); }
+  .reading-arrow { display: inline-block; margin-top: 10px; color: var(--cyan); font-size: 0.9rem; font-weight: 600; }
   .contact-line { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
 </style>

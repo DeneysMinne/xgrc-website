@@ -165,6 +165,279 @@ From Records to Outcomes
 
 The point of digital SHEQ management is not tidier records. It is prevention and accountability: patterns spotted before they become incidents, actions closed rather than orphaned, and one auditable view of SHEQ performance that leadership can trust across every site. SHEQX® is the Safety, Health, Environment and Quality solution within XGRC® Software, connecting SHEQ data to the same secure foundation used across risk, compliance and assurance, so safety, health, environment and quality are governed as part of the wider picture rather than in isolation.`,
 
+'what-is-sheq': `SHEQ is one of the most widely used acronyms in South African operations, and one of the least often explained. It appears in job titles, department names, tender requirements and audit reports, usually on the assumption that everyone already knows what it covers. This guide sets out what SHEQ means, how it differs from the other acronyms in the same family, the legal and ISO context it operates in, and what it takes to run a SHEQ management system that holds up across an entire organisation.
+
+What Does SHEQ Stand For?
+
+SHEQ stands for Safety, Health, Environment and Quality. It describes the combined management of four disciplines that share the same underlying work: identifying hazards and risks, meeting legal and customer obligations, capturing and investigating incidents, auditing and inspecting operations, and making sure corrective actions are actually completed. Rather than running four separate functions with four separate sets of records, a SHEQ approach manages them together, usually through one team and one management system.
+
+SHEQ Meaning in Practice
+
+Each letter covers a distinct area of responsibility:
+
+- Safety: preventing injuries and dangerous occurrences through hazard identification, risk assessment, safe work procedures, permits, inspections and incident management
+- Health: protecting workers from occupational illness and long-term harm, through occupational health programmes, medical surveillance, exposure monitoring and job-specific health requirements
+- Environment: controlling the organisation's impact on air, water, land and communities, through environmental legal compliance, permits and authorisations, monitoring and environmental incident management
+- Quality: making sure products and services consistently meet customer, regulatory and internal requirements, through document control, non-conformance management, calibration and continual improvement
+
+The reason these four sit together is practical. The same activity on site can create a safety hazard, a health exposure, an environmental risk and a quality problem at once. A chemical spill, for example, is a safety incident, a potential health exposure, an environmental incident and often a product quality issue. Managing SHEQ as one discipline means that event is captured once, investigated once and closed once, instead of being handled in four separate systems that never reconcile.
+
+SHEQ vs SHE, HSE, EHS, QHSE and SHERQ
+
+SHEQ is one of several closely related acronyms, and the differences are mostly about scope and regional habit:
+
+- SHE, HSE and EHS all cover safety, health and environment, without quality. HSE is common in the United Kingdom and in oil and gas, EHS is more common in North America, and SHE is often used in South Africa
+- QHSE and HSEQ cover the same four disciplines as SHEQ, simply in a different order
+- SHERQ adds risk as a named discipline alongside safety, health, environment and quality, reflecting organisations where the same function also owns operational or enterprise risk
+- HSSE adds security, typically in energy, resources and logistics
+
+In practice the label matters less than the scope. The processes behind all of them are the same: hazard and risk management, legal compliance, incident management, audits, inspections and corrective actions. What changes is whether quality and risk are managed inside the same system or kept separate. Many organisations find that separating them creates duplicated records and gaps between functions, which is why SHEQ and SHERQ structures have become common in South African industry.
+
+SHEQ in South Africa: The Legal Context
+
+In South Africa, SHEQ is shaped by a body of legislation that places clear duties on employers and holds senior management accountable. The core pieces include:
+
+- The Occupational Health and Safety Act 85 of 1993 (OHS Act), which requires employers to provide and maintain a working environment that is safe and without risk to health, and which, together with its regulations, drives legal appointments, health and safety representatives and committees, risk assessments and the reporting of certain incidents
+- Regulations made under the OHS Act, such as the Construction Regulations, which set specific requirements for particular sectors and activities
+- The Mine Health and Safety Act 29 of 1996, which sets the health and safety framework for mines
+- The Compensation for Occupational Injuries and Diseases Act 130 of 1993 (COIDA), which governs compensation for workplace injuries and occupational diseases and depends on those injuries being reported and recorded properly
+- The National Environmental Management Act 107 of 1998 (NEMA) and the specific environmental management acts that sit beneath it, covering areas such as air quality, waste and water, along with the permits and authorisations sites operate under
+
+Quality is less driven by statute and more by customers, contracts and certification, most often ISO 9001. Together, these obligations mean a South African SHEQ function is expected not only to manage risk, but to prove it: appointments in place, permits current, incidents reported, inspections done and actions closed. How this plays out for software is covered in more detail on the <a href="/sheq-software-south-africa/">SHEQ software in South Africa</a> page, and the wider regulatory picture in <a href="/insights/navigating-south-africas-ehs-regulations-why-digital-compliance-tools-are-essential">navigating South Africa's EHS regulations</a>.
+
+What Is a SHEQ Management System?
+
+A SHEQ management system is the set of policies, processes, records and responsibilities an organisation uses to manage safety, health, environmental and quality risks in a structured, repeatable way. It is not a single document or a piece of software. It is the way the organisation plans its SHEQ work, carries it out, checks whether it is working and improves it, the plan, do, check, act cycle that runs through every ISO management system standard.
+
+A working SHEQ management system typically includes:
+
+- A SHEQ policy and objectives set by leadership, with clear roles, responsibilities and legal appointments
+- Hazard identification and risk assessment, with controls linked to the risks they treat
+- A legal register of the obligations that apply to each site, with owners and review dates
+- Operational controls such as procedures, permits, PPE requirements and emergency preparedness
+- Incident, near miss and non-conformance management, including investigation and root cause analysis
+- Inspections and internal audits that test whether controls are working
+- Corrective and preventive actions with owners, due dates and evidence of closure
+- Training, competency and document control, so people work to current procedures
+- Management review, where leadership looks at performance and decides what to change
+
+Integrating ISO 45001, ISO 14001 and ISO 9001
+
+Most SHEQ management systems are built on three international standards: ISO 45001 for occupational health and safety, ISO 14001 for environmental management and ISO 9001 for quality management. All three share a common high-level structure, with the same core clauses for context, leadership, planning, support, operation, performance evaluation and improvement. That shared structure is what makes an integrated SHEQ system possible. One document control process, one internal audit programme, one corrective action process and one management review can serve all three standards, instead of three parallel systems that duplicate effort and drift apart.
+
+Integration does not remove the differences between the standards. ISO 45001 has specific requirements around worker consultation and participation, ISO 14001 around environmental aspects and compliance obligations, and ISO 9001 around customer requirements and product conformity. A good integrated system keeps those specifics while sharing everything that can be shared. Readiness guidance for each standard is available for <a href="/use-cases/iso-45001-readiness">ISO 45001</a>, <a href="/use-cases/iso-14001-readiness">ISO 14001</a> and <a href="/use-cases/iso-9001-readiness">ISO 9001</a>, and the broader case for integration is set out in <a href="/insights/integrated-management-system-software-for-modern-compliance">integrated management system software</a>.
+
+Why Incident Reporting Sits at the Heart of SHEQ
+
+If a SHEQ management system has a single point of failure, it is incident reporting. Investigations, root cause analysis, corrective actions, risk assessments, legal reporting and management review all begin with someone reporting what happened. When incidents and near misses go unreported, or are reported late, incompletely or on paper that never reaches the right person, every downstream process weakens. The organisation cannot learn from events it never hears about, and it cannot prove to an inspector or auditor that it responded properly. Why this matters so much, and what good reporting looks like, is covered in <a href="/insights/why-incident-reporting-is-critical-in-sheq-management">why incident reporting is critical in SHEQ management</a>.
+
+SHEQ Across Multiple Sites
+
+SHEQ becomes considerably harder once an organisation operates across several sites, regions or business units. Each site tends to develop its own forms, its own spreadsheets and its own way of classifying incidents and scoring risk. Individually, each may work. Together, they make it almost impossible for group leadership to compare performance, spot a pattern developing at several sites at once, or answer a simple question such as how many high-severity corrective actions are overdue across the group. Bringing every site onto one SHEQ management system, without taking away local ownership, is a common turning point for growing organisations. A practical approach is set out in <a href="/insights/how-to-consolidate-sheq-management-across-multiple-sites">how to consolidate SHEQ management across multiple sites</a>.
+
+When Spreadsheets Stop Working
+
+Many SHEQ management systems start on paper, email and spreadsheets, and for a small, single-site operation that can be enough. The signs that it no longer is tend to be consistent:
+
+- Incidents are logged but investigations and actions are tracked somewhere else, if at all
+- The same issue recurs because corrective actions were raised but never verified as closed
+- Legal appointments, permits and safety data sheets lapse because nobody owns the expiry dates
+- Preparing for an ISO surveillance audit means weeks of reassembling evidence
+- Group reporting takes days of consolidating site spreadsheets and is out of date when it is finished
+- Nobody can say with confidence whether a near miss at one site has happened before at another
+
+At that point the problem is no longer the format of the records. It is that the records are not connected. The shift from scattered records to one auditable platform is described in <a href="/insights/digital-sheq-management">digital SHEQ management</a>, and the risks hidden inside fragmented information in <a href="/insights/why-sheq-incidents-are-often-a-data-problem">why SHEQ incidents are often a data problem</a>.
+
+What to Look for in SHEQ Software
+
+SHEQ software should support the management system, not replace it with a set of disconnected forms. When evaluating options, the questions that matter most are:
+
+- Does it cover all four disciplines, including quality, on one data foundation rather than separate modules that do not share records?
+- Does an incident connect to its investigation, root cause, corrective actions and the risk it relates to?
+- Does it manage legal requirements, legal appointments, permits and safety data sheets with owners and expiry tracking?
+- Does it support audits and inspections aligned to ISO 45001, ISO 14001 and ISO 9001, so evidence is produced as work is done?
+- Can it give group, site and business unit views from the same data, for multi-site operations?
+- Can people in the field capture incidents and inspections easily, including photo evidence?
+- Is every record auditable, with a clear trail of who did what and when?
+
+A fuller breakdown of what SHEQ software does is available in <a href="/insights/what-is-sheq-software-complete-guide">what is SHEQ software</a>.
+
+How SHEQX® Manages SHEQ
+
+<a href="/sheqx/">SHEQX®</a> is the Safety, Health, Environment and Quality solution within XGRC® Software. It manages the complete SHEQ lifecycle, from hazard identification and incident capture through risk treatment, compliance monitoring and ISO-aligned audit management, across every site and business unit on one platform. Its modules span risk and safety (including incident management, risk management, emergency preparedness, PPE management and medical surveillance), compliance and legal (legal requirements, legal appointments, permit management and MSDS management), quality and operations (non-conformance management, change management, calibration and objectives), people and training, and oversight (audit management, inspection management, document management, meeting management and action management).
+
+SHEQX® is aligned to ISO 9001, ISO 14001 and ISO 45001, and because it shares one data foundation with XGRC® risk, environmental and assurance solutions, SHEQ risks stay connected to enterprise risk rather than sitting in a silo. For how it fits South African legislation specifically, see <a href="/sheq-software-south-africa/">SHEQ software in South Africa</a>.`,
+
+'why-incident-reporting-is-critical-in-sheq-management': `Every SHEQ management system depends on information, and most of that information starts with an incident report. A worker slips on a wet walkway, a forklift clips a racking upright, a drum leaks into a stormwater drain, a batch fails a quality check. What happens next, whether the event is investigated, whether the cause is found, whether anything changes, depends almost entirely on whether it was reported, how quickly, and how well. Incident reporting is not an administrative step at the end of an event. It is the input every other SHEQ process relies on.
+
+What Counts as an Incident in SHEQ
+
+In a SHEQ context, an incident is broader than an injury. Most organisations capture several categories, each of which feeds a different part of the management system:
+
+- Injuries and occupational illnesses, from first aid cases to serious and fatal injuries
+- Near misses, where harm could have occurred but did not
+- Dangerous occurrences, such as uncontrolled releases, equipment failures or structural collapses
+- Environmental incidents, such as spills, emissions, uncontrolled discharges or waste handling failures
+- Quality incidents and non-conformances, where a product, service or process fails to meet requirements
+- Property and equipment damage, which often signals a control that is not working
+
+A SHEQ approach captures all of these in one place, because the same event frequently falls into more than one category. For a broader view of how the four disciplines fit together, see <a href="/insights/what-is-sheq">what is SHEQ</a>.
+
+Why Incident Reporting Is Critical
+
+Incident reporting matters for reasons that go well beyond keeping a record:
+
+- It is a legal obligation. Certain incidents must be reported to the authorities, and failing to do so is an offence in its own right
+- It is how the organisation learns. An incident that is not reported cannot be investigated, and a cause that is not found will usually recur
+- It drives corrective action. Every corrective and preventive action in the system should trace back to something that was reported, inspected or audited
+- It informs risk assessment. Incident trends show where existing controls are not working and where risk assessments need revisiting
+- It is audit evidence. ISO certification bodies, inspectors and clients expect to see incidents reported, investigated and closed, not just logged
+- It reflects and shapes culture. The number and quality of reports tell leadership a great deal about whether people trust the system and feel safe raising concerns
+
+The Legal Side of Incident Reporting in South Africa
+
+South African legislation places specific reporting duties on employers. Section 24 of the Occupational Health and Safety Act 85 of 1993 requires certain incidents to be reported to an inspector, including incidents in which a person dies, is seriously injured or becomes ill, major incidents, and specified dangerous occurrences such as the spillage of a dangerous substance or the uncontrolled release of a substance under pressure. The regulations under the Act set out how and when these reports must be made, and the employer is expected to record and investigate incidents, not simply notify them.
+
+Other legislation adds its own obligations. Workplace injuries and occupational diseases are reported for compensation purposes under the Compensation for Occupational Injuries and Diseases Act 130 of 1993. Mines report under the Mine Health and Safety Act 29 of 1996. Section 30 of the National Environmental Management Act 107 of 1998 deals with the reporting and control of emergency environmental incidents. Which obligations apply depends on the sector and the site, and the specific regulations should always be checked, but the common thread is clear: organisations need a reliable way to know about every incident quickly, classify it correctly and show what they did about it. The wider local context is covered on the <a href="/sheq-software-south-africa/">SHEQ software in South Africa</a> page.
+
+What ISO 45001, ISO 14001 and ISO 9001 Expect
+
+All three standards include requirements for dealing with incidents and non-conformities. ISO 45001 goes furthest: it requires a process to report, investigate and act on incidents and nonconformities, and among top management's leadership commitments it includes protecting workers from reprisals when they report incidents, hazards, risks and opportunities. ISO 14001 and ISO 9001 both require organisations to react to non-conformities, determine their causes, take corrective action and review whether that action was effective. In each case, the standard assumes reporting is happening. If it is not, the rest of the clause cannot be met.
+
+Why Near Misses Matter Most
+
+Near misses are the most valuable and the most under-reported incidents. By definition, nobody was hurt, nothing was spilled and no product was lost, so there is little pressure to report. Yet a near miss is a free lesson: the hazard is real, the control has failed or nearly failed, and the organisation has the chance to fix it before the outcome is worse. Near misses also tend to be far more frequent than serious incidents, which makes them one of the richest sources of preventive information a SHEQ team has. A rising near miss reporting rate is often a sign of a healthier reporting culture, not a more dangerous workplace. The patterns near misses reveal, when they are connected to inspections, findings and overdue actions, are explored in <a href="/insights/why-sheq-incidents-are-often-a-data-problem">why SHEQ incidents are often a data problem</a>.
+
+Why Incident Reporting Breaks Down
+
+When reporting rates are low, the cause is rarely that nothing is happening. More often, reporting is simply harder than staying quiet:
+
+- Paper forms that have to be found, filled in and handed in, often at the end of a long shift
+- Long, complicated forms designed for the investigation rather than the first report
+- A culture where reporting leads to blame rather than improvement
+- No feedback, so people report once, see nothing change and stop reporting
+- No clear route for contractors and visitors to report
+- Reports sent by email or WhatsApp that never reach a central record
+
+Each of these can be fixed, but only if the organisation treats reporting as something to design deliberately rather than assume.
+
+What Makes an Incident Report Useful
+
+A good first report is quick to submit and captures enough to act on. The investigation can add detail later. At minimum, a useful report records:
+
+- What happened, where and when
+- Who was involved or affected, including contractors and members of the public
+- The immediate actions taken to make the area safe or contain the event
+- An initial severity classification, so the right people are notified and legal reporting duties are identified
+- Supporting evidence such as photos, documents or witness details
+
+From there, the report should move into a structured process: an investigation proportionate to the severity, a root cause rather than just an immediate cause, corrective and preventive actions assigned to named owners with due dates, and verification that those actions actually resolved the cause before the incident is closed.
+
+From Report to Closed Loop
+
+The value of incident reporting is only realised when the loop is closed. A report that sits in a register with no investigation, no action and no verification teaches the organisation nothing and tells the reporter their effort was wasted. A closed loop connects the report to the investigation, the investigation to the root cause, the root cause to corrective actions, the actions to verified closure, and the lessons back into risk assessments, procedures and training. This is the structured incident process described in the <a href="/use-cases/incident-management">incident management</a> use case, and it depends on the same discipline set out in <a href="/use-cases/action-management">action management</a>: actions with owners, deadlines and evidence, tracked until they are genuinely complete.
+
+Incident Reporting Across Multiple Sites
+
+For organisations with several sites, the value of incident reporting multiplies when reports are captured the same way everywhere. If every site uses the same classifications and severity ratings, a group SHEQ manager can see that three sites have reported similar near misses involving the same activity, and act across the group before one of them becomes a serious incident. If each site uses its own form and its own spreadsheet, that pattern stays invisible. Consistent, group-wide reporting is one of the main reasons organisations consolidate their SHEQ systems, as covered in <a href="/insights/how-to-consolidate-sheq-management-across-multiple-sites">how to consolidate SHEQ management across multiple sites</a>.
+
+How SHEQX® Supports Incident Reporting
+
+<a href="/sheqx/">SHEQX®</a> by XGRC® Software is built to make incidents easy to report and hard to lose. It provides mobile-friendly incident capture with photo and document evidence, configurable severity classification and escalation rules, structured root cause analysis workflows, automated corrective action assignment and tracking, and real-time dashboards on incident trends and open actions. Every incident links to its investigation, root cause and corrective actions, and connects to the risk register and audit findings, so leadership sees not only what happened but whether it was actually resolved. Across the scope of a SHEQ function, that covers safety incidents and near misses, environmental incidents and quality nonconformities on one platform, aligned to ISO 45001, ISO 14001 and ISO 9001.`,
+
+'how-to-consolidate-sheq-management-across-multiple-sites': `Few organisations set out to run a different SHEQ system at every site. It happens gradually. A new site is opened with its own spreadsheets. An acquisition brings its own software. A regional manager builds a better form. Years later, group leadership finds that incidents, risks, audits and corrective actions are recorded in a dozen different ways, and that a simple question, such as which sites have overdue high-severity actions, takes days to answer. Consolidating SHEQ management across multiple sites is how organisations get back to one view of safety, health, environment and quality performance without taking ownership away from the people on the ground.
+
+Why Multi-Site SHEQ Fragments
+
+Multi-site fragmentation is rarely anyone's fault. Each site faces real, local pressures: its own inspectors, its own permits, its own client audits, its own workforce. Under that pressure, sites solve their own problems in their own way. The result is a set of systems that each work locally but cannot be added together:
+
+- Incidents are classified differently at each site, so severity ratings cannot be compared
+- Risk matrices use different scales, so a high risk at one site may be a medium risk at another
+- Corrective actions are tracked in separate spreadsheets, so nobody can see the group total
+- Legal registers are maintained inconsistently, and some sites are more current than others
+- Group reporting depends on site managers compiling figures by hand, often in different formats
+- Patterns that span sites, such as the same type of near miss at several operations, go unnoticed
+
+Signs Your SHEQ System Needs Consolidating
+
+The need to consolidate usually becomes obvious in one of a few ways. Group SHEQ reports take longer to produce than the period they cover. An ISO surveillance audit at one site reveals a gap that turns out to exist at others. A serious incident prompts the question of whether it had happened before elsewhere, and nobody can answer it. Leadership wants to move to a single multi-site ISO certificate but the sites cannot demonstrate a common system. Or the organisation simply grows past the point where head office can keep track of what every site is doing.
+
+What Consolidation Means, and What It Does Not
+
+Consolidation does not mean forcing every site into an identical mould. Sites differ for good reasons, and a system that ignores those differences will be worked around. The goal is to make common what needs to be common, and to keep local what genuinely needs to be local, inside one shared system.
+
+What should normally be common across the group:
+
+- Incident categories, severity ratings and escalation rules
+- The risk matrix and how likelihood and consequence are scored
+- Core workflows for incidents, investigations, non-conformances, audits, inspections and corrective actions
+- Action statuses and what counts as closed
+- Group reporting, key indicators and management review inputs
+
+What usually stays site-specific:
+
+- Legal registers, because the obligations that apply depend on the activities and location of each site
+- Permits, environmental authorisations and licences
+- Legal appointments and the people who hold them
+- Site-specific procedures, emergency plans and inspection checklists
+
+A Practical Approach to Consolidation
+
+Most successful consolidations follow the same broad sequence. The detail varies with the number of sites and the state of their existing systems, but the order matters: agree the framework before moving data, and prove it at a pilot site before rolling it out everywhere.
+
+Step 1: Agree a Common SHEQ Framework
+
+Before any data moves, agree the shared language: incident categories, severity levels, the risk matrix, action statuses and the key indicators the group will report on. This is the single most important step, because it is what makes data from different sites comparable. Involve site SHEQ managers early, as they know where the local exceptions are and will have to live with the result.
+
+Step 2: Map the Organisation's Structure
+
+Define how the organisation is structured for SHEQ purposes, for example group, region or division, business unit and site. This structure determines how records roll up into reports and who can see what. Getting it right at the start avoids rebuilding reports later.
+
+Step 3: Decide What Moves and What Stays Behind
+
+Not every historical record needs to be migrated. Prioritise live information: open incidents and investigations, open corrective actions, the current legal register for each site, current legal appointments, permits and their expiry dates, training records and upcoming audits and inspections. Historical records can often be archived in their existing form and referenced if needed. Migrating open actions matters most, because an action that disappears during a system change is an unresolved risk.
+
+Step 4: Pilot at One or Two Sites
+
+Start with a site that is representative and a site team willing to give honest feedback. A pilot tests whether the common framework works in practice, surfaces the local exceptions nobody anticipated, and produces a working example other sites can see. Adjust the framework before rolling it out further.
+
+Step 5: Roll Out in Planned Waves
+
+Roll out to the remaining sites in waves rather than all at once, timing each wave around audit schedules and operational peaks. Each wave should include data migration, configuration of site-specific records such as legal registers and permits, and training.
+
+Step 6: Make It Easy to Use in the Field
+
+A consolidated system only works if people at the sites actually use it. Incident and inspection capture should be quick, available on mobile devices, and simpler than the paper form it replaces. Train supervisors and field staff, not just SHEQ officers, and give reporters feedback so they can see that what they report is acted on. Reporting quality is the foundation of everything else, a point covered in <a href="/insights/why-incident-reporting-is-critical-in-sheq-management">why incident reporting is critical in SHEQ management</a>.
+
+Step 7: Use the Group View
+
+Once sites are on one system, use the group view actively. Compare sites on the same indicators, look for incidents and findings that repeat across operations, and bring consolidated SHEQ performance into management review. This is where consolidation pays for itself: patterns that were invisible when data sat in separate spreadsheets become visible, as explored in <a href="/insights/why-sheq-incidents-are-often-a-data-problem">why SHEQ incidents are often a data problem</a>.
+
+Keeping ISO Certification Intact
+
+Consolidation is a significant change to a management system, and certification bodies will want to see that it has been controlled. Keep audit evidence, open corrective actions and legal registers intact through the transition, document the change, and talk to your certification body early, particularly if you intend to move from separate site certificates to a single multi-site certificate. Multi-site certification generally depends on a centrally controlled management system applied consistently across sites, which is exactly what consolidation provides. Organisations running ISO 45001, ISO 14001 and ISO 9001 together can use the same consolidation to integrate the three, as described in <a href="/insights/what-is-sheq">what is SHEQ</a>.
+
+Common Pitfalls
+
+The consolidation projects that struggle usually make one of a few mistakes:
+
+- Moving data before agreeing the common framework, so inconsistent data is simply moved into a new system
+- Designing everything at head office without site input, so sites work around the system
+- Trying to migrate every historical record, which delays go-live without adding much value
+- Losing open corrective actions in the transition
+- Rolling out to every site at once, with no pilot and no chance to adjust
+- Treating the new system as a reporting tool for head office rather than a working tool for the sites
+
+What Good Looks Like
+
+A well consolidated SHEQ system gives each level of the organisation what it needs from the same data. Site teams capture incidents, inspections and actions and manage their own legal register, permits and appointments. Regional and business unit managers see performance across their sites. Group leadership sees one current picture of SHEQ performance, can compare sites fairly, and can spot a problem developing in several places before it becomes a serious incident anywhere. Audit evidence accumulates as work is done, rather than being reassembled before each audit.
+
+How SHEQX® Supports Multi-Site SHEQ
+
+<a href="/sheqx/">SHEQX®</a> by XGRC® Software manages the complete SHEQ lifecycle across every site and business unit on one platform, from hazard identification and incident capture through risk treatment, legal compliance, permits, inspections, audits and corrective actions. It consolidates SHEQ performance into real-time dashboards, so group SHEQ managers can see incidents, non-conformances and audit findings across the organisation from one place, while sites keep ownership of their own records.
+
+Organisations already run SHEQX® this way. Interwaste unified its SHEQ processes across multiple regions, reducing reporting effort, accelerating safety action closure and increasing near-miss reporting volumes. Commercial Cold Holdings describes gaining real-time visibility into SHEQ performance across the group. Servest, which runs SHEQX® and ENVIRX®, has digitised its SHEQ processes since 2019, reducing administrative burden and achieving renewed ISO 9001, ISO 14001 and ISO 45001 certifications in October 2024. Because SHEQX® shares one data foundation with <a href="/envirx">ENVIRX®</a> for multi-site environmental monitoring and <a href="/compliance-hub">XGRC® Compliance Hub</a> for contractor and supplier compliance, the consolidated SHEQ picture can extend to environmental performance and the third parties working on each site. For the South African legal context, see <a href="/sheq-software-south-africa/">SHEQ software in South Africa</a>.`,
+
 'what-is-governed-ai-for-grc': `Most organisations did not choose to have an AI governance gap. It happened by default — employees started using ChatGPT and similar tools for real work faster than policies, permissions, or audit trails could catch up. In governance, risk and compliance functions specifically, that gap is dangerous: the data involved — risk registers, audit findings, policy content — is exactly the data an organisation cannot afford to expose, store externally, or use without an audit trail.
 
 What Is Governed AI for GRC?
@@ -508,7 +781,7 @@ Spreadsheets are not a risk management solution. They are a limitation. ERM soft
 
 What Does SHEQ Mean?
 
-SHEQ refers to four interconnected operational disciplines: Safety — managing workplace risks and preventing incidents; Health — protecting employee wellbeing and occupational health; Environment — ensuring environmental compliance and performance; Quality — maintaining consistent product and process standards. These disciplines do not operate independently. Together, they form the foundation of operational governance in regulated industries.
+SHEQ refers to four interconnected operational disciplines: Safety — managing workplace risks and preventing incidents; Health — protecting employee wellbeing and occupational health; Environment — ensuring environmental compliance and performance; Quality — maintaining consistent product and process standards. These disciplines do not operate independently. Together, they form the foundation of operational governance in regulated industries. For a fuller explanation of what SHEQ means, how it differs from HSE and SHERQ, and how a SHEQ management system works under South African law, see <a href="/insights/what-is-sheq">what is SHEQ</a>.
 
 What Is SHEQ Management Software?
 
