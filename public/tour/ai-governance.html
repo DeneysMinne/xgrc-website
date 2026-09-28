@@ -4,30 +4,47 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>XGRC® AI Governance KPI Dashboard</title>
+<title>AI Governance KPI Dashboard | XGRC® live dashboard tour</title>
+<meta name="description" content="Interactive demonstration of the XGRC® AI Governance KPI Dashboard dashboard. Every figure is fictitious and illustrative.">
+<link rel="icon" href="/favicon.ico">
+<script>
+  (function () {
+    if (!['xgrcsoftware.com', 'www.xgrcsoftware.com'].includes(window.location.hostname)) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('consent', 'default', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+    gtag('js', new Date());
+    gtag('config', 'G-E8SHSDL5C4');
+    gtag('config', 'AW-744549022');
+    var tag = document.createElement('script'); tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-E8SHSDL5C4';
+    document.head.appendChild(tag);
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="dash-shell.css?v=8">
+<link rel="stylesheet" href="tour-shell.css?v=9">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
-<div id="banner">DEMONSTRATION DASHBOARD &mdash; all systems, KPI values, owners and exceptions on this page are fictitious and illustrative only</div>
+<div id="banner">Demonstration dashboard: all systems, KPI values, owners and exceptions on this page are fictitious and illustrative only</div>
 
 <header class="top">
   <div class="top-inner">
     <div class="brand">
-      <img src="/assets/logos/brand/xgrc-icon-white.png" alt="" aria-hidden="true" class="brand-icon">
+      <a class="home" href="/" aria-label="XGRC® Software home"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" class="brand-icon"></a>
       <div>
         <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">AI Governance KPI Dashboard</div>
-        <div class="crumb"><a href="dashboards.html">&larr; Dashboard Gallery</a></div>
+        <div class="crumb"><a href="/tour/">&larr; All dashboards</a> &middot; <a href="/ai-governance/">About AI Governance</a></div>
       </div>
     </div>
     <div class="top-right">
-      <div class="sync-line"><span class="sync-dot"></span><span id="sync-label">synced just now</span></div>
-      <button class="btn" id="btn-export">Export board pack</button>
+      <button class="btn" id="btn-export" type="button">Export board pack</button>
+      <a class="btn-go" href="/demo/">Book a demo</a>
     </div>
   </div>
   <div class="filterbar">
@@ -72,14 +89,24 @@
     <div class="card">
       <div class="section-title" style="margin-bottom:14px;">
         <h2>AI Systems</h2>
-        <span class="n">Click a system to view its full cross-system profile</span>
+        <span class="n">The 12 highest-risk of 128 monitored systems. Click one for its full profile.</span>
       </div>
-      <table class="systems-table" id="systems-table"></table>
+      <div class="table-scroll"><table class="systems-table" id="systems-table"></table></div>
     </div>
   </div>
 
   <div id="module-sections"></div>
 </main>
+
+<section class="tour-cta" aria-label="Next step">
+  <div class="tour-cta-inner">
+    <div>
+      <h2>Govern your own AI estate the same way</h2>
+      <p>Classify every AI system against the EU AI Act and ISO/IEC 42001, attach evidence, and see exceptions before an auditor does. This dashboard uses fictitious data; a demo uses yours.</p>
+    </div>
+    <div class="acts"><a class="btn-go" href="/demo/">See it with your data</a><a class="btn" href="/ai-governance/">About AI Governance</a><a class="btn" href="/tour/">All dashboards</a></div>
+  </div>
+</section>
 
 <div id="site-footer">
   <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
@@ -88,7 +115,7 @@
 
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-panel">
-    <button class="modal-close" id="modal-close">&times;</button>
+    <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
     <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
     <h2 id="modal-name"></h2>
     <p class="mdesc" id="modal-desc"></p>
@@ -110,8 +137,6 @@
 const CONFIG = {
   pdfTitle: 'XGRC · AI Governance KPI Dashboard',
   pdfFilename: 'XGRC-AI-Governance-Board-Pack-Demo.pdf',
-  today: '2026-09-21T09:00:00',
-  driftIds: [34,35,18,29,58],
   systems: [
     { name:'AI Governance', color:'#30e2f4' },
     { name:'XLOGIC', color:'#7e9eff' },
@@ -133,7 +158,7 @@ const CONFIG = {
 {id:7,name:'Impact Assessment Coverage',system:'AI Governance',module:'03 · Impact Assessment',desc:'% of in-scope systems/life-cycle stages with a current, approved assessment.',calc:'Systems with a current approved assessment ÷ in-scope systems and life-cycle stages.',valueLabel:'88%',target:'100%',rag:'amber',delta:'-2 pts',tone:'bad',owner:'DPO',cadence:'Weekly',frameworks:['EU AI Act']},
 {id:8,name:'Vulnerable-Population Assessments Overdue',system:'AI Governance',module:'03 · Impact Assessment',desc:'Count of systems affecting vulnerable groups whose assessment review is overdue.',calc:'Count of systems tagged vulnerable-population where review date < today and no new assessment logged.',valueLabel:'3',target:'0',rag:'red',delta:'+1',tone:'bad',owner:'DPO',cadence:'Weekly',frameworks:['EU AI Act']},
 {id:9,name:'Residual Risk Requiring Treatment',system:'AI Governance',module:'03 · Impact Assessment',desc:'% of assessments where post-safeguard risk was rated unacceptable.',calc:'Assessments with post-safeguard rating = Unacceptable ÷ total completed assessments.',valueLabel:'6%',target:'≤ 10%',rag:'green',delta:'-1 pt',tone:'good',owner:'DPO',cadence:'Monthly',frameworks:[]},
-{id:10,name:'Control Effectiveness (working)',system:'AI Governance',module:'04 · Controls & Evidence',desc:'Split of controls by designed / in place / working status — % rated working shown here.',calc:'Controls rated Working ÷ total controls in scope.',valueLabel:'84%',target:'100%',rag:'green',delta:'+3 pts',tone:'good',owner:'CRO',cadence:'Weekly',frameworks:['ISO 27001'],detail:'Full split: 84% Working · 11% In place, not yet tested · 5% Designed only.'},
+{id:10,name:'Control Effectiveness (working)',system:'AI Governance',module:'04 · Controls & Evidence',desc:'Split of controls by designed, in place or working status; the % rated working is shown here.',calc:'Controls rated Working ÷ total controls in scope.',valueLabel:'84%',target:'100%',rag:'green',delta:'+3 pts',tone:'good',owner:'CRO',cadence:'Weekly',frameworks:['ISO 27001'],detail:'Full split: 84% Working · 11% In place, not yet tested · 5% Designed only.'},
 {id:11,name:'Evidence Currency',system:'AI Governance',module:'04 · Controls & Evidence',desc:'% of attached evidence still within its validity period.',calc:'Evidence records with validity end date ≥ today ÷ total attached evidence.',valueLabel:'93%',target:'100%',rag:'green',delta:'flat',tone:'neutral',owner:'CRO',cadence:'Weekly',frameworks:[]},
 {id:12,name:'Cross-Framework Exposure',system:'AI Governance',module:'04 · Controls & Evidence',desc:'Count of requirements, across all frameworks, currently exposed by a failing/weak/untested control.',calc:'Distinct requirements mapped to a control rated Failing, Weak or Untested (counted once per control, framework attributed).',valueLabel:'4',target:'0',rag:'amber',delta:'-2',tone:'good',owner:'CRO',cadence:'Weekly',frameworks:[]},
 {id:13,name:'Oversight Coverage',system:'AI Governance',module:'05 · Human Oversight',desc:'% of high-risk systems with a defined, tested oversight arrangement.',calc:'High-risk systems with an approved, tested oversight arrangement ÷ all high-risk systems.',valueLabel:'97%',target:'100%',rag:'green',delta:'+1 pt',tone:'good',owner:'COO',cadence:'Weekly',frameworks:['EU AI Act']},
@@ -225,18 +250,18 @@ CONFIG.afterInit = function(ctx){
 
   // --- AI Systems drill-down ---
   const SYSTEMS = [
-    { id:1, name:'Contract Review Copilot', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 1', maia:true, provider:'Anthropic', owner:'Legal' },
-    { id:2, name:'Support Triage Agent', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 2', maia:true, provider:'OpenAI', owner:'COO' },
-    { id:3, name:'Marketing Content Generator', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 2', maia:true, provider:'OpenAI', owner:'CRO' },
-    { id:4, name:'Invoice Anomaly Detector', aiGov:'Locked', aiGovRag:'amber', xlogic:'Active', asgard:'Tier 1', maia:true, provider:'Azure OpenAI', owner:'CRO' },
-    { id:5, name:'HR Screening Assistant', aiGov:'Locked — banned-use flag', aiGovRag:'red', xlogic:'Active', asgard:'Tier 3', maia:false, provider:'OpenAI', owner:'DPO' },
-    { id:6, name:'Code Review Assistant', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 1', maia:true, provider:'Anthropic', owner:'Development Lead' },
+    { id:1, name:'Contract Review Copilot', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 1', maia:true, provider:'Provider A', owner:'Legal' },
+    { id:2, name:'Support Triage Agent', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 2', maia:true, provider:'Provider B', owner:'COO' },
+    { id:3, name:'Marketing Content Generator', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 2', maia:true, provider:'Provider B', owner:'CRO' },
+    { id:4, name:'Invoice Anomaly Detector', aiGov:'Locked', aiGovRag:'amber', xlogic:'Active', asgard:'Tier 1', maia:true, provider:'Provider C (cloud)', owner:'CRO' },
+    { id:5, name:'HR Screening Assistant', aiGov:'Locked, banned-use flag', aiGovRag:'red', xlogic:'Active', asgard:'Tier 3', maia:false, provider:'Provider B', owner:'DPO' },
+    { id:6, name:'Code Review Assistant', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 1', maia:true, provider:'Provider A', owner:'Development Lead' },
     { id:7, name:'Sales Forecast Model', aiGov:'Locked', aiGovRag:'green', xlogic:'Not started', asgard:'Not onboarded', maia:false, provider:'Internal', owner:'CRO' },
-    { id:8, name:'Customer Chatbot', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 2', maia:true, provider:'Azure OpenAI', owner:'COO' },
-    { id:9, name:'Fraud Detection Engine', aiGov:'Locked — banned-use flag', aiGovRag:'red', xlogic:'Overdue', asgard:'Tier 1', maia:false, provider:'Internal', owner:'CRO' },
-    { id:10, name:'Document Classifier', aiGov:'Pending', aiGovRag:'amber', xlogic:'Not started', asgard:'Not onboarded', maia:false, provider:'Google', owner:'Development Lead' },
-    { id:11, name:'Meeting Summarizer', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 3', maia:true, provider:'OpenAI', owner:'COO' },
-    { id:12, name:'Vendor Risk Scorer', aiGov:'Pending', aiGovRag:'amber', xlogic:'Not started', asgard:'Not onboarded', maia:false, provider:'Anthropic', owner:'Development Lead' },
+    { id:8, name:'Customer Chatbot', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 2', maia:true, provider:'Provider C (cloud)', owner:'COO' },
+    { id:9, name:'Fraud Detection Engine', aiGov:'Locked, banned-use flag', aiGovRag:'red', xlogic:'Overdue', asgard:'Tier 1', maia:false, provider:'Internal', owner:'CRO' },
+    { id:10, name:'Document Classifier', aiGov:'Pending', aiGovRag:'amber', xlogic:'Not started', asgard:'Not onboarded', maia:false, provider:'Provider D', owner:'Development Lead' },
+    { id:11, name:'Meeting Summariser', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 3', maia:true, provider:'Provider B', owner:'COO' },
+    { id:12, name:'Vendor Risk Scorer', aiGov:'Pending', aiGovRag:'amber', xlogic:'Not started', asgard:'Not onboarded', maia:false, provider:'Provider A', owner:'Development Lead' },
   ];
   const xlogicColor = { 'Active':'var(--mute)', 'Overdue':'var(--red-hi)', 'Not started':'var(--faint)' };
   document.getElementById('systems-table').innerHTML =
@@ -284,10 +309,10 @@ CONFIG.afterInit = function(ctx){
     document.getElementById('sm-owner').textContent = s.owner;
     const gaps = [];
     if (s.aiGovRag === 'red') gaps.push('Banned-use flag is open in AI Governance');
-    if (s.xlogic === 'Overdue') gaps.push('its XLOGIC governance workflow is overdue — the flag has not been actioned');
-    if (s.xlogic === 'Not started') gaps.push('no XLOGIC governance workflow has started — process gap');
+    if (s.xlogic === 'Overdue') gaps.push('its XLOGIC governance workflow is overdue, so the flag has not been actioned');
+    if (s.xlogic === 'Not started') gaps.push('no XLOGIC governance workflow has started (a process gap)');
     if (s.asgard === 'Not onboarded') gaps.push('no Asgard guardrail coverage is assigned, so agent activity, if any, is currently unmonitored');
-    else if (s.aiGovRag === 'red' && s.xlogic !== 'Overdue') gaps.push('Asgard still shows this system at ' + s.asgard + ' — the flag has not propagated to agent access control');
+    else if (s.aiGovRag === 'red' && s.xlogic !== 'Overdue') gaps.push('Asgard still shows this system at ' + s.asgard + ', so the flag has not reached agent access control');
     if (!s.maia) gaps.push('excluded from MAIA data grounding');
     const joined = gaps.join('; ');
     const read = gaps.length ? joined.charAt(0).toUpperCase() + joined.slice(1) + '.' : 'Fully reconciled across AI Governance, XLOGIC and Asgard.';
@@ -300,7 +325,7 @@ CONFIG.afterInit = function(ctx){
   });
 };
 </script>
-<script src="dash-shell.js?v=8"></script>
+<script src="tour-shell.js?v=9"></script>
 <script>DashboardShell.init(CONFIG);</script>
 
 </body>

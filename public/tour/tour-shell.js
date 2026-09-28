@@ -1,6 +1,16 @@
-/* XGRC Dashboard Gallery — shared render engine.
-   Each dashboard page defines a CONFIG object and calls DashboardShell.init(CONFIG). */
+/* XGRC dashboard tour: shared render engine.
+   Each dashboard page defines a CONFIG object and calls DashboardShell.init(CONFIG).
+   All dates are relative to the day the page is viewed, so the demonstration never ages. */
 (function(){
+
+function today(){ const d = new Date(); d.setHours(9, 0, 0, 0); return d; }
+function monthLabels(n){
+  const out = []; const d = today(); d.setDate(1);
+  for (let i = n - 1; i >= 0; i--){ const m = new Date(d.getFullYear(), d.getMonth() - i, 1); out.push(m.toLocaleDateString('en-GB', { month:'short' })); }
+  return out;
+}
+function addDays(n){ const d = today(); d.setDate(d.getDate() + n); return d; }
+const RAG_LABEL = { green:'On target', amber:'Watch', red:'Breach' };
 
 const ragHex = { green:'#2fe88a', amber:'#ffb648', red:'#ff5470' };
 
@@ -12,7 +22,7 @@ function initials(owner){
   return letters.slice(0,3) || owner.slice(0,3).toUpperCase();
 }
 
-function trendGlyph(delta){ if (delta.startsWith('+')) return '▲'; if (delta.startsWith('-')) return '▼'; return '–'; }
+function trendGlyph(delta){ if (delta.startsWith('+')) return '▲'; if (delta.startsWith('-')) return '▼'; return '·'; }
 function fmtDate(d){ return d.toLocaleDateString('en-GB', {day:'2-digit', month:'short'}); }
 
 function seedFromId(id){ let h = 0; const s = String(id); for (let i=0;i<s.length;i++) h = (h*31 + s.charCodeAt(i)) >>> 0; return h || 1; }
@@ -46,7 +56,7 @@ function init(CONFIG){
   const sysColor = {};
   CONFIG.systems.forEach(s => sysColor[s.name] = s.color);
 
-  const TODAY = CONFIG.today ? new Date(CONFIG.today) : new Date();
+  const TODAY = today();
   const EXC = (CONFIG.exceptions || []).map(e => {
     const k = KPIS.find(x => x.id === e.kpiId);
     const d = new Date(TODAY); d.setDate(d.getDate() - e.ageDays);
@@ -133,8 +143,8 @@ function init(CONFIG){
 
   function kpiCard(k){
     const hist = historyFor(k);
-    return `<div class="kpi-card rag-${k.rag}" data-id="${k.id}">
-      <div class="kname">${k.name}</div>
+    return `<div class="kpi-card rag-${k.rag}" data-id="${k.id}" tabindex="0" role="button" aria-label="${k.name}: ${k.valueLabel}, ${RAG_LABEL[k.rag]}">
+      <div class="khead"><div class="kname">${k.name}</div><span class="krag rag-${k.rag}">${RAG_LABEL[k.rag]}</span></div>
       <div class="kval-row"><span class="kval">${k.valueLabel}</span><span class="ktarget">target ${k.target}</span></div>
       ${sparklineSVG(hist, k.rag)}
       <div class="kfoot">
@@ -162,7 +172,6 @@ function init(CONFIG){
           <div class="module-header">
             <span class="sys-tag" style="background:${sysColor[sys]}22;color:${sysColor[sys]};">${sys}</span>
             <h3>${mod}</h3>
-            <span class="msync mono" data-sync="${sys}"></span>
           </div>
           <div class="kpi-grid">${rows.map(kpiCard).join('')}</div>
         </div>`;
@@ -171,9 +180,10 @@ function init(CONFIG){
     });
     document.getElementById('module-sections').innerHTML = anyVisible ? html : `<div class="empty-state">No KPIs match the current filters.</div>`;
     document.querySelectorAll('.kpi-card').forEach(el=>{
-      el.addEventListener('click', ()=> openModal(parseInt(el.getAttribute('data-id'))));
+      const open = ()=> openModal(parseInt(el.getAttribute('data-id')));
+      el.addEventListener('click', open);
+      el.addEventListener('keydown', (e)=>{ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
     });
-    updateSyncLabels();
   }
 
   let modalSparkChart;
@@ -190,7 +200,7 @@ function init(CONFIG){
     document.getElementById('modal-calc').textContent = k.calc;
     document.getElementById('modal-frameworks').innerHTML = (k.frameworks && k.frameworks.length
       ? k.frameworks.map(f=>`<span class="mtag">${f}</span>`).join('') : '')
-      + `<span class="mtag" style="background:rgba(255,255,255,0.05);color:var(--faint);">RAG: ${k.rag.toUpperCase()}</span>`;
+      + `<span class="mtag" style="background:rgba(255,255,255,0.05);color:var(--faint);">Status: ${RAG_LABEL[k.rag]}</span>`;
 
     const hist = historyFor(k);
     if (modalSparkChart) modalSparkChart.destroy();
@@ -253,73 +263,58 @@ function init(CONFIG){
     if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
   }
 
-  const PAGE_LOAD = Date.now();
-  const sysOffsets = {};
-  CONFIG.systems.forEach((s,i) => sysOffsets[s.name] = 8 + i*23);
-  function updateSyncLabels(){
-    document.querySelectorAll('[data-sync]').forEach(el=>{
-      const sys = el.getAttribute('data-sync');
-      const secs = Math.floor((Date.now()-PAGE_LOAD)/1000) + (sysOffsets[sys]||10);
-      el.textContent = secs < 60 ? `synced ${secs}s ago` : `synced ${Math.floor(secs/60)}m ago`;
-    });
-    const secs = Math.floor((Date.now()-PAGE_LOAD)/1000);
-    const label = document.getElementById('sync-label');
-    if (label) label.textContent = secs < 5 ? 'synced just now' : `synced ${secs}s ago`;
-  }
-  setInterval(updateSyncLabels, 1000);
-
-  const driftIds = CONFIG.driftIds || KPIS.filter(k=>k.tone==='neutral').slice(0,4).map(k=>k.id);
-  function driftTick(){
-    if (!driftIds.length) return;
-    const id = driftIds[Math.floor(Math.random()*driftIds.length)];
-    const k = KPIS.find(x=>x.id===id);
-    const card = document.querySelector(`.kpi-card[data-id="${id}"]`);
-    if (!k || !card) return;
-    const n0 = parseInt(k.valueLabel);
-    if (isNaN(n0)) return;
-    let n = n0 + (Math.random() < 0.5 ? -1 : 1);
-    n = Math.max(0, n);
-    k.valueLabel = k.valueLabel.replace(String(n0), String(n));
-    const valEl = card.querySelector('.kval');
-    if (valEl) valEl.textContent = k.valueLabel;
-    card.classList.add('drift');
-    setTimeout(()=>card.classList.remove('drift'), 650);
-  }
-  setInterval(driftTick, 9000);
 
   document.getElementById('btn-export').addEventListener('click', ()=>{
-    if (!window.jspdf) { showToast('PDF library did not load — check your connection'); return; }
+    if (!window.jspdf) { showToast('PDF library did not load. Check your connection and try again.'); return; }
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ unit:'pt', format:'a4' });
     const agg = computeAgg();
-    let y = 56;
+    const W = doc.internal.pageSize.getWidth(), H = doc.internal.pageSize.getHeight();
+    const dateStr = TODAY.toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'});
+    let y = 64;
+    function newPage(){ doc.addPage(); y = 64; }
+    function need(h){ if (y + h > H - 70) newPage(); }
+
     doc.setFont('helvetica','bold'); doc.setFontSize(18); doc.setTextColor(10,20,35);
     doc.text(CONFIG.pdfTitle, 40, y); y += 20;
     doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(90,100,115);
-    doc.text('Board pack export — demonstration data, ' + TODAY.toLocaleDateString('en-GB', {day:'2-digit',month:'long',year:'numeric'}), 40, y); y += 26;
+    doc.text('Board pack, ' + dateStr + '. Demonstration data: every figure is fictitious and illustrative.', 40, y); y += 28;
 
     doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(10,20,35);
     doc.text('Summary', 40, y); y += 18;
     doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(40,50,65);
     [
       `Composite health score: ${agg.health}%`,
-      `KPIs tracked: ${agg.total}  (${agg.green} on target · ${agg.amber} watch · ${agg.red} breach)`,
+      `KPIs tracked: ${agg.total} (${agg.green} on target, ${agg.amber} watch, ${agg.red} breach)`,
       `Open exceptions: ${EXC.length} (${EXC.filter(e=>e.severity==='Red').length} red, ${EXC.filter(e=>e.severity==='Amber').length} amber)`,
     ].forEach(line=>{ doc.text(line, 40, y); y += 16; });
     y += 14;
 
     doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(10,20,35);
     doc.text('Where leadership should focus', 40, y); y += 18;
-    doc.setFontSize(9.5);
     EXC.forEach(e=>{
-      if (y > 780) { doc.addPage(); y = 56; }
+      const body = `${e.kpi.name}: ${e.kpi.valueLabel} against a target of ${e.kpi.target}. Owner ${e.kpi.owner}, raised ${fmtDate(e.raisedDate)} (${e.ageDays} days open), ${e.status.toLowerCase()}.`;
+      doc.setFontSize(9.5);
+      const lines = doc.splitTextToSize(body, W - 95 - 40);
+      need(lines.length * 12 + 6);
       doc.setFont('helvetica','bold'); doc.setTextColor(e.severity==='Red' ? 200:150, e.severity==='Red'?30:100, 40);
-      doc.text(`[${e.severity}]`, 40, y);
+      doc.text(e.severity, 40, y);
       doc.setFont('helvetica','normal'); doc.setTextColor(40,50,65);
-      doc.text(`${e.kpi.name}  —  ${e.kpi.valueLabel} vs target ${e.kpi.target}  ·  owner ${e.kpi.owner}  ·  ${e.ageDays}d open  ·  ${e.status}`, 95, y);
-      y += 16;
+      doc.text(lines, 95, y);
+      y += lines.length * 12 + 6;
     });
 
+    const pages = doc.getNumberOfPages();
+    for (let i = 1; i <= pages; i++){
+      doc.setPage(i);
+      const canFade = typeof doc.GState === 'function' && typeof doc.setGState === 'function';
+      if (canFade) doc.setGState(new doc.GState({ opacity: 0.07 }));
+      doc.setFont('helvetica','bold'); doc.setFontSize(54); doc.setTextColor(canFade ? 10 : 236, canFade ? 20 : 239, canFade ? 35 : 243);
+      doc.text('DEMONSTRATION DATA', W/2, H/2, { align:'center', angle:35 });
+      if (canFade) doc.setGState(new doc.GState({ opacity: 1 }));
+      doc.setFont('helvetica','normal'); doc.setFontSize(8.5); doc.setTextColor(120,130,145);
+      doc.text(`XGRC® demonstration dashboard. Fictitious data, not a real organisation. xgrcsoftware.com/tour  |  Page ${i} of ${pages}`, 40, H - 32);
+    }
     doc.save(CONFIG.pdfFilename);
     showToast('Board pack exported (demonstration data)');
   });
@@ -340,5 +335,5 @@ function init(CONFIG){
   }
 }
 
-window.DashboardShell = { init };
+window.DashboardShell = { init, today, monthLabels, addDays };
 })();
