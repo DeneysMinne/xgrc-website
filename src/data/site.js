@@ -1644,6 +1644,15 @@ export const articles = [
     image: 'iso-42001-vs-iso-27001.jpg',
     relatedSolutions: ['ai-governance', 'msxcyber'],
   },
+  {
+    slug: 'king-v-and-the-rise-of-ai-governance',
+    title: 'King V and the Rise of AI Governance',
+    excerpt: 'King V applies to financial years beginning on or after 1 January 2026. Here is why AI governance is becoming a board-level issue under an outcomes-based code, and how accountability, human oversight and assurance make it real.',
+    category: 'AI & Governance',
+    date: '2026-10-29',
+    image: 'king-v-and-the-rise-of-ai-governance.jpg',
+    relatedSolutions: ['ai-governance', 'integrated-assurance', 'msx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1941,6 +1950,13 @@ export const articleFaqs = {
     { q: 'Does ISO/IEC 42001 replace ISO/IEC 27001?', a: 'No. The standards have different purposes: ISO/IEC 42001 addresses AI management, while ISO/IEC 27001 addresses information security management.' },
     { q: 'Can ISO/IEC 42001 and ISO/IEC 27001 work together?', a: 'Yes. Both follow a management system approach, so organisations using AI can connect related AI governance and information security processes, particularly around risk, information, responsibilities, controls, monitoring, evidence and continual improvement.' },
     { q: 'Which standard should an organisation implement?', a: 'That depends on its objectives, context, risks and applicable requirements. Organisations seeking structured AI management should consider ISO/IEC 42001, while those seeking structured information security management should consider ISO/IEC 27001. Where both areas are material, a connected approach may be appropriate.' },
+  ],
+  'king-v-and-the-rise-of-ai-governance': [
+    { q: 'What is AI governance?', a: 'AI governance is the set of policies, responsibilities, risk management processes, controls, oversight mechanisms and assurance activities an organisation uses to manage how artificial intelligence is introduced and used.' },
+    { q: 'How does King V relate to AI governance?', a: 'King V, launched by the IoDSA on 31 October 2025 and applying to financial years beginning on or after 1 January 2026, is a voluntary, outcomes-based governance code. Because AI increasingly influences strategy, risk, decisions and stakeholder outcomes, boards applying King V need visibility, accountability and assurance over how AI is used.' },
+    { q: 'Why should boards care about AI governance?', a: 'AI can affect organisational risk, operations, information, compliance, decision-making and stakeholder outcomes. Boards therefore need appropriate visibility and assurance over material AI use and the risks associated with it.' },
+    { q: 'Is AI governance only an IT responsibility?', a: 'No. Technology teams play an important role, but effective AI governance may involve the board, executives, risk, compliance, information security, legal, internal audit and operational functions.' },
+    { q: 'How can organisations strengthen AI governance?', a: 'Start by identifying where AI is used, then establish clear ownership, define policies, assess risks, implement appropriate controls, maintain human oversight, monitor performance, retain evidence and integrate AI into existing governance and assurance processes.' },
   ],
 };
 
