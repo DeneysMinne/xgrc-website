@@ -2585,4 +2585,102 @@ Give AI a Task, Not Unlimited Access
 The value of an AI agent should come from the work it completes, not the volume of access it accumulates. This Cybersecurity Awareness Month, review one live agent from end to end: its purpose, identity, credentials, permissions, approval rules and containment process. Useful automation needs clear authority, enforceable limits and accountable people.
 
 Asgard is available on XGRC® Enterprise. <a href="/contact/">Speak to an XGRC® specialist about Asgard</a> and how scoped, brokered access can help your organisation put AI agents to work safely.`,
+'building-a-culture-of-cyber-resilience': `Cyber Resilience Is Everyone's Responsibility
+
+Every October, Cybersecurity Awareness Month gives organisations a moment to reflect on how they protect their information, systems, people and operations. Earlier this month we looked at how to move <a href="/insights/cybersecurity-awareness-month-from-awareness-to-action/">from awareness to action</a>. This article takes the next step: building cyber resilience, the ability to keep operating, respond effectively and improve when something does go wrong. Security is no longer an annual campaign. It is an ongoing business responsibility.
+
+As organisations become more digitally connected, employees rely on cloud platforms, mobile devices, third-party systems, artificial intelligence and increasingly complex technology ecosystems to perform everyday activities. This creates enormous opportunities, and it also creates new risks. Cyber threats can affect operational continuity, sensitive information, customer trust, regulatory compliance, financial performance and organisational reputation. Cyber resilience therefore cannot be the responsibility of the IT department alone: from the boardroom to everyday users, every person who accesses organisational information has a role to play.
+
+The Landscape Cyber Resilience Must Cover Is Changing
+
+Cyber threats continue to evolve alongside technology. Organisations are no longer protecting a clearly defined technology perimeter, because information moves between employees, suppliers, cloud platforms, applications, mobile devices, remote environments and, increasingly, AI-enabled systems. This creates a much broader digital ecosystem that needs to be governed. Common risks may include:
+
+- Phishing and social engineering
+- Credential theft
+- Weak access controls
+- Ransomware
+- Data exposure
+- Third-party vulnerabilities
+- Unapproved applications
+- Human error
+- Misconfigured systems
+- Inappropriate use of artificial intelligence
+
+The challenge is not simply identifying these risks. Organisations need structured mechanisms for assessing them, establishing controls, assigning responsibility, monitoring performance, responding to incidents and continually improving their security environment. Cyber resilience therefore needs to become part of organisational governance.
+
+People Are Part of the System, Not the Whole of It
+
+Technology plays an essential role. Firewalls, access controls, endpoint security, monitoring tools and other technical safeguards provide important layers of defence, but technology alone cannot create cyber resilience. People remain central: a malicious link clicked, a reused password, information sent to the wrong recipient or confidential data entered into a public AI platform can each create exposure. We explored this in depth in <a href="/insights/building-a-cyber-aware-culture-addressing-the-human-element-of-cyber-risk/">building a cyber-aware culture and the human element of cyber risk</a>.
+
+For resilience, the point is that secure behaviour needs to be supported by the organisation around it. Employees should understand why information security matters, what their responsibilities are, which systems and applications are approved, how incidents should be reported and when concerns should be escalated. Resilience grows when those expectations are built into everyday processes rather than repeated once a year.
+
+AI Needs Guardrails, Not Bans
+
+Artificial intelligence is rapidly changing how employees interact with organisational information. Generative AI can help employees summarise documents, analyse information, create content and improve productivity. But an employee may enter confidential business information into an AI application without fully understanding how it is processed, stored or used, and different departments may adopt different AI tools without central visibility. This is the challenge of Shadow AI: the use of AI systems outside established organisational governance and oversight.
+
+The issue is not whether organisations should use AI, but whether AI is being used within appropriate boundaries. Depending on the organisation, guardrails may include approved applications, acceptable-use requirements, information classification rules, restrictions around sensitive data, access controls, third-party assessments, human oversight, monitoring, incident escalation and recordkeeping. Their purpose is not to prevent innovation, but to create enough structure for innovation to happen responsibly. Employees should know what they can do, what they cannot do and when approval is required, while leadership has visibility over significant AI use through structured <a href="/ai-governance/">AI governance</a>.
+
+From Awareness to Cyber Resilience
+
+Awareness is important, but it should ultimately lead to resilience. A cyber-resilient organisation recognises that security incidents cannot always be completely prevented. Instead, it develops the ability to work through a continuous cycle:
+
+- Identify: understand critical information, systems, suppliers and the risks to them
+- Protect: put proportionate controls in place and assign owners
+- Detect: monitor for incidents, control failures and emerging vulnerabilities
+- Respond: report, investigate, contain and escalate in a defined way
+- Recover: restore operations and services with minimal disruption
+- Improve: learn from incidents, findings and reviews, then update controls
+
+This requires coordination across people, processes, technology, risk management, compliance and leadership. Each stage depends on the one before it. Detection is only useful if response is defined, and recovery only builds resilience if the lessons feed back into how risks are identified and controls are designed. A strong <a href="/use-cases/incident-management/">incident management</a> process is what links detection, response and improvement together.
+
+To manage the cycle, organisations should be able to see their significant information security risks, which controls manage them, who owns those controls, whether the controls are operating effectively, which incidents have occurred, what corrective actions remain outstanding and where governance gaps exist. Cyber resilience therefore goes beyond preventing attacks. It is about creating an organisation capable of responding effectively when circumstances change.
+
+ISO/IEC 27001 Provides a Structure for Resilience
+
+ISO/IEC 27001 provides an internationally recognised framework for establishing, implementing, maintaining and continually improving an Information Security Management System. Rather than treating security as a collection of individual technical controls, an ISMS establishes a structured management approach covering areas such as:
+
+- Information security risk management
+- Policies and responsibilities
+- Access control and information protection
+- Supplier relationships
+- Incident management
+- Monitoring and measurement
+- Internal audit and management review
+- Corrective action and continual improvement
+
+The management-system approach suits cyber resilience because risks constantly change. Organisations need more than a once-off security project: they need a repeatable process for understanding risk and improving their security environment over time. <a href="/use-cases/iso-27001-readiness/">ISO 27001 readiness</a> is a practical starting point for building that process.
+
+Resilience Needs Clear Accountability
+
+One of the foundations of effective information security is ownership. Organisations need to understand who is responsible for specific risks, controls, actions, information assets and security processes. Without clear accountability, important activities become fragmented: a vulnerability may be identified without a clear owner, an audit finding may remain unresolved, a corrective action may become overdue or a policy may exist without anyone monitoring whether it is followed.
+
+Clear responsibility helps employees understand what is expected, while giving management greater visibility over whether security activities are being completed. When responsibilities, risks and corrective actions have visible owners, they are far more likely to be acted on, which is what keeps the resilience cycle moving.
+
+Cyber Resilience Cannot Be Managed in Silos
+
+One of the greatest obstacles to cyber resilience is fragmentation. Information security policies may exist in one location, risks in spreadsheets, audit findings in another system, corrective actions in email, compliance requirements in a separate register and incident information somewhere else entirely. This makes it difficult to see the complete picture, and difficult to respond quickly when an incident crosses several of those areas at once.
+
+Connected governance brings policies, risks, controls, incidents, actions, audits, evidence and reporting together, so that each can be traced to the others. Technology can support this by centralising governance information, assigning responsibilities, supporting workflows, maintaining evidence and improving management reporting. <a href="/integrated-assurance/">Integrated Assurance</a> adds a further layer, coordinating internal audit and combined assurance so that assurance activity is linked to the same risks, controls and corrective actions.
+
+How MSXCyber® Supports Connected Cyber Governance
+
+Effective cyber resilience requires more than technical controls. It requires structured governance. <a href="/msxcyber/">MSXCyber® by XGRC® Software</a>, an Information Security Management System aligned to ISO 27001:2022, supports organisations in managing information security governance within a connected, controlled and auditable environment. By bringing governance activities together within the broader XGRC® Governance, Risk and Compliance Platform, it can help organisations:
+
+- Centralise information security governance
+- Manage risks and controls
+- Strengthen accountability
+- Maintain policies and responsibilities
+- Monitor actions and findings
+- Support audit activities
+- Maintain governance evidence
+- Improve management visibility
+- Support continual improvement
+
+As technologies such as AI become increasingly embedded across organisations, connected governance can also help prevent new digital risks from becoming another isolated management silo.
+
+Make Cyber Resilience a Business Habit
+
+Cybersecurity cannot end when October does. Cyber resilience is built through everyday decisions: an employee questioning a suspicious email, a manager understanding the information risks within their department, clear rules around AI use, a control owner taking responsibility for an outstanding action, leadership asking whether significant cyber risks are being effectively managed, internal audit providing assurance over the controls that matter and an organisation learning from incidents rather than simply recording them. Awareness may begin with people, but cyber resilience is built through connected governance.
+
+<a href="/contact/">Speak to an XGRC® specialist</a> to discover how MSXCyber® can help your organisation connect information security risks, policies, controls, responsibilities, actions, audits and evidence, and build a more resilient approach to information security that lasts well beyond October.`,
 };
