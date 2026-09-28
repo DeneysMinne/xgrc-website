@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>XGRC&reg; Strategic Balanced Scorecard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="dash-shell.css?v=8">
+<style>
+  body { overflow-x:hidden; }
+  .bsnav { position:sticky; top:0; z-index:20; background:rgba(6,15,28,0.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .bsnav-top { max-width:1500px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .bsnav-brand { display:flex; align-items:center; gap:12px; }
+  .brand-icon { width:24px; height:24px; }
+  .bs-badge { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.8px; text-transform:uppercase; color:var(--cyber-hi); border:1px solid rgba(185,139,255,0.4); background:rgba(185,139,255,0.08); padding:5px 11px; border-radius:20px; white-space:nowrap; color:#d4bbff; }
+  .bs-crumb { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--faint); text-decoration:none; white-space:nowrap; }
+  .bs-crumb:hover { color:var(--cyan-hi); }
+  .bsnav-context { margin-left:auto; display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--mute); white-space:nowrap; }
+  .live-dot { width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 8px var(--green); animation:pulse 2.2s ease-in-out infinite; flex-shrink:0; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  .bsnav-tabs { max-width:1500px; margin:0 auto; padding:0 28px 12px; display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; }
+  .bsnav-tabs::-webkit-scrollbar { display:none; }
+  .ind-tab { font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.2px; padding:8px 14px; border-radius:9px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); white-space:nowrap; flex-shrink:0; }
+  .ind-tab.active { background:rgba(255,182,72,0.14); border-color:var(--amber); color:var(--amber-hi); }
+  .bsnav-controls { max-width:1500px; margin:0 auto; padding:12px 28px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; border-top:1px solid var(--line); }
+  .dept-label { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.9px; text-transform:uppercase; color:var(--faint); white-space:nowrap; margin-right:6px; }
+  .dept-pill { font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:6px 12px; border-radius:8px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); }
+  .dept-pill.active { border-color:#d4bbff; color:#d4bbff; background:rgba(185,139,255,0.1); }
+  .kpi-search { background:var(--abyss); border:1px solid var(--line-strong); border-radius:9px; color:var(--ink); padding:8px 12px; font-size:12px; font-family:'Inter',sans-serif; min-width:200px; }
+  .kpi-search::placeholder { color:var(--faint); }
+
+  .bs-main { position:relative; z-index:2; max-width:1500px; margin:0 auto; padding:30px 28px 60px; }
+  .bs-title-row { margin-bottom:22px; }
+  #page-title { font-size:26px; font-weight:800; }
+  .bs-subtitle { font-size:12.5px; color:var(--mute); margin-top:5px; }
+
+  .bs-table-card { border-radius:var(--radius-lg); border:1px solid var(--line-strong); background:linear-gradient(160deg, var(--panel), rgba(255,255,255,0.01)); padding:4px; overflow:hidden; }
+  .bs-scroll { overflow-x:auto; }
+  table.bs-table { border-collapse:collapse; width:100%; min-width:1160px; }
+  .bs-table th { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.3px; text-transform:uppercase; color:var(--faint); text-align:center; padding:12px 8px; font-weight:600; border-bottom:1px solid var(--line-strong); white-space:nowrap; }
+  .bs-table th:first-child { text-align:left; position:sticky; left:0; background:#0a1729; z-index:3; min-width:300px; padding-left:18px; }
+  .bs-table th.ytd-col { color:var(--ink); background:rgba(255,255,255,0.03); }
+  .bs-table td { padding:9px 8px; text-align:center; font-size:11.5px; border-bottom:1px solid var(--line); font-family:'JetBrains Mono',monospace; }
+  .bs-table td:first-child { text-align:left; position:sticky; left:0; background:#0a1729; z-index:2; font-family:'Inter',sans-serif; padding-left:18px; }
+  .perspective-row td { background:rgba(185,139,255,0.08); font-family:'Outfit'; font-weight:700; font-size:12.5px; color:#d4bbff; padding:11px 8px 11px 18px; cursor:pointer; position:sticky; left:0; z-index:2; }
+  .perspective-row:hover td { background:rgba(185,139,255,0.13); }
+  .kpi-row { cursor:pointer; transition:background .12s; }
+  .kpi-row:hover td { background:rgba(255,255,255,0.025); }
+  .kpi-row.collapsed { display:none; }
+  .kpi-name-cell { display:flex; align-items:center; gap:10px; }
+  .kpi-idx { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--faint); width:18px; flex-shrink:0; }
+  .kpi-meta .kname { font-size:12px; font-weight:600; color:var(--ink); }
+  .kpi-meta .kmetric { font-size:10px; color:var(--faint); margin-top:1px; }
+  .status-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; margin-left:auto; }
+  .rag-cell { border-radius:5px; padding:4px 6px; display:inline-block; min-width:44px; }
+  .rag-green { background:rgba(47,232,138,0.18); color:var(--green-hi); }
+  .rag-amber { background:rgba(255,182,72,0.18); color:var(--amber-hi); }
+  .rag-red { background:rgba(255,84,112,0.18); color:var(--red-hi); }
+  .detail-row td { background:rgba(255,255,255,0.015); padding:14px 18px; font-family:'Inter',sans-serif; }
+  .detail-row.hidden { display:none; }
+  .detail-grid { display:flex; gap:26px; flex-wrap:wrap; align-items:center; }
+  .detail-field .l { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.5px; text-transform:uppercase; color:var(--faint); }
+  .detail-field .v { font-size:12.5px; font-weight:600; color:var(--ink); margin-top:2px; }
+  .chevron { display:inline-block; margin-right:8px; transition:transform .15s; }
+  .chevron.collapsed { transform:rotate(-90deg); }
+</style>
+</head>
+<body>
+
+<div id="banner">DEMONSTRATION DASHBOARD: all companies, figures and scorecard values on this page are fictitious and illustrative only</div>
+
+<header class="bsnav">
+  <div class="bsnav-top">
+    <div class="bsnav-brand">
+      <img src="/assets/logos/brand/xgrc-icon-white.png" alt="" aria-hidden="true" class="brand-icon">
+      <span class="bs-badge">STRATEGY &middot; Balanced Scorecard</span>
+      <a href="dashboards.html" class="bs-crumb">&larr; Dashboard Gallery</a>
+    </div>
+    <div class="bsnav-context"><span class="live-dot"></span><span id="ctx-company"></span></div>
+  </div>
+  <div class="bsnav-tabs" id="industry-tabs"></div>
+  <div class="bsnav-controls">
+    <span class="dept-label">Business Unit</span>
+    <div id="dept-pills" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+    <input type="text" class="kpi-search" id="kpi-search" placeholder="Search KPIs&hellip;">
+  </div>
+</header>
+
+<main class="bs-main">
+  <div class="bs-title-row">
+    <h1 id="page-title">Strategic Balanced Scorecard</h1>
+    <div class="bs-subtitle" id="page-subtitle"></div>
+  </div>
+
+  <div class="bs-table-card">
+    <div class="bs-scroll">
+      <table class="bs-table">
+        <thead>
+          <tr>
+            <th>Improvement Priority</th>
+            <th class="ytd-col">YTD</th>
+            <th>P01</th><th>P02</th><th>P03</th><th>P04</th><th>P05</th><th>P06</th>
+            <th>P07</th><th>P08</th><th>P09</th><th>P10</th><th>P11</th><th>P12</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative Financial, Customer, Internal Process and Learning &amp; Growth scorecard, per industry and business unit, in one screen.</div>
+</div>
+
+<script>
+const RAG = { green:'#2fe88a', amber:'#ffb648', red:'#ff5470', faint:'#56697a', mute:'#8499aa' };
+
+const INDUSTRIES = [
+  { id:'mining', tab:'Mining & Infrastructure', company:'Meridian Industrial Group', ticker:'JSE: MIG', sector:'Mining & Metals' },
+  { id:'manufacturing', tab:'Manufacturing & Industrial', company:'Atlas Precision Manufacturing', ticker:'JSE: APM', sector:'Manufacturing & Industrial' },
+  { id:'holding', tab:'Holding & Investment Groups', company:'Cornerstone Capital Holdings', ticker:'JSE: CCH', sector:'Diversified Holdings' },
+  { id:'pharma', tab:'Facilities, Pharma & Waste', company:'Vireo Pharma & Facilities Group', ticker:'JSE: VPF', sector:'Pharmaceuticals & Facilities' },
+  { id:'food', tab:'Food & Agriculture', company:'Harvestland Agri Group', ticker:'JSE: HAG', sector:'Food & Agriculture' },
+  { id:'wine', tab:'Wine & Fruit Production', company:'Cape Orchard Estates', ticker:'JSE: COE', sector:'Wine & Fruit Production' },
+  { id:'logistics', tab:'Logistics & Warehousing', company:'Transkaroo Logistics Group', ticker:'JSE: TLG', sector:'Logistics & Distribution' },
+  { id:'oilgas', tab:'Lubricants, Oil & Gas', company:'Karoo Energy & Lubricants', ticker:'JSE: KEL', sector:'Oil, Gas & Lubricants' },
+  { id:'tech', tab:'Science, IT & Telecoms', company:'Nexora Technology Group', ticker:'JSE: NXT', sector:'Science, IT & Telecoms' }
+];
+
+const DEPARTMENTS = [
+  { id:'group', label:'Group', mult:1.00 },
+  { id:'bu1', label:'Northern Region', mult:0.92 },
+  { id:'bu2', label:'Coastal Region', mult:1.08 },
+  { id:'bu3', label:'Central Region', mult:0.85 }
+];
+
+const PERSPECTIVES = [
+  { id:'financial', name:'Financial Perspective', kpis:[
+    { name:'Generate Profit from Operations', metric:'Adjusted Profit/Loss before Tax (Rm)', unit:'Rm', red:-2, goal:6, reverse:false, owner:'CFO' },
+    { name:'Strong Management of Net Debt Ratio', metric:'Net Debt to EBITDA', unit:'x', red:3.0, goal:1.5, reverse:true, owner:'CFO' },
+    { name:'Grow Revenue', metric:'Total Revenue Growth', unit:'%', red:0, goal:8, reverse:false, owner:'CFO' },
+    { name:'Invest in ESG', metric:'Charitable Donations as % of Adjusted Profit', unit:'%', red:0.3, goal:1.0, reverse:false, owner:'Group Sustainability Head' }
+  ]},
+  { id:'customer', name:'Customer Perspective', kpis:[
+    { name:'World-Class Quality Standards', metric:'Engineering Breakdowns per Unit', unit:'', red:0.35, goal:0.15, reverse:true, owner:'COO' },
+    { name:'Deliver a Punctual Service', metric:'Total Punctuality', unit:'%', red:80, goal:95, reverse:false, owner:'Operations Manager' },
+    { name:'Grow Customer Base', metric:'Total Customers (000s)', unit:'k', red:100, goal:140, reverse:false, owner:'Commercial Manager' },
+    { name:'Improve Customer Satisfaction', metric:'Net Promoter Score', unit:'pts', red:20, goal:50, reverse:false, owner:'Customer Experience Lead' },
+    { name:'Reinforce Brand Image', metric:'CX Survey Score', unit:'%', red:65, goal:85, reverse:false, owner:'Marketing Manager' }
+  ]},
+  { id:'process', name:'Internal Perspective (Business Process)', kpis:[
+    { name:'Low Cost Engineering', metric:'Engineering Cost per Unit (Rk)', unit:'Rk', red:2.2, goal:1.5, reverse:true, owner:'Engineering Manager' },
+    { name:'Best in Class Scheduling', metric:'Paid Hours / Operating Hours', unit:'%', red:105, goal:100, reverse:true, owner:'Fleet Manager' },
+    { name:'Deliver a Reliable Network', metric:'Lost Miles', unit:'%', red:5, goal:1, reverse:true, owner:'Network Manager' },
+    { name:'Ensure Safe Operations', metric:'Safety Incidents', unit:'', red:12, goal:2, reverse:true, owner:'SHEQ Manager' }
+  ]},
+  { id:'learning', name:'Learning & Growth Perspective', kpis:[
+    { name:'Employee Engagement Score', metric:'Engagement Survey Score', unit:'%', red:55, goal:80, reverse:false, owner:'HR Manager' },
+    { name:'Training Hours per Employee', metric:'Average Training Hours', unit:'hrs', red:8, goal:24, reverse:false, owner:'L&D Manager' },
+    { name:'Leadership Bench Strength', metric:'Key Roles with a Named Successor', unit:'%', red:40, goal:75, reverse:false, owner:'HR Director' }
+  ]}
+];
+
+let state = { industry:0, dept:0, query:'', collapsed:new Set() };
+
+function seedFromStr(s){ let h=0; for (let i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))>>>0; return h||1; }
+function mulberry32(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function ragFor(v, def){
+  if (def.reverse) return v > def.red ? 'red' : v > def.goal ? 'amber' : 'green';
+  return v < def.red ? 'red' : v < def.goal ? 'amber' : 'green';
+}
+function fmtVal(v, unit){
+  if (unit==='%' || unit==='pts') return (Math.round(v*10)/10) + (unit==='pts'?'':'%');
+  if (unit==='x') return (Math.round(v*100)/100) + 'x';
+  if (unit==='Rm') return 'R' + (Math.round(v*10)/10) + 'm';
+  if (unit==='Rk') return 'R' + (Math.round(v*10)/10) + 'k';
+  if (unit==='k') return Math.round(v) + 'k';
+  if (unit==='hrs') return Math.round(v) + 'h';
+  return Math.round(v*10)/10;
+}
+
+function periodsFor(kpi, industryIdx, deptIdx){
+  const rnd = mulberry32(seedFromStr(kpi.name + industryIdx + '-' + deptIdx));
+  const mid = (kpi.red + kpi.goal) / 2;
+  const spread = Math.abs(kpi.goal - kpi.red) * 0.55;
+  const mult = DEPARTMENTS[deptIdx].mult;
+  let v = (mid + (rnd()-0.5)*spread) * (kpi.unit==='Rm' ? mult : (0.85 + mult*0.2));
+  const pts = [];
+  for (let i=0;i<12;i++){ v += (rnd()-0.5)*spread*0.5; pts.push(v); }
+  return pts;
+}
+
+function buildRows(){
+  let idx = 0;
+  let html = '';
+  PERSPECTIVES.forEach(persp=>{
+    const visibleKpis = persp.kpis.filter(k=>!state.query || k.name.toLowerCase().includes(state.query) || k.metric.toLowerCase().includes(state.query));
+    if (!visibleKpis.length) return;
+    const collapsedGroup = state.collapsed.has(persp.id);
+    html += `<tr class="perspective-row" data-persp="${persp.id}"><td colspan="14"><span class="chevron ${collapsedGroup?'collapsed':''}">&#9660;</span>${persp.name}</td></tr>`;
+    visibleKpis.forEach(kpi=>{
+      idx++;
+      const periods = periodsFor(kpi, state.industry, state.dept);
+      const ytd = periods.reduce((a,b)=>a+b,0)/periods.length;
+      const ytdRag = ragFor(ytd, kpi);
+      const rowId = persp.id + '-' + idx;
+      html += `<tr class="kpi-row ${collapsedGroup?'collapsed':''}" data-row="${rowId}" data-persp="${persp.id}">
+        <td><div class="kpi-name-cell"><span class="kpi-idx">${idx}</span><div class="kpi-meta"><div class="kname">${kpi.name}</div><div class="kmetric">${kpi.metric}</div></div><span class="status-dot" style="background:${RAG[ytdRag]}"></span></div></td>
+        <td class="ytd-col"><span class="rag-cell rag-${ytdRag}">${fmtVal(ytd, kpi.unit)}</span></td>
+        ${periods.map(p=>{ const r=ragFor(p,kpi); return `<td><span class="rag-cell rag-${r}">${fmtVal(p,kpi.unit)}</span></td>`; }).join('')}
+      </tr>
+      <tr class="detail-row hidden ${collapsedGroup?'collapsed':''}" data-detail="${rowId}">
+        <td colspan="14">
+          <div class="detail-grid">
+            <div class="detail-field"><div class="l">Owner</div><div class="v">${kpi.owner}</div></div>
+            <div class="detail-field"><div class="l">Red Threshold</div><div class="v">${fmtVal(kpi.red, kpi.unit)}</div></div>
+            <div class="detail-field"><div class="l">Goal</div><div class="v">${fmtVal(kpi.goal, kpi.unit)}</div></div>
+            <div class="detail-field"><div class="l">YTD Status</div><div class="v" style="color:${RAG[ytdRag]}">${ytdRag.toUpperCase()}</div></div>
+          </div>
+        </td>
+      </tr>`;
+    });
+  });
+  return html;
+}
+
+function render(){
+  const ind = INDUSTRIES[state.industry];
+  const dept = DEPARTMENTS[state.dept];
+  document.getElementById('ctx-company').textContent = `${ind.company} · ${ind.ticker}`;
+  document.querySelectorAll('.ind-tab').forEach(el=>el.classList.toggle('active', parseInt(el.dataset.i)===state.industry));
+  document.querySelectorAll('.dept-pill').forEach(el=>el.classList.toggle('active', parseInt(el.dataset.d)===state.dept));
+  document.getElementById('page-subtitle').textContent = `${ind.company} · ${dept.label} · ${ind.sector} · Financial, Customer, Internal Process and Learning & Growth`;
+
+  document.getElementById('table-body').innerHTML = buildRows();
+
+  document.querySelectorAll('.perspective-row').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const pid = el.dataset.persp;
+      if (state.collapsed.has(pid)) state.collapsed.delete(pid); else state.collapsed.add(pid);
+      render();
+    });
+  });
+  document.querySelectorAll('.kpi-row').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const detail = document.querySelector(`[data-detail="${el.dataset.row}"]`);
+      if (detail) detail.classList.toggle('hidden');
+    });
+  });
+}
+
+const tabsEl = document.getElementById('industry-tabs');
+tabsEl.innerHTML = INDUSTRIES.map((ind,i)=>`<button class="ind-tab" data-i="${i}">${ind.tab}</button>`).join('');
+tabsEl.addEventListener('click', e=>{
+  const btn = e.target.closest('.ind-tab'); if (!btn) return;
+  state.industry = parseInt(btn.dataset.i);
+  render();
+});
+
+const deptEl = document.getElementById('dept-pills');
+deptEl.innerHTML = DEPARTMENTS.map((d,i)=>`<button class="dept-pill" data-d="${i}">${d.label}</button>`).join('');
+deptEl.addEventListener('click', e=>{
+  const btn = e.target.closest('.dept-pill'); if (!btn) return;
+  state.dept = parseInt(btn.dataset.d);
+  render();
+});
+
+document.getElementById('kpi-search').addEventListener('input', e=>{
+  state.query = e.target.value.trim().toLowerCase();
+  render();
+});
+
+render();
+</script>
+
+</body>
+</html>

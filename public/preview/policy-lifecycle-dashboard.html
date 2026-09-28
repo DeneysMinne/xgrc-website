@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>XGRC® Policy Lifecycle Health</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="dash-shell.css?v=7">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="banner">DEMONSTRATION DASHBOARD &mdash; all figures, owners and exceptions on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <img src="/assets/logos/brand/xgrc-icon-white.png" alt="" aria-hidden="true" class="brand-icon">
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">Policy Lifecycle Health</div>
+        <div class="crumb"><a href="dashboards.html">&larr; Dashboard Gallery</a></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <div class="sync-line"><span class="sync-dot"></span><span id="sync-label">synced just now</span></div>
+      <button class="btn" id="btn-export">Export board pack</button>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search KPIs, pillars, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>Policies by lifecycle stage</h3>
+        <div class="health-badge"><div class="health-ring" id="health-ring"><span id="health-pct">&ndash;</span></div><span class="health-label">estate health</span></div>
+      </div>
+      <div class="hint" style="margin:-6px 0 10px;">Click overdue review, waiver or pending-approval to filter the list below</div>
+      <div id="chart-signature"></div>
+      <div id="cell-detail" class="cell-detail"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card compact"><h3 style="text-align:left;margin-bottom:12px;">Audit readiness</h3><div id="chart-secondary"></div></div>
+      <div class="card compact"><h3 style="text-align:left;">At a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section" id="extra-section"></div>
+
+  <div id="module-sections"></div>
+</main>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of policy authoring, review currency, acknowledgement, waivers and version control.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {"pdfTitle":"XGRC · Policy Lifecycle Health","pdfFilename":"XGRC-Policy-Lifecycle-Board-Pack-Demo.pdf","today":"2026-09-21T09:00:00","driftIds":[18,5],"systems":[{"name":"Authoring & Approval","color":"#30e2f4"},{"name":"Review Currency","color":"#16d9a8"},{"name":"Acknowledgement & Training","color":"#7e9eff"},{"name":"Exceptions & Waivers","color":"#b98bff"},{"name":"Retirement & Version Control","color":"#d9b54a"}],"execStats":[{"label":"Active policies","value":212,"tone":"cyan","sub":"across 9 policy domains"},{"label":"Acknowledgement completion","value":93,"suffix":"%","sub":"of in-scope employees"},{"label":"KPIs tracked","value":18,"sub":"across 5 pillars"}],"kpis":[{"id":1,"name":"Policies Pending Approval","system":"Authoring & Approval","module":"Authoring & Approval","desc":"Count of policies currently in the approval workflow.","calc":"Count of Policy records with status = Pending Approval.","valueLabel":"5","target":"Monitor","rag":"green","delta":"-2","tone":"good","owner":"Compliance Manager","cadence":"Weekly","frameworks":[]},{"id":2,"name":"Average Approval Cycle Time","system":"Authoring & Approval","module":"Authoring & Approval","desc":"Average time from policy submission to final approval.","calc":"Sum of (approval date − submission date) ÷ count of policies approved.","valueLabel":"9.2d","target":"≤ 10d","rag":"green","delta":"-1.1d","tone":"good","owner":"Compliance Manager","cadence":"Monthly","frameworks":[]},{"id":3,"name":"Policies Missing Owner","system":"Authoring & Approval","module":"Authoring & Approval","desc":"Count of active policies with no accountable owner assigned.","calc":"Count of active Policy records where the Owner field is blank.","valueLabel":"4","target":"0","rag":"amber","delta":"+1","tone":"bad","owner":"Compliance Manager","cadence":"Monthly","frameworks":[]},{"id":4,"name":"Policies Reviewed by Legal Before Publish","system":"Authoring & Approval","module":"Authoring & Approval","desc":"% of new or amended policies that received legal sign-off before publication.","calc":"Policies with a recorded legal sign-off ÷ total policies published in the period.","valueLabel":"100%","target":"100%","rag":"green","delta":"flat","tone":"good","owner":"Legal","cadence":"Monthly","frameworks":[]},{"id":5,"name":"New Policies Published (Qtr)","system":"Authoring & Approval","module":"Authoring & Approval","desc":"Count of new policies formally published this quarter.","calc":"Count of Policy records with status = Published, created in the current quarter.","valueLabel":"6","target":"Monitor","rag":"green","delta":"+1","tone":"neutral","owner":"Policy Owner","cadence":"Quarterly","frameworks":[]},{"id":6,"name":"Policies Overdue Review","system":"Review Currency","module":"Review Currency","desc":"Count of policies past their scheduled review date.","calc":"Count of Policy records where review date < today and no new version published.","valueLabel":"11","target":"0","rag":"red","delta":"+3","tone":"bad","owner":"Policy Owner","cadence":"Weekly","frameworks":[]},{"id":7,"name":"Policies Reviewed Within Cycle","system":"Review Currency","module":"Review Currency","desc":"% of policies reviewed within their defined review cycle.","calc":"Policies reviewed on or before their scheduled date ÷ total policies due for review.","valueLabel":"86%","target":"100%","rag":"amber","delta":"-4 pts","tone":"bad","owner":"Compliance Manager","cadence":"Monthly","frameworks":[]},{"id":8,"name":"Average Days Overdue (Overdue Policies)","system":"Review Currency","module":"Review Currency","desc":"Average number of days overdue among policies past their review date.","calc":"Sum of (today − review due date) across overdue policies ÷ count of overdue policies.","valueLabel":"34d","target":"≤ 14d","rag":"red","delta":"+8d","tone":"bad","owner":"Policy Owner","cadence":"Monthly","frameworks":[]},{"id":9,"name":"Acknowledgement Completion Rate","system":"Acknowledgement & Training","module":"Acknowledgement & Training","desc":"% of in-scope employees who have acknowledged the current policy version.","calc":"Employees with a current acknowledgement ÷ total employees in scope.","valueLabel":"93%","target":"100%","rag":"green","delta":"+2 pts","tone":"good","owner":"HR Director","cadence":"Weekly","frameworks":[]},{"id":10,"name":"Employees Without Current Acknowledgement","system":"Acknowledgement & Training","module":"Acknowledgement & Training","desc":"Count of in-scope employees who have not acknowledged the current policy version.","calc":"Count of employees in scope where the acknowledgement date predates the current policy version.","valueLabel":"62","target":"0","rag":"amber","delta":"-9","tone":"good","owner":"HR Director","cadence":"Weekly","frameworks":[]},{"id":11,"name":"Policy Training Completion","system":"Acknowledgement & Training","module":"Acknowledgement & Training","desc":"% of employees who completed mandatory policy-linked training.","calc":"Employees who completed required training ÷ total employees required to.","valueLabel":"89%","target":"100%","rag":"amber","delta":"+3 pts","tone":"good","owner":"HR Director","cadence":"Monthly","frameworks":[]},{"id":12,"name":"Policy Portal Search Success Rate","system":"Acknowledgement & Training","module":"Acknowledgement & Training","desc":"% of policy portal searches that resulted in the employee opening a result.","calc":"Searches followed by a document open ÷ total portal searches, period to date.","valueLabel":"88%","target":"≥ 90%","rag":"amber","delta":"+5 pts","tone":"good","owner":"COO","cadence":"Monthly","frameworks":[]},{"id":13,"name":"Active Policy Exceptions/Waivers","system":"Exceptions & Waivers","module":"Exceptions & Waivers","desc":"Count of currently active exceptions or waivers against policy.","calc":"Count of Waiver records with status = Active.","valueLabel":"17","target":"Monitor","rag":"amber","delta":"+2","tone":"bad","owner":"Legal","cadence":"Monthly","frameworks":[]},{"id":14,"name":"Waivers Overdue Re-Approval","system":"Exceptions & Waivers","module":"Exceptions & Waivers","desc":"Count of active waivers past their scheduled re-approval date.","calc":"Count of active Waiver records where re-approval due date < today.","valueLabel":"5","target":"0","rag":"red","delta":"+2","tone":"bad","owner":"Legal","cadence":"Monthly","frameworks":[]},{"id":15,"name":"Waivers Without Compensating Control","system":"Exceptions & Waivers","module":"Exceptions & Waivers","desc":"Count of active waivers with no documented compensating control.","calc":"Count of active Waiver records where the compensating control field is blank.","valueLabel":"2","target":"0","rag":"red","delta":"flat","tone":"bad","owner":"Legal","cadence":"Monthly","frameworks":[]},{"id":16,"name":"Superseded Policies Still Referenced Externally","system":"Retirement & Version Control","module":"Retirement & Version Control","desc":"Count of retired policies still linked from external-facing documentation.","calc":"Count of superseded Policy records with an active inbound reference from a public document.","valueLabel":"3","target":"0","rag":"amber","delta":"+1","tone":"bad","owner":"Compliance Manager","cadence":"Quarterly","frameworks":[]},{"id":17,"name":"Version Control Integrity","system":"Retirement & Version Control","module":"Retirement & Version Control","desc":"% of published policies with a complete, unbroken version history.","calc":"Policies with an intact version chain ÷ total published policies.","valueLabel":"97%","target":"100%","rag":"green","delta":"+1 pt","tone":"good","owner":"Compliance Manager","cadence":"Monthly","frameworks":[]},{"id":18,"name":"Duplicate/Conflicting Policies Identified","system":"Retirement & Version Control","module":"Retirement & Version Control","desc":"Count of policy pairs identified as duplicating or contradicting each other.","calc":"Count of policy pairs flagged by the conflict-detection review.","valueLabel":"2","target":"0","rag":"amber","delta":"flat","tone":"neutral","owner":"Compliance Manager","cadence":"Quarterly","frameworks":[]}],"exceptions":[{"kpiId":6,"ageDays":21,"status":"Open"},{"kpiId":8,"ageDays":21,"status":"Open"},{"kpiId":14,"ageDays":8,"status":"Open"},{"kpiId":15,"ageDays":30,"status":"Acknowledged"},{"kpiId":7,"ageDays":10,"status":"Open"},{"kpiId":13,"ageDays":6,"status":"Open"}]};
+CONFIG.afterInit = function(ctx){
+  var KPIS = ctx.KPIS, EXC = ctx.EXC, ragHex = ctx.ragHex, computeAgg = ctx.computeAgg, applyFilter = ctx.applyFilter;
+  
+      var stageFilter = { 'Overdue review':'overdue', 'Active waiver':'waiver', 'Pending approval':'approval' };
+      new ApexCharts(document.getElementById('chart-signature'), {
+        chart:{ type:'treemap', height:290, background:'transparent', toolbar:{show:false},
+          events:{ dataPointSelection: function(e, chartCtx, config){
+            var x = config.w.config.series[0].data[config.dataPointIndex].x;
+            if (stageFilter[x]) applyFilter({ query: stageFilter[x] });
+          }}
+        },
+        series:[{ data:[
+          { x:'Published & current', y:168 },
+          { x:'Overdue review', y:11 },
+          { x:'Active waiver', y:17 },
+          { x:'Pending approval', y:5 },
+          { x:'Draft', y:8 },
+          { x:'Retired, still referenced', y:3 },
+        ]}],
+        legend:{ show:false },
+        dataLabels:{ enabled:true, style:{fontSize:'10.5px', fontFamily:'Inter', colors:['#0a1729']}, formatter:function(text, op){ return [text, op.value].join(': '); } },
+        plotOptions:{ treemap:{ distributed:true, enableShades:false } },
+        colors:['#2fe88a','#ff5470','#ffb648','#ffb648','#7e9eff','#ff5470'],
+        tooltip:{ theme:'dark' },
+      }).render();
+    
+  
+      new ApexCharts(document.getElementById('chart-secondary'), {
+        chart:{ type:'radialBar', height:230, background:'transparent', toolbar:{show:false} },
+        series:[86,93,88],
+        labels:['Review currency','Acknowledgement','Waiver control'],
+        colors:['#30e2f4','#2fe88a','#b98bff'],
+        plotOptions:{ radialBar:{ hollow:{size:'32%'}, track:{background:'rgba(255,255,255,0.06)'},
+          dataLabels:{ name:{fontSize:'10px', fontFamily:'JetBrains Mono'}, value:{fontSize:'13px', fontFamily:'Outfit', fontWeight:700, formatter:function(v){return v+'%';}}, total:{ show:true, label:'Audit-ready', color:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px', formatter:function(){return '89%';} } } } },
+        legend:{ show:true, position:'bottom', fontFamily:'JetBrains Mono', fontSize:'9.5px', labels:{colors:'#8499aa'}, markers:{radius:3} },
+        stroke:{ lineCap:'round' },
+        tooltip:{ theme:'dark' },
+      }).render();
+    
+  
+      document.getElementById('extra-section').innerHTML = '<div class="extra-grid">'
+        + '<div class="card"><h3 style="text-align:left;margin-bottom:12px;">Acknowledgement by department</h3><div id="chart-dept"></div></div>'
+        + '<div class="card"><h3 style="text-align:left;margin-bottom:12px;">Policy reviews due — next 90 days</h3><div class="due-list" id="review-due-list"></div></div>'
+        + '</div>';
+      var depts = [
+        {name:'Legal', pct:76}, {name:'HR', pct:82}, {name:'IT', pct:88},
+        {name:'Sales', pct:91}, {name:'Finance', pct:95}, {name:'Operations', pct:98},
+      ];
+      new ApexCharts(document.getElementById('chart-dept'), {
+        chart:{ type:'bar', height:260, background:'transparent', toolbar:{show:false} },
+        series:[{ name:'Acknowledgement', data:depts.map(function(d){return d.pct;}) }],
+        xaxis:{ categories:depts.map(function(d){return d.name;}), max:100, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}, formatter:function(v){return v+'%';}}, axisBorder:{show:false}, axisTicks:{show:false} },
+        yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px', fontWeight:600}} },
+        plotOptions:{ bar:{ horizontal:true, barHeight:'55%', borderRadius:4, distributed:true } },
+        legend:{ show:false },
+        grid:{ borderColor:'rgba(120,170,200,0.14)' },
+        dataLabels:{ enabled:true, formatter:function(v){return v+'%';}, style:{fontSize:'10px', colors:['#eaf3f7']} },
+        colors: depts.map(function(d){ return d.pct<80?'#ff5470':d.pct<90?'#ffb648':'#2fe88a'; }),
+        tooltip:{ theme:'dark' },
+      }).render();
+      var reviews = [
+        {name:'Data Retention Policy', dept:'IT', days:6},
+        {name:'Anti-Bribery & Corruption Policy', dept:'Legal', days:14},
+        {name:'Remote Work Policy', dept:'HR', days:21},
+        {name:'Expense & Procurement Policy', dept:'Finance', days:35},
+        {name:'Information Security Policy', dept:'IT', days:48},
+        {name:'Code of Conduct', dept:'HR', days:55},
+        {name:'Sales Commission Policy', dept:'Sales', days:72},
+        {name:'Business Continuity Policy', dept:'Operations', days:88},
+      ];
+      var TODAY_STR = '2026-09-21T09:00:00';
+      document.getElementById('review-due-list').innerHTML = reviews.map(function(r){
+        var cls = r.days<=21?'soon':r.days<=60?'mid':'far';
+        var d = new Date(TODAY_STR); d.setDate(d.getDate()+r.days);
+        var dstr = d.toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
+        return '<div class="due-item"><div class="dname">'+r.name+'<div class="dmeta">'+r.dept+'</div></div><span class="ddays '+cls+'">'+dstr+' · '+r.days+'d</span></div>';
+      }).join('');
+    
+};
+</script>
+<script src="dash-shell.js?v=7"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>

@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>XGRC&reg; Enterprise Risk Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="dash-shell.css?v=8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<style>
+  body { overflow-x:hidden; }
+  .ermnav { position:sticky; top:0; z-index:20; background:rgba(6,15,28,0.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .ermnav-top { max-width:1400px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .ermnav-brand { display:flex; align-items:center; gap:12px; }
+  .erm-crumb { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--faint); text-decoration:none; white-space:nowrap; }
+  .erm-crumb:hover { color:var(--cyan-hi); }
+  .brand-icon { width:24px; height:24px; }
+  .erm-badge { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.8px; text-transform:uppercase; color:var(--cyan-hi); border:1px solid rgba(48,226,244,0.4); background:rgba(48,226,244,0.08); padding:5px 11px; border-radius:20px; white-space:nowrap; }
+  .ermnav-persona { display:flex; gap:6px; background:rgba(255,255,255,0.02); border:1px solid var(--line); border-radius:20px; padding:3px; }
+  .persona-btn { font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.3px; padding:7px 14px; border-radius:16px; border:none; background:transparent; color:var(--mute); white-space:nowrap; }
+  .persona-btn.active { background:rgba(47,232,138,0.16); color:var(--green-hi); box-shadow:inset 0 0 0 1px rgba(47,232,138,0.4); }
+  .ermnav-context { margin-left:auto; display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--mute); white-space:nowrap; }
+  .live-dot { width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 8px var(--green); animation:pulse 2.2s ease-in-out infinite; flex-shrink:0; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  .ermnav-tabs { max-width:1400px; margin:0 auto; padding:0 28px 12px; display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; }
+  .ermnav-tabs::-webkit-scrollbar { display:none; }
+  .ind-tab { font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.2px; padding:8px 14px; border-radius:9px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); white-space:nowrap; flex-shrink:0; }
+  .ind-tab.active { background:rgba(255,182,72,0.14); border-color:var(--amber); color:var(--amber-hi); }
+  .ermnav-controls { max-width:1400px; margin:0 auto; padding:12px 28px; display:flex; align-items:center; gap:32px; flex-wrap:wrap; border-top:1px solid var(--line); }
+  .ctrl-group { display:flex; align-items:center; gap:12px; }
+  .ctrl-label { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.9px; text-transform:uppercase; color:var(--faint); white-space:nowrap; }
+  .ctrl-pills { display:flex; gap:6px; }
+  .ctrl-pill { font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:6px 12px; border-radius:8px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); }
+  .ctrl-pill.active { border-color:var(--blue-hi); color:var(--blue-hi); background:rgba(127,212,239,0.08); }
+  .consolidation-pill { font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:6px 13px; border-radius:20px; border:1px solid rgba(47,232,138,0.4); background:rgba(47,232,138,0.1); color:var(--green-hi); }
+
+  .erm-main { position:relative; z-index:2; max-width:1400px; margin:0 auto; padding:30px 28px 60px; }
+
+  .erm-title-row { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:26px; }
+  #page-title { font-size:26px; font-weight:800; }
+  .erm-subtitle { font-size:12.5px; color:var(--mute); margin-top:5px; }
+  .board-decision { max-width:360px; flex-shrink:0; border:1px solid rgba(255,182,72,0.35); background:rgba(255,182,72,0.06); border-radius:12px; padding:12px 15px; font-size:11.5px; line-height:1.6; color:var(--amber-hi); }
+  .board-decision b { color:var(--ink); }
+
+  .kpi-band { display:grid; grid-template-columns:repeat(6, 1fr); gap:12px; margin-bottom:24px; }
+  @media (max-width:1180px) { .kpi-band { grid-template-columns:repeat(3, 1fr); } }
+  @media (max-width:560px) { .kpi-band { grid-template-columns:repeat(2, 1fr); } }
+  .kpi-tile { border-radius:14px; border:1px solid var(--line-strong); background:linear-gradient(160deg, var(--panel), rgba(255,255,255,0.01)); padding:15px 16px; }
+  .kpi-tile .lbl { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.5px; text-transform:uppercase; color:var(--faint); margin-bottom:9px; }
+  .kpi-tile .val { font-family:'Outfit'; font-size:23px; font-weight:800; color:var(--ink); line-height:1; }
+  .kpi-tile .sub { font-size:10.5px; color:var(--mute); margin-top:6px; }
+  .kpi-chip { display:inline-flex; align-items:center; gap:4px; margin-top:10px; font-family:'JetBrains Mono',monospace; font-size:10px; padding:2px 8px; border-radius:20px; }
+  .kpi-chip.green { background:rgba(47,232,138,0.14); color:var(--green-hi); }
+  .kpi-chip.red { background:rgba(255,84,112,0.14); color:var(--red-hi); }
+  .kpi-chip.amber { background:rgba(255,182,72,0.14); color:var(--amber-hi); }
+  .kpi-chip.neutral { background:rgba(120,170,200,0.12); color:var(--mute); }
+
+  .board-grid { display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:16px; }
+  @media (max-width:1180px) { .board-grid { grid-template-columns:1fr 1fr; } }
+  @media (max-width:760px) { .board-grid { grid-template-columns:1fr; } }
+  .erm-card { border-radius:var(--radius-lg); border:1px solid var(--line-strong); background:linear-gradient(160deg, var(--panel), rgba(255,255,255,0.01)); padding:20px; margin-bottom:16px; }
+  .erm-stack { display:flex; flex-direction:column; }
+  .erm-stack .erm-card:last-child { margin-bottom:0; }
+  .erm-card-head { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:4px; }
+  .erm-card-head h3 { font-size:13.5px; font-weight:600; }
+  .erm-card-head .cs { font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--faint); margin-top:3px; }
+  .erm-pill { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.3px; padding:4px 9px; border-radius:20px; border:1px solid var(--line-strong); color:var(--mute); white-space:nowrap; flex-shrink:0; }
+
+  .surface-wrap { margin-top:12px; }
+  .surface-wrap canvas { width:100%; height:auto; display:block; }
+  .surface-legend { display:flex; align-items:center; gap:10px; margin-top:8px; }
+  .surface-legend .bar { flex:1; height:6px; border-radius:4px; background:linear-gradient(90deg,#12335c,#1f9bd6,#2fe88a,#ffb648,#ff5470); }
+  .surface-legend .lo, .surface-legend .hi { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--faint); letter-spacing:0.5px; }
+  .surface-caption { font-size:10.5px; color:var(--mute); margin-top:10px; line-height:1.7; }
+  .surface-caption .dotc { display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--red); margin-right:6px; }
+
+  .gauge-wrap { display:flex; justify-content:center; margin-top:6px; }
+  .gauge-wrap svg { width:100%; max-width:250px; height:auto; }
+  .appetite-stats { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
+  .stat-row { display:flex; align-items:center; gap:10px; }
+  .stat-row .sq { width:11px; height:11px; border-radius:3px; flex-shrink:0; }
+  .stat-row .txt .v { font-family:'Outfit'; font-size:17px; font-weight:800; }
+  .stat-row .txt .l { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--faint); letter-spacing:0.4px; text-transform:uppercase; }
+  .trend-wrap { margin-top:14px; padding-top:14px; border-top:1px solid var(--line); }
+  .trend-title { font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--faint); letter-spacing:0.4px; text-transform:uppercase; margin-bottom:4px; }
+
+  .profile-tiles { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
+  .profile-tile { border-radius:10px; border:1px solid var(--line); background:rgba(255,255,255,0.02); padding:12px 13px; }
+  .profile-tile .v { font-family:'Outfit'; font-size:22px; font-weight:800; }
+  .profile-tile .v.orange { color:var(--amber-hi); }
+  .profile-tile .v.green { color:var(--green-hi); }
+  .profile-tile .l { font-family:'JetBrains Mono',monospace; font-size:8.5px; letter-spacing:0.4px; text-transform:uppercase; color:var(--faint); margin-top:5px; }
+
+  .assurance-map-wrap svg { width:100%; height:auto; display:block; margin-top:8px; }
+  .assurance-legend { display:flex; gap:14px; margin-top:8px; flex-wrap:wrap; }
+  .assurance-legend .li { display:flex; align-items:center; gap:6px; font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--mute); }
+  .assurance-legend .sq { width:9px; height:9px; border-radius:2px; }
+
+  .donut-row { display:flex; align-items:center; gap:16px; margin-top:8px; }
+  .donut-row .dchart { width:110px; height:110px; flex-shrink:0; }
+  .donut-legend { display:flex; flex-direction:column; gap:9px; flex:1; }
+  .donut-legend .dl-row { display:flex; align-items:center; gap:8px; font-size:11.5px; color:var(--mute); }
+  .donut-legend .dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+  .donut-legend b { color:var(--ink); font-family:'JetBrains Mono',monospace; }
+  .pill-row { display:flex; gap:7px; margin-top:14px; flex-wrap:wrap; }
+  .pill-row .p { font-family:'JetBrains Mono',monospace; font-size:9.5px; padding:4px 10px; border-radius:20px; border:1px solid var(--line-strong); color:var(--mute); }
+  .pill-row .p.eff { border-color:rgba(47,232,138,0.4); color:var(--green-hi); background:rgba(47,232,138,0.1); }
+  .pill-row .p.iss { border-color:rgba(255,182,72,0.4); color:var(--amber-hi); }
+  .pill-row .p.def { border-color:rgba(255,84,112,0.4); color:var(--red-hi); }
+
+  .risk-rank-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
+  @media (max-width:480px) { .risk-rank-grid { grid-template-columns:1fr; } }
+  .risk-rank-card { border-radius:10px; border:1px solid var(--line); background:rgba(255,255,255,0.02); padding:12px 13px; position:relative; }
+  .risk-rank-card .rank-num { font-family:'Outfit'; font-size:22px; font-weight:800; }
+  .risk-rank-card .rank-num.c1 { color:var(--red-hi); }
+  .risk-rank-card .rank-num.c2 { color:var(--red-hi); }
+  .risk-rank-card .rank-num.c3 { color:var(--amber-hi); }
+  .risk-rank-card .rank-num.c4 { color:var(--amber-hi); }
+  .risk-rank-card .rname { font-size:12px; font-weight:600; margin-top:6px; line-height:1.35; min-height:32px; }
+  .risk-tags { display:flex; gap:5px; margin-top:8px; flex-wrap:wrap; }
+  .rtag { font-family:'JetBrains Mono',monospace; font-size:8.5px; padding:2px 7px; border-radius:20px; background:rgba(120,170,200,0.14); color:var(--mute); }
+  .rtag.sev-critical { background:rgba(255,84,112,0.16); color:var(--red-hi); }
+  .rtag.sev-high { background:rgba(255,182,72,0.16); color:var(--amber-hi); }
+  .rank-trend { position:absolute; top:12px; right:13px; font-size:12px; color:var(--faint); }
+  .rank-owner { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--faint); margin-top:7px; }
+
+  .activity-list { display:flex; flex-direction:column; gap:11px; margin-top:10px; }
+  .activity-item { display:flex; gap:10px; align-items:flex-start; }
+  .activity-dot { width:7px; height:7px; border-radius:50%; background:var(--cyan); margin-top:5px; flex-shrink:0; box-shadow:0 0 6px var(--cyan); }
+  .activity-text { font-size:11.5px; color:var(--mute); line-height:1.5; }
+  .activity-time { font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--faint); margin-top:2px; }
+</style>
+</head>
+<body>
+
+<div id="banner">DEMONSTRATION DASHBOARD: all companies, figures and risk register entries on this page are fictitious and illustrative only</div>
+
+<header class="ermnav">
+  <div class="ermnav-top">
+    <div class="ermnav-brand">
+      <img src="/assets/logos/brand/xgrc-icon-white.png" alt="" aria-hidden="true" class="brand-icon">
+      <span class="erm-badge">ERM &middot; Enterprise Risk Intelligence</span>
+      <a href="dashboards.html" class="erm-crumb">&larr; Dashboard Gallery</a>
+    </div>
+    <div class="ermnav-persona" id="persona-toggle">
+      <button class="persona-btn active" data-persona="0">Executive &middot; C-Suite</button>
+      <button class="persona-btn" data-persona="1">Operations &middot; Management</button>
+    </div>
+    <div class="ermnav-context"><span class="live-dot"></span><span id="ctx-company"></span></div>
+  </div>
+  <div class="ermnav-tabs" id="industry-tabs"></div>
+  <div class="ermnav-controls">
+    <div class="ctrl-group">
+      <span class="ctrl-label">Reporting year</span>
+      <div class="ctrl-pills" id="year-pills"></div>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Consolidation</span>
+      <button class="consolidation-pill" id="bu-pill"></button>
+    </div>
+  </div>
+</header>
+
+<main class="erm-main">
+
+  <div class="erm-title-row">
+    <div>
+      <h1 id="page-title">Enterprise Risk Overview</h1>
+      <div class="erm-subtitle" id="page-subtitle"></div>
+    </div>
+    <div class="board-decision" id="board-decision"></div>
+  </div>
+
+  <div class="kpi-band" id="kpi-band"></div>
+
+  <div class="board-grid">
+    <div class="erm-card" id="card-surface">
+      <div class="erm-card-head">
+        <div><h3>Risk Landscape</h3><div class="cs">Dynamic 3D risk-density surface</div></div>
+        <span class="erm-pill">Critical Risks &#9662;</span>
+      </div>
+      <div class="surface-wrap"><canvas id="surface-canvas" width="560" height="220"></canvas></div>
+      <div class="surface-legend"><span class="lo">LOW</span><div class="bar"></div><span class="hi">CRITICAL</span></div>
+      <div class="surface-caption" id="surface-caption"></div>
+    </div>
+
+    <div class="erm-card" id="card-appetite">
+      <div class="erm-card-head">
+        <div><h3>Risk Appetite Overview</h3></div>
+        <span class="erm-pill">Exposure vs Appetite</span>
+      </div>
+      <div class="gauge-wrap" id="gauge-wrap"></div>
+      <div class="appetite-stats" id="appetite-stats"></div>
+      <div class="trend-wrap">
+        <div class="trend-title">Residual Exposure Trend &middot; 3-Year</div>
+        <div id="trend-chart"></div>
+      </div>
+    </div>
+
+    <div class="erm-stack">
+      <div class="erm-card" id="card-profile">
+        <div class="erm-card-head"><h3>Enterprise Risk Profile</h3><span class="erm-pill" id="profile-pill">Summary</span></div>
+        <div class="profile-tiles" id="profile-tiles"></div>
+      </div>
+      <div class="erm-card" id="card-assurance-map">
+        <div class="erm-card-head">
+          <div><h3>Combined Assurance Map</h3></div>
+          <span class="erm-pill">Risk &rarr; Lines of Defence</span>
+        </div>
+        <div class="assurance-map-wrap"><svg id="assurance-svg" viewBox="0 0 380 210"></svg></div>
+        <div class="assurance-legend" id="assurance-legend"></div>
+      </div>
+    </div>
+
+    <div class="erm-card" id="card-controls">
+      <div class="erm-card-head"><h3>Control &amp; Assurance Performance</h3><span class="erm-pill">Operational Resilience</span></div>
+      <div class="donut-row">
+        <div class="dchart" id="donut-chart"></div>
+        <div class="donut-legend" id="donut-legend"></div>
+      </div>
+      <div class="pill-row">
+        <span class="p eff">Eff</span><span class="p iss">Iss</span><span class="p">Rem</span><span class="p def">Def</span>
+      </div>
+    </div>
+
+    <div class="erm-card" id="card-top-risks">
+      <div class="erm-card-head"><h3 id="top-risks-title">Top Enterprise Risks</h3><span class="erm-pill" id="top-risks-pill">By Score &amp; Exposure</span></div>
+      <div class="risk-rank-grid" id="risk-rank-grid"></div>
+    </div>
+
+    <div class="erm-card" id="card-activities">
+      <div class="erm-card-head"><h3>Recent Activities &amp; Alerts</h3><span class="erm-pill">Latest</span></div>
+      <div class="activity-list" id="activity-list"></div>
+    </div>
+  </div>
+
+</main>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of enterprise risk appetite, treatment velocity, assurance coverage and board-level escalation, per industry, in one screen.</div>
+</div>
+
+<script>
+const RAG = { green:'#2fe88a', greenHi:'#5cffa8', amber:'#ffb648', amberHi:'#ffd18a', red:'#ff5470', redHi:'#ff8fa3', cyan:'#30e2f4', cyanHi:'#7af3ff', blueHi:'#7fd4ef', faint:'#56697a', mute:'#8499aa' };
+
+const INDUSTRIES = [
+  { id:'mining', tab:'Mining & Infrastructure', company:'Meridian Industrial Group', ticker:'JSE: MIG', sector:'Mining & Metals', framework:'ISO 31000 / COSO ERM',
+    appetite:13.00, residualTrend:[14.18,12.90,11.93],
+    risksOnRegister:10, aboveAppetite:8, kriBreach:{n:4,of:8}, criticalEmerging:{critical:4,emerging:7}, assurance:82, assuranceDelta:9.3,
+    controls:{eff:74,iss:16,def:10},
+    topRisks:[
+      {name:'Commodity Price Volatility',cat:'Financial',sev:'CRITICAL'},
+      {name:'Energy Security & Loadshedding',cat:'Operational',sev:'CRITICAL'},
+      {name:'Capital Project Cost Overrun',cat:'Strategic',sev:''},
+      {name:'Community Unrest & Social Licence',cat:'ESG & Climate',sev:'HIGH'}
+    ],
+    peakRisks:['Tailings Storage Catastrophic Failure','Community Unrest Escalation'],
+    sourceFlows:{Strategic:25,Operational:45,Compliance:24,'Cyber & ESG':20},
+    businessUnits:['Northern Cape Operations','Bushveld Complex'],
+    ops:{overdueReviews:6,openActions:14,controlCoverage:88,incidentsQtr:5,escalations:4,avgTreatDays:9.4}
+  },
+  { id:'manufacturing', tab:'Manufacturing & Industrial', company:'Atlas Precision Manufacturing', ticker:'JSE: APM', sector:'Manufacturing & Industrial', framework:'ISO 31000 / COSO ERM',
+    appetite:8.50, residualTrend:[9.80,8.02,7.42],
+    risksOnRegister:9, aboveAppetite:5, kriBreach:{n:3,of:9}, criticalEmerging:{critical:3,emerging:6}, assurance:78, assuranceDelta:6.1,
+    controls:{eff:71,iss:19,def:10},
+    topRisks:[
+      {name:'Supply Chain Disruption',cat:'Operational',sev:'CRITICAL'},
+      {name:'Equipment Obsolescence & Downtime',cat:'Operational',sev:'HIGH'},
+      {name:'Product Liability Claims',cat:'Legal',sev:'HIGH'},
+      {name:'Skills Shortage in Artisan Trades',cat:'Strategic',sev:''}
+    ],
+    peakRisks:['Single-Source Component Failure','Industrial Action Escalation'],
+    sourceFlows:{Strategic:18,Operational:38,Compliance:20,'Cyber & ESG':16},
+    businessUnits:['Gauteng Fabrication Plant','Coastal Assembly Division'],
+    ops:{overdueReviews:4,openActions:11,controlCoverage:84,incidentsQtr:3,escalations:2,avgTreatDays:7.1}
+  },
+  { id:'holding', tab:'Holding & Investment Groups', company:'Cornerstone Capital Holdings', ticker:'JSE: CCH', sector:'Diversified Holdings', framework:'ISO 31000 / King IV / COSO ERM',
+    appetite:22.00, residualTrend:[19.50,16.91,15.64],
+    risksOnRegister:14, aboveAppetite:6, kriBreach:{n:2,of:10}, criticalEmerging:{critical:3,emerging:9}, assurance:88, assuranceDelta:4.8,
+    controls:{eff:80,iss:13,def:7},
+    topRisks:[
+      {name:'Portfolio Company Concentration Risk',cat:'Financial',sev:'CRITICAL'},
+      {name:'Subsidiary Governance Failure',cat:'Governance',sev:'HIGH'},
+      {name:'Currency &amp; Interest Rate Exposure',cat:'Financial',sev:'HIGH'},
+      {name:'Reputational Contagion from Investee',cat:'Reputational',sev:''}
+    ],
+    peakRisks:['Investee Solvency Event','Cross-Holding Governance Breakdown'],
+    sourceFlows:{Strategic:30,Operational:22,Compliance:28,'Cyber & ESG':12},
+    businessUnits:['Financial Services Cluster','Industrial Holdings Cluster'],
+    ops:{overdueReviews:3,openActions:9,controlCoverage:91,incidentsQtr:1,escalations:2,avgTreatDays:6.0}
+  },
+  { id:'pharma', tab:'Facilities, Pharma & Waste', company:'Vireo Pharma & Facilities Group', ticker:'JSE: VPF', sector:'Pharmaceuticals & Facilities', framework:'ISO 31000 / ICH Q9 / COSO ERM',
+    appetite:6.20, residualTrend:[7.10,6.03,5.58],
+    risksOnRegister:11, aboveAppetite:7, kriBreach:{n:5,of:9}, criticalEmerging:{critical:5,emerging:6}, assurance:76, assuranceDelta:7.5,
+    controls:{eff:69,iss:20,def:11},
+    topRisks:[
+      {name:'GMP Compliance Breach',cat:'Regulatory',sev:'CRITICAL'},
+      {name:'Hazardous Waste Handling Incident',cat:'HSE',sev:'CRITICAL'},
+      {name:'Cold-Chain Integrity Failure',cat:'Operational',sev:'HIGH'},
+      {name:'Clinical Trial Data Integrity',cat:'Compliance',sev:''}
+    ],
+    peakRisks:['Sterile Manufacturing Contamination','Waste Permit Non-Renewal'],
+    sourceFlows:{Strategic:14,Operational:34,Compliance:32,'Cyber & ESG':14},
+    businessUnits:['Sterile Manufacturing Site','Waste Treatment Division'],
+    ops:{overdueReviews:7,openActions:16,controlCoverage:82,incidentsQtr:4,escalations:5,avgTreatDays:10.2}
+  },
+  { id:'food', tab:'Food & Agriculture', company:'Harvestland Agri Group', ticker:'JSE: HAG', sector:'Food & Agriculture', framework:'ISO 31000 / GFSI / COSO ERM',
+    appetite:5.40, residualTrend:[6.30,5.36,4.96],
+    risksOnRegister:10, aboveAppetite:6, kriBreach:{n:3,of:8}, criticalEmerging:{critical:3,emerging:8}, assurance:80, assuranceDelta:5.9,
+    controls:{eff:73,iss:17,def:10},
+    topRisks:[
+      {name:'Climate & Drought Exposure',cat:'ESG & Climate',sev:'CRITICAL'},
+      {name:'Food Safety Contamination Event',cat:'Regulatory',sev:'CRITICAL'},
+      {name:'Land Reform Policy Uncertainty',cat:'Strategic',sev:'HIGH'},
+      {name:'Export Market Access Disruption',cat:'Operational',sev:''}
+    ],
+    peakRisks:['Water Rights Curtailment','Livestock Disease Outbreak'],
+    sourceFlows:{Strategic:20,Operational:30,Compliance:22,'Cyber & ESG':10},
+    businessUnits:['Western Cape Crop Estates','Free State Livestock Division'],
+    ops:{overdueReviews:5,openActions:12,controlCoverage:86,incidentsQtr:3,escalations:3,avgTreatDays:8.0}
+  },
+  { id:'wine', tab:'Wine & Fruit Production', company:'Cape Orchard Estates', ticker:'JSE: COE', sector:'Wine & Fruit Production', framework:'ISO 31000 / GFSI / COSO ERM',
+    appetite:3.10, residualTrend:[3.60,3.07,2.84],
+    risksOnRegister:8, aboveAppetite:4, kriBreach:{n:2,of:7}, criticalEmerging:{critical:2,emerging:5}, assurance:84, assuranceDelta:3.7,
+    controls:{eff:77,iss:14,def:9},
+    topRisks:[
+      {name:'Frost & Extreme Weather Damage',cat:'ESG & Climate',sev:'CRITICAL'},
+      {name:'Export Logistics & Port Congestion',cat:'Operational',sev:'HIGH'},
+      {name:'Labour Availability During Harvest Season',cat:'Operational',sev:'HIGH'},
+      {name:'Phytosanitary Compliance Breach',cat:'Regulatory',sev:''}
+    ],
+    peakRisks:['Early Frost Crop Loss','Port Strike Export Delay'],
+    sourceFlows:{Strategic:12,Operational:26,Compliance:16,'Cyber & ESG':8},
+    businessUnits:['Stellenbosch Estate Cluster','Citrus Export Division'],
+    ops:{overdueReviews:2,openActions:7,controlCoverage:89,incidentsQtr:2,escalations:1,avgTreatDays:5.4}
+  },
+  { id:'logistics', tab:'Logistics & Warehousing', company:'Transkaroo Logistics Group', ticker:'JSE: TLG', sector:'Logistics & Distribution', framework:'ISO 31000 / COSO ERM',
+    appetite:4.80, residualTrend:[5.60,4.67,4.32],
+    risksOnRegister:9, aboveAppetite:5, kriBreach:{n:4,of:8}, criticalEmerging:{critical:3,emerging:6}, assurance:79, assuranceDelta:6.6,
+    controls:{eff:72,iss:18,def:10},
+    topRisks:[
+      {name:'Fleet & Route Security Incidents',cat:'Operational',sev:'CRITICAL'},
+      {name:'Fuel Price & FX Volatility',cat:'Financial',sev:'HIGH'},
+      {name:'Warehouse Fire & Business Interruption',cat:'Operational',sev:'HIGH'},
+      {name:'Cross-Border Customs Delay',cat:'Compliance',sev:''}
+    ],
+    peakRisks:['Cargo Hijacking Hotspot','Border Post Systems Outage'],
+    sourceFlows:{Strategic:10,Operational:32,Compliance:18,'Cyber & ESG':12},
+    businessUnits:['National Freight Corridor','Cross-Border Division'],
+    ops:{overdueReviews:4,openActions:13,controlCoverage:85,incidentsQtr:4,escalations:3,avgTreatDays:7.8}
+  },
+  { id:'oilgas', tab:'Lubricants, Oil & Gas', company:'Karoo Energy & Lubricants', ticker:'JSE: KEL', sector:'Oil, Gas & Lubricants', framework:'ISO 31000 / COSO ERM',
+    appetite:9.60, residualTrend:[10.80,9.55,8.83],
+    risksOnRegister:12, aboveAppetite:7, kriBreach:{n:5,of:10}, criticalEmerging:{critical:5,emerging:7}, assurance:81, assuranceDelta:8.2,
+    controls:{eff:75,iss:15,def:10},
+    topRisks:[
+      {name:'Process Safety & Major Incident Risk',cat:'HSE',sev:'CRITICAL'},
+      {name:'Refined Product Price Volatility',cat:'Financial',sev:'CRITICAL'},
+      {name:'Pipeline Integrity & Spill Risk',cat:'Operational',sev:'HIGH'},
+      {name:'Carbon Transition & Stranded Assets',cat:'ESG & Climate',sev:''}
+    ],
+    peakRisks:['Refinery Process Safety Event','Product Storage Tank Failure'],
+    sourceFlows:{Strategic:22,Operational:36,Compliance:26,'Cyber & ESG':14},
+    businessUnits:['Coastal Refining Complex','Inland Distribution Network'],
+    ops:{overdueReviews:6,openActions:15,controlCoverage:87,incidentsQtr:3,escalations:4,avgTreatDays:9.0}
+  },
+  { id:'tech', tab:'Science, IT & Telecoms', company:'Nexora Technology Group', ticker:'JSE: NXT', sector:'Science, IT & Telecoms', framework:'ISO 31000 / NIST CSF / COSO ERM',
+    appetite:4.20, residualTrend:[4.60,3.30,3.05],
+    risksOnRegister:9, aboveAppetite:3, kriBreach:{n:2,of:9}, criticalEmerging:{critical:4,emerging:9}, assurance:86, assuranceDelta:5.0,
+    controls:{eff:79,iss:14,def:7},
+    topRisks:[
+      {name:'Cyber Ransomware & Data Breach',cat:'Cyber',sev:'CRITICAL'},
+      {name:'IP Infringement & Tech Obsolescence',cat:'Strategic',sev:'HIGH'},
+      {name:'Data Centre Outage & Resilience',cat:'Operational',sev:'HIGH'},
+      {name:'Talent Attrition in Engineering',cat:'Strategic',sev:''}
+    ],
+    peakRisks:['Ransomware Encryption Event','Hyperscale Vendor Concentration'],
+    sourceFlows:{Strategic:20,Operational:24,Compliance:16,'Cyber & ESG':26},
+    businessUnits:['Cloud Platform Division','Telecoms Infrastructure Unit'],
+    ops:{overdueReviews:2,openActions:8,controlCoverage:93,incidentsQtr:2,escalations:2,avgTreatDays:4.6}
+  }
+];
+
+const YEARS = ['FY2022','FY2023','FY2024'];
+const BU_MULT = [1, 0.42, 0.23];
+const SANKEY_PROFILE = {
+  'Strategic':      {1:0.25, 2:0.45, 3:0.30},
+  'Operational':    {1:0.75, 2:0.20, 3:0.05},
+  'Compliance':      {1:0.20, 2:0.60, 3:0.20},
+  'Cyber & ESG':     {1:0.40, 2:0.35, 3:0.25}
+};
+const SOURCE_COLORS = { 'Strategic':'#b98bff', 'Operational':'#16d9a8', 'Compliance':'#30e2f4', 'Cyber & ESG':'#ff7ab8' };
+const OWNER_POOL = ['CRO','COO','Risk Manager','Business Unit Head'];
+const STATUS_POOL = ['On track','In progress','Overdue','Escalated'];
+const ACTIVITY_TEMPLATES = [
+  (d)=>`Board risk appetite statement re-approved for ${d.company}, with no changes to thresholds.`,
+  (d)=>`Control test completed: assurance review of '${d.topRisks[0].name}' mitigation plan.`,
+  (d)=>`KRI breach logged and escalated: indicator tied to '${d.peakRisks[0]}' exceeded threshold.`,
+  (d)=>`New emerging risk logged following horizon-scan: monitoring '${d.peakRisks[1]}' exposure.`,
+  (d)=>`Residual exposure re-scored at ${d.util}% of board appetite after Q3 treatment update.`,
+  (d)=>`Third line assurance completed independent review of the top enterprise risks register.`,
+  (d)=>`Risk owner sign-off overdue flagged for one critical risk pending EXCO review.`,
+  (d)=>`Combined assurance mapping refreshed across 1st, 2nd and 3rd lines of defence.`
+];
+const ACTIVITY_TIMES = ['2h ago','6h ago','1d ago','2d ago','4d ago'];
+
+let state = { industry:0, year:2, persona:0, bu:0 };
+
+function fmtBn(v){ return 'R' + v.toFixed(2) + 'bn'; }
+function round1(v){ return Math.round(v*10)/10; }
+
+function currentData(){
+  const d = INDUSTRIES[state.industry];
+  const mult = BU_MULT[state.bu];
+  const residual = d.residualTrend[state.year] * mult;
+  const appetite = d.appetite * mult;
+  const util = Math.round((residual/appetite)*100);
+  const prevResidual = state.year>0 ? d.residualTrend[state.year-1]*mult : d.residualTrend[0]*mult*1.08;
+  const delta1 = round1(((residual-prevResidual)/prevResidual)*100);
+  const prevUtil = Math.round((prevResidual/appetite)*100);
+  const delta2 = round1(((util-prevUtil)/prevUtil)*100);
+  return {
+    id:d.id, company:d.company, ticker:d.ticker, sector:d.sector, framework:d.framework,
+    residual, appetite, util, headroom: appetite-residual, delta1, delta2,
+    risksOnRegister: Math.max(1,Math.round(d.risksOnRegister*mult)),
+    aboveAppetite: Math.max(0,Math.round(d.aboveAppetite*mult)),
+    kriBreach: { n: Math.max(0,Math.round(d.kriBreach.n*mult)), of: Math.max(1,Math.round(d.kriBreach.of*mult)) },
+    criticalEmerging: { critical: Math.max(0,Math.round(d.criticalEmerging.critical*mult)), emerging: Math.max(0,Math.round(d.criticalEmerging.emerging*mult)) },
+    assurance: d.assurance, assuranceDelta: d.assuranceDelta,
+    controls: d.controls,
+    topRisks: d.topRisks, peakRisks: d.peakRisks,
+    sourceFlows: d.sourceFlows, businessUnits: d.businessUnits,
+    ops: d.ops, residualTrend: d.residualTrend, appetiteBase: d.appetite
+  };
+}
+
+/* ---------- Isometric risk-density surface ---------- */
+function heightAt(u,v,factor){
+  function bump(cu,cv,h,spread){ const dx=u-cu, dy=v-cv; return h*Math.exp(-(dx*dx+dy*dy)/(2*spread*spread)); }
+  let h = 0.08;
+  h += bump(0.72,0.68,1.00*factor,0.16);
+  h += bump(0.58,0.86,0.75*factor,0.14);
+  h += bump(0.30,0.35,0.28,0.20);
+  h += bump(0.15,0.15,0.14,0.22);
+  return Math.min(1,h);
+}
+function colorForHeight(h){
+  const stops = [
+    {p:0.00, c:[18,51,92]}, {p:0.35, c:[31,155,214]}, {p:0.55, c:[47,232,138]},
+    {p:0.72, c:[255,182,72]}, {p:1.00, c:[255,84,112]}
+  ];
+  let a=stops[0], b=stops[stops.length-1];
+  for (let i=0;i<stops.length-1;i++){ if (h>=stops[i].p && h<=stops[i+1].p){ a=stops[i]; b=stops[i+1]; break; } }
+  const t = (h-a.p)/((b.p-a.p)||1);
+  const r = Math.round(a.c[0]+(b.c[0]-a.c[0])*t), g = Math.round(a.c[1]+(b.c[1]-a.c[1])*t), bl = Math.round(a.c[2]+(b.c[2]-a.c[2])*t);
+  return `rgb(${r},${g},${bl})`;
+}
+function drawSurface(canvas, factor, peaks){
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+  const N = 18, isoW = 15, isoH = 6.5, heightScale = 92;
+  const originX = W/2, originY = 46;
+  function proj(i,j){
+    const u=i/N, v=j/N, h=heightAt(u,v,factor);
+    return { x: originX + (i-j)*isoW/2, y: originY + (i+j)*isoH/2 - h*heightScale, h };
+  }
+  const cells = [];
+  for (let i=0;i<N;i++) for (let j=0;j<N;j++) cells.push({i,j, order:i+j});
+  cells.sort((a,b)=>a.order-b.order);
+  cells.forEach(c=>{
+    const p00 = proj(c.i,c.j), p10 = proj(c.i+1,c.j), p11 = proj(c.i+1,c.j+1), p01 = proj(c.i,c.j+1);
+    const avgH = (p00.h+p10.h+p11.h+p01.h)/4;
+    ctx.beginPath();
+    ctx.moveTo(p00.x,p00.y); ctx.lineTo(p10.x,p10.y); ctx.lineTo(p11.x,p11.y); ctx.lineTo(p01.x,p01.y); ctx.closePath();
+    ctx.fillStyle = colorForHeight(avgH);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(6,15,28,0.35)'; ctx.lineWidth = 0.5; ctx.stroke();
+  });
+  (peaks||[]).forEach(pk=>{
+    const u=pk.u, v=pk.v, h=heightAt(u,v,factor);
+    const x = originX + (u*N - v*N)*isoW/2, y = originY + (u*N + v*N)*isoH/2 - h*heightScale;
+    const glow = ctx.createRadialGradient(x,y,0,x,y,16);
+    glow.addColorStop(0,'rgba(255,84,112,0.65)'); glow.addColorStop(1,'rgba(255,84,112,0)');
+    ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(x,y,16,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#ff5470'; ctx.beginPath(); ctx.arc(x,y,4,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth=1; ctx.stroke();
+  });
+}
+
+/* ---------- Gauge ---------- */
+function point(angleDeg, r, cx, cy){ const rad = angleDeg*Math.PI/180; return { x: cx + r*Math.sin(rad), y: cy - r*Math.cos(rad) }; }
+function angleFor(v, max){ return -90 + (Math.max(0,Math.min(max,v))/max)*180; }
+function arcPath(a0, a1, r, cx, cy){
+  const p0 = point(a0,r,cx,cy), p1 = point(a1,r,cx,cy);
+  const large = (a1-a0) > 180 ? 1 : 0;
+  return `M ${p0.x.toFixed(2)} ${p0.y.toFixed(2)} A ${r} ${r} 0 ${large} 1 ${p1.x.toFixed(2)} ${p1.y.toFixed(2)}`;
+}
+function buildGauge(util){
+  const cx=120, cy=112, r=92, max=130;
+  const bounds = [0,70,100,max];
+  const colors = [RAG.green, RAG.amber, RAG.red];
+  let arcs = '';
+  for (let i=0;i<3;i++){
+    arcs += `<path d="${arcPath(angleFor(bounds[i],max), angleFor(bounds[i+1],max), r, cx, cy)}" stroke="${colors[i]}" stroke-width="15" fill="none" stroke-linecap="butt" opacity="0.9"/>`;
+  }
+  const needleAngle = angleFor(util, max);
+  const p0 = point(-90, r+13, cx, cy), p1 = point(90, r+13, cx, cy);
+  const appetiteAngle = angleFor(100, max);
+  const ap = point(appetiteAngle, r+15, cx, cy);
+  return `<svg viewBox="0 0 240 132">
+    ${arcs}
+    <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${cy-72}" stroke="${RAG.mute}" stroke-width="3" stroke-linecap="round" transform="rotate(${needleAngle.toFixed(2)} ${cx} ${cy})"/>
+    <circle cx="${cx}" cy="${cy}" r="7" fill="#eaf3f7"/>
+    <text x="${p0.x}" y="${p0.y+4}" font-family="JetBrains Mono" font-size="9" fill="${RAG.faint}" text-anchor="start">0%</text>
+    <text x="${p1.x}" y="${p1.y+4}" font-family="JetBrains Mono" font-size="9" fill="${RAG.faint}" text-anchor="end">130%</text>
+    <text x="${ap.x}" y="${ap.y}" font-family="JetBrains Mono" font-size="9" fill="${RAG.amberHi}" text-anchor="middle">Appetite</text>
+    <text x="${cx}" y="${cy-16}" font-family="Outfit" font-size="30" font-weight="800" fill="#eaf3f7" text-anchor="middle">${util}%</text>
+  </svg>`;
+}
+
+/* ---------- Combined assurance sankey ---------- */
+function renderAssuranceMap(svgEl, sourceFlows){
+  const sources = Object.keys(sourceFlows);
+  const targets = ['1st Line','2nd Line','3rd Line'];
+  const targetColors = { '1st Line':RAG.green, '2nd Line':RAG.cyan, '3rd Line':RAG.amber };
+  const total = sources.reduce((s,k)=>s+sourceFlows[k],0);
+  const H = 210, W = 380, barW = 10, topPad = 14, leftX = 78, rightX = 272;
+  const usableH = H - topPad*2 - (sources.length-1)*8;
+  const scale = usableH/total;
+
+  let srcY = topPad, srcNodes = [];
+  sources.forEach(name=>{
+    const h = sourceFlows[name]*scale;
+    srcNodes.push({name, y:srcY, h, color:SOURCE_COLORS[name]||RAG.mute});
+    srcY += h + 8;
+  });
+
+  const targetTotals = {1:0,2:0,3:0};
+  const links = [];
+  sources.forEach(name=>{
+    const val = sourceFlows[name];
+    [1,2,3].forEach(t=>{
+      const frac = (SANKEY_PROFILE[name]||{1:0.33,2:0.34,3:0.33})[t];
+      const flow = val*frac;
+      targetTotals[t] += flow;
+      links.push({source:name, target:t, flow});
+    });
+  });
+  const usableHT = H - topPad*2 - 2*8;
+  const scaleT = usableHT/(targetTotals[1]+targetTotals[2]+targetTotals[3]);
+  let tgtY = topPad, tgtNodes = [];
+  [1,2,3].forEach(t=>{
+    const h = targetTotals[t]*scaleT;
+    tgtNodes.push({t, name:targets[t-1], y:tgtY, h, color:targetColors[targets[t-1]]});
+    tgtY += h + 8;
+  });
+
+  const srcOffset = {}; sources.forEach(s=>srcOffset[s]=0);
+  const tgtOffset = {}; [1,2,3].forEach(t=>tgtOffset[t]=0);
+  let paths = '';
+  sources.forEach(name=>{
+    const sNode = srcNodes.find(n=>n.name===name);
+    [1,2,3].forEach(t=>{
+      const frac = (SANKEY_PROFILE[name]||{1:0.33,2:0.34,3:0.33})[t];
+      const val = sourceFlows[name]*frac;
+      const segS = val*scale;
+      const segT = val*scaleT;
+      const y0s = sNode.y + srcOffset[name], y1s = y0s+segS;
+      const tNode = tgtNodes.find(n=>n.t===t);
+      const y0t = tNode.y + tgtOffset[t], y1t = y0t+segT;
+      srcOffset[name] += segS; tgtOffset[t] += segT;
+      const midX = (leftX+barW+rightX)/2;
+      paths += `<path d="M ${leftX+barW} ${y0s} C ${midX} ${y0s}, ${midX} ${y0t}, ${rightX} ${y0t}
+        L ${rightX} ${y1t} C ${midX} ${y1t}, ${midX} ${y1s}, ${leftX+barW} ${y1s} Z"
+        fill="${sNode.color}" opacity="0.32"/>`;
+    });
+  });
+
+  let bars = '';
+  srcNodes.forEach(n=>{
+    bars += `<rect x="${leftX}" y="${n.y}" width="${barW}" height="${n.h}" fill="${n.color}" rx="2"/>`;
+    bars += `<text x="${leftX-6}" y="${n.y+n.h/2+3}" font-family="JetBrains Mono" font-size="9" fill="${RAG.mute}" text-anchor="end">${n.name}</text>`;
+  });
+  tgtNodes.forEach(n=>{
+    bars += `<rect x="${rightX}" y="${n.y}" width="${barW}" height="${n.h}" fill="${n.color}" rx="2"/>`;
+    bars += `<text x="${rightX+barW+6}" y="${n.y+n.h/2-2}" font-family="JetBrains Mono" font-size="9.5" fill="${RAG.mute}" text-anchor="start">${n.name}</text>`;
+    bars += `<text x="${rightX+barW+6}" y="${n.y+n.h/2+11}" font-family="JetBrains Mono" font-size="8.5" fill="${RAG.faint}" text-anchor="start">${Math.round(n.h/scaleT)} risks</text>`;
+  });
+
+  svgEl.innerHTML = paths + bars;
+}
+
+/* ---------- render ---------- */
+let trendChart, donutChart;
+
+function render(){
+  const d = currentData();
+  const persona = state.persona;
+
+  document.getElementById('ctx-company').textContent = `${d.company} · ${d.ticker}`;
+  document.querySelectorAll('.ind-tab').forEach(el=>el.classList.toggle('active', parseInt(el.dataset.i)===state.industry));
+  document.querySelectorAll('.ctrl-pill').forEach(el=>el.classList.toggle('active', parseInt(el.dataset.y)===state.year));
+  document.getElementById('bu-pill').textContent = state.bu===0 ? 'Group · All Business Units' : d.businessUnits[state.bu-1];
+
+  document.getElementById('page-subtitle').textContent = `${d.company} · ${d.sector} · Enterprise Risk Profile · ${YEARS[state.year]} · ${d.framework}`;
+
+  const tolerance = d.util < 70 ? 'well within board tolerance' : d.util < 100 ? 'within board tolerance' : 'above board tolerance and requires escalation';
+  document.getElementById('board-decision').innerHTML = persona===0
+    ? `<b>Board decision:</b> residual exposure ${fmtBn(d.residual)} at ${d.util}% of appetite, ${tolerance}. Greatest single risk: <b>${d.peakRisks[0]}</b>.`
+    : `<b>Action queue:</b> ${d.ops.openActions} treatment actions open, ${d.ops.overdueReviews} risk reviews overdue, ${d.ops.escalations} risks escalated to EXCO this period.`;
+
+  const band = document.getElementById('kpi-band');
+  if (persona===0){
+    band.innerHTML = `
+      <div class="kpi-tile"><div class="lbl">Residual Risk Exposure</div><div class="val">${fmtBn(d.residual)}</div><div class="sub">value-at-risk basis</div><span class="kpi-chip ${d.delta1<=0?'green':'red'}">${d.delta1<=0?'↓':'↑'} ${Math.abs(d.delta1)}%</span></div>
+      <div class="kpi-tile"><div class="lbl">Risk Appetite Utilisation</div><div class="val">${d.util}%</div><div class="sub">appetite ${fmtBn(d.appetite)}</div><span class="kpi-chip ${d.delta2<=0?'green':'red'}">${d.delta2<=0?'↓':'↑'} ${Math.abs(d.delta2)}%</span></div>
+      <div class="kpi-tile"><div class="lbl">Risks Above Appetite</div><div class="val">${d.aboveAppetite}</div><div class="sub">of ${d.risksOnRegister} enterprise risks</div><span class="kpi-chip red">${d.criticalEmerging.critical} critical</span></div>
+      <div class="kpi-tile"><div class="lbl">KRIs in Breach</div><div class="val">${d.kriBreach.n}</div><div class="sub">of ${d.kriBreach.of} key indicators</div><span class="kpi-chip neutral">tolerance</span></div>
+      <div class="kpi-tile"><div class="lbl">Critical &amp; Emerging</div><div class="val">${d.criticalEmerging.critical+d.criticalEmerging.emerging}</div><div class="sub">${d.criticalEmerging.critical} critical · ${d.criticalEmerging.emerging} accelerating</div><span class="kpi-chip amber">velocity ↑</span></div>
+      <div class="kpi-tile"><div class="lbl">Combined Assurance</div><div class="val">${d.assurance}%</div><div class="sub">three-lines coverage</div><span class="kpi-chip green">↑ ${d.assuranceDelta}%</span></div>
+    `;
+  } else {
+    const o = d.ops;
+    band.innerHTML = `
+      <div class="kpi-tile"><div class="lbl">Overdue Risk Reviews</div><div class="val">${o.overdueReviews}</div><div class="sub">past scheduled review date</div><span class="kpi-chip ${o.overdueReviews>0?'red':'green'}">action required</span></div>
+      <div class="kpi-tile"><div class="lbl">Open Treatment Actions</div><div class="val">${o.openActions}</div><div class="sub">across approved plans</div><span class="kpi-chip green">${d.controls.eff}% on track</span></div>
+      <div class="kpi-tile"><div class="lbl">Control Test Coverage</div><div class="val">${o.controlCoverage}%</div><div class="sub">of mapped controls tested</div><span class="kpi-chip neutral">quarterly cycle</span></div>
+      <div class="kpi-tile"><div class="lbl">Incidents This Quarter</div><div class="val">${o.incidentsQtr}</div><div class="sub">logged across business units</div><span class="kpi-chip neutral">vs prior qtr</span></div>
+      <div class="kpi-tile"><div class="lbl">Escalations to EXCO</div><div class="val">${o.escalations}</div><div class="sub">risks formally escalated</div><span class="kpi-chip neutral">this period</span></div>
+      <div class="kpi-tile"><div class="lbl">Avg Time to Treat</div><div class="val">${o.avgTreatDays}d</div><div class="sub">critical risk response</div><span class="kpi-chip ${o.avgTreatDays>7?'red':'green'}">target &le; 7d</span></div>
+    `;
+  }
+
+  const factor = Math.max(0.6, Math.min(1.15, d.aboveAppetite/d.risksOnRegister + 0.3));
+  drawSurface(document.getElementById('surface-canvas'), factor, [{u:0.72,v:0.68},{u:0.58,v:0.86}]);
+  document.getElementById('surface-caption').innerHTML = `<span class="dotc"></span>Peak density: <b style="color:var(--ink)">${d.peakRisks[0]}</b>, <b style="color:var(--ink)">${d.peakRisks[1]}</b>`;
+
+  document.getElementById('gauge-wrap').innerHTML = buildGauge(d.util);
+  document.getElementById('appetite-stats').innerHTML = `
+    <div class="stat-row"><span class="sq" style="background:${RAG.amber}"></span><div class="txt"><div class="v">${fmtBn(d.residual)}</div><div class="l">Residual Exposure</div></div></div>
+    <div class="stat-row"><span class="sq" style="background:${RAG.cyan}"></span><div class="txt"><div class="v">${fmtBn(d.appetite)}</div><div class="l">Board Risk Appetite</div></div></div>
+    <div class="stat-row"><span class="sq" style="background:${RAG.green}"></span><div class="txt"><div class="v">${fmtBn(Math.max(0,d.headroom))}</div><div class="l">Tolerance Position</div></div></div>
+  `;
+
+  if (trendChart) trendChart.destroy();
+  trendChart = new ApexCharts(document.getElementById('trend-chart'), {
+    chart:{ type:'area', height:110, background:'transparent', toolbar:{show:false}, sparkline:{enabled:false} },
+    series:[{ name:'Residual exposure', data:d.residualTrend.map(v=>Math.round(v*BU_MULT[state.bu]*100)/100) }],
+    xaxis:{ categories:YEARS, labels:{style:{colors:RAG.faint, fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+    yaxis:{ show:false },
+    grid:{ show:false, padding:{left:32,right:32,top:20,bottom:0} },
+    stroke:{ curve:'smooth', width:2.5 },
+    colors:[RAG.cyan],
+    fill:{ type:'gradient', gradient:{ shadeIntensity:1, opacityFrom:0.3, opacityTo:0, stops:[0,100] } },
+    markers:{ size:4, colors:[RAG.cyan], discrete:[{ seriesIndex:0, dataPointIndex:state.year, fillColor:RAG.amberHi, size:6 }] },
+    dataLabels:{ enabled:true, style:{fontSize:'9.5px', colors:['#8499aa']}, offsetY:-8, formatter:(v)=>'R'+v.toFixed(2)+'bn' },
+    tooltip:{ theme:'dark', y:{ formatter:(v)=>'R'+v.toFixed(2)+'bn' } }
+  });
+  trendChart.render();
+
+  document.getElementById('profile-tiles').innerHTML = `
+    <div class="profile-tile"><div class="v orange">${d.risksOnRegister}</div><div class="l">Risks on Register</div></div>
+    <div class="profile-tile"><div class="v orange">${d.aboveAppetite}</div><div class="l">Above Appetite</div></div>
+    <div class="profile-tile"><div class="v orange">${d.criticalEmerging.emerging}</div><div class="l">Emerging (&uarr; velocity)</div></div>
+    <div class="profile-tile"><div class="v green">${d.assurance}%</div><div class="l">Assurance Coverage</div></div>
+  `;
+
+  renderAssuranceMap(document.getElementById('assurance-svg'), d.sourceFlows);
+  document.getElementById('assurance-legend').innerHTML = ['1st Line','2nd Line','3rd Line'].map((n,i)=>{
+    const c = [RAG.green, RAG.cyan, RAG.amber][i];
+    return `<span class="li"><span class="sq" style="background:${c}"></span>${n}</span>`;
+  }).join('');
+
+  if (donutChart) donutChart.destroy();
+  donutChart = new ApexCharts(document.getElementById('donut-chart'), {
+    chart:{ type:'donut', height:110, background:'transparent' },
+    series:[d.controls.eff, d.controls.iss, d.controls.def],
+    labels:['Effective','Issues','Deficiencies'],
+    colors:[RAG.green, RAG.amber, RAG.red],
+    legend:{ show:false },
+    dataLabels:{ enabled:false },
+    stroke:{ width:1, colors:['#0a1729'] },
+    plotOptions:{ pie:{ donut:{ size:'72%', labels:{ show:true, total:{ show:true, label:'Effective', color:RAG.mute, fontSize:'9px', fontFamily:'JetBrains Mono', formatter:()=>d.controls.eff+'%' }, value:{ show:true, fontSize:'20px', fontFamily:'Outfit', fontWeight:800, color:'#eaf3f7' } } } } },
+    tooltip:{ theme:'dark' }
+  });
+  donutChart.render();
+  document.getElementById('donut-legend').innerHTML = `
+    <div class="dl-row"><span class="dot" style="background:${RAG.green}"></span><b>${d.controls.eff}%</b>&nbsp;Controls operating effectively</div>
+    <div class="dl-row"><span class="dot" style="background:${RAG.amber}"></span><b>${d.controls.iss}%</b>&nbsp;Control issues identified</div>
+    <div class="dl-row"><span class="dot" style="background:${RAG.red}"></span><b>${d.controls.def}%</b>&nbsp;Deficiencies, remediation in progress</div>
+  `;
+
+  document.getElementById('top-risks-title').textContent = persona===0 ? 'Top Enterprise Risks' : 'Top Risks by Owner';
+  document.getElementById('top-risks-pill').textContent = persona===0 ? 'By Score & Exposure' : 'Owner & Status';
+  document.getElementById('risk-rank-grid').innerHTML = d.topRisks.map((r,i)=>{
+    const sevClass = r.sev==='CRITICAL' ? 'sev-critical' : r.sev==='HIGH' ? 'sev-high' : '';
+    const trend = i===0 ? '▲' : i===1 ? '▲' : i===2 ? '●' : '▼';
+    const owner = OWNER_POOL[(state.industry+i)%OWNER_POOL.length];
+    const status = STATUS_POOL[(state.industry+i*2)%STATUS_POOL.length];
+    return `<div class="risk-rank-card">
+      <div class="rank-num c${i+1}">${i+1}</div>
+      <div class="rname">${r.name}</div>
+      <div class="risk-tags"><span class="rtag">${r.cat}</span>${r.sev?`<span class="rtag ${sevClass}">${r.sev}</span>`:''}</div>
+      ${persona===0 ? `<span class="rank-trend">${trend}</span>` : `<div class="rank-owner">${owner} · ${status}</div>`}
+    </div>`;
+  }).join('');
+
+  const actData = { company:d.company, topRisks:d.topRisks, peakRisks:d.peakRisks, util:d.util };
+  const idx = state.industry;
+  const picks = [(idx*2)%8, (idx*2+3)%8, (idx*2+5)%8, (idx+1)%8, (idx*3+2)%8];
+  const seen = new Set(); const chosen = [];
+  picks.forEach(p=>{ if (!seen.has(p)){ seen.add(p); chosen.push(p); } });
+  while (chosen.length<5){ for (let k=0;k<8;k++){ if (!seen.has(k)){ seen.add(k); chosen.push(k); break; } } }
+  document.getElementById('activity-list').innerHTML = chosen.slice(0,5).map((tIdx,i)=>`
+    <div class="activity-item"><span class="activity-dot"></span><div><div class="activity-text">${ACTIVITY_TEMPLATES[tIdx](actData)}</div><div class="activity-time">${ACTIVITY_TIMES[i]}</div></div></div>
+  `).join('');
+}
+
+/* ---------- wiring ---------- */
+const tabsEl = document.getElementById('industry-tabs');
+tabsEl.innerHTML = INDUSTRIES.map((ind,i)=>`<button class="ind-tab" data-i="${i}">${ind.tab}</button>`).join('');
+tabsEl.addEventListener('click', e=>{
+  const btn = e.target.closest('.ind-tab'); if (!btn) return;
+  state.industry = parseInt(btn.dataset.i); state.bu = 0;
+  render();
+});
+
+const yearEl = document.getElementById('year-pills');
+yearEl.innerHTML = YEARS.map((y,i)=>`<button class="ctrl-pill" data-y="${i}">${y}</button>`).join('');
+yearEl.addEventListener('click', e=>{
+  const btn = e.target.closest('.ctrl-pill'); if (!btn) return;
+  state.year = parseInt(btn.dataset.y);
+  render();
+});
+
+document.getElementById('persona-toggle').addEventListener('click', e=>{
+  const btn = e.target.closest('.persona-btn'); if (!btn) return;
+  document.querySelectorAll('.persona-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  state.persona = parseInt(btn.dataset.persona);
+  render();
+});
+
+document.getElementById('bu-pill').addEventListener('click', ()=>{
+  state.bu = (state.bu+1) % 3;
+  render();
+});
+
+render();
+</script>
+
+</body>
+</html>

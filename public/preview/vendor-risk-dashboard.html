@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>XGRC® Vendor & Third-Party Risk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="dash-shell.css?v=7">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="banner">DEMONSTRATION DASHBOARD &mdash; all figures, owners and exceptions on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <img src="/assets/logos/brand/xgrc-icon-white.png" alt="" aria-hidden="true" class="brand-icon">
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">Vendor & Third-Party Risk</div>
+        <div class="crumb"><a href="dashboards.html">&larr; Dashboard Gallery</a></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <div class="sync-line"><span class="sync-dot"></span><span id="sync-label">synced just now</span></div>
+      <button class="btn" id="btn-export">Export board pack</button>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search KPIs, pillars, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>Vendor risk tiering</h3>
+        <div class="health-badge"><div class="health-ring" id="health-ring"><span id="health-pct">&ndash;</span></div><span class="health-label">estate health</span></div>
+      </div>
+      <div class="hint" style="margin:-6px 0 10px;">16 highest-exposure vendors shown individually — click one to open its profile</div>
+      <div id="chart-signature"></div>
+      <div id="cell-detail" class="cell-detail"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card compact"><h3 style="text-align:left;margin-bottom:12px;">Top spend concentration</h3><div id="chart-secondary"></div></div>
+      <div class="card compact"><h3 style="text-align:left;">At a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section" id="extra-section"></div>
+
+  <div id="module-sections"></div>
+</main>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of vendor due diligence, tiering, ongoing monitoring, contract compliance and offboarding hygiene.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {"pdfTitle":"XGRC · Vendor & Third-Party Risk","pdfFilename":"XGRC-Vendor-Risk-Board-Pack-Demo.pdf","today":"2026-09-21T09:00:00","driftIds":[5,20],"systems":[{"name":"Onboarding & Due Diligence","color":"#30e2f4"},{"name":"Risk Tiering & Scoring","color":"#16d9a8"},{"name":"Ongoing Monitoring","color":"#7e9eff"},{"name":"Contract & Compliance","color":"#b98bff"},{"name":"Offboarding & Exit","color":"#d9b54a"}],"execStats":[{"label":"Active vendors","value":186,"tone":"cyan","sub":"across 6 spend categories"},{"label":"Due diligence completion","value":93,"suffix":"%","sub":"of active vendor population"},{"label":"KPIs tracked","value":20,"sub":"4 per pillar across 5 pillars"}],"kpis":[{"id":1,"name":"Due Diligence Completion Rate","system":"Onboarding & Due Diligence","module":"Onboarding & Due Diligence","desc":"% of new vendors with due diligence completed before go-live.","calc":"Vendors with completed due diligence ÷ total new vendors onboarded.","valueLabel":"93%","target":"100%","rag":"green","delta":"+2 pts","tone":"good","owner":"Procurement Lead","cadence":"Weekly","frameworks":[]},{"id":2,"name":"Vendors Onboarded Without Approval","system":"Onboarding & Due Diligence","module":"Onboarding & Due Diligence","desc":"Count of vendors that began work before formal approval was granted.","calc":"Count of vendor records with a transaction date earlier than their approval date.","valueLabel":"1","target":"0","rag":"red","delta":"+1","tone":"bad","owner":"Procurement Lead","cadence":"Weekly","frameworks":[]},{"id":3,"name":"Average Onboarding Time","system":"Onboarding & Due Diligence","module":"Onboarding & Due Diligence","desc":"Average time from vendor application to approved onboarding.","calc":"Sum of (approval date − application date) ÷ count of vendors onboarded.","valueLabel":"11d","target":"≤ 14d","rag":"green","delta":"-1.5d","tone":"good","owner":"Procurement Lead","cadence":"Monthly","frameworks":[]},{"id":4,"name":"Critical Vendors Missing Security Addendum","system":"Onboarding & Due Diligence","module":"Onboarding & Due Diligence","desc":"Count of critical-tier vendors without a signed security addendum on file.","calc":"Count of critical-tier vendors where the security addendum document is missing.","valueLabel":"3","target":"0","rag":"amber","delta":"+1","tone":"bad","owner":"CISO","cadence":"Monthly","frameworks":[]},{"id":5,"name":"High/Critical Tier Vendors","system":"Risk Tiering & Scoring","module":"Risk Tiering & Scoring","desc":"Share of the active vendor population rated High or Critical risk tier.","calc":"Vendors tiered High or Critical ÷ total active vendors.","valueLabel":"22%","target":"Monitor","rag":"amber","delta":"+2 pts","tone":"neutral","owner":"Vendor Manager","cadence":"Monthly","frameworks":[]},{"id":6,"name":"Vendors Overdue Re-Assessment","system":"Risk Tiering & Scoring","module":"Risk Tiering & Scoring","desc":"Count of vendors whose scheduled risk re-assessment has passed.","calc":"Count of vendors where re-assessment due date < today and no new assessment logged.","valueLabel":"8","target":"0","rag":"red","delta":"+3","tone":"bad","owner":"Vendor Manager","cadence":"Weekly","frameworks":[]},{"id":7,"name":"High-Risk Vendors Without Mitigation Plan","system":"Risk Tiering & Scoring","module":"Risk Tiering & Scoring","desc":"Count of High/Critical tier vendors with no documented mitigation plan.","calc":"Count of High/Critical vendors where the mitigation plan field is blank.","valueLabel":"4","target":"0","rag":"amber","delta":"+1","tone":"bad","owner":"Vendor Manager","cadence":"Weekly","frameworks":[]},{"id":8,"name":"Vendor Security Incidents (Period)","system":"Ongoing Monitoring","module":"Ongoing Monitoring","desc":"Count of security incidents attributed to a third-party vendor this period.","calc":"Count of Incident records where source = Vendor, logged in the period.","valueLabel":"2","target":"0","rag":"amber","delta":"+1","tone":"bad","owner":"CISO","cadence":"Weekly","frameworks":[]},{"id":9,"name":"Vendor SLA Breaches","system":"Ongoing Monitoring","module":"Ongoing Monitoring","desc":"Count of contracted service-level agreement breaches logged against vendors.","calc":"Count of SLA Breach records logged against active vendor contracts in the period.","valueLabel":"6","target":"0","rag":"amber","delta":"-2","tone":"good","owner":"Vendor Manager","cadence":"Weekly","frameworks":[]},{"id":10,"name":"Continuous Monitoring Coverage","system":"Ongoing Monitoring","module":"Ongoing Monitoring","desc":"% of critical vendors under continuous automated risk monitoring.","calc":"Critical vendors enrolled in continuous monitoring ÷ total critical vendors.","valueLabel":"78%","target":"100%","rag":"amber","delta":"+6 pts","tone":"good","owner":"CISO","cadence":"Daily","frameworks":[]},{"id":11,"name":"Spend Concentration (Top Vendor)","system":"Ongoing Monitoring","module":"Ongoing Monitoring","desc":"Largest single vendor’s share of total third-party spend.","calc":"Top vendor spend ÷ total third-party spend, period to date.","valueLabel":"19%","target":"≤ 20%","rag":"green","delta":"-1 pt","tone":"good","owner":"Procurement Lead","cadence":"Monthly","frameworks":[]},{"id":12,"name":"Contracts With Expired Insurance/Certs","system":"Contract & Compliance","module":"Contract & Compliance","desc":"Count of active vendor contracts with an expired insurance or certification document.","calc":"Count of contracts where a required insurance/certification document’s expiry date < today.","valueLabel":"5","target":"0","rag":"red","delta":"+2","tone":"bad","owner":"Legal","cadence":"Monthly","frameworks":[]},{"id":13,"name":"Right-to-Audit Clauses in Place","system":"Contract & Compliance","module":"Contract & Compliance","desc":"% of critical vendor contracts containing a right-to-audit clause.","calc":"Critical contracts with a right-to-audit clause ÷ total critical vendor contracts.","valueLabel":"87%","target":"100%","rag":"amber","delta":"+3 pts","tone":"good","owner":"Legal","cadence":"Quarterly","frameworks":[]},{"id":14,"name":"Compliance Attestations Current","system":"Contract & Compliance","module":"Contract & Compliance","desc":"% of vendors with a current signed compliance attestation on file.","calc":"Vendors with an attestation dated within the current cycle ÷ total active vendors.","valueLabel":"91%","target":"100%","rag":"green","delta":"+1 pt","tone":"good","owner":"Legal","cadence":"Monthly","frameworks":[]},{"id":15,"name":"Fourth-Party Subcontractor Visibility","system":"Contract & Compliance","module":"Contract & Compliance","desc":"% of critical vendors that have disclosed their own critical subcontractors.","calc":"Critical vendors with a disclosed subcontractor list ÷ total critical vendors.","valueLabel":"64%","target":"100%","rag":"amber","delta":"+4 pts","tone":"good","owner":"CISO","cadence":"Quarterly","frameworks":[]},{"id":16,"name":"Access Revoked Within SLA","system":"Offboarding & Exit","module":"Offboarding & Exit","desc":"% of offboarded vendors whose system access was revoked within the SLA window.","calc":"Offboarded vendors with access revoked within SLA ÷ total vendors offboarded.","valueLabel":"96%","target":"100%","rag":"green","delta":"+2 pts","tone":"good","owner":"CISO","cadence":"Weekly","frameworks":[]},{"id":17,"name":"Data Return/Destruction Confirmed","system":"Offboarding & Exit","module":"Offboarding & Exit","desc":"% of offboarded vendors with confirmed data return or destruction.","calc":"Offboarded vendors with a signed data return/destruction confirmation ÷ total vendors offboarded.","valueLabel":"89%","target":"100%","rag":"amber","delta":"-2 pts","tone":"bad","owner":"Legal","cadence":"Monthly","frameworks":[]},{"id":18,"name":"Offboarding Backlog","system":"Offboarding & Exit","module":"Offboarding & Exit","desc":"Count of vendor offboarding cases still open past their target close date.","calc":"Count of Offboarding records with status = Open and target close date < today.","valueLabel":"3","target":"0","rag":"green","delta":"-1","tone":"good","owner":"Vendor Manager","cadence":"Weekly","frameworks":[]},{"id":19,"name":"Vendor Risk Register Currency","system":"Offboarding & Exit","module":"Offboarding & Exit","desc":"Whether the consolidated vendor risk register is within its review cycle.","calc":"Today’s date compared against the vendor risk register’s scheduled review date.","valueLabel":"Current","target":"Current","rag":"green","delta":"flat","tone":"good","owner":"Vendor Manager","cadence":"Monthly","frameworks":[]},{"id":20,"name":"Vendors Exited This Quarter","system":"Offboarding & Exit","module":"Offboarding & Exit","desc":"Count of vendor relationships formally closed out this quarter.","calc":"Count of Vendor records with status changed to Exited in the current quarter.","valueLabel":"6","target":"Monitor","rag":"green","delta":"flat","tone":"neutral","owner":"Procurement Lead","cadence":"Quarterly","frameworks":[]}],"exceptions":[{"kpiId":2,"ageDays":5,"status":"Open"},{"kpiId":6,"ageDays":9,"status":"Open"},{"kpiId":12,"ageDays":7,"status":"Acknowledged"},{"kpiId":4,"ageDays":12,"status":"Open"},{"kpiId":7,"ageDays":4,"status":"Open"},{"kpiId":8,"ageDays":3,"status":"Open"},{"kpiId":17,"ageDays":10,"status":"Open"}]};
+CONFIG.afterInit = function(ctx){
+  var KPIS = ctx.KPIS, EXC = ctx.EXC, ragHex = ctx.ragHex, computeAgg = ctx.computeAgg, applyFilter = ctx.applyFilter;
+  
+      var TODAY_STR = '2026-09-21T09:00:00';
+      var vendors = [
+        {id:1,name:'CloudCore Hosting',tier:'Critical',risk:88,crit:92,spend:19,renewalDays:14,category:'Cloud Infrastructure',lastAssessed:'02 Aug 2026',owner:'CISO'},
+        {id:2,name:'Nexora Payments',tier:'Critical',risk:91,crit:85,spend:11,renewalDays:62,category:'Payment Processing',lastAssessed:'14 Jul 2026',owner:'CISO'},
+        {id:3,name:'Vantage Legal Services',tier:'High',risk:76,crit:68,spend:4,renewalDays:8,category:'Professional Services',lastAssessed:'22 Aug 2026',owner:'Legal'},
+        {id:4,name:'Brightline Logistics',tier:'High',risk:72,crit:74,spend:9,renewalDays:45,category:'Logistics',lastAssessed:'30 Jul 2026',owner:'Procurement Lead'},
+        {id:5,name:'Solace HR Outsourcing',tier:'High',risk:68,crit:60,spend:3,renewalDays:120,category:'HR Services',lastAssessed:'11 Jun 2026',owner:'Procurement Lead'},
+        {id:6,name:'Northgate Security',tier:'High',risk:79,crit:71,spend:5,renewalDays:27,category:'Physical Security',lastAssessed:'05 Aug 2026',owner:'CISO'},
+        {id:7,name:'Meridian Analytics',tier:'Medium',risk:55,crit:50,spend:6,renewalDays:95,category:'Data Analytics',lastAssessed:'19 Jun 2026',owner:'Vendor Manager'},
+        {id:8,name:'Quiver Marketing',tier:'Medium',risk:44,crit:38,spend:3,renewalDays:150,category:'Marketing',lastAssessed:'02 May 2026',owner:'Vendor Manager'},
+        {id:9,name:'Ferro Print & Signage',tier:'Medium',risk:40,crit:35,spend:1,renewalDays:200,category:'Print & Signage',lastAssessed:'18 Apr 2026',owner:'Vendor Manager'},
+        {id:10,name:'Halcyon Facilities',tier:'Medium',risk:51,crit:55,spend:4,renewalDays:33,category:'Facilities',lastAssessed:'14 Aug 2026',owner:'Vendor Manager'},
+        {id:11,name:'Oakline Consulting',tier:'Medium',risk:47,crit:42,spend:2,renewalDays:78,category:'Consulting',lastAssessed:'25 Jun 2026',owner:'Vendor Manager'},
+        {id:12,name:'Driftwood Catering',tier:'Low',risk:22,crit:18,spend:1,renewalDays:250,category:'Facilities',lastAssessed:'10 Mar 2026',owner:'Vendor Manager'},
+        {id:13,name:'Pinegrove Office Supplies',tier:'Low',risk:18,crit:15,spend:1,renewalDays:300,category:'Office Supplies',lastAssessed:'02 Feb 2026',owner:'Vendor Manager'},
+        {id:14,name:'Sable Travel Services',tier:'Low',risk:25,crit:20,spend:2,renewalDays:180,category:'Travel',lastAssessed:'28 Apr 2026',owner:'Vendor Manager'},
+        {id:15,name:'Cobalt Translation Ltd',tier:'Low',risk:20,crit:22,spend:1,renewalDays:140,category:'Professional Services',lastAssessed:'15 May 2026',owner:'Vendor Manager'},
+        {id:16,name:'Willowmere Print Media',tier:'Low',risk:15,crit:12,spend:1,renewalDays:310,category:'Print & Signage',lastAssessed:'20 Jan 2026',owner:'Vendor Manager'},
+      ];
+      var tierColor = {Critical:'#ff5470',High:'#ffb648',Medium:'#7e9eff',Low:'#2fe88a'};
+      var tierOrder = ['Critical','High','Medium','Low'];
+      var series = tierOrder.map(function(t){
+        return { name:t, data: vendors.filter(function(v){return v.tier===t;}).map(function(v){ return {x:v.risk,y:v.crit,z:Math.max(9,v.spend*3.2),vid:v.id}; }) };
+      });
+      function ensureVendorModal(){
+        if (document.getElementById('vendor-detail-overlay')) return;
+        var div = document.createElement('div');
+        div.id = 'vendor-detail-overlay'; div.className = 'vendor-detail-overlay';
+        div.innerHTML = '<div class="modal-panel" style="max-width:520px;">'
+          + '<button class="modal-close" id="vendor-modal-close">&times;</button>'
+          + '<div class="meyebrow"><span class="eyebrow" id="vm-tier"></span></div>'
+          + '<h2 id="vm-name" style="margin-bottom:14px;"></h2>'
+          + '<div class="mgrid">'
+          + '<div class="mfield"><div class="l">Inherent risk score</div><div class="v" id="vm-risk"></div></div>'
+          + '<div class="mfield"><div class="l">Business criticality</div><div class="v" id="vm-crit"></div></div>'
+          + '<div class="mfield"><div class="l">Spend share</div><div class="v" id="vm-spend"></div></div>'
+          + '<div class="mfield"><div class="l">Category</div><div class="v" id="vm-category"></div></div>'
+          + '<div class="mfield"><div class="l">Last assessed</div><div class="v" id="vm-assessed"></div></div>'
+          + '<div class="mfield"><div class="l">Contract renewal</div><div class="v" id="vm-renewal"></div></div>'
+          + '</div>'
+          + '<div class="mfield" style="margin-top:12px;"><div class="l">Owner</div><div class="v" id="vm-owner"></div></div>'
+          + '</div>';
+        document.body.appendChild(div);
+        div.addEventListener('click', function(e){ if (e.target===div) div.classList.remove('open'); });
+        document.getElementById('vendor-modal-close').addEventListener('click', function(){ div.classList.remove('open'); });
+        document.addEventListener('keydown', function(e){ if (e.key==='Escape') div.classList.remove('open'); });
+      }
+      function openVendorModal(id){
+        ensureVendorModal();
+        var v = vendors.filter(function(x){return x.id===id;})[0];
+        if (!v) return;
+        document.getElementById('vm-tier').textContent = v.tier + ' tier · ' + v.category;
+        document.getElementById('vm-name').textContent = v.name;
+        document.getElementById('vm-risk').textContent = v.risk + '/100';
+        document.getElementById('vm-crit').textContent = v.crit + '/100';
+        document.getElementById('vm-spend').textContent = v.spend + '% of vendor spend';
+        document.getElementById('vm-category').textContent = v.category;
+        document.getElementById('vm-assessed').textContent = v.lastAssessed;
+        var rd = new Date(TODAY_STR); rd.setDate(rd.getDate()+v.renewalDays);
+        document.getElementById('vm-renewal').textContent = rd.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}) + ' (' + v.renewalDays + 'd)';
+        document.getElementById('vm-owner').textContent = v.owner;
+        document.getElementById('vendor-detail-overlay').classList.add('open');
+      }
+      new ApexCharts(document.getElementById('chart-signature'), {
+        chart:{ type:'bubble', height:290, background:'transparent', toolbar:{show:false},
+          events:{ dataPointSelection: function(e, chartCtx, config){
+            var pt = config.w.config.series[config.seriesIndex].data[config.dataPointIndex];
+            openVendorModal(pt.vid);
+          }}
+        },
+        series: series,
+        colors: tierOrder.map(function(t){ return tierColor[t]; }),
+        xaxis:{ title:{text:'Inherent risk score', style:{color:'#8499aa', fontSize:'10px', fontFamily:'JetBrains Mono'}}, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, max:100, min:0, axisBorder:{show:false} },
+        yaxis:{ title:{text:'Business criticality', style:{color:'#8499aa', fontSize:'10px', fontFamily:'JetBrains Mono'}}, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, max:100, min:0 },
+        legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'10.5px', markers:{radius:8} },
+        grid:{ borderColor:'rgba(120,170,200,0.14)' },
+        fill:{ opacity:0.8 },
+        dataLabels:{ enabled:false },
+        tooltip:{ theme:'dark', custom: function(o){
+          var pt = o.w.config.series[o.seriesIndex].data[o.dataPointIndex];
+          var v = vendors.filter(function(x){return x.id===pt.vid;})[0];
+          return '<div style="padding:8px 10px;font-family:Inter;font-size:11.5px;background:#0a1729;color:#eaf3f7;">' + v.name + ' &middot; ' + v.tier + ' tier<br><span style="color:#8499aa;font-size:10px;">click to view profile</span></div>';
+        }},
+      }).render();
+    
+  
+      new ApexCharts(document.getElementById('chart-secondary'), {
+        chart:{ type:'bar', height:220, background:'transparent', toolbar:{show:false} },
+        series:[{ name:'Share of vendor spend', data:[19,12,9,7,6] }],
+        xaxis:{ categories:['Vendor A','Vendor B','Vendor C','Vendor D','Vendor E'], labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}, formatter:function(v){return v+'%';}}, axisBorder:{show:false}, axisTicks:{show:false} },
+        yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+        plotOptions:{ bar:{ horizontal:true, barHeight:'55%', borderRadius:4, distributed:true } },
+        legend:{ show:false },
+        grid:{ borderColor:'rgba(120,170,200,0.14)' },
+        dataLabels:{ enabled:true, formatter:function(v){return v+'%';}, style:{fontSize:'10px', colors:['#eaf3f7']}, offsetX:6, dropShadow:{enabled:false} },
+        colors:['#30e2f4','#269ec6','#16d9a8','#7e9eff','#b98bff'],
+        tooltip:{ theme:'dark' },
+      }).render();
+    
+  
+      var upcoming = vendors.filter(function(v){ return v.renewalDays<=90; }).sort(function(a,b){ return a.renewalDays-b.renewalDays; });
+      var rows = upcoming.map(function(v){
+        var cls = v.renewalDays<=21?'soon':v.renewalDays<=60?'mid':'far';
+        var rd = new Date(TODAY_STR); rd.setDate(rd.getDate()+v.renewalDays);
+        var dstr = rd.toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
+        return '<div class="due-item"><div class="dname">'+v.name+'<div class="dmeta">'+v.tier+' tier · '+v.category+' · owner '+v.owner+'</div></div><span class="ddays '+cls+'">'+dstr+' · '+v.renewalDays+'d</span></div>';
+      }).join('');
+      document.getElementById('extra-section').innerHTML = '<div class="card"><h3 style="text-align:left;margin-bottom:12px;">Contract renewals due — next 90 days</h3><div class="due-list">'+rows+'</div></div>';
+    
+};
+</script>
+<script src="dash-shell.js?v=7"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>

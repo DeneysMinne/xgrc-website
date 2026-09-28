@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>XGRC® ESG Performance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="dash-shell.css?v=7">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="banner">DEMONSTRATION DASHBOARD &mdash; all figures, owners and exceptions on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <img src="/assets/logos/brand/xgrc-icon-white.png" alt="" aria-hidden="true" class="brand-icon">
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">ESG Performance</div>
+        <div class="crumb"><a href="dashboards.html">&larr; Dashboard Gallery</a></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <div class="sync-line"><span class="sync-dot"></span><span id="sync-label">synced just now</span></div>
+      <button class="btn" id="btn-export">Export board pack</button>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search KPIs, pillars, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>Pillar score trend · 12 months</h3>
+        <div class="health-badge"><div class="health-ring" id="health-ring"><span id="health-pct">&ndash;</span></div><span class="health-label">estate health</span></div>
+      </div>
+      
+      <div id="chart-signature"></div>
+      <div id="cell-detail" class="cell-detail"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card compact"><h3 style="text-align:left;margin-bottom:12px;">Assurance readiness</h3><div id="chart-secondary"></div></div>
+      <div class="card compact"><h3 style="text-align:left;">At a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section" id="extra-section"></div>
+
+  <div id="module-sections"></div>
+</main>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of environmental, social, governance and disclosure-readiness performance against target.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {"pdfTitle":"XGRC · ESG Performance","pdfFilename":"XGRC-ESG-Performance-Board-Pack-Demo.pdf","today":"2026-09-21T09:00:00","driftIds":[18],"systems":[{"name":"Environmental","color":"#30e2f4"},{"name":"Social","color":"#16d9a8"},{"name":"Governance","color":"#7e9eff"},{"name":"Disclosure & Assurance","color":"#b98bff"}],"execStats":[{"label":"Reporting sites","value":14,"tone":"cyan","sub":"across 3 regions"},{"label":"Framework disclosure coverage","value":74,"suffix":"%","sub":"GRI · SASB · ISSB"},{"label":"KPIs tracked","value":18,"sub":"5 Environmental · 5 Social · 4 Governance · 4 Disclosure"}],"kpis":[{"id":1,"name":"Scope 1+2 Emissions vs Target","system":"Environmental","module":"Environmental","desc":"Actual Scope 1+2 emissions as a % of the annual reduction target.","calc":"Actual Scope 1+2 emissions ÷ target emissions for the period.","valueLabel":"92%","target":"100% of target","rag":"green","delta":"+3 pts","tone":"good","owner":"Sustainability Lead","cadence":"Monthly","frameworks":[]},{"id":2,"name":"Scope 3 Emissions Coverage","system":"Environmental","module":"Environmental","desc":"% of Scope 3 emission categories with measured (not estimated) data.","calc":"Scope 3 categories with measured data ÷ total applicable Scope 3 categories.","valueLabel":"61%","target":"100%","rag":"amber","delta":"+8 pts","tone":"good","owner":"Sustainability Lead","cadence":"Quarterly","frameworks":[]},{"id":3,"name":"Energy Intensity Reduction (YoY)","system":"Environmental","module":"Environmental","desc":"Year-on-year reduction in energy consumed per unit of output.","calc":"(Prior year energy intensity − current year energy intensity) ÷ prior year energy intensity.","valueLabel":"7%","target":"≥ 5%","rag":"green","delta":"+1 pt","tone":"good","owner":"Sustainability Lead","cadence":"Quarterly","frameworks":[]},{"id":4,"name":"Water Usage vs Target","system":"Environmental","module":"Environmental","desc":"Actual water consumption as a % of the annual reduction target.","calc":"Actual water usage ÷ target water usage for the period.","valueLabel":"104%","target":"≤ 100%","rag":"amber","delta":"+4 pts","tone":"bad","owner":"Sustainability Lead","cadence":"Monthly","frameworks":[]},{"id":5,"name":"Waste Diverted From Landfill","system":"Environmental","module":"Environmental","desc":"% of total waste diverted from landfill via recycling or reuse.","calc":"Waste diverted ÷ total waste generated, period to date.","valueLabel":"78%","target":"≥ 80%","rag":"amber","delta":"+2 pts","tone":"good","owner":"Sustainability Lead","cadence":"Quarterly","frameworks":[]},{"id":6,"name":"Lost Time Injury Frequency Rate","system":"Social","module":"Social","desc":"Lost-time injuries per 200,000 hours worked.","calc":"Lost-time injuries × 200,000 ÷ total hours worked.","valueLabel":"0.9","target":"≤ 1.0","rag":"green","delta":"-0.2","tone":"good","owner":"HR Director","cadence":"Monthly","frameworks":[]},{"id":7,"name":"Gender Pay Gap","system":"Social","module":"Social","desc":"Median pay gap between male and female employees in like-for-like roles.","calc":"(Median male pay − median female pay) ÷ median male pay, like-for-like roles.","valueLabel":"8%","target":"≤ 5%","rag":"red","delta":"+1 pt","tone":"bad","owner":"HR Director","cadence":"Quarterly","frameworks":[]},{"id":8,"name":"Training Hours per Employee","system":"Social","module":"Social","desc":"Average learning and development hours completed per employee.","calc":"Total training hours delivered ÷ headcount, period to date.","valueLabel":"24h","target":"≥ 20h","rag":"green","delta":"+3h","tone":"good","owner":"HR Director","cadence":"Quarterly","frameworks":[]},{"id":9,"name":"Community Investment vs Target","system":"Social","module":"Social","desc":"Actual community investment spend as a % of the annual target.","calc":"Actual community spend ÷ target community spend for the period.","valueLabel":"88%","target":"100%","rag":"amber","delta":"+6 pts","tone":"good","owner":"Sustainability Lead","cadence":"Quarterly","frameworks":[]},{"id":10,"name":"Supplier Diversity Spend","system":"Social","module":"Social","desc":"% of procurement spend directed to diverse-owned suppliers.","calc":"Spend with diverse-owned suppliers ÷ total procurement spend.","valueLabel":"14%","target":"≥ 15%","rag":"amber","delta":"+2 pts","tone":"good","owner":"Sustainability Lead","cadence":"Quarterly","frameworks":[]},{"id":11,"name":"Board Diversity","system":"Governance","module":"Governance","desc":"% of board seats held by underrepresented groups.","calc":"Board seats held by underrepresented groups ÷ total board seats.","valueLabel":"42%","target":"≥ 40%","rag":"green","delta":"+3 pts","tone":"good","owner":"Company Secretary","cadence":"Quarterly","frameworks":[]},{"id":12,"name":"Ethics Training Completion","system":"Governance","module":"Governance","desc":"% of employees who completed mandatory ethics and anti-corruption training.","calc":"Employees who completed the training ÷ total employees required to.","valueLabel":"96%","target":"100%","rag":"green","delta":"+1 pt","tone":"good","owner":"HR Director","cadence":"Monthly","frameworks":[]},{"id":13,"name":"Whistleblower Cases Closed on Time","system":"Governance","module":"Governance","desc":"% of whistleblower cases resolved within the policy SLA.","calc":"Cases closed within SLA ÷ total whistleblower cases raised in the period.","valueLabel":"83%","target":"100%","rag":"amber","delta":"-4 pts","tone":"bad","owner":"Company Secretary","cadence":"Monthly","frameworks":[]},{"id":14,"name":"Executive Pay Ratio Disclosure Currency","system":"Governance","module":"Governance","desc":"Whether the executive-to-median pay ratio disclosure is within its review cycle.","calc":"Today’s date compared against the disclosure’s scheduled publication date.","valueLabel":"Current","target":"Current","rag":"green","delta":"flat","tone":"good","owner":"Company Secretary","cadence":"Quarterly","frameworks":[]},{"id":15,"name":"Framework Disclosure Coverage","system":"Disclosure & Assurance","module":"Disclosure & Assurance","desc":"% of GRI/SASB/ISSB disclosure requirements with data currently mapped.","calc":"Disclosure requirements with mapped data ÷ total applicable requirements across frameworks.","valueLabel":"74%","target":"100%","rag":"amber","delta":"+9 pts","tone":"good","owner":"Sustainability Lead","cadence":"Quarterly","frameworks":[]},{"id":16,"name":"Assurance-Ready Data Points","system":"Disclosure & Assurance","module":"Disclosure & Assurance","desc":"% of disclosed ESG data points with an evidence trail sufficient for external assurance.","calc":"Data points with a complete evidence trail ÷ total disclosed data points.","valueLabel":"68%","target":"100%","rag":"amber","delta":"+5 pts","tone":"good","owner":"Sustainability Lead","cadence":"Quarterly","frameworks":[]},{"id":17,"name":"ESG Data Points Missing Evidence","system":"Disclosure & Assurance","module":"Disclosure & Assurance","desc":"Count of disclosed data points with no supporting evidence attached.","calc":"Count of disclosed ESG data points where the evidence field is blank.","valueLabel":"22","target":"0","rag":"red","delta":"+4","tone":"bad","owner":"Sustainability Lead","cadence":"Monthly","frameworks":[]},{"id":18,"name":"Rating Agency Score Trend","system":"Disclosure & Assurance","module":"Disclosure & Assurance","desc":"Latest composite ESG rating from an external rating agency (informational).","calc":"Most recent externally published composite ESG score, out of 100.","valueLabel":"71/100","target":"Monitor","rag":"green","delta":"+3 pts","tone":"neutral","owner":"COO","cadence":"Quarterly","frameworks":[]}],"exceptions":[{"kpiId":7,"ageDays":20,"status":"Open"},{"kpiId":17,"ageDays":6,"status":"Open"},{"kpiId":4,"ageDays":9,"status":"Open"},{"kpiId":13,"ageDays":5,"status":"Open"},{"kpiId":10,"ageDays":14,"status":"Open"},{"kpiId":5,"ageDays":11,"status":"Acknowledged"}]};
+CONFIG.afterInit = function(ctx){
+  var KPIS = ctx.KPIS, EXC = ctx.EXC, ragHex = ctx.ragHex, computeAgg = ctx.computeAgg, applyFilter = ctx.applyFilter;
+  
+      new ApexCharts(document.getElementById('chart-signature'), {
+        chart:{ type:'line', height:270, background:'transparent', toolbar:{show:false}, zoom:{enabled:false} },
+        series:[
+          {name:'Environmental', data:[58,60,61,63,64,66,68,69,71,73,75,77]},
+          {name:'Social', data:[70,71,70,72,73,74,75,74,76,77,78,79]},
+          {name:'Governance', data:[80,81,82,81,83,84,85,86,87,88,89,90]},
+          {name:'Environmental target', data:[90,90,90,90,90,90,90,90,90,90,90,90]},
+          {name:'Social target', data:[85,85,85,85,85,85,85,85,85,85,85,85]},
+          {name:'Governance target', data:[95,95,95,95,95,95,95,95,95,95,95,95]},
+        ],
+        xaxis:{ categories:['Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'], labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+        yaxis:{ min:40, max:100, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+        colors:['#2fe88a','#30e2f4','#b98bff','#2fe88a','#30e2f4','#b98bff'],
+        stroke:{ curve:'smooth', width:[2.5,2.5,2.5,1.5,1.5,1.5], dashArray:[0,0,0,5,5,5] },
+        grid:{ borderColor:'rgba(120,170,200,0.14)' },
+        legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'9.5px', markers:{radius:3} },
+        tooltip:{ theme:'dark' },
+        markers:{ size:0 },
+      }).render();
+    
+  
+      new ApexCharts(document.getElementById('chart-secondary'), {
+        chart:{ type:'radialBar', height:230, background:'transparent', toolbar:{show:false} },
+        series:[74,68,61],
+        labels:['Framework coverage','Assurance-ready data','Scope 3 coverage'],
+        colors:['#30e2f4','#b98bff','#ffb648'],
+        plotOptions:{ radialBar:{ hollow:{size:'32%'}, track:{background:'rgba(255,255,255,0.06)'},
+          dataLabels:{ name:{fontSize:'10px', fontFamily:'JetBrains Mono'}, value:{fontSize:'13px', fontFamily:'Outfit', fontWeight:700, formatter:function(v){return v+'%';}}, total:{ show:true, label:'Avg ready', color:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px', formatter:function(){return '68%';} } } } },
+        legend:{ show:true, position:'bottom', fontFamily:'JetBrains Mono', fontSize:'9.5px', labels:{colors:'#8499aa'}, markers:{radius:3} },
+        stroke:{ lineCap:'round' },
+        tooltip:{ theme:'dark' },
+      }).render();
+    
+  
+      var topics = [
+        {name:'Climate change & emissions', pillar:'E', biz:82, stake:90},
+        {name:'Data privacy & security', pillar:'G', biz:78, stake:85},
+        {name:'Employee wellbeing & safety', pillar:'S', biz:70, stake:88},
+        {name:'Supply chain labour practices', pillar:'S', biz:65, stake:72},
+        {name:'Board diversity & governance', pillar:'G', biz:55, stake:68},
+        {name:'Water stewardship', pillar:'E', biz:48, stake:55},
+        {name:'Waste & circularity', pillar:'E', biz:52, stake:60},
+        {name:'Community impact', pillar:'S', biz:40, stake:58},
+        {name:'Business ethics & anti-corruption', pillar:'G', biz:74, stake:80},
+        {name:'Product safety & quality', pillar:'S', biz:68, stake:75},
+      ];
+      var pillarColor = {E:'#2fe88a',S:'#30e2f4',G:'#b98bff'};
+      var series = ['E','S','G'].map(function(p){
+        return { name: p==='E'?'Environmental':p==='S'?'Social':'Governance',
+          data: topics.filter(function(t){return t.pillar===p;}).map(function(t){ return {x:t.biz,y:t.stake,name:t.name}; }) };
+      });
+      document.getElementById('extra-section').innerHTML = '<div class="card"><h3 style="text-align:left;margin-bottom:4px;">Materiality matrix</h3><div class="hint" style="margin-bottom:10px;">Topics ranked by business impact vs stakeholder importance</div><div id="chart-materiality"></div></div>';
+      new ApexCharts(document.getElementById('chart-materiality'), {
+        chart:{ type:'scatter', height:320, background:'transparent', toolbar:{show:false} },
+        series: series,
+        colors:['E','S','G'].map(function(p){ return pillarColor[p]; }),
+        xaxis:{ title:{text:'Business impact', style:{color:'#8499aa', fontSize:'10px', fontFamily:'JetBrains Mono'}}, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, min:0, max:100 },
+        yaxis:{ title:{text:'Stakeholder importance', style:{color:'#8499aa', fontSize:'10px', fontFamily:'JetBrains Mono'}}, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, min:0, max:100 },
+        legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'10.5px', markers:{radius:8} },
+        markers:{ size:7 },
+        grid:{ borderColor:'rgba(120,170,200,0.14)' },
+        tooltip:{ theme:'dark', custom:function(o){
+          var pt = o.w.config.series[o.seriesIndex].data[o.dataPointIndex];
+          return '<div style="padding:8px 10px;font-family:Inter;font-size:11.5px;background:#0a1729;color:#eaf3f7;">'+pt.name+'</div>';
+        }},
+      }).render();
+    
+};
+</script>
+<script src="dash-shell.js?v=7"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>

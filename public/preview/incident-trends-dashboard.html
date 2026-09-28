@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>XGRC® Incident & Near-Miss Trends</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="dash-shell.css?v=7">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="banner">DEMONSTRATION DASHBOARD &mdash; all figures, owners and exceptions on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <img src="/assets/logos/brand/xgrc-icon-white.png" alt="" aria-hidden="true" class="brand-icon">
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">Incident & Near-Miss Trends</div>
+        <div class="crumb"><a href="dashboards.html">&larr; Dashboard Gallery</a></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <div class="sync-line"><span class="sync-dot"></span><span id="sync-label">synced just now</span></div>
+      <button class="btn" id="btn-export">Export board pack</button>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search KPIs, pillars, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>Incidents by severity · 6 months</h3>
+        <div class="health-badge"><div class="health-ring" id="health-ring"><span id="health-pct">&ndash;</span></div><span class="health-label">estate health</span></div>
+      </div>
+      
+      <div id="chart-signature"></div>
+      <div id="cell-detail" class="cell-detail"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card compact"><h3 style="text-align:left;margin-bottom:12px;">Is the loop closing?</h3><div id="chart-secondary"></div></div>
+      <div class="card compact"><h3 style="text-align:left;">At a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section" id="extra-section"></div>
+
+  <div id="module-sections"></div>
+</main>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of incident reporting, investigation, root-cause recurrence and corrective-action closure.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {"pdfTitle":"XGRC · Incident & Near-Miss Trends","pdfFilename":"XGRC-Incident-Trends-Board-Pack-Demo.pdf","today":"2026-09-21T09:00:00","driftIds":[4,1,2],"systems":[{"name":"Reporting & Logging","color":"#30e2f4"},{"name":"Investigation","color":"#16d9a8"},{"name":"Root Cause & Recurrence","color":"#7e9eff"},{"name":"Corrective Action","color":"#b98bff"},{"name":"Severity & Trend","color":"#d9b54a"}],"execStats":[{"label":"Sites covered","value":9,"tone":"cyan","sub":"operational sites reporting"},{"label":"Near-miss to incident ratio","value":9,"suffix":":1","sub":"higher is a stronger leading indicator"},{"label":"KPIs tracked","value":19,"sub":"across 5 pillars"}],"kpis":[{"id":1,"name":"Total Incidents Logged (Period)","system":"Reporting & Logging","module":"Reporting & Logging","desc":"Total number of incidents logged across all sites this period.","calc":"Count of Incident records logged in the current reporting period.","valueLabel":"38","target":"Monitor","rag":"green","delta":"-6","tone":"good","owner":"SHE Manager","cadence":"Weekly","frameworks":[]},{"id":2,"name":"Near-Miss to Incident Ratio","system":"Reporting & Logging","module":"Reporting & Logging","desc":"Ratio of near misses reported for every incident logged — a leading indicator.","calc":"Count of near misses ÷ count of incidents, period to date.","valueLabel":"9:1","target":"≥ 8:1","rag":"green","delta":"+1","tone":"good","owner":"SHE Manager","cadence":"Weekly","frameworks":[]},{"id":3,"name":"Reporting Timeliness (within 24h)","system":"Reporting & Logging","module":"Reporting & Logging","desc":"% of incidents formally logged within 24 hours of occurrence.","calc":"Incidents logged within 24h of occurrence ÷ total incidents logged.","valueLabel":"91%","target":"100%","rag":"amber","delta":"+3 pts","tone":"good","owner":"Site Manager","cadence":"Weekly","frameworks":[]},{"id":4,"name":"Anonymous/Whistleblower Reports","system":"Reporting & Logging","module":"Reporting & Logging","desc":"Count of incident reports submitted through the anonymous channel.","calc":"Count of Incident records with source = Anonymous, logged in the period.","valueLabel":"4","target":"Monitor","rag":"green","delta":"flat","tone":"neutral","owner":"SHE Manager","cadence":"Monthly","frameworks":[]},{"id":5,"name":"Near-Miss Reports Closed with Action","system":"Reporting & Logging","module":"Reporting & Logging","desc":"% of near-miss reports that resulted in a logged corrective action.","calc":"Near misses with a linked corrective action ÷ total near misses reported.","valueLabel":"82%","target":"100%","rag":"amber","delta":"+4 pts","tone":"good","owner":"SHE Manager","cadence":"Weekly","frameworks":[]},{"id":6,"name":"Investigations Completed On Time","system":"Investigation","module":"Investigation","desc":"% of incident investigations completed within the policy SLA.","calc":"Investigations closed within SLA ÷ total investigations required.","valueLabel":"84%","target":"100%","rag":"amber","delta":"-5 pts","tone":"bad","owner":"Investigation Lead","cadence":"Weekly","frameworks":[]},{"id":7,"name":"Average Time to Close Investigation","system":"Investigation","module":"Investigation","desc":"Average number of days from incident log to investigation closure.","calc":"Sum of (closure date − log date) ÷ count of closed investigations.","valueLabel":"12.4d","target":"≤ 10d","rag":"amber","delta":"+1.2d","tone":"bad","owner":"Investigation Lead","cadence":"Weekly","frameworks":[]},{"id":8,"name":"Investigations Overdue","system":"Investigation","module":"Investigation","desc":"Count of investigations still open past their required completion date.","calc":"Count of Investigation records with status = Open and due date < today.","valueLabel":"6","target":"0","rag":"red","delta":"+2","tone":"bad","owner":"Investigation Lead","cadence":"Weekly","frameworks":[]},{"id":9,"name":"Root Cause Identified Rate","system":"Root Cause & Recurrence","module":"Root Cause & Recurrence","desc":"% of closed investigations with a documented root cause.","calc":"Closed investigations with a root cause recorded ÷ total closed investigations.","valueLabel":"96%","target":"100%","rag":"green","delta":"+2 pts","tone":"good","owner":"Investigation Lead","cadence":"Weekly","frameworks":[]},{"id":10,"name":"Repeat Incidents (Same Root Cause)","system":"Root Cause & Recurrence","module":"Root Cause & Recurrence","desc":"Count of incidents sharing a root cause with a previously closed incident.","calc":"Count of Incident records flagged as a repeat of a prior root cause.","valueLabel":"5","target":"0","rag":"red","delta":"+2","tone":"bad","owner":"SHE Manager","cadence":"Monthly","frameworks":[]},{"id":11,"name":"High-Severity Incidents","system":"Root Cause & Recurrence","module":"Root Cause & Recurrence","desc":"Count of incidents classified as high severity this period.","calc":"Count of Incident records with severity = High, logged in the period.","valueLabel":"3","target":"0","rag":"amber","delta":"+1","tone":"bad","owner":"SHE Manager","cadence":"Weekly","frameworks":[]},{"id":12,"name":"Corrective Actions Closed On Time","system":"Corrective Action","module":"Corrective Action","desc":"% of corrective actions closed by their due date.","calc":"Corrective actions closed by due date ÷ total corrective actions due.","valueLabel":"79%","target":"100%","rag":"amber","delta":"-6 pts","tone":"bad","owner":"Site Manager","cadence":"Weekly","frameworks":[]},{"id":13,"name":"Overdue Corrective Actions","system":"Corrective Action","module":"Corrective Action","desc":"Count of corrective actions still open past their due date.","calc":"Count of Corrective Action records with due date < today and status ≠ Complete.","valueLabel":"14","target":"0","rag":"red","delta":"+5","tone":"bad","owner":"Site Manager","cadence":"Weekly","frameworks":[]},{"id":14,"name":"Corrective Action Effectiveness Verified","system":"Corrective Action","module":"Corrective Action","desc":"% of closed corrective actions with a documented effectiveness check.","calc":"Closed actions with an effectiveness check on file ÷ total closed actions.","valueLabel":"88%","target":"100%","rag":"green","delta":"+3 pts","tone":"good","owner":"Investigation Lead","cadence":"Monthly","frameworks":[]},{"id":15,"name":"Lost Time Injury Frequency Rate","system":"Severity & Trend","module":"Severity & Trend","desc":"Lost-time injuries per 200,000 hours worked.","calc":"Lost-time injuries × 200,000 ÷ total hours worked.","valueLabel":"0.9","target":"≤ 1.0","rag":"green","delta":"-0.2","tone":"good","owner":"SHE Manager","cadence":"Monthly","frameworks":[]},{"id":16,"name":"Total Recordable Incident Rate","system":"Severity & Trend","module":"Severity & Trend","desc":"Recordable incidents per 200,000 hours worked.","calc":"Recordable incidents × 200,000 ÷ total hours worked.","valueLabel":"2.1","target":"≤ 2.5","rag":"green","delta":"-0.3","tone":"good","owner":"SHE Manager","cadence":"Monthly","frameworks":[]},{"id":17,"name":"Incident Cost vs Budget","system":"Severity & Trend","module":"Severity & Trend","desc":"Direct and indirect incident cost as a % of the annual budget provision.","calc":"Actual incident cost (direct + indirect) ÷ budgeted incident cost provision.","valueLabel":"118%","target":"≤ 100%","rag":"amber","delta":"+9 pts","tone":"bad","owner":"COO","cadence":"Monthly","frameworks":[]},{"id":18,"name":"Days Since Last Lost-Time Incident","system":"Severity & Trend","module":"Severity & Trend","desc":"Running count of days since the last lost-time injury — higher is better.","calc":"Today − date of the most recent lost-time injury.","valueLabel":"46","target":"Monitor","rag":"green","delta":"+46","tone":"good","owner":"SHE Manager","cadence":"Daily","frameworks":[]},{"id":19,"name":"Contractor Incident Rate","system":"Severity & Trend","module":"Severity & Trend","desc":"Recordable incidents among contractors per 200,000 hours worked.","calc":"Contractor recordable incidents × 200,000 ÷ contractor hours worked.","valueLabel":"1.4","target":"≤ 1.5","rag":"green","delta":"-0.1","tone":"good","owner":"Site Manager","cadence":"Monthly","frameworks":[]}],"exceptions":[{"kpiId":8,"ageDays":9,"status":"Open"},{"kpiId":10,"ageDays":18,"status":"Open"},{"kpiId":13,"ageDays":6,"status":"Open"},{"kpiId":6,"ageDays":4,"status":"Open"},{"kpiId":12,"ageDays":8,"status":"Acknowledged"},{"kpiId":17,"ageDays":11,"status":"Open"},{"kpiId":7,"ageDays":5,"status":"Open"}]};
+CONFIG.afterInit = function(ctx){
+  var KPIS = ctx.KPIS, EXC = ctx.EXC, ragHex = ctx.ragHex, computeAgg = ctx.computeAgg, applyFilter = ctx.applyFilter;
+  
+      new ApexCharts(document.getElementById('chart-signature'), {
+        chart:{ type:'area', height:270, stacked:true, background:'transparent', toolbar:{show:false} },
+        series:[
+          {name:'Low', data:[22,25,21,19,20,18]},
+          {name:'Medium', data:[10,9,11,8,7,7]},
+          {name:'High', data:[4,3,5,2,3,3]},
+        ],
+        xaxis:{ categories:['Apr','May','Jun','Jul','Aug','Sep'], labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+        yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+        colors:['#2fe88a','#ffb648','#ff5470'],
+        stroke:{ curve:'smooth', width:2 },
+        fill:{ type:'gradient', gradient:{ opacityFrom:0.55, opacityTo:0.15 } },
+        legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'10.5px', markers:{radius:3} },
+        grid:{ borderColor:'rgba(120,170,200,0.14)' },
+        tooltip:{ theme:'dark' },
+      }).render();
+    
+  
+      new ApexCharts(document.getElementById('chart-secondary'), {
+        chart:{ type:'bar', height:230, background:'transparent', toolbar:{show:false} },
+        series:[{ name:'% of incidents', data:[100,84,96,79] }],
+        xaxis:{ categories:['Reported','Investigated on time','Root cause found','Corrective action closed'], labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}, formatter:function(v){return v+'%';}}, max:100, axisBorder:{show:false}, axisTicks:{show:false} },
+        yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px', fontWeight:600}} },
+        plotOptions:{ bar:{ horizontal:true, barHeight:'55%', borderRadius:4, distributed:true } },
+        legend:{ show:false },
+        grid:{ borderColor:'rgba(120,170,200,0.14)' },
+        dataLabels:{ enabled:true, formatter:function(v){return v+'%';}, style:{fontSize:'10px', colors:['#eaf3f7']} },
+        colors:['#2fe88a','#ffb648','#2fe88a','#ff5470'],
+        tooltip:{ theme:'dark' },
+      }).render();
+    
+  
+      document.getElementById('extra-section').innerHTML = '<div class="extra-grid">'
+        + '<div class="card"><h3 style="text-align:left;margin-bottom:4px;">Root cause breakdown</h3><div class="hint" style="margin-bottom:10px;">Where to focus RCA effort — 80% of incidents trace to the first 3 causes</div><div id="chart-pareto"></div></div>'
+        + '<div class="card"><h3 style="text-align:left;margin-bottom:4px;">Incidents by site · 6 months</h3><div class="hint" style="margin-bottom:10px;">Spot which site, and which month, needs attention</div><div id="chart-sitemonth"></div></div>'
+        + '</div>';
+      var causes = ['Procedure not followed','Inadequate training','Equipment failure','Communication breakdown','Environmental conditions','PPE non-compliance'];
+      var causeCounts = [34,21,15,9,6,4];
+      var total = causeCounts.reduce(function(a,b){return a+b;},0);
+      var running = 0;
+      var cumPct = causeCounts.map(function(c){ running += c; return Math.round(running/total*100); });
+      new ApexCharts(document.getElementById('chart-pareto'), {
+        chart:{ height:300, background:'transparent', toolbar:{show:false} },
+        series:[ {name:'Incidents', type:'column', data:causeCounts}, {name:'Cumulative %', type:'line', data:cumPct} ],
+        xaxis:{ categories:causes, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'8.5px'}, rotate:-20, trim:true, maxHeight:70}, axisBorder:{show:false}, axisTicks:{show:false} },
+        yaxis:[
+          { title:{text:'Incidents', style:{color:'#8499aa', fontSize:'9.5px', fontFamily:'JetBrains Mono'}}, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+          { opposite:true, max:100, title:{text:'Cumulative %', style:{color:'#8499aa', fontSize:'9.5px', fontFamily:'JetBrains Mono'}}, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}, formatter:function(v){return v+'%';}} },
+        ],
+        colors:['#30e2f4','#ffb648'],
+        stroke:{ width:[0,2.5], curve:'straight' },
+        markers:{ size:4, colors:['#ffb648'], strokeColors:'#0a1729' },
+        plotOptions:{ bar:{ borderRadius:4, columnWidth:'55%' } },
+        legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'9.5px', markers:{radius:3} },
+        grid:{ borderColor:'rgba(120,170,200,0.14)' },
+        tooltip:{ theme:'dark' },
+      }).render();
+      var sites = ['Durban Plant','Cape Town DC','Joburg HQ','Richards Bay Terminal','Port Elizabeth Yard','Bloemfontein Depot','Polokwane Site','Nelspruit Site','East London Plant'];
+      var months = ['Apr','May','Jun','Jul','Aug','Sep'];
+      var grid = [
+        [3,4,3,2,3,2],[2,2,3,2,1,2],[4,5,4,3,4,3],[2,3,6,4,3,2],[3,3,2,2,2,1],
+        [1,2,1,1,1,1],[2,2,3,2,2,2],[1,1,2,1,1,1],[2,1,2,1,1,1],
+      ];
+      var siteSeries = sites.map(function(s, si){ return { name:s, data: months.map(function(m, mi){ return {x:m, y:grid[si][mi]}; }) }; });
+      new ApexCharts(document.getElementById('chart-sitemonth'), {
+        chart:{ type:'heatmap', height:300, background:'transparent', toolbar:{show:false} },
+        series: siteSeries,
+        dataLabels:{ enabled:true, style:{fontSize:'9px', colors:['#0a1729']} },
+        plotOptions:{ heatmap:{ radius:3, colorScale:{ ranges:[
+          {from:0, to:1, name:'Quiet', color:'#2fe88a'},
+          {from:2, to:3, name:'Normal', color:'#ffb648'},
+          {from:4, to:6, name:'Elevated', color:'#ff5470'},
+        ]}}},
+        xaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+        yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'8.5px'}} },
+        legend:{ show:false },
+        tooltip:{ theme:'dark' },
+      }).render();
+    
+};
+</script>
+<script src="dash-shell.js?v=7"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>

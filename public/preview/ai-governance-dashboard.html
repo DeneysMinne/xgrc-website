@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>XGRC® AI Governance KPI Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="dash-shell.css?v=8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="banner">DEMONSTRATION DASHBOARD &mdash; all systems, KPI values, owners and exceptions on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <img src="/assets/logos/brand/xgrc-icon-white.png" alt="" aria-hidden="true" class="brand-icon">
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">AI Governance KPI Dashboard</div>
+        <div class="crumb"><a href="dashboards.html">&larr; Dashboard Gallery</a></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <div class="sync-line"><span class="sync-dot"></span><span id="sync-label">synced just now</span></div>
+      <button class="btn" id="btn-export">Export board pack</button>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search KPIs, modules, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>RAG composition by system</h3>
+        <div class="health-badge"><div class="health-ring" id="health-ring"><span id="health-pct">&ndash;</span></div><span class="health-label">estate health</span></div>
+      </div>
+      <div class="hint" style="margin:-6px 0 10px;">Click a bar to filter the module list below to that system</div>
+      <div id="chart-signature"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card compact"><h3 style="text-align:left;margin-bottom:12px;">Cross-system reconciliation</h3><div class="callout-list" id="reconciliation-list"></div></div>
+      <div class="card compact"><h3 style="text-align:left;">Estate at a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section">
+    <div class="card">
+      <div class="section-title" style="margin-bottom:14px;">
+        <h2>AI Systems</h2>
+        <span class="n">Click a system to view its full cross-system profile</span>
+      </div>
+      <table class="systems-table" id="systems-table"></table>
+    </div>
+  </div>
+
+  <div id="module-sections"></div>
+</main>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Modelled on XGRC's real AI Governance, XLOGIC&reg;, Asgard and MAIA&reg; products. Hakware (penetration testing &amp; vulnerability management) is a real XGRC-connected product but is scoped to ISO 27001, not AI governance, so it is intentionally excluded here.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {
+  pdfTitle: 'XGRC · AI Governance KPI Dashboard',
+  pdfFilename: 'XGRC-AI-Governance-Board-Pack-Demo.pdf',
+  today: '2026-09-21T09:00:00',
+  driftIds: [34,35,18,29,58],
+  systems: [
+    { name:'AI Governance', color:'#30e2f4' },
+    { name:'XLOGIC', color:'#7e9eff' },
+    { name:'Asgard', color:'#16d9a8' },
+    { name:'MAIA', color:'#b98bff' },
+  ],
+  execStats: [
+    { label:'AI systems monitored', value:128, tone:'cyan', sub:'across 4 correlated XGRC products' },
+    { label:'Compliance position', value:91, suffix:'%', sub:'weighted across active frameworks' },
+    { label:'KPIs tracked', value:59, sub:'29 AI Governance · 12 Asgard · 10 XLOGIC · 8 MAIA' },
+  ],
+  kpis: [
+{id:1,name:'Classification Coverage',system:'AI Governance',module:'01 · EU AI Act Classification',desc:'% of in-scope AI systems with an approved, locked classification.',calc:'Locked classifications ÷ total in-scope AI systems, expressed as a percentage.',valueLabel:'96%',target:'100%',rag:'green',delta:'+2 pts',tone:'good',owner:'CRO',cadence:'Weekly',frameworks:['EU AI Act']},
+{id:2,name:'Banned-Use Flags Open',system:'AI Governance',module:'01 · EU AI Act Classification',desc:'Count of systems currently stopped at the banned-use check, unresolved.',calc:'Count of systems with an open banned-use flag and no override decision recorded.',valueLabel:'2',target:'0 events',rag:'red',delta:'+2 vs last period',tone:'bad',owner:'CRO',cadence:'Real-time',frameworks:['EU AI Act']},
+{id:3,name:'Provider-Role Risk',system:'AI Governance',module:'01 · EU AI Act Classification',desc:'Count of systems where role assessment indicates deployer has taken on manufacturer obligations.',calc:'Count of systems flagged by the role-assessment logic as deployer-as-manufacturer.',valueLabel:'1',target:'0 systems',rag:'amber',delta:'flat',tone:'neutral',owner:'CRO',cadence:'Weekly',frameworks:['EU AI Act']},
+{id:4,name:'Compliance Position',system:'AI Governance',module:'02 · Compliance & Applicability',desc:'% of applicable requirements met, by framework.',calc:'Requirements met ÷ applicable requirements, per framework, then rolled up.',valueLabel:'91%',target:'100%',rag:'green',delta:'+1 pt',tone:'good',owner:'CRO',cadence:'Weekly',frameworks:[]},
+{id:5,name:'Unexplained Exclusions',system:'AI Governance',module:'02 · Compliance & Applicability',desc:'Count of requirements marked not-applicable with no reason recorded.',calc:'Count of requirements where applicability = No and the exclusion-reason field is blank.',valueLabel:'7',target:'0',rag:'amber',delta:'+3',tone:'bad',owner:'CRO',cadence:'Weekly',frameworks:[]},
+{id:6,name:'Statement of Applicability Currency',system:'AI Governance',module:'02 · Compliance & Applicability',desc:'Whether the SoA is current against its review date.',calc:'Today’s date compared against the SoA’s scheduled review date.',valueLabel:'Current',target:'Current',rag:'green',delta:'flat',tone:'good',owner:'CRO',cadence:'Monthly',frameworks:['ISO 27001']},
+{id:7,name:'Impact Assessment Coverage',system:'AI Governance',module:'03 · Impact Assessment',desc:'% of in-scope systems/life-cycle stages with a current, approved assessment.',calc:'Systems with a current approved assessment ÷ in-scope systems and life-cycle stages.',valueLabel:'88%',target:'100%',rag:'amber',delta:'-2 pts',tone:'bad',owner:'DPO',cadence:'Weekly',frameworks:['EU AI Act']},
+{id:8,name:'Vulnerable-Population Assessments Overdue',system:'AI Governance',module:'03 · Impact Assessment',desc:'Count of systems affecting vulnerable groups whose assessment review is overdue.',calc:'Count of systems tagged vulnerable-population where review date < today and no new assessment logged.',valueLabel:'3',target:'0',rag:'red',delta:'+1',tone:'bad',owner:'DPO',cadence:'Weekly',frameworks:['EU AI Act']},
+{id:9,name:'Residual Risk Requiring Treatment',system:'AI Governance',module:'03 · Impact Assessment',desc:'% of assessments where post-safeguard risk was rated unacceptable.',calc:'Assessments with post-safeguard rating = Unacceptable ÷ total completed assessments.',valueLabel:'6%',target:'≤ 10%',rag:'green',delta:'-1 pt',tone:'good',owner:'DPO',cadence:'Monthly',frameworks:[]},
+{id:10,name:'Control Effectiveness (working)',system:'AI Governance',module:'04 · Controls & Evidence',desc:'Split of controls by designed / in place / working status — % rated working shown here.',calc:'Controls rated Working ÷ total controls in scope.',valueLabel:'84%',target:'100%',rag:'green',delta:'+3 pts',tone:'good',owner:'CRO',cadence:'Weekly',frameworks:['ISO 27001'],detail:'Full split: 84% Working · 11% In place, not yet tested · 5% Designed only.'},
+{id:11,name:'Evidence Currency',system:'AI Governance',module:'04 · Controls & Evidence',desc:'% of attached evidence still within its validity period.',calc:'Evidence records with validity end date ≥ today ÷ total attached evidence.',valueLabel:'93%',target:'100%',rag:'green',delta:'flat',tone:'neutral',owner:'CRO',cadence:'Weekly',frameworks:[]},
+{id:12,name:'Cross-Framework Exposure',system:'AI Governance',module:'04 · Controls & Evidence',desc:'Count of requirements, across all frameworks, currently exposed by a failing/weak/untested control.',calc:'Distinct requirements mapped to a control rated Failing, Weak or Untested (counted once per control, framework attributed).',valueLabel:'4',target:'0',rag:'amber',delta:'-2',tone:'good',owner:'CRO',cadence:'Weekly',frameworks:[]},
+{id:13,name:'Oversight Coverage',system:'AI Governance',module:'05 · Human Oversight',desc:'% of high-risk systems with a defined, tested oversight arrangement.',calc:'High-risk systems with an approved, tested oversight arrangement ÷ all high-risk systems.',valueLabel:'97%',target:'100%',rag:'green',delta:'+1 pt',tone:'good',owner:'COO',cadence:'Weekly',frameworks:['EU AI Act']},
+{id:14,name:'Override/Intervention Rate',system:'AI Governance',module:'05 · Human Oversight',desc:'Count and % of oversight events that were overrides or interventions.',calc:'Oversight events logged as Override or Intervention ÷ total oversight events.',valueLabel:'3.2%',target:'Monitor',rag:'green',delta:'flat',tone:'neutral',owner:'COO',cadence:'Weekly',frameworks:[]},
+{id:15,name:'Systems With No Oversight Events',system:'AI Governance',module:'05 · Human Oversight',desc:'Count of high-risk systems with zero recorded oversight activity in the period.',calc:'Count of high-risk systems with zero oversight events logged in the current review period.',valueLabel:'5',target:'0',rag:'amber',delta:'+2',tone:'bad',owner:'COO',cadence:'Weekly',frameworks:[]},
+{id:16,name:'Risk Treatment Closure',system:'AI Governance',module:'06 · AI Risk Management',desc:'% of approved AI risk treatments closed on schedule.',calc:'Treatments closed by their due date ÷ total approved treatments due.',valueLabel:'89%',target:'100%',rag:'green',delta:'+4 pts',tone:'good',owner:'CRO',cadence:'Monthly',frameworks:['ISO 42001']},
+{id:17,name:'Residual Risk Within Tolerance',system:'AI Governance',module:'06 · AI Risk Management',desc:'% of scored risks, post-control, within stated tolerance.',calc:'Risks with post-control score ≤ tolerance threshold ÷ total scored risks.',valueLabel:'94%',target:'100%',rag:'green',delta:'+1 pt',tone:'good',owner:'CRO',cadence:'Monthly',frameworks:[]},
+{id:18,name:'Auto-Raised Risk Volume',system:'AI Governance',module:'06 · AI Risk Management',desc:'Count of risks auto-raised from impact assessments, incidents, monitoring or changes.',calc:'Count of Risk records with source = Auto-raised, created in the period.',valueLabel:'14',target:'Monitor',rag:'green',delta:'+3',tone:'neutral',owner:'CRO',cadence:'Weekly',frameworks:[]},
+{id:19,name:'Regulatory Notification Timeliness',system:'AI Governance',module:'07 · Incident Governance',desc:'% of notifiable incidents where the notification deadline was met.',calc:'Notifiable incidents notified within the regulatory deadline ÷ total notifiable incidents.',valueLabel:'82%',target:'100%',rag:'red',delta:'-6 pts',tone:'bad',owner:'Legal & DPO',cadence:'Real-time',frameworks:['EU AI Act']},
+{id:20,name:'Incident-Driven Reassessment Completion',system:'AI Governance',module:'07 · Incident Governance',desc:'% of incidents where required risk/impact/compliance reassessment completed before closure.',calc:'Incidents with reassessment completed before closure ÷ incidents requiring reassessment.',valueLabel:'90%',target:'100%',rag:'amber',delta:'-3 pts',tone:'bad',owner:'Legal & DPO',cadence:'Weekly',frameworks:[]},
+{id:21,name:'Mean Time to Closure',system:'AI Governance',module:'07 · Incident Governance',desc:'Average time from log to closure, post-reassessment.',calc:'Sum of (closure date − log date) across closed incidents ÷ count of closed incidents.',valueLabel:'6.4d',target:'≤ 10 days',rag:'green',delta:'-0.8d',tone:'good',owner:'Legal & DPO',cadence:'Weekly',frameworks:[]},
+{id:22,name:'Open Change Reviews (age)',system:'AI Governance',module:'08 · Change Governance',desc:'Count and age of changes still open pending required reviews.',calc:'Count of Change records with status = Open and a required review not yet completed.',valueLabel:'9',target:'0 aged > 14d',rag:'green',delta:'-2',tone:'good',owner:'COO',cadence:'Weekly',frameworks:[]},
+{id:23,name:'Significant Change Approval Compliance',system:'AI Governance',module:'08 · Change Governance',desc:'% of changes requiring approval that received it before proceeding.',calc:'Changes with approval recorded before implementation date ÷ changes requiring approval.',valueLabel:'97%',target:'100%',rag:'green',delta:'+2 pts',tone:'good',owner:'COO',cadence:'Weekly',frameworks:[]},
+{id:24,name:'Stale Assessment Risk',system:'AI Governance',module:'08 · Change Governance',desc:'Count of systems whose latest assessment predates a since-approved change.',calc:'Count of systems where the latest impact/risk assessment date < the date of a subsequently approved change.',valueLabel:'3',target:'0',rag:'amber',delta:'+1',tone:'bad',owner:'COO',cadence:'Weekly',frameworks:[]},
+{id:25,name:'Internal Audit Programme Adherence',system:'AI Governance',module:'09 · AI Management System',desc:'% of the internal audit programme completed to schedule.',calc:'Audits completed by their scheduled date ÷ total audits scheduled in the programme.',valueLabel:'100%',target:'100%',rag:'green',delta:'flat',tone:'good',owner:'COO',cadence:'Monthly',frameworks:['ISO 42001']},
+{id:26,name:'Objective Progress',system:'AI Governance',module:'09 · AI Management System',desc:'% of AIMS objectives on track vs behind.',calc:'Objectives with status = On track ÷ total active AIMS objectives.',valueLabel:'78%',target:'100%',rag:'amber',delta:'-4 pts',tone:'bad',owner:'COO',cadence:'Monthly',frameworks:['ISO 42001']},
+{id:27,name:'Corrective Action Closure',system:'AI Governance',module:'09 · AI Management System',desc:'% of management-review and audit shortfalls closed out.',calc:'Corrective actions closed ÷ corrective actions raised from audits and management review.',valueLabel:'91%',target:'100%',rag:'green',delta:'+5 pts',tone:'good',owner:'COO',cadence:'Monthly',frameworks:[]},
+{id:28,name:'Estate Health Distribution',system:'AI Governance',module:'10 · Dashboard & System Profile',desc:'Count of systems by RAG status across the whole estate.',calc:'Count of AI systems grouped by their current overall RAG status.',valueLabel:'88%',target:'100% green',rag:'green',delta:'+1 pt',tone:'good',owner:'COO',cadence:'Daily',frameworks:[],detail:'128 systems in scope: 112 Green · 11 Amber · 5 Red.'},
+{id:29,name:'Overdue Items Surfaced',system:'AI Governance',module:'10 · Dashboard & System Profile',desc:'Count of anything overdue, breached or unassessed across the estate.',calc:'Count of all overdue, breached or unassessed items surfaced across every module.',valueLabel:'16',target:'0',rag:'amber',delta:'-3',tone:'good',owner:'COO',cadence:'Daily',frameworks:[]},
+{id:33,name:'Zero-Secret-Exposure Confirmation',system:'Asgard',module:'Agent Security · Guardrails',desc:'Confirms the “0 real secrets held by an agent” guarantee is holding.',calc:'Count of confirmed real-secret exposures to an agent, target 0.',valueLabel:'0',target:'0 exceptions',rag:'green',delta:'flat',tone:'good',owner:'Development Lead',cadence:'Real-time',frameworks:['ISO 27001']},
+{id:34,name:'DLP & Redaction Events',system:'Asgard',module:'Agent Security · Guardrails',desc:'Count of data-loss-prevention/redaction actions triggered.',calc:'Count of DLP/redaction guardrail triggers in the period.',valueLabel:'41',target:'Monitor',rag:'green',delta:'+6',tone:'good',owner:'Development Lead',cadence:'Daily',frameworks:[]},
+{id:35,name:'Injection Attempts Blocked',system:'Asgard',module:'Agent Security · Guardrails',desc:'Count of prompt/injection-scan blocks.',calc:'Count of inbound requests blocked by the prompt-injection scanner.',valueLabel:'128',target:'Monitor',rag:'green',delta:'+14',tone:'good',owner:'Development Lead',cadence:'Daily',frameworks:[]},
+{id:36,name:'Human-in-the-Loop Approval Rate',system:'Asgard',module:'Agent Security · Guardrails',desc:'% of human-in-the-loop checkpoints actioned within SLA.',calc:'HITL checkpoints actioned within SLA ÷ total HITL checkpoints raised.',valueLabel:'96%',target:'≥ 95%',rag:'green',delta:'+1 pt',tone:'good',owner:'Development Lead',cadence:'Daily',frameworks:[]},
+{id:37,name:'Auto-Quarantine Actions',system:'Asgard',module:'Agent Security · Guardrails',desc:'Count of agents/actions auto-quarantined.',calc:'Count of agents or actions moved to quarantine status by the guardrail engine.',valueLabel:'3',target:'Monitor',rag:'amber',delta:'+2',tone:'neutral',owner:'Development Lead',cadence:'Daily',frameworks:[]},
+{id:38,name:'Just-in-Time Grant Compliance',system:'Asgard',module:'Agent Security · Access',desc:'% of JIT grants issued and expired per policy, with no lingering standing access.',calc:'JIT grants that expired on schedule ÷ total JIT grants issued.',valueLabel:'99%',target:'100%',rag:'green',delta:'flat',tone:'good',owner:'Development Lead',cadence:'Daily',frameworks:['ISO 27001']},
+{id:39,name:'Action Quota Breaches',system:'Asgard',module:'Agent Security · Access',desc:'Count of agents exceeding their action quota.',calc:'Count of agents whose action count exceeded their configured quota in the period.',valueLabel:'2',target:'0',rag:'amber',delta:'+1',tone:'bad',owner:'Development Lead',cadence:'Daily',frameworks:[]},
+{id:40,name:'Shadow-Mode Findings',system:'Asgard',module:'Agent Security · Access',desc:'Count of issues surfaced while an agent ran in shadow/observation mode.',calc:'Count of findings logged for agents running in shadow/observation mode.',valueLabel:'5',target:'Monitor',rag:'green',delta:'-2',tone:'good',owner:'Development Lead',cadence:'Weekly',frameworks:[]},
+{id:41,name:'Trust-Tier Distribution',system:'Asgard',module:'Agent Security · Access',desc:'Count of agents by trust tier.',calc:'Count of active agents grouped by assigned trust tier.',valueLabel:'128',target:'Monitor',rag:'green',delta:'flat',tone:'neutral',owner:'Development Lead',cadence:'Weekly',frameworks:[],detail:'128 agents: Tier 1 (full trust) 62 · Tier 2 (scoped) 41 · Tier 3 (shadow/observed) 25.'},
+{id:42,name:'Attack-Simulator Pass Rate',system:'Asgard',module:'Agent Security · Assurance',desc:'% of simulated attack scenarios the guardrail set correctly blocked.',calc:'Simulated attack scenarios correctly blocked ÷ total scenarios run.',valueLabel:'98%',target:'≥ 95%',rag:'green',delta:'+1 pt',tone:'good',owner:'Development Lead',cadence:'Weekly',frameworks:['ISO 27001']},
+{id:43,name:'Kill-Switch Activations',system:'Asgard',module:'Agent Security · Assurance',desc:'Count of agent kill-switch events, with reason.',calc:'Count of kill-switch activations logged in the period, each with a recorded reason.',valueLabel:'1',target:'0',rag:'amber',delta:'+1',tone:'bad',owner:'Development Lead',cadence:'Real-time',frameworks:[]},
+{id:44,name:'Scoped-Grant Hygiene',system:'Asgard',module:'Agent Security · Assurance',desc:'Count of active grants exceeding their intended deny-by-default scope.',calc:'Count of active access grants whose actual scope exceeds their configured deny-by-default policy.',valueLabel:'3',target:'0',rag:'red',delta:'+3',tone:'bad',owner:'Development Lead',cadence:'Daily',frameworks:['ISO 27001']},
+{id:47,name:'Policy-to-Process Coverage',system:'XLOGIC',module:'Policy-to-Process Traceability',desc:'% of AI governance policies with at least one linked, active process in XLOGIC.',calc:'AI governance policies with a linked active process ÷ total AI governance policies.',valueLabel:'88%',target:'100%',rag:'amber',delta:'+4 pts',tone:'good',owner:'Development Lead',cadence:'Weekly',frameworks:[]},
+{id:48,name:'Orphaned Requirements',system:'XLOGIC',module:'Policy-to-Process Traceability',desc:'Count of AI governance requirements with no linked process or task in XLOGIC.',calc:'Count of Requirement records with zero linked Process or Task records.',valueLabel:'6',target:'0',rag:'amber',delta:'-2',tone:'good',owner:'Development Lead',cadence:'Weekly',frameworks:[]},
+{id:49,name:'Task Completion Within SLA',system:'XLOGIC',module:'Task Execution & SLA',desc:'% of AI-governance-linked tasks completed within their due date.',calc:'Tasks completed by due date ÷ total AI-governance-linked tasks due.',valueLabel:'92%',target:'100%',rag:'green',delta:'+3 pts',tone:'good',owner:'Development Lead',cadence:'Weekly',frameworks:[]},
+{id:50,name:'Overdue Tasks (AI Governance)',system:'XLOGIC',module:'Task Execution & SLA',desc:'Count of AI-governance-linked tasks in XLOGIC past their due date.',calc:'Count of Task records linked to an AI governance process where due date < today and status ≠ Complete.',valueLabel:'7',target:'0',rag:'amber',delta:'+2',tone:'bad',owner:'Development Lead',cadence:'Weekly',frameworks:[]},
+{id:51,name:'Quorum Sign-off Compliance',system:'XLOGIC',module:'Quorum & Sign-off',desc:'% of AI-governance approvals that achieved the required quorum before proceeding.',calc:'Approvals with quorum met before proceeding ÷ total AI-governance approvals requiring quorum.',valueLabel:'100%',target:'100%',rag:'green',delta:'flat',tone:'good',owner:'Development Lead',cadence:'Weekly',frameworks:[]},
+{id:52,name:'Sign-offs Pending Over 7 Days',system:'XLOGIC',module:'Quorum & Sign-off',desc:'Count of AI-governance quorum sign-offs still pending after 7 days.',calc:'Count of pending Sign-off records where days pending > 7.',valueLabel:'3',target:'0',rag:'amber',delta:'+1',tone:'bad',owner:'Development Lead',cadence:'Weekly',frameworks:[]},
+{id:53,name:'Audit Trail Completeness',system:'XLOGIC',module:'Audit Trail & Evidence',desc:'% of AI-governance process steps in XLOGIC with a complete, immutable audit entry.',calc:'Process steps with a logged audit event ÷ total AI-governance process steps executed.',valueLabel:'99%',target:'100%',rag:'green',delta:'flat',tone:'neutral',owner:'Development Lead',cadence:'Daily',frameworks:[]},
+{id:54,name:'Evidence Attachment Rate',system:'XLOGIC',module:'Audit Trail & Evidence',desc:'% of completed AI-governance tasks with evidence attached.',calc:'Completed tasks with at least one evidence attachment ÷ total completed AI-governance tasks.',valueLabel:'85%',target:'100%',rag:'amber',delta:'+6 pts',tone:'good',owner:'Development Lead',cadence:'Weekly',frameworks:[]},
+{id:55,name:'Separation-of-Duties Compliance',system:'XLOGIC',module:'Access & Roles',desc:'% of XLOGIC Admin accounts correctly excluded from approval authority, by design.',calc:'Admin accounts with no approval permission ÷ total XLOGIC Admin accounts.',valueLabel:'100%',target:'100%',rag:'green',delta:'flat',tone:'good',owner:'Development Lead',cadence:'Monthly',frameworks:[]},
+{id:56,name:'Governance User Seat Utilization',system:'XLOGIC',module:'Access & Roles',desc:'% of licensed XLOGIC Governance User seats with recorded activity in the period.',calc:'Governance User seats with activity in the period ÷ total licensed Governance User seats.',valueLabel:'74%',target:'Monitor',rag:'amber',delta:'-3 pts',tone:'bad',owner:'Development Lead',cadence:'Monthly',frameworks:[]},
+{id:57,name:'Full User Adoption',system:'MAIA',module:'Adoption & Usage',desc:'% of licensed MAIA Full User seats with logged activity in the period.',calc:'Full User seats with activity in the period ÷ total licensed Full User seats.',valueLabel:'81%',target:'Monitor',rag:'green',delta:'+5 pts',tone:'good',owner:'CRO',cadence:'Monthly',frameworks:[]},
+{id:58,name:'Query Volume',system:'MAIA',module:'Adoption & Usage',desc:'Count of MAIA queries and interactions logged this period.',calc:'Count of MAIA interaction records logged in the period.',valueLabel:'1240',target:'Monitor',rag:'green',delta:'+180',tone:'neutral',owner:'CRO',cadence:'Weekly',frameworks:[]},
+{id:59,name:'Interaction Audit Trail Completeness',system:'MAIA',module:'AI Interaction Audit Trail',desc:'% of MAIA interactions with a complete, logged audit record.',calc:'MAIA interactions with a full audit record ÷ total MAIA interactions logged.',valueLabel:'100%',target:'100%',rag:'green',delta:'flat',tone:'good',owner:'DPO',cadence:'Daily',frameworks:[]},
+{id:60,name:'Recommendations Overridden',system:'MAIA',module:'AI Interaction Audit Trail',desc:'% of MAIA recommendations that were overridden or rejected by the requesting user.',calc:'Recommendations marked Overridden or Rejected ÷ total recommendations issued.',valueLabel:'11%',target:'Monitor',rag:'green',delta:'-2 pts',tone:'neutral',owner:'CRO',cadence:'Weekly',frameworks:[]},
+{id:61,name:'Grounded Response Rate',system:'MAIA',module:'Data Grounding',desc:'% of MAIA responses citing an actual governance, risk or compliance data source.',calc:'Responses with at least one cited data source ÷ total MAIA responses issued.',valueLabel:'93%',target:'100%',rag:'green',delta:'+2 pts',tone:'good',owner:'CRO',cadence:'Weekly',frameworks:[]},
+{id:62,name:'Data Bucket Utilization',system:'MAIA',module:'Data Grounding',desc:'Actual monthly data volume processed against the provisioned Data Bucket allocation.',calc:'Actual data volume processed ÷ (provisioned Data Buckets × 50GB).',valueLabel:'112%',target:'≤ 100%',rag:'amber',delta:'+9 pts',tone:'bad',owner:'Development Lead',cadence:'Monthly',frameworks:[]},
+{id:63,name:'Sensitive-Data Exposure Incidents',system:'MAIA',module:'Governance of the Copilot',desc:'Count of incidents where MAIA surfaced data outside a requesting user’s permission scope.',calc:'Count of confirmed permission-boundary exposure incidents involving MAIA, logged in the period.',valueLabel:'0',target:'0',rag:'green',delta:'flat',tone:'good',owner:'DPO',cadence:'Real-time',frameworks:[]},
+{id:64,name:'Response Accuracy Spot-Check Pass Rate',system:'MAIA',module:'Governance of the Copilot',desc:'% of sampled MAIA responses passing a human accuracy and quality review.',calc:'Sampled responses passing review ÷ total sampled responses reviewed.',valueLabel:'89%',target:'≥ 95%',rag:'red',delta:'-3 pts',tone:'bad',owner:'CRO',cadence:'Weekly',frameworks:[]},
+  ],
+  exceptions: [
+    {kpiId:19, ageDays:2,  status:'Open'},
+    {kpiId:64, ageDays:4,  status:'Open'},
+    {kpiId:2,  ageDays:3,  status:'Open'},
+    {kpiId:44, ageDays:1,  status:'Open'},
+    {kpiId:8,  ageDays:11, status:'Open'},
+    {kpiId:52, ageDays:8,  status:'Open'},
+    {kpiId:26, ageDays:9,  status:'Open'},
+    {kpiId:5,  ageDays:14, status:'Open'},
+  ],
+};
+CONFIG.afterInit = function(ctx){
+  const KPIS = ctx.KPIS, ragHex = ctx.ragHex, applyFilter = ctx.applyFilter;
+  const systems = ['AI Governance','XLOGIC','Asgard','MAIA'];
+  const green = systems.map(s => KPIS.filter(k=>k.system===s && k.rag==='green').length);
+  const amber = systems.map(s => KPIS.filter(k=>k.system===s && k.rag==='amber').length);
+  const red = systems.map(s => KPIS.filter(k=>k.system===s && k.rag==='red').length);
+  new ApexCharts(document.getElementById('chart-signature'), {
+    chart:{ type:'bar', height:270, stacked:true, stackType:'100%', background:'transparent', toolbar:{show:false},
+      events:{ dataPointSelection: function(e, chartCtx, config){ applyFilter({ sys: systems[config.dataPointIndex] }); } }
+    },
+    series:[ {name:'On target', data:green}, {name:'Watch', data:amber}, {name:'Breach', data:red} ],
+    xaxis:{ categories: systems, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'10px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+    yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'10.5px'}} },
+    colors:[ragHex.green, ragHex.amber, ragHex.red],
+    plotOptions:{ bar:{ horizontal:true, barHeight:'55%', borderRadius:4 } },
+    legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'10.5px', markers:{radius:3} },
+    grid:{ borderColor:'rgba(120,170,200,0.14)', xaxis:{lines:{show:true}}, yaxis:{lines:{show:false}} },
+    dataLabels:{ enabled:true, style:{fontSize:'10px', colors:['#04130b','#241300','#f4eef2','#2d1b47']} },
+    tooltip:{ theme:'dark' }
+  }).render();
+
+  // --- Cross-system reconciliation callout ---
+  document.getElementById('reconciliation-list').innerHTML = [
+    { n: 2, t: 'AI systems carry an open banned-use flag in AI Governance while still showing an active Asgard trust tier' },
+    { n: 1, t: 'AI system is classified and locked in AI Governance but has no XLOGIC governance workflow started' },
+    { n: 1, t: 'banned-use flagged system has an overdue XLOGIC governance workflow, compounding its risk' },
+  ].map(c => `<div class="callout-item"><span class="cn">${c.n}</span><span>${c.t}</span></div>`).join('');
+
+  // --- AI Systems drill-down ---
+  const SYSTEMS = [
+    { id:1, name:'Contract Review Copilot', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 1', maia:true, provider:'Anthropic', owner:'Legal' },
+    { id:2, name:'Support Triage Agent', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 2', maia:true, provider:'OpenAI', owner:'COO' },
+    { id:3, name:'Marketing Content Generator', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 2', maia:true, provider:'OpenAI', owner:'CRO' },
+    { id:4, name:'Invoice Anomaly Detector', aiGov:'Locked', aiGovRag:'amber', xlogic:'Active', asgard:'Tier 1', maia:true, provider:'Azure OpenAI', owner:'CRO' },
+    { id:5, name:'HR Screening Assistant', aiGov:'Locked — banned-use flag', aiGovRag:'red', xlogic:'Active', asgard:'Tier 3', maia:false, provider:'OpenAI', owner:'DPO' },
+    { id:6, name:'Code Review Assistant', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 1', maia:true, provider:'Anthropic', owner:'Development Lead' },
+    { id:7, name:'Sales Forecast Model', aiGov:'Locked', aiGovRag:'green', xlogic:'Not started', asgard:'Not onboarded', maia:false, provider:'Internal', owner:'CRO' },
+    { id:8, name:'Customer Chatbot', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 2', maia:true, provider:'Azure OpenAI', owner:'COO' },
+    { id:9, name:'Fraud Detection Engine', aiGov:'Locked — banned-use flag', aiGovRag:'red', xlogic:'Overdue', asgard:'Tier 1', maia:false, provider:'Internal', owner:'CRO' },
+    { id:10, name:'Document Classifier', aiGov:'Pending', aiGovRag:'amber', xlogic:'Not started', asgard:'Not onboarded', maia:false, provider:'Google', owner:'Development Lead' },
+    { id:11, name:'Meeting Summarizer', aiGov:'Locked', aiGovRag:'green', xlogic:'Active', asgard:'Tier 3', maia:true, provider:'OpenAI', owner:'COO' },
+    { id:12, name:'Vendor Risk Scorer', aiGov:'Pending', aiGovRag:'amber', xlogic:'Not started', asgard:'Not onboarded', maia:false, provider:'Anthropic', owner:'Development Lead' },
+  ];
+  const xlogicColor = { 'Active':'var(--mute)', 'Overdue':'var(--red-hi)', 'Not started':'var(--faint)' };
+  document.getElementById('systems-table').innerHTML =
+    '<tr><th>AI system</th><th>AI Governance classification</th><th>XLOGIC workflow</th><th>Asgard tier</th><th>Provider</th></tr>' +
+    SYSTEMS.map(s => `<tr data-sid="${s.id}">
+      <td style="font-weight:600;">${s.name}</td>
+      <td><span class="rag-dot" style="background:${ragHex[s.aiGovRag]};margin-right:6px;"></span>${s.aiGov}</td>
+      <td><span style="color:${xlogicColor[s.xlogic]};">${s.xlogic}</span></td>
+      <td>${s.asgard === 'Not onboarded' ? '<span style="color:var(--faint);">Not onboarded</span>' : s.asgard}</td>
+      <td style="color:var(--mute);">${s.provider}</td>
+    </tr>`).join('');
+
+  function ensureSystemModal(){
+    if (document.getElementById('system-detail-overlay')) return;
+    const div = document.createElement('div');
+    div.id = 'system-detail-overlay'; div.className = 'system-detail-overlay';
+    div.innerHTML = `<div class="modal-panel" style="max-width:520px;">
+      <button class="modal-close" id="system-modal-close">&times;</button>
+      <div class="meyebrow"><span class="eyebrow" id="sm-provider"></span></div>
+      <h2 id="sm-name" style="margin-bottom:14px;"></h2>
+      <div class="mgrid">
+        <div class="mfield"><div class="l">AI Governance classification</div><div class="v" id="sm-aigov"></div></div>
+        <div class="mfield"><div class="l">XLOGIC workflow</div><div class="v" id="sm-xlogic"></div></div>
+        <div class="mfield"><div class="l">Asgard trust tier</div><div class="v" id="sm-asgard"></div></div>
+        <div class="mfield"><div class="l">MAIA data grounding</div><div class="v" id="sm-maia"></div></div>
+      </div>
+      <div class="mfield" style="margin-top:12px;"><div class="l">Owner</div><div class="v" id="sm-owner"></div></div>
+      <div class="mcalc" style="margin-top:14px;"><div class="l">Cross-system read</div><div class="v" id="sm-read"></div></div>
+    </div>`;
+    document.body.appendChild(div);
+    div.addEventListener('click', e => { if (e.target === div) div.classList.remove('open'); });
+    document.getElementById('system-modal-close').addEventListener('click', () => div.classList.remove('open'));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') div.classList.remove('open'); });
+  }
+  function openSystemModal(id){
+    ensureSystemModal();
+    const s = SYSTEMS.find(x => x.id === id);
+    if (!s) return;
+    document.getElementById('sm-provider').textContent = s.provider + ' · owner ' + s.owner;
+    document.getElementById('sm-name').textContent = s.name;
+    document.getElementById('sm-aigov').textContent = s.aiGov;
+    document.getElementById('sm-xlogic').textContent = s.xlogic;
+    document.getElementById('sm-asgard').textContent = s.asgard;
+    document.getElementById('sm-maia').textContent = s.maia ? 'Included' : 'Not included';
+    document.getElementById('sm-owner').textContent = s.owner;
+    const gaps = [];
+    if (s.aiGovRag === 'red') gaps.push('Banned-use flag is open in AI Governance');
+    if (s.xlogic === 'Overdue') gaps.push('its XLOGIC governance workflow is overdue — the flag has not been actioned');
+    if (s.xlogic === 'Not started') gaps.push('no XLOGIC governance workflow has started — process gap');
+    if (s.asgard === 'Not onboarded') gaps.push('no Asgard guardrail coverage is assigned, so agent activity, if any, is currently unmonitored');
+    else if (s.aiGovRag === 'red' && s.xlogic !== 'Overdue') gaps.push('Asgard still shows this system at ' + s.asgard + ' — the flag has not propagated to agent access control');
+    if (!s.maia) gaps.push('excluded from MAIA data grounding');
+    const joined = gaps.join('; ');
+    const read = gaps.length ? joined.charAt(0).toUpperCase() + joined.slice(1) + '.' : 'Fully reconciled across AI Governance, XLOGIC and Asgard.';
+    document.getElementById('sm-read').textContent = read;
+    document.getElementById('system-detail-overlay').classList.add('open');
+  }
+  document.getElementById('systems-table').addEventListener('click', e => {
+    const row = e.target.closest('tr[data-sid]');
+    if (row) openSystemModal(parseInt(row.getAttribute('data-sid')));
+  });
+};
+</script>
+<script src="dash-shell.js?v=8"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>

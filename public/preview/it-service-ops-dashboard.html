@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>XGRC&reg; IT Service &amp; Vendor Risk Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="dash-shell.css?v=8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<style>
+  body { overflow-x:hidden; }
+  .itnav { position:sticky; top:0; z-index:20; background:rgba(6,15,28,0.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .itnav-top { max-width:1400px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .itnav-brand { display:flex; align-items:center; gap:12px; }
+  .brand-icon { width:24px; height:24px; }
+  .it-badge { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.8px; text-transform:uppercase; color:var(--blue-hi); border:1px solid rgba(127,212,239,0.4); background:rgba(127,212,239,0.08); padding:5px 11px; border-radius:20px; white-space:nowrap; }
+  .it-crumb { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--faint); text-decoration:none; white-space:nowrap; }
+  .it-crumb:hover { color:var(--cyan-hi); }
+  .itnav-context { margin-left:auto; display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--mute); white-space:nowrap; }
+  .live-dot { width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 8px var(--green); animation:pulse 2.2s ease-in-out infinite; flex-shrink:0; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  .itnav-tabs { max-width:1400px; margin:0 auto; padding:0 28px 12px; display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; }
+  .itnav-tabs::-webkit-scrollbar { display:none; }
+  .ind-tab { font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.2px; padding:8px 14px; border-radius:9px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); white-space:nowrap; flex-shrink:0; }
+  .ind-tab.active { background:rgba(255,182,72,0.14); border-color:var(--amber); color:var(--amber-hi); }
+  .itnav-controls { max-width:1400px; margin:0 auto; padding:12px 28px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; border-top:1px solid var(--line); }
+  .dept-label { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.9px; text-transform:uppercase; color:var(--faint); white-space:nowrap; margin-right:6px; }
+  .dept-pill { font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:6px 12px; border-radius:8px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); }
+  .dept-pill.active { border-color:var(--blue-hi); color:var(--blue-hi); background:rgba(127,212,239,0.08); }
+
+  .it-main { position:relative; z-index:2; max-width:1400px; margin:0 auto; padding:30px 28px 60px; }
+  .it-title-row { margin-bottom:22px; }
+  #page-title { font-size:26px; font-weight:800; }
+  .it-subtitle { font-size:12.5px; color:var(--mute); margin-top:5px; }
+
+  .it-card { border-radius:var(--radius-lg); border:1px solid var(--line-strong); background:linear-gradient(160deg, var(--panel), rgba(255,255,255,0.01)); padding:20px; margin-bottom:16px; }
+  .it-card h3 { font-size:13.5px; font-weight:600; margin-bottom:14px; }
+
+  .gauge-grid { display:grid; grid-template-columns:repeat(6, 1fr); gap:12px; }
+  @media (max-width:980px) { .gauge-grid { grid-template-columns:repeat(3, 1fr); } }
+  @media (max-width:560px) { .gauge-grid { grid-template-columns:repeat(2, 1fr); } }
+  .mini-gauge { text-align:center; cursor:pointer; border-radius:12px; padding:8px; transition:background .15s; }
+  .mini-gauge:hover { background:rgba(255,255,255,0.03); }
+  .mini-gauge svg { width:100%; max-width:120px; height:auto; }
+  .mini-gauge .mv { font-family:'Outfit'; font-size:17px; font-weight:800; margin-top:-6px; }
+  .mini-gauge .ml { font-size:10px; color:var(--mute); margin-top:2px; line-height:1.3; min-height:26px; }
+
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:900px) { .two-col { grid-template-columns:1fr; } }
+
+  .donut-legend { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+  .donut-legend .dl-row { display:flex; align-items:center; gap:8px; font-size:11.5px; color:var(--mute); }
+  .donut-legend .dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+  .donut-legend b { color:var(--ink); font-family:'JetBrains Mono',monospace; }
+  .donut-row { display:flex; align-items:center; gap:18px; }
+  .donut-row .dchart { width:130px; height:130px; flex-shrink:0; }
+
+  .modal-overlay { position:fixed; inset:0; background:rgba(3,8,16,0.72); backdrop-filter:blur(3px); z-index:50; display:none; align-items:flex-start; justify-content:center; overflow-y:auto; padding:60px 20px; }
+  .modal-overlay.open { display:flex; }
+  .modal-panel { width:100%; max-width:440px; background:var(--abyss); border:1px solid var(--line-strong); border-radius:var(--radius-lg); padding:24px; position:relative; }
+  .modal-close { position:absolute; top:16px; right:16px; width:28px; height:28px; border-radius:50%; border:1px solid var(--line-strong); background:transparent; color:var(--mute); font-size:15px; }
+  .modal-panel h2 { font-size:17px; font-weight:700; margin-bottom:10px; }
+  .modal-panel p { font-size:12.5px; color:var(--mute); line-height:1.6; }
+</style>
+</head>
+<body>
+
+<div id="banner">DEMONSTRATION DASHBOARD: all companies, figures and service metrics on this page are fictitious and illustrative only</div>
+
+<header class="itnav">
+  <div class="itnav-top">
+    <div class="itnav-brand">
+      <img src="/assets/logos/brand/xgrc-icon-white.png" alt="" aria-hidden="true" class="brand-icon">
+      <span class="it-badge">ITSM &middot; IT Service &amp; Vendor Risk Operations</span>
+      <a href="dashboards.html" class="it-crumb">&larr; Dashboard Gallery</a>
+    </div>
+    <div class="itnav-context"><span class="live-dot"></span><span id="ctx-company"></span></div>
+  </div>
+  <div class="itnav-tabs" id="industry-tabs"></div>
+  <div class="itnav-controls">
+    <span class="dept-label">Department</span>
+    <div id="dept-pills" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+  </div>
+</header>
+
+<main class="it-main">
+  <div class="it-title-row">
+    <h1 id="page-title">IT Service &amp; Vendor Operations</h1>
+    <div class="it-subtitle" id="page-subtitle"></div>
+  </div>
+
+  <div class="it-card">
+    <h3>Service Impact and Performance</h3>
+    <div class="gauge-grid" id="gauge-grid"></div>
+  </div>
+
+  <div class="two-col">
+    <div class="it-card">
+      <h3>Problem Summary &middot; Number of Problems</h3>
+      <div id="chart-problems"></div>
+    </div>
+    <div class="it-card">
+      <h3>Problem Summary &middot; Time Elapsed (Min.)</h3>
+      <div id="chart-timeelapsed"></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="it-card">
+      <h3>Incident Breakdown by Service Type</h3>
+      <div class="donut-row">
+        <div class="dchart" id="donut-chart"></div>
+        <div class="donut-legend" id="donut-legend"></div>
+      </div>
+    </div>
+    <div class="it-card">
+      <h3>Incident Target Summary Trend</h3>
+      <div id="chart-target"></div>
+    </div>
+  </div>
+
+  <div class="it-card">
+    <h3>Vendor Payments</h3>
+    <div id="chart-vendor"></div>
+  </div>
+</main>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of IT service impact, incident/problem trends and vendor payment exposure, per industry and department, in one screen.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <div class="eyebrow" id="modal-eyebrow"></div>
+    <h2 id="modal-name"></h2>
+    <p id="modal-desc"></p>
+  </div>
+</div>
+
+<script>
+const RAG = { green:'#2fe88a', amber:'#ffb648', red:'#ff5470', faint:'#56697a', mute:'#8499aa', cyan:'#30e2f4', blue:'#7fd4ef', purple:'#b98bff' };
+
+const INDUSTRIES = [
+  { id:'mining', tab:'Mining & Infrastructure', company:'Meridian Industrial Group', ticker:'JSE: MIG', sector:'Mining & Metals' },
+  { id:'manufacturing', tab:'Manufacturing & Industrial', company:'Atlas Precision Manufacturing', ticker:'JSE: APM', sector:'Manufacturing & Industrial' },
+  { id:'holding', tab:'Holding & Investment Groups', company:'Cornerstone Capital Holdings', ticker:'JSE: CCH', sector:'Diversified Holdings' },
+  { id:'pharma', tab:'Facilities, Pharma & Waste', company:'Vireo Pharma & Facilities Group', ticker:'JSE: VPF', sector:'Pharmaceuticals & Facilities' },
+  { id:'food', tab:'Food & Agriculture', company:'Harvestland Agri Group', ticker:'JSE: HAG', sector:'Food & Agriculture' },
+  { id:'wine', tab:'Wine & Fruit Production', company:'Cape Orchard Estates', ticker:'JSE: COE', sector:'Wine & Fruit Production' },
+  { id:'logistics', tab:'Logistics & Warehousing', company:'Transkaroo Logistics Group', ticker:'JSE: TLG', sector:'Logistics & Distribution' },
+  { id:'oilgas', tab:'Lubricants, Oil & Gas', company:'Karoo Energy & Lubricants', ticker:'JSE: KEL', sector:'Oil, Gas & Lubricants' },
+  { id:'tech', tab:'Science, IT & Telecoms', company:'Nexora Technology Group', ticker:'JSE: NXT', sector:'Science, IT & Telecoms' }
+];
+
+const DEPARTMENTS = [
+  { id:'group', label:'Group-wide', mult:1.00 },
+  { id:'finance', label:'Finance', mult:0.92 },
+  { id:'operations', label:'Operations', mult:1.06 },
+  { id:'hr', label:'HR & Training', mult:0.80 },
+  { id:'it', label:'IT & Security', mult:1.18 },
+  { id:'legal', label:'Legal & Compliance', mult:0.74 }
+];
+
+const SERVICES = [
+  { id:'billing', name:'Billing & Finance Systems', base:74 },
+  { id:'exchange', name:'Business Exchange & EDI', base:81 },
+  { id:'expense', name:'Expense Reporting', base:63 },
+  { id:'helpdesk', name:'Service Desk & Help Desk', base:69 },
+  { id:'hris', name:'HR & Payroll Systems', base:85 },
+  { id:'mfg', name:'Manufacturing & Ops Systems', base:58 }
+];
+
+let state = { industry:0, dept:0 };
+
+function seedFromStr(s){ let h=0; for (let i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))>>>0; return h||1; }
+function mulberry32(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function ragForPct(v){ return v < 50 ? 'red' : v < 75 ? 'amber' : 'green'; }
+
+function point(angleDeg, r, cx, cy){ const rad = angleDeg*Math.PI/180; return { x: cx + r*Math.sin(rad), y: cy - r*Math.cos(rad) }; }
+function angleFor(v, min, max){ return -90 + ((Math.max(min,Math.min(max,v))-min)/(max-min))*180; }
+function arcPath(a0, a1, r, cx, cy){
+  const p0 = point(a0,r,cx,cy), p1 = point(a1,r,cx,cy);
+  const large = (a1-a0) > 180 ? 1 : 0;
+  return `M ${p0.x.toFixed(2)} ${p0.y.toFixed(2)} A ${r} ${r} 0 ${large} 1 ${p1.x.toFixed(2)} ${p1.y.toFixed(2)}`;
+}
+function miniGaugeSVG(value){
+  const cx=60, cy=56, r=46;
+  const bounds = [0,50,75,100];
+  const colors = [RAG.red, RAG.amber, RAG.green];
+  let arcs = '';
+  for (let i=0;i<3;i++){
+    arcs += `<path d="${arcPath(angleFor(bounds[i],0,100), angleFor(bounds[i+1],0,100), r, cx, cy)}" stroke="${colors[i]}" stroke-width="9" fill="none" opacity="0.9"/>`;
+  }
+  const needleAngle = angleFor(value, 0, 100);
+  return `<svg viewBox="0 0 120 68">
+    ${arcs}
+    <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${cy-36}" stroke="${RAG.mute}" stroke-width="2.5" stroke-linecap="round" transform="rotate(${needleAngle.toFixed(2)} ${cx} ${cy})"/>
+    <circle cx="${cx}" cy="${cy}" r="4" fill="#eaf3f7"/>
+  </svg>`;
+}
+
+let charts = [];
+function render(){
+  const ind = INDUSTRIES[state.industry];
+  const dept = DEPARTMENTS[state.dept];
+  document.getElementById('ctx-company').textContent = `${ind.company} · ${ind.ticker}`;
+  document.querySelectorAll('.ind-tab').forEach(el=>el.classList.toggle('active', parseInt(el.dataset.i)===state.industry));
+  document.querySelectorAll('.dept-pill').forEach(el=>el.classList.toggle('active', parseInt(el.dataset.d)===state.dept));
+  document.getElementById('page-subtitle').textContent = `${ind.company} · ${dept.label} · ${ind.sector} · Service, Incident and Vendor Operations`;
+
+  charts.forEach(c=>c.destroy()); charts = [];
+
+  const rndSeed = seedFromStr(ind.id + '-' + dept.id);
+  const rnd = mulberry32(rndSeed);
+
+  const gaugeValues = SERVICES.map((s,i)=>{
+    const rnd2 = mulberry32(seedFromStr(s.id + ind.id + dept.id));
+    let v = Math.round(s.base * dept.mult + (rnd2()-0.5)*14);
+    return Math.max(5, Math.min(98, v));
+  });
+  document.getElementById('gauge-grid').innerHTML = SERVICES.map((s,i)=>`
+    <div class="mini-gauge" data-open="${i}">
+      ${miniGaugeSVG(gaugeValues[i])}
+      <div class="mv" style="color:${RAG[ragForPct(gaugeValues[i])]}">${gaugeValues[i]}%</div>
+      <div class="ml">${s.name}</div>
+    </div>
+  `).join('');
+  document.querySelectorAll('.mini-gauge').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const s = SERVICES[parseInt(el.dataset.open)];
+      const v = gaugeValues[parseInt(el.dataset.open)];
+      document.getElementById('modal-eyebrow').textContent = dept.label + ' · ' + ind.sector;
+      document.getElementById('modal-name').textContent = s.name;
+      document.getElementById('modal-desc').textContent = `Current service health score of ${v}%, reflecting uptime, ticket backlog and change-failure rate for this system over the last 30 days.`;
+      document.getElementById('modal-overlay').classList.add('open');
+    });
+  });
+
+  const months6 = ['Jan','Feb','Mar','Apr','May','Jun'];
+  function series6(seedKey, base, spread){
+    const r = mulberry32(seedFromStr(seedKey + ind.id + dept.id));
+    return months6.map(()=>Math.max(2, Math.round(base * dept.mult + (r()-0.5)*spread)));
+  }
+  const critical = series6('critical', 12, 10);
+  const high = series6('high', 22, 14);
+  const medium = series6('medium', 38, 16);
+
+  charts.push(new ApexCharts(document.getElementById('chart-problems'), {
+    chart:{ type:'area', height:220, background:'transparent', toolbar:{show:false}, stacked:true, animations:{enabled:false} },
+    series:[{ name:'Medium', data:medium }, { name:'High', data:high }, { name:'Critical', data:critical }],
+    colors:[RAG.green, RAG.amber, RAG.red],
+    stroke:{ curve:'smooth', width:1.5 },
+    fill:{ type:'gradient', gradient:{ opacityFrom:0.55, opacityTo:0.15 } },
+    dataLabels:{ enabled:false },
+    legend:{ labels:{colors:RAG.mute}, fontFamily:'JetBrains Mono', fontSize:'10px' },
+    xaxis:{ categories:months6, labels:{style:{colors:RAG.faint, fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+    yaxis:{ labels:{style:{colors:RAG.faint, fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    grid:{ borderColor:'rgba(120,170,200,0.1)', strokeDashArray:3 },
+    tooltip:{ theme:'dark' }
+  }));
+
+  const timeCritical = series6('tcritical', 20, 12);
+  const timeHigh = series6('thigh', 30, 15);
+  const timeMedium = series6('tmedium', 25, 14);
+  charts.push(new ApexCharts(document.getElementById('chart-timeelapsed'), {
+    chart:{ type:'area', height:220, background:'transparent', toolbar:{show:false}, stacked:true, animations:{enabled:false} },
+    series:[{ name:'Medium', data:timeMedium }, { name:'High', data:timeHigh }, { name:'Critical', data:timeCritical }],
+    colors:[RAG.green, RAG.amber, RAG.red],
+    stroke:{ curve:'smooth', width:1.5 },
+    fill:{ type:'gradient', gradient:{ opacityFrom:0.55, opacityTo:0.15 } },
+    dataLabels:{ enabled:false },
+    legend:{ labels:{colors:RAG.mute}, fontFamily:'JetBrains Mono', fontSize:'10px' },
+    xaxis:{ categories:months6, labels:{style:{colors:RAG.faint, fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+    yaxis:{ labels:{style:{colors:RAG.faint, fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    grid:{ borderColor:'rgba(120,170,200,0.1)', strokeDashArray:3 },
+    tooltip:{ theme:'dark' }
+  }));
+
+  const donutBase = [42, 33, 25].map(v=>Math.max(5, Math.round(v * dept.mult + (rnd()-0.5)*10)));
+  const donutLabels = ['Billing & Finance', 'Help Desk', 'Manufacturing & Ops'];
+  charts.push(new ApexCharts(document.getElementById('donut-chart'), {
+    chart:{ type:'donut', height:130, background:'transparent', animations:{enabled:false} },
+    series: donutBase,
+    labels: donutLabels,
+    colors:[RAG.cyan, RAG.purple, RAG.blue],
+    legend:{ show:false },
+    dataLabels:{ enabled:false },
+    stroke:{ width:1, colors:['#0a1729'] },
+    plotOptions:{ pie:{ donut:{ size:'68%' } } },
+    tooltip:{ theme:'dark' }
+  }));
+  document.getElementById('donut-legend').innerHTML = donutLabels.map((l,i)=>`
+    <div class="dl-row"><span class="dot" style="background:${[RAG.cyan, RAG.purple, RAG.blue][i]}"></span><b>${donutBase[i]}</b>&nbsp;${l}</div>
+  `).join('');
+
+  const withinTarget = series6('within', 55, 12).map(v=>Math.min(80,v));
+  const noTargetSet = series6('notarget', 25, 10).map(v=>Math.min(40,v));
+  const breached = months6.map((m,i)=>Math.max(3, 100 - withinTarget[i] - noTargetSet[i]));
+  charts.push(new ApexCharts(document.getElementById('chart-target'), {
+    chart:{ type:'bar', height:220, background:'transparent', toolbar:{show:false}, stacked:true, stackType:'100%', animations:{enabled:false} },
+    series:[{ name:'Within Target', data:withinTarget }, { name:'No Target Set', data:noTargetSet }, { name:'Breached', data:breached }],
+    colors:[RAG.green, RAG.amber, RAG.red],
+    plotOptions:{ bar:{ columnWidth:'55%' } },
+    dataLabels:{ enabled:false },
+    legend:{ labels:{colors:RAG.mute}, fontFamily:'JetBrains Mono', fontSize:'10px' },
+    xaxis:{ categories:months6, labels:{style:{colors:RAG.faint, fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+    yaxis:{ labels:{style:{colors:RAG.faint, fontFamily:'JetBrains Mono', fontSize:'9.5px'}, formatter:v=>Math.round(v)+'%'} },
+    grid:{ borderColor:'rgba(120,170,200,0.1)', strokeDashArray:3 },
+    tooltip:{ theme:'dark', y:{ formatter:v=>Math.round(v)+'%' } }
+  }));
+
+  const vendorMonths = ['Jan','Feb','Mar'];
+  const vendorA = vendorMonths.map((m,i)=>Math.round((18+i*10) * dept.mult));
+  const vendorB = vendorMonths.map((m,i)=>Math.round((38+i*18) * dept.mult));
+  const vendorC = vendorMonths.map((m,i)=>Math.round((68+i*8) * dept.mult));
+  charts.push(new ApexCharts(document.getElementById('chart-vendor'), {
+    chart:{ type:'bar', height:230, background:'transparent', toolbar:{show:false}, animations:{enabled:false} },
+    series:[{ name:'Vendor A', data:vendorA }, { name:'Vendor B', data:vendorB }, { name:'Vendor C', data:vendorC }],
+    colors:[RAG.amber, RAG.cyan, RAG.green],
+    plotOptions:{ bar:{ columnWidth:'55%', borderRadius:3 } },
+    dataLabels:{ enabled:false },
+    legend:{ labels:{colors:RAG.mute}, fontFamily:'JetBrains Mono', fontSize:'10px' },
+    xaxis:{ categories:vendorMonths, labels:{style:{colors:RAG.faint, fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+    yaxis:{ labels:{style:{colors:RAG.faint, fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    grid:{ borderColor:'rgba(120,170,200,0.1)', strokeDashArray:3 },
+    tooltip:{ theme:'dark' }
+  }));
+
+  charts.forEach(c=>c.render());
+}
+
+const tabsEl = document.getElementById('industry-tabs');
+tabsEl.innerHTML = INDUSTRIES.map((ind,i)=>`<button class="ind-tab" data-i="${i}">${ind.tab}</button>`).join('');
+tabsEl.addEventListener('click', e=>{
+  const btn = e.target.closest('.ind-tab'); if (!btn) return;
+  state.industry = parseInt(btn.dataset.i);
+  render();
+});
+
+const deptEl = document.getElementById('dept-pills');
+deptEl.innerHTML = DEPARTMENTS.map((d,i)=>`<button class="dept-pill" data-d="${i}">${d.label}</button>`).join('');
+deptEl.addEventListener('click', e=>{
+  const btn = e.target.closest('.dept-pill'); if (!btn) return;
+  state.dept = parseInt(btn.dataset.d);
+  render();
+});
+
+document.getElementById('modal-close').addEventListener('click', ()=>document.getElementById('modal-overlay').classList.remove('open'));
+document.getElementById('modal-overlay').addEventListener('click', e=>{ if (e.target.id==='modal-overlay') e.currentTarget.classList.remove('open'); });
+
+render();
+</script>
+
+</body>
+</html>
