@@ -1616,6 +1616,15 @@ export const articles = [
     image: 'ai-agent-security-api-keys.jpg',
     relatedSolutions: ['ai-governance', 'msxcyber'],
   },
+  {
+    slug: 'building-a-culture-of-cyber-resilience',
+    title: 'Building a Stronger Culture of Cyber Resilience',
+    excerpt: 'Cyber resilience goes beyond awareness. Learn how organisations can identify, protect, detect, respond, recover and improve through clear accountability, AI guardrails, ISO/IEC 27001 and connected governance.',
+    category: 'Cyber',
+    date: '2026-10-08',
+    image: 'building-a-culture-of-cyber-resilience.jpg',
+    relatedSolutions: ['msxcyber', 'integrated-assurance'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1866,6 +1875,13 @@ export const articleFaqs = {
     { q: 'Does read-only access remove the risk?', a: 'No. It limits changes, but the agent may still read sensitive information. The permitted records, recipients and output destinations also matter, so read-only access should be narrow enough for the approved task.' },
     { q: 'Does MFA protect an API key after it has been issued?', a: 'Not by itself. MFA protects the relevant authentication steps, but an issued credential may be usable without another interactive challenge. Restrict its scope and lifetime, monitor its use and verify revocation behaviour.' },
     { q: 'How does Asgard protect AI-agent access?', a: 'Asgard, the XGRC® AI agents platform, holds upstream API keys and OAuth tokens in an encrypted Vault, gives agents scoped Asgard keys, brokers managed tool calls through Bifröst and applies Heimdall filters. Central revocation and action logs support access control and investigation. The scope of each grant and the security of the broker still matter.' },
+  ],
+  'building-a-culture-of-cyber-resilience': [
+    { q: 'What is cyber resilience?', a: 'Cyber resilience is an organisation\'s ability to identify, protect against, detect, respond to and recover from cyber incidents, and to improve afterwards. It accepts that not every incident can be prevented and focuses on responding effectively when circumstances change.' },
+    { q: 'Why is cyber resilience everyone\'s responsibility?', a: 'Employees across an organisation interact with information, systems, applications and digital services. Their decisions influence organisational security, making resilience a shared responsibility rather than an IT-only function.' },
+    { q: 'How is AI changing cyber resilience?', a: 'AI introduces new opportunities and risks. Employees may use AI systems to process organisational information, while unapproved AI applications can create information security and governance concerns. Organisations therefore need appropriate AI policies, risk assessments and guardrails.' },
+    { q: 'What is the role of ISO/IEC 27001 in cyber resilience?', a: 'ISO/IEC 27001 provides a structured management-system approach for managing information security risks, responsibilities, controls, monitoring, audits, corrective actions and continual improvement, giving resilience a repeatable foundation.' },
+    { q: 'How can organisations improve cyber resilience?', a: 'Through employee awareness, structured risk management, clearly assigned responsibilities, appropriate security controls, incident management, continual monitoring, assurance and connected governance.' },
   ],
 };
 
