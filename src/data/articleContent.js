@@ -3180,4 +3180,100 @@ AI Governance and Information Security Are Different but Connected
 ISO/IEC 42001 and ISO/IEC 27001 address different organisational needs: one focuses on managing artificial intelligence, the other on managing information security. But as AI becomes increasingly dependent on organisational information, the relationship between them matters more. AI needs appropriate governance, information needs appropriate protection, risks need clear ownership, controls need to be monitored, and leadership needs evidence that governance is working. For organisations using AI, the question is not whether to choose ISO/IEC 42001 or ISO/IEC 27001, but how to build a connected approach to both.
 
 <a href="/contact/">Speak to an XGRC® specialist</a> to discover how AI Governance and MSXCyber® can help your organisation govern AI responsibly and protect the information that enables it.`,
+'king-v-and-the-rise-of-ai-governance': `AI Is Becoming a Board-Level Governance Priority
+
+Artificial intelligence is changing how organisations operate. It is increasingly used to analyse information, automate processes, support decision-making, improve productivity and create new ways of delivering products and services. As AI becomes more deeply embedded, the conversation is changing too. The question is no longer only how an organisation can use AI, but how AI should be governed. AI introduces new considerations around accountability, information, risk, ethics, oversight and decision-making, and these are not technology questions alone. They are governance questions.
+
+For South African organisations, King V gives that conversation a clear frame. The King V Code on Corporate Governance was launched by the Institute of Directors in South Africa (IoDSA) on 31 October 2025 and supersedes King IV. It applies to financial years beginning on or after 1 January 2026, which means many organisations are now in their first reporting year under the new code. Like its predecessor, King V is voluntary and outcomes-based: it asks boards to show that good governance outcomes are being achieved, not simply that boxes have been ticked. As King V approaches its first anniversary, AI is one of the clearest tests of whether governance structures can keep pace with the way organisations actually work. For a practical overview of the code itself, see our <a href="/use-cases/king-v-governance/">King V governance use case</a>.
+
+What Is AI Governance?
+
+AI governance refers to the structures, responsibilities, policies, controls and oversight mechanisms an organisation establishes around the development, implementation and use of artificial intelligence. Effective AI governance helps answer fundamental questions:
+
+- Where is AI being used, and why?
+- Who is responsible for each AI system or use case?
+- What information does the AI interact with?
+- What risks have been identified, and what controls are in place?
+- Which decisions require human oversight?
+- How is AI performance monitored?
+- How are incidents or concerns escalated?
+- What information is reported to leadership?
+
+Without clear answers, AI adoption tends to develop independently across departments and business functions, resulting in fragmented governance and limited visibility. We explore this pattern further in <a href="/insights/ai-governance-gap-enterprise-ai-risk/">the AI governance gap</a>. Good AI governance creates structure around innovation, allowing organisations to explore the opportunities AI creates while maintaining appropriate accountability and oversight.
+
+King V and a Changing Governance Environment
+
+Corporate governance must continually respond to changes in the environment in which organisations operate, and AI is one of those changes. Because an outcomes-based code asks boards to demonstrate how governance works in practice, boards and executive teams need to understand how technology influences strategy, risk, performance, compliance and stakeholder outcomes. AI makes this particularly important because its influence can extend across operational processes, employee activities, customer interactions, information security, risk management, regulatory compliance, decision-making, reporting and reputation.
+
+This means AI cannot be governed solely within the IT department. Its governance may require participation from the board, executive leadership, risk, compliance, information security, legal, internal audit and operational teams. The rise of AI reinforces a broader governance principle: technology should operate within organisational governance, not outside it.
+
+AI Governance Starts With Accountability
+
+One of the most important questions surrounding AI is also one of the simplest: who is accountable? An AI system cannot carry organisational accountability; people do. If an AI-generated recommendation influences a significant decision, responsibility cannot be transferred to the technology. If sensitive information is entered into an inappropriate AI system, someone must be responsible for managing that risk. If an automated process produces an unexpected outcome, the organisation needs clear mechanisms for identifying, escalating and addressing it. Organisations therefore need to determine:
+
+- Who approves AI use cases
+- Who owns AI-related risks
+- Who establishes AI policies
+- Who manages relevant controls
+- Who monitors AI performance
+- Who reviews significant AI-generated outputs
+- Who investigates AI-related incidents
+- Who reports AI risks to leadership
+
+Clear ownership strengthens accountability, reduces fragmented activity and prevents AI from operating in the gaps between functions. It also gives the board the line of sight it needs to account for outcomes.
+
+AI Governance Cannot Stop at Policy
+
+Many organisations are responding to AI by writing an AI policy. That is an important starting point, but a policy alone does not create effective governance. A policy establishes what employees should or should not do; organisations still need mechanisms that translate those requirements into everyday operations. AI governance needs to move from policy to responsibility, risk, control, monitoring, evidence and, finally, assurance.
+
+Take a policy prohibiting confidential information from being entered into unapproved AI applications. The governance question then becomes how that requirement is implemented: who communicates it, what controls support it, how compliance is monitored, what happens when it is breached, who is notified, and how management knows whether the control is effective. Governance becomes meaningful when expectations are translated into accountable and measurable business processes, which is exactly the kind of evidence an outcomes-based code like King V calls for.
+
+Boards Need Visibility Over AI Risk
+
+Boards do not need to become AI engineers, but effective oversight increasingly requires them to understand how AI may affect the organisation. That begins with visibility. Leadership should be able to see where material AI use exists and how the associated risks are being managed. Useful governance information could include:
+
+- Significant AI use cases and their business owners
+- AI-related risks
+- Policy compliance and control effectiveness
+- Significant incidents
+- Regulatory developments
+- Third-party AI dependencies
+- Outstanding corrective actions
+- Assurance findings
+
+Without this visibility, the board may only become aware of AI-related risks after something has gone wrong. Connected governance enables a more proactive approach.
+
+Human Oversight Remains Essential
+
+One of the greatest benefits of AI is its ability to process information quickly and assist with increasingly sophisticated activities. But automation should not automatically mean removing people from decision-making. The level of human oversight required depends on the context, risk and potential impact of each use case. Low-risk applications may need relatively limited intervention, while higher-impact applications may need clearly defined review, approval, escalation and accountability processes. The important principle is that organisations decide deliberately where human oversight is necessary. AI may assist, recommend, identify patterns or automate certain activities, but responsibility for significant organisational decisions must remain clearly governed.
+
+AI Risk Should Connect to Enterprise Risk
+
+A further challenge arises when organisations create AI governance programmes disconnected from their existing risk structures. AI risks do not exist in isolation. They can create or amplify strategic, operational, cybersecurity, compliance, reputational, legal, third-party and information risk. An AI risk identified in one department may have consequences across several business functions. Connecting AI risk to enterprise risk management gives leadership a more complete understanding of organisational exposure, and it means AI is reported through the same channels the board already relies on.
+
+Where AI touches information security, the relationship is especially close. Our comparison of <a href="/insights/iso-42001-vs-iso-27001/">ISO/IEC 42001 and ISO/IEC 27001</a> looks at how an AI management system and an information security management system can work together.
+
+Assurance Will Become Increasingly Important
+
+Establishing AI policies and controls is only part of effective governance. Boards also need confidence that those controls are working, which creates an important role for internal audit and other assurance providers. They may increasingly need to consider whether approved AI policies are being followed, whether AI risks are being properly assessed, whether responsibilities are clearly assigned, whether controls operate as intended, whether appropriate human oversight is taking place, whether the organisation can provide evidence, and whether identified weaknesses are being addressed.
+
+As AI becomes more important to business operations, assurance over AI governance is likely to become a significant component of board oversight. Coordinating that assurance, rather than leaving each provider to work in isolation, is the idea behind <a href="/insights/why-integrated-assurance-matters-in-the-age-of-ai/">integrated assurance in the age of AI</a>.
+
+Technology Can Support Stronger AI Governance
+
+Managing AI governance through disconnected spreadsheets, policy documents, emails and individual departmental processes makes oversight difficult. Modern governance requires connected information: policies, risks, controls, responsibilities, compliance obligations, actions, audits, findings, evidence and reporting. A connected governance environment helps organisations move away from isolated activities towards enterprise-wide visibility, supported by centralised information, clear ownership, structured workflows, monitoring, traceability and reporting.
+
+How XGRC® Supports Connected AI Governance
+
+On the XGRC® platform, <a href="/ai-governance/">AI Governance</a> is the solution for governing how you build and use AI. It supports AI impact assessment, EU AI Act classification and ISO/IEC 42001 compliance, with risks, controls and evidence mapped to your AI register, and it produces a Statement of Applicability for your AI management system.
+
+AI Governance does not sit on its own. <a href="/msx/">MSX® by XGRC® Software</a> provides the integrated management system framework that connects policies, risks, controls, responsibilities, actions and audits across the organisation, and <a href="/integrated-assurance/">Integrated Assurance</a> coordinates internal audit and combined assurance, linked to risks, controls and corrective actions and aligned to the IIA Standards, ISO 19011 and King V. Together, they help organisations avoid creating another disconnected management silo: AI governance becomes part of a broader approach in which technology, risk, compliance, assurance and accountability are connected, and in which the board can see the evidence.
+
+The Future of Governance Includes AI Governance
+
+AI will continue to create opportunities, but greater capability brings greater responsibility. The organisations that manage AI well will not necessarily be those that adopt the most AI. They will be those that understand where AI is used, why it is used, what risks it creates, who is accountable, what controls are required and how leadership obtains assurance.
+
+King V provides a timely backdrop for this conversation. As boards work through their first year under the new code, AI needs to be part of the discussion about accountability, oversight, risk and responsible organisational performance. The objective is not to slow innovation, but to create an environment where it can happen responsibly. AI is no longer simply a technology conversation. It is a governance conversation.
+
+<a href="/contact/">Speak to an XGRC® specialist</a> to discover how AI Governance, MSX® and Integrated Assurance can help your board govern AI with clear accountability and evidence.`,
 };
