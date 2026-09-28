@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
-import { brand } from '../data/site.js';
+import { brand, tourDashboards } from '../data/site.js';
+import TourStrip from '../components/TourStrip.astro';
 
 const dashboardViews = [
   { label: 'Estate Overview', img: '/assets/screenshots/ai-governance-dashboard-estate.webp', urlLabel: 'AI Governance · Estate Overview' },
@@ -329,6 +330,12 @@ const schema = JSON.stringify({
       </div>
     </div>
   </section>
+
+  <TourStrip
+    items={tourDashboards.filter((d) => d.solution === 'ai-governance')}
+    heading="See AI governance running."
+    lede="A live demonstration dashboard: EU AI Act classification, ISO/IEC 42001 controls and evidence, and the gaps between systems. Every figure is fictitious."
+  />
 
   <!-- ── Who this is for ──────────────────────────────────── -->
   <section class="section--tight">

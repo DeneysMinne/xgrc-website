@@ -1,0 +1,59 @@
+---
+// Strip of live demonstration dashboards (see tourDashboards in site.js and /tour/).
+// Pass `items` (a subset of tourDashboards) plus optional heading copy.
+interface Props { items: any[]; eyebrow?: string; heading?: string; lede?: string; showAll?: boolean }
+const {
+  items,
+  eyebrow = 'Explore it live',
+  heading = 'Click through a live dashboard.',
+  lede = 'Interactive demonstration dashboards with fictitious data. Filter them, open any KPI and export a board pack.',
+  showAll = true,
+} = Astro.props;
+---
+{items.length > 0 && (
+  <section class="section--tight tstrip">
+    <div class="container">
+      <div class="tstrip-head">
+        <div>
+          <span class="eyebrow"><span class="dot"></span>{eyebrow}</span>
+          <h2>{heading}</h2>
+          <p class="lede">{lede}</p>
+        </div>
+        {showAll && <a class="btn btn-ghost" href="/tour/">See all dashboards</a>}
+      </div>
+      <div class={`tstrip-grid n${Math.min(items.length, 4)}`}>
+        {items.map((d) => (
+          <a class="tstrip-card" href={`/tour/${d.slug}.html`}>
+            <span class="tstrip-shot"><img src={`/assets/tour/${d.slug}-v1.webp`} width="960" height="600" alt="" loading="lazy" /></span>
+            <span class="tstrip-body">
+              <span class="tstrip-live">Live demo · {d.tag}</span>
+              <span class="tstrip-title">{d.title}</span>
+              <span class="tstrip-cta">Open dashboard →</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .tstrip-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(24px, 4vw, 40px); }
+  .tstrip-head h2 { margin: 14px 0 10px; }
+  .tstrip-grid { display: grid; gap: 18px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .tstrip-grid.n1 { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
+  .tstrip-grid.n2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tstrip-grid.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tstrip-card { display: flex; flex-direction: column; text-decoration: none; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; transition: border-color 0.3s var(--ease), transform 0.3s var(--ease); }
+  .tstrip-card:hover { border-color: rgba(48, 226, 244, 0.45); transform: translateY(-3px); }
+  .tstrip-card:focus-visible { outline: 2px solid var(--green-hi); outline-offset: 3px; }
+  .tstrip-shot { display: block; aspect-ratio: 8 / 5; overflow: hidden; border-bottom: 1px solid var(--line); background: var(--abyss); }
+  .tstrip-shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+  .tstrip-body { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px 16px; }
+  .tstrip-live { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); }
+  .tstrip-title { font-family: var(--font-display); font-weight: 600; font-size: 1.02rem; }
+  .tstrip-cta { font-size: 0.85rem; color: var(--cyan); font-weight: 600; margin-top: 2px; }
+  @media (max-width: 960px) { .tstrip-grid, .tstrip-grid.n3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .tstrip-grid, .tstrip-grid.n2, .tstrip-grid.n3 { grid-template-columns: minmax(0, 1fr); } }
+  @media (prefers-reduced-motion: reduce) { .tstrip-card { transition: none; } .tstrip-card:hover { transform: none; } }
+</style>

@@ -2,7 +2,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import Base from '../layouts/Base.astro';
-import { solutions, solutionDetails, brand, testimonials } from '../data/site.js';
+import { solutions, solutionDetails, brand, testimonials, tourDashboards } from '../data/site.js';
+import TourStrip from '../components/TourStrip.astro';
 import { whatsNew } from '../data/whatsNew.js';
 
 export function getStaticPaths() {
@@ -18,6 +19,9 @@ const ogCandidate = path.join(process.cwd(), 'public', 'assets', 'og', `og-${slu
 const ogImage = fs.existsSync(ogCandidate) ? `/assets/og/og-${slug}.jpg` : '/assets/og-default.jpg';
 
 const recentUpdates = (whatsNew[slug] || []).slice(0, 3);
+
+// Live demonstration dashboards for this solution (public/tour/).
+const liveDashboards = tourDashboards.filter((d) => d.solution === slug);
 
 const related = detail.related
   .map((r) => solutions.find((s) => s.slug === r))
@@ -260,6 +264,12 @@ const schema = JSON.stringify({
       </div>
     </section>
   )}
+
+  <TourStrip
+    items={liveDashboards}
+    heading={`See ${detail.name} running.`}
+    lede="An interactive demonstration dashboard with fictitious data. Filter it, open any KPI to see how it is calculated, and export a board pack."
+  />
 
   <!-- ── Modules / What's inside ───────────────────────── -->
   <section class="section--tight">
