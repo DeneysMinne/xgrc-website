@@ -1597,6 +1597,15 @@ export const articles = [
     image: 'what-should-go-in-a-grc-board-pack.jpg',
     relatedSolutions: ['erm', 'compliance-hub'],
   },
+  {
+    slug: 'what-would-an-ai-sheq-agent-actually-do',
+    title: 'What Would an AI SHEQ Agent Actually Do?',
+    excerpt: 'What could an AI SHEQ agent do for incident management, risk identification and corrective actions, and where does MAIA® fit today? Why human oversight and governance must stay central.',
+    category: 'SHEQ',
+    date: '2026-10-13',
+    image: 'what-would-an-ai-sheq-agent-actually-do.jpg',
+    relatedSolutions: ['maia', 'sheqx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1860,6 +1869,13 @@ export const articleFaqs = {
     { q: 'How often should a GRC board pack be updated?', a: 'Most organisations update their board pack on the same cycle as the committee meets, commonly monthly or quarterly. The underlying data behind it should ideally be live and continuously maintained, so the pack is a snapshot of current reality rather than a separate, manually assembled document.' },
     { q: 'What is the difference between a board pack and a risk register?', a: 'A risk register is the detailed, ongoing record of every identified risk, its assessment and its treatment. A board pack is a summarised reporting output drawn from that register (and other sources), built for a committee meeting rather than day-to-day risk management.' },
     { q: 'Can a board pack be generated automatically from live data?', a: 'Yes, where the executive summary, KPI scorecard and register extract all draw from the same reconciled dataset, the whole pack can be generated directly from that data rather than assembled by hand each cycle, which also removes the risk of the summary and the detail disagreeing.' },
+  ],
+  'what-would-an-ai-sheq-agent-actually-do': [
+    { q: 'What is an AI SHEQ agent?', a: 'An AI SHEQ agent is an intelligent digital assistant that could support Safety, Health, Environment and Quality processes by helping users interact with SHEQ information, identify patterns, summarise information and surface relevant records.' },
+    { q: 'Can AI replace SHEQ professionals?', a: 'AI should support rather than replace SHEQ professionals. Human judgement, expertise, accountability and oversight remain essential, particularly for safety-critical and high-impact decisions.' },
+    { q: 'How could AI help with incident management?', a: 'AI could help users review incident information, identify similar historical events, highlight recurring themes, surface relevant records and support investigation and corrective-action processes.' },
+    { q: 'How does MAIA® relate to an AI SHEQ agent?', a: 'MAIA® is the governed AI embedded in XGRC®. It supports natural language risk queries, policy and procedure Q&A, compliance status summaries, an ESG & SHERQ insight engine and an H&S Assistant Agent, with permission alignment, explainable outputs and a full AI interaction audit trail.' },
+    { q: 'Why is governance important for AI SHEQ agents?', a: 'AI agents may interact with sensitive organisational information and support important operational processes. Access controls, human oversight, accountability, monitoring and auditability are therefore essential to responsible AI use.' },
   ],
 };
 
