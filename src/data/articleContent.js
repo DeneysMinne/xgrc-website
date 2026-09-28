@@ -3432,4 +3432,127 @@ Make AI Governance Work Beyond October
 Use Cybersecurity Awareness Month to select one material AI use case and follow it through ownership, assessment, approval, controls, monitoring and review. Then use that experience to establish a repeatable programme across the organisation. The objective is not simply to say that AI is governed; it is to show how that governance works when people, systems and risks change.
 
 <a href="/contact/">Speak to an XGRC® specialist</a> about implementing and maintaining your AIMS with the new AI Governance solution.`,
+'iso-42001-vs-iso-27001': `AI Is Creating a New Governance Conversation
+
+Artificial intelligence is rapidly becoming part of everyday business. Organisations are using AI to automate processes, analyse information, improve productivity, support decision-making and introduce new digital capabilities. At the same time, they continue to face growing information security risks as technology becomes more deeply embedded across their operations. That raises an important governance question: how should organisations manage AI while continuing to protect their information?
+
+Two international management system standards are particularly relevant here: ISO/IEC 42001:2023 and ISO/IEC 27001. Both support structured governance and risk management, but they address different areas. ISO/IEC 42001 focuses on the management of artificial intelligence, while ISO/IEC 27001 focuses on information security management. Understanding the difference in ISO 42001 vs ISO 27001 helps organisations decide how the two management systems can support a more connected approach to governance.
+
+What Is ISO/IEC 42001?
+
+ISO/IEC 42001 is an international management system standard specifically focused on artificial intelligence. It provides requirements for establishing, implementing, maintaining and continually improving an Artificial Intelligence Management System (AIMS), giving organisations a structured approach to managing AI throughout its use and governance. For a fuller introduction, see <a href="/insights/what-is-iso-42001/">what ISO/IEC 42001 is and why it matters</a>. The standard can cover areas such as:
+
+- AI policies
+- Roles and responsibilities
+- AI risks and opportunities
+- AI impact considerations
+- Appropriate controls
+- Human oversight
+- Monitoring and measurement
+- Documentation
+- Continual improvement
+
+The purpose is not simply to govern the technical performance of an AI system. It is to help organisations establish a management framework around how AI is developed, provided or used, which becomes increasingly important as AI moves beyond isolated technology projects and into everyday organisational processes.
+
+What Is ISO/IEC 27001?
+
+ISO/IEC 27001 is the international standard for Information Security Management Systems (ISMS). It gives organisations a structured approach to managing information security risks and protecting information, commonly considered through three principles:
+
+- Confidentiality: information is accessible only to appropriate people or systems
+- Integrity: the accuracy and completeness of information is protected
+- Availability: information and systems are available when required
+
+An ISMS helps organisations establish policies, responsibilities, risk management processes, controls, monitoring and continual improvement around information security. This typically spans risk assessment, access control, asset management, supplier relationships, security incidents, business continuity, internal audit and management review.
+
+ISO 42001 vs ISO 27001: What Is the Main Difference?
+
+The simplest distinction is that ISO/IEC 42001 is about artificial intelligence management, while ISO/IEC 27001 is about information security management. ISO/IEC 42001 asks organisations to consider how AI is responsibly governed and managed. ISO/IEC 27001 asks them to consider how information security risks are systematically managed. The two standards have different primary objectives, and the differences show up across the management system:
+
+- Primary focus: artificial intelligence (42001) versus information security (27001)
+- Management system: an AIMS versus an ISMS
+- Key concern: responsible management and governance of AI versus the confidentiality, integrity and availability of information
+- Risk focus: AI-related risks and impacts versus information security risks
+- Governance: AI roles, responsibilities and oversight versus information security roles and responsibilities
+- Controls: AI-related management controls versus information security controls
+- Monitoring: AI management system performance versus ISMS performance
+
+What they share is the management system discipline itself, including a commitment to continual improvement. They are not competing standards. They address different governance requirements that increasingly overlap as organisations adopt AI.
+
+Where Do AI and Information Security Meet?
+
+AI relies heavily on information. An AI system may collect, process, analyse, generate or make use of organisational data, which creates a direct relationship between AI governance and information security. Consider an employee using a generative AI platform to analyse a confidential business document. That single activity raises AI governance questions: is this an approved use case, has the AI-related risk been assessed, is human oversight required, who is responsible for the use of the system, and are AI policies and controls in place? It also raises information security questions: is the employee authorised to share the information, how is it protected, what happens to it after it is submitted, is a third party processing it, and are appropriate security controls in place?
+
+The same activity can therefore create both AI governance risk and information security risk. This is why organisations should avoid treating AI governance and information security as completely isolated activities.
+
+AI Does Not Replace Existing Information Security Responsibilities
+
+The emergence of AI can create the impression that organisations need an entirely new governance environment. In reality, many existing information security responsibilities remain highly relevant. Organisations still need to manage sensitive information, access and authentication, third-party technology, security incidents, information assets, employee responsibilities, risk and monitoring. AI introduces additional considerations, but it does not remove these responsibilities, and in some cases it makes them more important.
+
+Generative AI tools, for example, make it extremely easy for employees to transfer information into external platforms. Without appropriate governance, employees may start using these tools before the organisation has assessed the information security implications. This is how Shadow AI develops: AI technologies used outside established organisational governance or oversight. Managing it requires both information security controls and AI governance, and organisations increasingly need to be able to answer questions such as:
+
+- Which AI systems are being used?
+- What organisational information is being entered into them?
+- Who has access to AI applications?
+- Are employees using approved or unapproved AI tools?
+- How are third-party AI providers assessed?
+- Which AI-generated outputs require human review?
+- How are AI-related incidents identified and managed?
+
+ISO/IEC 42001 Introduces a Broader AI Governance Perspective
+
+Information security is only one component of responsible AI management. An AI system can be secure and still create other organisational risks. Organisations may also need to consider how the system is used, whether outputs require human review, who is accountable for AI-supported decisions, the potential impacts of the system, appropriate transparency, monitoring of AI performance and governance throughout the AI lifecycle. These questions show why AI governance cannot simply be treated as another cybersecurity control. ISO/IEC 42001 provides a broader management system approach focused specifically on AI, while ISO/IEC 27001 continues to provide the structure for managing information security.
+
+Building AI Guardrails
+
+Responsible AI adoption requires boundaries, often referred to as AI guardrails. Guardrails establish the conditions within which AI can be used safely and responsibly, and many of them draw on both standards at once. Depending on the organisation and its risk environment, they may include:
+
+- Approved AI technologies
+- Acceptable-use requirements
+- Data classification and handling rules
+- Access restrictions
+- AI risk assessments
+- Human approval requirements
+- Supplier assessments
+- Monitoring and escalation procedures
+- Recordkeeping and evidence
+- Incident management
+
+The objective is not to restrict innovation unnecessarily. It is to ensure innovation happens within a controlled governance environment, giving employees clarity about what is permitted and giving leadership confidence that AI-related risks are being managed.
+
+Both Standards Depend on Accountability
+
+Despite their different focus areas, both standards depend on clear organisational responsibility. Technology cannot govern itself. For information security, organisations need clear responsibility for information assets, security risks, controls, incidents and other ISMS activities. For AI, without clearly defined ownership, responsibilities can become fragmented across IT, cybersecurity, risk, compliance, legal and operational teams. Connected governance helps establish clarity around:
+
+- Who owns an AI system
+- Who owns the associated risks
+- Who approves AI use cases
+- Who monitors controls
+- Who investigates incidents
+- Who provides assurance to leadership
+
+Clear accountability is what turns AI governance from policy into operational practice.
+
+Why a Connected Approach Matters
+
+Organisations can make governance unnecessarily complex when each new requirement creates another isolated management structure. AI governance does not need to become another silo. Instead, organisations can connect related activities so that an AI policy links to AI risk, AI risk links to information risk, and both link to controls, responsible owners, monitoring, evidence, audit and corrective action. Connecting these activities gives a clearer picture of how AI and information security risks interact, and it reduces duplication. Instead of separate spreadsheets, registers and evidence for related risks, managed by different departments, information sits in one coordinated environment and technology turns governance requirements into repeatable processes.
+
+What Does This Mean for Organisations Already Using ISO/IEC 27001?
+
+Organisations with an established ISMS already have experience with management system principles such as leadership and accountability, risk-based thinking, policies, roles and responsibilities, controls, competence and awareness, monitoring, internal audit, management review, corrective action and continual improvement. This is a useful foundation. If you are still building it, see our guides to <a href="/use-cases/iso-27001-readiness/">ISO 27001 readiness</a> and <a href="/insights/streamlining-iso-27001-compliance-digitally/">streamlining ISO 27001 compliance digitally</a> are a good place to start.
+
+However, an existing ISO/IEC 27001 management system should not be assumed to address every AI governance requirement. AI introduces its own risks, impacts, responsibilities and governance considerations. Organisations need to understand where their existing processes can support AI governance and where additional AI-specific processes are required. Our article on <a href="/insights/iso-42001-implementation-ai-governance/">implementing ISO/IEC 42001</a> looks at those AI-specific steps in more detail.
+
+How XGRC® Supports Both Management Systems
+
+On the XGRC® platform, the two standards are handled by two connected solutions. <a href="/ai-governance/">AI Governance</a> is built to govern how you build and use AI: it supports ISO/IEC 42001 compliance, AI impact assessment, EU AI Act classification, and AI risks, controls and evidence mapped to your AI register, and it produces a Statement of Applicability for your AI management system. <a href="/msxcyber/">MSXCyber® by XGRC® Software</a> provides the Information Security Management System aligned to ISO 27001:2022, covering information security governance, risk management and audit-ready evidence.
+
+Because both sit on the one XGRC® platform, AI risks, information security risks, policies, controls, actions, audits and evidence can be connected rather than managed as separate programmes. That is the connected approach in practice: AI governance becomes part of your wider governance, risk, compliance and assurance processes instead of another isolated silo.
+
+XGRC® runs both management systems itself. XGRC® is ISO 27001:2022 certified and will be certified to ISO/IEC 42001:2023 by the end of October 2026.
+
+AI Governance and Information Security Are Different but Connected
+
+ISO/IEC 42001 and ISO/IEC 27001 address different organisational needs: one focuses on managing artificial intelligence, the other on managing information security. But as AI becomes increasingly dependent on organisational information, the relationship between them matters more. AI needs appropriate governance, information needs appropriate protection, risks need clear ownership, controls need to be monitored, and leadership needs evidence that governance is working. For organisations using AI, the question is not whether to choose ISO/IEC 42001 or ISO/IEC 27001, but how to build a connected approach to both.
+
+<a href="/contact/">Speak to an XGRC® specialist</a> to discover how AI Governance and MSXCyber® can help your organisation govern AI responsibly and protect the information that enables it.`,
 };
