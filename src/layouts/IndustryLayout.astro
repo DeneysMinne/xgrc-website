@@ -1,0 +1,154 @@
+---
+// Reusable industry landing page (SEO Fix Spec T16): regulations, product
+// modules and case studies. Data: src/data/industries.js.
+import Base from './Base.astro';
+import { caseStudies } from '../data/site.js';
+import { publishedCaseStudyPages } from '../data/caseStudyPages.js';
+
+const { entry, preview = false } = Astro.props;
+const { name, title, metaDescription, h1, intro, regulations, modules, faqs } = entry;
+const path = preview ? `/preview/industries/${entry.slug}/` : `/industries/${entry.slug}/`;
+
+// Link to the HTML case study once it is published, otherwise to the PDF
+const studies = entry.caseStudies
+  .map((slug) => caseStudies.find((c) => c.slug === slug))
+  .filter(Boolean)
+  .map((c) => ({
+    ...c,
+    href: publishedCaseStudyPages.some((p) => p.slug === c.slug) ? `/case-studies/${c.slug}/` : (c.pdf ? `/case-studies/${c.slug}.pdf` : null),
+    isPdf: !publishedCaseStudyPages.some((p) => p.slug === c.slug),
+  }));
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xgrcsoftware.com/' },
+        { '@type': 'ListItem', position: 2, name: name, item: `https://xgrcsoftware.com${path}` },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    },
+  ],
+};
+---
+<Base title={title} description={metaDescription} noindex={preview}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  {preview && (
+    <div class="draft-banner" role="note">Draft for review. Not linked, not indexed and not in the sitemap.</div>
+  )}
+
+  <section class="page-head">
+    <div class="container narrow">
+      <span class="eyebrow"><span class="dot"></span>Industries · {name}</span>
+      <h1>{h1}</h1>
+      <p class="lede">{intro}</p>
+      <div class="actions">
+        <a href="/demo/" class="btn btn-primary">Book a demo</a>
+        <a href="/solutions/" class="btn btn-ghost">All solutions &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Regulation</span>
+        <h2>The rules {name.toLowerCase()} works under.</h2>
+      </div>
+      <div class="reg-list">
+        {regulations.map((r) => (
+          <div class="reg">
+            <h3>{r.href ? <a href={r.href}>{r.name}</a> : r.name}</h3>
+            <p>{r.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Modules</span>
+        <h2>How XGRC® covers it.</h2>
+      </div>
+      <div class="grid cols-3">
+        {modules.map((m) => (
+          <a class="card mod" href={`/${m.slug}/`}>
+            <h3>{m.name}</h3>
+            <p>{m.why}</p>
+            <span class="link-arrow">Explore {m.name} &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {studies.length > 0 && (
+    <section class="section--tight">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow"><span class="dot"></span>Case studies</span>
+          <h2>{name} customers on XGRC®.</h2>
+        </div>
+        <div class="grid cols-2">
+          {studies.map((c) => (
+            <div class="card study">
+              <span class="tag">{c.sector}</span>
+              <h3>{c.company}</h3>
+              <p>{c.summary}</p>
+              {c.href && <a href={c.href} class="link-arrow" {...(c.isPdf ? { download: true } : {})}>{c.isPdf ? 'Download the case study (PDF)' : 'Read the case study'} &rarr;</a>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section--tight">
+    <div class="container narrow">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Frequently asked</span>
+        <h2>Common questions.</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="card cta-band">
+        <h2>See XGRC® with your own sites and obligations.</h2>
+        <a href="/demo/" class="btn btn-primary">Book a demo</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .draft-banner { position: sticky; top: 74px; z-index: 20; background: #3a2d05; color: #ffe8a3; border-bottom: 1px solid #806516; padding: 10px 16px; text-align: center; font-size: 0.9rem; }
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 16px; }
+  .narrow { max-width: 860px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+  .reg-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .reg { padding: 18px 20px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255, 255, 255, 0.02); }
+  .reg h3 { font-size: 1rem; margin: 0 0 6px; }
+  .reg h3 a { color: var(--cyan); text-decoration: none; }
+  .reg p { color: var(--mute); font-size: 0.92rem; line-height: 1.6; margin: 0; }
+  .mod, .study { text-decoration: none; display: flex; flex-direction: column; }
+  .mod .link-arrow, .study .link-arrow { margin-top: auto; padding-top: 16px; }
+  .cta-band { text-align: center; padding: clamp(40px, 6vw, 64px); background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(0,92,169,0.05)); border-color: var(--line-strong); }
+  .cta-band h2 { margin-bottom: 22px; }
+  @media (max-width: 760px) { .reg-list { grid-template-columns: 1fr; } }
+</style>

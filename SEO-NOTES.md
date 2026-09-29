@@ -163,6 +163,36 @@ GSC (27 Jun to 26 Sep 2026) showed three places where the page that actually ran
   - The other 8 product screenshots were checked and are clean.
   - The old image files are kept (no media deleted) but are no longer linked.
 
+## Priority 3 (29 Sept 2026)
+
+### T14 articles restored
+- `/insights/what-is-pas-99/` (1,405 words) and `/insights/vendor-compliance-management/` (1,272 words) are written for 2026. Each has 4 FAQs with FAQPage schema, plus Article schema, an author byline and a date. The PAS 99 article links to `/msx/`, the PAS 99 use case and the ISO readiness pages. The vendor compliance article covers South African requirements (B-BBEE, the SARS Tax Compliance Status PIN, COID, OHS Act section 37(2), POPIA operators under section 21) and links to `/compliance-hub/` and the vendor management use case.
+- The old URLs now 301 straight to the new articles, in one hop:
+  - `/2017/10/04/what-is-pas-99-for-integrated-management-systems/`
+  - `/what-is-pas-99-for-integrated-management-systems/` (the same old article without its date path, which also went to `/msx/`)
+  - `/2019/10/09/what-is-vendor-compliance-management/`
+- New links in: a learn link on `/msx/` and `/compliance-hub/`, and one link each from the closest existing article (integrated management systems, and supplier compliance vs procurement).
+- `/products/vcm/` stays redirected to `/compliance-hub/`, as decided for T8.
+- Two other old vendor posts still redirect to `/compliance-hub/` and `/use-cases/vendor-management/`. The spec did not name them, so they are unchanged. They could point to the new article instead.
+- Both articles reuse existing images. The PAS 99 image (a control room) does not really fit the topic, so a dedicated image for each would be better.
+
+### T15 left alone
+- The "quality management strategies" and "esg portfolio management" redirects are unchanged.
+
+### T16 templates
+Each template follows the draft pattern: while `draft: true`, a page builds only under `/preview/...` (noindex, unlinked, not in the sitemap). Setting `draft: false` publishes it. The build fails if a published page still contains [CONFIRM].
+- **Comparison:** `src/layouts/ComparisonLayout.astro` and `src/data/comparisons.js` (built for T12).
+- **Industry landing:** `src/layouts/IndustryLayout.astro` and `src/data/industries.js` (regulations, modules, case studies, FAQs). Drafts: `/preview/industries/manufacturing/` and `/preview/industries/mining/`. Before publishing mining, agree how it differs from `/mining-esg-compliance-software-africa/` so they don't compete (suggested: mine safety and operational compliance on the new page, ESG on the existing one).
+- **Case study:** `src/layouts/CaseStudyLayout.astro` and `src/data/caseStudyPages.js`, with Article schema. The PDF stays as a download. Drafts: `/preview/case-studies/tn-ceramics/` and `/preview/case-studies/vican-manufacturing/`, with content taken from the PDFs. The industry template links to the HTML case study once it is published, and to the PDF until then.
+- **Found in the PDFs, for Deneys:**
+  - The TN Ceramics PDF gives the same quote to two different people (Herford Dennis, Managing Director, and Adelle Stander, SHEQ Manager), so the draft marks it [CONFIRM].
+  - The TN Ceramics and Vican results are almost identical (30% fewer safety incidents, 40% fewer non-conformances, 40% fewer high-priority risks, 70% less reporting or audit time). The figures are worth confirming with both customers before the HTML pages go live.
+
+### Other changes
+- **Article byline:** articles now show "By XGRC® Software" and, where there is one, an "Updated" date. The Article schema URL now has its trailing slash.
+- **Sitemap dates:** the lastmod ledger ignores the byline and date markup, so adding the byline did not bump every article's date.
+- **Scheduled posts:** all nine October blog commits were simulated as cherry-picks on this branch, and all apply cleanly. New entries go at the start of each data file, away from the lines the scheduled posts append to.
+
 ## Duplicate titles and meta descriptions (T13)
 
 Checked on 29 Sept 2026 across all 136 indexable pages: **no duplicate titles and no duplicate meta descriptions.** Em dashes have been removed from every title and meta description; 24 pages had one.

@@ -1,0 +1,12 @@
+---
+// Published industry pages: /industries/<slug>/ (drafts build under /preview/industries/)
+import IndustryLayout from '../../layouts/IndustryLayout.astro';
+import { publishedIndustries } from '../../data/industries.js';
+
+export function getStaticPaths() {
+  return publishedIndustries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+<IndustryLayout entry={entry} />

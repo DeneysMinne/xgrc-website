@@ -1,0 +1,145 @@
+---
+// Reusable HTML case study page with Article schema (SEO Fix Spec T16).
+// Data: src/data/caseStudyPages.js, merged with `caseStudies` in site.js.
+// The PDF stays available as a download.
+import Base from './Base.astro';
+import { caseStudies } from '../data/site.js';
+
+const { entry, preview = false } = Astro.props;
+const base = caseStudies.find((c) => c.slug === entry.slug) || {};
+const company = base.company || entry.slug;
+const path = preview ? `/preview/case-studies/${entry.slug}/` : `/case-studies/${entry.slug}/`;
+const pdf = base.pdf ? `/case-studies/${entry.slug}.pdf` : null;
+
+const parts = (text) => String(text).split(/(\[CONFIRM[^\]]*\])/g).filter(Boolean)
+  .map((t) => ({ t, confirm: t.startsWith('[CONFIRM') }));
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: entry.headline,
+      description: entry.metaDescription,
+      datePublished: entry.datePublished,
+      dateModified: entry.dateModified || entry.datePublished,
+      author: { '@type': 'Organization', name: 'XGRC® Software' },
+      publisher: { '@type': 'Organization', name: 'XGRC® Software', url: 'https://xgrcsoftware.com' },
+      about: { '@type': 'Organization', name: company },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': `https://xgrcsoftware.com${path}` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xgrcsoftware.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Customers', item: 'https://xgrcsoftware.com/customers/' },
+        { '@type': 'ListItem', position: 3, name: company },
+      ],
+    },
+  ],
+};
+---
+<Base title={entry.title} description={entry.metaDescription} noindex={preview}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  {preview && (
+    <div class="draft-banner" role="note">
+      Draft for review. Not linked, not indexed and not in the sitemap. Highlighted <mark>[CONFIRM]</mark> items need confirming before this page is published.
+    </div>
+  )}
+
+  <section class="page-head">
+    <div class="container narrow">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span><a href="/customers/">Customers</a><span>/</span><b>{company}</b>
+      </nav>
+      <span class="eyebrow"><span class="dot"></span>Case study · {base.sector || 'Customer'}</span>
+      <h1>{entry.headline}</h1>
+      {base.summary && <p class="lede">{base.summary}</p>}
+      <ul class="facts">
+        <li><span>Company</span>{company}</li>
+        <li><span>Location</span>{entry.location}</li>
+        <li><span>Solutions</span><div>{entry.solutions.map((s, i) => (<>{i > 0 && ', '}<a href={s.href}>{s.name}</a></>))}</div></li>
+        {entry.partner && <li><span>Implementation partner</span>{entry.partner}</li>}
+      </ul>
+      {pdf && <a href={pdf} class="btn btn-ghost" download>Download the PDF case study</a>}
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="results">
+        {entry.results.map((r) => (
+          <div class="card result">
+            <span class="r-fig">{r.figure}</span>
+            <span class="r-label">{r.label}</span>
+            {r.detail && <span class="r-detail">{r.detail}</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container narrow prose">
+      <h2>About {company}</h2>
+      <p>{entry.about}</p>
+
+      <h2>The challenge</h2>
+      <ul>{entry.challenges.map((c) => <li>{c}</li>)}</ul>
+
+      <h2>The solution</h2>
+      <p>{entry.solution}</p>
+      <ul>{entry.highlights.map((h) => <li>{h}</li>)}</ul>
+
+      {entry.quote && (
+        <figure class="quote">
+          <blockquote>"{entry.quote.text}"</blockquote>
+          <figcaption>{parts(entry.quote.name).map((p) => p.confirm ? <mark>{p.t}</mark> : p.t)}, {entry.quote.role}</figcaption>
+        </figure>
+      )}
+
+      {entry.outlook && (<><h2>What's next</h2><p>{entry.outlook}</p></>)}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="card cta-band">
+        <h2>See what XGRC® could do for your organisation.</h2>
+        <p class="lede">Talk to us about your sites, standards and obligations, and we will show you the platform using your own processes.</p>
+        <a href="/demo/" class="btn btn-primary">Book a demo</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .draft-banner { position: sticky; top: 74px; z-index: 20; background: #3a2d05; color: #ffe8a3; border-bottom: 1px solid #806516; padding: 10px 16px; text-align: center; font-size: 0.9rem; }
+  mark { background: rgba(255, 196, 0, 0.18); color: #ffd966; border-radius: 4px; padding: 0 3px; }
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 16px; }
+  .narrow { max-width: 860px; }
+  .crumbs { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--faint); display: flex; gap: 10px; align-items: center; margin-bottom: 26px; flex-wrap: wrap; }
+  .crumbs a { color: var(--mute); text-decoration: none; }
+  .crumbs b { color: var(--ink); font-weight: 500; }
+  .facts { list-style: none; padding: 0; margin: 22px 0 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; }
+  .facts li { color: var(--ink); font-size: 0.95rem; display: flex; flex-direction: column; gap: 2px; }
+  .facts li span { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--faint); }
+  .facts a { color: var(--cyan); }
+  .results { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .result { display: flex; flex-direction: column; gap: 4px; }
+  .r-fig { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; color: var(--cyan); line-height: 1.1; }
+  .r-label { color: var(--ink); font-weight: 500; }
+  .r-detail { color: var(--mute); font-size: 0.88rem; line-height: 1.5; }
+  .prose h2 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); margin: 34px 0 12px; }
+  .prose p, .prose li { color: var(--mute); line-height: 1.75; font-size: 0.98rem; }
+  .prose ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+  .quote { margin: 34px 0; padding: 22px 26px; border-left: 3px solid var(--cyan); background: rgba(255, 255, 255, 0.03); border-radius: 0 14px 14px 0; }
+  .quote blockquote { margin: 0 0 10px; color: var(--ink); font-size: 1.05rem; line-height: 1.6; }
+  .quote figcaption { color: var(--mute); font-size: 0.9rem; }
+  .cta-band { text-align: center; padding: clamp(40px, 6vw, 64px); background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(0,92,169,0.05)); border-color: var(--line-strong); }
+  .cta-band .lede { margin: 0 auto 26px; }
+  @media (max-width: 860px) { .results { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 520px) { .facts { grid-template-columns: 1fr; } }
+</style>

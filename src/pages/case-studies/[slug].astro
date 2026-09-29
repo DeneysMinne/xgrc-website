@@ -1,0 +1,12 @@
+---
+// Published HTML case studies: /case-studies/<slug>/ (the PDF stays at /case-studies/<slug>.pdf)
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import { publishedCaseStudyPages } from '../../data/caseStudyPages.js';
+
+export function getStaticPaths() {
+  return publishedCaseStudyPages.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+<CaseStudyLayout entry={entry} />

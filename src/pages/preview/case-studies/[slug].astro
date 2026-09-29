@@ -1,0 +1,12 @@
+---
+// Draft case studies for review: /preview/case-studies/<slug>/ (noindex, unlinked, not in the sitemap)
+import CaseStudyLayout from '../../../layouts/CaseStudyLayout.astro';
+import { draftCaseStudyPages } from '../../../data/caseStudyPages.js';
+
+export function getStaticPaths() {
+  return draftCaseStudyPages.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+<CaseStudyLayout entry={entry} preview={true} />
