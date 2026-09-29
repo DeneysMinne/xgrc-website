@@ -2,6 +2,9 @@
 import Base from '../layouts/Base.astro';
 import SsotConvergence from '../components/SsotConvergence.astro';
 import { brand, caseStudies } from '../data/site.js';
+import { publishedComparisons } from '../data/comparisons.js';
+
+const compareLinks = publishedComparisons.filter((c) => c.linkFrom.includes('grc-software'));
 
 const capabilities = [
   {
@@ -95,8 +98,8 @@ const schema = JSON.stringify({
 });
 ---
 <Base
-  title="GRC Software — Governance, Risk & Compliance Platform | XGRC®"
-  description="XGRC® is an enterprise GRC platform unifying governance, risk, compliance, ESG and data protection (GDPR, POPIA) in one auditable system. Trusted by 800+ companies."
+  title="GRC Software: Governance, Risk & Compliance Platform | XGRC®"
+  description="XGRC® is an enterprise GRC platform for governance, risk, compliance, ESG and data protection in one auditable system. Trusted by 800+ companies."
   ogImage="/assets/og/og-grc-software.jpg"
 >
   <script type="application/ld+json" set:html={schema} />
@@ -114,6 +117,9 @@ const schema = JSON.stringify({
         <a href="/demo/" class="btn btn-primary">Book a Demo</a>
         <a href="/solutions/" class="btn btn-ghost">Explore solutions &rarr;</a>
       </div>
+      {compareLinks.length > 0 && (
+        <p class="compare-links">Comparing options? {compareLinks.map((c, n) => (<>{n > 0 && ' · '}<a href={`/compare/${c.slug}/`}>XGRC® vs {c.competitor}</a></>))}</p>
+      )}
     </div>
   </section>
 
@@ -306,6 +312,8 @@ const schema = JSON.stringify({
 </Base>
 
 <style>
+  .compare-links { margin-top: 18px; color: var(--mute); font-size: 0.95rem; }
+  .compare-links a { color: var(--cyan); }
   /* ── Hero ─────────────────────────────────────────────── */
   .grc-hero {
     padding: 140px 0 80px;

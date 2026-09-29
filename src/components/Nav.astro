@@ -21,7 +21,7 @@ const isActive = (href) => href === '/' ? path === '/' : path.startsWith(href);
       ))}
     </nav>
 
-    <a href="/login/" class="nav-link nav-login">Customer login</a>
+    <a href="/login/" class="nav-link nav-login">Log in to SHEQX®</a>
     <a href="/demo/" class="btn btn-primary nav-cta">Book a demo</a>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
@@ -33,7 +33,7 @@ const isActive = (href) => href === '/' ? path === '/' : path.startsWith(href);
     {nav.map((item) => (
       <a href={item.href} {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{item.label}</a>
     ))}
-    <a href="/login/">Customer login</a>
+    <a href="/login/">Log in to SHEQX® or XGRC®</a>
     <a href="/demo/" class="btn btn-primary">Book a demo</a>
   </nav>
 </header>
@@ -72,7 +72,13 @@ const isActive = (href) => href === '/' ? path === '/' : path.startsWith(href);
   .mobile-menu .btn { margin-top: 10px; justify-content: center; }
   .site-header.open .mobile-menu { display: flex; }
 
-  @media (max-width: 1024px) {
+  /* 12 header items only fit side by side from about 1360px; tighten, then collapse */
+  @media (max-width: 1440px) {
+    .bar { gap: 14px; }
+    .primary { gap: 14px; }
+    .nav-link { font-size: 13.5px; }
+  }
+  @media (max-width: 1240px) {
     .primary, .nav-cta { display: none; }
     .menu-toggle { display: flex; }
   }

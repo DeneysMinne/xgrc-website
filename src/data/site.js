@@ -69,10 +69,11 @@ export const solutionDetails = {
     youtubeId: 'hW3EPWIKj9s',
     name: 'SHEQX®',
     tag: 'Safety, Health, Environment & Quality',
-    metaTitle: 'SHEQ Software for Safety, Health, Environment & Quality | SHEQX® — XGRC®',
+    metaTitle: 'SHEQ Software: Safety, Health, Environment, Quality | SHEQX®',
+    loginLink: { href: '/login/', label: 'Existing user? Log in to SHEQX®' },
     headline: 'SHEQ compliance that closes actions, not just spreadsheets.',
     lede: 'SHEQX® aggregates safety, health, environment, and quality data into one auditable platform, giving you the visibility to prevent incidents, close non-conformances, and sustain ISO certification without the administrative drag.',
-    metaDescription: 'SHEQX® unifies safety, health, environment and quality on one auditable platform, aligned to ISO 9001, 14001 and 45001 to prevent incidents and close actions.',
+    metaDescription: 'SHEQX® unifies safety, health, environment and quality on one auditable platform, aligned to ISO 9001, 14001 and 45001. Existing users: log in to SHEQX®.',
     challenges: [
       { title: 'Incidents tracked in email', body: 'Safety events get logged then forgotten. No closure, no pattern analysis, no learning.' },
       { title: 'ISO audits reveal surprises', body: 'Compliance gaps stay invisible until an external audit makes them official findings with deadlines attached.' },
@@ -96,6 +97,7 @@ export const solutionDetails = {
     related: ['msx', 'erm', 'envirx'],
     testimonialCompanies: ['Servest', 'Interwaste', 'Sandton Plant Hire'],
     regionalLink: { href: '/sheq-software-south-africa/', label: 'SHEQ software in South Africa' },
+    learnLink: { href: '/insights/what-is-sheq-software-complete-guide/', label: 'What is SHEQ? A guide to SHEQ management systems' },
     geo: {
       definition: 'SHEQ management software helps organisations manage safety, health, environmental and quality processes through structured workflows, auditable records, incident tracking, inspections, audits and compliance monitoring.',
       usage: 'Organisations typically adopt SHEQX® when safety incidents, non-conformances and ISO audit evidence are still scattered across email, spreadsheets and paper forms, and leadership needs one auditable view of SHEQ performance across multiple sites. SHEQX® is the Safety, Health, Environment and Quality solution within XGRC® Software, it connects SHEQ risks, incidents, audits, actions and compliance obligations to the same secure data foundation used across risk, assurance, compliance, ESG and environmental monitoring.',
@@ -118,9 +120,10 @@ export const solutionDetails = {
     screenshot: '/assets/screenshots/msx-dashboard.webp',
     name: 'MSX®',
     tag: 'Integrated Management System',
+    metaTitle: 'MSX® Integrated Management System | XGRC®',
     headline: 'One management system. Multiple standards. Less duplicated effort.',
     lede: 'MSX® merges your governance, risk, compliance, and operational systems into one common framework, eliminating conflicting responsibilities, removing duplicated effort, and giving leadership real-time visibility across all business activities.',
-    metaDescription: 'MSX® merges governance, risk, compliance and operational systems into one common framework, removing conflicting responsibilities and duplicated compliance effort.',
+    metaDescription: 'MSX® merges governance, risk, compliance and operational systems into one framework, removing conflicting responsibilities and duplicated effort.',
     challenges: [
       { title: 'Multiple systems, multiple truths', body: 'ISO 9001, ISO 14001, and ISO 45001 managed in separate tools. The same data entered three times, never reconciled.' },
       { title: 'Improvement programmes disconnected from risk', body: 'Continual improvement initiatives tracked in isolation, no link to the risks they are supposed to address.' },
@@ -164,9 +167,10 @@ export const solutionDetails = {
     youtubeId: '5hZX0WIebCo',
     name: 'MSXCyber®',
     tag: 'Information Security Governance',
+    metaTitle: 'MSXCyber® Information Security Governance | XGRC®',
     headline: 'ISO 27001 compliance without the spreadsheet chaos.',
     lede: 'MSXCyber® delivers a complete Information Security Management System aligned to ISO 27001:2022, with governance, risk management, and audit-ready evidence built in from day one. Data breaches now carry material financial, regulatory and operational consequences. Structured ISMS governance is no longer optional.',
-    metaDescription: 'MSXCyber® is a complete Information Security Management System aligned to ISO 27001:2022, with governance, risk management and audit-ready evidence built in.',
+    metaDescription: 'MSXCyber® is an Information Security Management System aligned to ISO 27001:2022, with governance, risk management and audit-ready evidence built in.',
     challenges: [
       { title: 'ISO 27001 gaps only found at audit', body: 'Without continuous monitoring, control weaknesses accumulate quietly between certification reviews.' },
       { title: 'Asset inventories in spreadsheets', body: 'Assets undocumented, risks unassessed. One security incident reveals just how fragile the inventory actually is.' },
@@ -208,10 +212,11 @@ export const solutionDetails = {
     screenshot: '/assets/screenshots/erm-dashboard-new.webp',
     name: 'Enterprise Risk Management',
     tag: 'Enterprise Risk Intelligence',
-    metaTitle: 'Enterprise Risk Management Software | XGRC®',
+    metaTitle: 'ERM Software South Africa | Risk Register & ISO 31000 | XGRC®',
+    h1: 'Enterprise risk management software',
     headline: 'Risk managed at enterprise scale, not spreadsheet scale.',
     lede: 'A structured, auditable approach to enterprise, operational, and project risk, aligned to ISO 31000 and COSO ERM, with board-level dashboards, risk appetite monitoring, and corrective action tracking built in.',
-    metaDescription: 'Enterprise risk management aligned to ISO 31000 and COSO, with board dashboards, risk appetite monitoring and a full audit trail across enterprise and project risk.',
+    metaDescription: 'ERM software aligned to ISO 31000, COSO and King V. Risk registers, controls, KRIs and board reporting on one platform. Built in South Africa.',
     challenges: [
       { title: 'Risk registers nobody maintains', body: 'Annual reviews produce impressive registers that are outdated before they are presented. Residual risk is never re-assessed.' },
       { title: 'Risk appetite defined, but not enforced', body: 'The board sets appetite thresholds. Operational decisions ignore them. There is no mechanism to detect or escalate breaches.' },
@@ -232,11 +237,73 @@ export const solutionDetails = {
     ],
     standards: ['ISO 31000', 'COSO ERM', 'King V', 'IFRS'],
     related: ['integrated-assurance', 'msx', 'msxcyber', 'ai-governance'],
+    sections: [
+      {
+        id: 'risk-register-software',
+        eyebrow: 'Risk register software',
+        heading: 'A risk register that stays current between reviews.',
+        body: [
+          'Most risk registers start life in Excel. They work for one owner and one review cycle, then break as soon as several business units, risk owners and treatment plans share the same file. XGRC® ERM replaces the spreadsheet with a live risk register: every risk has an owner, a category, inherent and residual scores, linked controls and a treatment plan, and every change is recorded in the audit trail.',
+        ],
+        items: [
+          { title: 'Owned and scored', body: 'Each risk carries an owner, a category and likelihood and impact scores, so residual risk is re-assessed when controls or circumstances change, not once a year.' },
+          { title: 'Linked to controls and actions', body: 'Controls, treatment plans and actions sit on the risk itself. Overdue actions and failed controls raise the residual score where the board can see it.' },
+          { title: 'Appetite and KRIs built in', body: 'Risk appetite thresholds and key risk indicators are monitored against each risk, with escalation and breach alerts when a tolerance is exceeded.' },
+        ],
+        links: [
+          { href: '/use-cases/risk-register-template/', label: 'Moving on from a risk register template' },
+          { href: '/use-cases/iso-31000-risk-management/', label: 'ISO 31000 risk management' },
+        ],
+      },
+      {
+        id: 'frameworks',
+        eyebrow: 'Framework mapping',
+        heading: 'Aligned to ISO 31000, COSO ERM and King V.',
+        body: [
+          'South African boards are usually asked to show that risk is governed against a recognised framework. XGRC® ERM is structured so the same risk data answers to all three.',
+        ],
+        table: {
+          head: ['Framework', 'What it asks for', 'How XGRC® ERM supports it'],
+          rows: [
+            ['ISO 31000', 'A risk management process: scope, context and criteria, risk assessment, treatment, monitoring and review, and recording and reporting.', 'Risk categorisation, likelihood and impact scoring, treatment plans, residual risk tracking and management reporting follow the ISO 31000 process.'],
+            ['COSO ERM', 'Risk integrated with strategy and performance across five components, from governance and culture to information, communication and reporting.', 'Risks link to objectives, appetite thresholds and KRIs, with trend analysis and board dashboards for review and revision.'],
+            ['King V', 'A governing body that governs risk in a way that supports setting and achieving strategic objectives, with oversight through its committees.', 'Board and committee views of top risks, appetite breaches and assurance coverage, with a full audit trail behind every figure.'],
+          ],
+        },
+        links: [
+          { href: '/insights/iso-31000-vs-coso-key-erm-framework-differences/', label: 'ISO 31000 vs COSO: the key differences' },
+          { href: '/use-cases/king-v-governance/', label: 'King V governance' },
+        ],
+      },
+      {
+        id: 'board-reporting',
+        eyebrow: 'Board and audit committee reporting',
+        heading: 'One view of risk for the board and the audit committee.',
+        body: [
+          'Board packs usually take days to assemble because risk data is spread across registers, incident logs and audit reports. In XGRC® ERM the board dashboard is built from the live register: top risks against appetite, movement since the last meeting, overdue treatment actions and KRI trends.',
+          'Because ERM runs on the same platform as Integrated Assurance, the audit committee also sees which high risks have been audited, which controls were tested and where assurance gaps remain. The internal audit plan follows the current risk profile rather than last year\'s.',
+        ],
+        links: [
+          { href: '/integrated-assurance/', label: 'Integrated Assurance' },
+          { href: '/use-cases/enterprise-risk-management/', label: 'Enterprise risk management use case' },
+        ],
+      },
+    ],
+    outcome: {
+      company: 'TN Ceramics',
+      figure: '40%',
+      label: 'reduction in high-priority enterprise risks',
+      body: 'TN Ceramics, a South African manufacturer of fire-assay crucibles, cupels and fluxes, deployed XGRC® ERM alongside SHEQX®, ENVIRX® and an ISO 9001 quality management system, implemented with GRC Link. Proactive mitigation cut its high-priority enterprise risks by 40%.',
+      pdf: '/case-studies/tn-ceramics.pdf',
+    },
     geo: {
       definition: 'Enterprise risk management software helps organisations identify, assess, treat, monitor and report on risks across business units, projects, strategic objectives and operational environments.',
       usage: 'Organisations typically adopt XGRC® ERM when risk registers are maintained annually in spreadsheets, risk appetite thresholds are set but not enforced, and the board has no real-time view of residual risk. The XGRC® ERM solution connects enterprise risk to controls, assurance, compliance obligations, incidents and actions within the same secure data foundation used across XGRC® Software.',
       notThis: 'ERM is not a static annual risk register exercise. It is a live risk management system with board dashboards, KRI monitoring and appetite-breach alerts, designed to stay current between review cycles, not just at them.',
       faqs: [
+        { q: 'What is ERM software?', a: 'ERM (enterprise risk management) software is a system for identifying, assessing, treating, monitoring and reporting risks across a whole organisation. It replaces spreadsheet risk registers with a live register that links each risk to owners, controls, key risk indicators and treatment actions, and gives the board a current view of risk against appetite.' },
+        { q: 'ERM vs ERP: what is the difference?', a: 'ERP (enterprise resource planning) software runs business transactions such as finance, procurement and inventory. ERM (enterprise risk management) software governs the risks to the business: what could go wrong, how likely it is, what controls are in place and whether they work. Many organisations run both, with ERM drawing on ERP data as a source of risk indicators.', link: { href: '/insights/erp-vs-erm/', label: 'Read: ERP vs ERM explained' } },
+        { q: 'Is ERM software better than spreadsheets?', a: 'For more than a handful of risks and owners, yes. Spreadsheets cannot enforce ownership, track changes reliably, alert on appetite breaches or link risks to controls and audit findings. ERM software keeps the register live and auditable, so the figures in the board pack are the same figures the business works from.', link: { href: '/insights/erm-software-vs-traditional-risk-tools/', label: 'Read: ERM software vs traditional risk tools' } },
         { q: 'Is XGRC® ERM aligned to ISO 31000?', a: 'Yes. ERM is aligned to ISO 31000 and COSO ERM, with King V and IFRS-aligned reporting for South African organisations.' },
         { q: 'Can ERM link to our internal audit function?', a: 'Yes. ERM connects directly to Integrated Assurance, so the audit plan reflects the current risk landscape rather than last year\'s assumptions.' },
         { q: 'Does ERM support board-level reporting?', a: 'Yes. ERM includes real-time board dashboards, risk appetite monitoring and trend analysis built for board and audit committee reporting.' },
@@ -252,6 +319,7 @@ export const solutionDetails = {
     booklet: '/resources/xgrc-integrated-assurance-brochure.pdf',
     name: 'Integrated Assurance',
     tag: 'Internal Audit & Combined Assurance',
+    metaTitle: 'Internal Audit & Combined Assurance Software | XGRC®',
     headline: 'One audit plan. Four lines of defence. Zero gaps.',
     lede: 'Coordinate internal audit and combined assurance across your organisation, linked directly to risks, controls, and corrective actions, so every line of defence operates from the same picture of what needs assurance.',
     metaDescription: 'Coordinate internal audit and combined assurance, linked to risks, controls and actions, so every line of defence works from one shared view.',
@@ -296,10 +364,10 @@ export const solutionDetails = {
     screenshot: '/assets/screenshots/envirx-dashboard.webp',
     name: 'ENVIRX®',
     tag: 'Environmental Compliance & Monitoring',
-    metaTitle: 'Environmental Compliance Software | ENVIRX® — XGRC®',
+    metaTitle: 'Environmental Compliance Software | ENVIRX® by XGRC®',
     headline: 'Environmental compliance you can demonstrate, not just claim.',
     lede: 'ENVIRX® captures, tracks, and reports environmental performance data, from waste and water to air quality and energy consumption, in a single auditable system aligned to ISO 14001 and local environmental legislation.',
-    metaDescription: 'ENVIRX® captures, tracks and reports environmental performance data, from waste and water to air and energy, in one auditable system aligned to ISO 14001.',
+    metaDescription: 'ENVIRX® captures, tracks and reports environmental data, from waste and water to air and energy, in one auditable system aligned to ISO 14001.',
     challenges: [
       { title: 'Monitoring data scattered across sites', body: 'Each facility tracks environmental data differently. Consolidated reporting requires weeks of manual reconciliation.' },
       { title: 'Regulatory inspections reveal unrecorded incidents', body: 'Environmental events that were informally dealt with on-site become formal non-compliances when an inspector asks for the evidence.' },
@@ -322,6 +390,7 @@ export const solutionDetails = {
     related: ['sheqx', 'esg', 'msx'],
     testimonialCompanies: ['Servest', 'Interwaste', 'Commercial Cold Holdings'],
     regionalLink: { href: '/environmental-compliance-software-south-africa/', label: 'Environmental compliance software in South Africa' },
+    learnLink: { href: '/insights/environmental-compliance-software-for-regulatory-management/', label: 'Environmental compliance and obligations software explained' },
     geo: {
       definition: 'Environmental compliance software helps organisations monitor environmental performance, manage obligations, record evidence and maintain auditable environmental data across sites, operations and regulatory requirements.',
       usage: 'Organisations typically adopt ENVIRX® when environmental monitoring data is tracked differently at every site, regulatory inspections reveal incidents that were never formally recorded, and sustainability targets are reported without evidence behind them. ENVIRX® connects environmental data to risk, compliance, ESG and assurance processes within XGRC® Software, allowing environmental performance to be governed as part of the broader GRC environment.',
@@ -343,6 +412,7 @@ export const solutionDetails = {
     youtubeId: 'v3_97N3WUuI',
     name: 'ESG',
     tag: 'Environmental, Social & Governance Reporting',
+    metaTitle: 'ESG Reporting Software | GRI, IFRS S1/S2 & CDP | XGRC®',
     headline: 'ESG reporting that survives investor scrutiny.',
     lede: 'Collect, manage, and report ESG data in a structured, auditable way, aligned to GRI, IFRS S1/S2, and CDP, so your sustainability disclosures are backed by evidence, not just intention.',
     metaDescription: 'Collect, manage and report ESG data in a structured, auditable way, aligned to GRI, IFRS S1/S2 and CDP, so sustainability disclosures are backed by evidence.',
@@ -383,7 +453,7 @@ export const solutionDetails = {
   'compliance-hub': {
     logo: '/assets/logos/solutions/compliance-hub.png',
     icon: '/assets/logos/solutions/icons/compliance-hub.png',
-    screenshot: '/assets/screenshots/compliance-hub-dashboard.webp',
+    screenshot: '/assets/screenshots/compliance-hub-dashboard-v2.webp',
     booklet: '/resources/xgrc-compliance-hub-booklet.pdf',
     youtubeId: 'itta_NfEvOU',
     name: 'XGRC® Compliance Hub',
@@ -431,6 +501,7 @@ export const solutionDetails = {
     screenshot: '/assets/screenshots/xlogic-dashboard.webp',
     name: 'XLOGIC®',
     tag: 'Governance Execution',
+    metaTitle: 'XLOGIC® Governance Execution | XGRC®',
     headline: 'Policies that work. Controls that are actually enforced.',
     lede: 'XLOGIC® converts governance frameworks, policies, and controls into structured, enforceable workflows, so compliance is built into how work gets done, not bolted on afterwards through audits.',
     metaDescription: 'XLOGIC® converts governance frameworks, policies and controls into structured, enforceable workflows, so compliance is built into how work gets done.',
@@ -470,10 +541,11 @@ export const solutionDetails = {
     infographic: '/assets/infographics/maia-infographic-v3.pdf',
     logo: '/assets/logos/solutions/maia.png',
     icon: '/assets/logos/solutions/icons/maia.png',
-    screenshot: '/assets/screenshots/maia-dashboard.webp',
+    screenshot: '/assets/screenshots/maia-dashboard-v2.webp',
     youtubeId: 'inqCqT0uW2k',
     name: 'MAIA®',
     tag: 'Governed AI for GRC',
+    metaTitle: 'MAIA® Governed AI for GRC | XGRC®',
     headline: 'The intelligence of governance, governed, audited, accountable.',
     lede: 'MAIA® is governed AI for GRC, embedded within XGRC® to help decision-makers interact with governance records, risks, policies, and compliance data. Faster insight. Better decisions. Full auditability, through controlled, audited AI integrations with a complete interaction audit trail.',
     metaDescription: 'MAIA® is governed AI for GRC, embedded in XGRC® so decision-makers can interrogate risks, policies and compliance data with a full audit trail.',
@@ -514,9 +586,10 @@ export const solutionDetails = {
     infographic: '/assets/infographics/libryo-infographic-v3.pdf',
     name: 'Libryo',
     tag: 'Regulatory Intelligence Partner',
+    metaTitle: 'Libryo Regulatory Intelligence Partner | XGRC®',
     headline: 'Legal obligations, translated into action, for every site, every jurisdiction.',
     lede: 'Libryo turns dense, constantly-changing EHS legislation into clear, site-specific compliance obligations. XGRC® partners with Libryo to embed jurisdiction-specific regulatory intelligence directly into your legal register, so obligations, tasks, and evidence live on the same platform as the rest of your governance and risk data.',
-    metaDescription: 'Libryo turns dense, changing EHS legislation into clear, site-specific compliance obligations, embedded in XGRC® for jurisdiction-specific regulatory tracking.',
+    metaDescription: 'Libryo turns changing EHS legislation into clear, site-specific compliance obligations, embedded in XGRC® for jurisdiction-specific regulatory tracking.',
     challenges: [
       { title: 'Legal registers built and maintained by hand', body: 'Legislation is tracked in spreadsheets by whoever has time. Updates depend on someone noticing a change in the Government Gazette.' },
       { title: 'Multi-site, multi-jurisdiction sprawl', body: 'Every site operates under a different mix of national, provincial, and local regulation. No single view of what applies where.' },
@@ -553,9 +626,10 @@ export const solutionDetails = {
     infographic: '/assets/infographics/hakware-infographic-v3.pdf',
     name: 'Hakware',
     tag: 'AI-Powered Security Testing Partner',
+    metaTitle: 'Hakware AI-Powered Security Testing Partner | XGRC®',
     headline: 'Continuous, AI-driven penetration testing that keeps you one step ahead.',
     lede: 'Hakware is an AI-powered security management platform that tests your environment the way an attacker would, continuously, not once a year. XGRC® partners with Hakware to bring offensive security testing, unified vulnerability visibility, and dark web monitoring into the same governed environment as your ISMS.',
-    metaDescription: 'Hakware is an AI-powered security platform that tests your environment the way an attacker would, continuously rather than once a year, integrated with XGRC®.',
+    metaDescription: 'Hakware is an AI-powered security platform that tests your environment the way an attacker would, continuously, not once a year. Integrated with XGRC®.',
     challenges: [
       { title: 'Penetration tests happen once a year', body: 'Annual pentests produce a point-in-time report. New vulnerabilities in the eleven months between tests go undetected.' },
       { title: 'Security data scattered across tools', body: 'Firewalls, endpoints, cloud environments, and Microsoft 365 each report separately. No single view of actual exposure.' },
@@ -597,7 +671,7 @@ export const solutionDetails = {
     // youtubeId: '',  // add once a product walkthrough video exists
     name: 'XRM',
     tag: 'Sales Pipeline & Customer Management',
-    metaTitle: 'XRM — Sales Pipeline & CRM Software | XGRC®',
+    metaTitle: 'XRM Sales Pipeline & CRM Software | XGRC®',
     headline: 'Pipeline discipline, not pipeline guesswork.',
     lede: 'XRM gives your sales team one governed system to qualify leads, progress opportunities, generate quotes and close deals, with the approval workflows, audit trail and real-time visibility leadership actually needs. Built and run on the same ISO/IEC 27001:2022-certified XGRC® infrastructure as the rest of the platform, not a bolted-on CRM that quietly becomes another unmanaged spreadsheet.',
     metaDescription: 'XRM is one governed system for sales teams to qualify leads, progress opportunities, generate quotes and close deals, with approvals and a full audit trail.',
@@ -871,6 +945,7 @@ export const articles = [
   {
     slug: 'erp-vs-erm',
     title: 'ERP vs ERM: What Is the Difference?',
+    metaDescription: 'ERP vs ERM: ERP runs the business, ERM governs its risk. What each system does, how they differ and why most organisations run both.',
     excerpt: 'ERP and ERM are one letter apart and often confused, but they are different systems: ERP runs the business, ERM governs its risk. What each does, and why organisations run both.',
     category: 'ERM',
     date: '2026-07-25',
@@ -1116,6 +1191,9 @@ export const articles = [
   {
     slug: 'environmental-compliance-software-for-regulatory-management',
     title: 'Environmental Compliance Software for Regulatory Management',
+    seoTitle: 'Environmental Compliance & Obligations Software | XGRC®',
+    metaDescription: 'Environmental compliance software that turns permits and licences into an obligations register, with owners, evidence and alerts. How ENVIRX® does it.',
+    dateModified: '2026-09-29',
     excerpt: 'Environmental regulation is not static. Organisations that rely on manual compliance tracking will always be playing catch-up with a legislative landscape that never stops moving.',
     category: 'Environment',
     date: '2025-10-06',
@@ -1138,6 +1216,9 @@ export const articles = [
   {
     slug: 'what-is-sheq-software-complete-guide',
     title: 'What Is SHEQ Software? A Complete Guide',
+    seoTitle: 'What Is SHEQ? Meaning, Management Systems & Software | XGRC®',
+    metaDescription: 'What is SHEQ? SHEQ stands for safety, health, environment and quality. What a SHEQ management system is, and what modern SHEQ software does.',
+    dateModified: '2026-09-29',
     excerpt: 'SHEQ management has evolved well beyond paper-based registers and manual inspections. This guide explains what modern SHEQ software does and why it has become essential for compliance-driven organisations.',
     category: 'SHEQ',
     date: '2025-08-25',
@@ -1259,6 +1340,11 @@ export const articles = [
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
 // Only articles with an entry here render a FAQ section + FAQPage schema.
 export const articleFaqs = {
+  'environmental-compliance-software-for-regulatory-management': [
+    { q: 'What is environmental obligations software?', a: 'Environmental obligations software breaks environmental authorisations, licences and permits into individual obligations, then tracks each one with an owner, a due date, supporting evidence and alerts. It replaces spreadsheets of licence conditions with a live, auditable register.' },
+    { q: 'Which South African laws create environmental obligations?', a: 'The main sources are the National Environmental Management Act 107 of 1998 and its specific environmental management Acts, including the Air Quality Act 39 of 2004 and the Waste Act 59 of 2008, plus the National Water Act 36 of 1998. Authorisations and licences issued under them set conditions an operation must meet and prove.' },
+    { q: 'How is environmental compliance software different from an ISO 14001 system?', a: 'ISO 14001 sets out how an environmental management system should work, including identifying compliance obligations and evaluating compliance. Environmental compliance software is the tool that runs it: the obligations register, monitoring data, actions and evidence that show the system works and the law is being met.' },
+  ],
   'extended-enterprise-risk-management': [
     { q: 'What is extended enterprise risk management?', a: 'Extended enterprise risk management is the discipline of identifying, assessing and monitoring the risks introduced by third parties, such as suppliers, contractors, outsourced providers and partners, across their whole lifecycle from onboarding through ongoing performance to offboarding.' },
     { q: 'Is extended enterprise risk management the same as third-party risk management?', a: 'They describe the same thing. Extended enterprise risk management, third-party risk management and supply chain risk management all refer to governing the exposure created by the external parties an organisation depends on, rather than its own internal operations.' },
@@ -1359,6 +1445,8 @@ export const articleFaqs = {
     { q: 'Can XGRC® ERM support a framework we haven\'t adopted yet?', a: 'Yes. XGRC® ERM is built around risk identification, assessment, treatment and monitoring workflows that map to both ISO 31000 and COSO, so adopting or switching frameworks doesn\'t require rebuilding your risk register.' },
   ],
   'what-is-sheq-software-complete-guide': [
+    { q: 'What does SHEQ stand for?', a: 'SHEQ stands for safety, health, environment and quality. The term describes managing these four disciplines together, usually through one integrated management system and one set of records.' },
+    { q: 'What is a SHEQ management system?', a: 'A SHEQ management system is the set of policies, processes, responsibilities and records used to manage safety, health, environment and quality as one system. It is usually built on ISO 45001, ISO 14001 and ISO 9001, and in South Africa it must also show compliance with laws such as the OHS Act and NEMA.' },
     { q: 'Is SHEQ software only for large, multi-site organisations?', a: 'No. Single-site organisations benefit too, particularly once ISO certification, audit demands, or incident volumes make spreadsheet-based tracking unreliable. Multi-site operations simply feel the pain sooner.' },
     { q: 'What\'s the difference between SHEQ software and an EHS tool?', a: 'Many EHS tools focus narrowly on environmental, health and safety tracking. SHEQ software additionally covers quality management and connects all four disciplines to a single governance and audit trail.' },
     { q: 'Does SHEQX® cover all four SHEQ disciplines?', a: 'Yes. SHEQX® manages safety, health, environmental and quality processes, incidents, audits, permits, inspections and corrective actions, within one auditable platform.' },

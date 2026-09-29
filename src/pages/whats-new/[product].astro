@@ -25,7 +25,7 @@ function formatDate(d) {
 const schema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  name: `${productName} — What's New`,
+  name: `${productName}: What's New`,
   itemListElement: entries.map((e, i) => ({
     '@type': 'ListItem',
     position: i + 1,
@@ -46,7 +46,7 @@ const breadcrumbSchema = JSON.stringify({
 ---
 
 <Base
-  title={`${productName} — What's New | XGRC®`}
+  title={`${productName}: What's New | XGRC®`}
   description={`Recent updates and improvements shipped to ${productName}.`}
   mdPath={`/whats-new/${product}.md`}
 >

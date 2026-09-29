@@ -264,6 +264,7 @@ export const legalDocs = {
     title: 'Privacy Requests',
     version: '2.0',
     lastUpdated: '13 April 2026',
+    metaDescription: 'How to exercise your data protection rights, including access to, correction of or deletion of your personal information, with the XGRC® Information Officer.',
     intro: 'If you wish to exercise your rights under applicable data protection law — including requesting access to, correction of, or deletion of personal information held about you — please submit your request in writing to the Information Officer at the contact details below.',
     sections: [
       { h: 'Information Officer Contact', body: 'info@xgrcsoftware.com' },
@@ -281,7 +282,7 @@ export const legalDocs = {
     title: 'Contract Framework',
     version: null,
     lastUpdated: '13 April 2026',
-    intro: 'A plain-language map of how the XGRC® customer journey, contract documents, and renewal terms fit together — from first contact through to renewal or termination.',
+    intro: 'A plain-language map of how the XGRC® customer journey, contract documents and renewal terms fit together, from first contact to renewal or termination.',
     sections: [
       { h: 'Customer Journey', steps: [
         { n: 1, title: 'First contact — protect confidentiality', body: 'Before any platform information, pricing, or architecture is shared, both parties sign the NDA (v4.0, XGRC-NDA-004). This protects XGRC® IP during the entire evaluation phase.' },

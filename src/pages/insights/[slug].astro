@@ -111,7 +111,7 @@ const categoryColors = {
 const catColor = categoryColors[article.category] || '#30e2f4';
 ---
 
-<Base title={`${article.title} | XGRC® Insights`} description={article.excerpt} ogImage={`/assets/images/insights/${imageFile}`} mdPath={`/insights/${slug}.md`}>
+<Base title={article.seoTitle || `${article.title} | XGRC® Insights`} description={article.metaDescription || article.excerpt} ogImage={`/assets/images/insights/${imageFile}`} mdPath={`/insights/${slug}.md`}>
   <script type="application/ld+json" set:html={schema} />
   <script type="application/ld+json" set:html={breadcrumbSchema} />
   {faqSchema && <script type="application/ld+json" set:html={faqSchema} />}

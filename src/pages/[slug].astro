@@ -6,6 +6,7 @@ import { solutions, solutionDetails, brand, testimonials, tourDashboards } from 
 import TourStrip from '../components/TourStrip.astro';
 import { whatsNew } from '../data/whatsNew.js';
 import { useCaseRegistry } from '../data/useCaseRegistry.js';
+import { publishedComparisons } from '../data/comparisons.js';
 
 export function getStaticPaths() {
   return Object.keys(solutionDetails).map((slug) => ({ params: { slug } }));
@@ -21,6 +22,7 @@ const ogImage = fs.existsSync(ogCandidate) ? `/assets/og/og-${slug}.jpg` : '/ass
 
 const recentUpdates = (whatsNew[slug] || []).slice(0, 3);
 const useCases = useCaseRegistry.filter((u) => u.relatedSolution === slug);
+const compareLinks = publishedComparisons.filter((c) => c.linkFrom.includes(slug));
 
 // Live demonstration dashboards for this solution (public/tour/).
 const liveDashboards = tourDashboards.filter((d) => d.solution === slug);
@@ -49,7 +51,7 @@ const schema = JSON.stringify({
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home',      item: 'https://xgrcsoftware.com/' },
-        { '@type': 'ListItem', position: 2, name: 'Solutions', item: 'https://xgrcsoftware.com/solutions' },
+        { '@type': 'ListItem', position: 2, name: 'Solutions', item: 'https://xgrcsoftware.com/solutions/' },
         { '@type': 'ListItem', position: 3, name: detail.name },
       ],
     },
@@ -66,7 +68,7 @@ const schema = JSON.stringify({
 ---
 
 <Base
-  title={detail.metaTitle || `${detail.name} — ${detail.tag} | XGRC®`}
+  title={detail.metaTitle || `${detail.name}: ${detail.tag} | XGRC®`}
   description={detail.metaDescription || detail.lede}
   ogImage={ogImage}
   mdPath={`/${slug}.md`}
@@ -91,13 +93,16 @@ const schema = JSON.stringify({
         {detail.poweredBy && (
           <div class="powered-by-badge"><span class="dot"></span>Powered by {detail.poweredBy}</div>
         )}
-        <h1>{detail.name}</h1>
+        <h1>{detail.h1 || detail.name}</h1>
         <p class="sol-headline">{detail.headline}</p>
         <p class="lede sol-lede">{detail.lede}</p>
         <div class="sol-actions">
           <a href="/demo/" class="btn btn-primary">Request a demo</a>
           <a href="/solutions/" class="btn btn-ghost">All solutions &rarr;</a>
         </div>
+        {detail.loginLink && (
+          <p class="sol-login"><a href={detail.loginLink.href} class="link-arrow">{detail.loginLink.label} &rarr;</a> <span>(same login as XGRC®)</span></p>
+        )}
         {(detail.booklet || detail.infographic) && (
           <p class="sol-downloads">
             <span class="dl-label">Download:</span>
@@ -147,6 +152,12 @@ const schema = JSON.stringify({
           {detail.regionalLink && (
             <p class="lede"><a href={detail.regionalLink.href} class="link-arrow">{detail.regionalLink.label} &rarr;</a></p>
           )}
+          {detail.learnLink && (
+            <p class="lede"><a href={detail.learnLink.href} class="link-arrow">{detail.learnLink.label} &rarr;</a></p>
+          )}
+          {compareLinks.map((c) => (
+            <p class="lede"><a href={`/compare/${c.slug}/`} class="link-arrow">Compare XGRC® vs {c.competitor} &rarr;</a></p>
+          ))}
         </div>
       </div>
     </section>
@@ -318,6 +329,59 @@ const schema = JSON.stringify({
     </section>
   )}
 
+  <!-- ── Extra topic sections (optional, data-driven; SEO Fix Spec T10) ── -->
+  {(detail.sections || []).map((sec) => (
+    <section class="section--tight" id={sec.id}>
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow"><span class="dot"></span>{sec.eyebrow}</span>
+          <h2>{sec.heading}</h2>
+          {(sec.body || []).map((para) => <p class="lede">{para}</p>)}
+        </div>
+        {sec.items && (
+          <div class="grid cols-3">
+            {sec.items.map((it) => (
+              <div class="card topic-card">
+                <h3>{it.title}</h3>
+                <p>{it.body}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        {sec.table && (
+          <div class="topic-table" role="table" aria-label={sec.heading}>
+            <div class="topic-row topic-row--head" role="row">
+              {sec.table.head.map((h) => <span role="columnheader">{h}</span>)}
+            </div>
+            {sec.table.rows.map((r) => (
+              <div class="topic-row" role="row">{r.map((c) => <span role="cell">{c}</span>)}</div>
+            ))}
+          </div>
+        )}
+        {sec.links && (
+          <p class="topic-links">{sec.links.map((l) => <a href={l.href} class="link-arrow">{l.label} &rarr;</a>)}</p>
+        )}
+      </div>
+    </section>
+  ))}
+
+  <!-- ── Customer outcome (optional) ──────────────────────── -->
+  {detail.outcome && (
+    <section class="section--tight">
+      <div class="container">
+        <div class="card outcome-card">
+          <span class="eyebrow"><span class="dot"></span>Customer outcome</span>
+          <p class="outcome-figure">{detail.outcome.figure}</p>
+          <p class="outcome-label">{detail.outcome.label}</p>
+          <p class="lede">{detail.outcome.body}</p>
+          {detail.outcome.pdf && (
+            <a href={detail.outcome.pdf} class="link-arrow" download>Download the {detail.outcome.company} case study (PDF) &rarr;</a>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- ── Related use cases ─────────────────────────────── -->
   {useCases.length > 0 && (
     <section class="section--tight">
@@ -382,6 +446,7 @@ const schema = JSON.stringify({
                 <details class="faq-item">
                   <summary>{f.q}</summary>
                   <p>{f.a}</p>
+                  {f.link && <p><a href={f.link.href} class="link-arrow">{f.link.label} &rarr;</a></p>}
                 </details>
               ))}
             </div>
@@ -455,6 +520,27 @@ const schema = JSON.stringify({
 </Base>
 
 <style>
+  .sol-login { margin: -4px 0 18px; font-size: 0.95rem; }
+  .sol-login span { color: var(--faint); font-size: 0.85rem; }
+
+  /* ── Extra topic sections + customer outcome ─────────── */
+  .topic-card h3 { font-size: 1.05rem; margin: 0 0 8px; }
+  .topic-card p { color: var(--mute); font-size: 0.93rem; line-height: 1.6; margin: 0; }
+  .topic-table { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .topic-row { display: grid; grid-template-columns: 1fr 2fr 2fr; gap: 16px; padding: 14px 18px; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--mute); line-height: 1.55; }
+  .topic-row:first-child { border-top: none; }
+  .topic-row span:first-child { color: var(--ink); font-weight: 500; }
+  .topic-row--head { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(255, 255, 255, 0.03); }
+  .topic-row--head span, .topic-row--head span:first-child { color: var(--faint); font-weight: 400; }
+  .topic-links { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 20px; }
+  .outcome-card { background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(0,92,169,0.04)); border-color: var(--line-strong); }
+  .outcome-figure { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 700; color: var(--cyan); margin: 10px 0 0; line-height: 1.1; }
+  .outcome-label { color: var(--ink); font-weight: 500; margin: 4px 0 12px; }
+  @media (max-width: 760px) {
+    .topic-row { grid-template-columns: 1fr; gap: 6px; }
+    .topic-row--head { display: none; }
+  }
+
   /* ── Related use cases ───────────────────────────────── */
   .uc-card { text-decoration: none; display: flex; flex-direction: column; }
   .uc-card p { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
