@@ -244,18 +244,14 @@
               <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">XLOGIC® Governance User<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">Proposes and edits requirements and processes, completes tasks, attaches evidence, and, when assigned governance-lead authority, approves and attests. The accountable user recorded in the XLOGIC® audit trail.</span></span> <span class="mono" id="price-xlogicgovernance" style="color:var(--faint);"></span><span class="unit-xlogicgovernance">/user</span></div><input type="number" min="0" id="q-xlogicgovernance" class="qtyinput-sm"></div>
               <div class="row"><div style="flex:1;font-size:11.5px;color:var(--faint);">XLOGIC® Viewer<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">Read-only access to process diagrams, evidence and audit history. Included at no extra cost for Core and Admin users on XGRC® Plus or Enterprise.</span></span></div><span class="badge-usage" style="background:rgba(47,232,138,0.12);color:var(--green-hi);">Included on Plus/Enterprise</span></div>
             </div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">AI Governance<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">Governs every AI system from register to regulator: EU AI Act classification, compliance and applicability, impact assessment, controls and evidence, human oversight, AI risk, incidents, change governance and the ISO/IEC 42001 management system. Priced per AI system governed, in three tiers; high-risk systems count double. Minimum 3 AI systems.</span></span> <span class="mono" id="price-aigovernance" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Per AI system governed, moves your quote to XGRC® Enterprise</div></div><span class="subtotal-chevron" id="aigov-toggle-chevron" style="margin-left:0;margin-right:8px;">&#9656;</span><input type="checkbox" id="toggle-aigovernance" class="chkbox"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">AI Governance<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">Governs every AI system from register to regulator: EU AI Act classification, compliance and applicability, impact assessment, controls and evidence, human oversight, AI risk, incidents, change governance and the ISO/IEC 42001 management system. Licensed per named user, plus a metered AI Governance Agent charge. Requires Asgard and Hakware.</span></span> <span class="mono" id="price-aigovernance" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Per named user, moves your quote to XGRC® Enterprise</div></div><span class="subtotal-chevron" id="aigov-toggle-chevron" style="margin-left:0;margin-right:8px;">&#9656;</span><input type="checkbox" id="toggle-aigovernance" class="chkbox"></div>
 
             <div id="aigov-extra" style="display:none;flex-direction:column;gap:10px;padding:12px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;">
-              <div style="display:flex;gap:6px;flex-wrap:wrap;" role="group" aria-label="AI Governance tier">
-                <button type="button" class="aig-tier-btn" data-aigtier="essentials">Essentials</button>
-                <button type="button" class="aig-tier-btn" data-aigtier="professional">Professional</button>
-                <button type="button" class="aig-tier-btn" data-aigtier="certification">Certification</button>
-              </div>
-              <div style="font-size:10.5px;color:var(--faint);line-height:1.6;" id="aigov-tier-caption"></div>
-              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">AI systems governed<div style="font-size:10.5px;color:var(--faint);" id="aigov-price-caption"></div></div><input type="number" min="3" id="q-aigov-systems" class="qtyinput-sm" aria-label="AI systems governed"></div>
-              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">Of which high-risk<div style="font-size:10.5px;color:var(--faint);">EU AI Act high-risk systems count double</div></div><input type="number" min="0" id="q-aigov-highrisk" class="qtyinput-sm" aria-label="High-risk AI systems"></div>
-              <div style="font-size:10.5px;color:var(--faint);font-style:italic;" id="aigov-billable-note"></div>
+              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">AI Governance Users<div style="font-size:10.5px;color:var(--faint);" id="aigov-user-caption">Full assessments, risks, controls, compliance, changes. Requires Asgard and Hakware.</div></div><input type="number" min="0" id="q-aigov-users" class="qtyinput-sm" aria-label="AI Governance Users"></div>
+              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">AI Governance Approvers<div style="font-size:10.5px;color:var(--faint);" id="aigov-approver-caption">Same rate as Governance Users, approval access. Does not require Asgard/Hakware.</div></div><input type="number" min="0" id="q-aigov-approvers" class="qtyinput-sm" aria-label="AI Governance Approvers"></div>
+              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">AI Participants<div style="font-size:10.5px;color:var(--faint);" id="aigov-participant-caption">Incident reporting, oversight, assigned actions only</div></div><input type="number" min="0" id="q-aigov-participants" class="qtyinput-sm" aria-label="AI Participants"></div>
+              <div style="font-size:10.5px;color:var(--faint);line-height:1.6;" id="aigov-billable-note"></div>
+              <div style="font-size:10.5px;color:var(--faint);line-height:1.6;font-style:italic;" id="aigov-bundle-note"></div>
             </div>
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Asgard<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">The XGRC® AI agents platform: per-discipline agents (SHEQ Agent, Risk Agent, Audit Agent and more) that users can set up and configure within XGRC®. Each tier includes a monthly call allowance; usage beyond that is billed per call.</span></span></div><div style="font-size:11px;color:var(--faint);">Enable Asgard (AI Agents) for this tenant?</div></div><span class="subtotal-chevron" id="asgard-toggle-chevron" style="margin-left:0;margin-right:8px;">&#9656;</span><input type="checkbox" id="toggle-asgard" class="chkbox"></div>
 
@@ -537,7 +533,7 @@
             
             <li>Volume discounts apply automatically as your monthly list value grows, from 5% up to 40%. The calculator shows the exact discount for your configuration.</li>
             <li>Annual commitment takes an additional 10% off the discounted price, invoiced annually in advance.</li>
-            <li>AI Governance is priced per AI system governed, per month, in three tiers (Essentials, Professional, Certification). EU AI Act high-risk systems count double, and the minimum is 3 AI systems.</li>
+            <li>AI Governance is licensed per named user (AI Governance User/Approver, or the lower AI Participant rate), plus an AI Governance Agent charge with a monthly minimum, metered per token above that. Asgard and Hakware are required alongside AI Governance.</li>
           </ul>
           <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;">What's included</div>
           <ul class="notes-list" style="margin-bottom:16px;">
@@ -569,9 +565,9 @@
 // sales-only blocks, so none of that content reaches the customer page source.
 const CUSTOMER_MODE = true;
 const PRICES = {
-    aigovEssentials:    { ZAR: 995,  USD: 60,  GBP: 45,  EUR: 52  },
-  aigovProfessional:  { ZAR: 1995, USD: 120, GBP: 89,  EUR: 105 },
-  aigovCertification: { ZAR: 3495, USD: 210, GBP: 155, EUR: 180 },
+    aigovParticipant: { ZAR: 150, USD: 9,  GBP: 9,  EUR: 9  },
+  aigovUser:        { ZAR: 950, USD: 58, GBP: 43, EUR: 51 },
+  aigovTokenMin:    { ZAR: 500, USD: 30, GBP: 23, EUR: 27 },
   admin:        { ZAR: 500,      USD: 40,     GBP: 31,     EUR: 35     },
   core:         { ZAR: 413.27,   USD: 33.07,  GBP: 25.72,  EUR: 29.40  },
   lite:         { ZAR: 207.21,   USD: 15.92,  GBP: 12.87,  EUR: 14.70  },
@@ -625,15 +621,16 @@ const SEAT_PRESETS = {
   msxcyber: { label: 'MSXCyber®', seats: { admin: 1, core: 5, lite: 10, task: 10 }, modules: { envirx: 0, erm: 6, assurance: 6 }, hakware: { domains: 1, users: 1 } },
   esg:      { label: 'ESG',       seats: { admin: 1, core: 5, lite: 10, task: 10 }, modules: { envirx: 6, erm: 6, assurance: 6 }, hakware: false },
   aigov:    { label: 'AI Governance', seats: { admin: 1, core: 5, lite: 0, task: 0 }, modules: { envirx: 0, erm: 0, assurance: 0 }, hakware: false,
-              aigov: { tier: 'professional', systems: 10, highRisk: 2 }, maia: { full: 1, buckets: 1 }, xlogic: { admin: 1, governance: 3 } }
+              aigov: { users: 10, approvers: 0, participants: 25 } }
 };
 const SYM = { ZAR: 'R', USD: '$', GBP: '£', EUR: '€' };
-const AIGOV_MIN_SYSTEMS = 3;
-const AIGOV_TIERS = {
-  essentials:    { label: 'Essentials',    key: 'aigovEssentials',    includes: 'For organisations starting EU AI Act triage: register connection (1 source), EU AI Act classification, AI governance dashboard, personal work queue, approvals and the governance library.' },
-  professional:  { label: 'Professional',  key: 'aigovProfessional',  includes: 'For organisations running AI in production: everything in Essentials, plus compliance and applicability, impact assessment, controls and evidence, AI risk, incident governance, change governance and human oversight.' },
-  certification: { label: 'Certification', key: 'aigovCertification', includes: 'For ISO/IEC 42001 certification or high-risk AI providers: everything in Professional, plus the AI management system, custom frameworks and policies, multiple register connections and connected-tool inboxes.' }
-};
+// Asgard/Hakware become mandatory once AI Governance is on. Asgard tier auto-selects the cheapest
+// tier that covers the AI Governance user count (Free is never sufficient for an active agent).
+function minAsgardTierFor(seats) {
+  if (seats <= 10) return 'pro';
+  if (seats <= 50) return 'team';
+  return 'enterprise';
+}
 // Discount thresholds are set independently per currency (not FX-converted), the same principle
 // used for the list prices. Shown to customers too, so they can see every discount they get.
 const DISCOUNT_THRESHOLDS = {
@@ -651,7 +648,7 @@ const state = {
     envirx: 0, erm: 0, assurance: 0,
     maiaEnabled: false, maiaFullUser: 0, maiaDataUser: 0, maiaDataBuckets: 0,
     hakwareEnabled: false, hkwDomains: 0, hkwUsers: 0,
-    xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgardEnabled: false, asgardTier: 'free', asgardSeats: 0, aiGovernance: false, aiGovTier: 'professional', aiGovSystems: 0, aiGovHighRisk: 0,
+    xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgardEnabled: false, asgardTier: 'free', asgardSeats: 0, aiGovernance: false, aiGovUsers: 0, aiGovApprovers: 0, aiGovParticipants: 0,
     xrmEnabled: false, xrmTenantAdmin: 0, xrmSalesUser: 0, xrmApprover: 0, xrmViewer: 0,
     complianceHub: false
   },
@@ -683,19 +680,36 @@ function computeDerived() {
   const maiaOn = m.maiaEnabled;
   const maiaCur = maiaOn ? (m.maiaFullUser*P.maiaFull[cur] + m.maiaDataUser*P.maiaDataUser[cur] + m.maiaDataBuckets*P.maiaDataUsedBucket[cur]) : 0;
 
-  const hkwCur = m.hkwDomains*P.hkwDomain[cur] + m.hkwUsers*P.hkwUser[cur];
   const xlogicCur = m.xlogicAdmin*priceOf('xlogicAdmin') + m.xlogicGovernance*priceOf('xlogicGovernance');
   const xrmCur = m.xrmTenantAdmin*P.xrmTenantAdmin[cur] + m.xrmSalesUser*P.xrmSalesUser[cur] + m.xrmApprover*P.xrmApprover[cur] + m.xrmViewer*P.xrmViewer[cur];
-  const asgardTierDef = ASGARD_TIERS[m.asgardTier];
-  const asgardCur = m.asgardEnabled ? (P[asgardTierDef.baseKey][cur] + (asgardTierDef.seatKey ? m.asgardSeats*P[asgardTierDef.seatKey][cur] : 0)) : 0;
 
-  // AI Governance: billable systems = systems (minimum 3) + high-risk systems again (they count double).
+  // AI Governance: licensed per named user, plus a metered AI Governance Agent charge (monthly minimum shown here;
+  // per-token overage is informational only, not billed in the quote since actual usage isn't known up front).
   const aigOn = m.aiGovernance;
-  const aigTier = AIGOV_TIERS[m.aiGovTier] || AIGOV_TIERS.professional;
-  const aigSystems = aigOn ? Math.max(AIGOV_MIN_SYSTEMS, m.aiGovSystems) : 0;
-  const aigHighRisk = aigOn ? Math.min(m.aiGovHighRisk, aigSystems) : 0;
-  const aigBillable = aigSystems + aigHighRisk;
-  const aigCur = aigBillable * P[aigTier.key][cur];
+  const aigUsers = aigOn ? m.aiGovUsers : 0;
+  const aigApprovers = aigOn ? m.aiGovApprovers : 0;
+  const aigParticipants = aigOn ? m.aiGovParticipants : 0;
+  const aigSeatCur = (aigUsers+aigApprovers)*P.aigovUser[cur] + aigParticipants*P.aigovParticipant[cur];
+  const aigTokenCur = aigOn ? P.aigovTokenMin[cur] : 0;
+  const aigCur = aigSeatCur + aigTokenCur;
+
+  // Asgard and Hakware are mandatory once AI Governance is on, scoped to AI Governance Users only
+  // (not Approvers, Participants or read-only seats, per Deneys). Effective values are the higher of
+  // what the customer picked and what AI Governance requires, so nothing is double- or under-billed.
+  const TIER_RANK = { free: 0, pro: 1, team: 2, enterprise: 3 };
+  const effAsgardEnabled = m.asgardEnabled || aigOn;
+  const effAsgardSeats = aigOn ? Math.max(m.asgardSeats, aigUsers) : m.asgardSeats;
+  let effAsgardTier = m.asgardEnabled ? m.asgardTier : 'pro';
+  if (aigOn) {
+    const required = minAsgardTierFor(effAsgardSeats);
+    if (effAsgardTier === 'free' || TIER_RANK[required] > TIER_RANK[effAsgardTier]) effAsgardTier = required;
+  }
+  const asgardTierDef = ASGARD_TIERS[effAsgardTier];
+  const asgardCur = effAsgardEnabled ? (P[asgardTierDef.baseKey][cur] + (asgardTierDef.seatKey ? effAsgardSeats*P[asgardTierDef.seatKey][cur] : 0)) : 0;
+
+  const effHkwDomains = aigOn ? Math.max(1, m.hkwDomains) : m.hkwDomains;
+  const effHkwUsers = aigOn ? Math.max(m.hkwUsers, aigUsers) : m.hkwUsers;
+  const hkwCur = effHkwDomains*P.hkwDomain[cur] + effHkwUsers*P.hkwUser[cur];
 
   const moduleCur = effEnvirx*P.envirx[cur] + effErm*P.erm[cur] + m.assurance*P.assurance[cur] + maiaCur + hkwCur + xlogicCur + xrmCur + asgardCur + aigCur + (m.complianceHub ? priceOf('complianceHub') : 0);
 
@@ -735,7 +749,8 @@ function computeDerived() {
   return { s, m, cur, th, effEnvirx, effErm, maiaOn, seatCur, moduleCur, listValueCur, discountPct,
            discountedMonthlyCur, annualTotalCur, isStandard, isPlus, isEnterprise, tierFull: 'XGRC® ' + tier,
            lockinActive, lockinYear1, lockinYear2, lockinYear3, lockinThreeYearTotal, standardThreeYearTotal, lockinSaving,
-           aigOn, aigTier, aigSystems, aigHighRisk, aigBillable, aigCur,
+           aigOn, aigUsers, aigApprovers, aigParticipants, aigSeatCur, aigTokenCur, aigCur,
+           effAsgardEnabled, effAsgardTier, effAsgardSeats, effHkwDomains, effHkwUsers,
            yearList, yearVolumeSaving, yearAnnualSaving, yearSaving, yearSavingPct };
 }
 
@@ -796,17 +811,21 @@ function render() {
   el('price-xlogicgovernance').textContent = priceLabel('xlogicGovernance');
   document.querySelector('.unit-xlogicadmin').style.display = isPOR('xlogicAdmin') ? 'none' : '';
   document.querySelector('.unit-xlogicgovernance').style.display = isPOR('xlogicGovernance') ? 'none' : '';
-  el('price-aigovernance').textContent = 'from ' + priceStr(PRICES.aigovEssentials) + ' per AI system';
+  el('price-aigovernance').textContent = 'from ' + priceStr(PRICES.aigovParticipant) + '/user';
   el('toggle-aigovernance').checked = state.modules.aiGovernance;
   el('aigov-toggle-chevron').classList.toggle('open', state.modules.aiGovernance);
   el('aigov-extra').style.display = state.modules.aiGovernance ? 'flex' : 'none';
-  document.querySelectorAll('.aig-tier-btn').forEach(b => { const on = b.dataset.aigtier === state.modules.aiGovTier; b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on)); });
-  el('aigov-tier-caption').textContent = d.aigTier.includes;
-  el('aigov-price-caption').textContent = priceStr(PRICES[d.aigTier.key]) + ' per AI system per month, minimum ' + AIGOV_MIN_SYSTEMS;
-  syncInput('q-aigov-systems', state.modules.aiGovSystems);
-  syncInput('q-aigov-highrisk', state.modules.aiGovHighRisk);
+  el('aigov-user-caption').textContent = priceStr(PRICES.aigovUser) + '/user/month. Full assessments, risks, controls, compliance, changes. Requires Asgard and Hakware.';
+  el('aigov-approver-caption').textContent = priceStr(PRICES.aigovUser) + '/user/month. Same rate as Governance Users, approval access. Does not require Asgard/Hakware.';
+  el('aigov-participant-caption').textContent = priceStr(PRICES.aigovParticipant) + '/user/month. Incident reporting, oversight, assigned actions only.';
+  syncInput('q-aigov-users', state.modules.aiGovUsers);
+  syncInput('q-aigov-approvers', state.modules.aiGovApprovers);
+  syncInput('q-aigov-participants', state.modules.aiGovParticipants);
   el('aigov-billable-note').textContent = d.aigOn
-    ? `${d.aigBillable} billable systems (${d.aigSystems} systems${d.aigHighRisk ? `, ${d.aigHighRisk} high-risk counted twice` : ''}) × ${priceStr(PRICES[d.aigTier.key])} = ${amountStr(d.aigCur)} per month`
+    ? `${d.aigUsers} Governance User${d.aigUsers===1?'':'s'} + ${d.aigApprovers} Approver${d.aigApprovers===1?'':'s'} @ ${priceStr(PRICES.aigovUser)}, ${d.aigParticipants} Participant${d.aigParticipants===1?'':'s'} @ ${priceStr(PRICES.aigovParticipant)}, plus ${priceStr(PRICES.aigovTokenMin)}/month AI Governance Agent minimum = ${amountStr(d.aigCur)} per month`
+    : '';
+  el('aigov-bundle-note').textContent = d.aigOn
+    ? `Includes Asgard (${ASGARD_TIERS[d.effAsgardTier].label} tier, ${d.effAsgardSeats} users) and Hakware (${d.effHkwDomains} domain${d.effHkwDomains===1?'':'s'}, ${d.effHkwUsers} users), required for your ${d.aigUsers} AI Governance User${d.aigUsers===1?'':'s'}.`
     : '';
   el('toggle-xlogic').checked = state.modules.xlogicEnabled;
   el('xlogic-toggle-chevron').classList.toggle('open', state.modules.xlogicEnabled);
@@ -898,8 +917,8 @@ function render() {
     el('enterprise-price-note-text').textContent = 'No single Enterprise starting price, it depends on what you add.';
     el('enterprise-price-info-wrap').style.display = 'inline-flex';
     el('enterprise-price-note-detail').innerHTML = CUSTOMER_MODE
-      ? 'LUCI (' + priceStr(PRICES.luci) + '/user), Hakware (by domains and users), XLOGIC® (from ' + priceStr(PRICES.xlogicAdmin) + '/user), AI Governance (from ' + priceStr(PRICES.aigovEssentials) + ' per AI system) and Asgard (free tier available). Add one to see your price.'
-      : 'LUCI (' + priceStr(PRICES.luci) + '), Hakware (by domains and users), XLOGIC® (from ' + priceStr(PRICES.xlogicAdmin) + '), AI Governance (from ' + priceStr(PRICES.aigovEssentials) + ' per AI system) and Asgard (free tier available). Add one to see your real price.';
+      ? 'LUCI (' + priceStr(PRICES.luci) + '/user), Hakware (by domains and users), XLOGIC® (from ' + priceStr(PRICES.xlogicAdmin) + '/user), AI Governance (from ' + priceStr(PRICES.aigovParticipant) + '/user) and Asgard (free tier available). Add one to see your price.'
+      : 'LUCI (' + priceStr(PRICES.luci) + '), Hakware (by domains and users), XLOGIC® (from ' + priceStr(PRICES.xlogicAdmin) + '), AI Governance (from ' + priceStr(PRICES.aigovParticipant) + '/user) and Asgard (free tier available). Add one to see your real price.';
   }
 
   renderSavings(d);
@@ -1049,37 +1068,12 @@ el('toggle-xlogic').addEventListener('change', (e) => {
 bindQty('q-xlogicadmin', n => state.modules.xlogicAdmin = n);
 bindQty('q-xlogicgovernance', n => state.modules.xlogicGovernance = n);
 el('toggle-aigovernance').addEventListener('change', (e) => {
-  const on = e.target.checked;
-  state.modules.aiGovernance = on;
-  if (on) {
-    state.modules.aiGovTier = state.modules.aiGovTier || 'professional';
-    state.modules.aiGovSystems = Math.max(AIGOV_MIN_SYSTEMS, state.modules.aiGovSystems);
-  } else {
-    state.modules.aiGovSystems = 0;
-    state.modules.aiGovHighRisk = 0;
-  }
+  state.modules.aiGovernance = e.target.checked;
   render();
 });
-document.querySelectorAll('.aig-tier-btn').forEach(btn => btn.addEventListener('click', () => { state.modules.aiGovTier = btn.dataset.aigtier; render(); }));
-el('q-aigov-systems').addEventListener('input', (e) => {
-  const raw = Math.max(0, parseInt(e.target.value, 10) || 0);
-  state.modules.aiGovSystems = raw;
-  state.modules.aiGovHighRisk = Math.min(state.modules.aiGovHighRisk, Math.max(AIGOV_MIN_SYSTEMS, raw));
-  render();
-});
-el('q-aigov-systems').addEventListener('change', (e) => {
-  // Floor at the minimum once the user leaves the field, so typing "12" is never interrupted at "1".
-  state.modules.aiGovSystems = Math.max(AIGOV_MIN_SYSTEMS, state.modules.aiGovSystems);
-  e.target.value = state.modules.aiGovSystems;
-  render();
-});
-el('q-aigov-highrisk').addEventListener('input', (e) => {
-  const raw = Math.max(0, parseInt(e.target.value, 10) || 0);
-  const cap = Math.max(AIGOV_MIN_SYSTEMS, state.modules.aiGovSystems);
-  state.modules.aiGovHighRisk = Math.min(raw, cap);
-  if (raw > cap) e.target.value = cap;
-  render();
-});
+bindQty('q-aigov-users', n => state.modules.aiGovUsers = n);
+bindQty('q-aigov-approvers', n => state.modules.aiGovApprovers = n);
+bindQty('q-aigov-participants', n => state.modules.aiGovParticipants = n);
 el('toggle-asgard').addEventListener('change', (e) => {
   const on = e.target.checked;
   state.modules.asgardEnabled = on;
@@ -1153,9 +1147,9 @@ document.querySelectorAll('.preset-btn').forEach(btn => {
     }
     if (preset.aigov) {
       state.modules.aiGovernance = true;
-      state.modules.aiGovTier = preset.aigov.tier;
-      state.modules.aiGovSystems = preset.aigov.systems;
-      state.modules.aiGovHighRisk = preset.aigov.highRisk;
+      state.modules.aiGovUsers = preset.aigov.users;
+      state.modules.aiGovApprovers = preset.aigov.approvers;
+      state.modules.aiGovParticipants = preset.aigov.participants;
     }
     if (preset.maia) {
       state.modules.maiaEnabled = true;
@@ -1198,7 +1192,7 @@ function defaultState() {
       envirx: 0, erm: 0, assurance: 0,
       maiaEnabled: false, maiaFullUser: 0, maiaDataUser: 0, maiaDataBuckets: 0,
       hakwareEnabled: false, hkwDomains: 0, hkwUsers: 0,
-      xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgardEnabled: false, asgardTier: 'free', asgardSeats: 0, aiGovernance: false, aiGovTier: 'professional', aiGovSystems: 0, aiGovHighRisk: 0,
+      xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgardEnabled: false, asgardTier: 'free', asgardSeats: 0, aiGovernance: false, aiGovUsers: 0, aiGovApprovers: 0, aiGovParticipants: 0,
       xrmEnabled: false, xrmTenantAdmin: 0, xrmSalesUser: 0, xrmApprover: 0, xrmViewer: 0,
       complianceHub: false
     },
@@ -1242,7 +1236,7 @@ function loadQuote(entry) {
   state.currency = CUSTOMER_MODE ? (window.__geoCurrency || 'USD') : snap.currency;
   state.clientName = snap.clientName;
   state.seats = Object.assign({ teamEnabled: false }, snap.seats);
-  state.modules = Object.assign({ complianceHub: false, aiGovTier: 'professional', aiGovSystems: 0, aiGovHighRisk: 0 }, snap.modules);
+  state.modules = Object.assign({ complianceHub: false, aiGovUsers: 0, aiGovApprovers: 0, aiGovParticipants: 0 }, snap.modules);
   state.annual = snap.annual;
   state.lockin3yr = snap.lockin3yr || false;
   el('client-name').value = state.clientName;
@@ -1301,8 +1295,8 @@ function buildModuleItems(d) {
     const buckets = d.m.maiaDataBuckets;
     items.push({ label: 'MAIA® Data Buckets, 50 GB each', qty: buckets, unit: priceStr(PRICES.maiaDataUsedBucket), total: amountStr(buckets * PRICES.maiaDataUsedBucket[state.currency]) });
   }
-  push('Hakware Domains', d.m.hkwDomains, PRICES.hkwDomain);
-  push('Hakware Users', d.m.hkwUsers, PRICES.hkwUser);
+  push('Hakware Domains' + (d.aigOn ? ' (required by AI Governance)' : ''), d.effHkwDomains, PRICES.hkwDomain);
+  push('Hakware Users' + (d.aigOn ? ' (required by AI Governance)' : ''), d.effHkwUsers, PRICES.hkwUser);
   pushKey('XLOGIC® Admin', d.m.xlogicAdmin, 'xlogicAdmin');
   pushKey('XLOGIC® Governance User', d.m.xlogicGovernance, 'xlogicGovernance');
   push('XRM Tenant Admin', d.m.xrmTenantAdmin, PRICES.xrmTenantAdmin);
@@ -1311,15 +1305,17 @@ function buildModuleItems(d) {
   if (d.m.xrmViewer > 0) items.push({ label: 'XRM Viewer', qty: d.m.xrmViewer, unit: 'Free', total: 'Free' });
   if (d.m.complianceHub) pushKey('Compliance Hub', 1, 'complianceHub');
   if (d.aigOn) {
-    items.push({ label: `AI Governance (${d.aigTier.label})`,
-                 sub: `${d.aigSystems} AI systems` + (d.aigHighRisk ? `, ${d.aigHighRisk} high-risk counted twice` : '') + `: ${d.aigBillable} billable systems`,
-                 qty: d.aigBillable, unit: priceStr(PRICES[d.aigTier.key]), total: amountStr(d.aigCur) });
+    const govQty = d.aigUsers + d.aigApprovers;
+    push('AI Governance Users & Approvers', govQty, PRICES.aigovUser);
+    push('AI Participants', d.aigParticipants, PRICES.aigovParticipant);
+    items.push({ label: 'AI Governance Agent (token usage)', sub: 'Monthly minimum, metered per token above this', qty: 1, unit: priceStr(PRICES.aigovTokenMin), total: amountStr(d.aigTokenCur) });
   }
-  if (d.m.asgardEnabled) {
-    const tierDef = ASGARD_TIERS[d.m.asgardTier];
-    items.push({ label: 'Asgard (' + tierDef.label + ' tier, base licence)', qty: 1, unit: priceStr(PRICES[tierDef.baseKey]), total: amountStr(PRICES[tierDef.baseKey][state.currency]) });
-    if (tierDef.seatKey && d.m.asgardSeats > 0) {
-      items.push({ label: 'Asgard (' + tierDef.label + ' users)', qty: d.m.asgardSeats, unit: priceStr(PRICES[tierDef.seatKey]), total: amountStr(d.m.asgardSeats * PRICES[tierDef.seatKey][state.currency]) });
+  if (d.effAsgardEnabled) {
+    const tierDef = ASGARD_TIERS[d.effAsgardTier];
+    const req = d.aigOn ? ' (required by AI Governance)' : '';
+    items.push({ label: 'Asgard (' + tierDef.label + ' tier, base licence)' + req, qty: 1, unit: priceStr(PRICES[tierDef.baseKey]), total: amountStr(PRICES[tierDef.baseKey][state.currency]) });
+    if (tierDef.seatKey && d.effAsgardSeats > 0) {
+      items.push({ label: 'Asgard (' + tierDef.label + ' users)' + req, qty: d.effAsgardSeats, unit: priceStr(PRICES[tierDef.seatKey]), total: amountStr(d.effAsgardSeats * PRICES[tierDef.seatKey][state.currency]) });
     }
   }
   return items;
@@ -1416,7 +1412,7 @@ el('btn-download').addEventListener('click', () => {
   doc.text('Billing terms: licences are billed monthly in arrears and are payable whether or not a', 40, y); y += 12;
   doc.text('licence was used that month. Annual commitment is invoiced annually in advance.', 40, y); y += 12;
   doc.text('All amounts exclude VAT.', 40, y); y += 12;
-  if (d.aigOn) { doc.text('AI Governance is priced per AI system per month; EU AI Act high-risk systems count double; minimum 3 systems.', 40, y); y += 12; }
+  if (d.aigOn) { doc.text('AI Governance is licensed per named user, plus an AI Governance Agent charge with a monthly minimum; Asgard and Hakware are required.', 40, y); y += 12; }
   y += 6;
   doc.setFont('helvetica', 'italic');
   doc.text('This quote is indicative and subject to final confirmation by XGRC®.', 40, y);
