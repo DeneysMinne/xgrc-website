@@ -1,0 +1,12 @@
+---
+// Draft industry pages for review: /preview/industries/<slug>/ (noindex, unlinked, not in the sitemap)
+import IndustryLayout from '../../../layouts/IndustryLayout.astro';
+import { draftIndustries } from '../../../data/industries.js';
+
+export function getStaticPaths() {
+  return draftIndustries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+<IndustryLayout entry={entry} preview={true} />

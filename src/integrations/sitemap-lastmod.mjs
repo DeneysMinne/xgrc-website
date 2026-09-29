@@ -19,7 +19,7 @@ const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 const LEDGER = join(ROOT, '.seo-lastmod.json');
 
 // Content only: <main>, without scripts, styles and build-generated names.
-function contentHash(html) {
+export function contentHash(html) {
   const main = (html.match(/<main[\s\S]*<\/main>/) || [html])[0]
     .replace(/<script[\s\S]*?<\/script>/g, '')
     .replace(/<style[\s\S]*?<\/style>/g, '')
@@ -27,6 +27,10 @@ function contentHash(html) {
     .replace(/astro-[a-z0-9]{8}/g, '')
     .replace(/\/_astro\/[^"' )]+/g, '/_astro/')
     .replace(/href="([^"#?]*?)\/?([#?"])/g, 'href="$1$2') // a slash-only link change is not a content change
+    // article byline and date markup (added 2026-09-29) are metadata, not content
+    .replace(/<span class="art-author"[^>]*>[\s\S]*?<\/span>\s*<span class="art-sep"[^>]*>·<\/span>/g, '')
+    .replace(/<span class="art-sep"[^>]*>·<\/span>\s*<span class="art-date"[^>]*>Updated [\s\S]*?<\/span>/g, '')
+    .replace(/<\/?time[^>]*>/g, '')
     .replace(/\s+/g, ' ');
   return createHash('sha256').update(main).digest('hex').slice(0, 16);
 }

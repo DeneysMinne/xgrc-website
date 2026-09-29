@@ -21,6 +21,9 @@ const readTime = Math.max(1, Math.ceil(wordCount / 220));
 
 const dateObj = new Date(article.date);
 const formattedDate = dateObj.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const updatedDate = article.dateModified && article.dateModified !== article.date
+  ? new Date(article.dateModified).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+  : null;
 
 const related = articles
   .filter((a) => a.category === article.category && a.slug !== slug)
@@ -63,7 +66,7 @@ const schema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: article.title,
-  description: article.excerpt,
+  description: article.metaDescription || article.excerpt,
   image: `https://xgrcsoftware.com/assets/images/insights/${imageFile}`,
   datePublished: article.date,
   dateModified: article.dateModified || article.date,
@@ -73,7 +76,7 @@ const schema = JSON.stringify({
     name: 'XGRC® Software',
     url: 'https://xgrcsoftware.com',
   },
-  mainEntityOfPage: { '@type': 'WebPage', '@id': `https://xgrcsoftware.com/insights/${slug}` },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `https://xgrcsoftware.com/insights/${slug}/` },
 });
 
 const faqSchema = faqs ? JSON.stringify({
@@ -133,7 +136,10 @@ const catColor = categoryColors[article.category] || '#30e2f4';
         <div class="art-meta">
           <span class="art-cat" style={`--cat-color: ${catColor}`}>{article.category}</span>
           <span class="art-sep" aria-hidden="true">·</span>
-          <span class="art-date">{formattedDate}</span>
+          <span class="art-author">By XGRC® Software</span>
+          <span class="art-sep" aria-hidden="true">·</span>
+          <span class="art-date"><time datetime={article.date}>{formattedDate}</time></span>
+          {updatedDate && (<><span class="art-sep" aria-hidden="true">·</span><span class="art-date">Updated <time datetime={article.dateModified}>{updatedDate}</time></span></>)}
           <span class="art-sep" aria-hidden="true">·</span>
           <span class="art-read">{readTime} min read</span>
         </div>
@@ -273,6 +279,7 @@ const catColor = categoryColors[article.category] || '#30e2f4';
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-wrap: wrap;
     margin-bottom: 20px;
     font-family: var(--font-mono);
     font-size: 11px;
@@ -289,7 +296,7 @@ const catColor = categoryColors[article.category] || '#30e2f4';
     font-size: 10px;
   }
   .art-sep { color: var(--faint); }
-  .art-date, .art-read { color: var(--mute); }
+  .art-date, .art-read, .art-author { color: var(--mute); }
 
   .art-title {
     font-family: var(--font-display);

@@ -1,6 +1,178 @@
 // Full article body text keyed by slug.
 // Content sourced from xgrcsoftware.com — all rights reserved XGRC® Software.
 export const articleContent = {
+  'what-is-pas-99': `Most organisations that hold more than one ISO certificate run them as separate systems. Quality has its manual, its procedures and its internal audits. Environment has another set. Health and safety has a third, and information security a fourth. Each has its own document register, its own corrective action log and its own management review. The same people sit in four meetings to discuss overlapping risks, and the same auditors ask for the same evidence in four different formats. PAS 99 exists to end that duplication.
+
+What Is PAS 99?
+
+PAS 99 is a Publicly Available Specification published by BSI, the UK national standards body. Its full title is "Specification of common management system requirements as a framework for integration", and the current edition at the time of writing is PAS 99:2012. It sets out the requirements that management system standards have in common, so an organisation can meet them once, in one integrated management system, rather than separately for every standard it certifies to.
+
+PAS 99 does not replace ISO 9001, ISO 14001, ISO 45001 or ISO/IEC 27001. Each standard still has requirements that are unique to its discipline, such as operational controls for environmental aspects or the Annex A controls in ISO/IEC 27001. PAS 99 provides the common skeleton, and the specific requirements of each standard hang from it.
+
+Certification bodies can assess an integrated management system against PAS 99, usually alongside the certificates for the underlying ISO standards. For many organisations, though, the real value is not another certificate. It is running one system instead of four.
+
+Why PAS 99 Still Matters in 2026
+
+PAS 99 was written to align with the common structure that ISO introduced for all its management system standards, known originally as Annex SL and now as the Harmonized Structure. Every recent ISO management system standard follows it, including ISO 9001, ISO 14001, ISO 45001, ISO/IEC 27001 and the newer ISO/IEC 42001 for AI management systems. That shared structure is what makes integration practical.
+
+Three developments make integration more relevant now than when PAS 99 was first published:
+
+- More standards per organisation: many organisations now hold three or four certificates, and some are adding ISO/IEC 42001 as they govern AI
+- Common changes across standards: in 2024 ISO added a climate change amendment to its management system standards, asking organisations to consider whether climate change is a relevant issue when they determine their context. One integrated context and risk process handles that once
+- Revisions in progress: ISO 9001 and ISO 14001 are both being revised, and an integrated system absorbs revisions to shared clauses in one place rather than several
+
+The Harmonized Structure in Brief
+
+Every ISO management system standard that follows the Harmonized Structure uses the same ten clauses. Clauses 1 to 3 cover scope, references and definitions. Clauses 4 to 10 contain the requirements, and they are the same headings in every standard:
+
+- Clause 4, context of the organisation: internal and external issues, interested parties and the scope of the system
+- Clause 5, leadership: commitment, policy, roles and responsibilities
+- Clause 6, planning: risks and opportunities, objectives and planning of changes
+- Clause 7, support: resources, competence, awareness, communication and documented information
+- Clause 8, operation: the discipline-specific controls
+- Clause 9, performance evaluation: monitoring, internal audit and management review
+- Clause 10, improvement: nonconformity, corrective action and continual improvement
+
+Most of these clauses can be met once for the whole organisation. Clause 8 is where the standards differ most, and even there processes such as change management and supplier control can often be shared.
+
+Which Standards Can Be Integrated?
+
+PAS 99 can integrate any management system standards that share the common structure. The most common combinations are:
+
+- <a href="/use-cases/iso-9001-readiness/">ISO 9001</a> for quality management
+- <a href="/use-cases/iso-14001-readiness/">ISO 14001</a> for environmental management
+- <a href="/use-cases/iso-45001-readiness/">ISO 45001</a> for occupational health and safety
+- <a href="/use-cases/iso-27001-readiness/">ISO/IEC 27001</a> for information security
+- <a href="/use-cases/iso-22000-readiness/">ISO 22000</a> for food safety
+- ISO 22301 for business continuity and ISO 50001 for energy management
+- ISO/IEC 42001 for AI management systems
+
+What an Integrated Management System Looks Like in Practice
+
+An integrated management system is not a single thick manual. It is a set of shared processes that every discipline uses. In practice that means:
+
+- One context and risk process, with a single register of risks and opportunities that covers quality, environmental, safety and information security issues
+- One document control process, so every policy, procedure and record follows the same approval, version and review rules
+- One legal and other requirements register, covering obligations such as the Occupational Health and Safety Act and the National Environmental Management Act in South Africa
+- One internal audit programme, with audits planned by risk across all standards rather than by standard
+- One nonconformity and corrective action process, so an incident, an audit finding and a customer complaint are all investigated and closed the same way
+- One management review, where leadership sees the performance of the whole system at once
+- One competence and training record for every role
+
+The Benefits of Integration
+
+The first benefit is less duplication. Shared processes mean fewer documents to maintain, fewer registers to reconcile and fewer meetings to hold.
+
+The second is better decisions. When quality, safety, environmental and security risks sit in one register, leadership can see which risks really matter most, rather than comparing four separate lists that use four scoring methods.
+
+The third is more efficient audits. International Accreditation Forum guidance, IAF MD 11, allows certification bodies to audit an integrated management system in a combined audit and, where the integration is genuine, to reduce total audit time. The saving depends on how integrated the system really is, so a combined audit of four separate systems in one folder gains little.
+
+The fourth is resilience. A single corrective action process means lessons from a safety incident can improve a quality procedure, and a single change process means an operational change is assessed for all its risks at once.
+
+How to Implement PAS 99
+
+Integration works best as a structured project rather than a document merge:
+
+- Start with a gap assessment of each existing system against its own standard and against PAS 99, so you know what is shared and what is unique
+- Map the common requirements clause by clause, and decide which existing process becomes the single process for each
+- Build one risk and opportunity register and one legal register, then retire the separate versions
+- Merge document control, internal audit, corrective action and management review into single processes
+- Keep discipline-specific operational controls where they belong, but link them to the shared processes
+- Train people on the integrated processes, not on the standards
+- Agree a certification strategy with your certification body, including whether you want combined audits
+
+In South Africa, check that your certification body is accredited by SANAS, or by another member of the International Accreditation Forum, for each standard in your scope.
+
+Common Pitfalls
+
+The most common failure is integration on paper only. The manual is merged, but each discipline still keeps its own spreadsheet of actions, its own audit schedule and its own risk scoring. Auditors see through it quickly, and the organisation keeps all the duplication it hoped to remove.
+
+The second is losing discipline-specific rigour. Integration should share processes, not dilute requirements. An environmental aspects register and an information security risk assessment still need their specific methods, even when they feed one risk picture.
+
+The third is tooling. Integrated processes are hard to run across disconnected spreadsheets and shared drives, because nothing links an audit finding to the risk it affects or the action that closes it.
+
+How MSX® Supports PAS 99
+
+<a href="/msx/">MSX®</a> is the integrated management system within the XGRC® platform. It merges governance, risk, compliance and operational systems into one framework, so ISO 9001, ISO 14001, ISO 45001, ISO/IEC 27001 and other standards run on shared processes and one set of records. Document control, internal audits, nonconformities, corrective actions and management review are handled once, and each record can be linked to every standard it supports.
+
+Because MSX® shares one data foundation with <a href="/sheqx/">SHEQX®</a>, ENVIRX® and MSXCyber®, safety incidents, environmental monitoring and information security controls feed the same integrated picture. For a practical view of how that works, see the <a href="/use-cases/pas99-integrated-management-system/">PAS 99 integrated management system use case</a>, or start with the <a href="/use-cases/iso-compliance/">ISO compliance overview</a> for readiness guides to each standard.`,
+
+  'vendor-compliance-management': `Every organisation depends on suppliers, contractors and service providers, and every one of them carries risk. A contractor without valid COID cover working on your site, a supplier whose B-BBEE certificate expired three months ago, or a cloud provider processing personal information without a proper agreement can each become your problem, not theirs. Vendor compliance management is how organisations keep that risk under control.
+
+What Is Vendor Compliance Management?
+
+Vendor compliance management is the process of verifying that suppliers, contractors and service providers meet your legal, contractual and policy requirements before you engage them, and of monitoring that they keep meeting them for as long as you work with them. It covers the documents a vendor must provide, the checks you run on them, the expiry dates you track and the actions you take when something lapses.
+
+It is sometimes called supplier compliance management or contractor compliance management. The principle is the same: you cannot outsource accountability, so you need evidence that the organisations you rely on are compliant.
+
+Vendor Compliance, Third-Party Risk and Procurement
+
+These terms overlap, but they are not the same thing:
+
+- Procurement is about buying: sourcing, pricing, contracts and purchase orders
+- Vendor compliance is about proof: collecting and verifying the documents and attestations a vendor must hold, and keeping them current
+- Third-party risk management is the wider discipline of assessing and managing all the risks a third party brings, including financial, operational, cyber and reputational risk
+
+Vendor compliance is usually the foundation of third-party risk management. Without verified, current compliance records, a risk assessment of a supplier rests on assumptions. For a closer look at the difference between compliance tooling and procurement systems, see <a href="/insights/supplier-compliance-software-vs-procurement-systems/">supplier compliance software vs procurement systems</a>.
+
+The South African Requirements
+
+In South Africa, a typical vendor compliance programme has to cover several specific obligations. The exact mix depends on your sector and on what each vendor does for you.
+
+B-BBEE verification. Preferential procurement is part of the Broad-Based Black Economic Empowerment scorecard, so organisations need valid evidence of each supplier's B-BBEE status. Larger suppliers provide a certificate from a SANAS-accredited verification agency, normally valid for 12 months. Exempted Micro Enterprises, and Qualifying Small Enterprises that are at least 51% black owned, can provide a sworn affidavit instead. Sector codes can change the thresholds, so check which code applies.
+
+Tax compliance. Suppliers can share a Tax Compliance Status PIN from SARS, which lets you confirm their tax compliance status directly.
+
+Compensation for occupational injuries. Contractors whose employees work on your premises should hold a letter of good standing under the Compensation for Occupational Injuries and Diseases Act 130 of 1993.
+
+Health and safety. Under section 37(2) of the Occupational Health and Safety Act 85 of 1993, an employer can agree in writing with a contractor (a mandatary) that the contractor takes responsibility for health and safety compliance. That agreement, together with the contractor's safety file, risk assessments and competence records, is core evidence. Construction work also falls under the Construction Regulations 2014, and contractors on mines work under the Mine Health and Safety Act 29 of 1996.
+
+Personal information. Under the Protection of Personal Information Act 4 of 2013, a vendor that processes personal information on your behalf is an operator. Section 21 requires a written contract that obliges the operator to establish and maintain appropriate security measures, and the responsible party remains accountable. If personal information will be sent outside South Africa, section 72 sets conditions for the transfer.
+
+Company and banking details. Confirming CIPC registration and verifying bank details before the first payment are simple checks that prevent supplier fraud, one of the most common and expensive vendor failures.
+
+The Vendor Compliance Lifecycle
+
+Vendor compliance is not a one-off check at onboarding. It runs for the whole relationship:
+
+- Classify the vendor by risk: what it supplies, whether it works on site, whether it handles personal information, and how critical it is to your operations
+- Set the requirements for that risk tier, so a high-risk contractor provides more evidence than a low-risk stationery supplier
+- Collect and verify the documents and attestations, checking them against the issuing source where possible
+- Approve the vendor only when every mandatory requirement is met, with the approval recorded
+- Track every expiry date, and request renewals before documents lapse
+- Monitor performance, incidents and changes such as a new owner or a new service
+- Re-assess periodically, and offboard cleanly when the relationship ends, including the return or destruction of personal information
+
+Why Vendor Compliance Breaks Down
+
+Most programmes fail for predictable reasons. Documents arrive by email and are saved to shared folders that nobody reviews. Expiry dates live in a spreadsheet that one person maintains. Site managers let a contractor start work because the paperwork is "on its way". Procurement, SHEQ and legal each hold part of the picture, and nobody can say with confidence which vendors are compliant today.
+
+The consequences are real. An expired COID letter or missing section 37(2) agreement leaves the organisation exposed after an injury on site. An operator without a POPIA-compliant contract turns a supplier's data breach into your reportable security compromise. A lapsed B-BBEE certificate can change your own scorecard.
+
+Where to Start
+
+Organisations that are moving from spreadsheets rarely need to design everything at once. A practical first phase looks like this:
+
+- List every active vendor in one place, and remove duplicates and dormant accounts
+- Agree three or four risk tiers, and the mandatory documents for each tier, with procurement, SHEQ, legal and finance in the room
+- Start with the highest-risk group, usually contractors who work on site and vendors who process personal information
+- Set one rule that everyone follows: no work starts and no purchase order is released until the mandatory documents are verified
+- Report compliance status by tier every month, so gaps are visible to management rather than discovered during an audit or after an incident
+
+Once the high-risk group is under control, extend the same process to the rest of the vendor base, and add periodic re-assessment for critical suppliers.
+
+What Good Vendor Compliance Software Does
+
+Vendor compliance software replaces email and spreadsheets with a structured process. It should give vendors a portal to submit their own documents, validate submissions against your requirements, track every expiry date and chase renewals automatically, stop non-compliant vendors from being approved for work, and give every stakeholder the same live view of each vendor's status. It should also keep a full audit trail, so you can show an auditor, a regulator or a board exactly what was checked, when and by whom.
+
+The most useful systems connect vendor compliance to the rest of governance. When a supplier's compliance status feeds your risk register, your incident records and your audit plan, third-party risk is governed as part of your total exposure. For the bigger picture, see <a href="/insights/extended-enterprise-risk-management/">what extended enterprise risk management involves</a>.
+
+How XGRC® Compliance Hub Supports Vendor Compliance
+
+<a href="/compliance-hub/">XGRC® Compliance Hub</a> is a structured external portal for supplier and contractor compliance. Vendors submit documents such as B-BBEE certificates, tax compliance status, COID letters, insurance certificates and safety files through the portal. Each submission is checked against your requirements, expiry dates are tracked, and vendors that are not compliant cannot be approved for site work.
+
+Because Compliance Hub runs on the same platform as <a href="/sheqx/">SHEQX®</a> and <a href="/erm/">enterprise risk management</a>, a contractor's compliance status, the incidents on its sites and the risks it carries sit in one connected record. See the <a href="/use-cases/vendor-management/">vendor management use case</a> for how it works in practice, or <a href="/use-cases/compliance-management/">compliance management</a> for the wider programme.`,
+
 
 'extended-enterprise-risk-management': `Few organisations deliver anything alone. Suppliers, contractors, outsourced providers and partners sit inside almost every critical process, which means a large share of an organisation's risk now lives outside its own walls. Extended enterprise risk management is the practice of governing that risk: the exposure that comes not from what you do, but from who you depend on.
 
@@ -508,7 +680,9 @@ How Compliance Hub Fits Alongside Procurement
 
 XGRC® <a href="/compliance-hub/">Compliance Hub</a> is not a procurement replacement — it runs alongside existing procurement systems, managing supplier onboarding, document expiry tracking, risk-based scoring, and ongoing compliance monitoring. Compliance obligations connect to the same governed data foundation as XGRC®'s other solutions, including <a href="/xlogic/">XLOGIC®</a> for turning compliance policy into enforced, evidenced workflow.
 
-Procurement answers what you bought and from whom. Supplier compliance answers whether you should have. Organisations need both systems, doing different jobs, rather than asking one to cover for the other.`,
+Procurement answers what you bought and from whom. Supplier compliance answers whether you should have. Organisations need both systems, doing different jobs, rather than asking one to cover for the other.
+
+For the South African requirements a vendor compliance programme has to cover, see <a href="/insights/vendor-compliance-management/">vendor compliance management: a South African guide</a>.`,
 
 'policy-management-vs-governance-execution': `A policy that has been written, approved, and filed is not the same thing as a policy that is being followed. Most organisations discover this gap not through their own monitoring, but through an audit finding, an incident investigation, or a regulator's question that the approved document was never designed to answer.
 
@@ -884,7 +1058,9 @@ Implementing IMS software provides several strategic advantages: improved operat
 
 Integrated Compliance as Part of Enterprise Governance
 
-Modern compliance management is no longer limited to individual standards. Organisations increasingly require a broader governance framework that connects risk management, compliance monitoring, and operational controls. MSX® operates within the broader XGRC® platform, supporting DRIVING COMPLIANCE® by integrating management system compliance into a unified governance environment. This integrated approach helps organisations move beyond manual compliance management toward structured, scalable governance.`,
+Modern compliance management is no longer limited to individual standards. Organisations increasingly require a broader governance framework that connects risk management, compliance monitoring, and operational controls. MSX® operates within the broader XGRC® platform, supporting DRIVING COMPLIANCE® by integrating management system compliance into a unified governance environment. This integrated approach helps organisations move beyond manual compliance management toward structured, scalable governance.
+
+For the formal framework behind integration, see <a href="/insights/what-is-pas-99/">what PAS 99 is and how it integrates ISO standards</a>.`,
 
 'environmental-compliance-software-for-regulatory-management': `Managing Environmental Compliance in a Complex Regulatory Landscape
 

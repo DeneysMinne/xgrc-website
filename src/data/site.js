@@ -121,6 +121,7 @@ export const solutionDetails = {
     name: 'MSX®',
     tag: 'Integrated Management System',
     metaTitle: 'MSX® Integrated Management System | XGRC®',
+    learnLink: { href: '/insights/what-is-pas-99/', label: 'What is PAS 99? Integrated management systems explained' },
     headline: 'One management system. Multiple standards. Less duplicated effort.',
     lede: 'MSX® merges your governance, risk, compliance, and operational systems into one common framework, eliminating conflicting responsibilities, removing duplicated effort, and giving leadership real-time visibility across all business activities.',
     metaDescription: 'MSX® merges governance, risk, compliance and operational systems into one framework, removing conflicting responsibilities and duplicated effort.',
@@ -459,6 +460,7 @@ export const solutionDetails = {
     name: 'XGRC® Compliance Hub',
     tag: 'Supplier & Third-Party Compliance',
     metaTitle: 'Compliance Hub | Supplier Compliance Workflows | XGRC®',
+    learnLink: { href: '/insights/vendor-compliance-management/', label: 'Vendor compliance management: a South African guide' },
     headline: 'Your supply chain\'s compliance posture, visible in real time.',
     lede: 'Structured onboarding, vetting, and ongoing compliance management for suppliers, contractors, and third parties, with automated document expiry tracking, risk scoring, and compliance dashboards that give you a live view of your entire supply chain.',
     metaDescription: 'XGRC® Compliance Hub manages vetting and ongoing compliance for suppliers, contractors and third parties, with document expiry tracking and risk scoring.',
@@ -925,6 +927,28 @@ export const caseStudies = [
 // citation). Absent it, dateModified falls back to `date`.
 export const articles = [
   {
+    slug: 'what-is-pas-99',
+    title: 'What Is PAS 99? Integrated Management Systems Explained',
+    seoTitle: 'What Is PAS 99? Integrated Management Systems | XGRC®',
+    excerpt: 'PAS 99 is the BSI specification for integrating ISO 9001, ISO 14001, ISO 45001, ISO/IEC 27001 and other management systems into one. What it requires, why it matters in 2026 and how to implement it.',
+    metaDescription: 'What is PAS 99? The BSI framework for integrating ISO 9001, 14001, 45001 and 27001 into one management system, and how to implement it in 2026.',
+    category: 'GRC',
+    date: '2026-09-29',
+    image: 'integrated-management-system-software-for-modern-compliance.jpg',
+    relatedSolutions: ['msx', 'sheqx'],
+  },
+  {
+    slug: 'vendor-compliance-management',
+    title: 'What Is Vendor Compliance Management? A South African Guide',
+    seoTitle: 'Vendor Compliance Management: A South African Guide | XGRC®',
+    excerpt: 'Vendor compliance management verifies that suppliers and contractors meet your legal and contractual requirements, and keeps checking. What it covers in South Africa, from B-BBEE and COID to POPIA operators.',
+    metaDescription: 'Vendor compliance management for South Africa: B-BBEE verification, tax status, COID, OHS Act section 37(2) and POPIA operators, and how to run it well.',
+    category: 'GRC',
+    date: '2026-09-29',
+    image: 'supplier-compliance-software-vs-procurement-systems-v2.jpg',
+    relatedSolutions: ['compliance-hub', 'erm'],
+  },
+  {
     slug: 'extended-enterprise-risk-management',
     title: 'What Is Extended Enterprise Risk Management?',
     excerpt: 'A large share of an organisation\'s risk sits with its suppliers, contractors and partners. Extended enterprise risk management is the discipline of governing that third-party exposure.',
@@ -1340,6 +1364,18 @@ export const articles = [
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
 // Only articles with an entry here render a FAQ section + FAQPage schema.
 export const articleFaqs = {
+  'what-is-pas-99': [
+    { q: 'What is PAS 99?', a: 'PAS 99 is a Publicly Available Specification from BSI that sets out the requirements management system standards have in common. It lets an organisation meet those shared requirements once, in one integrated management system, instead of separately for ISO 9001, ISO 14001, ISO 45001, ISO/IEC 27001 and other standards.' },
+    { q: 'Is PAS 99 a certifiable standard?', a: 'Certification bodies can assess an integrated management system against PAS 99, usually alongside certification to the underlying ISO standards. PAS 99 does not replace those certificates, because each ISO standard still has discipline-specific requirements.' },
+    { q: 'Which standards can PAS 99 integrate?', a: 'Any management system standards that follow the ISO Harmonized Structure, formerly Annex SL. Common combinations are ISO 9001, ISO 14001, ISO 45001 and ISO/IEC 27001, and PAS 99 can also bring in ISO 22000, ISO 22301, ISO 50001 and ISO/IEC 42001.' },
+    { q: 'Does an integrated management system reduce audit time?', a: 'It can. IAF MD 11 allows certification bodies to audit an integrated management system in a combined audit and to reduce total audit time where the integration is genuine. The reduction depends on how far processes such as document control, internal audit and management review are truly shared.' },
+  ],
+  'vendor-compliance-management': [
+    { q: 'What is vendor compliance management?', a: 'Vendor compliance management is the process of verifying that suppliers, contractors and service providers meet your legal, contractual and policy requirements before you engage them, and monitoring that they keep meeting them for the whole relationship, including tracking expiry dates and renewals.' },
+    { q: 'What documents should a South African supplier provide?', a: 'It depends on the risk, but typical requirements are B-BBEE evidence (a certificate from a SANAS-accredited verification agency or a sworn affidavit), a SARS Tax Compliance Status PIN, CIPC registration and bank confirmation. Contractors working on site usually also provide a COID letter of good standing, a section 37(2) OHS Act agreement and a safety file.' },
+    { q: 'How long is a B-BBEE certificate valid?', a: 'A B-BBEE verification certificate is normally valid for 12 months from the date it is issued, so suppliers need to renew it every year. Sworn affidavits for qualifying small and micro enterprises also need to be kept current.' },
+    { q: 'Does POPIA apply to our vendors?', a: 'Yes, when a vendor processes personal information on your behalf. POPIA calls that vendor an operator, and section 21 requires a written contract obliging the operator to maintain appropriate security measures. Your organisation, as the responsible party, stays accountable for the personal information.' },
+  ],
   'environmental-compliance-software-for-regulatory-management': [
     { q: 'What is environmental obligations software?', a: 'Environmental obligations software breaks environmental authorisations, licences and permits into individual obligations, then tracks each one with an owner, a due date, supporting evidence and alerts. It replaces spreadsheets of licence conditions with a live, auditable register.' },
     { q: 'Which South African laws create environmental obligations?', a: 'The main sources are the National Environmental Management Act 107 of 1998 and its specific environmental management Acts, including the Air Quality Act 39 of 2004 and the Waste Act 59 of 2008, plus the National Water Act 36 of 1998. Authorisations and licences issued under them set conditions an operation must meet and prove.' },
