@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>ISMS Governance Overview | XGRC® live dashboard tour</title>
+<meta name="description" content="Interactive demonstration of the XGRC® MSXCyber® ISO 27001:2022 ISMS dashboard. Every figure is fictitious and illustrative.">
+<link rel="icon" href="/favicon.ico">
+<script>
+  (function () {
+    if (!['xgrcsoftware.com', 'www.xgrcsoftware.com'].includes(window.location.hostname)) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('consent', 'default', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+    gtag('js', new Date());
+    gtag('config', 'G-E8SHSDL5C4');
+    gtag('config', 'AW-744549022');
+    var tag = document.createElement('script'); tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-E8SHSDL5C4';
+    document.head.appendChild(tag);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="tour-shell.css?v=9">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="banner">Demonstration dashboard: all figures, owners and exceptions on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <a class="home" href="/" aria-label="XGRC® Software home"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" class="brand-icon"></a>
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">ISMS Governance Overview</div>
+        <div class="crumb"><a href="/tour/">&larr; All dashboards</a> &middot; <a href="/msxcyber/">About MSXCyber&reg;</a></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <button class="btn" id="btn-export" type="button">Export board pack</button>
+      <a class="btn-go" href="/demo/">Book a demo</a>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search KPIs, controls, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>ISO 27001:2022 Annex A control implementation</h3>
+        <div class="health-badge"><div class="health-ring" id="health-ring"><span id="health-pct">&ndash;</span></div><span class="health-label">estate health</span></div>
+      </div>
+      <div id="chart-signature"></div>
+      <div id="cell-detail" class="cell-detail"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card compact"><h3 style="text-align:left;margin-bottom:12px;">Governance readiness</h3><div id="chart-secondary"></div></div>
+      <div class="card compact"><h3 style="text-align:left;">At a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section" id="extra-section"></div>
+
+  <div id="module-sections"></div>
+</main>
+
+<section class="tour-cta" aria-label="Next step">
+  <div class="tour-cta-inner">
+    <div>
+      <h2>Run your ISMS from evidence, not spreadsheets</h2>
+      <p>Asset register, risk treatment, controls, incidents and internal audit on one governed platform, aligned to ISO 27001:2022. This dashboard uses fictitious data; a demo uses yours.</p>
+    </div>
+    <div class="acts"><a class="btn-go" href="/demo/">See it with your data</a><a class="btn" href="/msxcyber/">About MSXCyber&reg;</a><a class="btn" href="/tour/">All dashboards</a></div>
+  </div>
+</section>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of ISO 27001:2022 ISMS governance, control implementation and risk treatment.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {"pdfTitle":"XGRC · ISMS Governance Overview","pdfFilename":"XGRC-MSXCyber-ISMS-Board-Pack-Demo.pdf","systems":[{"name":"Security Operations","color":"#30e2f4"},{"name":"Risk & Controls","color":"#ffb648"},{"name":"Governance & Compliance","color":"#7e9eff"},{"name":"People & Communication","color":"#16d9a8"}],"execStats":[{"label":"IT assets registered","value":342,"sub":"across 3 offices and cloud"},{"label":"Annex A controls implemented","value":87,"suffix":"%","sub":"81 of 93 controls"},{"label":"Open high risks","value":4,"sub":"treatment plans in progress"}],"kpis":[{"id":1,"name":"Asset Register Coverage","system":"Security Operations","module":"Asset Register","desc":"% of IT assets registered with an owner and a security classification.","calc":"Assets with an owner and classification recorded ÷ total assets discovered.","valueLabel":"94%","target":"100%","rag":"amber","delta":"+2 pts","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":["ISO 27001:2022 A.5.9"]},{"id":2,"name":"Critical Asset Monitoring Uptime","system":"Security Operations","module":"Monitoring","desc":"% uptime of continuous monitoring coverage on assets classified as critical.","calc":"Minutes of monitoring coverage ÷ total minutes in the period, critical assets only.","valueLabel":"99.6%","target":"≥ 99.5%","rag":"green","delta":"+0.1 pt","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":["ISO 27001:2022 A.8.16"]},{"id":3,"name":"Security Events Logged","system":"Security Operations","module":"Event Management","desc":"Count of security events logged across all monitored systems in the last 30 days.","calc":"Count of security events raised in Event Management, trailing 30 days.","valueLabel":"58","target":"Monitor","rag":"green","delta":"-6","tone":"neutral","owner":"IT Security Manager","cadence":"Monthly","frameworks":["ISO 27001:2022 A.5.25"]},{"id":4,"name":"Mean Time to Acknowledge Security Event","system":"Security Operations","module":"Event Management","desc":"Average time between a security event being logged and first acknowledgement by the response team.","calc":"Sum of time-to-acknowledge across events ÷ number of events, trailing 30 days.","valueLabel":"3.1h","target":"≤ 4h","rag":"green","delta":"-0.4h","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":["ISO 27001:2022 A.5.26"]},{"id":5,"name":"Physical Security Inspections Completed","system":"Security Operations","module":"Inspections","desc":"% of scheduled physical security inspections completed on time.","calc":"Inspections completed by due date ÷ inspections scheduled for the period.","valueLabel":"96%","target":"100%","rag":"green","delta":"+4 pts","tone":"good","owner":"Facilities & Security Lead","cadence":"Monthly","frameworks":["ISO 27001:2022 A.7.4"]},{"id":6,"name":"ISO 27001 Annex A Controls Implemented","system":"Risk & Controls","module":"Risk Assessments","desc":"% of the 93 Annex A controls (ISO/IEC 27001:2022) marked implemented, not partial or not started.","calc":"Controls marked Implemented ÷ 93 total Annex A controls.","valueLabel":"87%","target":"100%","rag":"amber","delta":"+5 pts","tone":"good","owner":"ISMS Manager","cadence":"Quarterly","frameworks":["ISO 27001:2022"]},{"id":7,"name":"High Risk Treatment Plans On Track","system":"Risk & Controls","module":"Risk Assessments","desc":"% of high and critical information security risks with a treatment plan on schedule.","calc":"High/critical risks with an on-schedule treatment plan ÷ total open high/critical risks.","valueLabel":"81%","target":"100%","rag":"amber","delta":"+9 pts","tone":"good","owner":"ISMS Manager","cadence":"Monthly","frameworks":["ISO 27001:2022 A.5.7"]},{"id":8,"name":"Non-Conformances Open Beyond 30 Days","system":"Risk & Controls","module":"Non-Conformances","desc":"Count of ISMS non-conformances still open more than 30 days after being raised.","calc":"Count of non-conformances where (today − date raised) > 30 days and status is not Closed.","valueLabel":"3","target":"0","rag":"red","delta":"+1","tone":"bad","owner":"ISMS Manager","cadence":"Weekly","frameworks":["ISO 27001:2022 Clause 10.2"]},{"id":9,"name":"Change Requests With Security Review","system":"Risk & Controls","module":"Change Management","desc":"% of IT change requests that received a documented security review before implementation.","calc":"Change requests with a completed security review ÷ total change requests implemented.","valueLabel":"91%","target":"100%","rag":"amber","delta":"+3 pts","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":["ISO 27001:2022 A.8.32"]},{"id":10,"name":"Internal Audit Findings Closed","system":"Governance & Compliance","module":"Audits","desc":"% of ISMS internal audit findings closed within their agreed remediation date.","calc":"Findings closed by their remediation due date ÷ total findings raised, rolling 12 months.","valueLabel":"79%","target":"100%","rag":"amber","delta":"-2 pts","tone":"bad","owner":"ISMS Manager","cadence":"Quarterly","frameworks":["ISO 19011"]},{"id":11,"name":"ISMS Document Control Currency","system":"Governance & Compliance","module":"Document Control","desc":"% of ISMS policies and procedures reviewed within their scheduled review cycle.","calc":"ISMS documents reviewed by their scheduled review date ÷ total controlled ISMS documents.","valueLabel":"95%","target":"100%","rag":"green","delta":"+1 pt","tone":"good","owner":"ISMS Manager","cadence":"Quarterly","frameworks":["ISO 27001:2022 Clause 7.5"]},{"id":12,"name":"Data Protection Obligation Compliance","system":"Governance & Compliance","module":"Legal Compliance","desc":"% of tracked GDPR and POPIA obligations currently in a compliant state.","calc":"Data protection obligations marked Compliant ÷ total tracked GDPR/POPIA obligations.","valueLabel":"88%","target":"100%","rag":"amber","delta":"+4 pts","tone":"good","owner":"Data Protection Officer","cadence":"Monthly","frameworks":["GDPR","POPIA"]},{"id":13,"name":"Security Objectives On Track","system":"Governance & Compliance","module":"Objectives & Targets","desc":"% of annual information security objectives tracking to their target date.","calc":"Objectives with progress at or ahead of the planned trajectory ÷ total objectives for the year.","valueLabel":"83%","target":"100%","rag":"amber","delta":"+6 pts","tone":"good","owner":"ISMS Manager","cadence":"Quarterly","frameworks":["ISO 27001:2022 Clause 6.2"]},{"id":14,"name":"Security Awareness Training Completion","system":"People & Communication","module":"Training","desc":"% of employees who completed mandatory annual security awareness training.","calc":"Employees who completed the training ÷ total employees required to complete it.","valueLabel":"90%","target":"100%","rag":"amber","delta":"+5 pts","tone":"good","owner":"HR & ISMS Manager","cadence":"Quarterly","frameworks":["ISO 27001:2022 A.6.3"]},{"id":15,"name":"Phishing Simulation Click Rate","system":"People & Communication","module":"Training","desc":"% of employees who clicked a simulated phishing link in the latest campaign.","calc":"Employees who clicked the simulated link ÷ employees who received the simulation.","valueLabel":"7%","target":"≤ 5%","rag":"red","delta":"+1 pt","tone":"bad","owner":"IT Security Manager","cadence":"Quarterly","frameworks":["ISO 27001:2022 A.6.3"]},{"id":16,"name":"Stakeholder Security Briefings Held","system":"People & Communication","module":"Stakeholder Management","desc":"Count of security awareness briefings delivered to business stakeholders this quarter.","calc":"Count of completed stakeholder security briefing sessions, current quarter.","valueLabel":"6","target":"Monitor","rag":"green","delta":"+1","tone":"neutral","owner":"ISMS Manager","cadence":"Quarterly","frameworks":[]}],"exceptions":[{"kpiId":8,"ageDays":34,"status":"Open"},{"kpiId":15,"ageDays":5,"status":"Open"},{"kpiId":6,"ageDays":12,"status":"Open"},{"kpiId":10,"ageDays":18,"status":"Acknowledged"},{"kpiId":9,"ageDays":8,"status":"Open"}]};
+CONFIG.afterInit = function(ctx){
+  new ApexCharts(document.getElementById('chart-signature'), {
+    chart:{ type:'bar', height:270, stacked:true, background:'transparent', toolbar:{show:false} },
+    series:[
+      {name:'Implemented', data:[29,6,11,27]},
+      {name:'Partial', data:[6,2,2,5]},
+      {name:'Not started', data:[2,0,1,2]},
+    ],
+    xaxis:{ categories:['Organizational (37)','People (8)','Physical (14)','Technological (34)'], labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+    yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    colors:['#2fe88a','#ffb648','#ff5470'],
+    plotOptions:{ bar:{ horizontal:true, borderRadius:3, barHeight:'55%' } },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'9.5px', markers:{radius:3} },
+    tooltip:{ theme:'dark' },
+      animations:{ enabled:false },
+  }).render();
+
+  new ApexCharts(document.getElementById('chart-secondary'), {
+    chart:{ type:'radialBar', height:230, background:'transparent', toolbar:{show:false} },
+    series:[87,81,79],
+    labels:['Annex A implemented','High risk treatment','Audit findings closed'],
+    colors:['#30e2f4','#ffb648','#7e9eff'],
+    plotOptions:{ radialBar:{ hollow:{size:'32%'}, track:{background:'rgba(255,255,255,0.06)'},
+      dataLabels:{ name:{fontSize:'10px', fontFamily:'JetBrains Mono'}, value:{fontSize:'13px', fontFamily:'Outfit', fontWeight:700, formatter:function(v){return v+'%';}}, total:{ show:true, label:'Governance avg', color:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px', formatter:function(){return '82%';} } } } },
+    legend:{ show:true, position:'bottom', fontFamily:'JetBrains Mono', fontSize:'9.5px', labels:{colors:'#8499aa'}, markers:{radius:3} },
+    stroke:{ lineCap:'round' },
+    tooltip:{ theme:'dark' },
+      animations:{ enabled:false },
+  }).render();
+
+  document.getElementById('extra-section').innerHTML = '<div class="card"><h3 style="text-align:left;margin-bottom:4px;">Risk treatment status</h3><div class="hint" style="margin-bottom:10px;">Open information security risks by severity and treatment progress</div><div id="chart-risk-treatment"></div></div>';
+  new ApexCharts(document.getElementById('chart-risk-treatment'), {
+    chart:{ type:'bar', height:230, stacked:true, stackType:'100%', background:'transparent', toolbar:{show:false} },
+    series:[
+      {name:'On track', data:[3,6,11]},
+      {name:'Behind schedule', data:[1,2,3]},
+      {name:'Not started', data:[0,1,2]},
+    ],
+    xaxis:{ categories:['Critical','High','Medium'], labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    colors:['#2fe88a','#ffb648','#ff5470'],
+    plotOptions:{ bar:{ horizontal:true, borderRadius:3, barHeight:'50%' } },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'9.5px', markers:{radius:3} },
+    tooltip:{ theme:'dark' },
+      animations:{ enabled:false },
+  }).render();
+  setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, 80);
+};
+</script>
+<script src="tour-shell.js?v=9"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Environmental Compliance Overview | XGRC® live dashboard tour</title>
+<meta name="description" content="Interactive demonstration of the XGRC® ENVIRX® environmental compliance and monitoring dashboard. Every figure is fictitious and illustrative.">
+<link rel="icon" href="/favicon.ico">
+<script>
+  (function () {
+    if (!['xgrcsoftware.com', 'www.xgrcsoftware.com'].includes(window.location.hostname)) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('consent', 'default', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+    gtag('js', new Date());
+    gtag('config', 'G-E8SHSDL5C4');
+    gtag('config', 'AW-744549022');
+    var tag = document.createElement('script'); tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-E8SHSDL5C4';
+    document.head.appendChild(tag);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="tour-shell.css?v=9">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="banner">Demonstration dashboard: all figures, owners and exceptions on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <a class="home" href="/" aria-label="XGRC® Software home"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" class="brand-icon"></a>
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">Environmental Compliance Overview</div>
+        <div class="crumb"><a href="/tour/">&larr; All dashboards</a> &middot; <a href="/envirx/">About ENVIRX&reg;</a></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <button class="btn" id="btn-export" type="button">Export board pack</button>
+      <a class="btn-go" href="/demo/">Book a demo</a>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search KPIs, sites, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>Legal obligation compliance · 12 months</h3>
+        <div class="health-badge"><div class="health-ring" id="health-ring"><span id="health-pct">&ndash;</span></div><span class="health-label">estate health</span></div>
+      </div>
+      <div id="chart-signature"></div>
+      <div id="cell-detail" class="cell-detail"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card compact"><h3 style="text-align:left;margin-bottom:12px;">Monitoring domain health</h3><div id="chart-secondary"></div></div>
+      <div class="card compact"><h3 style="text-align:left;">At a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section" id="extra-section"></div>
+
+  <div id="module-sections"></div>
+</main>
+
+<section class="tour-cta" aria-label="Next step">
+  <div class="tour-cta-inner">
+    <div>
+      <h2>Environmental compliance you can demonstrate</h2>
+      <p>Legal obligations, multi-site monitoring and environmental incidents in one auditable system, aligned to ISO 14001. This dashboard uses fictitious data; a demo uses yours.</p>
+    </div>
+    <div class="acts"><a class="btn-go" href="/demo/">See it with your data</a><a class="btn" href="/envirx/">About ENVIRX&reg;</a><a class="btn" href="/tour/">All dashboards</a></div>
+  </div>
+</section>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of environmental legal compliance, multi-site monitoring and performance against target.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {"pdfTitle":"XGRC · Environmental Compliance Overview","pdfFilename":"XGRC-ENVIRX-Environmental-Board-Pack-Demo.pdf","systems":[{"name":"Environmental Monitoring","color":"#2fe88a"},{"name":"Compliance & Legal","color":"#30e2f4"},{"name":"Operations & Governance","color":"#7e9eff"},{"name":"Performance & Improvement","color":"#ffb648"}],"execStats":[{"label":"Sites monitored","value":11,"sub":"across 4 regions"},{"label":"Legal obligations compliant","value":87,"suffix":"%","sub":"of tracked NEMA & ISO 14001 obligations"},{"label":"Open environmental non-conformances","value":2,"sub":"1 site with a noise exceedance"}],"kpis":[{"id":1,"name":"Air Quality Monitoring Compliance","system":"Environmental Monitoring","module":"Air Quality Monitoring","desc":"% of air quality readings within licensed emission limits.","calc":"Readings within licensed limits ÷ total air quality readings recorded, rolling 30 days.","valueLabel":"93%","target":"100%","rag":"amber","delta":"+2 pts","tone":"good","owner":"Environmental Manager","cadence":"Monthly","frameworks":["ISO 14001","NEMA"]},{"id":2,"name":"Water Quality Monitoring Compliance","system":"Environmental Monitoring","module":"Water Quality Monitoring","desc":"% of water discharge readings within licensed quality limits.","calc":"Readings within licensed limits ÷ total water quality readings recorded, rolling 30 days.","valueLabel":"97%","target":"100%","rag":"green","delta":"+1 pt","tone":"good","owner":"Environmental Manager","cadence":"Monthly","frameworks":["ISO 14001","NEMA"]},{"id":3,"name":"Noise Monitoring Exceedances","system":"Environmental Monitoring","module":"Noise Monitoring","desc":"Count of noise monitoring readings that exceeded the licensed limit in the period.","calc":"Count of noise readings above the licensed decibel limit, rolling 30 days.","valueLabel":"1","target":"0","rag":"red","delta":"+1","tone":"bad","owner":"Environmental Manager","cadence":"Monthly","frameworks":["NEMA"]},{"id":4,"name":"Energy Intensity Reduction (YoY)","system":"Environmental Monitoring","module":"Energy Monitoring","desc":"Year-on-year reduction in energy consumed per unit of output.","calc":"(Prior year energy intensity − current year energy intensity) ÷ prior year energy intensity.","valueLabel":"6%","target":"≥ 5%","rag":"green","delta":"+1 pt","tone":"good","owner":"Environmental Manager","cadence":"Quarterly","frameworks":["GHG Protocol"]},{"id":5,"name":"Biodiversity Monitoring Sites Current","system":"Environmental Monitoring","module":"Biodiversity Monitoring","desc":"% of sites with a biodiversity monitoring survey completed within the last 12 months.","calc":"Sites with a survey in the last 12 months ÷ total sites requiring biodiversity monitoring.","valueLabel":"82%","target":"100%","rag":"amber","delta":"+9 pts","tone":"good","owner":"Environmental Manager","cadence":"Annually","frameworks":["ISO 14001"]},{"id":6,"name":"Environmental Legal Obligations Compliant","system":"Compliance & Legal","module":"Legal Compliance","desc":"% of tracked environmental legal obligations currently in a compliant state.","calc":"Obligations marked Compliant ÷ total tracked environmental legal obligations.","valueLabel":"87%","target":"100%","rag":"amber","delta":"+3 pts","tone":"good","owner":"Environmental Manager","cadence":"Monthly","frameworks":["NEMA","King V"]},{"id":7,"name":"Regulatory Inspections Passed","system":"Compliance & Legal","module":"Legal Compliance","desc":"% of regulatory environmental inspections passed without a formal non-compliance notice.","calc":"Inspections passed without a non-compliance notice ÷ total regulatory inspections, rolling 12 months.","valueLabel":"92%","target":"100%","rag":"green","delta":"+4 pts","tone":"good","owner":"Environmental Manager","cadence":"Quarterly","frameworks":["NEMA"]},{"id":8,"name":"Objectives & Targets On Track","system":"Compliance & Legal","module":"Objectives & Targets","desc":"% of annual environmental objectives tracking to their target date.","calc":"Objectives at or ahead of planned trajectory ÷ total environmental objectives for the year.","valueLabel":"78%","target":"100%","rag":"amber","delta":"+5 pts","tone":"good","owner":"Environmental Manager","cadence":"Quarterly","frameworks":["ISO 14001"]},{"id":9,"name":"Multi-Site Monitoring Data Currency","system":"Operations & Governance","module":"Governance","desc":"% of sites with monitoring data submitted on schedule, no missed reporting windows.","calc":"Sites with all monitoring submissions on schedule ÷ total monitored sites, rolling 30 days.","valueLabel":"95%","target":"100%","rag":"green","delta":"+2 pts","tone":"good","owner":"Environmental Manager","cadence":"Monthly","frameworks":[]},{"id":10,"name":"Environmental Governance Actions Closed","system":"Operations & Governance","module":"Leadership","desc":"% of environmental governance actions closed by their due date.","calc":"Governance actions closed on time ÷ total governance actions raised, rolling quarter.","valueLabel":"81%","target":"100%","rag":"amber","delta":"+3 pts","tone":"good","owner":"Environmental Manager","cadence":"Quarterly","frameworks":[]},{"id":11,"name":"Environmental Non-Conformances Open","system":"Performance & Improvement","module":"Non-Conformances","desc":"Count of open ISO 14001 non-conformances beyond their target closure date.","calc":"Count of environmental non-conformances where status is not Closed and the target closure date has passed.","valueLabel":"2","target":"0","rag":"red","delta":"+1","tone":"bad","owner":"Environmental Manager","cadence":"Monthly","frameworks":["ISO 14001"]},{"id":12,"name":"Environmental Incidents","system":"Performance & Improvement","module":"Event Management","desc":"Count of recorded environmental incidents in the last 90 days.","calc":"Count of environmental incidents logged in Event Management, trailing 90 days.","valueLabel":"3","target":"Monitor","rag":"amber","delta":"+1","tone":"bad","owner":"Environmental Manager","cadence":"Monthly","frameworks":[]},{"id":13,"name":"Improvement Initiatives On Track","system":"Performance & Improvement","module":"Improvement","desc":"% of active environmental improvement initiatives tracking to their planned milestones.","calc":"Initiatives at or ahead of their planned milestones ÷ total active improvement initiatives.","valueLabel":"74%","target":"100%","rag":"amber","delta":"+6 pts","tone":"good","owner":"Environmental Manager","cadence":"Quarterly","frameworks":[]},{"id":14,"name":"Environmental Risk Assessments Current","system":"Performance & Improvement","module":"Risk Assessment","desc":"% of site environmental risk assessments reviewed within the last 12 months.","calc":"Risk assessments reviewed in the last 12 months ÷ total site environmental risk assessments.","valueLabel":"91%","target":"100%","rag":"green","delta":"+3 pts","tone":"good","owner":"Environmental Manager","cadence":"Annually","frameworks":["ISO 14001"]},{"id":15,"name":"Environmental Audit Findings Closed","system":"Performance & Improvement","module":"Audit Management","desc":"% of environmental audit findings closed within their agreed remediation date.","calc":"Findings closed by their remediation due date ÷ total environmental audit findings raised, rolling 12 months.","valueLabel":"80%","target":"100%","rag":"amber","delta":"+2 pts","tone":"good","owner":"Environmental Manager","cadence":"Quarterly","frameworks":["ISO 19011"]},{"id":16,"name":"Waste Diverted From Landfill","system":"Performance & Improvement","module":"Material Flows","desc":"% of total waste diverted from landfill via recycling or reuse.","calc":"Waste diverted ÷ total waste generated, period to date.","valueLabel":"76%","target":"≥ 80%","rag":"amber","delta":"+3 pts","tone":"good","owner":"Environmental Manager","cadence":"Quarterly","frameworks":["GHG Protocol"]}],"exceptions":[{"kpiId":3,"ageDays":6,"status":"Open"},{"kpiId":11,"ageDays":27,"status":"Open"},{"kpiId":6,"ageDays":15,"status":"Acknowledged"},{"kpiId":16,"ageDays":10,"status":"Open"},{"kpiId":12,"ageDays":4,"status":"Open"}]};
+CONFIG.afterInit = function(ctx){
+  new ApexCharts(document.getElementById('chart-signature'), {
+    chart:{ type:'line', height:270, background:'transparent', toolbar:{show:false}, zoom:{enabled:false} },
+    series:[
+      {name:'Legal obligation compliance', data:[76,77,79,80,81,82,83,84,85,85,86,87]},
+      {name:'Target', data:[100,100,100,100,100,100,100,100,100,100,100,100]},
+    ],
+    xaxis:{ categories:DashboardShell.monthLabels(12), labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+    yaxis:{ min:60, max:100, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    colors:['#2fe88a','#8499aa'],
+    stroke:{ curve:'smooth', width:[2.5,1.5], dashArray:[0,5] },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'9.5px', markers:{radius:3} },
+    tooltip:{ theme:'dark' },
+    markers:{ size:0 },
+    animations:{ enabled:false },
+  }).render();
+
+  new ApexCharts(document.getElementById('chart-secondary'), {
+    chart:{ type:'radialBar', height:230, background:'transparent', toolbar:{show:false} },
+    series:[93,97,82],
+    labels:['Air quality','Water quality','Biodiversity currency'],
+    colors:['#ffb648','#2fe88a','#30e2f4'],
+    plotOptions:{ radialBar:{ hollow:{size:'32%'}, track:{background:'rgba(255,255,255,0.06)'},
+      dataLabels:{ name:{fontSize:'10px', fontFamily:'JetBrains Mono'}, value:{fontSize:'13px', fontFamily:'Outfit', fontWeight:700, formatter:function(v){return v+'%';}}, total:{ show:true, label:'Monitoring avg', color:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px', formatter:function(){return '91%';} } } } },
+    legend:{ show:true, position:'bottom', fontFamily:'JetBrains Mono', fontSize:'9.5px', labels:{colors:'#8499aa'}, markers:{radius:3} },
+    stroke:{ lineCap:'round' },
+    tooltip:{ theme:'dark' },
+      animations:{ enabled:false },
+  }).render();
+
+  document.getElementById('extra-section').innerHTML = '<div class="card"><h3 style="text-align:left;margin-bottom:4px;">Site compliance status (fictitious)</h3><div class="hint" style="margin-bottom:10px;">Monitoring domain status per site, most recent reporting cycle</div><div id="chart-site-heatmap"></div></div>';
+  new ApexCharts(document.getElementById('chart-site-heatmap'), {
+    chart:{ type:'heatmap', height:280, background:'transparent', toolbar:{show:false} },
+    series:[
+      { name:'Coastal Terminal (fictitious)',  data:[{x:'Air',y:2},{x:'Water',y:2},{x:'Noise',y:0},{x:'Energy',y:2},{x:'Waste',y:1}] },
+      { name:'Inland Depot (fictitious)',      data:[{x:'Air',y:1},{x:'Water',y:2},{x:'Noise',y:2},{x:'Energy',y:1},{x:'Waste',y:2}] },
+      { name:'Northern Plant (fictitious)',    data:[{x:'Air',y:2},{x:'Water',y:1},{x:'Noise',y:2},{x:'Energy',y:2},{x:'Waste',y:1}] },
+      { name:'Metro Distribution (fictitious)',data:[{x:'Air',y:2},{x:'Water',y:2},{x:'Noise',y:2},{x:'Energy',y:1},{x:'Waste',y:2}] },
+    ],
+    dataLabels:{ enabled:false },
+    plotOptions:{ heatmap:{ radius:3, colorScale:{ ranges:[
+      {from:0,to:0,color:'#ff5470',name:'Breach'},
+      {from:1,to:1,color:'#ffb648',name:'Watch'},
+      {from:2,to:2,color:'#2fe88a',name:'Compliant'},
+    ] } } },
+    xaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'9.5px' },
+    tooltip:{ theme:'dark' },
+      animations:{ enabled:false },
+  }).render();
+  setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, 80);
+};
+</script>
+<script src="tour-shell.js?v=9"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>

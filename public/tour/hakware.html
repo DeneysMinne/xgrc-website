@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Continuous Security Testing Overview | XGRC® live dashboard tour</title>
+<meta name="description" content="Interactive demonstration of the Hakware AI-powered security testing dashboard, integrated with XGRC® MSXCyber®. Every figure is fictitious and illustrative.">
+<link rel="icon" href="/favicon.ico">
+<script>
+  (function () {
+    if (!['xgrcsoftware.com', 'www.xgrcsoftware.com'].includes(window.location.hostname)) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('consent', 'default', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+    gtag('js', new Date());
+    gtag('config', 'G-E8SHSDL5C4');
+    gtag('config', 'AW-744549022');
+    var tag = document.createElement('script'); tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-E8SHSDL5C4';
+    document.head.appendChild(tag);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="tour-shell.css?v=9">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="banner">Demonstration dashboard: all figures, owners and exceptions on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <a class="home" href="/" aria-label="XGRC® Software home"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" class="brand-icon"></a>
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">Continuous Security Testing Overview</div>
+        <div class="crumb"><a href="/tour/">&larr; All dashboards</a> &middot; <a href="/hakware/">About Hakware</a></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <button class="btn" id="btn-export" type="button">Export board pack</button>
+      <a class="btn-go" href="/demo/">Book a demo</a>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search KPIs, findings, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>Vulnerabilities found by severity · 12 months</h3>
+        <div class="health-badge"><div class="health-ring" id="health-ring"><span id="health-pct">&ndash;</span></div><span class="health-label">estate health</span></div>
+      </div>
+      <div id="chart-signature"></div>
+      <div id="cell-detail" class="cell-detail"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card compact"><h3 style="text-align:left;margin-bottom:12px;">Unified visibility</h3><div id="chart-secondary"></div></div>
+      <div class="card compact"><h3 style="text-align:left;">At a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section" id="extra-section"></div>
+
+  <div id="module-sections"></div>
+</main>
+
+<section class="tour-cta" aria-label="Next step">
+  <div class="tour-cta-inner">
+    <div>
+      <h2>Tested the way an attacker would, continuously, not once a year</h2>
+      <p>AI-driven penetration testing, unified vulnerability visibility and dark web monitoring, with findings feeding straight into MSXCyber&reg; as governed risks. This dashboard uses fictitious data; a demo uses yours.</p>
+    </div>
+    <div class="acts"><a class="btn-go" href="/demo/">See it with your data</a><a class="btn" href="/hakware/">About Hakware</a><a class="btn" href="/tour/">All dashboards</a></div>
+  </div>
+</section>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of continuous AI-driven security testing, unified vulnerability visibility and dark web exposure monitoring.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {"pdfTitle":"XGRC · Continuous Security Testing Overview (Hakware)","pdfFilename":"XGRC-Hakware-Security-Testing-Board-Pack-Demo.pdf","systems":[{"name":"AI Red Teaming","color":"#ff5470"},{"name":"Unified Visibility","color":"#30e2f4"},{"name":"Governance & Threat Intel","color":"#7e9eff"}],"execStats":[{"label":"Continuous tests run (30 days)","value":214,"sub":"across the external attack surface"},{"label":"Critical vulnerabilities remediated within SLA","value":88,"suffix":"%","sub":"of critical findings"},{"label":"Open cloud misconfigurations","value":3,"sub":"flagged by OneView"}],"kpis":[{"id":1,"name":"Continuous Penetration Test Coverage","system":"AI Red Teaming","module":"Archangel AI Penetration Testing","desc":"% of the defined external attack surface tested by Archangel in the last 30 days.","calc":"External assets tested ÷ total assets in the defined external attack surface, trailing 30 days.","valueLabel":"91%","target":"100%","rag":"amber","delta":"+3 pts","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":["NIST CSF"]},{"id":2,"name":"Critical Vulnerabilities Found","system":"AI Red Teaming","module":"Archangel AI Penetration Testing","desc":"Count of critical-severity vulnerabilities identified by continuous testing in the last 30 days (informational).","calc":"Count of findings rated Critical, trailing 30 days.","valueLabel":"4","target":"Monitor","rag":"amber","delta":"+1","tone":"neutral","owner":"IT Security Manager","cadence":"Monthly","frameworks":["OWASP Top 10"]},{"id":3,"name":"Critical Vulnerabilities Remediated Within SLA","system":"AI Red Teaming","module":"Archangel AI Penetration Testing","desc":"% of critical vulnerabilities remediated within the agreed SLA window.","calc":"Critical vulnerabilities remediated within SLA ÷ total critical vulnerabilities found, rolling 90 days.","valueLabel":"88%","target":"100%","rag":"amber","delta":"+5 pts","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":["ISO 27001"]},{"id":4,"name":"Network Discovery Assets Mapped","system":"AI Red Teaming","module":"Hakware Scout, Network Discovery","desc":"Count of network assets discovered and mapped by Hakware Scout.","calc":"Count of distinct assets currently mapped in the network discovery inventory.","valueLabel":"486","target":"Monitor","rag":"green","delta":"+12","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":[]},{"id":5,"name":"OneView Unified Coverage","system":"Unified Visibility","module":"OneView Security Dashboard","desc":"% of firewalls, endpoints and cloud accounts reporting into the OneView unified dashboard.","calc":"Assets reporting into OneView ÷ total known assets across firewalls, endpoints and cloud.","valueLabel":"95%","target":"100%","rag":"green","delta":"+2 pts","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":[]},{"id":6,"name":"Cloud Misconfigurations Open","system":"Unified Visibility","module":"Cloud Manager","desc":"Count of open cloud security misconfigurations flagged by Cloud Manager.","calc":"Count of cloud misconfiguration findings with status not Resolved.","valueLabel":"3","target":"0","rag":"red","delta":"+1","tone":"bad","owner":"IT Security Manager","cadence":"Weekly","frameworks":["ISO 27001"]},{"id":7,"name":"Endpoint Protection Coverage","system":"Unified Visibility","module":"Endpoint Manager","desc":"% of known endpoints with active, up-to-date endpoint protection reporting into Endpoint Manager.","calc":"Endpoints with active, current protection ÷ total known endpoints.","valueLabel":"98%","target":"100%","rag":"green","delta":"+1 pt","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":[]},{"id":8,"name":"Firewall Rule Review Currency","system":"Unified Visibility","module":"Firewall Manager","desc":"% of firewall rule sets reviewed within their scheduled review cycle.","calc":"Firewall rule sets reviewed on schedule ÷ total managed firewall rule sets.","valueLabel":"85%","target":"100%","rag":"amber","delta":"+4 pts","tone":"good","owner":"IT Security Manager","cadence":"Quarterly","frameworks":[]},{"id":9,"name":"Microsoft 365 Security Score","system":"Governance & Threat Intel","module":"Microsoft 365 Auditor","desc":"Microsoft Secure Score for the tenant's Microsoft 365 environment, as audited by Hakware.","calc":"Latest Microsoft Secure Score reading from the Microsoft 365 Auditor module.","valueLabel":"74%","target":"≥ 80%","rag":"amber","delta":"+3 pts","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":[]},{"id":10,"name":"Zero-Day Exposure Alerts Triaged Within SLA","system":"Governance & Threat Intel","module":"Zero-Day Manager","desc":"% of zero-day exposure alerts triaged within the agreed response SLA.","calc":"Zero-day alerts triaged within SLA ÷ total zero-day alerts raised, rolling 90 days.","valueLabel":"90%","target":"100%","rag":"amber","delta":"+2 pts","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":["NIST CSF"]},{"id":11,"name":"Code Repository Scans Passed","system":"Governance & Threat Intel","module":"Code Manager","desc":"% of code repository scans completing with no unresolved high-severity findings.","calc":"Repository scans with no unresolved high-severity findings ÷ total repository scans, rolling 30 days.","valueLabel":"93%","target":"100%","rag":"green","delta":"+2 pts","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":["OWASP Top 10"]},{"id":12,"name":"Dark Web Exposure Alerts","system":"Governance & Threat Intel","module":"Dark Web & Leaked Credential Monitoring","desc":"Count of dark web exposure alerts (leaked credentials or data) raised in the last 30 days.","calc":"Count of dark web monitoring alerts raised, trailing 30 days.","valueLabel":"5","target":"Monitor","rag":"amber","delta":"+2","tone":"neutral","owner":"IT Security Manager","cadence":"Monthly","frameworks":[]},{"id":13,"name":"Leaked Credential Incidents Remediated","system":"Governance & Threat Intel","module":"Dark Web & Leaked Credential Monitoring","desc":"% of confirmed leaked-credential exposures remediated (password reset or account action) within 48 hours.","calc":"Leaked-credential exposures remediated within 48 hours ÷ total confirmed exposures, rolling quarter.","valueLabel":"100%","target":"100%","rag":"green","delta":"flat","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":[]},{"id":14,"name":"Findings Fed Into MSXCyber® as Governed Risks","system":"Governance & Threat Intel","module":"Zero-Day Manager","desc":"% of Hakware findings above the reporting threshold that were logged as a governed risk or action in MSXCyber®.","calc":"Qualifying findings logged in MSXCyber® ÷ total qualifying findings raised, rolling quarter.","valueLabel":"100%","target":"100%","rag":"green","delta":"flat","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":["ISO 27001"]}],"exceptions":[{"kpiId":6,"ageDays":5,"status":"Open"},{"kpiId":3,"ageDays":9,"status":"Open"},{"kpiId":12,"ageDays":2,"status":"Open"},{"kpiId":10,"ageDays":6,"status":"Acknowledged"}]};
+CONFIG.afterInit = function(ctx){
+  new ApexCharts(document.getElementById('chart-signature'), {
+    chart:{ type:'bar', height:270, stacked:true, background:'transparent', toolbar:{show:false}, zoom:{enabled:false} },
+    series:[
+      {name:'Critical', data:[2,3,2,4,3,2,5,3,4,2,3,4]},
+      {name:'High', data:[6,7,5,8,6,7,9,6,8,7,6,8]},
+      {name:'Medium', data:[11,12,10,13,12,11,14,12,13,11,12,13]},
+      {name:'Low', data:[15,14,16,15,17,14,16,15,17,16,15,16]},
+    ],
+    xaxis:{ categories:DashboardShell.monthLabels(12), labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+    yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    colors:['#ff5470','#ffb648','#30e2f4','#2fe88a'],
+    plotOptions:{ bar:{ columnWidth:'55%' } },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'9.5px', markers:{radius:3} },
+    tooltip:{ theme:'dark' },
+    animations:{ enabled:false },
+  }).render();
+
+  new ApexCharts(document.getElementById('chart-secondary'), {
+    chart:{ type:'radialBar', height:230, background:'transparent', toolbar:{show:false} },
+    series:[95,88,74],
+    labels:['OneView coverage','Critical remediation SLA','Microsoft 365 score'],
+    colors:['#2fe88a','#30e2f4','#ffb648'],
+    plotOptions:{ radialBar:{ hollow:{size:'32%'}, track:{background:'rgba(255,255,255,0.06)'},
+      dataLabels:{ name:{fontSize:'10px', fontFamily:'JetBrains Mono'}, value:{fontSize:'13px', fontFamily:'Outfit', fontWeight:700, formatter:function(v){return v+'%';}}, total:{ show:true, label:'Security posture', color:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px', formatter:function(){return '86%';} } } } },
+    legend:{ show:true, position:'bottom', fontFamily:'JetBrains Mono', fontSize:'9.5px', labels:{colors:'#8499aa'}, markers:{radius:3} },
+    stroke:{ lineCap:'round' },
+    tooltip:{ theme:'dark' },
+      animations:{ enabled:false },
+  }).render();
+
+  document.getElementById('extra-section').innerHTML = '<div class="card"><h3 style="text-align:left;margin-bottom:4px;">Dark web & leaked credential alerts · 12 months</h3><div class="hint" style="margin-bottom:10px;">Confirmed exposure alerts raised by continuous dark web monitoring</div><div id="chart-darkweb"></div></div>';
+  new ApexCharts(document.getElementById('chart-darkweb'), {
+    chart:{ type:'line', height:230, background:'transparent', toolbar:{show:false}, zoom:{enabled:false} },
+    series:[{ name:'Alerts raised', data:[3,4,2,5,4,3,6,4,5,3,4,5] }],
+    xaxis:{ categories:DashboardShell.monthLabels(12), labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+    yaxis:{ min:0, max:8, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    colors:['#ffb648'],
+    stroke:{ curve:'smooth', width:2.5 },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    tooltip:{ theme:'dark' },
+    markers:{ size:0 },
+      animations:{ enabled:false },
+  }).render();
+  setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, 80);
+};
+</script>
+<script src="tour-shell.js?v=9"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>

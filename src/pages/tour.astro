@@ -5,17 +5,18 @@ import { tourDashboards } from '../data/site.js';
 const [featured, ...rest] = tourDashboards;
 const totalKpis = tourDashboards.reduce((n, d) => n + (d.kpis || 0), 0);
 const img = (slug) => `/assets/tour/${slug}-v1.webp`;
+const dashboardCount = tourDashboards.length;
 ---
 
 <Base
   title="Live Dashboard Tour | XGRC® Software"
-  description="Click through seven interactive XGRC® dashboards: enterprise risk, SHERQ, AI governance, incidents, vendor risk, ESG and policy. Fictitious data, real product."
+  description={`Click through ${dashboardCount} interactive XGRC® dashboards, covering risk, compliance, ISMS, ESG, AI governance and more. Fictitious data, real product.`}
 >
   <section class="tour-hero">
     <div class="container">
       <span class="eyebrow"><span class="dot"></span>Live dashboard tour</span>
       <h1>Click through XGRC® <em>the way your board would.</em></h1>
-      <p class="lede">Seven interactive dashboards built on the XGRC® platform. Filter them, drill into any KPI to see how it is calculated, switch industries, and export a board pack. No sign-up needed.</p>
+      <p class="lede">{dashboardCount} interactive dashboards built on the XGRC® platform. Filter them, drill into any KPI to see how it is calculated, switch industries, and export a board pack. No sign-up needed.</p>
       <div class="tour-actions">
         <a class="btn btn-primary" href={`/tour/${featured.slug}.html`}>Open the Enterprise Risk dashboard</a>
         <a class="btn btn-ghost" href="/demo/">Book a demo with your data</a>

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Governed AI Usage Overview | XGRC® live dashboard tour</title>
+<meta name="description" content="Interactive demonstration of the XGRC® MAIA® governed AI usage dashboard: query volume, adoption and audit trail completeness. Every figure is fictitious and illustrative.">
+<link rel="icon" href="/favicon.ico">
+<script>
+  (function () {
+    if (!['xgrcsoftware.com', 'www.xgrcsoftware.com'].includes(window.location.hostname)) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('consent', 'default', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+    gtag('js', new Date());
+    gtag('config', 'G-E8SHSDL5C4');
+    gtag('config', 'AW-744549022');
+    var tag = document.createElement('script'); tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-E8SHSDL5C4';
+    document.head.appendChild(tag);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="tour-shell.css?v=9">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="banner">Demonstration dashboard: all figures, owners and exceptions on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <a class="home" href="/" aria-label="XGRC® Software home"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" class="brand-icon"></a>
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">Governed AI Usage Overview</div>
+        <div class="crumb"><a href="/tour/">&larr; All dashboards</a> &middot; <a href="/maia/">About MAIA&reg;</a></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <button class="btn" id="btn-export" type="button">Export board pack</button>
+      <a class="btn-go" href="/demo/">Book a demo</a>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search KPIs, modules, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>Governed AI query volume · 12 months</h3>
+        <div class="health-badge"><div class="health-ring" id="health-ring"><span id="health-pct">&ndash;</span></div><span class="health-label">estate health</span></div>
+      </div>
+      <div id="chart-signature"></div>
+      <div id="cell-detail" class="cell-detail"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card compact"><h3 style="text-align:left;margin-bottom:12px;">Governance architecture health</h3><div id="chart-secondary"></div></div>
+      <div class="card compact"><h3 style="text-align:left;">At a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section" id="extra-section"></div>
+
+  <div id="module-sections"></div>
+</main>
+
+<section class="tour-cta" aria-label="Next step">
+  <div class="tour-cta-inner">
+    <div>
+      <h2>Ask your governance data a question, get an audited answer</h2>
+      <p>Governed AI for GRC: query volume, department adoption and a complete AI interaction audit trail, permission-aligned across every XGRC® solution. This dashboard uses fictitious data; a demo uses yours.</p>
+    </div>
+    <div class="acts"><a class="btn-go" href="/demo/">See it with your data</a><a class="btn" href="/maia/">About MAIA&reg;</a><a class="btn" href="/tour/">All dashboards</a></div>
+  </div>
+</section>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of governed AI usage, adoption and audit trail completeness within XGRC® Software.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {"pdfTitle":"XGRC · Governed AI Usage Overview","pdfFilename":"XGRC-MAIA-Governed-AI-Board-Pack-Demo.pdf","systems":[{"name":"Governance Intelligence","color":"#30e2f4"},{"name":"DAVE: Data Integration","color":"#7e9eff"},{"name":"LUCI: AI Interface","color":"#b98bff"},{"name":"Governed AI Architecture","color":"#2fe88a"}],"execStats":[{"label":"Queries answered (30 days)","value":1240,"sub":"across 6 departments"},{"label":"AI interaction audit trail completeness","value":100,"suffix":"%","sub":"every interaction logged and permissioned"},{"label":"Active data source connections","value":9,"suffix":"/12","sub":"planned integrations this quarter"}],"kpis":[{"id":1,"name":"Natural Language Queries Answered","system":"Governance Intelligence","module":"Natural Language Risk Queries","desc":"Count of natural-language governance, risk and compliance queries answered in the last 30 days.","calc":"Count of MAIA® queries logged with a completed response, trailing 30 days.","valueLabel":"1,240","target":"Monitor","rag":"green","delta":"+140","tone":"good","owner":"MAIA® Product Owner","cadence":"Monthly","frameworks":[]},{"id":2,"name":"Query Accuracy Rate","system":"Governance Intelligence","module":"Policy & Procedure Q&A","desc":"% of a sampled set of MAIA® answers validated as accurate against source records by a reviewer.","calc":"Sampled answers rated accurate ÷ total sampled answers reviewed, rolling month.","valueLabel":"91%","target":"≥ 95%","rag":"amber","delta":"+2 pts","tone":"good","owner":"MAIA® Product Owner","cadence":"Monthly","frameworks":["ISO/IEC 42001"]},{"id":3,"name":"Average Query Response Time","system":"Governance Intelligence","module":"Compliance Status Summaries","desc":"Average time from a query being submitted to a complete answer being returned.","calc":"Sum of response times ÷ number of queries answered, trailing 30 days.","valueLabel":"4.2s","target":"≤ 5s","rag":"green","delta":"-0.3s","tone":"good","owner":"MAIA® Product Owner","cadence":"Monthly","frameworks":[]},{"id":4,"name":"Regulatory Change Impact Analyses Delivered","system":"Governance Intelligence","module":"Regulatory Change Impact Analysis","desc":"Count of regulatory change impact summaries generated for review this quarter.","calc":"Count of completed regulatory change impact analyses, current quarter.","valueLabel":"14","target":"Monitor","rag":"green","delta":"+3","tone":"good","owner":"Compliance Manager","cadence":"Quarterly","frameworks":[]},{"id":5,"name":"Data Source Connections Active","system":"DAVE: Data Integration","module":"API Data Connections","desc":"Count of active data source connections (API, IoT, Power BI, Power Apps, XGRC® platform data) feeding MAIA®.","calc":"Count of data source connections currently in an active, healthy state.","valueLabel":"9","target":"12 planned","rag":"amber","delta":"+1","tone":"good","owner":"MAIA® Product Owner","cadence":"Monthly","frameworks":[]},{"id":6,"name":"Data Sync Success Rate","system":"DAVE: Data Integration","module":"XGRC Platform Data","desc":"% of scheduled data synchronisation jobs that completed successfully.","calc":"Successful sync jobs ÷ total scheduled sync jobs, rolling 30 days.","valueLabel":"96%","target":"100%","rag":"amber","delta":"-1 pt","tone":"bad","owner":"MAIA® Product Owner","cadence":"Monthly","frameworks":[]},{"id":7,"name":"Custom Data Requirements Fulfilled","system":"DAVE: Data Integration","module":"Custom Data Requirements","desc":"% of requested custom data integrations delivered within the agreed timeline.","calc":"Custom integrations delivered on time ÷ total custom integrations requested, rolling quarter.","valueLabel":"78%","target":"100%","rag":"amber","delta":"+6 pts","tone":"good","owner":"MAIA® Product Owner","cadence":"Quarterly","frameworks":[]},{"id":8,"name":"Predictive Maintenance Alerts Actioned","system":"LUCI: AI Interface","module":"Predictive Maintenance AI","desc":"% of predictive maintenance alerts actioned by the responsible team within the target window.","calc":"Alerts actioned within the target window ÷ total predictive maintenance alerts raised, rolling 30 days.","valueLabel":"84%","target":"100%","rag":"amber","delta":"+5 pts","tone":"good","owner":"Operations Manager","cadence":"Monthly","frameworks":[]},{"id":9,"name":"H&S Assistant Agent Engagement Rate","system":"LUCI: AI Interface","module":"H&S Assistant Agent","desc":"% of eligible frontline staff who used the H&S assistant agent in the last 30 days.","calc":"Staff with ≥1 H&S assistant interaction ÷ total eligible frontline staff, rolling 30 days.","valueLabel":"67%","target":"Monitor","rag":"green","delta":"+9 pts","tone":"good","owner":"SHE Manager","cadence":"Monthly","frameworks":[]},{"id":10,"name":"Driver Fatigue Monitoring Alerts","system":"LUCI: AI Interface","module":"Driver Fatigue Monitoring","desc":"Count of driver fatigue alerts raised in the last 30 days (informational, not a target).","calc":"Count of fatigue-risk alerts raised by the monitoring model, trailing 30 days.","valueLabel":"22","target":"Monitor","rag":"amber","delta":"+4","tone":"neutral","owner":"Fleet Safety Manager","cadence":"Monthly","frameworks":[]},{"id":11,"name":"Process Automation Bots Active","system":"LUCI: AI Interface","module":"Process Automation Bots","desc":"Count of governed process-automation bots currently active in production.","calc":"Count of process automation bots with an active deployment status.","valueLabel":"7","target":"Monitor","rag":"green","delta":"+1","tone":"good","owner":"MAIA® Product Owner","cadence":"Quarterly","frameworks":[]},{"id":12,"name":"AI Interaction Audit Trail Completeness","system":"Governed AI Architecture","module":"AI Interaction Audit Trail","desc":"% of MAIA® interactions with a complete, queryable audit trail entry (user, query, data accessed, response).","calc":"Interactions with a complete audit trail entry ÷ total MAIA® interactions logged.","valueLabel":"100%","target":"100%","rag":"green","delta":"flat","tone":"good","owner":"MAIA® Product Owner","cadence":"Monthly","frameworks":["ISO/IEC 42001"]},{"id":13,"name":"User Permission Alignment Checks Passed","system":"Governed AI Architecture","module":"User Permission Alignment","desc":"% of sampled MAIA® responses confirmed to have respected the requesting user's existing XGRC® permissions.","calc":"Sampled responses passing the permission-alignment check ÷ total sampled responses, rolling month.","valueLabel":"100%","target":"100%","rag":"green","delta":"flat","tone":"good","owner":"MAIA® Product Owner","cadence":"Monthly","frameworks":["ISO 27001"]},{"id":14,"name":"Data Boundary Violations","system":"Governed AI Architecture","module":"Data Boundary Enforcement","desc":"Count of confirmed instances where a MAIA® response crossed a defined data boundary control.","calc":"Count of confirmed data boundary control violations, rolling 30 days.","valueLabel":"0","target":"0","rag":"green","delta":"flat","tone":"good","owner":"MAIA® Product Owner","cadence":"Monthly","frameworks":["ISO/IEC 42001"]},{"id":15,"name":"Explainable AI Outputs Reviewed","system":"Governed AI Architecture","module":"Explainable AI Outputs","desc":"% of high-impact MAIA® outputs (e.g. compliance status summaries) with a documented explainability review.","calc":"High-impact outputs with a completed explainability review ÷ total high-impact outputs generated, rolling quarter.","valueLabel":"85%","target":"100%","rag":"amber","delta":"+7 pts","tone":"good","owner":"MAIA® Product Owner","cadence":"Quarterly","frameworks":["ISO/IEC 42001"]},{"id":16,"name":"ChatGPT & Azure Integration Uptime","system":"Governed AI Architecture","module":"ChatGPT & Azure Integration","desc":"% uptime of the approved AI service integrations underpinning MAIA®.","calc":"Minutes of confirmed service availability ÷ total minutes in the period, approved AI integrations only.","valueLabel":"99.8%","target":"≥ 99.5%","rag":"green","delta":"+0.1 pt","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":[]}],"exceptions":[{"kpiId":6,"ageDays":8,"status":"Open"},{"kpiId":2,"ageDays":20,"status":"Acknowledged"},{"kpiId":8,"ageDays":12,"status":"Open"},{"kpiId":15,"ageDays":9,"status":"Open"},{"kpiId":10,"ageDays":3,"status":"Open"}]};
+CONFIG.afterInit = function(ctx){
+  new ApexCharts(document.getElementById('chart-signature'), {
+    chart:{ type:'line', height:270, background:'transparent', toolbar:{show:false}, zoom:{enabled:false} },
+    series:[{ name:'Queries answered', data:[520,590,640,700,760,830,890,950,1010,1080,1150,1240] }],
+    xaxis:{ categories:DashboardShell.monthLabels(12), labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+    yaxis:{ min:0, max:1400, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    colors:['#30e2f4'],
+    stroke:{ curve:'smooth', width:2.5 },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    tooltip:{ theme:'dark' },
+    markers:{ size:0 },
+    animations:{ enabled:false },
+  }).render();
+
+  new ApexCharts(document.getElementById('chart-secondary'), {
+    chart:{ type:'radialBar', height:230, background:'transparent', toolbar:{show:false} },
+    series:[100,100,85],
+    labels:['Audit trail completeness','Permission alignment','Explainability reviewed'],
+    colors:['#2fe88a','#30e2f4','#ffb648'],
+    plotOptions:{ radialBar:{ hollow:{size:'32%'}, track:{background:'rgba(255,255,255,0.06)'},
+      dataLabels:{ name:{fontSize:'10px', fontFamily:'JetBrains Mono'}, value:{fontSize:'13px', fontFamily:'Outfit', fontWeight:700, formatter:function(v){return v+'%';}}, total:{ show:true, label:'Governance health', color:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px', formatter:function(){return '95%';} } } } },
+    legend:{ show:true, position:'bottom', fontFamily:'JetBrains Mono', fontSize:'9.5px', labels:{colors:'#8499aa'}, markers:{radius:3} },
+    stroke:{ lineCap:'round' },
+    tooltip:{ theme:'dark' },
+      animations:{ enabled:false },
+  }).render();
+
+  document.getElementById('extra-section').innerHTML = '<div class="card"><h3 style="text-align:left;margin-bottom:4px;">Query volume by department</h3><div class="hint" style="margin-bottom:10px;">Share of the last 30 days of queries, by requesting department</div><div id="chart-dept"></div></div>';
+  new ApexCharts(document.getElementById('chart-dept'), {
+    chart:{ type:'bar', height:230, background:'transparent', toolbar:{show:false} },
+    series:[{ name:'Queries (30 days)', data:[
+      {x:'Risk',y:340,fillColor:'#30e2f4'},
+      {x:'Compliance',y:280,fillColor:'#7e9eff'},
+      {x:'SHEQ',y:260,fillColor:'#2fe88a'},
+      {x:'ESG',y:170,fillColor:'#b98bff'},
+      {x:'Internal Audit',y:120,fillColor:'#ffb648'},
+      {x:'Legal',y:70,fillColor:'#8499aa'},
+    ]}],
+    xaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    plotOptions:{ bar:{ borderRadius:4, columnWidth:'55%' } },
+    dataLabels:{ enabled:true, style:{ colors:['#eaf3f7'], fontFamily:'JetBrains Mono', fontSize:'10.5px' }, offsetY:-18 },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ show:false },
+    tooltip:{ theme:'dark' },
+    animations:{ enabled:false },
+  }).render();
+  setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, 80);
+};
+</script>
+<script src="tour-shell.js?v=9"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>

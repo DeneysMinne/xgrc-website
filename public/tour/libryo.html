@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Regulatory Intelligence Overview | XGRC® live dashboard tour</title>
+<meta name="description" content="Interactive demonstration of the Libryo regulatory intelligence dashboard, embedded in XGRC®. Every figure is fictitious and illustrative.">
+<link rel="icon" href="/favicon.ico">
+<script>
+  (function () {
+    if (!['xgrcsoftware.com', 'www.xgrcsoftware.com'].includes(window.location.hostname)) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('consent', 'default', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+    gtag('js', new Date());
+    gtag('config', 'G-E8SHSDL5C4');
+    gtag('config', 'AW-744549022');
+    var tag = document.createElement('script'); tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-E8SHSDL5C4';
+    document.head.appendChild(tag);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="tour-shell.css?v=9">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="banner">Demonstration dashboard: all figures, owners and exceptions on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <a class="home" href="/" aria-label="XGRC® Software home"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" class="brand-icon"></a>
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">Regulatory Intelligence Overview</div>
+        <div class="crumb"><a href="/tour/">&larr; All dashboards</a> &middot; <a href="/libryo/">About Libryo</a></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <button class="btn" id="btn-export" type="button">Export board pack</button>
+      <a class="btn-go" href="/demo/">Book a demo</a>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search KPIs, jurisdictions, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>Obligation status by region (fictitious)</h3>
+        <div class="health-badge"><div class="health-ring" id="health-ring"><span id="health-pct">&ndash;</span></div><span class="health-label">estate health</span></div>
+      </div>
+      <div id="chart-signature"></div>
+      <div id="cell-detail" class="cell-detail"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card compact"><h3 style="text-align:left;margin-bottom:12px;">Programme health</h3><div id="chart-secondary"></div></div>
+      <div class="card compact"><h3 style="text-align:left;">At a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section" id="extra-section"></div>
+
+  <div id="module-sections"></div>
+</main>
+
+<section class="tour-cta" aria-label="Next step">
+  <div class="tour-cta-inner">
+    <div>
+      <h2>Legal obligations, translated into action, on the same platform as the rest of GRC</h2>
+      <p>Site-specific obligations, regulatory change alerts and audit-ready evidence, flowing into your existing XGRC® legal compliance workflows. This dashboard uses fictitious data; a demo uses yours.</p>
+    </div>
+    <div class="acts"><a class="btn-go" href="/demo/">See it with your data</a><a class="btn" href="/libryo/">About Libryo</a><a class="btn" href="/tour/">All dashboards</a></div>
+  </div>
+</section>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of Libryo's regulatory intelligence, embedded within XGRC®'s legal compliance workflows.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {"pdfTitle":"XGRC · Regulatory Intelligence Overview (Libryo)","pdfFilename":"XGRC-Libryo-Regulatory-Intelligence-Board-Pack-Demo.pdf","systems":[{"name":"Libryo Sites","color":"#30e2f4"},{"name":"Libryo Assess","color":"#ffb648"},{"name":"Action & Evidence","color":"#2fe88a"}],"execStats":[{"label":"Jurisdictions tracked","value":1000,"suffix":"+","sub":"daily legislative updates"},{"label":"Sites with a current legal register","value":89,"suffix":"%","sub":"of registered sites"},{"label":"Overdue obligations","value":6,"sub":"across all tracked sites"}],"kpis":[{"id":1,"name":"Sites With Current Legal Register","system":"Libryo Sites","module":"Site-Specific Legal Registers","desc":"% of registered sites with a legal register reviewed and confirmed current in the last quarter.","calc":"Sites with a register reviewed in the last quarter ÷ total registered sites.","valueLabel":"89%","target":"100%","rag":"amber","delta":"+4 pts","tone":"good","owner":"Compliance Manager","cadence":"Quarterly","frameworks":[]},{"id":2,"name":"Jurisdictions Actively Tracked","system":"Libryo Sites","module":"Multi-Jurisdiction Tracking","desc":"Count of jurisdictions with an active Libryo legal register feeding this organisation's sites.","calc":"Count of distinct jurisdictions mapped to at least one registered site.","valueLabel":"14","target":"Monitor","rag":"green","delta":"+1","tone":"good","owner":"Compliance Manager","cadence":"Quarterly","frameworks":[]},{"id":3,"name":"Regulatory Changes Flagged","system":"Libryo Sites","module":"Regulatory Change Monitoring","desc":"Count of regulatory changes flagged as relevant to at least one tracked obligation in the last 30 days.","calc":"Count of regulatory change alerts raised against tracked obligations, trailing 30 days.","valueLabel":"27","target":"Monitor","rag":"amber","delta":"+5","tone":"neutral","owner":"Compliance Manager","cadence":"Monthly","frameworks":[]},{"id":4,"name":"Multi-Jurisdiction Obligation Mapping Coverage","system":"Libryo Sites","module":"Obligation Breakdown","desc":"% of active sites with obligations mapped for every jurisdiction level applicable to them (national, provincial, local).","calc":"Sites with all applicable jurisdiction levels mapped ÷ total active sites.","valueLabel":"92%","target":"100%","rag":"green","delta":"+3 pts","tone":"good","owner":"Compliance Manager","cadence":"Quarterly","frameworks":[]},{"id":5,"name":"Obligation Breakdown Currency","system":"Libryo Sites","module":"Obligation Breakdown","desc":"% of plain-language obligation breakdowns reviewed within their scheduled currency cycle.","calc":"Obligation breakdowns reviewed on schedule ÷ total obligation breakdowns tracked.","valueLabel":"84%","target":"100%","rag":"amber","delta":"+6 pts","tone":"good","owner":"Compliance Manager","cadence":"Quarterly","frameworks":[]},{"id":6,"name":"Compliance Assessment Score","system":"Libryo Assess","module":"Compliance Scoring","desc":"Average Libryo Assess compliance score across all assessed sites.","calc":"Average of per-site compliance assessment scores, most recent assessment cycle.","valueLabel":"81%","target":"≥ 90%","rag":"amber","delta":"+3 pts","tone":"good","owner":"Compliance Manager","cadence":"Quarterly","frameworks":[]},{"id":7,"name":"Assessments Completed On Schedule","system":"Libryo Assess","module":"Customisable Assessments","desc":"% of scheduled Libryo Assess site assessments completed by their due date.","calc":"Assessments completed by due date ÷ total assessments scheduled for the period.","valueLabel":"95%","target":"100%","rag":"green","delta":"+2 pts","tone":"good","owner":"Compliance Manager","cadence":"Quarterly","frameworks":[]},{"id":8,"name":"Audit & Inspection Readiness","system":"Libryo Assess","module":"Audit & Inspection Support","desc":"% of sites rated ready for a regulatory inspection without material gaps, based on the latest assessment.","calc":"Sites rated inspection-ready ÷ total assessed sites, latest assessment cycle.","valueLabel":"77%","target":"100%","rag":"amber","delta":"+5 pts","tone":"good","owner":"Compliance Manager","cadence":"Quarterly","frameworks":[]},{"id":9,"name":"Obligations With Assigned Owner","system":"Action & Evidence","module":"Task & Workflow Management","desc":"% of tracked legal obligations with a named responsible owner.","calc":"Obligations with a named owner ÷ total tracked obligations.","valueLabel":"94%","target":"100%","rag":"green","delta":"+2 pts","tone":"good","owner":"Compliance Manager","cadence":"Monthly","frameworks":[]},{"id":10,"name":"Obligations Actioned vs Identified","system":"Action & Evidence","module":"Task & Workflow Management","desc":"% of newly identified obligations that have a task or workflow created against them.","calc":"Newly identified obligations with a task created ÷ total newly identified obligations, rolling 90 days.","valueLabel":"86%","target":"100%","rag":"amber","delta":"+4 pts","tone":"good","owner":"Compliance Manager","cadence":"Monthly","frameworks":[]},{"id":11,"name":"Evidence Attached to Closed Obligations","system":"Action & Evidence","module":"Evidence Management","desc":"% of obligations marked complete with supporting evidence attached.","calc":"Closed obligations with attached evidence ÷ total obligations closed, rolling 90 days.","valueLabel":"79%","target":"100%","rag":"amber","delta":"-2 pts","tone":"bad","owner":"Compliance Manager","cadence":"Monthly","frameworks":[]},{"id":12,"name":"Overdue Obligations","system":"Action & Evidence","module":"Task & Workflow Management","desc":"Count of legal obligations past their action due date with no evidence of completion.","calc":"Count of obligations where (today − due date) > 0 and status is not Complete.","valueLabel":"6","target":"0","rag":"red","delta":"+2","tone":"bad","owner":"Compliance Manager","cadence":"Weekly","frameworks":[]},{"id":13,"name":"Audit-Ready Evidence Packs Generated","system":"Action & Evidence","module":"Audit Readiness Reporting","desc":"Count of audit-ready evidence packs generated for inspections or audits this quarter.","calc":"Count of evidence packs generated via Audit Readiness Reporting, current quarter.","valueLabel":"5","target":"Monitor","rag":"green","delta":"+1","tone":"good","owner":"Compliance Manager","cadence":"Quarterly","frameworks":[]},{"id":14,"name":"Task Closure Turnaround","system":"Action & Evidence","module":"Task & Workflow Management","desc":"Average number of days to close an obligation task from the date it was assigned.","calc":"Sum of (closure date − assigned date) across closed tasks ÷ number of tasks closed, rolling quarter.","valueLabel":"12 days","target":"≤ 14 days","rag":"green","delta":"-1 day","tone":"good","owner":"Compliance Manager","cadence":"Quarterly","frameworks":[]}],"exceptions":[{"kpiId":12,"ageDays":22,"status":"Open"},{"kpiId":1,"ageDays":14,"status":"Open"},{"kpiId":6,"ageDays":18,"status":"Acknowledged"},{"kpiId":11,"ageDays":10,"status":"Open"}]};
+CONFIG.afterInit = function(ctx){
+  new ApexCharts(document.getElementById('chart-signature'), {
+    chart:{ type:'bar', height:270, stacked:true, stackType:'100%', background:'transparent', toolbar:{show:false} },
+    series:[
+      {name:'Compliant', data:[62,48,29,18]},
+      {name:'Action required', data:[14,11,8,6]},
+      {name:'Overdue', data:[3,2,1,0]},
+    ],
+    xaxis:{ categories:['South Africa','Rest of Africa','Europe','Other (fictitious)'], labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+    yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'} } },
+    colors:['#2fe88a','#ffb648','#ff5470'],
+    plotOptions:{ bar:{ borderRadius:3, columnWidth:'50%' } },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'9.5px', markers:{radius:3} },
+    tooltip:{ theme:'dark' },
+    animations:{ enabled:false },
+  }).render();
+
+  new ApexCharts(document.getElementById('chart-secondary'), {
+    chart:{ type:'radialBar', height:230, background:'transparent', toolbar:{show:false} },
+    series:[81,86,79],
+    labels:['Compliance score','Obligations actioned','Evidence attached'],
+    colors:['#ffb648','#30e2f4','#7e9eff'],
+    plotOptions:{ radialBar:{ hollow:{size:'32%'}, track:{background:'rgba(255,255,255,0.06)'},
+      dataLabels:{ name:{fontSize:'10px', fontFamily:'JetBrains Mono'}, value:{fontSize:'13px', fontFamily:'Outfit', fontWeight:700, formatter:function(v){return v+'%';}}, total:{ show:true, label:'Programme health', color:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px', formatter:function(){return '82%';} } } } },
+    legend:{ show:true, position:'bottom', fontFamily:'JetBrains Mono', fontSize:'9.5px', labels:{colors:'#8499aa'}, markers:{radius:3} },
+    stroke:{ lineCap:'round' },
+    tooltip:{ theme:'dark' },
+      animations:{ enabled:false },
+  }).render();
+
+  document.getElementById('extra-section').innerHTML = '<div class="card"><h3 style="text-align:left;margin-bottom:4px;">Regulatory changes flagged · 12 months</h3><div class="hint" style="margin-bottom:10px;">Changes across all tracked jurisdictions flagged as relevant to a tracked obligation</div><div id="chart-reg-changes"></div></div>';
+  new ApexCharts(document.getElementById('chart-reg-changes'), {
+    chart:{ type:'bar', height:230, background:'transparent', toolbar:{show:false} },
+    series:[{ name:'Changes flagged', data:[16,19,14,22,18,25,21,24,20,23,19,27] }],
+    xaxis:{ categories:DashboardShell.monthLabels(12), labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    colors:['#30e2f4'],
+    plotOptions:{ bar:{ borderRadius:3, columnWidth:'55%' } },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ show:false },
+    tooltip:{ theme:'dark' },
+    animations:{ enabled:false },
+  }).render();
+  setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, 80);
+};
+</script>
+<script src="tour-shell.js?v=9"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>

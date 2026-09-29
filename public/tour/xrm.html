@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Sales Pipeline Overview | XGRC® live dashboard tour</title>
+<meta name="description" content="Interactive demonstration of the XGRC® XRM sales pipeline dashboard. Every figure, company and deal on this page is fictitious and illustrative.">
+<link rel="icon" href="/favicon.ico">
+<script>
+  (function () {
+    if (!['xgrcsoftware.com', 'www.xgrcsoftware.com'].includes(window.location.hostname)) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('consent', 'default', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+    gtag('js', new Date());
+    gtag('config', 'G-E8SHSDL5C4');
+    gtag('config', 'AW-744549022');
+    var tag = document.createElement('script'); tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-E8SHSDL5C4';
+    document.head.appendChild(tag);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="tour-shell.css?v=9">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="banner">Demonstration dashboard: all figures, companies and deals on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <a class="home" href="/" aria-label="XGRC® Software home"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" class="brand-icon"></a>
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">Sales Pipeline Overview</div>
+        <div class="crumb"><a href="/tour/">&larr; All dashboards</a> &middot; <a href="/xrm/">About XRM</a></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <button class="btn" id="btn-export" type="button">Export board pack</button>
+      <a class="btn-go" href="/demo/">Book a demo</a>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search KPIs, stages, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>Pipeline by stage (fictitious)</h3>
+        <div class="health-badge"><div class="health-ring" id="health-ring"><span id="health-pct">&ndash;</span></div><span class="health-label">estate health</span></div>
+      </div>
+      <div id="chart-signature"></div>
+      <div id="cell-detail" class="cell-detail"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card compact"><h3 style="text-align:left;margin-bottom:12px;">Pipeline health</h3><div id="chart-secondary"></div></div>
+      <div class="card compact"><h3 style="text-align:left;">At a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section" id="extra-section"></div>
+
+  <div id="module-sections"></div>
+</main>
+
+<section class="tour-cta" aria-label="Next step">
+  <div class="tour-cta-inner">
+    <div>
+      <h2>Pipeline discipline, not pipeline guesswork</h2>
+      <p>Leads, opportunities, quotes and approvals on one governed platform, with a complete audit trail on every record. This dashboard uses fictitious data; a demo uses yours.</p>
+    </div>
+    <div class="acts"><a class="btn-go" href="/demo/">See it with your data</a><a class="btn" href="/xrm/">About XRM</a><a class="btn" href="/tour/">All dashboards</a></div>
+  </div>
+</section>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of pipeline value, conversion, forecast accuracy and approval governance.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {"pdfTitle":"XGRC · Sales Pipeline Overview (XRM)","pdfFilename":"XGRC-XRM-Sales-Pipeline-Board-Pack-Demo.pdf","systems":[{"name":"Pipeline & Deals","color":"#30e2f4"},{"name":"Planning & Visibility","color":"#7e9eff"},{"name":"Workflow & Governance","color":"#2fe88a"}],"execStats":[{"label":"Open pipeline value","value":42.1,"suffix":"m","sub":"R · 128 open opportunities"},{"label":"Win rate (rolling quarter)","value":34,"suffix":"%","sub":"of closed opportunities"},{"label":"Deals at risk","value":7,"sub":"no activity in 14+ days"}],"kpis":[{"id":1,"name":"Weighted Pipeline Value","system":"Pipeline & Deals","module":"Opportunities","desc":"Sum of open opportunity value weighted by stage-based probability.","calc":"Sum of (opportunity value × stage probability) across all open opportunities.","valueLabel":"R18.4m","target":"Monitor","rag":"green","delta":"+R1.1m","tone":"good","owner":"Sales Director","cadence":"Weekly","frameworks":[]},{"id":2,"name":"Gross Pipeline Value","system":"Pipeline & Deals","module":"Opportunities","desc":"Sum of the value of every open opportunity, unweighted.","calc":"Sum of opportunity value across all opportunities with an open stage.","valueLabel":"R42.1m","target":"Monitor","rag":"green","delta":"+R2.6m","tone":"good","owner":"Sales Director","cadence":"Weekly","frameworks":[]},{"id":3,"name":"Lead-to-Opportunity Conversion Rate","system":"Pipeline & Deals","module":"Leads","desc":"% of qualified leads that progressed to an opportunity in the period.","calc":"Leads converted to an opportunity ÷ total qualified leads, rolling quarter.","valueLabel":"28%","target":"≥ 30%","rag":"amber","delta":"+2 pts","tone":"good","owner":"Sales Director","cadence":"Monthly","frameworks":[]},{"id":4,"name":"Opportunity Win Rate","system":"Pipeline & Deals","module":"Opportunities","desc":"% of closed opportunities that were won, rolling quarter.","calc":"Opportunities marked Won ÷ total opportunities closed (Won + Lost), rolling quarter.","valueLabel":"34%","target":"≥ 35%","rag":"green","delta":"+3 pts","tone":"good","owner":"Sales Director","cadence":"Monthly","frameworks":[]},{"id":5,"name":"Average Deal Size","system":"Pipeline & Deals","module":"Opportunities","desc":"Average value of opportunities marked Won in the rolling quarter.","calc":"Sum of won opportunity value ÷ count of opportunities won, rolling quarter.","valueLabel":"R512k","target":"Monitor","rag":"green","delta":"+R28k","tone":"good","owner":"Sales Director","cadence":"Monthly","frameworks":[]},{"id":6,"name":"Quote Acceptance Rate","system":"Pipeline & Deals","module":"Quotes","desc":"% of quotes sent that were accepted by the customer.","calc":"Quotes marked Accepted ÷ total quotes sent, rolling quarter.","valueLabel":"61%","target":"≥ 70%","rag":"amber","delta":"-2 pts","tone":"bad","owner":"Sales Director","cadence":"Monthly","frameworks":[]},{"id":7,"name":"Forecast Accuracy","system":"Planning & Visibility","module":"Forecast","desc":"How close the committed forecast was to actual closed value for the last completed quarter.","calc":"1 − (|forecast value − actual closed value| ÷ forecast value), last completed quarter.","valueLabel":"83%","target":"≥ 90%","rag":"amber","delta":"+4 pts","tone":"good","owner":"Sales Director","cadence":"Quarterly","frameworks":[]},{"id":8,"name":"Pipeline Coverage Ratio","system":"Planning & Visibility","module":"Territory Management","desc":"Open pipeline value as a multiple of the remaining quota for the period.","calc":"Open pipeline value ÷ remaining sales quota for the current period.","valueLabel":"3.2x","target":"≥ 3x","rag":"green","delta":"+0.2x","tone":"good","owner":"Sales Director","cadence":"Monthly","frameworks":[]},{"id":9,"name":"Deals At Risk","system":"Planning & Visibility","module":"Sales Health","desc":"Count of open opportunities with no logged activity in the last 14 days.","calc":"Count of open opportunities where (today − last activity date) ≥ 14 days.","valueLabel":"7","target":"0","rag":"red","delta":"+2","tone":"bad","owner":"Sales Director","cadence":"Weekly","frameworks":[]},{"id":10,"name":"Average Days to Close","system":"Planning & Visibility","module":"Reports","desc":"Average number of days from opportunity creation to close (Won or Lost).","calc":"Sum of (close date − created date) ÷ count of opportunities closed, rolling quarter.","valueLabel":"46 days","target":"≤ 45 days","rag":"amber","delta":"+1 day","tone":"bad","owner":"Sales Director","cadence":"Monthly","frameworks":[]},{"id":11,"name":"Approval Workflow SLA Compliance","system":"Workflow & Governance","module":"Approval Workflows","desc":"% of deal and quote approvals actioned within the configured SLA.","calc":"Approvals actioned within SLA ÷ total approvals raised, rolling quarter.","valueLabel":"94%","target":"100%","rag":"green","delta":"+2 pts","tone":"good","owner":"Sales Operations Manager","cadence":"Monthly","frameworks":[]},{"id":12,"name":"Deals With Complete Audit Trail","system":"Workflow & Governance","module":"Audit Log","desc":"% of closed deals with a complete, unbroken audit trail from creation to close.","calc":"Closed deals with no audit trail gaps ÷ total deals closed, rolling quarter.","valueLabel":"100%","target":"100%","rag":"green","delta":"flat","tone":"good","owner":"Sales Operations Manager","cadence":"Monthly","frameworks":["ISO 27001:2022"]},{"id":13,"name":"Discount Approvals Within Policy","system":"Workflow & Governance","module":"Sales Configuration","desc":"% of approved discounts that fell within the pre-configured discount policy without an exception override.","calc":"Discount approvals within policy limits ÷ total discount approvals, rolling quarter.","valueLabel":"89%","target":"100%","rag":"amber","delta":"-3 pts","tone":"bad","owner":"Sales Operations Manager","cadence":"Monthly","frameworks":[]},{"id":14,"name":"Stale Opportunities Cleaned Up","system":"Workflow & Governance","module":"Pipeline & Stage Setup","desc":"Count of stale opportunities (no activity 90+ days) closed out or reassigned this quarter.","calc":"Count of stale opportunities marked Closed or reassigned to a new owner, current quarter.","valueLabel":"11","target":"Monitor","rag":"green","delta":"+4","tone":"good","owner":"Sales Operations Manager","cadence":"Quarterly","frameworks":[]}],"exceptions":[{"kpiId":9,"ageDays":16,"status":"Open"},{"kpiId":7,"ageDays":12,"status":"Acknowledged"},{"kpiId":6,"ageDays":8,"status":"Open"},{"kpiId":13,"ageDays":20,"status":"Open"}]};
+CONFIG.afterInit = function(ctx){
+  new ApexCharts(document.getElementById('chart-signature'), {
+    chart:{ type:'bar', height:270, background:'transparent', toolbar:{show:false} },
+    series:[{ name:'Open opportunities', data:[
+      {x:'Qualification',y:48,fillColor:'#30e2f4'},
+      {x:'Needs Analysis',y:34,fillColor:'#30e2f4'},
+      {x:'Proposal',y:24,fillColor:'#7e9eff'},
+      {x:'Negotiation',y:15,fillColor:'#ffb648'},
+      {x:'Closing',y:7,fillColor:'#2fe88a'},
+    ]}],
+    xaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    plotOptions:{ bar:{ horizontal:true, borderRadius:4, barHeight:'55%' } },
+    dataLabels:{ enabled:true, style:{ colors:['#eaf3f7'], fontFamily:'JetBrains Mono', fontSize:'11px' } },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ show:false },
+    tooltip:{ theme:'dark' },
+    animations:{ enabled:false },
+  }).render();
+
+  new ApexCharts(document.getElementById('chart-secondary'), {
+    chart:{ type:'radialBar', height:230, background:'transparent', toolbar:{show:false} },
+    series:[34,83,94],
+    labels:['Win rate','Forecast accuracy','Approval SLA compliance'],
+    colors:['#2fe88a','#ffb648','#30e2f4'],
+    plotOptions:{ radialBar:{ hollow:{size:'32%'}, track:{background:'rgba(255,255,255,0.06)'},
+      dataLabels:{ name:{fontSize:'10px', fontFamily:'JetBrains Mono'}, value:{fontSize:'13px', fontFamily:'Outfit', fontWeight:700, formatter:function(v){return v+'%';}}, total:{ show:true, label:'Pipeline health', color:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px', formatter:function(){return '70%';} } } } },
+    legend:{ show:true, position:'bottom', fontFamily:'JetBrains Mono', fontSize:'9.5px', labels:{colors:'#8499aa'}, markers:{radius:3} },
+    stroke:{ lineCap:'round' },
+    tooltip:{ theme:'dark' },
+      animations:{ enabled:false },
+  }).render();
+
+  document.getElementById('extra-section').innerHTML = '<div class="card"><h3 style="text-align:left;margin-bottom:4px;">Forecast vs actual closed value · 12 months</h3><div class="hint" style="margin-bottom:10px;">Committed forecast against what actually closed, by month (fictitious, R millions)</div><div id="chart-forecast"></div></div>';
+  new ApexCharts(document.getElementById('chart-forecast'), {
+    chart:{ type:'bar', height:230, background:'transparent', toolbar:{show:false} },
+    series:[
+      {name:'Forecast', data:[3.2,3.4,3.1,3.6,3.5,3.8,3.7,3.9,4.0,4.1,4.0,4.2]},
+      {name:'Actual closed', data:[2.9,3.5,2.8,3.4,3.9,3.5,4.0,3.6,4.2,3.8,4.3,3.9]},
+    ],
+    xaxis:{ categories:DashboardShell.monthLabels(12), labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}, formatter:function(v){return 'R'+v+'m';} } },
+    colors:['#8499aa','#2fe88a'],
+    plotOptions:{ bar:{ columnWidth:'55%', borderRadius:3 } },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'9.5px', markers:{radius:3} },
+    tooltip:{ theme:'dark' },
+    animations:{ enabled:false },
+  }).render();
+  setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, 80);
+};
+</script>
+<script src="tour-shell.js?v=9"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>

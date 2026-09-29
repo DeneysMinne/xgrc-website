@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Internal Audit & Combined Assurance Overview | XGRC® live dashboard tour</title>
+<meta name="description" content="Interactive demonstration of the XGRC® Integrated Assurance dashboard: audit plan, findings and the combined assurance matrix. Every figure is fictitious and illustrative.">
+<link rel="icon" href="/favicon.ico">
+<script>
+  (function () {
+    if (!['xgrcsoftware.com', 'www.xgrcsoftware.com'].includes(window.location.hostname)) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('consent', 'default', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+    gtag('js', new Date());
+    gtag('config', 'G-E8SHSDL5C4');
+    gtag('config', 'AW-744549022');
+    var tag = document.createElement('script'); tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-E8SHSDL5C4';
+    document.head.appendChild(tag);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="tour-shell.css?v=9">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="banner">Demonstration dashboard: all figures, owners and exceptions on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <a class="home" href="/" aria-label="XGRC® Software home"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" class="brand-icon"></a>
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">Internal Audit & Combined Assurance</div>
+        <div class="crumb"><a href="/tour/">&larr; All dashboards</a> &middot; <a href="/integrated-assurance/">About Integrated Assurance</a></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <button class="btn" id="btn-export" type="button">Export board pack</button>
+      <a class="btn-go" href="/demo/">Book a demo</a>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search KPIs, providers, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>Combined assurance matrix · coverage by line of defence</h3>
+        <div class="health-badge"><div class="health-ring" id="health-ring"><span id="health-pct">&ndash;</span></div><span class="health-label">estate health</span></div>
+      </div>
+      <div id="chart-signature"></div>
+      <div id="cell-detail" class="cell-detail"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card compact"><h3 style="text-align:left;margin-bottom:12px;">Programme health</h3><div id="chart-secondary"></div></div>
+      <div class="card compact"><h3 style="text-align:left;">At a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section" id="extra-section"></div>
+
+  <div id="module-sections"></div>
+</main>
+
+<section class="tour-cta" aria-label="Next step">
+  <div class="tour-cta-inner">
+    <div>
+      <h2>One audit plan, one combined assurance matrix</h2>
+      <p>Risk-based planning, fieldwork, findings and combined assurance coverage, all linked to the same risk register. This dashboard uses fictitious data; a demo uses yours.</p>
+    </div>
+    <div class="acts"><a class="btn-go" href="/demo/">See it with your data</a><a class="btn" href="/integrated-assurance/">About Integrated Assurance</a><a class="btn" href="/tour/">All dashboards</a></div>
+  </div>
+</section>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of internal audit planning, findings and combined assurance coverage across four lines of defence.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {"pdfTitle":"XGRC · Internal Audit & Combined Assurance","pdfFilename":"XGRC-Integrated-Assurance-Board-Pack-Demo.pdf","systems":[{"name":"Planning","color":"#30e2f4"},{"name":"Fieldwork","color":"#7e9eff"},{"name":"Findings & Actions","color":"#ffb648"},{"name":"Combined Assurance","color":"#b98bff"}],"execStats":[{"label":"Audits completed YTD","value":18,"suffix":"/24","sub":"planned this financial year"},{"label":"Combined assurance coverage","value":79,"suffix":"%","sub":"of register risks with ≥1 provider"},{"label":"High risks with no assurance coverage","value":3,"sub":"none audited in the last 12 months"}],"kpis":[{"id":1,"name":"Annual Audit Plan Completion","system":"Planning","module":"Risk-Based Audit Planning","desc":"% of the approved annual audit plan completed to date.","calc":"Audits completed ÷ audits scheduled in the approved annual plan, year to date.","valueLabel":"75%","target":"On schedule","rag":"amber","delta":"+8 pts","tone":"good","owner":"Chief Audit Executive","cadence":"Monthly","frameworks":["IIA Standards"]},{"id":2,"name":"Risk-Based Plan Coverage","system":"Planning","module":"Risk-Based Audit Planning","desc":"% of high and critical enterprise risks with a scheduled audit in the current plan.","calc":"High/critical risks with a scheduled audit ÷ total high/critical risks on the register.","valueLabel":"81%","target":"100%","rag":"amber","delta":"+4 pts","tone":"good","owner":"Chief Audit Executive","cadence":"Quarterly","frameworks":["ISO 31000"]},{"id":3,"name":"Audit Resource Utilisation","system":"Planning","module":"Resource & Capacity Planning","desc":"% of budgeted internal audit hours actually deployed against the plan.","calc":"Audit hours logged ÷ audit hours budgeted, year to date.","valueLabel":"92%","target":"90%-100%","rag":"green","delta":"+3 pts","tone":"good","owner":"Chief Audit Executive","cadence":"Monthly","frameworks":[]},{"id":4,"name":"Fieldwork Completed On Schedule","system":"Fieldwork","module":"Audit Programme Management","desc":"% of audit fieldwork phases completed within the scheduled window.","calc":"Fieldwork phases finished by their scheduled end date ÷ total fieldwork phases closed, rolling 12 months.","valueLabel":"84%","target":"100%","rag":"amber","delta":"+6 pts","tone":"good","owner":"Internal Audit Manager","cadence":"Monthly","frameworks":["ISO 19011"]},{"id":5,"name":"Working Papers Reviewed & Signed Off","system":"Fieldwork","module":"Working Papers","desc":"% of completed audit working papers with a documented supervisory review sign-off.","calc":"Working papers with a review sign-off ÷ total working papers submitted, rolling quarter.","valueLabel":"96%","target":"100%","rag":"green","delta":"+2 pts","tone":"good","owner":"Internal Audit Manager","cadence":"Monthly","frameworks":["IIA Standards"]},{"id":6,"name":"Average Fieldwork Duration vs Budget","system":"Fieldwork","module":"Audit Programme Management","desc":"Actual fieldwork duration as a % of the budgeted duration, across closed audits.","calc":"Actual fieldwork days ÷ budgeted fieldwork days, averaged across audits closed in the period.","valueLabel":"112%","target":"≤ 100%","rag":"amber","delta":"+4 pts","tone":"bad","owner":"Internal Audit Manager","cadence":"Quarterly","frameworks":[]},{"id":7,"name":"Findings Closed Within Target Date","system":"Findings & Actions","module":"Follow-up & Closure","desc":"% of audit findings closed by the date management committed to in their response.","calc":"Findings closed by their agreed target date ÷ total findings due for closure, rolling 12 months.","valueLabel":"73%","target":"100%","rag":"amber","delta":"-1 pt","tone":"bad","owner":"Chief Audit Executive","cadence":"Monthly","frameworks":["IIA Standards"]},{"id":8,"name":"High-Rated Findings Open Beyond 60 Days","system":"Findings & Actions","module":"Management Response Tracking","desc":"Count of high or critical audit findings still open more than 60 days after the agreed target closure date.","calc":"Count of high/critical findings where (today − target closure date) > 60 days and status is not Closed.","valueLabel":"2","target":"0","rag":"red","delta":"+1","tone":"bad","owner":"Chief Audit Executive","cadence":"Weekly","frameworks":["IIA Standards"]},{"id":9,"name":"Management Response Turnaround","system":"Findings & Actions","module":"Management Response Tracking","desc":"Average days from a finding being raised to a documented management response.","calc":"Sum of (response date − finding raised date) ÷ number of findings responded to, rolling quarter.","valueLabel":"9 days","target":"≤ 10 days","rag":"green","delta":"-1 day","tone":"good","owner":"Internal Audit Manager","cadence":"Monthly","frameworks":[]},{"id":10,"name":"Repeat Findings Rate","system":"Findings & Actions","module":"Corrective Action Plans","desc":"% of closed findings that recur on the same control area within 12 months.","calc":"Findings recurring on the same control area within 12 months ÷ total findings closed in the prior 12 months.","valueLabel":"12%","target":"≤ 8%","rag":"red","delta":"+2 pts","tone":"bad","owner":"Chief Audit Executive","cadence":"Quarterly","frameworks":[]},{"id":11,"name":"Combined Assurance Coverage","system":"Combined Assurance","module":"Combined Assurance Matrix","desc":"% of register risks with at least one assurance provider (internal audit, risk function or external audit) mapped to them.","calc":"Risks with ≥1 mapped assurance provider ÷ total risks on the register.","valueLabel":"79%","target":"100%","rag":"amber","delta":"+5 pts","tone":"good","owner":"Chief Audit Executive","cadence":"Quarterly","frameworks":["King V"]},{"id":12,"name":"High Risks With No Assurance Coverage","system":"Combined Assurance","module":"Assurance Coverage Analytics","desc":"Count of high or critical risks with no assurance provider mapped and no audit in the last 12 months.","calc":"Count of high/critical risks with zero mapped assurance providers and no audit in the trailing 12 months.","valueLabel":"3","target":"0","rag":"red","delta":"flat","tone":"bad","owner":"Chief Audit Executive","cadence":"Quarterly","frameworks":["King V"]},{"id":13,"name":"Four Lines of Defence Coverage Balance","system":"Combined Assurance","module":"Four Lines of Defence Map","desc":"How evenly assurance coverage is spread across management, risk & compliance, internal audit and external assurance.","calc":"Standard deviation of coverage % across the four lines of defence, lower is more balanced (informational).","valueLabel":"Uneven","target":"Balanced","rag":"amber","delta":"flat","tone":"neutral","owner":"Chief Audit Executive","cadence":"Quarterly","frameworks":[]},{"id":14,"name":"Assurance Duplication","system":"Combined Assurance","module":"Assurance Coverage Analytics","desc":"Count of low-risk areas audited by two or more assurance providers within the same 12-month period.","calc":"Count of risks rated Low or below with 2+ separate assurance activities in the trailing 12 months.","valueLabel":"5","target":"Monitor","rag":"amber","delta":"-1","tone":"good","owner":"Chief Audit Executive","cadence":"Quarterly","frameworks":[]},{"id":15,"name":"Board & Audit Committee Reports Delivered On Time","system":"Combined Assurance","module":"Board & Audit Committee Reporting","desc":"% of scheduled audit committee reports delivered by the pre-meeting distribution deadline.","calc":"Reports distributed by deadline ÷ total scheduled audit committee reports, rolling 12 months.","valueLabel":"100%","target":"100%","rag":"green","delta":"flat","tone":"good","owner":"Chief Audit Executive","cadence":"Quarterly","frameworks":["King V"]},{"id":16,"name":"Audit Universe Currency","system":"Combined Assurance","module":"Scope Definition","desc":"% of entities in the audit universe reviewed and re-scored within the last 12 months.","calc":"Audit universe entities re-scored in the trailing 12 months ÷ total entities in the audit universe.","valueLabel":"86%","target":"100%","rag":"amber","delta":"+9 pts","tone":"good","owner":"Chief Audit Executive","cadence":"Annually","frameworks":[]}],"exceptions":[{"kpiId":8,"ageDays":68,"status":"Open"},{"kpiId":12,"ageDays":40,"status":"Open"},{"kpiId":10,"ageDays":25,"status":"Open"},{"kpiId":1,"ageDays":14,"status":"Acknowledged"},{"kpiId":6,"ageDays":9,"status":"Open"}]};
+CONFIG.afterInit = function(ctx){
+  new ApexCharts(document.getElementById('chart-signature'), {
+    chart:{ type:'heatmap', height:290, background:'transparent', toolbar:{show:false} },
+    series:[
+      { name:'External Audit',      data:[{x:'Financial',y:3},{x:'Operational',y:1},{x:'IT & Cyber',y:2},{x:'Regulatory',y:2},{x:'HSE',y:0},{x:'Strategic',y:1}] },
+      { name:'Internal Audit',      data:[{x:'Financial',y:3},{x:'Operational',y:2},{x:'IT & Cyber',y:2},{x:'Regulatory',y:1},{x:'HSE',y:2},{x:'Strategic',y:0}] },
+      { name:'Risk & Compliance',   data:[{x:'Financial',y:2},{x:'Operational',y:3},{x:'IT & Cyber',y:3},{x:'Regulatory',y:3},{x:'HSE',y:2},{x:'Strategic',y:1}] },
+      { name:'Management',         data:[{x:'Financial',y:3},{x:'Operational',y:3},{x:'IT & Cyber',y:2},{x:'Regulatory',y:2},{x:'HSE',y:3},{x:'Strategic',y:2}] },
+    ],
+    dataLabels:{ enabled:false },
+    plotOptions:{ heatmap:{ radius:3, colorScale:{ ranges:[
+      {from:0,to:0,color:'#3a1620',name:'No coverage'},
+      {from:1,to:1,color:'#ff5470',name:'Limited'},
+      {from:2,to:2,color:'#ffb648',name:'Partial'},
+      {from:3,to:3,color:'#2fe88a',name:'Full'},
+    ] } } },
+    xaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'10px'}} },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'9.5px' },
+    tooltip:{ theme:'dark' },
+      animations:{ enabled:false },
+  }).render();
+
+  new ApexCharts(document.getElementById('chart-secondary'), {
+    chart:{ type:'radialBar', height:230, background:'transparent', toolbar:{show:false} },
+    series:[75,73,79],
+    labels:['Plan completion','Findings closed on time','Combined assurance coverage'],
+    colors:['#30e2f4','#ffb648','#b98bff'],
+    plotOptions:{ radialBar:{ hollow:{size:'32%'}, track:{background:'rgba(255,255,255,0.06)'},
+      dataLabels:{ name:{fontSize:'10px', fontFamily:'JetBrains Mono'}, value:{fontSize:'13px', fontFamily:'Outfit', fontWeight:700, formatter:function(v){return v+'%';}}, total:{ show:true, label:'Programme health', color:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px', formatter:function(){return '76%';} } } } },
+    legend:{ show:true, position:'bottom', fontFamily:'JetBrains Mono', fontSize:'9.5px', labels:{colors:'#8499aa'}, markers:{radius:3} },
+    stroke:{ lineCap:'round' },
+    tooltip:{ theme:'dark' },
+      animations:{ enabled:false },
+  }).render();
+
+  document.getElementById('extra-section').innerHTML = '<div class="card"><h3 style="text-align:left;margin-bottom:4px;">Open findings by age</h3><div class="hint" style="margin-bottom:10px;">All open audit findings, bucketed by days since raised</div><div id="chart-findings-age"></div></div>';
+  new ApexCharts(document.getElementById('chart-findings-age'), {
+    chart:{ type:'bar', height:230, background:'transparent', toolbar:{show:false} },
+    series:[{ name:'Open findings', data:[
+      {x:'0-30 days',y:9,fillColor:'#2fe88a'},
+      {x:'31-60 days',y:5,fillColor:'#ffb648'},
+      {x:'61-90 days',y:2,fillColor:'#ff5470'},
+      {x:'90+ days',y:1,fillColor:'#ff5470'},
+    ]}],
+    xaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    plotOptions:{ bar:{ borderRadius:4, columnWidth:'50%' } },
+    dataLabels:{ enabled:true, style:{ colors:['#eaf3f7'], fontFamily:'JetBrains Mono', fontSize:'11px' }, offsetY:-18 },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ show:false },
+    tooltip:{ theme:'dark' },
+    animations:{ enabled:false },
+  }).render();
+  setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, 80);
+};
+</script>
+<script src="tour-shell.js?v=9"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>

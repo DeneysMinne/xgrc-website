@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Integrated Management System Overview | XGRC® live dashboard tour</title>
+<meta name="description" content="Interactive demonstration of the XGRC® MSX® integrated management system dashboard, spanning ISO 9001, 14001, 45001 and 22000. Every figure is fictitious and illustrative.">
+<link rel="icon" href="/favicon.ico">
+<script>
+  (function () {
+    if (!['xgrcsoftware.com', 'www.xgrcsoftware.com'].includes(window.location.hostname)) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('consent', 'default', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+    gtag('js', new Date());
+    gtag('config', 'G-E8SHSDL5C4');
+    gtag('config', 'AW-744549022');
+    var tag = document.createElement('script'); tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-E8SHSDL5C4';
+    document.head.appendChild(tag);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="tour-shell.css?v=9">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="banner">Demonstration dashboard: all figures, owners and exceptions on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <a class="home" href="/" aria-label="XGRC® Software home"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" class="brand-icon"></a>
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">Integrated Management System Overview</div>
+        <div class="crumb"><a href="/tour/">&larr; All dashboards</a> &middot; <a href="/msx/">About MSX&reg;</a></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <button class="btn" id="btn-export" type="button">Export board pack</button>
+      <a class="btn-go" href="/demo/">Book a demo</a>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search KPIs, standards, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>Audit readiness by standard</h3>
+        <div class="health-badge"><div class="health-ring" id="health-ring"><span id="health-pct">&ndash;</span></div><span class="health-label">estate health</span></div>
+      </div>
+      <div id="chart-signature"></div>
+      <div id="cell-detail" class="cell-detail"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card compact"><h3 style="text-align:left;margin-bottom:12px;">Certification currency</h3><div id="chart-secondary"></div></div>
+      <div class="card compact"><h3 style="text-align:left;">At a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section" id="extra-section"></div>
+
+  <div id="module-sections"></div>
+</main>
+
+<section class="tour-cta" aria-label="Next step">
+  <div class="tour-cta-inner">
+    <div>
+      <h2>One management system, not four spreadsheets</h2>
+      <p>Governance, risk, compliance and performance data for every ISO discipline you run, reconciled on one platform. This dashboard uses fictitious data; a demo uses yours.</p>
+    </div>
+    <div class="acts"><a class="btn-go" href="/demo/">See it with your data</a><a class="btn" href="/msx/">About MSX&reg;</a><a class="btn" href="/tour/">All dashboards</a></div>
+  </div>
+</section>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of governance, quality, environmental, health and safety and food safety performance across one integrated management system.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {"pdfTitle":"XGRC · Integrated Management System Overview","pdfFilename":"XGRC-MSX-Integrated-Management-Board-Pack-Demo.pdf","systems":[{"name":"ISO 9001 Quality","color":"#30e2f4"},{"name":"ISO 14001 Environmental","color":"#2fe88a"},{"name":"ISO 45001 Health & Safety","color":"#ffb648"},{"name":"ISO 22000 Food Safety","color":"#b98bff"},{"name":"Cross-Standard Integration","color":"#7e9eff"}],"execStats":[{"label":"Modules active","value":25,"sub":"across 4 ISO disciplines"},{"label":"Standards currently certified","value":3,"suffix":"/4","sub":"ISO 22000 renewal in progress"},{"label":"Duplicated effort eliminated","value":34,"suffix":"%","sub":"vs separate single-standard systems"}],"kpis":[{"id":1,"name":"Customer Complaint Closure Rate","system":"ISO 9001 Quality","module":"Non-conformances","desc":"% of customer complaints closed within the target resolution window.","calc":"Complaints closed within the target window ÷ total complaints logged, rolling 90 days.","valueLabel":"91%","target":"100%","rag":"amber","delta":"+3 pts","tone":"good","owner":"Quality Manager","cadence":"Monthly","frameworks":["ISO 9001"]},{"id":2,"name":"Non-Conformance Closure Time","system":"ISO 9001 Quality","module":"Non-conformances","desc":"Average number of days to close a quality non-conformance from the date raised.","calc":"Sum of (closure date − raised date) across closed NCs ÷ number of NCs closed, rolling 90 days.","valueLabel":"11 days","target":"≤ 14 days","rag":"green","delta":"-2 days","tone":"good","owner":"Quality Manager","cadence":"Monthly","frameworks":["ISO 9001"]},{"id":3,"name":"Supplier Quality Score","system":"ISO 9001 Quality","module":"Operations","desc":"Weighted average supplier performance score across on-time delivery, defect rate and audit results.","calc":"Weighted average of supplier scorecards, rolling quarter.","valueLabel":"88%","target":"≥ 90%","rag":"amber","delta":"+1 pt","tone":"good","owner":"Procurement Manager","cadence":"Quarterly","frameworks":["ISO 9001"]},{"id":4,"name":"Document Control Currency (ISO 9001)","system":"ISO 9001 Quality","module":"Document Manager","desc":"% of ISO 9001 controlled documents reviewed within their scheduled review cycle.","calc":"Documents reviewed by scheduled date ÷ total controlled ISO 9001 documents.","valueLabel":"97%","target":"100%","rag":"green","delta":"+1 pt","tone":"good","owner":"Quality Manager","cadence":"Quarterly","frameworks":["ISO 9001"]},{"id":5,"name":"Environmental Objectives On Track","system":"ISO 14001 Environmental","module":"Objectives & Targets","desc":"% of annual environmental objectives tracking to their target date.","calc":"Objectives at or ahead of planned trajectory ÷ total environmental objectives for the year.","valueLabel":"79%","target":"100%","rag":"amber","delta":"+5 pts","tone":"good","owner":"Environmental Manager","cadence":"Quarterly","frameworks":["ISO 14001"]},{"id":6,"name":"Environmental Non-Conformances Open","system":"ISO 14001 Environmental","module":"Non-conformances","desc":"Count of open ISO 14001 non-conformances beyond their target closure date.","calc":"Count of environmental non-conformances where status is not Closed and the target closure date has passed.","valueLabel":"2","target":"0","rag":"red","delta":"+1","tone":"bad","owner":"Environmental Manager","cadence":"Monthly","frameworks":["ISO 14001"]},{"id":7,"name":"Lost Time Injury Frequency Rate","system":"ISO 45001 Health & Safety","module":"Event Management","desc":"Lost-time injuries per 200,000 hours worked.","calc":"Lost-time injuries × 200,000 ÷ total hours worked, rolling 12 months.","valueLabel":"0.8","target":"≤ 1.0","rag":"green","delta":"-0.1","tone":"good","owner":"SHE Manager","cadence":"Monthly","frameworks":["ISO 45001"]},{"id":8,"name":"Near-Miss Reporting Ratio","system":"ISO 45001 Health & Safety","module":"Event Management","desc":"Ratio of near-misses reported to recordable incidents, a leading safety indicator.","calc":"Near-misses reported ÷ recordable incidents, rolling quarter.","valueLabel":"6.2 : 1","target":"≥ 8 : 1","rag":"amber","delta":"+0.4","tone":"good","owner":"SHE Manager","cadence":"Monthly","frameworks":["ISO 45001"]},{"id":9,"name":"PPE Compliance Rate","system":"ISO 45001 Health & Safety","module":"Inspections Management","desc":"% of site inspections finding full compliance with required PPE.","calc":"Inspections with no PPE non-compliance findings ÷ total site inspections, rolling quarter.","valueLabel":"93%","target":"100%","rag":"green","delta":"+2 pts","tone":"good","owner":"SHE Manager","cadence":"Monthly","frameworks":["ISO 45001"]},{"id":10,"name":"HACCP Critical Control Point Compliance","system":"ISO 22000 Food Safety","module":"Risk Assessment","desc":"% of monitored HACCP critical control points within their defined critical limits.","calc":"CCP readings within critical limits ÷ total CCP readings recorded, rolling 30 days.","valueLabel":"96%","target":"100%","rag":"amber","delta":"+1 pt","tone":"good","owner":"Food Safety Manager","cadence":"Weekly","frameworks":["ISO 22000"]},{"id":11,"name":"Food Safety Non-Conformances Closed","system":"ISO 22000 Food Safety","module":"Non-conformances","desc":"% of ISO 22000 non-conformances closed within their target closure date.","calc":"Food safety non-conformances closed on time ÷ total food safety non-conformances raised, rolling 90 days.","valueLabel":"90%","target":"100%","rag":"green","delta":"+4 pts","tone":"good","owner":"Food Safety Manager","cadence":"Monthly","frameworks":["ISO 22000"]},{"id":12,"name":"Cross-Standard Audit Coverage","system":"Cross-Standard Integration","module":"Audit Management","desc":"% of internal audits that assessed two or more ISO standards in a single audit visit.","calc":"Audit visits covering 2+ standards ÷ total internal audit visits, rolling 12 months.","valueLabel":"71%","target":"≥ 80%","rag":"amber","delta":"+8 pts","tone":"good","owner":"Integrated Systems Manager","cadence":"Quarterly","frameworks":["ISO 19011"]},{"id":13,"name":"Duplicated Data Entry Eliminated","system":"Cross-Standard Integration","module":"Performance Evaluation","desc":"Estimated reduction in duplicated data capture versus running each ISO standard in a separate system.","calc":"Baseline duplicated-entry hours (separate systems) minus current duplicated-entry hours, as a % of baseline.","valueLabel":"34%","target":"Monitor","rag":"green","delta":"+6 pts","tone":"good","owner":"Integrated Systems Manager","cadence":"Quarterly","frameworks":[]},{"id":14,"name":"Improvement Initiatives Linked to Risk","system":"Cross-Standard Integration","module":"Improvement","desc":"% of active continual-improvement initiatives with a documented link to a risk in the register.","calc":"Improvement initiatives with a linked risk record ÷ total active improvement initiatives.","valueLabel":"68%","target":"100%","rag":"amber","delta":"+11 pts","tone":"good","owner":"Integrated Systems Manager","cadence":"Quarterly","frameworks":[]},{"id":15,"name":"Certification Status Across Standards","system":"Cross-Standard Integration","module":"Governance","desc":"Whether each certified ISO standard is currently within its certification validity period.","calc":"Today's date compared against each standard's certificate expiry date.","valueLabel":"3 of 4 current","target":"4 of 4 current","rag":"amber","delta":"flat","tone":"neutral","owner":"Integrated Systems Manager","cadence":"Quarterly","frameworks":["ISO 9001","ISO 14001","ISO 45001","ISO 22000"]},{"id":16,"name":"Management Review Actions Closed","system":"Cross-Standard Integration","module":"Meeting Manager","desc":"% of actions raised at the integrated management review closed by their due date.","calc":"Management review actions closed on time ÷ total management review actions raised, rolling 12 months.","valueLabel":"77%","target":"100%","rag":"amber","delta":"+2 pts","tone":"good","owner":"Integrated Systems Manager","cadence":"Quarterly","frameworks":[]}],"exceptions":[{"kpiId":6,"ageDays":21,"status":"Open"},{"kpiId":1,"ageDays":9,"status":"Open"},{"kpiId":8,"ageDays":15,"status":"Acknowledged"},{"kpiId":10,"ageDays":7,"status":"Open"},{"kpiId":14,"ageDays":11,"status":"Open"}]};
+CONFIG.afterInit = function(ctx){
+  new ApexCharts(document.getElementById('chart-signature'), {
+    chart:{ type:'bar', height:270, background:'transparent', toolbar:{show:false} },
+    series:[{ name:'Audit readiness', data:[
+      {x:'ISO 9001',y:96,fillColor:'#2fe88a'},
+      {x:'ISO 14001',y:88,fillColor:'#ffb648'},
+      {x:'ISO 45001',y:91,fillColor:'#2fe88a'},
+      {x:'ISO 22000',y:82,fillColor:'#ffb648'},
+    ]}],
+    xaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    yaxis:{ max:100, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    plotOptions:{ bar:{ borderRadius:4, columnWidth:'46%', distributed:false } },
+    dataLabels:{ enabled:true, formatter:function(v){return v+'%';}, style:{ colors:['#eaf3f7'], fontFamily:'JetBrains Mono', fontSize:'11px' }, offsetY:-18 },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ show:false },
+    tooltip:{ theme:'dark' },
+    animations:{ enabled:false },
+  }).render();
+
+  new ApexCharts(document.getElementById('chart-secondary'), {
+    chart:{ type:'radialBar', height:230, background:'transparent', toolbar:{show:false} },
+    series:[91,88,68],
+    labels:['Overall audit readiness','Cross-standard coverage','Duplication eliminated'],
+    colors:['#30e2f4','#7e9eff','#2fe88a'],
+    plotOptions:{ radialBar:{ hollow:{size:'32%'}, track:{background:'rgba(255,255,255,0.06)'},
+      dataLabels:{ name:{fontSize:'10px', fontFamily:'JetBrains Mono'}, value:{fontSize:'13px', fontFamily:'Outfit', fontWeight:700, formatter:function(v){return v+'%';}}, total:{ show:true, label:'Integration health', color:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px', formatter:function(){return '82%';} } } } },
+    legend:{ show:true, position:'bottom', fontFamily:'JetBrains Mono', fontSize:'9.5px', labels:{colors:'#8499aa'}, markers:{radius:3} },
+    stroke:{ lineCap:'round' },
+    tooltip:{ theme:'dark' },
+      animations:{ enabled:false },
+  }).render();
+
+  document.getElementById('extra-section').innerHTML = '<div class="card"><h3 style="text-align:left;margin-bottom:4px;">Duplicated effort eliminated · 12 months</h3><div class="hint" style="margin-bottom:10px;">Estimated hours of duplicated data capture avoided by running one integrated system</div><div id="chart-dup-trend"></div></div>';
+  new ApexCharts(document.getElementById('chart-dup-trend'), {
+    chart:{ type:'line', height:230, background:'transparent', toolbar:{show:false}, zoom:{enabled:false} },
+    series:[{ name:'Duplication eliminated', data:[14,17,19,21,23,25,27,28,29,31,32,34] }],
+    xaxis:{ categories:DashboardShell.monthLabels(12), labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}}, axisBorder:{show:false}, axisTicks:{show:false} },
+    yaxis:{ min:0, max:40, labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}, formatter:function(v){return v+'%';} } },
+    colors:['#2fe88a'],
+    stroke:{ curve:'smooth', width:2.5 },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    tooltip:{ theme:'dark' },
+    markers:{ size:0 },
+      animations:{ enabled:false },
+  }).render();
+  setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, 80);
+};
+</script>
+<script src="tour-shell.js?v=9"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>
