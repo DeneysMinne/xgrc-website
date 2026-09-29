@@ -109,7 +109,7 @@ All added to `deploy/nginx/redirects.conf` as single-hop 301s:
 - Libryo, Hakware and XRM have no use cases in the registry, so their product pages show no block.
 
 ### T8: noindex settings
-- `/products/vcm/` **does not exist on the current site.** Today it returns the homepage with a 200 (the soft 404). The noindex GSC reports must date from the old WordPress page. After T1 it returns a real 404. Nothing is set on purpose here. **Deneys to confirm:** should vendor compliance get an indexable page (T14 would link to it), or should `/products/vcm/` 301 to `/compliance-hub/`?
+- `/products/vcm/` did not exist on the current site. Its GSC noindex came from the old WordPress page. **Decided (Deneys, 29 Sept 2026):** it 301s to `/compliance-hub/`. If vendor compliance gets its own page later (T14), point the redirect there instead.
 - `/wp-content/plugins/*` and `/my-account/` do not exist either. After T1 they return 404, which is correct.
 - `/tag/*` has no pages and no redirects, so after T1 it returns 404. `/category/*` and `/author/*` 301 to `/insights/` (see T2). There are no paginated archive pages on the new site.
 - `/login/` is the only noindex page, and that is intentional.
@@ -120,5 +120,5 @@ To be filled in during Priority 2.
 
 ## Other findings
 
-- **Em dashes in existing copy.** The copy rule bans them, but 108 built pages still have 413 in body copy (mostly in `useCaseRegistry.js` and `articleContent.js`), and 24 pages have one in the title or meta description. The titles and meta descriptions are fixed in Priority 2 (T13). The body copy needs a separate rewrite, one sentence at a time (for Deneys to decide).
+- **Em dashes in existing copy.** The copy rule bans them, but 108 built pages still have 413 in body copy (mostly in `useCaseRegistry.js` and `articleContent.js`), and 24 pages have one in the title or meta description. The titles and meta descriptions are fixed in Priority 2 (T13). The body copy needs a separate rewrite, one sentence at a time. **Decided (Deneys, 29 Sept 2026):** a separate sweep after Priority 2, not part of these PRs.
 - At 1280px wide, the header's "Book a demo" button is cut off at the right edge. This is already the case on the live site and is not an SEO issue.
