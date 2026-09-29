@@ -152,8 +152,7 @@ GSC (27 Jun to 26 Sep 2026) showed three places where the page that actually ran
 
 ### T13 smaller fixes
 - **Login links:**
-  - The header shows "Log in to SHEQX®", and the mobile menu shows "Log in to SHEQX® or XGRC®".
-  - The footer shows "XGRC® login".
+  - The header, mobile menu and footer show a plain "Log in" (Deneys, 29 Sept 2026). One login covers every solution, so the label names none of them.
   - `/sheqx/` has "Existing user? Log in to SHEQX®" under its hero buttons, and its meta description mentions logging in.
 - **Recommendation for Deneys:** `/login/` is noindex and blocked in robots.txt, so Google cannot show it for "sheqx login" (2,903 impressions) and sends people to `/sheqx/` instead. Making `/login/` indexable would put searchers one click from the login.
 - **Header layout:** the header now tightens between 1241px and 1440px and collapses to the menu at 1240px, so "Book a demo" is no longer cut off at 1280px.
