@@ -1,0 +1,56 @@
+---
+// Served by nginx for any unknown URL with a real 404 status
+// (error_page 404 /404.html in deploy/nginx/xgrcsoftware.conf).
+import Base from '../layouts/Base.astro';
+
+const links = [
+  { href: '/', label: 'Home', text: 'Start from the XGRC® homepage.' },
+  { href: '/solutions/', label: 'Solutions', text: 'SHEQX®, ERM, ENVIRX®, MSX®, Compliance Hub, MAIA® and more.' },
+  { href: '/insights/', label: 'Insights', text: 'Guides and articles on SHEQ, risk, ESG and compliance.' },
+  { href: '/contact/', label: 'Contact', text: 'Tell us what you were looking for and we will help.' },
+];
+---
+
+<Base
+  title="Page not found | XGRC® Software"
+  description="The page you were looking for could not be found."
+  noindex={true}
+  canonical={false}
+>
+  <section class="page-head">
+    <div class="container narrow">
+      <span class="eyebrow"><span class="dot"></span>Error 404</span>
+      <h1>We couldn't find that page.</h1>
+      <p class="lead">It may have moved, or the link may be out of date. These pages should get you where you need to go.</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container narrow">
+      <ul class="nf-links">
+        {links.map((l) => (
+          <li>
+            <a href={l.href}>
+              <strong>{l.label}</strong>
+              <span>{l.text}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 12px; }
+  .narrow { max-width: 760px; }
+  .lead { color: var(--mute); line-height: 1.7; font-size: 1.02rem; }
+  .nf-links { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .nf-links a { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255, 255, 255, 0.03); color: var(--ink); text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+  .nf-links a:hover { border-color: var(--line-strong); background: var(--panel-hover); }
+  .nf-links a:focus-visible { outline: 2px solid var(--green-hi); outline-offset: 3px; }
+  .nf-links strong { font-size: 1.05rem; }
+  .nf-links span { color: var(--mute); font-size: 0.92rem; line-height: 1.5; }
+  @media (max-width: 640px) { .nf-links { grid-template-columns: 1fr; } }
+</style>

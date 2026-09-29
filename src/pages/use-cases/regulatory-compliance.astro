@@ -3,8 +3,49 @@ import Base from '../../layouts/Base.astro';
 import { useCaseRegistry } from '../../data/useCaseRegistry.js';
 
 const regPages = useCaseRegistry.filter((u) => u.category === 'Regulatory');
+
+const laws = [
+  { name: 'POPIA', full: 'Protection of Personal Information Act 4 of 2013', what: 'Lawful processing of personal information, security safeguards (section 19) and notifying the Information Regulator and data subjects of security compromises (section 22).', uc: 'popia-compliance' },
+  { name: 'PAIA', full: 'Promotion of Access to Information Act 2 of 2000', what: 'A current PAIA manual, and a decision on each access request within 30 days, which can be extended once by up to 30 days.', uc: 'paia-compliance' },
+  { name: 'King V', full: 'King Code on Corporate Governance', what: 'Board oversight of risk, compliance, technology and information, with disclosure of how the principles are applied.', uc: 'king-v-governance' },
+  { name: 'GDPR', full: 'EU General Data Protection Regulation', what: 'Applies to South African organisations that offer goods or services to people in the EU, or monitor their behaviour.', uc: 'gdpr-compliance' },
+];
+
+const beyond = [
+  { t: 'Health and safety', d: 'OHS Act 85 of 1993 and, on mines, the MHSA 29 of 1996.', href: '/use-cases/safety-management/', label: 'Safety management' },
+  { t: 'Environment', d: 'NEMA 107 of 1998, licences and permit conditions.', href: '/use-cases/environmental-compliance/', label: 'Environmental compliance' },
+  { t: 'Suppliers', d: 'B-BBEE verification and supplier documents under the B-BBEE Act 53 of 2003.', href: '/use-cases/vendor-management/', label: 'Vendor management' },
+  { t: 'Controls', d: 'Proving that the controls behind your obligations actually work.', href: '/use-cases/internal-controls/', label: 'Internal controls' },
+];
+
+const faqs = [
+  { q: 'Who enforces POPIA and PAIA in South Africa?', a: 'The Information Regulator. It oversees both POPIA and PAIA, receives security compromise notifications under POPIA section 22, and can investigate complaints, issue enforcement notices and impose administrative fines.' },
+  { q: 'How quickly must we answer a PAIA request?', a: 'A private or public body must decide on a request within 30 days of receiving it. The period can be extended once, by up to 30 more days, in the circumstances PAIA allows, and the requester must be told of the extension and the reason for it.' },
+  { q: 'Does GDPR apply to a South African company?', a: 'It can. GDPR applies to organisations outside the EU when they offer goods or services to people in the EU or monitor their behaviour there. Many South African organisations therefore manage GDPR and POPIA side by side, and much of the evidence overlaps.' },
+  { q: 'Is King V compliance mandatory?', a: 'The King Code is voluntary, but the JSE Listings Requirements reference it for listed companies, and many regulators, funders and public entities expect it. In practice boards need to show how they apply the principles, which takes evidence rather than a policy statement.' },
+  { q: 'What does a regulatory compliance platform do that a spreadsheet does not?', a: 'It keeps a live register of obligations, links each one to an owner, a control and the evidence that proves it, schedules reviews, and keeps a full audit trail. When a regulator, auditor or board asks, the answer is a report rather than a hunt through email.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xgrcsoftware.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Use Cases', item: 'https://xgrcsoftware.com/use-cases/' },
+        { '@type': 'ListItem', position: 3, name: 'Regulatory Compliance' },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    },
+  ],
+};
 ---
-<Base title="Regulatory Compliance Software | GDPR, POPIA, PAIA & King V | XGRC®" description="Regulatory and governance compliance software from XGRC® — GDPR, POPIA, PAIA and King V readiness in one platform.">
+<Base title="Regulatory Compliance Software | POPIA, PAIA & King V | XGRC®" description="Regulatory compliance software for South Africa. Manage POPIA, PAIA, King V and GDPR obligations with owners, controls and evidence in XGRC®.">
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <section class="page-head">
     <div class="container">
       <nav class="crumbs" aria-label="Breadcrumb">
@@ -12,9 +53,10 @@ const regPages = useCaseRegistry.filter((u) => u.category === 'Regulatory');
       </nav>
       <span class="eyebrow"><span class="dot"></span>Regulatory Compliance</span>
       <h1>Regulatory and governance obligations, managed on one platform.</h1>
-      <p class="lede">From data protection to corporate governance, XGRC® gives organisations a structured way to demonstrate compliance against the regulatory and governance frameworks that matter most in Southern Africa and internationally.</p>
+      <p class="lede">From data protection to corporate governance, XGRC® gives organisations a structured way to show they comply with the laws and codes that matter most in South Africa and internationally. Every obligation has an owner, a control and the evidence to prove it.</p>
     </div>
   </section>
+
   <section class="section--tight">
     <div class="container">
       <div class="grid cols-2">
@@ -29,6 +71,74 @@ const regPages = useCaseRegistry.filter((u) => u.category === 'Regulatory');
       </div>
     </div>
   </section>
+
+  <section class="section--tight">
+    <div class="container narrow">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>What each one asks for</span>
+        <h2>The obligations behind the acronyms.</h2>
+        <p class="lede">Regulators rarely ask whether you have a policy. They ask what you did, when, and who approved it. These are the requirements that most often need evidence.</p>
+      </div>
+      <div class="law-list">
+        {laws.map((l) => (
+          <div class="law">
+            <h3><a href={`/use-cases/${l.uc}/`}>{l.name}</a> <span>{l.full}</span></h3>
+            <p>{l.what}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container narrow">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>How XGRC® handles it</span>
+        <h2>One register, one trail of evidence.</h2>
+      </div>
+      <div class="prose">
+        <p>Most compliance teams track obligations in a spreadsheet and prove them with documents scattered across drives and inboxes. That works until a data breach, an access request or an audit arrives, and the team has days to show what happened.</p>
+        <p>In XGRC®, each obligation from POPIA, PAIA, King V or GDPR sits in one register. It links to the policy that addresses it, the control that puts it into practice, the person who owns it and the evidence that shows it works. Reviews are scheduled, overdue items are flagged, and every change is recorded in the audit trail.</p>
+        <p>When something goes wrong, the same platform runs the response. A POPIA security compromise runs through a structured workflow that includes the Information Regulator notification steps. A PAIA request is logged on the day it arrives and tracked through assessment, decision and any appeal against the statutory timeline. The board sees one picture of regulatory exposure instead of a set of separate reports.</p>
+      </div>
+      <div class="beyond">
+        <h3>Beyond data protection and governance</h3>
+        <ul>
+          {beyond.map((b) => (
+            <li><strong>{b.t}.</strong> {b.d} <a href={b.href}>{b.label} &rarr;</a></li>
+          ))}
+        </ul>
+        <p class="note">Working towards certification as well? See <a href="/use-cases/iso-compliance/">ISO compliance</a> for readiness guides to ISO 9001, 14001, 45001, 27001 and more.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container narrow">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Frequently asked</span>
+        <h2>Common questions.</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="card cta-band">
+        <h2>See your obligations in one register.</h2>
+        <p class="lede">We will show you how POPIA, PAIA and King V obligations are owned, evidenced and reported in XGRC®.</p>
+        <a href="/demo/" class="btn btn-primary">Book a demo</a>
+      </div>
+    </div>
+  </section>
 </Base>
 <style>
   .page-head { padding: 130px 0 0; }
@@ -39,4 +149,21 @@ const regPages = useCaseRegistry.filter((u) => u.category === 'Regulatory');
   .crumbs b { color: var(--ink); font-weight: 500; }
   .uc-card { text-decoration: none; display: flex; flex-direction: column; }
   .uc-card .link-arrow { margin-top: auto; padding-top: 16px; }
+  .narrow { max-width: 860px; }
+  .law-list { display: flex; flex-direction: column; gap: 12px; }
+  .law { padding: 18px 20px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255, 255, 255, 0.02); }
+  .law h3 { font-size: 1.05rem; margin: 0 0 6px; display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+  .law h3 a { color: var(--cyan); text-decoration: none; }
+  .law h3 a:hover { text-decoration: underline; }
+  .law h3 span { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em; color: var(--faint); font-weight: 400; }
+  .law p { color: var(--mute); font-size: 0.93rem; line-height: 1.6; margin: 0; }
+  .prose p { color: var(--mute); line-height: 1.75; font-size: 0.98rem; margin: 0 0 16px; }
+  .beyond { margin-top: 26px; padding: 20px 22px; border: 1px solid var(--line); border-radius: 14px; }
+  .beyond h3 { font-size: 1.02rem; margin: 0 0 12px; }
+  .beyond ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; color: var(--mute); font-size: 0.93rem; line-height: 1.6; }
+  .beyond strong { color: var(--ink); font-weight: 500; }
+  .beyond a, .note a { color: var(--cyan); }
+  .note { color: var(--mute); margin: 16px 0 0; font-size: 0.95rem; line-height: 1.6; }
+  .cta-band { text-align: center; padding: clamp(40px, 6vw, 64px); background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(0,92,169,0.05)); border-color: var(--line-strong); }
+  .cta-band .lede { margin: 0 auto 26px; }
 </style>

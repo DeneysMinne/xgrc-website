@@ -19,3 +19,6 @@ form-handler/.venv/
 
 # secrets — never commit
 .secrets/
+
+# sitemap lastmod ledger (src/integrations/sitemap-lastmod.mjs)
+.seo-lastmod.json

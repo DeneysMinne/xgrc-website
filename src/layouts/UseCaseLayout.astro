@@ -28,6 +28,10 @@ const {
 // Solutions with a custom page (e.g. AI Governance) have no solutionDetails entry; fall back to the solutions list.
 const solutionListing = relatedSolution ? solutions.find((s) => s.slug === relatedSolution) : null;
 const solution = relatedSolution ? (solutionDetails[relatedSolution] || (solutionListing && { name: solutionListing.name, tag: solutionListing.blurb })) : null;
+// ISO and regulatory pages link up to their hub page
+const hub = category === 'ISO Readiness' ? { href: '/use-cases/iso-compliance/', label: 'All ISO readiness guides' }
+  : category === 'Regulatory' ? { href: '/use-cases/regulatory-compliance/', label: 'All regulatory compliance guides' }
+  : null;
 const related = relatedUseCases
   .map((s) => useCaseRegistry.find((u) => u.slug === s))
   .filter(Boolean);
@@ -218,6 +222,9 @@ const schema = {
           <span class="eyebrow"><span class="dot"></span>Related</span>
           <h2>Explore the connected platform.</h2>
         </div>
+        {hub && (
+          <p class="lede"><a href={hub.href} class="link-arrow">{hub.label} &rarr;</a></p>
+        )}
         {solution?.regionalLink && (
           <p class="lede"><a href={solution.regionalLink.href} class="link-arrow">{solution.regionalLink.label} &rarr;</a></p>
         )}
@@ -269,7 +276,7 @@ const schema = {
       <div class="card cta-band">
         <h2>{ctaHeadline}</h2>
         <p class="lede">{ctaBody}</p>
-        <a href="/demo" class="btn btn-primary">Book a demo</a>
+        <a href="/demo/" class="btn btn-primary">Book a demo</a>
       </div>
     </div>
   </section>

@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import sitemapLastmod from './src/integrations/sitemap-lastmod.mjs';
 
 // Static site, built with `astro build` and served from nginx (this VM),
 // behind Cloudflare, at xgrcsoftware.com.
@@ -17,5 +18,7 @@ export default defineConfig({
       // this filter likely never sees them anyway.
       filter: (page) => !page.includes('/login') && !page.includes('/pix') && !page.includes('/preview'),
     }),
+    // Real lastmod dates (must come after sitemap)
+    sitemapLastmod(),
   ],
 });

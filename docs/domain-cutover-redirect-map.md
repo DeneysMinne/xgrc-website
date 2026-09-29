@@ -10,9 +10,9 @@ and both users and rankings take the hit.
 
 - `domain-cutover-redirect-map.csv`: every URL requiring a redirect, its new
   path, and the reason it was routed there. 264 rows.
-- `domain-cutover-redirects.conf`: the same data as ready-to-use nginx
-  `location =` blocks. Drop inside the production `xgrcsoftware.com` server
-  block, **before** the SPA `try_files` fallback, so these take priority.
+- The nginx rules now live in `deploy/nginx/redirects.conf`, the single
+  redirect map for the whole site (moved there on 2026-09-29, see
+  `SEO-NOTES.md`). Check it with `node scripts/check-redirects.mjs dist`.
 
 30 of the 294 URLs need **no redirect at all** and are not in either file:
 the homepage, the 12 solution pages that already live at the same path on

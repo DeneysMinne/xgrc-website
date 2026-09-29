@@ -121,7 +121,7 @@ const catColor = categoryColors[article.category] || '#30e2f4';
     <!-- ── Breadcrumb ──────────────────────────────────── -->
     <nav class="art-breadcrumb" aria-label="Breadcrumb">
       <div class="container art-breadcrumb-inner">
-        <a href="/insights">← Insights</a>
+        <a href="/insights/">← Insights</a>
         <span aria-hidden="true">/</span>
         <span>{article.category}</span>
       </div>
@@ -197,8 +197,8 @@ const catColor = categoryColors[article.category] || '#30e2f4';
           <h2 class="art-cta-heading">Ready to strengthen your {article.category} programme?</h2>
           <p class="art-cta-body">See how XGRC® gives your team the visibility, accountability, and control it needs — without the spreadsheet chaos.</p>
           <div class="art-cta-btns">
-            <a href="/demo" class="btn-primary">Book a Demo</a>
-            <a href="/solutions" class="btn-ghost">Explore Solutions →</a>
+            <a href="/demo/" class="btn-primary">Book a Demo</a>
+            <a href="/solutions/" class="btn-ghost">Explore Solutions →</a>
           </div>
         </div>
       </div>
@@ -211,7 +211,7 @@ const catColor = categoryColors[article.category] || '#30e2f4';
           <h3 class="art-related-heading">More on {article.category}</h3>
           <div class="art-related-grid">
             {related.map((r) => (
-              <a href={`/insights/${r.slug}`} class="rel-card">
+              <a href={`/insights/${r.slug}/`} class="rel-card">
                 <div class="rel-card-img">
                   <img src={`/assets/images/insights/${r.image || `${r.slug}.jpg`}`} alt={r.title} loading="lazy" decoding="async" />
                 </div>
@@ -224,7 +224,7 @@ const catColor = categoryColors[article.category] || '#30e2f4';
             ))}
           </div>
           <div class="art-back">
-            <a href="/insights">← All Insights</a>
+            <a href="/insights/">← All Insights</a>
           </div>
         </div>
       </div>
@@ -232,7 +232,7 @@ const catColor = categoryColors[article.category] || '#30e2f4';
     {related.length === 0 && (
       <div class="art-back-only">
         <div class="container">
-          <a href="/insights" class="art-back-link">← All Insights</a>
+          <a href="/insights/" class="art-back-link">← All Insights</a>
         </div>
       </div>
     )}
