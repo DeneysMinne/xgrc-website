@@ -174,7 +174,7 @@ GSC (27 Jun to 26 Sep 2026) showed three places where the page that actually ran
 - New links in: a learn link on `/msx/` and `/compliance-hub/`, and one link each from the closest existing article (integrated management systems, and supplier compliance vs procurement).
 - `/products/vcm/` stays redirected to `/compliance-hub/`, as decided for T8.
 - Two other old vendor posts still redirect to `/compliance-hub/` and `/use-cases/vendor-management/`. The spec did not name them, so they are unchanged. They could point to the new article instead.
-- Both articles reuse existing images. The PAS 99 image (a control room) does not really fit the topic, so a dedicated image for each would be better.
+- Both articles have their own images, supplied by Deneys on 29 Sept 2026: `what-is-pas-99.jpg` and `vendor-compliance-management.jpg`.
 
 ### T15 left alone
 - The "quality management strategies" and "esg portfolio management" redirects are unchanged.

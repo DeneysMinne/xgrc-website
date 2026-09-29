@@ -934,7 +934,7 @@ export const articles = [
     metaDescription: 'What is PAS 99? The BSI framework for integrating ISO 9001, 14001, 45001 and 27001 into one management system, and how to implement it in 2026.',
     category: 'GRC',
     date: '2026-09-29',
-    image: 'integrated-management-system-software-for-modern-compliance.jpg',
+    image: 'what-is-pas-99.jpg',
     relatedSolutions: ['msx', 'sheqx'],
   },
   {
@@ -945,7 +945,7 @@ export const articles = [
     metaDescription: 'Vendor compliance management for South Africa: B-BBEE verification, tax status, COID, OHS Act section 37(2) and POPIA operators, and how to run it well.',
     category: 'GRC',
     date: '2026-09-29',
-    image: 'supplier-compliance-software-vs-procurement-systems-v2.jpg',
+    image: 'vendor-compliance-management.jpg',
     relatedSolutions: ['compliance-hub', 'erm'],
   },
   {
