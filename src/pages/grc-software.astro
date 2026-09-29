@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import SsotConvergence from '../components/SsotConvergence.astro';
-import { brand, caseStudies } from '../data/site.js';
+import { brand, caseStudies, tourDashboards } from '../data/site.js';
 import { publishedComparisons } from '../data/comparisons.js';
 
 const compareLinks = publishedComparisons.filter((c) => c.linkFrom.includes('grc-software'));
@@ -161,25 +161,28 @@ const schema = JSON.stringify({
       <div class="section-head">
         <span class="eyebrow"><span class="dot"></span>The platform in action</span>
         <h2>Real dashboards. Real decisions.</h2>
-        <p class="lede">Every discipline has a dedicated intelligence layer, executive dashboards built for decision-makers, not data analysts.</p>
+        <p class="lede">Every discipline has a dedicated intelligence layer, executive dashboards built for decision-makers, not data analysts. These are live, click-through demonstrations, not screenshots.</p>
       </div>
       <div class="dash-tabs" id="dashTabs">
-        <button class="dash-tab is-active" data-img="/assets/screenshots/erm-dashboard.webp" data-label="Enterprise Risk Overview">Enterprise Risk</button>
-        <button class="dash-tab" data-img="/assets/screenshots/sheq-dashboard.webp" data-label="SHEQ Executive Overview">SHEQ &amp; Safety</button>
-        <button class="dash-tab" data-img="/assets/screenshots/climate-dashboard.webp" data-label="Climate Risk Register">Climate Risk</button>
-        <button class="dash-tab" data-img="/assets/screenshots/carbon-dashboard.webp" data-label="Carbon Emissions Overview">Carbon &amp; ESG</button>
+        <button class="dash-tab is-active" data-img="/assets/tour/enterprise-risk-v1.webp" data-label="Enterprise Risk Intelligence" data-href="/tour/enterprise-risk.html">Enterprise Risk</button>
+        <button class="dash-tab" data-img="/assets/tour/sherq-v1.webp" data-label="SHERQ Landscape" data-href="/tour/sherq.html">SHEQ &amp; Safety</button>
+        <button class="dash-tab" data-img="/assets/tour/esg-v1.webp" data-label="ESG Performance" data-href="/tour/esg.html">ESG</button>
+        <button class="dash-tab" data-img="/assets/tour/vendor-risk-v1.webp" data-label="Vendor &amp; Third-Party Risk" data-href="/tour/vendor-risk.html">Compliance Hub</button>
+        <button class="dash-tab" data-img="/assets/tour/ai-governance-v1.webp" data-label="AI Governance KPI Dashboard" data-href="/tour/ai-governance.html">AI Governance</button>
       </div>
-      <div class="dash-frame">
+      <a class="dash-frame" id="dashFrame" href="/tour/enterprise-risk.html" aria-label="Open the live Enterprise Risk dashboard">
         <div class="dash-chrome">
           <span class="dc-dot dc-red"></span>
           <span class="dc-dot dc-yellow"></span>
           <span class="dc-dot dc-green"></span>
-          <span class="dc-url" id="dashUrl">v5.xgrc.cloud &nbsp;·&nbsp; Enterprise Risk Overview</span>
+          <span class="dc-url" id="dashUrl">xgrcsoftware.com/tour &nbsp;·&nbsp; Enterprise Risk Intelligence</span>
+          <span class="dc-open">Open live dashboard &rarr;</span>
         </div>
         <div class="dash-screen">
-          <img id="dashImg" src="/assets/screenshots/erm-dashboard.webp" alt="XGRC Enterprise Risk Management dashboard" width="1900" height="1017" loading="lazy" />
+          <img id="dashImg" src="/assets/tour/enterprise-risk-v1.webp" alt="XGRC Enterprise Risk Intelligence dashboard" width="1900" height="1017" loading="lazy" />
         </div>
-      </div>
+      </a>
+      <p class="dash-note">Illustrative data. <a href="/tour/">See all {tourDashboards.length} live dashboards &rarr;</a></p>
     </div>
   </section>
 
@@ -292,18 +295,22 @@ const schema = JSON.stringify({
     </div>
   </section>
 <script>
-  const tabs = document.querySelectorAll('.dash-tab');
-  const img  = document.getElementById('dashImg');
-  const url  = document.getElementById('dashUrl');
+  const tabs  = document.querySelectorAll('.dash-tab');
+  const img   = document.getElementById('dashImg');
+  const url   = document.getElementById('dashUrl');
+  const frame = document.getElementById('dashFrame');
   tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
       tabs.forEach(t => t.classList.remove('is-active'));
       tab.classList.add('is-active');
       img.classList.add('is-switching');
       setTimeout(() => {
         img.src = tab.dataset.img;
-        img.alt = tab.dataset.label;
-        url.textContent = 'v5.xgrc.cloud  ·  ' + tab.dataset.label;
+        img.alt = 'XGRC ' + tab.dataset.label + ' dashboard';
+        url.textContent = 'xgrcsoftware.com/tour  ·  ' + tab.dataset.label;
+        frame.href = tab.dataset.href;
+        frame.setAttribute('aria-label', 'Open the live ' + tab.dataset.label + ' dashboard');
         img.classList.remove('is-switching');
       }, 220);
     });
@@ -473,10 +480,17 @@ const schema = JSON.stringify({
   .dash-tab:hover { color: var(--ink); border-color: var(--line-strong); }
   .dash-tab.is-active { background: rgba(48,226,244,0.08); border-color: rgba(48,226,244,0.4); color: var(--cyan); }
   .dash-frame {
+    display: block;
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid rgba(48,226,244,0.15);
     box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
+    text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .dash-frame:hover, .dash-frame:focus-visible {
+    border-color: rgba(48,226,244,0.4);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(48,226,244,0.15), 0 0 60px rgba(48,226,244,0.10);
   }
   .dash-chrome {
     background: rgba(8,16,32,0.98);
@@ -486,6 +500,17 @@ const schema = JSON.stringify({
     gap: 6px;
     border-bottom: 1px solid rgba(48,226,244,0.08);
   }
+  .dc-open {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--cyan);
+    white-space: nowrap;
+    padding-left: 10px;
+  }
+  .dash-frame:hover .dc-open, .dash-frame:focus-visible .dc-open { color: var(--cyan-hi); }
+  .dash-note { margin-top: 16px; font-family: var(--font-mono); font-size: 11.5px; color: var(--faint); }
+  .dash-note a { color: var(--cyan); text-decoration: none; }
+  .dash-note a:hover { color: var(--cyan-hi); }
   .dc-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
   .dc-red    { background: #ff5f57; }
   .dc-yellow { background: #febc2e; }
