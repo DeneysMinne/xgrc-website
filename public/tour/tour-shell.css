@@ -193,6 +193,9 @@ main { position:relative; z-index:2; max-width:var(--maxw); margin:0 auto; paddi
 .empty-state { text-align:center; padding:50px 20px; color:var(--faint); font-size:13px; }
 
 /* ---- Tour additions (site connection, accessibility, small screens) ---- */
+/* Convention for new dashboards: any card or flex/grid child that holds wide content (charts, tables,
+   toggles in a card head) needs min-width:0, otherwise it refuses to shrink and the page scrolls sideways
+   at phone width. Hit twice so far: .erm-card (enterprise-risk) and .view-toggle (risk-command-centre). */
 .brand a.home { display:flex; }
 .btn-go { font-family:'Inter',sans-serif; font-size:12px; font-weight:600; padding:8px 14px; border-radius:9px; border:1px solid transparent; background:var(--green); color:var(--green-ink); text-decoration:none; white-space:nowrap; }
 .btn-go:hover { background:var(--green-hi); }

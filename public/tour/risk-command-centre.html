@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Enterprise Risk Command Centre | XGRC® live dashboard tour</title>
+<meta name="description" content="Interactive demonstration of the XGRC® Enterprise Risk Command Centre: heat map, risk appetite, key risk indicators and category trends in one view. Every figure is fictitious and illustrative.">
+<link rel="icon" href="/favicon.ico">
+<script>
+  (function () {
+    if (!['xgrcsoftware.com', 'www.xgrcsoftware.com'].includes(window.location.hostname)) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('consent', 'default', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+    gtag('js', new Date());
+    gtag('config', 'G-E8SHSDL5C4');
+    gtag('config', 'AW-744549022');
+    var tag = document.createElement('script'); tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-E8SHSDL5C4';
+    document.head.appendChild(tag);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="tour-shell.css?v=9">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  .rcc-context { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:22px; }
+  .rcc-context h1 { font-size:21px; font-weight:800; font-family:'Outfit'; }
+  .rcc-context .sub { font-size:12px; color:var(--mute); margin-top:4px; }
+  .rcc-context .stats { text-align:right; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--mute); }
+  .rcc-context .stats .n { color:var(--ink); font-weight:700; }
+
+  .view-toggle { display:flex; gap:4px; background:rgba(255,255,255,0.02); border:1px solid var(--line); border-radius:20px; padding:3px; flex-shrink:0; }
+  .vt { font-family:'JetBrains Mono',monospace; font-size:10px; padding:5px 11px; border-radius:16px; border:none; background:transparent; color:var(--mute); }
+  .vt.active { background:rgba(48,226,244,0.14); color:var(--cyan-hi); box-shadow:inset 0 0 0 1px rgba(48,226,244,0.4); }
+  .heatmap { display:grid; grid-template-columns:22px repeat(5, minmax(0,1fr)); gap:4px; margin-top:4px; }
+  .heatmap .ax { font-family:'JetBrains Mono',monospace; font-size:8.5px; color:var(--faint); display:flex; align-items:center; justify-content:center; text-align:center; }
+  .heatmap .ax.y { writing-mode:vertical-rl; transform:rotate(180deg); }
+  .heatmap .cell { aspect-ratio:1.6; min-height:30px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-family:'Outfit'; font-weight:800; font-size:15px; color:rgba(6,15,28,0.92); position:relative; cursor:pointer; }
+  .heatmap .cell.empty { color:transparent; cursor:default; }
+  .heatmap .cell.has { box-shadow:inset 0 0 0 2px rgba(255,255,255,0.55); }
+  .heatmap .cell .rank-badge { position:absolute; top:2px; right:3px; font-family:'JetBrains Mono',monospace; font-size:8px; font-weight:700; background:rgba(6,15,28,0.55); color:#fff; padding:1px 4px; border-radius:6px; }
+  .heatmap .z1 { background:rgba(47,232,138,0.30); } .heatmap .z2 { background:rgba(214,222,94,0.45); }
+  .heatmap .z3 { background:rgba(255,182,72,0.70); } .heatmap .z4 { background:rgba(255,84,112,0.82); }
+  .heatmap .xl { grid-column:2 / span 5; font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--faint); text-align:center; letter-spacing:0.5px; text-transform:uppercase; margin-top:2px; }
+  .heat-legend { display:flex; flex-wrap:wrap; gap:12px; margin-top:12px; font-size:10.5px; color:var(--mute); }
+  .heat-legend i { display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+  .heat-legend .z1 { background:rgba(47,232,138,0.30); } .heat-legend .z2 { background:rgba(214,222,94,0.45); } .heat-legend .z3 { background:rgba(255,182,72,0.70); } .heat-legend .z4 { background:rgba(255,84,112,0.82); }
+
+  .gauge-wrap { display:flex; justify-content:center; margin-top:2px; }
+  .gauge-wrap svg { width:100%; max-width:220px; height:auto; }
+  .gauge-label { text-align:center; margin-top:-10px; }
+  .gauge-label .band { font-family:'Outfit'; font-size:16px; font-weight:800; letter-spacing:0.3px; }
+  .gauge-label .sub { font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--faint); margin-top:2px; }
+  .exposure-note { text-align:center; margin-top:10px; padding:8px 12px; border-radius:10px; background:rgba(255,182,72,0.08); border:1px solid rgba(255,182,72,0.3); font-size:11.5px; color:var(--amber-hi); }
+
+  .exposure-list { display:flex; flex-direction:column; gap:8px; margin-top:14px; }
+  .exp-row { display:flex; align-items:center; gap:10px; border-radius:10px; border:1px solid var(--line); background:rgba(255,255,255,0.02); padding:9px 11px; cursor:pointer; }
+  .exp-rank { font-family:'Outfit'; font-weight:800; font-size:13px; color:var(--faint); width:14px; flex-shrink:0; }
+  .exp-badge { width:24px; height:24px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; color:#06101c; flex-shrink:0; }
+  .exp-main { flex:1; min-width:0; }
+  .exp-name { font-size:12px; font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .exp-owner { font-size:10px; color:var(--faint); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .exp-score { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--mute); flex-shrink:0; }
+  .exp-status { font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; letter-spacing:0.3px; text-transform:uppercase; padding:3px 8px; border-radius:20px; flex-shrink:0; }
+  .exp-status.critical { background:rgba(255,84,112,0.16); color:var(--red-hi); }
+  .exp-status.above { background:rgba(255,182,72,0.16); color:var(--amber-hi); }
+
+  .category-strip { display:grid; grid-template-columns:repeat(5, 1fr); gap:12px; }
+  @media (max-width:900px) { .category-strip { grid-template-columns:repeat(2, 1fr); } }
+  .cat-tile { border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,0.02); padding:13px 14px; }
+  .cat-tile .cn { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.4px; text-transform:uppercase; color:var(--faint); }
+  .cat-tile .cv-row { display:flex; align-items:baseline; gap:8px; margin-top:6px; }
+  .cat-tile .cv { font-family:'Outfit'; font-size:20px; font-weight:800; }
+  .cat-tile .ctrend { font-family:'JetBrains Mono',monospace; font-size:10.5px; }
+  .cat-tile .ctrend.good { color:var(--green-hi); }
+  .cat-tile .ctrend.bad { color:var(--red-hi); }
+  .cat-tile .ctrend.flat { color:var(--faint); }
+  .cat-tile .cprev { font-size:9.5px; color:var(--faint); margin-top:2px; }
+  .cat-tile svg { width:100%; height:22px; margin-top:8px; display:block; }
+
+  .watchlist { display:flex; flex-direction:column; gap:8px; margin-top:14px; }
+  .wl-item { display:flex; gap:9px; align-items:flex-start; font-size:11.5px; color:var(--mute); }
+  .wl-dot { width:7px; height:7px; border-radius:50%; background:var(--purple, #b98bff); margin-top:5px; flex-shrink:0; }
+
+  @media (max-width:720px) {
+    .rcc-context { flex-direction:column; }
+    .rcc-context .stats { text-align:left; }
+    .hero-card, .hero-side, .card { min-width:0; }
+    .card-head { flex-wrap:wrap; }
+    .view-toggle { flex-wrap:wrap; }
+  }
+</style>
+</head>
+<body>
+
+<div id="banner">Demonstration dashboard: all companies, figures and risks on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <a class="home" href="/" aria-label="XGRC® Software home"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" class="brand-icon"></a>
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">Enterprise Risk Command Centre</div>
+        <div class="crumb"><a href="/tour/">&larr; All dashboards</a> &middot; <a href="/erm/">About ERM</a></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <button class="btn" id="btn-export" type="button">Export board pack</button>
+      <a class="btn-go" href="/demo/">Book a demo</a>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search indicators, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="rcc-context">
+    <div>
+      <h1>Board risk view</h1>
+      <div class="sub" id="context-line"></div>
+    </div>
+    <div class="stats">
+      <div id="asof-date"></div>
+      <div id="active-risk-line" style="margin-top:2px;"></div>
+    </div>
+  </div>
+
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>Risk heat map</h3>
+        <div class="view-toggle" role="group" aria-label="Heat map scope">
+          <button type="button" class="vt active" data-scope="register">Register</button>
+          <button type="button" class="vt" data-scope="critical">Critical only</button>
+        </div>
+      </div>
+      <div class="hint" style="margin:-6px 0 10px;">Likelihood &times; impact. Click a cell for detail.</div>
+      <div class="heatmap" id="heatmap" role="table" aria-label="Risk heat map"></div>
+      <div class="heat-legend"><span><i class="z1"></i>Low</span><span><i class="z2"></i>Moderate</span><span><i class="z3"></i>Above appetite (10+)</span><span><i class="z4"></i>Critical (15+)</span></div>
+      <div id="cell-detail" class="cell-detail"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card" id="appetite-card">
+        <h3 style="text-align:left;">Risk appetite &amp; top exposures</h3>
+        <div class="gauge-wrap" id="gauge-wrap"></div>
+        <div class="gauge-label"><div class="band" id="gauge-band"></div><div class="sub" id="gauge-sub"></div></div>
+        <div class="exposure-note" id="exposure-note"></div>
+        <div class="exposure-list" id="exposure-list"></div>
+      </div>
+      <div class="card compact"><h3 style="text-align:left;">At a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section" id="extra-section"></div>
+
+  <div id="module-sections"></div>
+</main>
+
+<section class="tour-cta" aria-label="Next step">
+  <div class="tour-cta-inner">
+    <div>
+      <h2>See your own risk register on one command centre view</h2>
+      <p>Heat map, appetite, key risk indicators and category trends, reconciled to one register, with owners and actions attached to every exception. This dashboard uses fictitious data; a demo uses yours.</p>
+    </div>
+    <div class="acts"><a class="btn-go" href="/demo/">See it with your data</a><a class="btn" href="/erm/">About ERM</a><a class="btn" href="/tour/">All dashboards</a></div>
+  </div>
+</section>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. A single-company command centre view of enterprise risk, reconciled across heat map, appetite and key risk indicators.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const COMPANY = 'Solvex Industrial Holdings (fictitious)';
+const RAGHEX = { green:'#2fe88a', amber:'#ffb648', red:'#ff5470' };
+const ZONE_COLORS = { z1:'#2fe88a', z2:'#d6de5e', z3:'#ffb648', z4:'#ff5470' };
+
+const CONFIG = {
+  pdfTitle: 'XGRC · Enterprise Risk Command Centre',
+  pdfFilename: 'XGRC-Risk-Command-Centre-Board-Pack-Demo.pdf',
+  systems: [
+    { name:'Strategic', color:'#b98bff' },
+    { name:'Operational', color:'#16d9a8' },
+    { name:'Financial', color:'#d9b54a' },
+    { name:'Compliance', color:'#30e2f4' },
+    { name:'Environmental', color:'#7e9eff' }
+  ],
+  execStats: [
+    { label:'Active risks on register', value:23, tone:'cyan', sub:'across 5 risk categories' },
+    { label:'Emerging risks (watchlist)', value:4, sub:'not yet on the formal register' },
+    { label:'Combined assurance coverage', value:78, suffix:'%', sub:'three lines of defence' }
+  ],
+  kpis: [
+    { id:1, name:'Staff Turnover Rate', system:'Operational', module:'Operational', desc:'Voluntary and involuntary staff turnover as a percentage of average headcount, period to date.', calc:'Employees departed ÷ average headcount, period to date.', valueLabel:'8.2%', target:'≤ 12%', rag:'green', delta:'-1.3 pts', tone:'good', owner:'HR Director', cadence:'Monthly', frameworks:[] },
+    { id:2, name:'Audit Findings Unresolved Beyond 60 Days', system:'Compliance', module:'Compliance', desc:'Count of internal or external audit findings still open more than 60 days after being raised.', calc:'Count of Audit Finding records where age in days > 60 and status ≠ Closed.', valueLabel:'14', target:'≤ 5', rag:'red', delta:'+4', tone:'bad', owner:'Chief Audit Executive', cadence:'Weekly', frameworks:[] },
+    { id:3, name:'Supplier Non-Compliance Events', system:'Operational', module:'Operational', desc:'Count of supplier non-compliance events logged against the approved vendor panel this period.', calc:'Count of Vendor Non-Compliance records logged in the period.', valueLabel:'3', target:'≤ 4', rag:'amber', delta:'+1', tone:'bad', owner:'Procurement Director', cadence:'Monthly', frameworks:[] },
+    { id:4, name:'System Downtime Hours', system:'Operational', module:'Operational', desc:'Unplanned downtime hours across core business systems, period to date.', calc:'Sum of unplanned outage minutes across monitored systems ÷ 60, period to date.', valueLabel:'0.4h', target:'≤ 2.0h', rag:'green', delta:'-0.3h', tone:'good', owner:'IT Director', cadence:'Monthly', frameworks:[] },
+    { id:5, name:'Regulatory Deadlines Missed', system:'Compliance', module:'Compliance', desc:'Count of regulatory filing or submission deadlines missed this period.', calc:'Count of Regulatory Obligation records where due date < today and status ≠ Filed.', valueLabel:'0', target:'0', rag:'green', delta:'flat', tone:'good', owner:'Compliance Director', cadence:'Monthly', frameworks:[] },
+    { id:6, name:'Insurance Claim Frequency', system:'Financial', module:'Financial', desc:'Count of insurance claims lodged this quarter across all covered policies.', calc:'Count of Claim records lodged in the quarter.', valueLabel:'7', target:'≤ 8', rag:'amber', delta:'+2', tone:'bad', owner:'Risk Manager', cadence:'Quarterly', frameworks:[] }
+  ],
+  exceptions: [
+    { kpiId:2, ageDays:18, status:'Open' },
+    { kpiId:3, ageDays:9, status:'Open' },
+    { kpiId:6, ageDays:14, status:'Acknowledged' }
+  ]
+};
+
+CONFIG.afterInit = function(ctx){
+
+  const today = DashboardShell.today();
+  document.getElementById('context-line').textContent = COMPANY + ' · ISO 31000 / COSO ERM';
+  document.getElementById('asof-date').innerHTML = 'As of <span class="n">' + today.toLocaleDateString('en-GB', { weekday:'short', day:'2-digit', month:'short', year:'numeric' }) + '</span>';
+  document.getElementById('active-risk-line').innerHTML = '<span class="n">23</span> active risks · <span class="n">4</span> emerging (watchlist)';
+
+  const HEAT = [
+    [2,1,1,0,1],
+    [1,0,3,2,0],
+    [0,2,3,1,0],
+    [0,1,1,1,0],
+    [1,0,0,1,1]
+  ];
+  const LIKELIHOOD = ['Rare','Unlikely','Possible','Likely','Almost certain'];
+  const IMPACT = ['Negligible','Minor','Moderate','Major','Severe'];
+  const NAMED = {
+    '5,5': { rank:1, name:'Cybersecurity Breach', owner:'IT Director', badge:'IT', badgeColor:'#30e2f4', system:'Operational', status:'critical', statusLabel:'Critical' },
+    '5,4': { rank:2, name:'Regulatory Non-Compliance', owner:'Compliance Director', badge:'CO', badgeColor:'#7e9eff', system:'Compliance', status:'critical', statusLabel:'Critical' },
+    '4,4': { rank:3, name:'Supply Chain Disruption', owner:'COO', badge:'OP', badgeColor:'#16d9a8', system:'Operational', status:'critical', statusLabel:'Critical' },
+    '3,4': { rank:4, name:'Key Person Dependency', owner:'HR Director', badge:'HR', badgeColor:'#b98bff', system:'Strategic', status:'above', statusLabel:'Above appetite' },
+    '4,3': { rank:5, name:'Reputational Damage', owner:'CEO', badge:'CE', badgeColor:'#ffb648', system:'Strategic', status:'above', statusLabel:'Above appetite' }
+  };
+  // HEAT indices are [likelihood-1][impact-1]; NAMED keys are "likelihood,impact" (1-based) for the five scored cells.
+  function zoneOf(l,i){ const sc=l*i; return sc>=15?'z4':sc>=10?'z3':sc>=5?'z2':'z1'; }
+
+  let scope = 'register';
+  function renderHeat(){
+    let html = '';
+    for (let li=5; li>=1; li--){
+      html += '<div class="ax y">' + LIKELIHOOD[li-1] + '</div>';
+      for (let ii=1; ii<=5; ii++){
+        const li0 = li-1, ii0 = ii-1;
+        const count = HEAT[li0][ii0];
+        const zone = zoneOf(li, ii);
+        const key = li + ',' + ii;
+        const named = NAMED[key];
+        const dim = scope === 'critical' && zone !== 'z4';
+        const label = count || '';
+        const hasClass = named ? ' has' : '';
+        const rankBadge = named ? '<span class="rank-badge">#' + named.rank + '</span>' : '';
+        html += '<div class="cell ' + zone + hasClass + (count===0?' empty':'') + '" style="' + (dim ? 'opacity:0.22;' : '') + '" data-l="' + li + '" data-i="' + ii + '" role="cell" aria-label="' + LIKELIHOOD[li-1] + ' likelihood, ' + IMPACT[ii-1] + ' impact, ' + count + ' risk' + (count===1?'':'s') + (named ? ', includes #' + named.rank + ' ' + named.name : '') + '">' + label + rankBadge + '</div>';
+      }
+    }
+    html += '<div></div>' + IMPACT.map(x=>'').join('');
+    document.getElementById('heatmap').innerHTML = html + '<div class="xl">Impact →</div>';
+    document.querySelectorAll('.heatmap .cell').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        const l = parseInt(el.getAttribute('data-l')), i = parseInt(el.getAttribute('data-i'));
+        const count = HEAT[l-1][i-1];
+        const named = NAMED[l+','+i];
+        const panel = document.getElementById('cell-detail');
+        const zoneLabel = { z1:'Low', z2:'Moderate', z3:'Above appetite', z4:'Critical' }[zoneOf(l,i)];
+        let body = '<div class="ct">' + LIKELIHOOD[l-1] + ' likelihood × ' + IMPACT[i-1] + ' impact · ' + zoneLabel + ' · ' + count + ' risk' + (count===1?'':'s') + '</div>';
+        if (named) body += '<div class="cr">#' + named.rank + ' ' + named.name + ' <span style="color:var(--faint);">(' + named.system + ', owner ' + named.owner + ')</span></div>';
+        else if (count > 0) body += '<div class="cr" style="color:var(--faint);border-bottom:none;">Aggregated, not individually named at board level</div>';
+        else body += '<div class="cr" style="color:var(--faint);border-bottom:none;">No risks currently in this band</div>';
+        panel.innerHTML = body;
+        panel.classList.add('show');
+      });
+    });
+  }
+  renderHeat();
+  document.querySelectorAll('.hero-card .vt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.hero-card .vt').forEach(b=>b.classList.toggle('active', b===btn));
+      scope = btn.getAttribute('data-scope');
+      renderHeat();
+    });
+  });
+
+  const REGISTER = 23, ABOVE_APPETITE = 5, CRITICAL = 3;
+  const pct = Math.round((ABOVE_APPETITE / REGISTER) * 1000) / 10;
+  const BANDS = [
+    { max:10, label:'Low', color:RAGHEX.green },
+    { max:20, label:'Moderate', color:ZONE_COLORS.z2 },
+    { max:32, label:'Moderate-High', color:RAGHEX.amber },
+    { max:50, label:'High', color:'#ff8a5c' },
+    { max:100, label:'Critical', color:RAGHEX.red }
+  ];
+  const band = BANDS.find(b => pct <= b.max) || BANDS[BANDS.length-1];
+
+  function point(a,r,cx,cy){ const rad=a*Math.PI/180; return { x:cx+r*Math.sin(rad), y:cy-r*Math.cos(rad) }; }
+  function angleFor(v,min,max){ return -90 + ((Math.max(min,Math.min(max,v))-min)/(max-min))*180; }
+  function arcPath(a0,a1,r,cx,cy){ const p0=point(a0,r,cx,cy), p1=point(a1,r,cx,cy); const large=(a1-a0)>180?1:0; return 'M '+p0.x.toFixed(2)+' '+p0.y.toFixed(2)+' A '+r+' '+r+' 0 '+large+' 1 '+p1.x.toFixed(2)+' '+p1.y.toFixed(2); }
+  const cx=115, cy=105, r=88;
+  let bounds=[0], colors=[];
+  BANDS.forEach(b=>{ bounds.push(b.max); colors.push(b.color); });
+  let arcs='';
+  for (let k=0;k<BANDS.length;k++){ arcs += '<path d="'+arcPath(angleFor(bounds[k],0,100), angleFor(bounds[k+1],0,100), r, cx, cy)+'" stroke="'+colors[k]+'" stroke-width="14" fill="none" opacity="0.92"/>'; }
+  const needleAngle = angleFor(pct, 0, 100);
+  document.getElementById('gauge-wrap').innerHTML = '<svg viewBox="0 0 230 122">' + arcs +
+    '<line x1="'+cx+'" y1="'+cy+'" x2="'+cx+'" y2="'+(cy-70)+'" stroke="var(--mute)" stroke-width="3" stroke-linecap="round" transform="rotate('+needleAngle.toFixed(2)+' '+cx+' '+cy+')"/>' +
+    '<circle cx="'+cx+'" cy="'+cy+'" r="6" fill="#eaf3f7"/></svg>';
+  document.getElementById('gauge-band').textContent = band.label;
+  document.getElementById('gauge-band').style.color = band.color;
+  document.getElementById('gauge-sub').textContent = pct + '% of register above appetite';
+  document.getElementById('exposure-note').textContent = ABOVE_APPETITE + ' of ' + REGISTER + ' risks are above the board-approved appetite threshold (' + CRITICAL + ' critical).';
+
+  const exposures = Object.values(NAMED).sort((a,b)=>a.rank-b.rank);
+  // Score comes from each risk's own cell (likelihood x impact), so the list can never disagree with the heat map.
+  const scoreOf = {}; Object.keys(NAMED).forEach(k => { const [l, i] = k.split(',').map(Number); scoreOf[NAMED[k].rank] = l * i; });
+  document.getElementById('exposure-list').innerHTML = exposures.map(e=>{
+    return '<div class="exp-row" data-rank="'+e.rank+'"><span class="exp-rank">'+e.rank+'</span><span class="exp-badge" style="background:'+e.badgeColor+';">'+e.badge+'</span>' +
+      '<div class="exp-main"><div class="exp-name">'+e.name+'</div><div class="exp-owner">Owner '+e.owner+' · '+e.system+'</div></div>' +
+      '<span class="exp-score">'+scoreOf[e.rank]+'/25</span>' +
+      '<span class="exp-status '+e.status+'">'+e.statusLabel+'</span></div>';
+  }).join('');
+  document.querySelectorAll('.exp-row').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const rank = parseInt(el.getAttribute('data-rank'));
+      const e = exposures.find(x=>x.rank===rank);
+      const cell = Object.keys(NAMED).find(k=>NAMED[k].rank===rank);
+      const [l,i] = cell.split(',').map(Number);
+      const panel = document.getElementById('cell-detail');
+      panel.innerHTML = '<div class="ct">#'+rank+' '+e.name+'</div><div class="cr">'+LIKELIHOOD[l-1]+' likelihood × '+IMPACT[i-1]+' impact · score '+scoreOf[rank]+'/25 · owner '+e.owner+'</div>';
+      panel.classList.add('show');
+      panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    });
+  });
+
+  function seededSpark(seed, n, base, spread){
+    let s = seed; function rnd(){ s=(s*16807)%2147483647; return (s-1)/2147483646; }
+    const pts=[]; let v=base;
+    for (let k=0;k<n;k++){ v += (rnd()-0.5)*spread; pts.push(Math.max(1,v)); }
+    pts[pts.length-1]=base;
+    return pts;
+  }
+  function sparkSVG(pts, color){
+    const w=100,h=22,max=Math.max(...pts),min=Math.min(...pts);
+    const p = pts.map((v,i)=>{ const x=(i/(pts.length-1))*w; const y=h-((v-min)/((max-min)||1))*(h-4)-2; return x.toFixed(1)+','+y.toFixed(1); }).join(' ');
+    return '<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none"><polyline points="'+p+'" fill="none" stroke="'+color+'" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/></svg>';
+  }
+  const CATS = [
+    { name:'Strategic', color:'#b98bff', current:5, prev:6 },
+    { name:'Operational', color:'#16d9a8', current:6, prev:5 },
+    { name:'Financial', color:'#d9b54a', current:4, prev:4 },
+    { name:'Compliance', color:'#30e2f4', current:5, prev:3 },
+    { name:'Environmental', color:'#7e9eff', current:3, prev:4 }
+  ];
+  const catTotal = CATS.reduce((a,c)=>a+c.current,0);
+  const catHtml = CATS.map((c,idx)=>{
+    const delta = c.current - c.prev;
+    const cls = delta > 0 ? 'bad' : delta < 0 ? 'good' : 'flat';
+    const arrow = delta > 0 ? '▲' : delta < 0 ? '▼' : '=';
+    const pts = seededSpark(idx*97+13, 8, c.current, Math.max(1, c.current*0.5));
+    return '<div class="cat-tile"><div class="cn">'+c.name+'</div><div class="cv-row"><span class="cv">'+c.current+'</span><span class="ctrend '+cls+'">'+arrow+' '+(delta===0?'no change':Math.abs(delta))+'</span></div><div class="cprev">prev quarter '+c.prev+'</div>'+sparkSVG(pts, c.color)+'</div>';
+  }).join('');
+  const watchlistHtml = ['Cloud provider concentration risk (single hyperscaler dependency)', 'Emerging carbon border tax exposure on export volumes', 'AI-assisted vendor fraud attempts, early signal from procurement', 'Skills shortage risk in specialised engineering roles']
+    .map(t => '<div class="wl-item"><span class="wl-dot"></span>' + t + '</div>').join('');
+  document.getElementById('extra-section').innerHTML =
+    '<div class="card"><h3 style="text-align:left;margin-bottom:4px;">Risk trend by category</h3><div class="hint" style="margin-bottom:12px;">'+catTotal+' active risks across 5 categories, current quarter vs previous</div>' +
+    '<div class="category-strip">'+catHtml+'</div>' +
+    '<div style="height:1px;background:var(--line);margin:16px 0;"></div>' +
+    '<h3 style="text-align:left;margin-bottom:4px;">Emerging risks, watchlist</h3><div class="hint" style="margin-bottom:6px;">Not yet on the formal register, tracked for early signal</div>' +
+    '<div class="watchlist">'+watchlistHtml+'</div></div>';
+};
+</script>
+<script src="tour-shell.js?v=9"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>
