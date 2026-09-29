@@ -174,7 +174,7 @@ GSC (27 Jun to 26 Sep 2026) showed three places where the page that actually ran
 - New links in: a learn link on `/msx/` and `/compliance-hub/`, and one link each from the closest existing article (integrated management systems, and supplier compliance vs procurement).
 - `/products/vcm/` stays redirected to `/compliance-hub/`, as decided for T8.
 - Two other old vendor posts still redirect to `/compliance-hub/` and `/use-cases/vendor-management/`. The spec did not name them, so they are unchanged. They could point to the new article instead.
-- Both articles reuse existing images. The PAS 99 image (a control room) does not really fit the topic, so a dedicated image for each would be better.
+- Both articles have their own images, supplied by Deneys on 29 Sept 2026: `what-is-pas-99.jpg` and `vendor-compliance-management.jpg`.
 
 ### T15 left alone
 - The "quality management strategies" and "esg portfolio management" redirects are unchanged.
@@ -185,7 +185,7 @@ Each template follows the draft pattern: while `draft: true`, a page builds only
 - **Industry landing:** `src/layouts/IndustryLayout.astro` and `src/data/industries.js` (regulations, modules, case studies, FAQs). Drafts: `/preview/industries/manufacturing/` and `/preview/industries/mining/`. Before publishing mining, agree how it differs from `/mining-esg-compliance-software-africa/` so they don't compete (suggested: mine safety and operational compliance on the new page, ESG on the existing one).
 - **Case study:** `src/layouts/CaseStudyLayout.astro` and `src/data/caseStudyPages.js`, with Article schema. The PDF stays as a download. Drafts: `/preview/case-studies/tn-ceramics/` and `/preview/case-studies/vican-manufacturing/`, with content taken from the PDFs. The industry template links to the HTML case study once it is published, and to the PDF until then.
 - **Found in the PDFs, for Deneys:**
-  - The TN Ceramics PDF gives the same quote to two different people (Herford Dennis, Managing Director, and Adelle Stander, SHEQ Manager), so the draft marks it [CONFIRM].
+  - The TN Ceramics PDF gives the same quote to two different people. **Decided (Deneys, 29 Sept 2026):** it belongs to Herford Dennis, Managing Director.
   - The TN Ceramics and Vican results are almost identical (30% fewer safety incidents, 40% fewer non-conformances, 40% fewer high-priority risks, 70% less reporting or audit time). The figures are worth confirming with both customers before the HTML pages go live.
 
 ### Other changes
