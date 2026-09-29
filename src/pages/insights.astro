@@ -124,7 +124,7 @@ const categories = ['All', ...Array.from(new Set(articles.map((a) => a.category)
           const color = categoryColors[a.category] || '#30e2f4';
           const mins = readTime(a.slug);
           return (
-            <a href={`/insights/${a.slug}`} class="art-card">
+            <a href={`/insights/${a.slug}/`} class="art-card">
               <div class="art-card-img">
                 <img
                   src={`/assets/images/insights/${a.image || `${a.slug}.jpg`}`}

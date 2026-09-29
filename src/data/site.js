@@ -22,15 +22,15 @@ export const socialLinks = [
 // Primary navigation. Strategix routes to the internal capability page.
 export const nav = [
   { label: 'Home', href: '/' },
-  { label: 'GRC Platform', href: '/grc-software' },
-  { label: 'Solutions', href: '/solutions' },
-  { label: 'Use Cases', href: '/use-cases' },
-  { label: 'Customers', href: '/customers' },
-  { label: 'Resources', href: '/resources' },
-  { label: 'Insights', href: '/insights' },
-  { label: 'Trust Centre', href: '/trust' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Strategix', href: '/strategix' }
+  { label: 'GRC Platform', href: '/grc-software/' },
+  { label: 'Solutions', href: '/solutions/' },
+  { label: 'Use Cases', href: '/use-cases/' },
+  { label: 'Customers', href: '/customers/' },
+  { label: 'Resources', href: '/resources/' },
+  { label: 'Insights', href: '/insights/' },
+  { label: 'Trust Centre', href: '/trust/' },
+  { label: 'About Us', href: '/about/' },
+  { label: 'Strategix', href: '/strategix/' }
 ];
 
 export const pillars = [

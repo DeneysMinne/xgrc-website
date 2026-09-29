@@ -5,6 +5,7 @@ import Base from '../layouts/Base.astro';
 import { solutions, solutionDetails, brand, testimonials, tourDashboards } from '../data/site.js';
 import TourStrip from '../components/TourStrip.astro';
 import { whatsNew } from '../data/whatsNew.js';
+import { useCaseRegistry } from '../data/useCaseRegistry.js';
 
 export function getStaticPaths() {
   return Object.keys(solutionDetails).map((slug) => ({ params: { slug } }));
@@ -13,12 +14,13 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const detail   = solutionDetails[slug];
 const solution = solutions.find((s) => s.slug === slug);
-if (!detail || !solution) return Astro.redirect('/solutions');
+if (!detail || !solution) return Astro.redirect('/solutions/');
 
 const ogCandidate = path.join(process.cwd(), 'public', 'assets', 'og', `og-${slug}.jpg`);
 const ogImage = fs.existsSync(ogCandidate) ? `/assets/og/og-${slug}.jpg` : '/assets/og-default.jpg';
 
 const recentUpdates = (whatsNew[slug] || []).slice(0, 3);
+const useCases = useCaseRegistry.filter((u) => u.relatedSolution === slug);
 
 // Live demonstration dashboards for this solution (public/tour/).
 const liveDashboards = tourDashboards.filter((d) => d.solution === slug);
@@ -79,7 +81,7 @@ const schema = JSON.stringify({
       <!-- Left: copy -->
       <div class="sol-hero-copy">
         <div class="breadcrumb">
-          <a href="/solutions">Solutions</a>
+          <a href="/solutions/">Solutions</a>
           <span aria-hidden="true">/</span>
           <span>{detail.name}</span>
         </div>
@@ -93,8 +95,8 @@ const schema = JSON.stringify({
         <p class="sol-headline">{detail.headline}</p>
         <p class="lede sol-lede">{detail.lede}</p>
         <div class="sol-actions">
-          <a href="/demo" class="btn btn-primary">Request a demo</a>
-          <a href="/solutions" class="btn btn-ghost">All solutions &rarr;</a>
+          <a href="/demo/" class="btn btn-primary">Request a demo</a>
+          <a href="/solutions/" class="btn btn-ghost">All solutions &rarr;</a>
         </div>
         {(detail.booklet || detail.infographic) && (
           <p class="sol-downloads">
@@ -177,7 +179,7 @@ const schema = JSON.stringify({
           <span class="eyebrow"><span class="dot"></span>What it does</span>
           <h2>How {detail.name} works.</h2>
           <p class="lede">{detail.overview}</p>
-          <a href="/demo" class="link-arrow">See it in action &rarr;</a>
+          <a href="/demo/" class="link-arrow">See it in action &rarr;</a>
         </div>
         <div class="overview-stats">
           {detail.stats.map((s) => (
@@ -311,7 +313,30 @@ const schema = JSON.stringify({
             </div>
           ))}
         </div>
-        <a href={`/whats-new/${slug}`} class="link-arrow">See all updates &rarr;</a>
+        <a href={`/whats-new/${slug}/`} class="link-arrow">See all updates &rarr;</a>
+      </div>
+    </section>
+  )}
+
+  <!-- ── Related use cases ─────────────────────────────── -->
+  {useCases.length > 0 && (
+    <section class="section--tight">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow"><span class="dot"></span>Related use cases</span>
+          <h2>What teams use {detail.name} for.</h2>
+          <p class="lede">Each use case explains the problem, the standards and regulations involved, and how {detail.name} handles it in practice.</p>
+        </div>
+        <div class="grid cols-3">
+          {useCases.map((u) => (
+            <a class="card uc-card" href={`/use-cases/${u.slug}/`}>
+              <span class="tag">{u.category}</span>
+              <h3>{u.crumbLabel}</h3>
+              <p>{u.lede}</p>
+              <span class="link-arrow">View use case &rarr;</span>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   )}
@@ -420,8 +445,8 @@ const schema = JSON.stringify({
         <h2>{detail.ctaHeadline || `See ${detail.name} running in your environment.`}</h2>
         <p class="lede">{detail.ctaBody || `Talk to an XGRC® specialist about how ${detail.name} fits your organisation's specific compliance and governance requirements.`}</p>
         <div class="cta-actions">
-          <a href="/demo" class="btn btn-primary">Request a live demo</a>
-          <a href="/use-cases" class="btn btn-ghost">See use cases</a>
+          <a href="/demo/" class="btn btn-primary">Request a live demo</a>
+          <a href="/use-cases/" class="btn btn-ghost">See use cases</a>
         </div>
         <p class="contact-line">{brand.email} &middot; {brand.phone}</p>
       </div>
@@ -430,6 +455,11 @@ const schema = JSON.stringify({
 </Base>
 
 <style>
+  /* ── Related use cases ───────────────────────────────── */
+  .uc-card { text-decoration: none; display: flex; flex-direction: column; }
+  .uc-card p { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .uc-card .link-arrow { margin-top: auto; padding-top: 16px; }
+
   /* ── Recent updates (What's New teaser) ──────────────── */
   .whatsnew-teaser-list { display: flex; flex-direction: column; gap: 20px; margin-bottom: 22px; }
   .whatsnew-teaser-item { padding-bottom: 20px; border-bottom: 1px solid var(--line); }

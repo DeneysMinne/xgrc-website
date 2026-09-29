@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "generate-pdfs": "scripts/generate-pdfs/.venv/bin/python3 scripts/generate-pdfs/build_checklists.py",
-    "validate-content": "node scripts/validate-content.mjs"
+    "validate-content": "node scripts/validate-content.mjs",
+    "seo:check": "node scripts/seo-build-check.mjs dist && node scripts/check-redirects.mjs dist"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

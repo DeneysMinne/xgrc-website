@@ -17,6 +17,7 @@ import { useCaseRegistry, useCaseCategories } from '../data/useCaseRegistry.js';
         <span class="eyebrow"><span class="dot"></span>By discipline</span>
         <h2>Explore how XGRC® is used in practice.</h2>
         <p class="lede">Structured, solution-focused guides showing how XGRC® addresses a specific discipline, from planning through to assurance.</p>
+        <p class="hub-links">Overviews: <a href="/use-cases/iso-compliance/">ISO compliance</a> <span aria-hidden="true">&middot;</span> <a href="/use-cases/regulatory-compliance/">Regulatory compliance</a></p>
       </div>
       <div class="filters" role="group" aria-label="Filter by category">
         <button class="filter-chip is-active" data-filter="All" type="button">All</button>
@@ -88,6 +89,8 @@ import { useCaseRegistry, useCaseCategories } from '../data/useCaseRegistry.js';
   }));
 </script>
 <style>
+  .hub-links { font-size: 0.95rem; color: var(--mute); margin-top: 10px; }
+  .hub-links a { color: var(--cyan); }
   .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
   .filter-chip { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--mute); border: 1px solid var(--line); border-radius: 100px; padding: 9px 16px; background: transparent; cursor: pointer; transition: 0.2s; }
   .filter-chip:hover { color: var(--ink); border-color: var(--line-strong); }

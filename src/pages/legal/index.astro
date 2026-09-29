@@ -33,7 +33,7 @@ const docCard = (slug) => ({ slug, ...legalDocs[slug] });
         {binding.map((slug) => {
           const d = docCard(slug);
           return (
-            <a class="card doc-card" href={`/legal/${slug}`}>
+            <a class="card doc-card" href={`/legal/${slug}/`}>
               <h3>{d.title}</h3>
               <p>{d.intro}</p>
               <span class="link-arrow">Read {d.title} &rarr;</span>
@@ -55,7 +55,7 @@ const docCard = (slug) => ({ slug, ...legalDocs[slug] });
         {endUser.map((slug) => {
           const d = docCard(slug);
           return (
-            <a class="card doc-card" href={`/legal/${slug}`}>
+            <a class="card doc-card" href={`/legal/${slug}/`}>
               <h3>{d.title}</h3>
               <p>{d.intro}</p>
               <span class="link-arrow">Read {d.title} &rarr;</span>
@@ -77,7 +77,7 @@ const docCard = (slug) => ({ slug, ...legalDocs[slug] });
         {publicNotices.map((slug) => {
           const d = docCard(slug);
           return (
-            <a class="card doc-card" href={`/legal/${slug}`}>
+            <a class="card doc-card" href={`/legal/${slug}/`}>
               <h3>{d.title}</h3>
               <p>{d.intro || `${d.title} for XGRC® Software.`}</p>
               <span class="link-arrow">Read {d.title} &rarr;</span>
@@ -98,14 +98,14 @@ const docCard = (slug) => ({ slug, ...legalDocs[slug] });
         {reference.map((slug) => {
           const d = docCard(slug);
           return (
-            <a class="card doc-card" href={`/legal/${slug}`}>
+            <a class="card doc-card" href={`/legal/${slug}/`}>
               <h3>{d.title}</h3>
               <p>{d.intro}</p>
               <span class="link-arrow">Read {d.title} &rarr;</span>
             </a>
           );
         })}
-        <a class="card doc-card" href="/trust">
+        <a class="card doc-card" href="/trust/">
           <h3>Trust Centre</h3>
           <p>Security, hosting, subprocessors, and data protection information for procurement due diligence.</p>
           <span class="link-arrow">Visit Trust Centre &rarr;</span>
