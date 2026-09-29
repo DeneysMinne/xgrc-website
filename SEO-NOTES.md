@@ -185,7 +185,7 @@ Each template follows the draft pattern: while `draft: true`, a page builds only
 - **Industry landing:** `src/layouts/IndustryLayout.astro` and `src/data/industries.js` (regulations, modules, case studies, FAQs). Drafts: `/preview/industries/manufacturing/` and `/preview/industries/mining/`. Before publishing mining, agree how it differs from `/mining-esg-compliance-software-africa/` so they don't compete (suggested: mine safety and operational compliance on the new page, ESG on the existing one).
 - **Case study:** `src/layouts/CaseStudyLayout.astro` and `src/data/caseStudyPages.js`, with Article schema. The PDF stays as a download. Drafts: `/preview/case-studies/tn-ceramics/` and `/preview/case-studies/vican-manufacturing/`, with content taken from the PDFs. The industry template links to the HTML case study once it is published, and to the PDF until then.
 - **Found in the PDFs, for Deneys:**
-  - The TN Ceramics PDF gives the same quote to two different people (Herford Dennis, Managing Director, and Adelle Stander, SHEQ Manager), so the draft marks it [CONFIRM].
+  - The TN Ceramics PDF gives the same quote to two different people. **Decided (Deneys, 29 Sept 2026):** it belongs to Herford Dennis, Managing Director.
   - The TN Ceramics and Vican results are almost identical (30% fewer safety incidents, 40% fewer non-conformances, 40% fewer high-priority risks, 70% less reporting or audit time). The figures are worth confirming with both customers before the HTML pages go live.
 
 ### Other changes

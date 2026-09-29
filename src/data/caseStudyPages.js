@@ -49,8 +49,8 @@ export const caseStudyPages = [
     ],
     quote: {
       text: 'Implementing XGRC solutions with GRC Link transformed our approach. We now manage compliance and quality proactively, enhancing our operational excellence significantly.',
-      name: '[CONFIRM: the PDF attributes this quote to both Herford Dennis, Managing Director, and Adelle Stander, SHEQ Manager]',
-      role: 'TN Ceramics',
+      name: 'Herford Dennis',
+      role: 'Managing Director, TN Ceramics',
     },
     outlook: 'TN Ceramics plans to expand its use of XGRC®, adding predictive analytics and further sustainability modules, with GRC Link continuing to support its ISO 9001 quality objectives.',
   },
