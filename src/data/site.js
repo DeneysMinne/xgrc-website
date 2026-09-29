@@ -42,7 +42,7 @@ export const pillars = [
 
 // The real public solution suite (BCMX and PIX retired / not in use).
 export const solutions = [
-  { name: 'AI Governance', slug: 'ai-governance', tag: 'AI Governance', blurb: 'Governs how you build and use AI: EU AI Act classification, ISO/IEC 42001 compliance, impact assessment, risk, controls and evidence, mapped to your AI register.', customPage: true },
+  { name: 'AI Governance', slug: 'ai-governance', tag: 'AI Governance', blurb: 'Govern every AI system, from register to regulator: EU AI Act classification, ISO/IEC 42001 readiness, POPIA and GDPR compliance, risk, incidents and oversight in one workspace inside XGRC®.', customPage: true },
   { name: 'MSX®', slug: 'msx', tag: 'Management system', blurb: 'A flexible, integrated hub that unifies multiple XGRC® disciplines into one coordinated management system.' },
   { name: 'MSXCyber®', slug: 'msxcyber', tag: 'Information security', blurb: 'ISMS support aligned to ISO 27001, with governance, risk management, and audit-ready evidence for cybersecurity programmes.' },
   { name: 'ESG', slug: 'esg', tag: 'Sustainability', blurb: 'Management of ESG data and governance processes for consistent reporting, traceability, and assurance across sustainability initiatives.' },

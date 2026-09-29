@@ -2344,7 +2344,7 @@ export const useCaseRegistry = [
     metaDescription: 'AI governance readiness checklist covering ISO/IEC 42001 AI management system requirements and EU AI Act classification, risk, impact assessment and oversight obligations.',
     h1: 'Before you can prove your AI is governed, you need to know what "governed" actually requires.',
     lede: 'Two laws now sit behind AI governance: ISO/IEC 42001 certifies your organisation\'s AI management system, and the EU AI Act regulates each AI system individually. This checklist covers what both actually require, so a readiness gap is something you find on your own terms, not an auditor\'s.',
-    relatedSolution: 'maia',
+    relatedSolution: 'ai-governance',
     frameworks: ['ISO/IEC 42001', 'EU AI Act', 'AI Governance', 'AI Risk Management'],
     problems: [
       'No classification of which AI Act category each AI system actually falls into',

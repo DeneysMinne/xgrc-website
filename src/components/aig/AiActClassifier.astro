@@ -1,0 +1,155 @@
+---
+// Interactive, simplified EU AI Act triage (illustrative, not legal advice). The real XGRC®
+// classification is an 18-question decision tree that records every answer against its article.
+---
+<div class="clf" id="clf">
+  <form class="clf-q" id="clf-form" aria-describedby="clf-disclaimer" onsubmit="return false">
+    <fieldset>
+      <legend><span class="n">1</span>Who are you in relation to this AI system?</legend>
+      <label><input type="radio" name="role" value="provider" /><span>We built it, sell it, or put our name on it</span></label>
+      <label><input type="radio" name="role" value="deployer" /><span>We use a system someone else built</span></label>
+      <p class="hint">Substantially modifying a third-party system, or rebranding it, can make you its provider (Article 25).</p>
+    </fieldset>
+    <fieldset>
+      <legend><span class="n">2</span>Does it do any of these?</legend>
+      <p class="hint">Social scoring, manipulative or exploitative techniques, emotion recognition at work or school, biometric categorisation by sensitive traits, untargeted facial-image scraping, or predicting crime from profiling.</p>
+      <label><input type="radio" name="banned" value="yes" /><span>Yes</span></label>
+      <label><input type="radio" name="banned" value="no" /><span>No</span></label>
+    </fieldset>
+    <fieldset>
+      <legend><span class="n">3</span>Is it a safety component of a regulated product?</legend>
+      <p class="hint">For example machinery, medical devices, vehicles, lifts or toys covered by EU product-safety law (Annex I).</p>
+      <label><input type="radio" name="safety" value="yes" /><span>Yes</span></label>
+      <label><input type="radio" name="safety" value="no" /><span>No</span></label>
+    </fieldset>
+    <fieldset>
+      <legend><span class="n">4</span>Is it used in any of these areas?</legend>
+      <p class="hint">Hiring or managing staff, credit or insurance decisions, access to essential services or benefits, education and exams, critical infrastructure, biometrics, law enforcement, migration, or justice (Annex III).</p>
+      <label><input type="radio" name="annex3" value="yes" /><span>Yes</span></label>
+      <label><input type="radio" name="annex3" value="no" /><span>No</span></label>
+    </fieldset>
+    <fieldset>
+      <legend><span class="n">5</span>Does it talk to people or generate content?</legend>
+      <p class="hint">Chatbots and assistants, or synthetic text, images, audio or video (Article 50).</p>
+      <label><input type="radio" name="interacts" value="yes" /><span>Yes</span></label>
+      <label><input type="radio" name="interacts" value="no" /><span>No</span></label>
+    </fieldset>
+    <fieldset id="clf-gpai" hidden>
+      <legend><span class="n">6</span>Is it a general-purpose AI model you make available to others?</legend>
+      <p class="hint">A model others build on, such as a foundation or large language model you offer, rather than one you only use.</p>
+      <label><input type="radio" name="gpai" value="yes" /><span>Yes</span></label>
+      <label><input type="radio" name="gpai" value="no" checked /><span>No</span></label>
+    </fieldset>
+  </form>
+
+  <aside class="clf-r" aria-live="polite">
+    <div class="clf-card" id="clf-card" data-tier="none">
+      <div class="clf-card-h"><span class="clf-lbl">Indicative result</span><span class="clf-lock" id="clf-lock">Answer the questions</span></div>
+      <div class="clf-tier" id="clf-tier">Awaiting answers</div>
+      <div class="clf-role" id="clf-role">Your role and tier appear here as you answer.</div>
+      <ul class="clf-obl" id="clf-obl"></ul>
+      <p class="clf-note" id="clf-note"></p>
+      <div class="clf-cta"><a class="btn btn-primary" href="/demo/">Classify your AI estate properly</a></div>
+    </div>
+    <p class="clf-disclaimer" id="clf-disclaimer">Illustrative and simplified, not legal advice. XGRC® AI Governance uses an 18-question decision tree that records every answer against its article, generates the resulting obligations and locks the approved result.</p>
+  </aside>
+</div>
+
+<style>
+  .clf { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 36px); align-items: start; }
+  .clf-q { display: grid; gap: 14px; }
+  .clf fieldset { margin: 0; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--panel); padding: 16px 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .clf legend { float: left; width: 100%; padding: 0; margin-bottom: 8px; font-family: var(--font-display); font-weight: 600; font-size: 1.02rem; color: var(--ink); display: flex; gap: 10px; align-items: baseline; }
+  .clf legend .n { font-family: var(--font-mono); font-size: 11px; color: var(--cyan); }
+  .clf .hint { width: 100%; margin: 0 0 6px; font-size: 0.85rem; color: var(--mute); line-height: 1.5; }
+  .clf fieldset > .hint:last-child { margin: 4px 0 0; color: var(--faint); font-size: 0.8rem; }
+  .clf label { position: relative; cursor: pointer; }
+  .clf label input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .clf label span { display: inline-block; font-size: 0.9rem; padding: 8px 14px; border-radius: 100px; border: 1px solid var(--line-strong); color: var(--mute); transition: border-color .2s, color .2s, background .2s; }
+  .clf label input:checked + span { border-color: var(--cyan); color: var(--cyan-hi); background: rgba(48,226,244,0.10); }
+  .clf label input:focus-visible + span { outline: 2px solid var(--green-hi); outline-offset: 2px; }
+  .clf-r { position: sticky; top: 96px; display: grid; gap: 12px; }
+  .clf-card { border-radius: 14px; border: 1px solid var(--line-strong); background: #151f2d; padding: 20px; display: grid; gap: 10px; transition: border-color .3s; }
+  .clf-card-h { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .clf-lbl { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+  .clf-lock { font-family: var(--font-mono); font-size: 10px; color: var(--mute); border: 1px solid var(--line); border-radius: 5px; padding: 3px 7px; }
+  .clf-tier { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.1; color: var(--mute); }
+  .clf-role { font-size: 0.9rem; color: var(--mute); }
+  .clf-obl { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 8px; }
+  .clf-obl li { font-size: 0.88rem; color: var(--ink); line-height: 1.5; padding-left: 16px; position: relative; }
+  .clf-obl li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 7px; height: 7px; border-radius: 2px; background: var(--cyan); }
+  .clf-obl li b { color: var(--cyan-hi); font-weight: 600; }
+  .clf-note { margin: 0; font-size: 0.82rem; color: var(--faint); line-height: 1.5; }
+  .clf-note:empty { display: none; }
+  .clf-cta { margin-top: 6px; }
+  .clf-disclaimer { font-size: 0.78rem; color: var(--faint); line-height: 1.5; margin: 0; }
+  .clf-card[data-tier="prohibited"] { border-color: rgba(255,84,112,0.6); } .clf-card[data-tier="prohibited"] .clf-tier { color: #ff8fa3; }
+  .clf-card[data-tier="high"] { border-color: rgba(255,182,72,0.6); } .clf-card[data-tier="high"] .clf-tier { color: #ffd18a; }
+  .clf-card[data-tier="limited"] { border-color: rgba(48,226,244,0.55); } .clf-card[data-tier="limited"] .clf-tier { color: var(--cyan-hi); }
+  .clf-card[data-tier="minimal"] { border-color: rgba(47,232,138,0.55); } .clf-card[data-tier="minimal"] .clf-tier { color: var(--green-hi); }
+  @media (max-width: 900px) { .clf { grid-template-columns: minmax(0, 1fr); } .clf-r { position: static; } }
+  @media (prefers-reduced-motion: reduce) { .clf label span, .clf-card { transition: none; } }
+</style>
+
+<script>
+  // Simplified EU AI Act triage, in the order the Act applies: banned practices first, then
+  // high-risk (Annex I safety component or Annex III use), then transparency, then minimal.
+  const form = document.getElementById('clf-form') as HTMLFormElement | null;
+  if (form) {
+    const $ = (id: string) => document.getElementById(id) as HTMLElement;
+    const val = (n: string) => (form.querySelector(`input[name="${n}"]:checked`) as HTMLInputElement | null)?.value;
+    let lastTier = '';
+    const LIT = 'AI literacy: staff who use or operate AI need sufficient understanding of it (<b>Article 4</b>).';
+    function update() {
+      const role = val('role'), banned = val('banned'), safety = val('safety'), annex3 = val('annex3'), interacts = val('interacts');
+      const gpaiBox = $('clf-gpai');
+      gpaiBox.hidden = role !== 'provider';
+      const gpai = role === 'provider' && val('gpai') === 'yes';
+      const card = $('clf-card'), obl: string[] = [];
+      let tier = '', name = 'Awaiting answers', note = '';
+      if (banned === 'yes') {
+        tier = 'prohibited'; name = 'Prohibited use';
+        obl.push('This practice is banned under <b>Article 5</b>, and has been since February 2025. It has to stop, or be redesigned so it no longer falls within the ban.');
+      } else if (role && banned && safety && annex3 && interacts) {
+        if (safety === 'yes' || annex3 === 'yes') {
+          tier = 'high'; name = 'High risk';
+          if (role === 'provider') {
+            obl.push('A risk management system and data governance across the lifecycle (<b>Articles 9 and 10</b>).');
+            obl.push('Technical documentation, record-keeping and instructions for deployers (<b>Articles 11 to 13</b>).');
+            obl.push('Human oversight by design, plus accuracy, robustness and cybersecurity (<b>Articles 14 and 15</b>).');
+            obl.push('A quality management system, conformity assessment and EU database registration (<b>Articles 17, 43 and 49</b>).');
+          } else {
+            obl.push('Use it according to the provider’s instructions, with competent people assigned to oversee it (<b>Article 26</b>).');
+            obl.push('Monitor how it operates, keep its logs, and report serious incidents and risks (<b>Article 26</b>).');
+            obl.push('Inform affected workers, and complete a fundamental rights impact assessment where <b>Article 27</b> requires one.');
+          }
+          if (annex3 === 'yes' && safety !== 'yes') note = 'Some Annex III systems fall outside high risk if they only perform a narrow procedural task (Article 6(3)). The full classification tests this and records the reasoning.';
+          if (interacts === 'yes') obl.push('People must also be told they are dealing with AI, and generated content labelled (<b>Article 50</b>).');
+        } else if (interacts === 'yes') {
+          tier = 'limited'; name = 'Limited risk';
+          obl.push('Tell people they are interacting with AI, and label AI-generated or manipulated content (<b>Article 50</b>).');
+        } else {
+          tier = 'minimal'; name = 'Minimal risk';
+          obl.push('No system-specific AI Act obligations. Many organisations still record the decision and apply a voluntary code of conduct.');
+        }
+      }
+      if (tier) {
+        obl.push(LIT);
+        if (gpai) obl.push('General-purpose AI model duties: technical documentation, information for downstream providers, a copyright policy and a training-content summary (<b>Article 53</b>), with more for models with systemic risk (<b>Article 55</b>).');
+        obl.push('If it processes personal information, POPIA and GDPR requirements apply alongside the AI Act.');
+      }
+      card.dataset.tier = tier || 'none';
+      $('clf-tier').textContent = name;
+      $('clf-role').textContent = tier ? `Role: ${role === 'provider' ? 'provider' : role === 'deployer' ? 'deployer' : 'not answered yet'}` : 'Your role and tier appear here as you answer.';
+      $('clf-lock').textContent = tier ? 'Indicative, not approved' : 'Answer the questions';
+      $('clf-obl').innerHTML = obl.map((o) => `<li>${o}</li>`).join('');
+      $('clf-note').textContent = note;
+      if (tier && tier !== lastTier) {
+        lastTier = tier;
+        const g = (window as any).gtag; if (typeof g === 'function') g('event', 'ai_classifier_result', { tier });
+      }
+    }
+    form.addEventListener('change', update);
+    update();
+  }
+</script>

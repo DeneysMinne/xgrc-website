@@ -4,7 +4,7 @@
 // Extracted from the original hand-copied src/pages/use-cases/*.astro files.
 // See docs/add-new-use-case.md to add a new page instead of copying this file.
 import Base from './Base.astro';
-import { solutionDetails } from '../data/site.js';
+import { solutionDetails, solutions } from '../data/site.js';
 import { useCaseRegistry } from '../data/useCaseRegistry.js';
 
 const { entry } = Astro.props;
@@ -25,7 +25,9 @@ const {
   faqs = [],
 } = entry;
 
-const solution = relatedSolution ? solutionDetails[relatedSolution] : null;
+// Solutions with a custom page (e.g. AI Governance) have no solutionDetails entry; fall back to the solutions list.
+const solutionListing = relatedSolution ? solutions.find((s) => s.slug === relatedSolution) : null;
+const solution = relatedSolution ? (solutionDetails[relatedSolution] || (solutionListing && { name: solutionListing.name, tag: solutionListing.blurb })) : null;
 const related = relatedUseCases
   .map((s) => useCaseRegistry.find((u) => u.slug === s))
   .filter(Boolean);

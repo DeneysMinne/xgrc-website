@@ -1,717 +1,510 @@
 ---
 import Base from '../layouts/Base.astro';
-import { brand, tourDashboards } from '../data/site.js';
+import { tourDashboards } from '../data/site.js';
 import TourStrip from '../components/TourStrip.astro';
+import ProductFrame from '../components/aig/ProductFrame.astro';
+import AiActClassifier from '../components/aig/AiActClassifier.astro';
 
-const dashboardViews = [
-  { label: 'Estate Overview', img: '/assets/screenshots/ai-governance-dashboard-estate.webp', urlLabel: 'AI Governance · Estate Overview' },
-  { label: 'AI System Register', img: '/assets/screenshots/ai-governance-dashboard-register.webp', urlLabel: 'AI Governance · System Register & KPIs' },
-  { label: 'Module Detail', img: '/assets/screenshots/ai-governance-dashboard-module.webp', urlLabel: 'AI Governance · Classification Coverage' },
+// Copy follows Deneys' AI Governance website brief (29 Sept 2026) and its claims table:
+// starter content (not "always up to date"), certification readiness (not "certifies you"),
+// people decide (not "fully automated"). No pricing tiers on this page.
+
+const painPoints = [
+  { t: 'No single view of the AI in use', b: 'Tools arrive through procurement, SaaS updates and teams trying things. Nobody can list every system, what it does and who owns it.' },
+  { t: 'No defensible answer to "is this high risk?"', b: 'The EU AI Act turns on role, purpose and use area. Without a recorded decision, every audit and customer questionnaire starts from zero.' },
+  { t: 'Changes and incidents slip past review', b: 'A model is swapped, a data source added, a new capability switched on. Nothing forces the risk, impact or legal review that change should trigger.' },
 ];
 
-const whoFor = [
-  { tag: 'Providers', title: 'You build or badge an AI system.', body: 'You develop AI in-house, or you substantially modify, rebrand, or put your own name on someone else\'s model. The law can treat you as the manufacturer — the full obligation set is yours.' },
-  { tag: 'Deployers', title: 'You use someone else\'s AI.', body: 'You run AI built by a vendor or partner — a screening tool, a chatbot, a fraud model. Deployer obligations are lighter than a provider\'s, but they are real, and most organisations underestimate them.' },
-  { tag: 'Embedded AI', title: 'Your SaaS tools have AI features you didn\'t ask for.', body: 'A CRM with a scoring model, an HR platform with a resume screener, a support tool with an auto-responder — AI arrives inside software you already bought. That still counts, and still needs classifying.' },
-  { tag: 'Regulated & high-risk sectors', title: 'You operate where AI decisions affect people directly.', body: 'Hiring, credit, insurance, healthcare, education, critical infrastructure, law enforcement-adjacent use. These are the sectors where the EU AI Act\'s high-risk category is most likely to apply.' },
+const steps = [
+  { t: 'About the system', b: 'Pulled from your AI register, so nothing is typed twice.' },
+  { t: 'What it is', b: 'Its EU AI Act tier and your role: provider or deployer.' },
+  { t: 'What applies', b: 'Only the requirements that fit that tier and role.' },
+  { t: 'Where we stand', b: 'Met, partly met or not met, with the evidence attached.' },
+  { t: 'What to do', b: 'Every gap becomes an owned, dated action.' },
+  { t: 'Approvals', b: 'Signed off by the right approver, then locked.' },
 ];
 
-const laws = [
-  {
-    tag: 'ISO/IEC 42001',
-    title: 'Certifies the organisation.',
-    body: 'Do you run AI responsibly as a business? ISO/IEC 42001 is an AI management system standard — policy, accountability, competence, internal audit, management review. It is assessed and certified at the organisation level, the same way ISO 9001 or ISO 27001 are.',
-  },
-  {
-    tag: 'EU AI Act',
-    title: 'Regulates the system.',
-    body: 'Is this particular AI allowed, and what must you prove about it? The EU AI Act looks at one AI system at a time — what it does, who it affects, and which obligations that specific use triggers, from banned practices through to high-risk requirements.',
-  },
+const proof = [
+  { t: 'Classify in minutes, defend for years.', b: 'A guided, 18-question EU AI Act decision tree records every answer against its article, then locks the approved result. Re-classifying creates a new version, never an overwrite.' },
+  { t: 'Requirements that scope themselves.', b: 'The approved classification decides what applies, so a low-risk system is not buried in high-risk obligations. A limited-risk deployer sees a short list, not the whole Act.' },
+  { t: 'Change triggers governance.', b: 'A new model, data source or purpose opens the right reviews, with due dates, through 39 editable rules. A person always decides the outcome.' },
+  { t: 'Oversight you can evidence.', b: 'Human decisions, overrides and interventions are recorded, including events sent from your AI tools. A tool-reported event only counts once a person promotes it.' },
+  { t: 'Ready for ISO/IEC 42001.', b: 'The AI management system, a Statement of Applicability, and one control library mapped once across every framework you run.' },
 ];
 
-const modules = [
-  {
-    num: 1,
-    title: 'EU AI Act Classification',
-    tagline: 'Works out which category of the law each AI system falls into — and records why.',
-    body: [
-      'The law does not treat all AI the same. A handful of uses are banned outright. A defined set is "high-risk" and carries heavy obligations. Some systems only need to tell people they are talking to a machine. Most are left alone entirely.',
-      'This module decides which of those applies to each of your systems. The decision matters enormously — it determines everything you owe for that system — so the module records not just the answer but the reasoning and the legal references behind it, in a form you can defend to a regulator years later.',
-    ],
-    steps: [
-      'Choose the AI system being assessed.',
-      "State your role for it. Are you the one who built or badged it, or the one using someone else's? The law imposes very different duties on each.",
-      'Answer a guided series of questions. Each answer decides what comes next, so you are never asked about things that do not apply to you.',
-      'The module first checks for banned uses. If it finds one, it stops there and raises it — nothing else matters until that is resolved.',
-      'If not banned, it determines whether the system is high-risk, and records exactly which part of the law makes it so.',
-      'It checks whether you owe people transparency — telling them they are dealing with AI, or that content was generated.',
-      'It checks whether the general-purpose AI model rules apply.',
-      'It produces a result: the category, the reasoning, and the legal basis.',
-      'From that result it automatically builds the list of requirements you now have to meet, so nobody assembles it by hand.',
-      'Someone senior approves the classification. It is then locked and stamped with the version of the questions used.',
-      'If the system later changes in a way that could alter the answer, it is flagged for re-classification rather than quietly going stale.',
-    ],
-    note: "Why step 2 matters more than it looks. If you take someone else's AI, substantially modify it, change what it is used for, or put your own name on it, the law can treat you as the manufacturer — and you inherit the full obligation set. Organisations routinely cross that line without realising.",
-  },
-  {
-    num: 2,
-    title: 'Compliance & Applicability',
-    tagline: 'Turns each law or standard into a checklist, and records how you are actually doing against it.',
-    body: [
-      'Knowing which rules apply is only half the job. You then have to show whether you meet them, item by item, with evidence. This module holds each framework as a structured set of requirements, decides which genuinely apply to you, records your position against each, and gathers the proof.',
-      'It also produces the Statement of Applicability — the document an ISO 42001 auditor asks for first. It lists every control in the standard and states whether you apply it or exclude it, with a reason for each. Without it, a certification audit does not meaningfully begin.',
-    ],
-    steps: [
-      'Pick the AI system and the frameworks in play — the EU AI Act, ISO 42001, data protection law, your own internal policy.',
-      'The requirement list loads, including anything the classification module determined applies.',
-      'For each requirement, mark whether it applies to you. If it does not, you must say why — an unexplained exclusion is one of the easiest ways to fail an audit.',
-      'For each requirement that does apply, record where you stand: met, partly met, not met, or not yet assessed.',
-      'Attach the evidence — a policy, a test result, a log extract, a training record, an approval.',
-      'Where there is a shortfall, raise an action against it with an owner and a deadline.',
-      'The module calculates your overall position and shows where the weight of the gap sits.',
-      'For ISO 42001 it produces the Statement of Applicability directly from those decisions.',
-      'Someone approves the assessment. It is versioned and locked.',
-      'A review date is set. When it falls due — or something changes — a new version starts, and the approved one stays untouched as the historical record.',
-    ],
-  },
-  {
-    num: 3,
-    title: 'Impact Assessment',
-    tagline: 'Asks who could be harmed by an AI system, how badly, and whether your safeguards are enough.',
-    body: [
-      'Compliance asks whether something is permitted. Impact assessment asks a harder question: who does this affect, and what could it do to them? That includes people who never chose to interact with it — a job applicant screened by a model, a patient triaged by one, a community affected by a decision.',
-      'This covers both the ISO impact assessment and the Fundamental Rights Impact Assessment the AI Act requires of certain organisations using high-risk systems.',
-    ],
-    steps: [
-      'Start an assessment for a system, noting where it is in its life — being designed, tested, running live, or changing.',
-      'Identify who is affected: employees, customers, the public — and specifically anyone vulnerable, such as children, patients or applicants.',
-      'Work through the areas where harm can arise: privacy, bias, discrimination, safety, financial loss, dignity, accessibility, employment, environment.',
-      'For each one, describe what could happen, what would cause it, and who it lands on.',
-      'Rate it as it would be with no safeguards at all — how likely, and how severe.',
-      'Record what you already have in place to reduce it.',
-      'Rate it again with those safeguards counted.',
-      'Decide whether what remains is acceptable. If it is not, treatment is required and actions are raised.',
-      'Someone approves it, and the assessment is versioned.',
-      'It is revisited when the system changes, when something goes wrong, or when its review date arrives.',
-    ],
-    note: 'Rating twice is the point. Scoring before and after safeguards is what shows your controls are doing real work. A single score proves nothing about whether you have earned the position you are claiming.',
-  },
-  {
-    num: 4,
-    title: 'Controls & Evidence',
-    tagline: 'One library of safeguards, mapped to every rule each one satisfies, with the proof attached.',
-    body: [
-      'A control is something you actually do to keep an AI system safe — a review step before release, a bias test, a restriction on what data it can reach, a log of every decision it makes. The awkward part is that one control usually satisfies several different rules at once, across several different frameworks.',
-      'So the module keeps a single library, maps each control to every requirement it helps satisfy, and holds the evidence once. You define the control once and it answers to all of them.',
-    ],
-    steps: [
-      'Create a control, or adopt one from the library.',
-      'Map it to every requirement it helps satisfy — it can answer to the AI Act, ISO 42001 and your own policy simultaneously.',
-      'Assign it to the AI systems it covers, with an owner and how often it must be tested.',
-      'Assess it in three separate ways: is it well designed, is it actually in place, and is it working? These are different questions, and a control can pass one while failing another.',
-      'Attach the evidence — the test result, the log, the sign-off.',
-      'Evidence carries a validity period, so proof that has gone stale is visible instead of quietly assumed good.',
-      'Where a control is weak, missing or untested, raise an action.',
-      'Because of the mapping, a failing control instantly shows every requirement now exposed — across every framework at once.',
-    ],
-  },
-  {
-    num: 5,
-    title: 'Human Oversight',
-    tagline: 'Records that a person genuinely watched over the AI and could step in — not just that they theoretically could.',
-    body: [
-      'For high-risk systems the law requires meaningful human oversight: someone competent who understands the system, can interpret what it produces, and has the authority to override it or stop it. Crucially, you must be able to prove this happened. A policy saying oversight exists is not evidence of oversight.',
-      'This module records the oversight itself — and works whether that oversight happens inside XGRC or in a separate system the organisation already uses.',
-    ],
-    steps: [
-      'Define the arrangement for a system: who oversees it, what authority they hold, and what training qualifies them.',
-      'Record oversight events as they happen — a review, an approval, an override, a suspension.',
-      'Where oversight happens in another tool, connect it and events flow in automatically. Where there is no such tool, people record them here directly.',
-      'Each event captures who acted, when, what was in front of them, and what they decided.',
-      'Overrides and interventions are highlighted — those are the events that prove the oversight is real rather than nominal.',
-      'Each record links back to the system, its classification, and the requirement it satisfies.',
-      'Absence is visible: a high-risk system with no oversight events stands out immediately.',
-      'Oversight activity feeds the monitoring picture and the management review.',
-    ],
-  },
-  {
-    num: 6,
-    title: 'AI Risk Management',
-    tagline: 'The risk discipline you already run, pointed at the ways AI specifically fails.',
-    body: [
-      'AI introduces failure modes conventional risk registers were not written for: biased outputs, confident fabrication, data leaking through a model, performance drifting as the world changes, staff trusting the machine more than they should, a provider disappearing.',
-      'Rather than a separate AI risk system, this uses the risk engine and scoring you already have. AI risk then sits alongside every other business risk, in the same register, scored the same way — visible to the same board report instead of hidden in a silo.',
-    ],
-    steps: [
-      'Raise a risk and tag it to an AI system and an AI risk category.',
-      'Describe it exactly as you describe any other risk — the risk, its cause, its consequence.',
-      'Score it before controls.',
-      'Link the controls that address it.',
-      'Score it again with those controls counted.',
-      'Compare what remains against your tolerance. Over the line means treatment is required.',
-      'Assign an owner, a treatment plan and actions.',
-      'Set a review date.',
-      'Risks can also arrive automatically — raised by an impact assessment, an incident, a monitoring breach, or a change to the system.',
-    ],
-  },
-  {
-    num: 7,
-    title: 'Incident Governance',
-    tagline: 'Captures what went wrong, drives the investigation, and runs the regulatory clock.',
-    body: [
-      'When an AI system causes harm — a wrong decision, a discriminatory outcome, a data leak, a safety event — you need to capture it, understand it, fix it, and in some cases tell a regulator within a short and legally fixed window.',
-      'The deadlines are the part organisations most often miss. So the reporting clock is part of the record from the moment the incident is logged, not something remembered later.',
-    ],
-    steps: [
-      'Log the incident against the AI system, recording which model version was running at the time.',
-      'Classify what kind of incident it is and how severe.',
-      'Assess immediately whether people were affected, how many, and whether a regulator must be notified.',
-      'If notification is required, the clock starts and the deadline is tracked in plain sight.',
-      'Decide whether the system should be suspended while you investigate.',
-      'Investigate and establish the root cause.',
-      'Raise corrective actions.',
-      'Feed the outcome back: does the risk assessment need redoing? The impact assessment? The compliance position?',
-      'Close the incident only once those reassessments are complete.',
-      "The whole chain stays on that system's record permanently.",
-    ],
-  },
-  {
-    num: 8,
-    title: 'Change Governance',
-    tagline: 'Catches changes to an AI system and decides which of them force a fresh review.',
-    body: [
-      'AI systems change constantly — a new model version, a new data source, a different provider, a widened purpose, more autonomy. Most changes are harmless. A few quietly turn a low-concern system into a regulated one, and the organisation carries on as though nothing happened.',
-      'This module catches every change, judges it in governance terms, and forces the reviews that the change actually warrants.',
-    ],
-    steps: [
-      'A change arrives — raised by someone here, or picked up automatically from the AI register.',
-      'It is described in governance terms rather than technical ones: did the purpose change? The model? The provider? What data it can reach? How independently it acts?',
-      'Rules decide what that means. A new sensitive data source demands a risk review. A changed purpose demands a full reassessment. More autonomy demands an oversight review.',
-      'The required reviews are created automatically and assigned to owners.',
-      'Until they are done, the change stays visibly open against that system.',
-      'Where the change is significant enough, approval is required before it can proceed.',
-      'The reviews complete, the affected assessments update, and the change closes.',
-      'Everything is retained — what changed, what it triggered, and who decided.',
-    ],
-    note: 'This is the module that keeps the rest honest. Every other assessment is a snapshot of a system at a point in time. Without change governance, those snapshots silently describe a system that no longer exists.',
-  },
-  {
-    num: 9,
-    title: 'AI Management System',
-    tagline: 'The organisation-level layer — the part that actually gets certified.',
-    body: [
-      'Every module above looks at individual AI systems. This one looks at the company. ISO 42001 certifies an organisation, not a product: does it have an AI policy, named accountable people, measurable objectives, competent staff, internal audits, and management that reviews all of it regularly?',
-      'This is what an auditor examines when deciding whether to certify you, and it is the piece most AI governance tooling leaves out entirely.',
-    ],
-    steps: [
-      'Define the scope — which parts of the business, and which AI systems, the management system covers.',
-      'Record the context: the pressures you operate under, and who has a stake in how you use AI.',
-      'Publish the AI policy and its supporting policies, held under proper version control.',
-      'Name the roles — who owns AI governance, risk, compliance, data and security.',
-      'Set measurable objectives and track progress against them.',
-      'Record competence and awareness, including the AI literacy obligation that has applied since early 2025.',
-      'Run internal audits to a programme, and record what they find.',
-      'Hold management reviews on a schedule, with the inputs the standard requires — risk position, incidents, audit results, objectives, regulatory change.',
-      'Record the decisions and actions that come out of those reviews.',
-      'Handle anything that fell short through corrective action, and show it was closed out.',
-    ],
-  },
-  {
-    num: 10,
-    title: 'Dashboard & System Profile',
-    tagline: 'The single place to look — the whole estate at a glance, or one system in full.',
-    body: [
-      'The dashboard answers "how are we doing overall?". The system profile answers "what is the complete story on this one system?". Between them they are the view an executive, an auditor and a regulator each want.',
-      'Neither holds any data of its own. Everything is drawn from the modules above, so nothing is ever maintained in two places or allowed to disagree with itself.',
-    ],
-    steps: [
-      'Open the dashboard and see the estate: how many AI systems, how many live, how many high-risk, how many overdue an assessment.',
-      'See the position across compliance, risk, impact, controls, incidents and monitoring together.',
-      'Each system carries a simple health status — green, amber or red — driven by rules you set rather than a fixed formula.',
-      'Drill from the whole organisation, down to a business unit, down to a single system.',
-      "On a system's profile, see everything about it on one page: classification, assessments, risks, controls, oversight, incidents, changes, actions, documents and its full history.",
-      'Anything overdue, breached or unassessed surfaces without anyone having to hunt for it.',
-      'Export for a board pack, an audit, or a regulator.',
-    ],
-  },
-  {
-    num: 11,
-    title: 'Register Connection',
-    tagline: "Keeps XGRC's copy of the AI inventory in step with the register that owns it.",
-    body: [
-      'The technical detail of what AI you run — the systems, the models, the providers, what each one is permitted to reach — lives in the separate AI register, not in XGRC. That separation is deliberate: one system of record, not two competing ones.',
-      'This module keeps XGRC\'s reference copy current, so every piece of governance attaches to the right system, and so changes made over there surface here as something to review.',
-    ],
-    steps: [
-      'The register remains the authority on what AI exists.',
-      'XGRC pulls the list in on a schedule, on demand, or is notified the moment something changes.',
-      'Each system gets a reference record here. Imported details are read-only — you change them where they are owned, not in two places.',
-      'Each is mapped to a business unit and an owner, so your existing access rules apply automatically.',
-      'Every governance record in every module attaches to that reference.',
-      'When something changes in the register, XGRC records the change and decides whether it needs a governance review.',
-      'When a system is retired, its reference is deactivated — but its entire governance history remains, permanently.',
-      'If the register cannot be reached, XGRC carries on using its last known copy and shows plainly when it last synchronised.',
-    ],
-  },
+const capabilities = [
+  { h: 'Assess', items: ['EU AI Act classification', 'Compliance and applicability', 'AI impact assessment', 'AI risk management'] },
+  { h: 'Run and watch', items: ['Human oversight evidence', 'AI incident management with regulator clocks', 'AI change governance', 'Controls and evidence testing'] },
+  { h: 'Govern', items: ['ISO/IEC 42001 management system', 'Governance library: frameworks and policies', 'Approval authority matrix', 'Dashboard and health rules'] },
 ];
 
-const chain = [
-  'What AI systems exist',
-  'Which rules apply to each',
-  'What impacts they carry',
-  'What risks they pose',
-  'What controls are in place',
-  'What evidence supports those controls',
-  'Whether the controls work',
-  'Whether the system remains compliant',
-  'What went wrong and what changed',
-  'What was decided, by whom, and when',
+const facts = [
+  { v: '18', l: 'question EU AI Act decision tree' },
+  { v: '39', l: 'editable change rules' },
+  { v: '34', l: 'editable health rules' },
+  { v: '7', l: 'approval types, separate from edit rights' },
+  { v: '12', l: 'AI risk categories' },
+  { v: '13', l: 'AI incident types' },
+];
+
+const frameworks = [
+  { n: 'ISO/IEC 42001', r: '65 requirements' },
+  { n: 'EU AI Act', r: '32 requirements' },
+  { n: 'GDPR', r: '13 requirements' },
+  { n: 'POPIA', r: '10 requirements' },
 ];
 
 const faqs = [
-  { q: 'How is this different from MAIA®?', a: "MAIA® is governed AI you use inside XGRC — an AI copilot with a full interaction audit trail. AI Governance is broader: it governs every AI system your organisation builds or uses, whether that's MAIA®, a third-party model, or something built in-house, against the EU AI Act and ISO/IEC 42001. You don't need MAIA® to use AI Governance, and using MAIA® doesn't remove the need for it — MAIA® is itself one more AI system that goes through the same classification, risk and compliance process as any other." },
-  { q: 'Does XGRC replace our AI inventory or AI register?', a: 'No. The AI register stays the single source of truth for what AI exists — the systems, models, providers and data access. XGRC never duplicates that. It attaches governance on top: classification, compliance, impact, risk, controls, oversight, incidents and change, all mapped back to the register\'s own inventory.' },
-  { q: 'Does this cover both ISO/IEC 42001 and the EU AI Act?', a: 'Yes, and deliberately as two distinct layers. ISO/IEC 42001 certifies the organisation — policy, accountability, competence, internal audit, management review. The EU AI Act regulates individual systems — which category a system falls into and what that requires. The suite answers both, which is why some modules look at the company (AI Management System) and others look at one system at a time (Classification, Impact Assessment, Controls).' },
-  { q: 'What happens if an AI system is modified or repurposed after it was classified?', a: 'Change Governance catches it. A new model version, a widened purpose, a new data source or more autonomy is judged in governance terms, and the module decides which reviews that change actually forces — a risk review, a full reclassification, an oversight review — rather than the change quietly going unassessed.' },
-  { q: "Can XGRC prove human oversight actually happened, not just that a policy exists?", a: 'Yes. Human Oversight records real events — a review, an approval, an override, a suspension — each capturing who acted, when, and what they decided. A high-risk system with no recorded oversight events stands out immediately, instead of a policy document being treated as proof on its own.' },
-  { q: 'Do we need a separate risk register for AI?', a: 'No. AI Risk Management uses the same risk engine and scoring you already run for every other business risk, tagged to AI-specific categories such as biased output, data leakage and model drift. AI risk sits in the same register, scored the same way, visible in the same board report.' },
-  { q: "What if we use someone else's AI model rather than building our own?", a: "Your role changes what you owe. Classification asks this directly: are you the one who built or badged the system, or the one deploying someone else's? If you substantially modify a third-party model, change what it's used for, or put your own name on it, the law can treat you as the manufacturer — inheriting the full obligation set, which organisations routinely cross without realising." },
+  { q: 'What is AI governance software?', a: 'AI governance software keeps a governed record of every AI system an organisation builds or uses: what it is, which rules apply to it, its risks and impacts, the controls and evidence behind it, who oversees it and how changes are reviewed. XGRC® AI Governance does this inside the XGRC® platform, for the EU AI Act, ISO/IEC 42001, POPIA and GDPR.' },
+  { q: 'Do we need the EU AI Act if we are in South Africa?', a: 'If you offer AI outputs into the EU, or serve EU customers, it can apply. XGRC® helps you decide whether it applies to each system and records why, so the answer is defensible later.' },
+  { q: 'Does XGRC certify us for ISO/IEC 42001?', a: 'No tool certifies you; only an accredited certification body can. XGRC® gives you the AI management system, the evidence and the Statement of Applicability an auditor looks for.' },
+  { q: 'Can we use our own AI policies?', a: 'Yes. Upload your AI policy and map its requirements alongside the standards, so one control can satisfy your policy and the regulations at the same time.' },
+  { q: 'Is the framework content kept up to date automatically?', a: 'XGRC® includes starter content for ISO/IEC 42001, the EU AI Act, GDPR and POPIA. Your team adopts it and maintains its own copy, and every published version is recorded with what changed, why, by whom and which records need updating.' },
+  { q: 'How is this different from MAIA®?', a: 'MAIA® is governed AI you use inside XGRC®, an AI copilot with a full interaction audit trail. AI Governance governs every AI system your organisation builds or uses, including MAIA®, third-party models and in-house builds. MAIA® is itself one more AI system that goes through the same classification, risk and compliance process.' },
+  { q: 'Does XGRC replace our AI register?', a: 'No. Your AI register stays the source of truth for what AI exists. XGRC® connects to it and attaches governance on top: classification, compliance, impact, risk, controls, oversight, incidents and change. If you have no register, systems can be recorded in XGRC® directly.' },
+  { q: 'What happens if an AI system changes after it was classified?', a: 'Change Governance judges the change in governance terms. A new capability, for example, forces a legal re-classification within 7 days and an impact reassessment within 21 days; a model replacement forces risk, compliance, control re-testing, oversight and classification reviews. The 39 rules are editable, and a person decides every outcome.' },
+  { q: 'Do we need a separate risk register for AI?', a: 'No. AI risk uses the same risk discipline you already run in XGRC®, pointed at 12 AI failure categories such as bias, fabrication, data leakage, performance drift and security or adversarial attacks. A legally prohibited use can never be accepted as a risk.' },
 ];
 
+const pageUrl = 'https://xgrcsoftware.com/ai-governance/';
 const schema = JSON.stringify({
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'SoftwareApplication',
+      '@id': pageUrl + '#software',
       name: 'XGRC® AI Governance',
       applicationCategory: 'BusinessApplication',
-      description: 'AI governance software covering EU AI Act classification, ISO/IEC 42001 compliance, impact assessment, AI-specific risk management, controls, human oversight, incident governance and change governance, connected to your AI register.',
+      applicationSubCategory: 'AI governance software',
       operatingSystem: 'Web',
+      url: pageUrl,
+      description: 'AI governance software inside the XGRC® platform: EU AI Act classification, ISO/IEC 42001 readiness, POPIA and GDPR compliance, AI impact assessment, AI risk, controls and evidence, human oversight, AI incidents and change governance, connected to your AI register.',
+      featureList: capabilities.flatMap((c) => c.items).concat(['AI register connection', 'Governance library with starter content for ISO/IEC 42001, EU AI Act, GDPR and POPIA']),
+      isPartOf: { '@type': 'SoftwareApplication', name: 'XGRC® Software', url: 'https://xgrcsoftware.com/grc-software/' },
       provider: { '@type': 'Organization', name: 'XGRC® Software', url: 'https://xgrcsoftware.com' },
+      audience: { '@type': 'BusinessAudience', audienceType: 'Risk, compliance, information security, privacy and AI leaders' },
     },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xgrcsoftware.com/' },
         { '@type': 'ListItem', position: 2, name: 'Solutions', item: 'https://xgrcsoftware.com/solutions/' },
-        { '@type': 'ListItem', position: 3, name: 'AI Governance' },
+        { '@type': 'ListItem', position: 3, name: 'AI Governance', item: pageUrl },
       ],
     },
     {
       '@type': 'FAQPage',
-      mainEntity: faqs.map((f) => ({
-        '@type': 'Question',
-        name: f.q,
-        acceptedAnswer: { '@type': 'Answer', text: f.a },
-      })),
+      mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
     },
   ],
 });
 ---
+
 <Base
-  title="AI Governance Software | ISO/IEC 42001 & EU AI Act | XGRC®"
-  description="Govern how you build and use AI: EU AI Act classification, ISO/IEC 42001 compliance, impact assessment, AI-specific risk, controls and evidence, human oversight, incidents and change — connected to your AI register."
-  ogImage="/assets/og/og-maia.jpg"
+  title="AI Governance Software | EU AI Act & ISO 42001 | XGRC"
+  description="Govern every AI system in one place. EU AI Act classification, ISO/IEC 42001 readiness, POPIA and GDPR compliance, risk, incidents and oversight."
+  ogImage="/assets/og/og-ai-governance.jpg"
 >
   <script type="application/ld+json" set:html={schema} />
 
-  <!-- ── Hero ───────────────────────────────────────────── -->
+  <!-- 1. Hero -->
   <section class="aig-hero">
+    <div class="container aig-hero-grid">
+      <div class="aig-hero-copy">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/solutions/">Solutions</a><span>/</span><span aria-current="page">AI Governance</span></nav>
+        <span class="eyebrow"><span class="dot"></span>XGRC® AI Governance</span>
+        <h1>Govern every AI system, <em>from register to regulator.</em></h1>
+        <p class="lede">Your teams are already using AI. XGRC® AI Governance software shows what each system is, what the law expects of it, and whether it is under control. EU AI Act, ISO/IEC 42001, POPIA and GDPR in one place.</p>
+        <div class="aig-actions">
+          <a class="btn btn-primary" href="/demo/">Book an AI Governance demo</a>
+          <a class="btn btn-ghost" href="#classify">See how classification works</a>
+        </div>
+        <ul class="badges" aria-label="Frameworks covered">
+          <li>EU AI Act</li><li>ISO/IEC 42001</li><li>POPIA</li><li>GDPR</li>
+        </ul>
+      </div>
+      <div class="aig-hero-visual">
+        <ProductFrame active="dashboard" title="AI Governance · Dashboard" label="Illustration of the AI Governance dashboard: estate tiles, system health and EU AI Act categories">
+          <div class="ill-dash">
+            <div class="ill-title">AI Governance Dashboard</div>
+            <div class="ill-alert"><b>Legal or serious, act now</b><span>1 banned-use flag · 1 incident on a regulator clock, 9 days left</span></div>
+            <div class="ill-tiles">
+              <div><b>24</b><span>AI systems</span></div>
+              <div><b>18</b><span>In production</span></div>
+              <div class="amb"><b>4</b><span>High risk</span></div>
+              <div class="red"><b>1</b><span>Prohibited</span></div>
+              <div><b>2</b><span>Never classified</span></div>
+              <div class="amb"><b>5</b><span>No approved assessment</span></div>
+            </div>
+            <div class="ill-row">
+              <div class="ill-panel">
+                <div class="ill-ph">System health</div>
+                <div class="ill-health"><i class="r" style="flex:3"></i><i class="a" style="flex:7"></i><i class="g" style="flex:14"></i></div>
+                <div class="ill-legend"><span><i class="r"></i>3 red</span><span><i class="a"></i>7 amber</span><span><i class="g"></i>14 green</span></div>
+              </div>
+              <div class="ill-panel">
+                <div class="ill-ph">EU AI Act category</div>
+                <ul class="ill-bars">
+                  <li><span>Prohibited</span><i style="--w:4%" class="r"></i><b>1</b></li>
+                  <li><span>High risk</span><i style="--w:17%" class="a"></i><b>4</b></li>
+                  <li><span>Limited</span><i style="--w:38%" class="c"></i><b>9</b></li>
+                  <li><span>Minimal</span><i style="--w:33%" class="g"></i><b>8</b></li>
+                  <li><span>Not classified</span><i style="--w:8%" class="m"></i><b>2</b></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ProductFrame>
+      </div>
+    </div>
+  </section>
+
+  <!-- Definition + facts (clear, citable statements for search and AI answers) -->
+  <section class="section--tight aig-define">
     <div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="/">Home</a><span>/</span><a href="/solutions">Solutions</a><span>/</span><b>AI Governance</b>
-      </nav>
-      <span class="eyebrow"><span class="dot"></span>Solution &middot; AI Governance</span>
-      <h1>The AI register says what AI you run.<br>XGRC says whether it's governed.</h1>
-      <p class="lede">Two laws now govern artificial intelligence: ISO/IEC 42001 certifies your organisation as a whole, and the EU AI Act regulates each AI system individually. XGRC's AI Governance solution answers both — assessed, risk-managed, controlled, monitored, approved and provable — without duplicating the technical inventory your AI register already holds.</p>
-      <div class="hero-actions">
-        <a href="/demo" class="btn btn-primary">Book a demo</a>
-        <a href="/use-cases/ai-governance-readiness/#resource" class="btn btn-ghost">Download the readiness checklist</a>
+      <p class="define"><strong>XGRC® AI Governance</strong> is AI governance software built into the XGRC® platform. It takes each AI system from "what is it?" to "approved, controlled and monitored", runs the organisation-level ISO/IEC 42001 management system on top, and is rule-driven end to end: the classification decides what applies, and a change decides what must be reviewed.</p>
+      <ul class="facts">
+        {facts.map((f) => <li><b>{f.v}</b><span>{f.l}</span></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. The problem -->
+  <section class="section aig-problem">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>The problem</span>
+        <h2>AI moved faster than your governance.</h2>
+        <p class="lede">New tools arrive every month. Models change without notice. Regulators now expect you to know which AI you use, what risk it carries and who is watching it. A policy on paper is no longer enough. You need evidence.</p>
+      </div>
+      <div class="pains">
+        {painPoints.map((p, i) => (
+          <div class="pain">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              {i === 0 && <path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6zM3 3l18 18" />}
+              {i === 1 && <path d="M12 3v18M7 21h10M5 7h14M5 7l-2.5 6a2.5 2.5 0 0 0 5 0zM19 7l-2.5 6a2.5 2.5 0 0 0 5 0z" />}
+              {i === 2 && <path d="M4 9h13l-3-3M20 15H7l3 3M12 2v2M12 20v2" />}
+            </svg>
+            <h3>{p.t}</h3>
+            <p>{p.b}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. How it works -->
+  <section class="section aig-how" id="how-it-works">
+    <div class="container aig-how-grid">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow"><span class="dot"></span>How it works</span>
+          <h2>Six steps from "what is it?" to "approved and in hand".</h2>
+          <p class="lede">Every AI system follows the same guided path. XGRC® works out where each system stands from the records you already have.</p>
+        </div>
+        <ol class="steps">
+          {steps.map((s, i) => (
+            <li><span class="sn">{i + 1}</span><div><h3>{s.t}</h3><p>{s.b}</p></div></li>
+          ))}
+        </ol>
+      </div>
+      <div class="aig-how-visual">
+        <ProductFrame active="dashboard" compact title="Govern This AI System" label="Illustration of the Govern This AI System six-step progress view">
+          <div class="ill-gov">
+            <div class="ill-sys"><span class="ill-ref">AIS-0014</span><b>Customer Support Assistant</b><span class="ill-pill">Limited risk · Deployer</span></div>
+            <div class="ill-prog"><span>Governance progress</span><b>58%</b></div>
+            <div class="ill-progbar"><i style="width:58%"></i></div>
+            <ol class="ill-steps">
+              <li class="done"><i>✓</i><div><b>About the system</b><span>From the AI register</span></div></li>
+              <li class="done"><i>✓</i><div><b>What it is</b><span>Limited risk, deployer · approved and locked</span></div></li>
+              <li class="done"><i>✓</i><div><b>What applies</b><span>2 of 32 EU AI Act requirements · POPIA scoped</span></div></li>
+              <li class="now"><i>4</i><div><b>Where we stand</b><span>9 met · 3 partly met · 1 not met</span></div></li>
+              <li><i>5</i><div><b>What to do</b><span>4 owned actions</span></div></li>
+              <li><i>6</i><div><b>Approvals</b><span>Awaiting compliance sign-off</span></div></li>
+            </ol>
+          </div>
+        </ProductFrame>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3b. Interactive classifier -->
+  <section class="section aig-classify" id="classify">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Try it</span>
+        <h2>Is your AI system high risk? Find out in five questions.</h2>
+        <p class="lede">A simplified version of how XGRC® classifies an AI system under the EU AI Act. Answer for one system and see the indicative tier and the obligations it brings.</p>
+      </div>
+      <AiActClassifier />
+    </div>
+  </section>
+
+  <!-- 4. Proof points -->
+  <section class="section aig-proof">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Why it works</span>
+        <h2>Governance that runs itself, with people in charge.</h2>
+      </div>
+      <div class="proof-grid">
+        {proof.map((p) => <div class="proof"><h3>{p.t}</h3><p>{p.b}</p></div>)}
+      </div>
+      <div class="proof-visuals">
+        <ProductFrame active="classification" compact title="AI Act Classification · AIC-0007" label="Illustration of an approved EU AI Act classification result with tier, role and generated obligations">
+          <div class="ill-cls">
+            <div class="ill-cls-h"><b>Customer Support Assistant</b><span class="ill-lockd">Approved · v2 · locked</span></div>
+            <div class="ill-kv"><span>Tier</span><b class="c">Limited risk</b></div>
+            <div class="ill-kv"><span>Role</span><b>Deployer</b></div>
+            <div class="ill-kv"><span>Rights impact assessment (Art. 27)</span><b>Not required</b></div>
+            <div class="ill-kv"><span>Question set</span><b>2026.10 · 18 of 18 answered</b></div>
+            <div class="ill-ph">Generated obligations</div>
+            <ul class="ill-list"><li>Transparency to users <em>Art. 50</em></li><li>AI literacy for operators <em>Art. 4</em></li></ul>
+          </div>
+        </ProductFrame>
+        <ProductFrame active="change" compact title="Change Governance · Rule Set" label="Illustration of Change Governance rules turning a change into dated reviews">
+          <div class="ill-chg">
+            <div class="ill-chg-rec"><span class="ill-ref">Change</span><b>Assistant can now issue refunds</b><span class="ill-pill amb">New capability · significant</span></div>
+            <div class="ill-ph">Reviews triggered by rule</div>
+            <ul class="ill-rev">
+              <li><b>Legal re-classification</b><span>AI Act Classification</span><em>Due in 7 days</em></li>
+              <li><b>Impact reassessment</b><span>Impact Assessment</span><em>Due in 21 days</em></li>
+            </ul>
+            <p class="ill-foot">39 editable rules · a person decides every outcome</p>
+          </div>
+        </ProductFrame>
+      </div>
+      <div class="aig-actions center"><a class="btn btn-primary" href="/demo/">Book an AI Governance demo</a></div>
+    </div>
+  </section>
+
+  <!-- 5. Capability grid -->
+  <section class="section aig-caps">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Capabilities</span>
+        <h2>Everything AI governance software needs, in one module.</h2>
+      </div>
+      <div class="caps">
+        {capabilities.map((c) => (
+          <div class="cap"><h3>{c.h}</h3><ul>{c.items.map((i) => <li>{i}</li>)}</ul></div>
+        ))}
+      </div>
+      <p class="caps-note">Connect your AI register, monitoring tools and AI agents so XGRC® stays in step automatically. Connections are configured per source.</p>
+      <div class="fw">
+        <span class="fw-h">Starter content included</span>
+        {frameworks.map((f) => <span class="fw-i"><b>{f.n}</b>{f.r}</span>)}
+        <span class="fw-i"><b>Your AI policy</b>map it alongside</span>
       </div>
     </div>
   </section>
 
   <TourStrip
     items={tourDashboards.filter((d) => d.solution === 'ai-governance')}
-    heading="See AI governance running."
-    lede="A live demonstration dashboard: EU AI Act classification, ISO/IEC 42001 controls and evidence, and the gaps between systems. Every figure is fictitious."
+    eyebrow="Explore it live"
+    heading="See an AI governance dashboard running."
+    lede="An interactive demonstration dashboard with fictitious data: EU AI Act classification, ISO/IEC 42001 controls and the gaps between systems. Filter it, open any KPI and export a board pack."
   />
 
-  <!-- ── Who this is for ──────────────────────────────────── -->
-  <section class="section--tight">
+  <!-- 6. Built into XGRC -->
+  <section class="section--tight aig-built">
+    <div class="container">
+      <div class="built">
+        <div>
+          <span class="eyebrow"><span class="dot"></span>For XGRC® clients</span>
+          <h2>Already on XGRC? Add AI Governance.</h2>
+          <p class="lede">AI Governance uses the same platform, users, business units, Document Manager and approval flows you already run. It works alongside XGRC® <a href="/erm/">Risk</a>, <a href="/use-cases/incident-management/">Incident</a> and <a href="/compliance-hub/">Compliance</a>, so AI is governed like everything else in your business. No new system to buy, host or train on.</p>
+        </div>
+        <a class="btn btn-primary" href="/contact/">Talk to us about adding AI Governance</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Resource -->
+  <section class="section--tight aig-resource">
+    <div class="container">
+      <div class="res">
+        <div>
+          <span class="eyebrow"><span class="dot"></span>Free checklist</span>
+          <h2>Where do you stand on the EU AI Act?</h2>
+          <p class="lede">One checklist covering what ISO/IEC 42001 and the EU AI Act actually require: classification and role, management system essentials, Statement of Applicability, impact, controls, oversight, incidents and change.</p>
+          <p class="res-links">New to the standard? Read <a href="/insights/what-is-iso-42001/">what ISO/IEC 42001 is</a>, or see <a href="/use-cases/ai-governance-readiness/">the eight steps to AI governance readiness</a>.</p>
+        </div>
+        <a class="btn btn-ghost" href="/use-cases/ai-governance-readiness/#resource">Download the AI Governance Readiness Checklist</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Closing + FAQ -->
+  <section class="section aig-faq">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Who this is for</span>
-        <h2>If any of this is true, AI Governance applies to you.</h2>
-        <p class="lede">A lot of organisations assume AI regulation is only for the companies building foundation models. It reaches much further than that.</p>
+        <span class="eyebrow"><span class="dot"></span>Questions</span>
+        <h2>AI governance questions, answered.</h2>
       </div>
-      <div class="grid cols-2">
-        {whoFor.map((w) => (
-          <div class="card who-card">
-            <span class="tag">{w.tag}</span>
-            <h3>{w.title}</h3>
-            <p>{w.body}</p>
-          </div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- ── The two laws ─────────────────────────────────────── -->
-  <section class="section--tight">
+  <section class="section aig-close" id="contact">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Two laws, one answer</span>
-        <h2>The suite has to answer both.</h2>
-        <p class="lede">Some modules look at the company. Others look at one AI system at a time. That split is deliberate — it mirrors how the law itself is structured.</p>
-      </div>
-      <div class="grid cols-2">
-        {laws.map((l) => (
-          <div class="card law-card">
-            <span class="tag">{l.tag}</span>
-            <h3>{l.title}</h3>
-            <p>{l.body}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ── The dividing line ────────────────────────────────── -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>The dividing line</span>
-        <h2>Two questions. Two systems. Never duplicated.</h2>
-      </div>
-      <div class="grid cols-2">
-        <div class="card divide-card">
-          <span class="tag">The AI register</span>
-          <h3>"What AI exists?"</h3>
-          <p>A separate application — the AI register — holds the technical facts: what AI you run, which models, which provider, what data each one can reach.</p>
-        </div>
-        <div class="card divide-card divide-card--xgrc">
-          <span class="tag">XGRC</span>
-          <h3>"Is it properly governed?"</h3>
-          <p>Assessed, risk-managed, controlled, monitored, approved, and provable. XGRC never duplicates the register — it attaches governance to it.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── The eleven modules (accordion) ───────────────────── -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>How the AI suite works</span>
-        <h2>Eleven modules. Plain language. No technical detail.</h2>
-        <p class="lede">What each one is for, and the steps someone actually goes through to use it.</p>
-      </div>
-      <div class="module-list">
-        {modules.map((m) => (
-          <details class="module-item" id={`m${m.num}`}>
-            <summary>
-              <span class="module-no">{String(m.num).padStart(2, '0')}</span>
-              <span class="module-summary-text">
-                <span class="module-title-row">{m.title}</span>
-                <span class="module-tagline">{m.tagline}</span>
-              </span>
-            </summary>
-            <div class="module-body">
-              {m.body.map((p) => (<p class="lede">{p}</p>))}
-              <div class="module-steps-head">How it works</div>
-              <ol class="module-steps">
-                {m.steps.map((s) => (<li>{s}</li>))}
-              </ol>
-              {m.note && <p class="module-note">{m.note}</p>}
-            </div>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ── The chain ────────────────────────────────────────── -->
-  <section class="section--tight">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>End to end</span>
-        <h2>What the suite lets a client demonstrate.</h2>
-      </div>
-      <div class="chain-flow">
-        {chain.map((c, i) => (
-          <>
-            <span class="chain-chip">{c}</span>
-            {i < chain.length - 1 && <span class="chain-arrow" aria-hidden="true">&rarr;</span>}
-          </>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Dashboard showcase ───────────────────────────────── -->
-  <section class="section--tight">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>See it in action</span>
-        <h2>The whole estate, or one module, in one view.</h2>
-        <p class="lede">Estate-wide health across every AI system, the register they came from, and drill-down detail on a single KPI — all drawn live from the modules above.</p>
-      </div>
-      <div class="dash-tabs" id="aigDashTabs">
-        {dashboardViews.map((d, i) => (
-          <button class={`dash-tab ${i === 0 ? 'is-active' : ''}`} data-img={d.img} data-label={d.urlLabel}>{d.label}</button>
-        ))}
-      </div>
-      <div class="dash-frame">
-        <div class="dash-chrome">
-          <span class="dc-dot dc-red"></span>
-          <span class="dc-dot dc-yellow"></span>
-          <span class="dc-dot dc-green"></span>
-          <span class="dc-url" id="aigDashUrl">{dashboardViews[0].urlLabel}</span>
-        </div>
-        <div class="dash-screen">
-          <img id="aigDashImg" src={dashboardViews[0].img} alt="XGRC AI Governance dashboard" width="1900" height="1080" loading="lazy" />
-        </div>
-      </div>
-      <p class="dash-disclaimer">Illustrative demonstration data.</p>
-    </div>
-  </section>
-
-  <!-- ── Checklist callout ────────────────────────────────── -->
-  <section class="section--tight">
-    <div class="container">
-      <div class="card checklist-callout">
-        <span class="tag">Free download</span>
-        <h3>AI Governance Readiness Checklist</h3>
-        <p>ISO/IEC 42001 and EU AI Act, in one practical checklist — classification, compliance, impact assessment, controls, oversight, risk, incidents and change.</p>
-        <a href="/use-cases/ai-governance-readiness/#resource" class="link-arrow">Download the checklist &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FAQ ──────────────────────────────────────────────── -->
-  <section class="section--tight">
-    <div class="container">
-      <div class="faq-block">
-        <span class="eyebrow"><span class="dot"></span>Frequently asked</span>
-        <h2>Common questions.</h2>
-        <div class="faq-list">
-          {faqs.map((f) => (
-            <details class="faq-item">
-              <summary>{f.q}</summary>
-              <p>{f.a}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CTA ──────────────────────────────────────────────── -->
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="card cta">
-        <h2>See AI governance that attaches to your register, not around it.</h2>
-        <p class="lede">Book a demo to see EU AI Act classification, ISO/IEC 42001 compliance, impact assessment, risk, controls and oversight running as one connected system.</p>
-        <div class="cta-actions">
-          <a href="/demo" class="btn btn-primary">Request a live demo</a>
-          <a href="/solutions" class="btn btn-ghost">See all solutions</a>
-        </div>
-        <p class="contactline">{brand.email} &middot; {brand.phone}</p>
+      <div class="close-card">
+        <h2>Know your AI. Prove it is under control.</h2>
+        <p class="lede">See every AI system, its EU AI Act position and its evidence in one place, inside the platform you already trust.</p>
+        <a class="btn btn-primary" href="/demo/">Book an AI Governance demo</a>
       </div>
     </div>
   </section>
 </Base>
 
-<script>
-  const aigTabs = document.querySelectorAll('#aigDashTabs .dash-tab');
-  const aigImg = document.getElementById('aigDashImg');
-  const aigUrl = document.getElementById('aigDashUrl');
-  aigTabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      aigTabs.forEach((t) => t.classList.remove('is-active'));
-      tab.classList.add('is-active');
-      aigImg.classList.add('is-switching');
-      setTimeout(() => {
-        aigImg.src = tab.dataset.img;
-        aigImg.alt = tab.dataset.label;
-        aigUrl.textContent = tab.dataset.label;
-        aigImg.classList.remove('is-switching');
-      }, 220);
-    });
-  });
-</script>
-
 <style>
-  .aig-hero { padding: 130px 0 60px; }
-  .aig-hero h1 { margin: 14px 0 18px; }
-  .aig-hero .lede { max-width: 720px; }
-  .hero-actions { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+  .aig-hero { padding: clamp(40px, 7vw, 88px) 0 clamp(28px, 4vw, 48px); overflow: hidden; }
+  .aig-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+  .crumbs { display: flex; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--faint); margin-bottom: 18px; }
+  .crumbs a { color: var(--mute); text-decoration: none; } .crumbs a:hover { color: var(--cyan); }
+  .aig-hero h1 { margin: 18px 0 18px; font-size: clamp(2.3rem, 4.8vw, 3.9rem); text-wrap: balance; }
+  .aig-hero h1 em { font-style: normal; color: var(--cyan); }
+  .aig-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .aig-actions.center { justify-content: center; margin-top: 36px; }
+  .badges { list-style: none; margin: 26px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .badges li { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em; color: var(--ink); border: 1px solid var(--line-strong); border-radius: 7px; padding: 7px 11px; background: rgba(48,226,244,0.05); }
+  .aig-hero-visual { transform: perspective(1400px) rotateY(-6deg); transform-origin: left center; }
 
-  .crumbs { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-bottom: 22px; }
-  .crumbs a { color: var(--faint); text-decoration: none; }
-  .crumbs a:hover { color: var(--cyan); }
-  .crumbs b { color: var(--mute); font-weight: 500; }
+  /* illustrations (product palette comes from ProductFrame) */
+  .ill-title { font-family: var(--font-display); font-weight: 600; font-size: 15px; margin-bottom: 10px; color: #e9eef5; }
+  .ill-alert { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; border: 1px solid rgba(255,84,112,0.45); background: rgba(255,84,112,0.10); border-radius: 9px; padding: 8px 10px; font-size: 11px; color: #ffb3c0; margin-bottom: 12px; }
+  .ill-alert b { color: #ff8fa3; }
+  .ill-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
+  .ill-tiles div { border: 1px solid rgba(255,255,255,0.08); border-radius: 9px; background: #1b2636; padding: 9px 10px; display: grid; gap: 2px; }
+  .ill-tiles b { font-family: var(--font-display); font-size: 20px; color: #e9eef5; line-height: 1.1; }
+  .ill-tiles span { font-size: 10px; color: #9aa8ba; }
+  .ill-tiles .amb b { color: #ffc96b; } .ill-tiles .red b { color: #ff8fa3; }
+  .ill-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 8px; }
+  .ill-panel { border: 1px solid rgba(255,255,255,0.08); border-radius: 9px; background: #1b2636; padding: 10px; }
+  .ill-ph { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: #9aa8ba; margin: 0 0 8px; font-family: var(--font-mono); }
+  .ill-health { display: flex; height: 12px; border-radius: 6px; overflow: hidden; gap: 2px; }
+  .ill-health i, .ill-legend i, .ill-bars i { display: block; }
+  .r { background: #ff5470; } .a { background: #ffb648; } .g { background: #2fe88a; } .c { background: #45b7ae; } .m { background: #5b6b80; }
+  .ill-legend { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; font-size: 10px; color: #9aa8ba; }
+  .ill-legend i { width: 8px; height: 8px; border-radius: 2px; display: inline-block; margin-right: 4px; }
+  .ill-bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; }
+  .ill-bars li { display: grid; grid-template-columns: 76px minmax(0, 1fr) 16px; gap: 6px; align-items: center; font-size: 10px; color: #c9d3df; }
+  .ill-bars i { height: 7px; border-radius: 4px; width: calc(var(--w) * 2.4); max-width: 100%; }
+  .ill-bars b { text-align: right; font-weight: 600; }
 
-  .law-card p { color: var(--mute); }
-  .who-card p { color: var(--mute); }
-  .divide-card p { color: var(--mute); }
-  .divide-card--xgrc { border-color: rgba(48,226,244,0.3); background: rgba(48,226,244,0.03); }
-  .divide-card--xgrc .tag { color: var(--cyan); }
+  .ill-sys { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-bottom: 12px; }
+  .ill-ref { font-family: var(--font-mono); font-size: 10px; color: #9aa8ba; }
+  .ill-sys b, .ill-cls-h b, .ill-chg-rec b { font-family: var(--font-display); font-size: 14px; color: #e9eef5; }
+  .ill-pill { font-size: 10px; padding: 3px 8px; border-radius: 100px; background: rgba(69,183,174,0.16); color: #7fd8d0; }
+  .ill-pill.amb { background: rgba(255,182,72,0.16); color: #ffd18a; }
+  .ill-prog { display: flex; justify-content: space-between; font-size: 11px; color: #9aa8ba; }
+  .ill-prog b { color: #7fd8d0; }
+  .ill-progbar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; margin: 6px 0 12px; }
+  .ill-progbar i { display: block; height: 100%; background: #45b7ae; }
+  .ill-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
+  .ill-steps li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 9px; align-items: start; padding: 7px 8px; border-radius: 8px; background: #1b2636; border: 1px solid rgba(255,255,255,0.06); }
+  .ill-steps li i { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 10.5px; font-weight: 700; background: rgba(255,255,255,0.08); color: #9aa8ba; }
+  .ill-steps li.done i { background: #2fe88a; color: #06231a; }
+  .ill-steps li.now { border-color: rgba(69,183,174,0.6); }
+  .ill-steps li.now i { background: #45b7ae; color: #06231a; }
+  .ill-steps b { display: block; font-size: 11.5px; color: #e9eef5; }
+  .ill-steps span { font-size: 10px; color: #9aa8ba; }
 
-  /* ── Module accordion ─────────────────────────────────── */
-  .module-list { display: flex; flex-direction: column; gap: 12px; }
-  .module-item {
-    border: 1px solid var(--line);
-    border-radius: var(--radius-md);
-    background: var(--panel);
-    padding: 20px 22px;
-    scroll-margin-top: 100px;
-  }
-  .module-item[open] { border-color: var(--line-strong); }
-  .module-item summary {
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-  }
-  .module-item summary::-webkit-details-marker { display: none; }
-  .module-no {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--cyan);
-    border: 1px solid rgba(48,226,244,0.3);
-    border-radius: 6px;
-    padding: 4px 8px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .module-summary-text { flex: 1; display: flex; flex-direction: column; gap: 4px; }
-  .module-title-row { font-weight: 600; color: var(--ink); font-size: 1.02rem; }
-  .module-tagline { color: var(--mute); font-size: 0.92rem; }
-  .module-item summary::after {
-    content: '+';
-    font-family: var(--font-mono);
-    color: var(--cyan);
-    font-size: 1.3rem;
-    flex-shrink: 0;
-    transition: transform 0.2s;
-    margin-left: auto;
-  }
-  .module-item[open] summary::after { transform: rotate(45deg); }
-  .module-body { padding: 20px 0 4px 52px; }
-  .module-body .lede { color: var(--mute); font-size: 0.95rem; margin-bottom: 14px; }
-  .module-steps-head {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--faint);
-    margin: 18px 0 10px;
-  }
-  .module-steps { padding-left: 22px; display: flex; flex-direction: column; gap: 8px; }
-  .module-steps li { color: var(--mute); font-size: 0.92rem; line-height: 1.55; padding-left: 4px; }
-  .module-steps li::marker { color: var(--cyan); font-family: var(--font-mono); font-size: 0.85em; }
-  .module-note {
-    margin-top: 16px;
-    padding: 14px 16px;
-    border-left: 2px solid var(--cyan);
-    background: rgba(48,226,244,0.04);
-    color: var(--mute);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    border-radius: 0 8px 8px 0;
-  }
-  @media (max-width: 640px) {
-    .module-body { padding-left: 0; }
-  }
+  .ill-cls-h, .ill-chg-rec { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin-bottom: 12px; }
+  .ill-lockd { font-size: 10px; padding: 3px 8px; border-radius: 5px; border: 1px solid rgba(47,232,138,0.45); color: #7ef0b0; }
+  .ill-kv { display: flex; justify-content: space-between; gap: 10px; font-size: 11px; color: #9aa8ba; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .ill-kv b { color: #e9eef5; font-weight: 600; text-align: right; } .ill-kv b.c { color: #7fd8d0; background: none; }
+  .ill-cls .ill-ph { margin-top: 12px; }
+  .ill-list, .ill-rev { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .ill-list li { font-size: 11px; color: #e9eef5; display: flex; justify-content: space-between; background: #1b2636; border-radius: 7px; padding: 7px 9px; }
+  .ill-list em, .ill-rev em { font-style: normal; font-family: var(--font-mono); font-size: 10px; color: #7fd8d0; }
+  .ill-rev li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; background: #1b2636; border-radius: 7px; padding: 8px 10px; }
+  .ill-rev b { font-size: 11.5px; color: #e9eef5; } .ill-rev span { grid-column: 1; font-size: 10px; color: #9aa8ba; } .ill-rev em { grid-row: 1 / span 2; grid-column: 2; align-self: center; color: #ffd18a; }
+  .ill-foot { margin: 10px 0 0; font-size: 10px; color: #9aa8ba; }
 
-  /* ── Chain flow ────────────────────────────────────────── */
-  .chain-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 4px; }
-  .chain-chip {
-    font-size: 0.88rem;
-    color: var(--mute);
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 100px;
-    padding: 8px 16px;
-    white-space: nowrap;
-  }
-  .chain-arrow { color: var(--faint); font-size: 0.9rem; }
+  .aig-define { padding-top: 0; }
+  .define { font-size: clamp(1.02rem, 1.5vw, 1.2rem); color: var(--ink); max-width: 76ch; line-height: 1.65; border-left: 2px solid var(--cyan); padding-left: 18px; }
+  .define strong { color: var(--cyan-hi); }
+  .facts { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+  .facts li { border: 1px solid var(--line); border-radius: var(--radius-md); padding: 16px; background: var(--panel); display: grid; gap: 4px; }
+  .facts b { font-family: var(--font-display); font-weight: 800; font-size: 2rem; color: var(--green); line-height: 1; }
+  .facts span { font-size: 0.85rem; color: var(--mute); line-height: 1.4; }
 
-  /* ── Dashboard showcase ────────────────────────────────── */
-  .dash-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-  .dash-tab {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 100px;
-    color: var(--mute);
-    font-size: 13px;
-    font-weight: 500;
-    padding: 9px 20px;
-    cursor: pointer;
-    transition: 0.2s;
-    font-family: var(--font-body);
-  }
-  .dash-tab:hover { color: var(--ink); border-color: var(--line-strong); }
-  .dash-tab.is-active { background: rgba(48,226,244,0.08); border-color: rgba(48,226,244,0.4); color: var(--cyan); }
-  .dash-frame {
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(48,226,244,0.15);
-    box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
-  }
-  .dash-chrome {
-    background: rgba(8,16,32,0.98);
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    border-bottom: 1px solid rgba(48,226,244,0.08);
-  }
-  .dc-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-  .dc-red    { background: #ff5f57; }
-  .dc-yellow { background: #febc2e; }
-  .dc-green  { background: #28c840; }
-  .dc-url {
-    flex: 1;
-    margin-left: 12px;
-    background: rgba(6,15,28,0.7);
-    border: 1px solid rgba(48,226,244,0.08);
-    border-radius: 5px;
-    padding: 5px 12px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--faint);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .dash-screen { line-height: 0; }
-  .dash-screen img {
-    display: block;
-    width: 100%;
-    height: auto;
-    transition: opacity 0.25s ease;
-  }
-  .dash-screen img.is-switching { opacity: 0; }
-  .dash-disclaimer { font-family: var(--font-mono); font-size: 11px; color: var(--faint); margin-top: 10px; }
+  .pains { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .pain { border-top: 1px solid var(--line-strong); padding-top: 20px; }
+  .pain svg { width: 30px; height: 30px; color: var(--cyan); margin-bottom: 12px; }
+  .pain h3 { font-size: 1.15rem; margin-bottom: 8px; }
+  .pain p { color: var(--mute); font-size: 0.95rem; }
 
-  /* ── Checklist callout ─────────────────────────────────── */
-  .checklist-callout { display: flex; flex-direction: column; gap: 8px; padding: 28px 32px; }
-  .checklist-callout .tag { margin-bottom: 2px; }
-  .checklist-callout h3 { margin: 0; }
-  .checklist-callout p { color: var(--mute); margin: 0 0 6px; }
+  .aig-how-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; counter-reset: s; }
+  .steps li { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 14px; align-items: start; }
+  .sn { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; color: var(--void); background: var(--cyan); }
+  .steps h3 { font-size: 1.05rem; margin: 6px 0 4px; }
+  .steps p { color: var(--mute); font-size: 0.93rem; }
 
-  /* ── FAQ ───────────────────────────────────────────────── */
-  .faq-block .eyebrow { margin-bottom: 12px; }
-  .faq-block h2 { margin-bottom: 16px; }
+  .proof-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
+  .proof { grid-column: span 2; }
+  .proof:nth-child(4), .proof:nth-child(5) { grid-column: span 3; }
+  .proof { border: 1px solid var(--line); background: var(--panel); border-radius: var(--radius-lg); padding: clamp(20px, 2.6vw, 28px); }
+  .proof h3 { font-size: 1.12rem; margin-bottom: 10px; }
+  .proof p { color: var(--mute); font-size: 0.93rem; }
+  .proof-visuals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 36px; }
 
-  /* ── CTA (shared pattern) ──────────────────────────────── */
-  .cta { text-align: center; padding: clamp(36px, 6vw, 64px); background: linear-gradient(160deg, rgba(47,232,138,0.07), rgba(48,226,244,0.03)); border-color: var(--line-strong); }
-  .cta h2 { margin-bottom: 14px; max-width: 620px; margin-left: auto; margin-right: auto; }
-  .cta .lede { margin: 0 auto 26px; max-width: 540px; }
-  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-  .contactline { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
+  .caps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .cap { border: 1px solid var(--line); border-radius: var(--radius-lg); padding: clamp(20px, 2.6vw, 28px); background: var(--panel); }
+  .cap h3 { font-size: 1.05rem; color: var(--cyan); font-family: var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+  .cap ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .cap li { padding-left: 18px; position: relative; color: var(--ink); }
+  .cap li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 8px; height: 8px; border-radius: 2px; background: var(--green); }
+  .caps-note { margin-top: 18px; color: var(--mute); font-size: 0.95rem; }
+  .fw { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .fw-h { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); margin-right: 6px; }
+  .fw-i { display: inline-flex; gap: 8px; align-items: baseline; font-size: 0.85rem; color: var(--mute); border: 1px solid var(--line); border-radius: 100px; padding: 6px 12px; }
+  .fw-i b { color: var(--ink); font-weight: 600; }
+
+  .built, .res { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; border-radius: var(--radius-lg); padding: clamp(24px, 4vw, 40px); }
+  .built { border: 1px solid rgba(47,232,138,0.35); background: linear-gradient(135deg, rgba(47,232,138,0.08), rgba(48,226,244,0.04)); }
+  .res { border: 1px solid var(--line-strong); background: var(--panel); }
+  .built > div, .res > div { max-width: 62ch; }
+  .built h2, .res h2 { margin: 14px 0 10px; font-size: clamp(1.6rem, 3vw, 2.2rem); }
+  .built a:not(.btn), .res-links a { color: var(--cyan); }
+  .res-links { margin-top: 12px; color: var(--mute); font-size: 0.93rem; }
+  .built .btn, .res .btn { white-space: normal; text-align: center; justify-content: center; max-width: 100%; }
+
+  .faq-list { display: grid; gap: 10px; max-width: 900px; }
+  .faq-item { border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--panel); padding: 0 20px; }
+  .faq-item summary { cursor: pointer; padding: 18px 0; font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; list-style: none; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; float: right; color: var(--cyan); }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p { padding: 0 0 18px; color: var(--mute); }
+
+  .close-card { text-align: center; border: 1px solid var(--line-strong); border-radius: var(--radius-lg); padding: clamp(32px, 6vw, 64px) clamp(20px, 4vw, 40px); background: radial-gradient(60% 100% at 50% 0%, rgba(48,226,244,0.10), transparent 70%), var(--panel); }
+  .close-card h2 { font-size: clamp(1.9rem, 4vw, 3rem); margin-bottom: 14px; }
+  .close-card .lede { margin: 0 auto 26px; }
+
+  @media (max-width: 1060px) {
+    .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .proof, .proof:nth-child(4) { grid-column: span 1; }
+    .proof:nth-child(5) { grid-column: span 2; }
+  }
+  @media (max-width: 900px) {
+    .aig-hero-grid, .aig-how-grid { grid-template-columns: minmax(0, 1fr); }
+    .aig-hero-visual { transform: none; }
+    .pains, .caps, .proof-visuals { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .proof-grid { grid-template-columns: minmax(0, 1fr); }
+    .proof, .proof:nth-child(4), .proof:nth-child(5) { grid-column: auto; }
+    .ill-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ill-row { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) { .aig-hero-visual { transform: none; } }
 </style>
