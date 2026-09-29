@@ -1,0 +1,12 @@
+---
+// Draft comparisons for review: /preview/compare/<slug>/ (noindex, unlinked, not in the sitemap)
+import ComparisonLayout from '../../../layouts/ComparisonLayout.astro';
+import { draftComparisons } from '../../../data/comparisons.js';
+
+export function getStaticPaths() {
+  return draftComparisons.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+<ComparisonLayout entry={entry} preview={true} />

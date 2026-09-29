@@ -1,0 +1,158 @@
+---
+// Reusable "XGRC® vs <competitor>" page (SEO Fix Spec T12, T16).
+// Data: src/data/comparisons.js. Unconfirmed facts are written as
+// "[CONFIRM: ...]" and highlighted here so they are easy to find in review.
+import Base from './Base.astro';
+
+const { entry, preview = false } = Astro.props;
+const { slug, competitor, title, metaDescription, h1, intro, suits, features, sections, faqs, lastReviewed } = entry;
+const path = preview ? `/preview/compare/${slug}/` : `/compare/${slug}/`;
+
+// Split text so [CONFIRM ...] placeholders render highlighted
+const parts = (text) => String(text).split(/(\[CONFIRM[^\]]*\])/g).filter(Boolean)
+  .map((t) => ({ t, confirm: t.startsWith('[CONFIRM') }));
+
+const reviewed = new Date(lastReviewed).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xgrcsoftware.com/' },
+        { '@type': 'ListItem', position: 2, name: `XGRC® vs ${competitor}`, item: `https://xgrcsoftware.com${path}` },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    },
+  ],
+};
+---
+<Base title={title} description={metaDescription} noindex={preview}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  {preview && (
+    <div class="draft-banner" role="note">
+      Draft for review. Not linked, not indexed and not in the sitemap. Highlighted <mark>[CONFIRM]</mark> items need confirming before this page is published.
+    </div>
+  )}
+
+  <section class="page-head">
+    <div class="container narrow">
+      <span class="eyebrow"><span class="dot"></span>Comparison</span>
+      <h1>{h1}</h1>
+      <p class="lede">{intro}</p>
+      <p class="meta">Last reviewed {reviewed}</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Who each suits</span>
+        <h2>Which one fits your organisation?</h2>
+      </div>
+      <div class="grid cols-2">
+        <div class="card suit suit--xgrc">
+          <h3>XGRC® suits</h3>
+          <ul>{suits.xgrc.map((s) => <li>{parts(s).map((p) => p.confirm ? <mark>{p.t}</mark> : p.t)}</li>)}</ul>
+        </div>
+        <div class="card suit">
+          <h3>{competitor} suits</h3>
+          <ul>{suits.competitor.map((s) => <li>{parts(s).map((p) => p.confirm ? <mark>{p.t}</mark> : p.t)}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Features</span>
+        <h2>Feature comparison.</h2>
+      </div>
+      <div class="cmp-table" role="table" aria-label={`XGRC® and ${competitor} feature comparison`}>
+        <div class="cmp-row cmp-row--head" role="row">
+          <span role="columnheader">Capability</span><span role="columnheader">XGRC®</span><span role="columnheader">{competitor}</span>
+        </div>
+        {features.map((f) => (
+          <div class="cmp-row" role="row">
+            <span role="rowheader">{f.feature}</span>
+            <span role="cell"><b class="cmp-mob">XGRC®: </b>{parts(f.xgrc).map((p) => p.confirm ? <mark>{p.t}</mark> : p.t)}</span>
+            <span role="cell"><b class="cmp-mob">{competitor}: </b>{parts(f.competitor).map((p) => p.confirm ? <mark>{p.t}</mark> : p.t)}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {sections.map((sec) => (
+    <section class="section--tight">
+      <div class="container">
+        <h2 class="sec-h">{sec.heading}</h2>
+        <div class="grid cols-2">
+          <div class="card detail"><h3>XGRC®</h3><p>{parts(sec.xgrc).map((p) => p.confirm ? <mark>{p.t}</mark> : p.t)}</p></div>
+          <div class="card detail"><h3>{competitor}</h3><p>{parts(sec.competitor).map((p) => p.confirm ? <mark>{p.t}</mark> : p.t)}</p></div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section--tight">
+    <div class="container narrow">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Frequently asked</span>
+        <h2>Common questions.</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="card cta-band">
+        <h2>See XGRC® with your own processes.</h2>
+        <p class="lede">The fastest way to compare is to see it. We will walk you through XGRC® using your sites, standards and obligations.</p>
+        <a href="/demo/" class="btn btn-primary">Book a demo</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .draft-banner { position: sticky; top: 74px; z-index: 20; background: #3a2d05; color: #ffe8a3; border-bottom: 1px solid #806516; padding: 10px 16px; text-align: center; font-size: 0.9rem; }
+  mark { background: rgba(255, 196, 0, 0.18); color: #ffd966; border-radius: 4px; padding: 0 3px; }
+  .page-head { padding: 130px 0 0; }
+  .page-head h1 { margin: 8px 0 16px; }
+  .narrow { max-width: 860px; }
+  .meta { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 14px; }
+  .suit h3, .detail h3 { font-size: 1.05rem; margin: 0 0 12px; }
+  .suit ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; color: var(--mute); font-size: 0.94rem; line-height: 1.6; }
+  .suit--xgrc { border-color: var(--line-strong); }
+  .detail p { color: var(--mute); font-size: 0.94rem; line-height: 1.65; margin: 0; }
+  .sec-h { font-size: clamp(1.4rem, 2.6vw, 1.9rem); margin-bottom: 18px; }
+  .cmp-table { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .cmp-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 16px; padding: 13px 18px; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--mute); line-height: 1.5; }
+  .cmp-row:first-child { border-top: none; }
+  .cmp-row span:first-child { color: var(--ink); font-weight: 500; }
+  .cmp-row--head { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(255, 255, 255, 0.03); }
+  .cmp-row--head span, .cmp-row--head span:first-child { color: var(--faint); font-weight: 400; }
+  .cmp-mob { display: none; color: var(--faint); font-weight: 400; }
+  .cta-band { text-align: center; padding: clamp(40px, 6vw, 64px); background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(0,92,169,0.05)); border-color: var(--line-strong); }
+  .cta-band .lede { margin: 0 auto 26px; }
+  @media (max-width: 760px) {
+    .cmp-row { grid-template-columns: 1fr; gap: 4px; }
+    .cmp-row--head { display: none; }
+    .cmp-mob { display: inline; }
+  }
+</style>

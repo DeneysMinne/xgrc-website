@@ -114,11 +114,157 @@ All added to `deploy/nginx/redirects.conf` as single-hop 301s:
 - `/tag/*` has no pages and no redirects, so after T1 it returns 404. `/category/*` and `/author/*` 301 to `/insights/` (see T2). There are no paginated archive pages on the new site.
 - `/login/` is the only noindex page, and that is intentional.
 
+## Priority 2 decisions (Deneys, 29 Sept 2026)
+
+GSC (27 Jun to 26 Sep 2026) showed three places where the page that actually ranks differs from the spec's table. Deneys chose to follow the data:
+
+- **"SHEQ management system(s)" and "SHEQ systems"** stay with the SHEQ guide (`/insights/what-is-sheq-software-complete-guide/`, position 9 to 15). `/sheq-software-south-africa/` (position 51 for these terms) now targets "SHEQ software South Africa" and links to the guide. The old post `/2018/01/31/is-an-integrated-sheq-management-system-necessary/` now redirects to the guide instead of `/sheqx/`.
+- **"Environmental obligations software"** is strengthened on the insights article that ranks for it (`/insights/environmental-compliance-software-for-regulatory-management/`, position 10), not on `/envirx/` or `/libryo/`, which don't rank.
+- **"Mining ESG compliance Africa"**: the old post `/2025/04/15/esg-compliance-in-south-africas-mining-and-energy-sectors/` (189 impressions, position 8.8) now redirects to `/mining-esg-compliance-software-africa/` instead of `/esg/`.
+
+### T9 homepage
+- Title, meta description, H1 and eyebrow are exactly as specified.
+- A product line with links (SHEQX®, ERM, ENVIRX®, MSX®, MSXCyber®, Compliance Hub, MAIA®) sits under the hero text. MSXCYBER is written the way the site names it: MSXCyber®.
+- The hero caption now counts the tour dashboards from the data. It used to say "seven"; there are eight.
+
+### T10 /erm/
+- The title and H1 are as specified. The title is 61 characters, one over the limit, as written in the spec.
+- **The meta description says "King V" where the spec says "King IV".** King V has replaced King IV, and the rest of the site already uses King V. This is for Deneys to confirm.
+- New sections: risk register software, the framework mapping (ISO 31000, COSO ERM, King V) and board and audit committee reporting.
+- Customer outcome: TN Ceramics, a 40% reduction in high-priority enterprise risks. The figure comes from the published case study PDF, which lists ERM among the solutions TN Ceramics deployed.
+- The three FAQs are added, with links, and the FAQPage schema includes them.
+- `/insights/erp-vs-erm/` and `/insights/erm-software-vs-traditional-risk-tools/` now both link to `/erm/` with the anchor "ERM software". The second article used to credit MSX® with ERM, which is fixed. It is also only 261 words, so it is worth expanding later.
+- Product pages can now carry optional `h1`, `sections`, `outcome`, FAQ `link`, `learnLink` and `loginLink` fields (`src/pages/[slug].astro`).
+
+### T11 pages close to page 1
+- Each target page has its query in the title or H1, in the first 100 words where that was missing, and in the meta description. Each has a FAQ answering the query, and at least 2 internal links from related pages.
+- **SHEQ guide:** new section "What is a SHEQ management system?". The definition is now a bullet list (it had em dashes). New title and meta description, and 2 new FAQs.
+- **Environmental insights article:** new section on environmental obligations software (NEMA, the NWA, AQA and Waste Act licences), 3 FAQs, a new title and meta description, and links to `/envirx/` and the South African landing page.
+- **Mining page:** "mining compliance software" is added to the lede and the meta description, with a new FAQ. The mine safety and Mining Indaba articles now link to it. "DMRE" is updated to the Department of Mineral and Petroleum Resources, which replaced it in 2024.
+- **SHEQ triangle:** `/sheqx/`, `/sheq-software-south-africa/` and the SHEQ guide each link to the other two.
+- Insights pages can now take `seoTitle` and `metaDescription` fields, so the search title can differ from the visible headline.
+
+### T12 comparison page
+- The template is `src/layouts/ComparisonLayout.astro` and the data is in `src/data/comparisons.js`.
+- `/compare/xgrc-vs-velocityehs/` is a **draft**. It builds only at `/preview/compare/xgrc-vs-velocityehs/` (noindex, unlinked, not in the sitemap), with every unconfirmed fact marked [CONFIRM] and highlighted.
+- Setting `draft: false` publishes it at `/compare/...`, adds it to the sitemap and links it from `/sheqx/` and `/grc-software/`.
+- The build fails if a published comparison still contains [CONFIRM].
+
+### T13 smaller fixes
+- **Login links:**
+  - The header shows "Log in to SHEQX®", and the mobile menu shows "Log in to SHEQX® or XGRC®".
+  - The footer shows "XGRC® login".
+  - `/sheqx/` has "Existing user? Log in to SHEQX®" under its hero buttons, and its meta description mentions logging in.
+- **Recommendation for Deneys:** `/login/` is noindex and blocked in robots.txt, so Google cannot show it for "sheqx login" (2,903 impressions) and sends people to `/sheqx/` instead. Making `/login/` indexable would put searchers one click from the login.
+- **Header layout:** the header now tightens between 1241px and 1440px and collapses to the menu at 1240px, so "Book a demo" is no longer cut off at 1280px.
+- **/maia/:** no "Test Company" appears anywhere on the current site. The query may come from the old site or the app store listing.
+- **Real company names in demo screenshots:**
+  - The MAIA screenshot showed Fraser Alexander, a real customer, as a "Critical" supplier with an expired COID. It now shows a fictional company, Kestrel Plant Co (`maia-dashboard-v2.webp`).
+  - The Compliance Hub screenshot showed Fraser Alexander, Unitrans, Murray & Roberts, Aveng Grinaker, Group Five, Bidvest Facilities and "Sandton Contractors" with compliance problems. These are replaced with fictional names (`compliance-hub-dashboard-v2.webp`).
+  - The other 8 product screenshots were checked and are clean.
+  - The old image files are kept (no media deleted) but are no longer linked.
+
 ## Duplicate titles and meta descriptions (T13)
 
-To be filled in during Priority 2.
+Checked on 29 Sept 2026 across all 136 indexable pages: **no duplicate titles and no duplicate meta descriptions.** Em dashes have been removed from every title and meta description; 24 pages had one.
+
+Titles over 60 characters or meta descriptions over 155, not yet shortened. Google truncates them in results but doesn't penalise them. They can be shortened in a later copy pass:
+
+| Page | Title length | Meta length |
+|---|---|---|
+| `/become-a-partner/` | 33 | 164 (over) |
+| `/erm/` | 61 (over) | 142 |
+| `/esg/` | 54 | 157 (over) |
+| `/insights/ai-governance-gap-enterprise-ai-risk/` | 70 (over) | 215 (over) |
+| `/insights/building-a-compliance-culture/` | 77 (over) | 143 |
+| `/insights/building-a-cyber-aware-culture-addressing-the-human-element-of-cyber-risk/` | 91 (over) | 167 (over) |
+| `/insights/can-your-organisation-prove-it-is-compliant-right-now/` | 71 (over) | 235 (over) |
+| `/insights/cultivating-a-risk-aware-culture-tackling-the-people-risk-in-enterprise-risk-management/` | 82 (over) | 175 (over) |
+| `/insights/digital-sheq-management/` | 90 (over) | 275 (over) |
+| `/insights/double-materiality-in-esg/` | 75 (over) | 190 (over) |
+| `/insights/enterprise-risk-management-vs-traditional-risk-management/` | 76 (over) | 185 (over) |
+| `/insights/environmental-risk-is-becoming-enterprise-risk/` | 66 (over) | 222 (over) |
+| `/insights/erm-software-vs-traditional-risk-tools/` | 85 (over) | 190 (over) |
+| `/insights/erm-vs-grc/` | 52 | 208 (over) |
+| `/insights/esg-reporting-is-evolving-why-spreadsheets-are-no-longer-enough/` | 81 (over) | 173 (over) |
+| `/insights/esg-reporting-is-no-longer-optional-its-strategic/` | 68 (over) | 184 (over) |
+| `/insights/extended-enterprise-risk-management/` | 61 (over) | 184 (over) |
+| `/insights/five-risk-management-process-steps/` | 55 | 199 (over) |
+| `/insights/from-compliance-to-zero-harm-transforming-mine-safety-digitally/` | 81 (over) | 170 (over) |
+| `/insights/future-of-compliance-strategic-business-asset/` | 69 (over) | 157 (over) |
+| `/insights/grc-vs-risk-management-software-why-the-difference-matters/` | 76 (over) | 183 (over) |
+| `/insights/how-proactive-compliance-reduces-business-risk/` | 63 (over) | 150 |
+| `/insights/how-to-consolidate-sheq-management-across-multiple-sites/` | 73 (over) | 219 (over) |
+| `/insights/how-xgrc-grc-solutions-support-mining-indaba-2026-objectives/` | 78 (over) | 150 |
+| `/insights/integrated-assurance-vs-internal-audit-software/` | 87 (over) | 160 (over) |
+| `/insights/integrated-management-system-software-for-modern-compliance/` | 76 (over) | 191 (over) |
+| `/insights/iso-31000-vs-coso-key-erm-framework-differences/` | 65 (over) | 189 (over) |
+| `/insights/mandatory-esg-reporting-in-southern-africa-how-companies-can-stay-ahead/` | 89 (over) | 192 (over) |
+| `/insights/navigating-esg-reporting/` | 62 (over) | 177 (over) |
+| `/insights/navigating-south-africas-ehs-regulations-why-digital-compliance-tools-are-essential/` | 102 (over) | 175 (over) |
+| `/insights/policy-management-vs-governance-execution/` | 92 (over) | 144 |
+| `/insights/preparing-your-organisation-for-iso-14001-2026/` | 63 (over) | 174 (over) |
+| `/insights/simplifying-esg-reporting-through-centralised-environmental-data/` | 81 (over) | 185 (over) |
+| `/insights/solving-compliance-fatigue-through-automation/` | 62 (over) | 182 (over) |
+| `/insights/strengthening-haccp-and-iso-22000-through-digital-food-safety-governance/` | 89 (over) | 169 (over) |
+| `/insights/supplier-compliance-software-vs-procurement-systems/` | 92 (over) | 173 (over) |
+| `/insights/the-cost-of-fragmented-compliance-why-visibility-matters-more-than-ever/` | 89 (over) | 144 |
+| `/insights/the-hidden-cost-of-cyber-incidents-for-ceos/` | 60 | 180 (over) |
+| `/insights/top-5-risk-control-strategies-for-chemical-plants-using-sheqx/` | 79 (over) | 176 (over) |
+| `/insights/what-is-enterprise-risk-management/` | 69 (over) | 190 (over) |
+| `/insights/what-is-governed-ai-for-grc/` | 45 | 183 (over) |
+| `/insights/what-is-grc-software/` | 61 (over) | 214 (over) |
+| `/insights/what-is-iso-42001/` | 77 (over) | 141 |
+| `/insights/what-is-sheq/` | 76 (over) | 200 (over) |
+| `/insights/why-ai-governance-is-becoming-a-competitive-advantage/` | 70 (over) | 159 (over) |
+| `/insights/why-compliance-is-becoming-a-competitive-advantage/` | 67 (over) | 150 |
+| `/insights/why-compliance-visibility-improves-executive-decision-making/` | 77 (over) | 149 |
+| `/insights/why-incident-reporting-is-critical-in-sheq-management/` | 70 (over) | 210 (over) |
+| `/insights/why-sheq-incidents-are-often-a-data-problem/` | 60 | 166 (over) |
+| `/legal/acceptable-use-policy/` | 38 | 198 (over) |
+| `/legal/data-processing-addendum/` | 41 | 199 (over) |
+| `/legal/end-user-licence-agreement/` | 43 | 437 (over) |
+| `/legal/` | 26 | 177 (over) |
+| `/legal/paia-manual/` | 28 | 308 (over) |
+| `/legal/privacy-policy/` | 31 | 205 (over) |
+| `/legal/privacy-requests/` | 33 | 157 (over) |
+| `/legal/support-policy/` | 31 | 183 (over) |
+| `/strategix/` | 62 (over) | 164 (over) |
+| `/tour/` | 36 | 159 (over) |
+| `/trust/cybersecurity-data-protection-policy/` | 70 (over) | 154 |
+| `/trust/subprocessors/` | 49 | 168 (over) |
+| `/use-cases/action-management/` | 67 (over) | 227 (over) |
+| `/use-cases/ai-governance-readiness/` | 69 (over) | 171 (over) |
+| `/use-cases/compliance-management/` | 60 | 232 (over) |
+| `/use-cases/enterprise-risk-management/` | 62 (over) | 113 |
+| `/use-cases/environmental-compliance/` | 41 | 187 (over) |
+| `/use-cases/equipment-safety-inspection/` | 86 (over) | 157 (over) |
+| `/use-cases/esg-reporting/` | 30 | 192 (over) |
+| `/use-cases/fire-safety-inspection/` | 78 (over) | 123 |
+| `/use-cases/gdpr-compliance/` | 60 | 177 (over) |
+| `/use-cases/hazard-identification/` | 81 (over) | 165 (over) |
+| `/use-cases/incident-management/` | 46 | 186 (over) |
+| `/use-cases/integrated-assurance/` | 66 (over) | 215 (over) |
+| `/use-cases/internal-audit/` | 31 | 203 (over) |
+| `/use-cases/internal-controls/` | 67 (over) | 183 (over) |
+| `/use-cases/iso-14001-readiness/` | 79 (over) | 181 (over) |
+| `/use-cases/iso-27001-readiness/` | 66 (over) | 197 (over) |
+| `/use-cases/iso-31000-risk-management/` | 70 (over) | 188 (over) |
+| `/use-cases/iso-45001-readiness/` | 69 (over) | 167 (over) |
+| `/use-cases/iso-9001-readiness/` | 72 (over) | 174 (over) |
+| `/use-cases/paia-compliance/` | 67 (over) | 192 (over) |
+| `/use-cases/pas99-integrated-management-system/` | 58 | 165 (over) |
+| `/use-cases/policy-management/` | 64 (over) | 111 |
+| `/use-cases/popia-compliance/` | 61 (over) | 195 (over) |
+| `/use-cases/ppe-compliance/` | 74 (over) | 163 (over) |
+| `/use-cases/regulatory-compliance/` | 61 (over) | 141 |
+| `/use-cases/risk-management/` | 32 | 188 (over) |
+| `/use-cases/risk-register-template/` | 67 (over) | 176 (over) |
+| `/use-cases/safety-management/` | 44 | 175 (over) |
+| `/use-cases/vendor-management/` | 69 (over) | 198 (over) |
+| `/xrm/` | 41 | 156 (over) |
 
 ## Other findings
 
 - **Em dashes in existing copy.** The copy rule bans them, but 108 built pages still have 413 in body copy (mostly in `useCaseRegistry.js` and `articleContent.js`), and 24 pages have one in the title or meta description. The titles and meta descriptions are fixed in Priority 2 (T13). The body copy needs a separate rewrite, one sentence at a time. **Decided (Deneys, 29 Sept 2026):** a separate sweep after Priority 2, not part of these PRs.
-- At 1280px wide, the header's "Book a demo" button is cut off at the right edge. This is already the case on the live site and is not an SEO issue.
+- At 1280px wide, the header's "Book a demo" button was cut off at the right edge. Fixed in Priority 2 (see T13).

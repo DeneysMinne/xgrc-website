@@ -70,7 +70,7 @@ Most established organisations do. ERP keeps operations running on reliable data
 
 How XGRC® Fits
 
-<a href="/erm/">XGRC® Enterprise Risk Management</a> is ERM, not ERP. It provides a live risk register, risk appetite monitoring and assurance-aligned risk management, aligned to ISO 31000 and COSO, on one auditable platform. For the related question of how ERM differs from the broader governance model it sits within, see <a href="/insights/erm-vs-grc/">ERM vs GRC</a>.`,
+XGRC® Enterprise Risk Management is <a href="/erm/">ERM software</a>, not ERP. It provides a live risk register, risk appetite monitoring and assurance-aligned risk management, aligned to ISO 31000 and COSO, on one auditable platform. For the related question of how ERM differs from the broader governance model it sits within, see <a href="/insights/erm-vs-grc/">ERM vs GRC</a>.`,
 
 'what-is-enterprise-risk-management': `Every organisation carries risk. The question is whether it manages that risk in one connected view or in a scatter of disconnected registers, spreadsheets and departmental silos. Enterprise risk management is the discipline of doing the former: looking at risk across the whole organisation, as a portfolio, rather than one department or project at a time.
 
@@ -436,7 +436,7 @@ How SHEQX® Supports Multi-Site SHEQ
 
 <a href="/sheqx/">SHEQX®</a> by XGRC® Software manages the complete SHEQ lifecycle across every site and business unit on one platform, from hazard identification and incident capture through risk treatment, legal compliance, permits, inspections, audits and corrective actions. It consolidates SHEQ performance into real-time dashboards, so group SHEQ managers can see incidents, non-conformances and audit findings across the organisation from one place, while sites keep ownership of their own records.
 
-Organisations already run SHEQX® this way. Interwaste unified its SHEQ processes across multiple regions, reducing reporting effort, accelerating safety action closure and increasing near-miss reporting volumes. Commercial Cold Holdings describes gaining real-time visibility into SHEQ performance across the group. Servest, which runs SHEQX® and ENVIRX®, has digitised its SHEQ processes since 2019, reducing administrative burden and achieving renewed ISO 9001, ISO 14001 and ISO 45001 certifications in October 2024. Because SHEQX® shares one data foundation with <a href="/envirx/">ENVIRX®</a> for multi-site environmental monitoring and <a href="/compliance-hub/">XGRC® Compliance Hub</a> for contractor and supplier compliance, the consolidated SHEQ picture can extend to environmental performance and the third parties working on each site. For the South African legal context, see <a href="/sheq-software-south-africa/">SHEQ software in South Africa</a>.`,
+Organisations already run SHEQX® this way. Interwaste unified its SHEQ processes across multiple regions, reducing reporting effort, accelerating safety action closure and increasing near-miss reporting volumes. Commercial Cold Holdings describes gaining real-time visibility into SHEQ performance across the group. Servest, which runs SHEQX® and ENVIRX®, has digitised its SHEQ processes since 2019, reducing administrative burden and achieving renewed ISO 9001, ISO 14001 and ISO 45001 certifications in October 2024. Because SHEQX® shares one data foundation with <a href="/envirx/">ENVIRX®</a> for multi-site environmental monitoring and <a href="/compliance-hub/">XGRC® Compliance Hub</a> for contractor and supplier compliance, the consolidated SHEQ picture can extend to environmental performance and the third parties working on each site. For the South African legal context, see <a href="/sheq-software-south-africa/">SHEQ software in South Africa</a>. If you are new to the term, start with <a href="/insights/what-is-sheq-software-complete-guide/">what is SHEQ and what a SHEQ management system involves</a>.`,
 
 'what-is-governed-ai-for-grc': `Most organisations did not choose to have an AI governance gap. It happened by default — employees started using ChatGPT and similar tools for real work faster than policies, permissions, or audit trails could catch up. In governance, risk and compliance functions specifically, that gap is dangerous: the data involved — risk registers, audit findings, policy content — is exactly the data an organisation cannot afford to expose, store externally, or use without an audit trail.
 
@@ -773,7 +773,7 @@ The challenge is not replacing spreadsheets. It is establishing a governed, audi
 
 How XGRC® Software Enables Enterprise Risk Management
 
-XGRC® Software replaces fragmented tools with a single, auditable data foundation. Through <a href="/msx/">MSX®</a>, organisations can centralise risk data across the enterprise, automate risk processes, maintain full audit trails, and align with <a href="/use-cases/iso-31000-risk-management/">ISO 31000</a> and COSO. This ensures risk is not only tracked but governed.
+XGRC® Software replaces fragmented tools with a single, auditable data foundation. Through XGRC® <a href="/erm/">ERM software</a>, connected to <a href="/msx/">MSX®</a> for integrated management systems, organisations can centralise risk data across the enterprise, automate risk processes, maintain full audit trails, and align with <a href="/use-cases/iso-31000-risk-management/">ISO 31000</a> and COSO. This ensures risk is not only tracked but governed.
 
 Spreadsheets are not a risk management solution. They are a limitation. ERM software enables organisations to move from manual tracking to structured, auditable, and scalable risk management. XGRC® Software provides the foundation to make that transition possible.`,
 
@@ -781,7 +781,22 @@ Spreadsheets are not a risk management solution. They are a limitation. ERM soft
 
 What Does SHEQ Mean?
 
-SHEQ refers to four interconnected operational disciplines: Safety — managing workplace risks and preventing incidents; Health — protecting employee wellbeing and occupational health; Environment — ensuring environmental compliance and performance; Quality — maintaining consistent product and process standards. These disciplines do not operate independently. Together, they form the foundation of operational governance in regulated industries. For a fuller explanation of what SHEQ means, how it differs from HSE and SHERQ, and how a SHEQ management system works under South African law, see <a href="/insights/what-is-sheq/">what is SHEQ</a>.
+SHEQ stands for safety, health, environment and quality. In practice, the SHEQ meaning covers four interconnected operational disciplines:
+
+- Safety: managing workplace risks and preventing incidents
+- Health: protecting employee wellbeing and occupational health
+- Environment: ensuring environmental compliance and performance
+- Quality: maintaining consistent product and process standards
+
+These disciplines do not operate independently. Together, they form the foundation of operational governance in regulated industries. For a fuller explanation of what SHEQ means, how it differs from HSE and SHERQ, and how a SHEQ management system works under South African law, see <a href="/insights/what-is-sheq/">what is SHEQ</a>.
+
+What Is a SHEQ Management System?
+
+A SHEQ management system is the set of policies, processes, responsibilities and records an organisation uses to manage safety, health, environment and quality as one system rather than four. Most SHEQ management systems are built on <a href="/use-cases/iso-45001-readiness/">ISO 45001</a>, <a href="/use-cases/iso-14001-readiness/">ISO 14001</a> and <a href="/use-cases/iso-9001-readiness/">ISO 9001</a>. Because these standards share the same high-level structure, one set of processes for context, leadership, planning, support, operation, evaluation and improvement can serve all three.
+
+In South Africa, a SHEQ management system also has to show compliance with legislation such as the Occupational Health and Safety Act 85 of 1993, the Mine Health and Safety Act 29 of 1996 on mines, and the National Environmental Management Act 107 of 1998. Many organisations still call these SHEQ systems, but a certificate on the wall is not the system. The system is what happens every day: how hazards are identified, how incidents are investigated, how actions are closed and how evidence is kept.
+
+That is where most SHEQ systems break down. The policies exist, but the records live in spreadsheets, paper forms and inboxes, so nobody can see the whole picture until an audit forces it together. For South African operations, see how <a href="/sheq-software-south-africa/">SHEQ software in South Africa</a> handles local legislation and multi-site reporting.
 
 What Is SHEQ Management Software?
 
@@ -878,6 +893,14 @@ Environmental regulations are becoming increasingly complex as governments intro
 What Is Environmental Compliance Software?
 
 Environmental compliance software enables organisations to track environmental obligations, manage environmental risks, and monitor compliance performance within a centralised digital platform. Instead of managing environmental processes across multiple systems, organisations can use environmental management system software to centralise environmental risk registers, regulatory obligations and legal requirements, environmental incidents and corrective actions, environmental monitoring and reporting, and audit and compliance documentation. This structured approach improves transparency and helps organisations maintain consistent compliance with environmental regulations.
+
+Environmental Obligations Software: Turning Permits into a Register
+
+Most environmental non-compliance does not come from ignoring the law. It comes from losing track of the obligations the law creates. A single operation can hold an environmental authorisation under the National Environmental Management Act 107 of 1998, a water use licence under the National Water Act 36 of 1998, an atmospheric emission licence under the Air Quality Act 39 of 2004 and a waste management licence under the Waste Act 59 of 2008. Each one carries its own conditions, monitoring frequencies, reporting deadlines and renewal dates.
+
+Environmental obligations software breaks those documents down into individual obligations. Each obligation gets an owner, a due date, the evidence that proves it was met and an alert before it falls due. When an auditor or the regulator asks whether a licence condition was complied with, the answer is a record rather than a search through email.
+
+For operations in South Africa, see how <a href="/environmental-compliance-software-south-africa/">environmental compliance software for South African legislation</a> brings these licences together on one platform, or how <a href="/envirx/">ENVIRX®</a> manages environmental monitoring and obligations day to day.
 
 Challenges of Manual Environmental Compliance Tracking
 
@@ -995,7 +1018,9 @@ How SHEQX® Enables Zero Harm
 
 From Compliance to Cultural Change
 
-Technology alone does not create safety culture, but it enables consistency, transparency, and measurable improvement. When safety data becomes visible in real time, leadership can intervene earlier, reinforce accountability, and demonstrate commitment to workforce protection. Digital SHEQ systems transform zero harm from aspiration into structured execution.`,
+Technology alone does not create safety culture, but it enables consistency, transparency, and measurable improvement. When safety data becomes visible in real time, leadership can intervene earlier, reinforce accountability, and demonstrate commitment to workforce protection. Digital SHEQ systems transform zero harm from aspiration into structured execution.
+
+Safety is one part of a mine's obligations. For the environmental, social and governance side, including water use licences, social and labour plans and investor ESG disclosure, see <a href="/mining-esg-compliance-software-africa/">mining compliance software for ESG in Africa</a>.`,
 
 'strengthening-haccp-and-iso-22000-through-digital-food-safety-governance': `Food manufacturers operate in an environment where hazard control, traceability, and documented assurance are fundamental to commercial survival. Frameworks such as HACCP and ISO 22000 provide structured guidance, yet organisations are increasingly required to prove that these systems function consistently across sites and over time. Today, compliance is not measured by the existence of procedures. It is measured by visibility, accountability, and verifiable execution. To meet rising regulatory, retailer, and stakeholder expectations, HACCP and ISO 22000 management systems must evolve from static documentation into integrated digital governance.
 
@@ -1045,7 +1070,7 @@ Aligning with Mining Indaba 2026 Themes
 
 Mining Indaba highlights collaboration across communities, policy, governance, and sustainable practices — all of which depend on reliable data, consistent processes, and transparent reporting. Integrated GRC solutions such as XGRC® help organisations accelerate investment readiness through credible governance data, enhance stakeholder trust with transparent ESG disclosures, strengthen operational resilience and safety performance, and support digital transformation with connected, cloud-based tools.
 
-By embedding governance, risk, ESG, and compliance into daily operations, mining leaders can ensure their organisations are not merely compliant, but future-ready, resilient, and trusted partners in Africa's mining ecosystem.`,
+By embedding governance, risk, ESG, and compliance into daily operations, mining leaders can ensure their organisations are not merely compliant, but future-ready, resilient, and trusted partners in Africa's mining ecosystem. For a closer look at how this works on one platform, see <a href="/mining-esg-compliance-software-africa/">mining ESG compliance software for Africa</a>.`,
 
 'building-a-cyber-aware-culture-addressing-the-human-element-of-cyber-risk': `Why the Human Factor Matters
 

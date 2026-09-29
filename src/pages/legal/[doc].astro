@@ -13,7 +13,7 @@ if (!content) return Astro.redirect('/legal');
 
 <Base
   title={`${content.title} | XGRC® Software`}
-  description={content.intro || `${content.title} for XGRC® Software, provided by Strategix Application Solutions (Pty) Ltd.`}
+  description={content.metaDescription || content.intro || `${content.title} for XGRC® Software, provided by Strategix Application Solutions (Pty) Ltd.`}
 >
   <section class="page-head">
     <div class="container">

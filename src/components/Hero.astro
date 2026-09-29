@@ -1,6 +1,18 @@
 ---
 // Home hero: product screenshot in a browser frame over the "Living Architecture" network (desktop only).
 // Green = action (CTAs). Cyan/blue = the system.
+import { tourDashboards } from '../data/site.js';
+
+// Named product links near the top of the homepage (SEO Fix Spec T9)
+const productLinks = [
+  { href: '/sheqx/', label: 'SHEQX®' },
+  { href: '/erm/', label: 'ERM' },
+  { href: '/envirx/', label: 'ENVIRX®' },
+  { href: '/msx/', label: 'MSX®' },
+  { href: '/msxcyber/', label: 'MSXCyber®' },
+  { href: '/compliance-hub/', label: 'Compliance Hub' },
+  { href: '/maia/', label: 'MAIA®' },
+];
 ---
 
 <section class="hero">
@@ -9,10 +21,13 @@
 
   <div class="container hero-content">
     <div class="hero-copy">
-      <span class="eyebrow"><span class="dot"></span>XGRC® Software · by Strategix</span>
-      <h1>Connected<br><span class="grad">Governance</span> Architecture</h1>
+      <span class="eyebrow"><span class="dot"></span>Connected Governance Architecture</span>
+      <h1>Integrated <span class="grad">GRC software</span> for governance, risk and compliance</h1>
       <p class="hero-sub">See every risk, control and obligation in one auditable place, and act before issues become incidents.</p>
       <p class="lede">Governance, risk, compliance and cyber security, wired into one secure, auditable platform. Every solution talks to the next, so your four lines of defence finally act as one.</p>
+      <p class="products">One platform for {productLinks.map((l, i) => (
+        <>{i > 0 && (i === productLinks.length - 1 ? ' and ' : ', ')}<a href={l.href}>{l.label}</a></>
+      ))}, built in South Africa by Strategix.</p>
       <div class="actions">
         <a href="/demo/" class="btn btn-primary">Book a demo</a>
         <a href="/tour/" class="btn btn-ghost">Take the live tour <span aria-hidden="true">→</span></a>
@@ -36,7 +51,7 @@
           fetchpriority="high"
         />
       </a>
-      <figcaption>Illustrative data. <a href="/tour/">Click through all seven dashboards →</a></figcaption>
+      <figcaption>Illustrative data. <a href="/tour/">Click through all {tourDashboards.length} dashboards →</a></figcaption>
     </figure>
   </div>
 </section>
@@ -49,7 +64,10 @@
 
   .hero-content { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: clamp(28px, 4vw, 56px); align-items: center; padding-top: 90px; padding-bottom: 48px; }
   .hero-copy { max-width: 600px; }
-  h1 { margin-bottom: 22px; }
+  h1 { margin-bottom: 22px; font-size: clamp(2.1rem, 3.9vw, 3.3rem); max-width: 18ch; }
+  .products { color: var(--mute); font-size: 0.95rem; line-height: 1.6; margin: -8px 0 24px; max-width: 56ch; }
+  .products a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+  .products a:hover { color: var(--cyan); text-decoration-color: var(--cyan); }
   .grad { background: linear-gradient(100deg, var(--cyan-hi), var(--cyan) 40%, var(--blue)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .hero-sub { font-size: clamp(1.05rem, 1.5vw, 1.22rem); color: var(--ink); font-weight: 500; margin-bottom: 14px; max-width: 52ch; line-height: 1.5; }
   .lede { margin-bottom: 30px; }

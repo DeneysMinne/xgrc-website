@@ -1,0 +1,12 @@
+---
+// Published comparisons: /compare/<slug>/ (drafts build under /preview/compare/)
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+import { publishedComparisons } from '../../data/comparisons.js';
+
+export function getStaticPaths() {
+  return publishedComparisons.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+<ComparisonLayout entry={entry} />
