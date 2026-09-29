@@ -23,12 +23,14 @@ OUT = os.path.join(ROOT, 'public', 'preview', 'pricing-calculator.html')
 WORKING_COPY = '/opt/www/xgrc-licensing/quote-calculator.html'
 
 # Phrases that must never reach the customer page.
+# Presets, product names and discounts are customer-facing (Deneys, 29 Sept 2026);
+# currency buttons are not, because customers get one currency set by their region.
 FORBIDDEN = [
     'SALES PREVIEW', 'price book', 'placeholders pending', 'legacy', 'Legacy',
-    'MSX', 'Quick Start', 'SEAT_PRESETS = {\n', 'DISCOUNT_THRESHOLDS = {',
-    'Volume discount', 'compounding', 'Provisioning is manual', 'INTERNAL',
-    'converted from USD',
+    'compounding', 'Provisioning is manual', 'INTERNAL', 'converted from USD',
+    'class="curr-btn"', 'USD anchor', 'Pricing to be confirmed',
 ]
+REQUIRED = ['startWithRegionCurrency()', 'id="geo-note"', 'data-preset="aigov"', 'id="savings-panel"']
 
 src = open(SRC, encoding='utf-8').read()
 out = src
@@ -49,6 +51,7 @@ if 'const CUSTOMER_MODE = true;' not in out:
     leaks.append('CUSTOMER_MODE flag not switched on')
 if '<meta name="robots" content="noindex, nofollow, noarchive">' not in out:
     leaks.append('noindex meta missing')
+leaks += [f'missing {r}' for r in REQUIRED if r not in out]
 if leaks:
     sys.exit('Refusing to write customer calculator, found: ' + ', '.join(leaks))
 

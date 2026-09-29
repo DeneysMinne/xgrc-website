@@ -37,8 +37,8 @@
   .bw-reg { font-size:0.55em; font-weight:600; color:var(--ink); vertical-align:super; margin-left:2px; }
   .card { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-lg); padding:20px; }
   .row { display:flex; align-items:center; gap:10px; }
-  .curr-btn, .asgard-tier-btn { padding:8px 14px; border-radius:8px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); cursor:pointer; font-size:12.5px; font-family:inherit; }
-  .curr-btn.active, .asgard-tier-btn.active { border-color:var(--cyan); background:rgba(48,226,244,0.12); color:var(--cyan-hi); font-weight:700; }
+  .curr-btn, .asgard-tier-btn, .aig-tier-btn { padding:8px 14px; border-radius:8px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); cursor:pointer; font-size:12.5px; font-family:inherit; }
+  .curr-btn.active, .asgard-tier-btn.active, .aig-tier-btn.active { border-color:var(--cyan); background:rgba(48,226,244,0.12); color:var(--cyan-hi); font-weight:700; }
   button { font-family:'Inter',sans-serif; }
   .btn-primary { padding:11px 20px; border-radius:var(--radius-sm); border:none; background:var(--green); color:var(--green-ink); font-weight:700; font-size:13px; cursor:pointer; white-space:nowrap; box-shadow:0 0 26px rgba(47,232,138,0.34); }
   .btn-primary:disabled { background:var(--line-strong); color:var(--faint); box-shadow:none; cursor:not-allowed; }
@@ -107,6 +107,17 @@
     #quote-actions-row input { flex: 1 1 100% !important; }
     .info-tip, .info-tip-list { max-width: calc(100vw - 64px); width: calc(100vw - 64px); }
   }
+  .aig-tier-btn { font-size:12px; padding:7px 12px; }
+  .savings { margin-top:16px; border:1px solid rgba(47,232,138,0.30); background:rgba(47,232,138,0.05); border-radius:12px; padding:14px 16px; }
+  .savings .sv-title { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--green-hi); margin-bottom:10px; }
+  .savings .sv-row { display:flex; justify-content:space-between; gap:12px; font-size:12.5px; padding:3px 0; color:var(--mute); }
+  .savings .sv-row .mono { color:var(--ink); }
+  .savings .sv-row.minus .mono { color:var(--green-hi); }
+  .savings .sv-row.total { border-top:1px dashed var(--line); margin-top:6px; padding-top:8px; font-weight:700; color:var(--ink); }
+  .savings .sv-save { margin-top:10px; font-size:14px; font-weight:700; color:var(--green-hi); }
+  .savings .sv-hint { margin-top:8px; font-size:11px; color:var(--faint); line-height:1.6; }
+  .geo-note { font-size:12px; color:var(--mute); line-height:1.6; }
+  .geo-note b { color:var(--ink); }
 </style>
 </head>
 <body>
@@ -137,6 +148,19 @@
 
   <div id="content-wrap" style="position:relative;max-width:var(--maxw);margin:0 auto;padding:0 40px 80px 40px;">
 
+    <div class="card" style="margin-bottom:24px;">
+      <div class="eyebrow" style="margin-bottom:8px;">Quick Start</div>
+      <div style="font-size:11.5px;color:var(--faint);margin-bottom:12px;max-width:640px;">Start from a typical setup, then adjust anything you need. Each option fills in the licences and core modules for that solution; anything else you have added stays as it is.</div>
+      
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button type="button" class="btn-ghost-sm preset-btn" data-preset="sheqx">SHEQX®</button>
+        <button type="button" class="btn-ghost-sm preset-btn" data-preset="msx">MSX®</button>
+        <button type="button" class="btn-ghost-sm preset-btn" data-preset="msxcyber">MSXCyber®</button>
+        <button type="button" class="btn-ghost-sm preset-btn" data-preset="esg">ESG</button>
+        <button type="button" class="btn-ghost-sm preset-btn" data-preset="aigov">AI Governance</button>
+      </div>
+    </div>
+
     <div style="display:grid;grid-template-columns:400px 1fr;gap:24px;align-items:start;" id="grid-root">
 
       <!-- LEFT ROW 1: Currency + Seats -->
@@ -144,13 +168,9 @@
 
         <div class="card">
           <div class="eyebrow" style="margin-bottom:12px;">Currency</div>
-          <div style="display:flex;gap:8px;">
-            <button class="curr-btn" data-curr="ZAR">R ZAR</button>
-            <button class="curr-btn" data-curr="USD">$ USD</button>
-            <button class="curr-btn" data-curr="GBP">&pound; GBP</button>
-            <button class="curr-btn" data-curr="EUR">&euro; EUR</button>
-          </div>
-          <div style="font-size:10.5px;color:var(--faint);margin-top:10px;font-style:italic;">Monthly list prices per currency, excluding VAT.</div>
+          
+          <div class="geo-note" id="geo-note" aria-live="polite">Finding the prices for your region&hellip;</div>
+          
         </div>
 
         <div class="card">
@@ -224,7 +244,19 @@
               <div class="row"><div style="flex:1;font-size:12.5px;color:var(--mute);">XLOGIC® Governance User<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">Proposes and edits requirements and processes, completes tasks, attaches evidence, and, when assigned governance-lead authority, approves and attests. The accountable user recorded in the XLOGIC® audit trail.</span></span> <span class="mono" id="price-xlogicgovernance" style="color:var(--faint);"></span><span class="unit-xlogicgovernance">/user</span></div><input type="number" min="0" id="q-xlogicgovernance" class="qtyinput-sm"></div>
               <div class="row"><div style="flex:1;font-size:11.5px;color:var(--faint);">XLOGIC® Viewer<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">Read-only access to process diagrams, evidence and audit history. Included at no extra cost for Core and Admin users on XGRC® Plus or Enterprise.</span></span></div><span class="badge-usage" style="background:rgba(47,232,138,0.12);color:var(--green-hi);">Included on Plus/Enterprise</span></div>
             </div>
-            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">AI Governance<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">Governs how you build and use AI: EU AI Act classification, ISO/IEC 42001 alignment, impact assessment, risk, controls and evidence, mapped to your AI register. A flat selection, not licensed per user.</span></span> <span class="mono" id="price-aigovernance" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Flat selection, moves your quote to XGRC® Enterprise</div></div><input type="checkbox" id="toggle-aigovernance" class="chkbox"></div>
+            <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">AI Governance<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">Governs every AI system from register to regulator: EU AI Act classification, compliance and applicability, impact assessment, controls and evidence, human oversight, AI risk, incidents, change governance and the ISO/IEC 42001 management system. Priced per AI system governed, in three tiers; high-risk systems count double. Minimum 3 AI systems.</span></span> <span class="mono" id="price-aigovernance" style="color:var(--faint);font-weight:400;"></span></div><div style="font-size:11px;color:var(--faint);">Per AI system governed, moves your quote to XGRC® Enterprise</div></div><span class="subtotal-chevron" id="aigov-toggle-chevron" style="margin-left:0;margin-right:8px;">&#9656;</span><input type="checkbox" id="toggle-aigovernance" class="chkbox"></div>
+
+            <div id="aigov-extra" style="display:none;flex-direction:column;gap:10px;padding:12px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;">
+              <div style="display:flex;gap:6px;flex-wrap:wrap;" role="group" aria-label="AI Governance tier">
+                <button type="button" class="aig-tier-btn" data-aigtier="essentials">Essentials</button>
+                <button type="button" class="aig-tier-btn" data-aigtier="professional">Professional</button>
+                <button type="button" class="aig-tier-btn" data-aigtier="certification">Certification</button>
+              </div>
+              <div style="font-size:10.5px;color:var(--faint);line-height:1.6;" id="aigov-tier-caption"></div>
+              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">AI systems governed<div style="font-size:10.5px;color:var(--faint);" id="aigov-price-caption"></div></div><input type="number" min="3" id="q-aigov-systems" class="qtyinput-sm" aria-label="AI systems governed"></div>
+              <div class="row"><div style="flex:1;font-size:12px;color:var(--mute);">Of which high-risk<div style="font-size:10.5px;color:var(--faint);">EU AI Act high-risk systems count double</div></div><input type="number" min="0" id="q-aigov-highrisk" class="qtyinput-sm" aria-label="High-risk AI systems"></div>
+              <div style="font-size:10.5px;color:var(--faint);font-style:italic;" id="aigov-billable-note"></div>
+            </div>
             <div class="row"><div style="flex:1;"><div style="font-size:13.5px;font-weight:600;">Asgard<span class="info-wrap"><span class="info-icon" tabindex="0" role="button" aria-label="More info">i</span><span class="info-tip">The XGRC® AI agents platform: per-discipline agents (SHEQ Agent, Risk Agent, Audit Agent and more) that users can set up and configure within XGRC®. Each tier includes a monthly call allowance; usage beyond that is billed per call.</span></span></div><div style="font-size:11px;color:var(--faint);">Enable Asgard (AI Agents) for this tenant?</div></div><span class="subtotal-chevron" id="asgard-toggle-chevron" style="margin-left:0;margin-right:8px;">&#9656;</span><input type="checkbox" id="toggle-asgard" class="chkbox"></div>
 
             <div id="asgard-extra" style="display:none;flex-direction:column;gap:10px;padding:12px;background:var(--abyss);border:1px solid var(--line);border-radius:10px;">
@@ -294,7 +326,11 @@
               <div class="subtotal-breakdown" id="modules-breakdown"></div>
             </div>
             <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;"><span style="color:var(--mute);">Monthly list value</span><span class="mono" id="list-value"></span></div>
-            
+            <div style="margin-top:6px;">
+              <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:var(--mute);">Volume discount</span><span class="mono" id="discount-pct" style="color:var(--cyan);font-weight:700;"></span></div>
+              <div style="height:6px;background:var(--line);border-radius:3px;overflow:hidden;"><div id="discount-bar" style="height:100%;border-radius:3px;background:var(--cyan);width:0%;"></div></div>
+              <div id="discount-caption" style="font-size:10.5px;color:var(--faint);margin-top:5px;"></div>
+            </div>
             <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-top:8px;padding-top:10px;border-top:1px dashed var(--line);"><span id="discounted-monthly-label">Monthly total</span><span class="mono" id="discounted-monthly" style="color:var(--cyan-hi);"></span></div>
           </div>
 
@@ -319,6 +355,8 @@
             </div>
             <div id="lockin-detail" style="display:none;font-size:11px;color:var(--faint);margin-top:10px;line-height:1.7;"></div>
           </div>
+
+          <div class="savings" id="savings-panel" aria-live="polite"></div>
         </div>
 
         <div class="card" id="recent-quotes-card" style="display:none;">
@@ -497,7 +535,9 @@
             <li>MAIA®, Hakware, XLOGIC® and XRM users are separate user bases, not a subset of your Core or Admin licences.</li>
             <li>Team User is an estimate of total employee headcount. Once the system is set up, employees who already hold another licence are excluded from Team User billing, preventing duplicate charges. Employee records themselves are free; only system access is billed.</li>
             
-            <li>Annual commitment applies an additional 10% discount, invoiced annually in advance.</li>
+            <li>Volume discounts apply automatically as your monthly list value grows, from 5% up to 40%. The calculator shows the exact discount for your configuration.</li>
+            <li>Annual commitment takes an additional 10% off the discounted price, invoiced annually in advance.</li>
+            <li>AI Governance is priced per AI system governed, per month, in three tiers (Essentials, Professional, Certification). EU AI Act high-risk systems count double, and the minimum is 3 AI systems.</li>
           </ul>
           <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;">What's included</div>
           <ul class="notes-list" style="margin-bottom:16px;">
@@ -510,7 +550,6 @@
           <div class="mono" style="font-size:10px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;">billing terms</div>
           <ul class="notes-list">
             
-            <li>Items marked Price on request are quoted by the XGRC® team and are not included in the totals shown.</li>
             <li>Licences are billed monthly in arrears and are payable whether or not a licence was used that month. Annual commitment is invoiced annually in advance.</li>
             <li>All prices exclude VAT.</li>
           </ul>
@@ -530,6 +569,9 @@
 // sales-only blocks, so none of that content reaches the customer page source.
 const CUSTOMER_MODE = true;
 const PRICES = {
+    aigovEssentials:    { ZAR: 995,  USD: 60,  GBP: 45,  EUR: 52  },
+  aigovProfessional:  { ZAR: 1995, USD: 120, GBP: 89,  EUR: 105 },
+  aigovCertification: { ZAR: 3495, USD: 210, GBP: 155, EUR: 180 },
   admin:        { ZAR: 500,      USD: 40,     GBP: 31,     EUR: 35     },
   core:         { ZAR: 413.27,   USD: 33.07,  GBP: 25.72,  EUR: 29.40  },
   lite:         { ZAR: 207.21,   USD: 15.92,  GBP: 12.87,  EUR: 14.70  },
@@ -567,8 +609,6 @@ const PRICES = {
 // excluded from every total in the customer version.
 // Empty now that Compliance Hub and XLOGIC® prices are confirmed (28 Sept 2026); add keys here if a new item is unpriced.
 const PRICE_ON_REQUEST = CUSTOMER_MODE ? new Set([]) : new Set();
-const UNPRICED_LABEL = CUSTOMER_MODE ? 'Price on request' : 'Pricing to be confirmed';
-const UNPRICED_SHORT = CUSTOMER_MODE ? 'Price on request' : 'To be confirmed';
 function isPOR(key) { return PRICE_ON_REQUEST.has(key); }
 function priceOf(key) { return isPOR(key) ? 0 : PRICES[key][state.currency]; }
 function priceLabel(key) { return isPOR(key) ? 'Price on request' : priceStr(PRICES[key]); }
@@ -579,11 +619,29 @@ const ASGARD_TIERS = {
   team:       { label: 'Team',       baseKey: 'asgardBaseTeam',       seatKey: 'asgardSeatTeam',       seatCap: 50,       calls: '8,000 calls/user/month',  overageKey: 'asgardOverageTeam' },
   enterprise: { label: 'Enterprise', baseKey: 'asgardBaseEnterprise', seatKey: 'asgardSeatEnterprise', seatCap: Infinity, calls: '12,000 calls/user/month', overageKey: 'asgardOverageEnterprise' }
 };
-
-const SEAT_PRESETS = {};
+const SEAT_PRESETS = {
+  sheqx:    { label: 'SHEQX®',    seats: { admin: 1, core: 5, lite: 10, task: 10 }, modules: { envirx: 0, erm: 0, assurance: 0 }, hakware: false },
+  msx:      { label: 'MSX®',      seats: { admin: 1, core: 5, lite: 10, task: 10 }, modules: { envirx: 6, erm: 6, assurance: 6 }, hakware: false },
+  msxcyber: { label: 'MSXCyber®', seats: { admin: 1, core: 5, lite: 10, task: 10 }, modules: { envirx: 0, erm: 6, assurance: 6 }, hakware: { domains: 1, users: 1 } },
+  esg:      { label: 'ESG',       seats: { admin: 1, core: 5, lite: 10, task: 10 }, modules: { envirx: 6, erm: 6, assurance: 6 }, hakware: false },
+  aigov:    { label: 'AI Governance', seats: { admin: 1, core: 5, lite: 0, task: 0 }, modules: { envirx: 0, erm: 0, assurance: 0 }, hakware: false,
+              aigov: { tier: 'professional', systems: 10, highRisk: 2 }, maia: { full: 1, buckets: 1 }, xlogic: { admin: 1, governance: 3 } }
+};
 const SYM = { ZAR: 'R', USD: '$', GBP: '£', EUR: '€' };
-
-const DISCOUNT_THRESHOLDS = null;
+const AIGOV_MIN_SYSTEMS = 3;
+const AIGOV_TIERS = {
+  essentials:    { label: 'Essentials',    key: 'aigovEssentials',    includes: 'For organisations starting EU AI Act triage: register connection (1 source), EU AI Act classification, AI governance dashboard, personal work queue, approvals and the governance library.' },
+  professional:  { label: 'Professional',  key: 'aigovProfessional',  includes: 'For organisations running AI in production: everything in Essentials, plus compliance and applicability, impact assessment, controls and evidence, AI risk, incident governance, change governance and human oversight.' },
+  certification: { label: 'Certification', key: 'aigovCertification', includes: 'For ISO/IEC 42001 certification or high-risk AI providers: everything in Professional, plus the AI management system, custom frameworks and policies, multiple register connections and connected-tool inboxes.' }
+};
+// Discount thresholds are set independently per currency (not FX-converted), the same principle
+// used for the list prices. Shown to customers too, so they can see every discount they get.
+const DISCOUNT_THRESHOLDS = {
+  ZAR: { base: 50000, step: 10000 },
+  USD: { base: 4000,  step: 800   },
+  GBP: { base: 3000,  step: 600   },
+  EUR: { base: 3500,  step: 700   }
+};
 
 const state = {
   currency: 'ZAR',
@@ -593,7 +651,7 @@ const state = {
     envirx: 0, erm: 0, assurance: 0,
     maiaEnabled: false, maiaFullUser: 0, maiaDataUser: 0, maiaDataBuckets: 0,
     hakwareEnabled: false, hkwDomains: 0, hkwUsers: 0,
-    xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgardEnabled: false, asgardTier: 'free', asgardSeats: 0, aiGovernance: false,
+    xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgardEnabled: false, asgardTier: 'free', asgardSeats: 0, aiGovernance: false, aiGovTier: 'professional', aiGovSystems: 0, aiGovHighRisk: 0,
     xrmEnabled: false, xrmTenantAdmin: 0, xrmSalesUser: 0, xrmApprover: 0, xrmViewer: 0,
     complianceHub: false
   },
@@ -631,7 +689,15 @@ function computeDerived() {
   const asgardTierDef = ASGARD_TIERS[m.asgardTier];
   const asgardCur = m.asgardEnabled ? (P[asgardTierDef.baseKey][cur] + (asgardTierDef.seatKey ? m.asgardSeats*P[asgardTierDef.seatKey][cur] : 0)) : 0;
 
-  const moduleCur = effEnvirx*P.envirx[cur] + effErm*P.erm[cur] + m.assurance*P.assurance[cur] + maiaCur + hkwCur + xlogicCur + xrmCur + asgardCur + (m.complianceHub ? priceOf('complianceHub') : 0);
+  // AI Governance: billable systems = systems (minimum 3) + high-risk systems again (they count double).
+  const aigOn = m.aiGovernance;
+  const aigTier = AIGOV_TIERS[m.aiGovTier] || AIGOV_TIERS.professional;
+  const aigSystems = aigOn ? Math.max(AIGOV_MIN_SYSTEMS, m.aiGovSystems) : 0;
+  const aigHighRisk = aigOn ? Math.min(m.aiGovHighRisk, aigSystems) : 0;
+  const aigBillable = aigSystems + aigHighRisk;
+  const aigCur = aigBillable * P[aigTier.key][cur];
+
+  const moduleCur = effEnvirx*P.envirx[cur] + effErm*P.erm[cur] + m.assurance*P.assurance[cur] + maiaCur + hkwCur + xlogicCur + xrmCur + asgardCur + aigCur + (m.complianceHub ? priceOf('complianceHub') : 0);
 
   const listValueCur = seatCur + moduleCur;
 
@@ -654,6 +720,13 @@ function computeDerived() {
   const standardThreeYearTotal = lockinYear1 + standardYear2 + standardYear3;
   const lockinSaving = standardThreeYearTotal - lockinThreeYearTotal;
 
+  // Price transparency: every discount, per year.
+  const yearList = listValueCur * 12;
+  const yearVolumeSaving = (listValueCur - discountedMonthlyCur) * 12;
+  const yearAnnualSaving = state.annual ? discountedMonthlyCur * 12 * 0.1 : 0;
+  const yearSaving = yearList - annualTotalCur;
+  const yearSavingPct = yearList > 0 ? (yearSaving / yearList) * 100 : 0;
+
   const isEnterprise = m.hkwDomains>0 || m.hkwUsers>0 || m.xlogicAdmin>0 || m.xlogicGovernance>0 || m.asgardEnabled || m.aiGovernance || s.luci>0;
   const isPlus = !isEnterprise && (effEnvirx>0 || effErm>0 || m.assurance>0 || maiaOn || m.complianceHub);
   const isStandard = !isEnterprise && !isPlus;
@@ -661,7 +734,9 @@ function computeDerived() {
 
   return { s, m, cur, th, effEnvirx, effErm, maiaOn, seatCur, moduleCur, listValueCur, discountPct,
            discountedMonthlyCur, annualTotalCur, isStandard, isPlus, isEnterprise, tierFull: 'XGRC® ' + tier,
-           lockinActive, lockinYear1, lockinYear2, lockinYear3, lockinThreeYearTotal, standardThreeYearTotal, lockinSaving };
+           lockinActive, lockinYear1, lockinYear2, lockinYear3, lockinThreeYearTotal, standardThreeYearTotal, lockinSaving,
+           aigOn, aigTier, aigSystems, aigHighRisk, aigBillable, aigCur,
+           yearList, yearVolumeSaving, yearAnnualSaving, yearSaving, yearSavingPct };
 }
 
 function el(id) { return document.getElementById(id); }
@@ -721,13 +796,23 @@ function render() {
   el('price-xlogicgovernance').textContent = priceLabel('xlogicGovernance');
   document.querySelector('.unit-xlogicadmin').style.display = isPOR('xlogicAdmin') ? 'none' : '';
   document.querySelector('.unit-xlogicgovernance').style.display = isPOR('xlogicGovernance') ? 'none' : '';
-  el('price-aigovernance').textContent = UNPRICED_LABEL;
+  el('price-aigovernance').textContent = 'from ' + priceStr(PRICES.aigovEssentials) + ' per AI system';
+  el('toggle-aigovernance').checked = state.modules.aiGovernance;
+  el('aigov-toggle-chevron').classList.toggle('open', state.modules.aiGovernance);
+  el('aigov-extra').style.display = state.modules.aiGovernance ? 'flex' : 'none';
+  document.querySelectorAll('.aig-tier-btn').forEach(b => { const on = b.dataset.aigtier === state.modules.aiGovTier; b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on)); });
+  el('aigov-tier-caption').textContent = d.aigTier.includes;
+  el('aigov-price-caption').textContent = priceStr(PRICES[d.aigTier.key]) + ' per AI system per month, minimum ' + AIGOV_MIN_SYSTEMS;
+  syncInput('q-aigov-systems', state.modules.aiGovSystems);
+  syncInput('q-aigov-highrisk', state.modules.aiGovHighRisk);
+  el('aigov-billable-note').textContent = d.aigOn
+    ? `${d.aigBillable} billable systems (${d.aigSystems} systems${d.aigHighRisk ? `, ${d.aigHighRisk} high-risk counted twice` : ''}) × ${priceStr(PRICES[d.aigTier.key])} = ${amountStr(d.aigCur)} per month`
+    : '';
   el('toggle-xlogic').checked = state.modules.xlogicEnabled;
   el('xlogic-toggle-chevron').classList.toggle('open', state.modules.xlogicEnabled);
   el('xlogic-extra').style.display = state.modules.xlogicEnabled ? 'flex' : 'none';
   syncInput('q-xlogicadmin', state.modules.xlogicAdmin);
   syncInput('q-xlogicgovernance', state.modules.xlogicGovernance);
-  el('toggle-aigovernance').checked = state.modules.aiGovernance;
   el('toggle-asgard').checked = state.modules.asgardEnabled;
   el('asgard-toggle-chevron').classList.toggle('open', state.modules.asgardEnabled);
   el('asgard-extra').style.display = state.modules.asgardEnabled ? 'flex' : 'none';
@@ -813,14 +898,40 @@ function render() {
     el('enterprise-price-note-text').textContent = 'No single Enterprise starting price, it depends on what you add.';
     el('enterprise-price-info-wrap').style.display = 'inline-flex';
     el('enterprise-price-note-detail').innerHTML = CUSTOMER_MODE
-      ? 'LUCI (' + priceStr(PRICES.luci) + '/user), Hakware (by domains and users), XLOGIC® (from ' + priceStr(PRICES.xlogicAdmin) + '/user) and Asgard (free tier available) are priced here; AI Governance is priced on request. Add one to see your price.'
-      : 'LUCI (' + priceStr(PRICES.luci) + '), Hakware (by domains and users), XLOGIC® (from ' + priceStr(PRICES.xlogicAdmin) + ') and Asgard (free tier available) are priced; AI Governance pricing is to be confirmed. Add one to see your real price.';
+      ? 'LUCI (' + priceStr(PRICES.luci) + '/user), Hakware (by domains and users), XLOGIC® (from ' + priceStr(PRICES.xlogicAdmin) + '/user), AI Governance (from ' + priceStr(PRICES.aigovEssentials) + ' per AI system) and Asgard (free tier available). Add one to see your price.'
+      : 'LUCI (' + priceStr(PRICES.luci) + '), Hakware (by domains and users), XLOGIC® (from ' + priceStr(PRICES.xlogicAdmin) + '), AI Governance (from ' + priceStr(PRICES.aigovEssentials) + ' per AI system) and Asgard (free tier available). Add one to see your real price.';
   }
+
+  renderSavings(d);
 
   const hasName = state.clientName.trim().length > 0;
   el('btn-save').disabled = !hasName;
   el('btn-download').disabled = !hasName;
   el('name-hint').style.color = hasName ? 'var(--faint)' : '#e0a45c';
+}
+
+function renderSavings(d) {
+  const row = (label, value, cls) => `<div class="sv-row ${cls || ''}"><span>${label}</span><span class="mono">${value}</span></div>`;
+  // Work in rounded cents so the lines shown always subtract exactly: list - discounts = what you pay.
+  const c = v => Math.round(v * 100) / 100;
+  const list = c(d.yearList), afterVolume = c(d.discountedMonthlyCur * 12), pay = c(d.annualTotalCur);
+  const volume = c(list - afterVolume), annual = c(afterVolume - pay), saving = c(list - pay);
+  let html = '<div class="sv-title">Your price, in full</div>';
+  html += row('List price, 12 months', amountStr(list));
+  if (volume > 0) html += row(`Volume discount (${d.discountPct.toFixed(1)}%)`, '− ' + amountStr(volume), 'minus');
+  if (annual > 0) html += row('Annual commitment (10%)', '− ' + amountStr(annual), 'minus');
+  html += row('You pay, 12 months', amountStr(pay), 'total');
+  if (saving > 0) {
+    html += `<div class="sv-save">You save ${amountStr(saving)} a year (${(saving / list * 100).toFixed(1)}% off list)</div>`;
+  }
+  if (d.lockinActive && d.lockinSaving > 0) {
+    html += `<div class="sv-hint">3-year price certainty: an estimated further ${amountStr(d.lockinSaving)} saved over 3 years, compared with a typical 7.5% annual increase.</div>`;
+  }
+  const hints = [];
+  if (d.th && d.discountPct === 0) hints.push(`Volume discounts start at ${amountStr(d.th.base)} a month in list value (5%), rising 2.5% for every further ${amountStr(d.th.step)}, up to 40%.`);
+  if (!state.annual) hints.push('An annual commitment takes a further 10% off.');
+  if (hints.length) html += `<div class="sv-hint">${hints.join(' ')}</div>`;
+  el('savings-panel').innerHTML = html;
 }
 
 function syncInput(id, val) {
@@ -937,7 +1048,38 @@ el('toggle-xlogic').addEventListener('change', (e) => {
 });
 bindQty('q-xlogicadmin', n => state.modules.xlogicAdmin = n);
 bindQty('q-xlogicgovernance', n => state.modules.xlogicGovernance = n);
-el('toggle-aigovernance').addEventListener('change', (e) => { state.modules.aiGovernance = e.target.checked; render(); });
+el('toggle-aigovernance').addEventListener('change', (e) => {
+  const on = e.target.checked;
+  state.modules.aiGovernance = on;
+  if (on) {
+    state.modules.aiGovTier = state.modules.aiGovTier || 'professional';
+    state.modules.aiGovSystems = Math.max(AIGOV_MIN_SYSTEMS, state.modules.aiGovSystems);
+  } else {
+    state.modules.aiGovSystems = 0;
+    state.modules.aiGovHighRisk = 0;
+  }
+  render();
+});
+document.querySelectorAll('.aig-tier-btn').forEach(btn => btn.addEventListener('click', () => { state.modules.aiGovTier = btn.dataset.aigtier; render(); }));
+el('q-aigov-systems').addEventListener('input', (e) => {
+  const raw = Math.max(0, parseInt(e.target.value, 10) || 0);
+  state.modules.aiGovSystems = raw;
+  state.modules.aiGovHighRisk = Math.min(state.modules.aiGovHighRisk, Math.max(AIGOV_MIN_SYSTEMS, raw));
+  render();
+});
+el('q-aigov-systems').addEventListener('change', (e) => {
+  // Floor at the minimum once the user leaves the field, so typing "12" is never interrupted at "1".
+  state.modules.aiGovSystems = Math.max(AIGOV_MIN_SYSTEMS, state.modules.aiGovSystems);
+  e.target.value = state.modules.aiGovSystems;
+  render();
+});
+el('q-aigov-highrisk').addEventListener('input', (e) => {
+  const raw = Math.max(0, parseInt(e.target.value, 10) || 0);
+  const cap = Math.max(AIGOV_MIN_SYSTEMS, state.modules.aiGovSystems);
+  state.modules.aiGovHighRisk = Math.min(raw, cap);
+  if (raw > cap) e.target.value = cap;
+  render();
+});
 el('toggle-asgard').addEventListener('change', (e) => {
   const on = e.target.checked;
   state.modules.asgardEnabled = on;
@@ -1009,9 +1151,25 @@ document.querySelectorAll('.preset-btn').forEach(btn => {
       state.modules.hkwDomains = 0;
       state.modules.hkwUsers = 0;
     }
+    if (preset.aigov) {
+      state.modules.aiGovernance = true;
+      state.modules.aiGovTier = preset.aigov.tier;
+      state.modules.aiGovSystems = preset.aigov.systems;
+      state.modules.aiGovHighRisk = preset.aigov.highRisk;
+    }
+    if (preset.maia) {
+      state.modules.maiaEnabled = true;
+      state.modules.maiaFullUser = preset.maia.full;
+      state.modules.maiaDataBuckets = preset.maia.buckets;
+    }
+    if (preset.xlogic) {
+      state.modules.xlogicEnabled = true;
+      state.modules.xlogicAdmin = preset.xlogic.admin;
+      state.modules.xlogicGovernance = preset.xlogic.governance;
+    }
     reclampCappedFields();
     render();
-    showToast('Pre-filled licences for ' + preset.label);
+    showToast('Pre-filled the ' + preset.label + ' setup');
   });
 });
 
@@ -1033,14 +1191,14 @@ function showToast(msg) {
 
 function defaultState() {
   return {
-    currency: 'ZAR',
+    currency: CUSTOMER_MODE ? (window.__geoCurrency || 'USD') : 'ZAR',
     clientName: '',
     seats: { admin: 1, core: 0, lite: 0, task: 0, team: 0, teamEnabled: false, luci: 0 },
     modules: {
       envirx: 0, erm: 0, assurance: 0,
       maiaEnabled: false, maiaFullUser: 0, maiaDataUser: 0, maiaDataBuckets: 0,
       hakwareEnabled: false, hkwDomains: 0, hkwUsers: 0,
-      xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgardEnabled: false, asgardTier: 'free', asgardSeats: 0, aiGovernance: false,
+      xlogicEnabled: false, xlogicAdmin: 0, xlogicGovernance: 0, asgardEnabled: false, asgardTier: 'free', asgardSeats: 0, aiGovernance: false, aiGovTier: 'professional', aiGovSystems: 0, aiGovHighRisk: 0,
       xrmEnabled: false, xrmTenantAdmin: 0, xrmSalesUser: 0, xrmApprover: 0, xrmViewer: 0,
       complianceHub: false
     },
@@ -1080,10 +1238,11 @@ function escapeHtml(str) {
 
 function loadQuote(entry) {
   const snap = entry.state;
-  state.currency = snap.currency;
+  // Customers always stay in their region's currency, even for a quote saved elsewhere.
+  state.currency = CUSTOMER_MODE ? (window.__geoCurrency || 'USD') : snap.currency;
   state.clientName = snap.clientName;
   state.seats = Object.assign({ teamEnabled: false }, snap.seats);
-  state.modules = Object.assign({ complianceHub: false }, snap.modules);
+  state.modules = Object.assign({ complianceHub: false, aiGovTier: 'professional', aiGovSystems: 0, aiGovHighRisk: 0 }, snap.modules);
   state.annual = snap.annual;
   state.lockin3yr = snap.lockin3yr || false;
   el('client-name').value = state.clientName;
@@ -1151,6 +1310,11 @@ function buildModuleItems(d) {
   push('XRM Approver', d.m.xrmApprover, PRICES.xrmApprover);
   if (d.m.xrmViewer > 0) items.push({ label: 'XRM Viewer', qty: d.m.xrmViewer, unit: 'Free', total: 'Free' });
   if (d.m.complianceHub) pushKey('Compliance Hub', 1, 'complianceHub');
+  if (d.aigOn) {
+    items.push({ label: `AI Governance (${d.aigTier.label})`,
+                 sub: `${d.aigSystems} AI systems` + (d.aigHighRisk ? `, ${d.aigHighRisk} high-risk counted twice` : '') + `: ${d.aigBillable} billable systems`,
+                 qty: d.aigBillable, unit: priceStr(PRICES[d.aigTier.key]), total: amountStr(d.aigCur) });
+  }
   if (d.m.asgardEnabled) {
     const tierDef = ASGARD_TIERS[d.m.asgardTier];
     items.push({ label: 'Asgard (' + tierDef.label + ' tier, base licence)', qty: 1, unit: priceStr(PRICES[tierDef.baseKey]), total: amountStr(PRICES[tierDef.baseKey][state.currency]) });
@@ -1163,8 +1327,7 @@ function buildModuleItems(d) {
 
 function buildLineItems(d) {
   const items = [...buildSeatItems(d), ...buildModuleItems(d)];
-  if (d.m.aiGovernance) items.push({ label: 'AI Governance', qty: 1, unit: UNPRICED_SHORT, total: UNPRICED_SHORT });
-  items.push({ label: 'Libryo (third-party)', qty: 1, unit: 'Quoted separately', total: 'Quoted separately' });
+  items.push({ label: 'Libryo (third-party)', qty: '', unit: '', total: 'Quoted separately' });
   return items;
 }
 
@@ -1194,7 +1357,7 @@ el('btn-download').addEventListener('click', () => {
   doc.setFont('helvetica', 'normal'); doc.setFontSize(11); doc.setTextColor(90, 100, 110);
   doc.text('Prepared for: ' + name, 40, y); y += 16;
   doc.text('Date: ' + new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }), 40, y); y += 16;
-  doc.text('Currency: ' + state.currency, 40, y); y += 24;
+  doc.text('Currency: ' + state.currency + (CUSTOMER_MODE ? ' (set for your region)' : ''), 40, y); y += 24;
 
   doc.setFont('helvetica', 'bold'); doc.setFontSize(14); doc.setTextColor(20, 30, 40);
   doc.text('Recommended package: ' + d.tierFull, 40, y); y += 26;
@@ -1209,6 +1372,7 @@ el('btn-download').addEventListener('click', () => {
     doc.text(String(li.qty), 300, y, { align: 'right' });
     doc.text(li.unit, 390, y, { align: 'right' });
     doc.text(li.total, 500, y, { align: 'right' });
+    if (li.sub) { y += 12; doc.setFontSize(8.5); doc.setTextColor(120, 130, 140); doc.text(li.sub, 52, y); doc.setFontSize(10.5); doc.setTextColor(50, 60, 70); }
     y += 16;
     if (y > 730) { doc.addPage(); y = 56; }
   });
@@ -1217,7 +1381,10 @@ el('btn-download').addEventListener('click', () => {
 
   doc.setFont('helvetica', 'normal'); doc.setFontSize(11); doc.setTextColor(20, 30, 40);
   doc.text('Monthly list value', 40, y); doc.text(amountStr(d.listValueCur), 500, y, { align: 'right' }); y += 16;
-  
+  if (d.th) {
+    doc.text('Volume discount (' + d.discountPct.toFixed(1) + '%)', 40, y);
+    doc.text(d.discountPct > 0 ? '- ' + amountStr(d.listValueCur - d.discountedMonthlyCur) : amountStr(0), 500, y, { align: 'right' }); y += 16;
+  }
   doc.setFont('helvetica', 'bold');
   doc.text(d.discountPct > 0 ? 'Discounted monthly total' : 'Monthly total', 40, y); doc.text(amountStr(d.discountedMonthlyCur), 500, y, { align: 'right' }); y += 22;
 
@@ -1225,6 +1392,13 @@ el('btn-download').addEventListener('click', () => {
   doc.text(state.annual ? 'Annual commitment (additional 10% discount applied)' : 'Annual total (no annual commitment)', 40, y); y += 16;
   doc.setFont('helvetica', 'bold'); doc.setFontSize(12);
   doc.text('Annual total', 40, y); doc.text(amountStr(d.annualTotalCur), 500, y, { align: 'right' });
+
+  if (d.yearSaving > 0.005) {
+    y += 18;
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(20, 120, 70);
+    doc.text('You save ' + amountStr(d.yearSaving) + ' a year (' + d.yearSavingPct.toFixed(1) + '% off the list price of ' + amountStr(d.yearList) + ')', 40, y);
+    doc.setTextColor(20, 30, 40);
+  }
 
   if (d.lockinActive) {
     y += 22;
@@ -1242,9 +1416,7 @@ el('btn-download').addEventListener('click', () => {
   doc.text('Billing terms: licences are billed monthly in arrears and are payable whether or not a', 40, y); y += 12;
   doc.text('licence was used that month. Annual commitment is invoiced annually in advance.', 40, y); y += 12;
   doc.text('All amounts exclude VAT.', 40, y); y += 12;
-  if (buildLineItems(d).some(li => li.total === 'Price on request' || li.total === UNPRICED_SHORT)) {
-    doc.text('Items marked ' + UNPRICED_SHORT + ' are not included in the totals above.', 40, y); y += 12;
-  }
+  if (d.aigOn) { doc.text('AI Governance is priced per AI system per month; EU AI Act high-risk systems count double; minimum 3 systems.', 40, y); y += 12; }
   y += 6;
   doc.setFont('helvetica', 'italic');
   doc.text('This quote is indicative and subject to final confirmation by XGRC®.', 40, y);
@@ -1284,8 +1456,39 @@ if (CUSTOMER_MODE) {
   el('client-name').placeholder = 'Company Name';
   el('name-hint').textContent = 'A company name is required before you can save or download this quote.';
 }
+
+// Customer version: the currency is set by the visitor's location (via Cloudflare) and cannot be changed.
+// Nothing is priced until the region is known, so a visitor outside South Africa never sees rand.
+const EUR_REGIONS = ['AT','BE','BG','HR','CY','EE','FI','FR','DE','GR','IE','IT','LV','LT','LU','MT','NL','PT','SK','SI','ES','AD','MC','SM','VA','ME','XK'];
+const GBP_REGIONS = ['GB','JE','GG','IM'];
+function currencyForCountry(cc) {
+  cc = String(cc || '').toUpperCase();
+  if (cc === 'ZA') return 'ZAR';
+  if (GBP_REGIONS.includes(cc)) return 'GBP';
+  if (EUR_REGIONS.includes(cc)) return 'EUR';
+  return 'USD';
+}
+const CURRENCY_NAMES = { ZAR: 'South African rand (ZAR)', USD: 'US dollars (USD)', GBP: 'pounds sterling (GBP)', EUR: 'euro (EUR)' };
+function startWithRegionCurrency() {
+  const apply = (cc) => {
+    const cur = currencyForCountry(cc);
+    window.__geoCurrency = cur;
+    state.currency = cur;
+    const note = el('geo-note');
+    if (note) note.innerHTML = 'Prices are shown in <b>' + CURRENCY_NAMES[cur] + '</b> for your region. All prices exclude VAT.';
+    render();
+  };
+  let done = false;
+  const finish = (cc) => { if (!done) { done = true; apply(cc); } };
+  setTimeout(() => finish(''), 2500);
+  fetch('/cdn-cgi/trace', { cache: 'no-store' })
+    .then(r => r.ok ? r.text() : '')
+    .then(t => { const m = /^loc=([A-Z]{2})$/m.exec(t || ''); finish(m ? m[1] : ''); })
+    .catch(() => finish(''));
+}
+
 renderRecentQuotes();
-render();
+if (CUSTOMER_MODE) startWithRegionCurrency(); else render();
 </script>
 </body>
 </html>
