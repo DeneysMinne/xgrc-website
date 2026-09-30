@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>IT Risk & Performance Committee Dashboard | XGRC® live dashboard tour</title>
+<meta name="description" content="Interactive demonstration of an XGRC® IT Risk & Performance Committee dashboard: risk register, KPI scorecard, appetite gauges and division exceptions. Every figure is fictitious and illustrative.">
+<link rel="icon" href="/favicon.ico">
+<script>
+  (function () {
+    if (!['xgrcsoftware.com', 'www.xgrcsoftware.com'].includes(window.location.hostname)) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('consent', 'default', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+    gtag('js', new Date());
+    gtag('config', 'G-E8SHSDL5C4');
+    gtag('config', 'AW-744549022');
+    var tag = document.createElement('script'); tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-E8SHSDL5C4';
+    document.head.appendChild(tag);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="tour-shell.css?v=9">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  .exec-tiles { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:22px; }
+  .exec-tile { border-radius:12px; border:1px solid var(--line-strong); background:linear-gradient(160deg, var(--panel), rgba(255,255,255,0.01)); padding:16px 18px 18px; min-height:78px; display:flex; flex-direction:column; justify-content:space-between; gap:10px; }
+  .exec-tile .lbl { display:block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.6px; text-transform:uppercase; color:var(--faint); line-height:1.4; }
+  .exec-tile .val { display:block; font-family:'Outfit'; font-size:26px; font-weight:800; color:var(--ink); line-height:1; }
+  .exec-tile.alert .val { color:var(--red-hi); }
+  .exec-tile.alert.zero .val { color:var(--green-hi); }
+  .exec-tiles-group { margin-bottom:10px; }
+  .exec-tiles-caption { font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--faint); text-transform:uppercase; letter-spacing:0.5px; margin:0 0 8px; }
+  @media (max-width:760px){ .exec-tiles{ grid-template-columns:repeat(2,1fr); } }
+
+  .heatmap-pair { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .heatmap-pair .hm-label { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--faint); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:2px; text-align:center; }
+  .heatmap-pair .hm-total { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--mute); text-align:center; margin:0 0 10px; }
+  @media (max-width:760px){ .heatmap-pair{ grid-template-columns:1fr; } }
+  .hm-legend { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:14px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--faint); }
+  .hm-legend i { display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+
+  .gauge-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  .gauge-cell { text-align:center; }
+  .gauge-cell .gname { font-family:'JetBrains Mono',monospace; font-size:8.5px; color:var(--mute); margin-top:4px; line-height:1.3; display:block; height:26px; }
+  .gauge-cell .gnum { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--faint); }
+  @media (max-width:760px){ .gauge-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  .committee-split { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px; }
+  @media (max-width:860px){ .committee-split{ grid-template-columns:1fr; } }
+
+  .div-table { width:100%; border-collapse:collapse; font-size:12.5px; }
+  .div-table th { text-align:left; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.4px; text-transform:uppercase; color:var(--faint); padding:8px 10px; border-bottom:1px solid var(--line-strong); }
+  .div-table td { padding:9px 10px; border-bottom:1px solid var(--line); color:var(--ink); }
+  .div-table td.divname { color:var(--mute); font-size:12px; }
+  .div-table td.flag { color:var(--amber-hi); font-weight:700; }
+  .div-table th:not(:first-child), .div-table td:not(.divname) { text-align:center; }
+
+  .risk-register-head { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:14px; }
+  .risk-filters { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:6px; }
+  .rchip { font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:7px 13px; border-radius:20px; border:1px solid var(--line-strong); background:transparent; color:var(--mute); cursor:pointer; }
+  .rchip:hover { border-color:var(--line-strong); color:var(--ink); }
+  .rchip.active { background:rgba(48,226,244,0.12); border-color:var(--cyan); color:var(--cyan-hi); }
+  .rchip.red.active { background:rgba(255,84,112,0.14); border-color:var(--red); color:var(--red-hi); }
+  .rchip.amber.active { background:rgba(255,182,72,0.14); border-color:var(--amber); color:var(--amber-hi); }
+  .rchip.green.active { background:rgba(47,232,138,0.12); border-color:var(--green); color:var(--green-hi); }
+  .rchip.outside.active { background:rgba(255,84,112,0.14); border-color:var(--red); color:var(--red-hi); }
+  .rcat-select { font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:7px 13px; border-radius:20px; border:1px solid var(--line-strong); background:var(--abyss); color:var(--mute); cursor:pointer; }
+  .risk-card.rcard-hidden { display:none; }
+  .risk-list { display:flex; flex-direction:column; gap:10px; }
+  .risk-card { border-radius:12px; border:1px solid var(--line-strong); border-left:3px solid var(--line-strong); background:rgba(255,255,255,0.02); padding:14px 16px; }
+  .risk-card.red { border-left-color:var(--red); }
+  .risk-card.amber { border-left-color:var(--amber); }
+  .risk-card.green { border-left-color:var(--green); }
+  .risk-card-head { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
+  .risk-id { font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--faint); }
+  .risk-rating { font-family:'JetBrains Mono',monospace; font-size:9.5px; text-transform:uppercase; letter-spacing:0.4px; padding:3px 9px; border-radius:6px; }
+  .risk-rating.red { background:rgba(255,84,112,0.15); color:var(--red-hi); }
+  .risk-rating.amber { background:rgba(255,182,72,0.15); color:var(--amber-hi); }
+  .risk-rating.green { background:rgba(47,232,138,0.12); color:var(--green-hi); }
+  .risk-outside { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.4px; padding:3px 8px; border-radius:6px; background:rgba(255,84,112,0.1); color:var(--red-hi); border:1px solid rgba(255,84,112,0.35); }
+  .risk-status { margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:9.5px; text-transform:uppercase; letter-spacing:0.4px; padding:3px 8px; border-radius:6px; background:var(--line); color:var(--mute); }
+  .risk-desc { font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:6px; }
+  .risk-meta { font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--faint); display:flex; gap:6px; flex-wrap:wrap; }
+  .risk-card details { margin-top:10px; }
+  .risk-card summary { cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--cyan); list-style:none; }
+  .risk-card summary::-webkit-details-marker { display:none; }
+  .risk-card summary::before { content:'+ '; }
+  .risk-card details[open] summary::before { content:'\2212 '; }
+  .risk-detail-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:10px 0; }
+  .risk-detail-grid .l, .risk-action .l, .risk-commentary .l { display:block; font-family:'JetBrains Mono',monospace; font-size:8.5px; text-transform:uppercase; letter-spacing:0.4px; color:var(--faint); margin-bottom:2px; }
+  .risk-detail-grid .v { font-size:12px; color:var(--ink); }
+  .risk-action, .risk-commentary { margin-top:8px; font-size:12px; color:var(--mute); }
+  .risk-action .v, .risk-commentary .v { color:var(--ink); }
+  @media (max-width:760px){ .risk-detail-grid{ grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<div id="banner">Demonstration dashboard: all companies, divisions, figures and exceptions on this page are fictitious and illustrative only</div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <a class="home" href="/" aria-label="XGRC® Software home"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" class="brand-icon"></a>
+      <div>
+        <div style="font-family:'Outfit';font-weight:700;font-size:14.5px;line-height:1.2;">IT Risk & Performance Committee Dashboard</div>
+        <div class="crumb"><a href="/tour/">&larr; All dashboards</a> &middot; Halyard Industrial Group (fictitious) &middot; Group Audit & Risk Committee pack</div>
+      </div>
+    </div>
+    <div class="top-right">
+      <button class="btn" id="btn-export" type="button">Export board pack</button>
+    </div>
+  </div>
+  <div class="filterbar">
+    <div class="filterbar-inner">
+      <div class="search"><input type="text" id="kpi-search" placeholder="Search KPIs, owners&hellip;"></div>
+      <div class="tabs" id="sys-tabs"></div>
+      <div class="chips" id="rag-chips">
+        <button class="chip active" data-rag="all">All</button>
+        <button class="chip" data-rag="red"><span class="dot"></span>Breach</button>
+        <button class="chip" data-rag="amber"><span class="dot"></span>Watch</button>
+        <button class="chip" data-rag="green"><span class="dot"></span>On target</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="exec-tiles-group">
+    <p class="exec-tiles-caption">Committee exception summary</p>
+    <div class="exec-tiles">
+      <div class="exec-tile alert" id="tile-crithigh"><span class="lbl">Critical / High Open</span><span class="val">3</span></div>
+      <div class="exec-tile alert" id="tile-outside"><span class="lbl">Outside Appetite</span><span class="val">8</span></div>
+      <div class="exec-tile alert" id="tile-overdue"><span class="lbl">Overdue Actions</span><span class="val">4</span></div>
+      <div class="exec-tile alert" id="tile-redkpi"><span class="lbl">Red KPIs</span><span class="val">3</span></div>
+    </div>
+  </div>
+  <div class="exec-tiles-group">
+    <p class="exec-tiles-caption">Headline metrics</p>
+    <div class="exec-tiles">
+      <div class="exec-tile"><span class="lbl">System Availability</span><span class="val">99.94%</span></div>
+      <div class="exec-tile"><span class="lbl">Patch Compliance</span><span class="val">91%</span></div>
+      <div class="exec-tile alert"><span class="lbl">Critical Vulns &gt;30 Days</span><span class="val">2</span></div>
+      <div class="exec-tile alert"><span class="lbl">P1 Incidents</span><span class="val">1</span></div>
+    </div>
+  </div>
+
+  <div class="hero-row">
+    <div class="card hero-card">
+      <div class="card-head">
+        <h3>Risk migration: inherent &rarr; residual (5&times;5)</h3>
+        <div class="health-badge"><div class="health-ring" id="health-ring"><span id="health-pct">&ndash;</span></div><span class="health-label">estate health</span></div>
+      </div>
+      <div id="chart-signature"><div class="heatmap-wrap"><div class="heatmap-pair">
+        <div><p class="hm-label">Inherent (before controls)</p><p class="hm-total">19 risks plotted</p><div id="chart-heat-inherent"></div></div>
+        <div><p class="hm-label">Residual (after controls)</p><p class="hm-total">19 risks plotted</p><div id="chart-heat-residual"></div></div>
+      </div>
+      <div class="hm-legend">
+        <span><i style="background:rgba(255,255,255,0.08)"></i>0 risks</span>
+        <span><i style="background:#2fe88a"></i>1 risk</span>
+        <span><i style="background:#ffb648"></i>2&ndash;3 risks</span>
+        <span><i style="background:#ff5470"></i>4+ risks</span>
+      </div></div></div>
+      <div id="cell-detail" class="cell-detail"></div>
+    </div>
+    <div class="hero-side">
+      <div class="card compact">
+        <h3 style="text-align:left;margin-bottom:4px;">Risk appetite by category</h3>
+        <div class="hint" style="margin-bottom:10px;">Highest residual score in each category vs its own appetite ceiling. Ceilings differ by category, so a Moderate-rated risk can still breach a tighter one.</div>
+        <div class="gauge-grid" id="gauge-grid"></div>
+      </div>
+      <div class="card compact"><h3 style="text-align:left;">At a glance</h3><div class="stat-tiles" id="exec-stats"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-panel">
+    <div class="section-title">
+      <h2>Where leadership should focus</h2>
+      <span class="n" id="focus-count"></span>
+    </div>
+    <div class="focus-list" id="focus-list"></div>
+  </div>
+
+  <div class="extra-section" id="extra-section"></div>
+
+  <div id="module-sections"></div>
+
+  <section style="margin-bottom:40px;">
+    <div class="risk-register-head">
+      <div>
+        <h2 style="margin:0 0 4px;">Risk register &middot; open items</h2>
+        <p class="hint">19 open risks across 8 risk categories and 8 divisions. Filter below, or click a risk for full committee detail.</p>
+      </div>
+    </div>
+    <div class="risk-filters">
+      <button class="rchip active" data-tier="all">All ratings</button>
+      <button class="rchip red" data-tier="critical-high">Critical / High</button>
+      <button class="rchip amber" data-tier="moderate">Moderate</button>
+      <button class="rchip green" data-tier="low">Low</button>
+      <button class="rchip outside" data-outside-toggle="1">Outside appetite only</button>
+      <select class="rcat-select" id="risk-cat-select">
+        <option value="all">All categories</option>
+        <option>Cybersecurity</option>
+        <option>Data Privacy</option>
+        <option>Business Continuity / DR</option>
+        <option>Infrastructure &amp; Availability</option>
+        <option>Third-Party / Cloud</option>
+        <option>Change &amp; Project Delivery</option>
+        <option>IT Governance &amp; Compliance</option>
+        <option>People &amp; Skills</option>
+      </select>
+    </div>
+    <p class="hint" id="risk-filter-count" style="margin:0 0 12px;"></p>
+    <div class="risk-list" id="risk-list">
+        <div class="risk-card red" data-cat="Cybersecurity" data-status="Overdue" data-tier="critical-high" data-outside="true">
+          <div class="risk-card-head">
+            <span class="risk-id">R-18</span>
+            <span class="risk-rating red">High</span>
+            <span class="risk-outside">OUTSIDE APPETITE</span>
+            <span class="risk-status">Overdue</span>
+          </div>
+          <div class="risk-desc">Multi-factor authentication not enforced for all cloud administrator accounts</div>
+          <div class="risk-meta">
+            <span>Shared IT (fictitious)</span><span>&middot;</span><span>Cybersecurity</span><span>&middot;</span>
+            <span>Residual 16 / appetite 4</span><span>&middot;</span><span>2d overdue</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L4 &times; I5 = 20</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">35%</span></div>
+              <div><span class="l">Residual</span><span class="v">L4 &times; I4 = 16</span></div>
+              <div><span class="l">Owner</span><span class="v">Group IT Security Manager</span></div>
+              <div><span class="l">Last review</span><span class="v">4d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">14d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Enforce MFA on all privileged cloud accounts immediately</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Emergency change raised; enforcement rollout in progress this week.</span></div>
+          </details>
+        </div>
+        <div class="risk-card red" data-cat="Business Continuity / DR" data-status="Not Started" data-tier="critical-high" data-outside="true">
+          <div class="risk-card-head">
+            <span class="risk-id">R-19</span>
+            <span class="risk-rating red">High</span>
+            <span class="risk-outside">OUTSIDE APPETITE</span>
+            <span class="risk-status">Not Started</span>
+          </div>
+          <div class="risk-desc">No tested failback procedure from the DR site to the primary data centre</div>
+          <div class="risk-meta">
+            <span>Group</span><span>&middot;</span><span>Business Continuity / DR</span><span>&middot;</span>
+            <span>Residual 12 / appetite 6</span><span>&middot;</span><span>due in 48d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L4 &times; I4 = 16</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">40%</span></div>
+              <div><span class="l">Residual</span><span class="v">L3 &times; I4 = 12</span></div>
+              <div><span class="l">Owner</span><span class="v">IT Infrastructure Manager</span></div>
+              <div><span class="l">Last review</span><span class="v">19d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">48d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Document and test the DR-to-primary failback procedure</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Included in next DR test cycle scope.</span></div>
+          </details>
+        </div>
+        <div class="risk-card red" data-cat="Cybersecurity" data-status="Overdue" data-tier="critical-high" data-outside="true">
+          <div class="risk-card-head">
+            <span class="risk-id">R-02</span>
+            <span class="risk-rating red">High</span>
+            <span class="risk-outside">OUTSIDE APPETITE</span>
+            <span class="risk-status">Overdue</span>
+          </div>
+          <div class="risk-desc">Legacy VPN concentrator at regional site lacks MFA enforcement</div>
+          <div class="risk-meta">
+            <span>Halyard Access (fictitious)</span><span>&middot;</span><span>Cybersecurity</span><span>&middot;</span>
+            <span>Residual 12 / appetite 4</span><span>&middot;</span><span>5d overdue</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L4 &times; I4 = 16</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">40%</span></div>
+              <div><span class="l">Residual</span><span class="v">L4 &times; I3 = 12</span></div>
+              <div><span class="l">Owner</span><span class="v">Regional IT Lead</span></div>
+              <div><span class="l">Last review</span><span class="v">20d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">30d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Replace legacy VPN with Zero Trust remote access</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Procurement approved; hardware delayed by supplier lead time.</span></div>
+          </details>
+        </div>
+        <div class="risk-card amber" data-cat="Infrastructure &amp; Availability" data-status="Overdue" data-tier="moderate" data-outside="true">
+          <div class="risk-card-head">
+            <span class="risk-id">R-08</span>
+            <span class="risk-rating amber">Moderate</span>
+            <span class="risk-outside">OUTSIDE APPETITE</span>
+            <span class="risk-status">Overdue</span>
+          </div>
+          <div class="risk-desc">Core data centre UPS batteries beyond manufacturer end-of-life</div>
+          <div class="risk-meta">
+            <span>Group</span><span>&middot;</span><span>Infrastructure &amp; Availability</span><span>&middot;</span>
+            <span>Residual 9 / appetite 6</span><span>&middot;</span><span>3d overdue</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L3 &times; I4 = 12</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">50%</span></div>
+              <div><span class="l">Residual</span><span class="v">L3 &times; I3 = 9</span></div>
+              <div><span class="l">Owner</span><span class="v">Infrastructure Manager</span></div>
+              <div><span class="l">Last review</span><span class="v">10d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">20d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Replace UPS battery strings at primary data centre</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Parts on order; interim generator test completed successfully.</span></div>
+          </details>
+        </div>
+        <div class="risk-card green" data-cat="Change &amp; Project Delivery" data-status="In Progress" data-tier="moderate" data-outside="false">
+          <div class="risk-card-head">
+            <span class="risk-id">R-12</span>
+            <span class="risk-rating green">Moderate</span>
+            
+            <span class="risk-status">In Progress</span>
+          </div>
+          <div class="risk-desc">ERP upgrade project tracking six weeks behind schedule with unresolved data migration risks</div>
+          <div class="risk-meta">
+            <span>Group</span><span>&middot;</span><span>Change &amp; Project Delivery</span><span>&middot;</span>
+            <span>Residual 9 / appetite 9</span><span>&middot;</span><span>due in 21d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L4 &times; I4 = 16</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">45%</span></div>
+              <div><span class="l">Residual</span><span class="v">L3 &times; I3 = 9</span></div>
+              <div><span class="l">Owner</span><span class="v">Programme Director</span></div>
+              <div><span class="l">Last review</span><span class="v">7d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">70d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Re-baseline project plan and add a data migration dry-run cycle</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Steering committee reviewing revised timeline this week.</span></div>
+          </details>
+        </div>
+        <div class="risk-card amber" data-cat="Third-Party / Cloud" data-status="In Progress" data-tier="moderate" data-outside="true">
+          <div class="risk-card-head">
+            <span class="risk-id">R-11</span>
+            <span class="risk-rating amber">Moderate</span>
+            <span class="risk-outside">OUTSIDE APPETITE</span>
+            <span class="risk-status">In Progress</span>
+          </div>
+          <div class="risk-desc">Payroll processing outsourced to a provider without a right-to-audit clause</div>
+          <div class="risk-meta">
+            <span>Halyard Cape Supplies (fictitious)</span><span>&middot;</span><span>Third-Party / Cloud</span><span>&middot;</span>
+            <span>Residual 9 / appetite 6</span><span>&middot;</span><span>due in 38d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L3 &times; I4 = 12</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">45%</span></div>
+              <div><span class="l">Residual</span><span class="v">L3 &times; I3 = 9</span></div>
+              <div><span class="l">Owner</span><span class="v">Division Compliance Lead</span></div>
+              <div><span class="l">Last review</span><span class="v">14d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">38d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Renegotiate contract to include right-to-audit and security addendum</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Legal engaged; contract renewal window opens next quarter.</span></div>
+          </details>
+        </div>
+        <div class="risk-card amber" data-cat="Business Continuity / DR" data-status="Scheduled" data-tier="moderate" data-outside="true">
+          <div class="risk-card-head">
+            <span class="risk-id">R-06</span>
+            <span class="risk-rating amber">Moderate</span>
+            <span class="risk-outside">OUTSIDE APPETITE</span>
+            <span class="risk-status">Scheduled</span>
+          </div>
+          <div class="risk-desc">Disaster recovery failover for core ERP not tested in live conditions</div>
+          <div class="risk-meta">
+            <span>Group</span><span>&middot;</span><span>Business Continuity / DR</span><span>&middot;</span>
+            <span>Residual 8 / appetite 6</span><span>&middot;</span><span>due in 33d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L3 &times; I5 = 15</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">55%</span></div>
+              <div><span class="l">Residual</span><span class="v">L2 &times; I4 = 8</span></div>
+              <div><span class="l">Owner</span><span class="v">IT Infrastructure Manager</span></div>
+              <div><span class="l">Last review</span><span class="v">18d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">33d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Conduct full DR failover test for core ERP</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Test window booked with vendor for next quarter.</span></div>
+          </details>
+        </div>
+        <div class="risk-card amber" data-cat="Cybersecurity" data-status="In Progress" data-tier="moderate" data-outside="true">
+          <div class="risk-card-head">
+            <span class="risk-id">R-01</span>
+            <span class="risk-rating amber">Moderate</span>
+            <span class="risk-outside">OUTSIDE APPETITE</span>
+            <span class="risk-status">In Progress</span>
+          </div>
+          <div class="risk-desc">Privileged account access not reviewed quarterly across core financial systems</div>
+          <div class="risk-meta">
+            <span>Group</span><span>&middot;</span><span>Cybersecurity</span><span>&middot;</span>
+            <span>Residual 6 / appetite 4</span><span>&middot;</span><span>due in 18d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L4 &times; I5 = 20</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">70%</span></div>
+              <div><span class="l">Residual</span><span class="v">L2 &times; I3 = 6</span></div>
+              <div><span class="l">Owner</span><span class="v">Group IT Security Manager</span></div>
+              <div><span class="l">Last review</span><span class="v">12d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">45d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Implement quarterly privileged access recertification</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Access review tooling live; first full recertification cycle scheduled next month.</span></div>
+          </details>
+        </div>
+        <div class="risk-card amber" data-cat="Data Privacy" data-status="In Progress" data-tier="moderate" data-outside="true">
+          <div class="risk-card-head">
+            <span class="risk-id">R-04</span>
+            <span class="risk-rating amber">Moderate</span>
+            <span class="risk-outside">OUTSIDE APPETITE</span>
+            <span class="risk-status">In Progress</span>
+          </div>
+          <div class="risk-desc">Data retention schedule not enforced in legacy document archive</div>
+          <div class="risk-meta">
+            <span>Group</span><span>&middot;</span><span>Data Privacy</span><span>&middot;</span>
+            <span>Residual 6 / appetite 4</span><span>&middot;</span><span>due in 40d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L3 &times; I4 = 12</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">60%</span></div>
+              <div><span class="l">Residual</span><span class="v">L2 &times; I3 = 6</span></div>
+              <div><span class="l">Owner</span><span class="v">Data Protection Officer</span></div>
+              <div><span class="l">Last review</span><span class="v">15d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">60d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Apply automated retention and deletion rules to archive</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Policy approved; technical implementation in build.</span></div>
+          </details>
+        </div>
+        <div class="risk-card green" data-cat="IT Governance &amp; Compliance" data-status="In Progress" data-tier="moderate" data-outside="false">
+          <div class="risk-card-head">
+            <span class="risk-id">R-14</span>
+            <span class="risk-rating green">Moderate</span>
+            
+            <span class="risk-status">In Progress</span>
+          </div>
+          <div class="risk-desc">IT policy suite has not been reviewed against the ISO/IEC 27001:2022 updated control set</div>
+          <div class="risk-meta">
+            <span>Group</span><span>&middot;</span><span>IT Governance &amp; Compliance</span><span>&middot;</span>
+            <span>Residual 6 / appetite 6</span><span>&middot;</span><span>due in 55d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L3 &times; I3 = 9</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">50%</span></div>
+              <div><span class="l">Residual</span><span class="v">L2 &times; I3 = 6</span></div>
+              <div><span class="l">Owner</span><span class="v">ISMS Manager</span></div>
+              <div><span class="l">Last review</span><span class="v">11d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">55d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Complete gap assessment against ISO 27001:2022 and update policy suite</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Gap assessment 60% complete.</span></div>
+          </details>
+        </div>
+        <div class="risk-card green" data-cat="People &amp; Skills" data-status="In Progress" data-tier="moderate" data-outside="false">
+          <div class="risk-card-head">
+            <span class="risk-id">R-16</span>
+            <span class="risk-rating green">Moderate</span>
+            
+            <span class="risk-status">In Progress</span>
+          </div>
+          <div class="risk-desc">Single point of failure: only one engineer certified on the core network switching platform</div>
+          <div class="risk-meta">
+            <span>Group</span><span>&middot;</span><span>People &amp; Skills</span><span>&middot;</span>
+            <span>Residual 6 / appetite 9</span><span>&middot;</span><span>due in 40d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L3 &times; I4 = 12</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">50%</span></div>
+              <div><span class="l">Residual</span><span class="v">L3 &times; I2 = 6</span></div>
+              <div><span class="l">Owner</span><span class="v">IT Infrastructure Manager</span></div>
+              <div><span class="l">Last review</span><span class="v">16d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">40d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Cross-train two additional engineers and document runbooks</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Training scheduled; runbook documentation 30% complete.</span></div>
+          </details>
+        </div>
+        <div class="risk-card green" data-cat="People &amp; Skills" data-status="Overdue" data-tier="moderate" data-outside="false">
+          <div class="risk-card-head">
+            <span class="risk-id">R-17</span>
+            <span class="risk-rating green">Moderate</span>
+            
+            <span class="risk-status">Overdue</span>
+          </div>
+          <div class="risk-desc">IT support role vacant for four months at regional site, service desk relying on remote cover</div>
+          <div class="risk-meta">
+            <span>Halyard Sanitation (fictitious)</span><span>&middot;</span><span>People &amp; Skills</span><span>&middot;</span>
+            <span>Residual 6 / appetite 9</span><span>&middot;</span><span>8d overdue</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L2 &times; I3 = 6</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">40%</span></div>
+              <div><span class="l">Residual</span><span class="v">L2 &times; I3 = 6</span></div>
+              <div><span class="l">Owner</span><span class="v">Regional IT Lead</span></div>
+              <div><span class="l">Last review</span><span class="v">25d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">overdue by 8d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Finalise recruitment for the regional IT support role</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Candidate shortlisted; offer delayed by budget sign-off, service desk SLA impacted this period.</span></div>
+          </details>
+        </div>
+        <div class="risk-card green" data-cat="Third-Party / Cloud" data-status="In Progress" data-tier="low" data-outside="false">
+          <div class="risk-card-head">
+            <span class="risk-id">R-10</span>
+            <span class="risk-rating green">Low</span>
+            
+            <span class="risk-status">In Progress</span>
+          </div>
+          <div class="risk-desc">Cloud hosting provider&#x27;s SOC 2 report has not been reviewed this financial year</div>
+          <div class="risk-meta">
+            <span>Group</span><span>&middot;</span><span>Third-Party / Cloud</span><span>&middot;</span>
+            <span>Residual 4 / appetite 6</span><span>&middot;</span><span>due in 15d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L2 &times; I4 = 8</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">70%</span></div>
+              <div><span class="l">Residual</span><span class="v">L1 &times; I4 = 4</span></div>
+              <div><span class="l">Owner</span><span class="v">Vendor Risk Manager</span></div>
+              <div><span class="l">Last review</span><span class="v">5d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">15d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Obtain and review current SOC 2 Type II report</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Report requested from vendor; review scheduled on receipt.</span></div>
+          </details>
+        </div>
+        <div class="risk-card green" data-cat="Change &amp; Project Delivery" data-status="In Progress" data-tier="low" data-outside="false">
+          <div class="risk-card-head">
+            <span class="risk-id">R-13</span>
+            <span class="risk-rating green">Low</span>
+            
+            <span class="risk-status">In Progress</span>
+          </div>
+          <div class="risk-desc">Emergency changes bypassing standard change advisory board approval</div>
+          <div class="risk-meta">
+            <span>Halyard Access (fictitious)</span><span>&middot;</span><span>Change &amp; Project Delivery</span><span>&middot;</span>
+            <span>Residual 4 / appetite 9</span><span>&middot;</span><span>due in 12d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L3 &times; I3 = 9</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">60%</span></div>
+              <div><span class="l">Residual</span><span class="v">L2 &times; I2 = 4</span></div>
+              <div><span class="l">Owner</span><span class="v">Regional IT Lead</span></div>
+              <div><span class="l">Last review</span><span class="v">9d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">12d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Enforce retrospective CAB review for all emergency changes</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Process updated; compliance being monitored monthly.</span></div>
+          </details>
+        </div>
+        <div class="risk-card green" data-cat="Business Continuity / DR" data-status="Not Started" data-tier="low" data-outside="false">
+          <div class="risk-card-head">
+            <span class="risk-id">R-07</span>
+            <span class="risk-rating green">Low</span>
+            
+            <span class="risk-status">Not Started</span>
+          </div>
+          <div class="risk-desc">Single points of failure in site network connectivity, no secondary ISP link</div>
+          <div class="risk-meta">
+            <span>Halyard Modular (fictitious)</span><span>&middot;</span><span>Business Continuity / DR</span><span>&middot;</span>
+            <span>Residual 4 / appetite 6</span><span>&middot;</span><span>due in 50d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L3 &times; I3 = 9</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">65%</span></div>
+              <div><span class="l">Residual</span><span class="v">L2 &times; I2 = 4</span></div>
+              <div><span class="l">Owner</span><span class="v">Regional IT Lead</span></div>
+              <div><span class="l">Last review</span><span class="v">25d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">50d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Provision secondary ISP circuit</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Budget approved for FY27; vendor selection underway.</span></div>
+          </details>
+        </div>
+        <div class="risk-card green" data-cat="Data Privacy" data-status="In Progress" data-tier="low" data-outside="false">
+          <div class="risk-card-head">
+            <span class="risk-id">R-05</span>
+            <span class="risk-rating green">Low</span>
+            
+            <span class="risk-status">In Progress</span>
+          </div>
+          <div class="risk-desc">Customer data shared with a third-party logistics provider without a signed DPA</div>
+          <div class="risk-meta">
+            <span>Halyard Sanitation (fictitious)</span><span>&middot;</span><span>Data Privacy</span><span>&middot;</span>
+            <span>Residual 4 / appetite 4</span><span>&middot;</span><span>due in 10d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L4 &times; I4 = 16</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">80%</span></div>
+              <div><span class="l">Residual</span><span class="v">L2 &times; I2 = 4</span></div>
+              <div><span class="l">Owner</span><span class="v">Division Compliance Lead</span></div>
+              <div><span class="l">Last review</span><span class="v">6d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">10d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Execute data processing agreement with logistics partner</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">DPA in legal review, expected signature this month.</span></div>
+          </details>
+        </div>
+        <div class="risk-card green" data-cat="Cybersecurity" data-status="On Track" data-tier="low" data-outside="false">
+          <div class="risk-card-head">
+            <span class="risk-id">R-03</span>
+            <span class="risk-rating green">Low</span>
+            
+            <span class="risk-status">On Track</span>
+          </div>
+          <div class="risk-desc">Endpoint detection and response not deployed on 15% of laptops</div>
+          <div class="risk-meta">
+            <span>Shared IT (fictitious)</span><span>&middot;</span><span>Cybersecurity</span><span>&middot;</span>
+            <span>Residual 4 / appetite 4</span><span>&middot;</span><span>due in 25d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L3 &times; I4 = 12</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">75%</span></div>
+              <div><span class="l">Residual</span><span class="v">L2 &times; I2 = 4</span></div>
+              <div><span class="l">Owner</span><span class="v">Endpoint Security Lead</span></div>
+              <div><span class="l">Last review</span><span class="v">8d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">25d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Complete EDR rollout to remaining laptop fleet</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Rollout 85% complete, on schedule.</span></div>
+          </details>
+        </div>
+        <div class="risk-card green" data-cat="Infrastructure &amp; Availability" data-status="Not Started" data-tier="low" data-outside="false">
+          <div class="risk-card-head">
+            <span class="risk-id">R-09</span>
+            <span class="risk-rating green">Low</span>
+            
+            <span class="risk-status">Not Started</span>
+          </div>
+          <div class="risk-desc">Site server room cooling redundancy below design spec</div>
+          <div class="risk-meta">
+            <span>Halyard Formwork (fictitious)</span><span>&middot;</span><span>Infrastructure &amp; Availability</span><span>&middot;</span>
+            <span>Residual 3 / appetite 6</span><span>&middot;</span><span>due in 60d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L2 &times; I3 = 6</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">70%</span></div>
+              <div><span class="l">Residual</span><span class="v">L1 &times; I3 = 3</span></div>
+              <div><span class="l">Owner</span><span class="v">Site IT Coordinator</span></div>
+              <div><span class="l">Last review</span><span class="v">30d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">60d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Install secondary cooling unit</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Low priority; monitored monthly, no incidents to date.</span></div>
+          </details>
+        </div>
+        <div class="risk-card green" data-cat="IT Governance &amp; Compliance" data-status="Not Started" data-tier="low" data-outside="false">
+          <div class="risk-card-head">
+            <span class="risk-id">R-15</span>
+            <span class="risk-rating green">Low</span>
+            
+            <span class="risk-status">Not Started</span>
+          </div>
+          <div class="risk-desc">No formal IT asset disposal record for decommissioned hardware at two sites</div>
+          <div class="risk-meta">
+            <span>Other Shared Services (fictitious)</span><span>&middot;</span><span>IT Governance &amp; Compliance</span><span>&middot;</span>
+            <span>Residual 2 / appetite 6</span><span>&middot;</span><span>due in 30d</span>
+          </div>
+          <details>
+            <summary>Full committee detail</summary>
+            <div class="risk-detail-grid">
+              <div><span class="l">Inherent</span><span class="v">L2 &times; I3 = 6</span></div>
+              <div><span class="l">Control effectiveness</span><span class="v">65%</span></div>
+              <div><span class="l">Residual</span><span class="v">L1 &times; I2 = 2</span></div>
+              <div><span class="l">Owner</span><span class="v">Shared Services Manager</span></div>
+              <div><span class="l">Last review</span><span class="v">22d ago</span></div>
+              <div><span class="l">Target closure</span><span class="v">30d</span></div>
+            </div>
+            <div class="risk-action"><span class="l">Treatment action</span><span class="v">Implement certified asset disposal process with disposal certificates</span></div>
+            <div class="risk-commentary"><span class="l">Committee commentary</span><span class="v">Vendor identified; process rollout planned for next cycle.</span></div>
+          </details>
+        </div>
+    </div>
+  </section>
+</main>
+
+<section class="tour-cta" aria-label="Next step">
+  <div class="tour-cta-inner">
+    <div>
+      <h2>One risk register, one KPI scorecard, one committee pack</h2>
+      <p>Inherent and residual risk, category-specific appetite, KPI performance and division exceptions, reconciled on one governed platform. This dashboard uses fictitious data; a demo uses yours.</p>
+    </div>
+    <div class="acts"><a class="btn-go" href="/demo/">See it with your data</a><a class="btn" href="/grc-software/">About the GRC Platform</a><a class="btn" href="/tour/">All dashboards</a></div>
+  </div>
+</section>
+
+<div id="site-footer">
+  <div style="font-family:'Outfit';font-size:12.5px;font-style:italic;color:var(--faint);">Synergy in Assurance, Strength in Compliance&reg;</div>
+  <div style="font-size:10.5px;color:var(--faint);margin-top:6px;">Fictitious data. Illustrative view of IT risk, KPI performance and committee exception reporting across a multi-division group.</div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
+    <div class="meyebrow"><span class="eyebrow" id="modal-module"></span></div>
+    <h2 id="modal-name"></h2>
+    <p class="mdesc" id="modal-desc"></p>
+    <div class="mspark"><div id="chart-modal-spark"></div></div>
+    <div class="mgrid">
+      <div class="mfield"><div class="l">Current value</div><div class="v" id="modal-value"></div></div>
+      <div class="mfield"><div class="l">Target / threshold</div><div class="v" id="modal-target"></div></div>
+      <div class="mfield"><div class="l">Owner</div><div class="v" id="modal-owner"></div></div>
+      <div class="mfield"><div class="l">Refresh cadence</div><div class="v" id="modal-cadence"></div></div>
+    </div>
+    <div class="mcalc"><div class="l">Calculation logic</div><div class="v" id="modal-calc"></div></div>
+    <div class="mtags" id="modal-frameworks"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {"pdfTitle":"Halyard Industrial Group (fictitious) \u00b7 IT Risk & Performance Committee Pack","pdfFilename":"XGRC-IT-Risk-Performance-Board-Pack-Demo.pdf","systems":[{"name":"Availability & Resilience","color":"#2fe88a"},{"name":"Security & Vulnerability","color":"#ff5470"},{"name":"Incidents & Service","color":"#30e2f4"},{"name":"Financial & Governance","color":"#b98bff"}],"execStats":[{"label":"Open risks on the register","value":19,"sub":"across 8 divisions"},{"label":"Divisions reporting this cycle","value":8,"suffix":"/8","sub":"all submitted on time"},{"label":"Next committee date","value":12,"suffix":"d","sub":"Group Audit & Risk Committee"}],"kpis":[{"id":1,"name":"Core Systems Availability","system":"Availability & Resilience","module":"Availability","desc":"% uptime of core business systems (ERP, email, network) across the reporting period.","calc":"Total minutes of confirmed uptime \u00f7 total minutes in the period, core systems only.","valueLabel":"99.94%","target":"\u2265 99%","rag":"green","delta":"+0.02 pts","tone":"good","owner":"IT Infrastructure Manager","cadence":"Monthly","frameworks":["ISO 27001"]},{"id":2,"name":"P1 Incidents","system":"Incidents & Service","module":"Incidents","desc":"Count of Priority 1 (critical, business-stopping) incidents logged in the period.","calc":"Count of incidents logged with Priority = P1, current reporting period.","valueLabel":"1","target":"0","rag":"red","delta":"+1","tone":"bad","owner":"Service Desk Manager","cadence":"Monthly","frameworks":[]},{"id":3,"name":"P2 Incidents","system":"Incidents & Service","module":"Incidents","desc":"Count of Priority 2 (high, significant disruption) incidents logged in the period.","calc":"Count of incidents logged with Priority = P2, current reporting period.","valueLabel":"2","target":"\u2264 2","rag":"green","delta":"-1","tone":"good","owner":"Service Desk Manager","cadence":"Monthly","frameworks":[]},{"id":4,"name":"Critical Vulnerabilities Open > 30 Days","system":"Security & Vulnerability","module":"Vulnerability Management","desc":"Count of critical-severity vulnerabilities still open more than 30 days after detection.","calc":"Count of critical vulnerabilities where (today \u2212 detection date) > 30 days and status is not Remediated.","valueLabel":"2","target":"0","rag":"red","delta":"+1","tone":"bad","owner":"IT Security Manager","cadence":"Monthly","frameworks":["ISO 27001"]},{"id":5,"name":"Patch Compliance","system":"Security & Vulnerability","module":"Patch Management","desc":"% of in-scope endpoints and servers patched within the policy SLA window.","calc":"Devices patched within SLA \u00f7 total in-scope devices, current reporting period.","valueLabel":"91%","target":"\u2265 95%","rag":"amber","delta":"+2 pts","tone":"good","owner":"IT Security Manager","cadence":"Monthly","frameworks":["ISO 27001"]},{"id":6,"name":"Backup Success Rate","system":"Availability & Resilience","module":"Backup & Recovery","desc":"% of scheduled backup jobs that completed successfully and passed integrity verification.","calc":"Successful, verified backup jobs \u00f7 total scheduled backup jobs, current reporting period.","valueLabel":"99.2%","target":"\u2265 98%","rag":"green","delta":"+0.3 pts","tone":"good","owner":"Infrastructure Manager","cadence":"Monthly","frameworks":[]},{"id":7,"name":"DR Tests Completed","system":"Availability & Resilience","module":"Disaster Recovery","desc":"% of scheduled disaster recovery tests completed in the period against the annual DR test plan.","calc":"DR tests completed \u00f7 DR tests scheduled for the period, per the annual DR test plan.","valueLabel":"100%","target":"100%","rag":"green","delta":"flat","tone":"good","owner":"Infrastructure Manager","cadence":"Quarterly","frameworks":[]},{"id":8,"name":"Mean Time to Resolve P1","system":"Incidents & Service","module":"Incidents","desc":"Average time from a P1 incident being logged to full resolution.","calc":"Sum of (resolution time \u2212 logged time) across P1 incidents \u00f7 number of P1 incidents, current period.","valueLabel":"3.4h","target":"\u2264 4h","rag":"green","delta":"-0.4h","tone":"good","owner":"Service Desk Manager","cadence":"Monthly","frameworks":[]},{"id":9,"name":"Service Desk Within SLA","system":"Incidents & Service","module":"Service Desk","desc":"% of service desk tickets resolved within their SLA response and resolution targets.","calc":"Tickets resolved within SLA \u00f7 total tickets closed, current reporting period.","valueLabel":"86%","target":"\u2265 90%","rag":"amber","delta":"-3 pts","tone":"bad","owner":"Service Desk Manager","cadence":"Monthly","frameworks":[]},{"id":10,"name":"Cyber Training Completion","system":"Security & Vulnerability","module":"Security Awareness","desc":"% of employees who completed mandatory annual cyber security awareness training.","calc":"Employees who completed the training \u00f7 total employees required to complete it.","valueLabel":"90%","target":"\u2265 95%","rag":"amber","delta":"+4 pts","tone":"good","owner":"HR & IT Security Manager","cadence":"Quarterly","frameworks":["ISO 27001"]},{"id":11,"name":"Phishing Simulation Failure Rate","system":"Security & Vulnerability","module":"Security Awareness","desc":"% of employees who clicked a simulated phishing link in the latest campaign.","calc":"Employees who clicked the simulated link \u00f7 employees who received the simulation.","valueLabel":"8%","target":"\u2264 5%","rag":"red","delta":"+1 pt","tone":"bad","owner":"IT Security Manager","cadence":"Quarterly","frameworks":["ISO 27001"]},{"id":12,"name":"IT Spend vs Budget Variance","system":"Financial & Governance","module":"IT Finance","desc":"Actual IT operating spend as a % variance against the approved budget for the period.","calc":"(Actual IT spend \u2212 budgeted IT spend) \u00f7 budgeted IT spend, current reporting period.","valueLabel":"+3.1%","target":"\u00b1 5%","rag":"green","delta":"-0.6 pts","tone":"good","owner":"IT Finance Business Partner","cadence":"Monthly","frameworks":[]}],"exceptions":[{"kpiId":2,"ageDays":6,"status":"Open"},{"kpiId":4,"ageDays":14,"status":"Open"},{"kpiId":11,"ageDays":9,"status":"Open"},{"kpiId":5,"ageDays":11,"status":"Open"},{"kpiId":9,"ageDays":7,"status":"Acknowledged"},{"kpiId":10,"ageDays":20,"status":"Acknowledged"}]};
+CONFIG.afterInit = function(ctx){
+  var heatColors = { ranges:[
+    {from:0,to:0,color:'rgba(255,255,255,0.03)',name:'0 risks'},
+    {from:1,to:1,color:'#2fe88a',name:'1 risk'},
+    {from:2,to:3,color:'#ffb648',name:'2-3 risks'},
+    {from:4,to:99,color:'#ff5470',name:'4+ risks'},
+  ] };
+  new ApexCharts(document.getElementById('chart-heat-inherent'), {
+    chart:{ type:'heatmap', height:290, background:'transparent', toolbar:{show:false}, animations:{ enabled:false } },
+    series: [{"name":"Impact 5","data":[{"x":"L1","y":0},{"x":"L2","y":0},{"x":"L3","y":1},{"x":"L4","y":2},{"x":"L5","y":0}]},{"name":"Impact 4","data":[{"x":"L1","y":0},{"x":"L2","y":1},{"x":"L3","y":5},{"x":"L4","y":4},{"x":"L5","y":0}]},{"name":"Impact 3","data":[{"x":"L1","y":0},{"x":"L2","y":3},{"x":"L3","y":3},{"x":"L4","y":0},{"x":"L5","y":0}]},{"name":"Impact 2","data":[{"x":"L1","y":0},{"x":"L2","y":0},{"x":"L3","y":0},{"x":"L4","y":0},{"x":"L5","y":0}]},{"name":"Impact 1","data":[{"x":"L1","y":0},{"x":"L2","y":0},{"x":"L3","y":0},{"x":"L4","y":0},{"x":"L5","y":0}]}],
+    dataLabels:{ enabled:true, style:{ colors:['#060f1c'], fontFamily:'JetBrains Mono', fontSize:'10px', fontWeight:700 }, formatter:function(v){ return v>0?v:''; } },
+    plotOptions:{ heatmap:{ radius:3, colorScale: heatColors } },
+    xaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9px'}} },
+    yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9px'}} },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ show:false },
+    tooltip:{ theme:'dark' },
+  }).render();
+  new ApexCharts(document.getElementById('chart-heat-residual'), {
+    chart:{ type:'heatmap', height:290, background:'transparent', toolbar:{show:false}, animations:{ enabled:false } },
+    series: [{"name":"Impact 5","data":[{"x":"L1","y":0},{"x":"L2","y":0},{"x":"L3","y":0},{"x":"L4","y":0},{"x":"L5","y":0}]},{"name":"Impact 4","data":[{"x":"L1","y":1},{"x":"L2","y":1},{"x":"L3","y":1},{"x":"L4","y":1},{"x":"L5","y":0}]},{"name":"Impact 3","data":[{"x":"L1","y":1},{"x":"L2","y":4},{"x":"L3","y":3},{"x":"L4","y":1},{"x":"L5","y":0}]},{"name":"Impact 2","data":[{"x":"L1","y":1},{"x":"L2","y":4},{"x":"L3","y":1},{"x":"L4","y":0},{"x":"L5","y":0}]},{"name":"Impact 1","data":[{"x":"L1","y":0},{"x":"L2","y":0},{"x":"L3","y":0},{"x":"L4","y":0},{"x":"L5","y":0}]}],
+    dataLabels:{ enabled:true, style:{ colors:['#060f1c'], fontFamily:'JetBrains Mono', fontSize:'10px', fontWeight:700 }, formatter:function(v){ return v>0?v:''; } },
+    plotOptions:{ heatmap:{ radius:3, colorScale: heatColors } },
+    xaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9px'}} },
+    yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9px'}} },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ show:false },
+    tooltip:{ theme:'dark' },
+  }).render();
+
+  var gaugeData = [{"name":"Cybersecurity","value":200,"appetite":4,"maxResidual":16,"over":true},{"name":"Data Privacy","value":150,"appetite":4,"maxResidual":6,"over":true},{"name":"Business Continuity / DR","value":200,"appetite":6,"maxResidual":12,"over":true},{"name":"Infrastructure & Availability","value":150,"appetite":6,"maxResidual":9,"over":true},{"name":"Third-Party / Cloud","value":150,"appetite":6,"maxResidual":9,"over":true},{"name":"Change & Project Delivery","value":100,"appetite":9,"maxResidual":9,"over":false},{"name":"IT Governance & Compliance","value":100,"appetite":6,"maxResidual":6,"over":false},{"name":"People & Skills","value":67,"appetite":9,"maxResidual":6,"over":false}];
+  var grid = document.getElementById('gauge-grid');
+  gaugeData.forEach(function(g, i){
+    var cell = document.createElement('div');
+    cell.className = 'gauge-cell';
+    var chartId = 'gauge-'+i;
+    cell.innerHTML = '<div id="'+chartId+'"></div><span class="gname">'+g.name+'</span><span class="gnum">'+g.maxResidual+' / '+g.appetite+'</span>';
+    grid.appendChild(cell);
+    var color = g.over ? '#ff5470' : (g.value >= 90 ? '#ffb648' : '#2fe88a');
+    new ApexCharts(document.getElementById(chartId), {
+      chart:{ type:'radialBar', height:92, background:'transparent', toolbar:{show:false}, animations:{ enabled:false } },
+      series:[Math.min(g.value,150)],
+      colors:[color],
+      plotOptions:{ radialBar:{ hollow:{size:'46%'}, track:{background:'rgba(255,255,255,0.06)'},
+        dataLabels:{ show:true, name:{ show:false }, value:{ fontSize:'11px', fontFamily:'JetBrains Mono', fontWeight:700, color:'#eaf3f7', offsetY:6, formatter:function(){ return g.maxResidual; } } } } },
+      stroke:{ lineCap:'round' },
+      tooltip:{ enabled:false },
+    }).render();
+  });
+
+  document.getElementById('extra-section').innerHTML =
+    '<div class="committee-split">' +
+      '<div class="card compact"><h3 style="text-align:left;margin-bottom:4px;">Residual rating &middot; open risks</h3><div class="hint" style="margin-bottom:10px;">Critical 20-25 &middot; High 12-19 &middot; Moderate 6-11 &middot; Low 1-5</div><div id="chart-rating"></div></div>' +
+      '<div class="card compact"><h3 style="text-align:left;margin-bottom:4px;">KPI RAG &middot; this cycle</h3><div class="hint" style="margin-bottom:10px;">12 KPIs tracked at Group level</div><div id="chart-kpirag"></div></div>' +
+    '</div>' +
+    '<div class="card">' +
+      '<h3 style="text-align:left;margin-bottom:4px;">Division exception summary</h3>' +
+      '<div class="hint" style="margin-bottom:12px;">One row per division, from the same register and KPI set above</div>' +
+      '<div class="table-scroll"><table class="div-table"><thead><tr><th>Division</th><th>Open Risks</th><th>Critical / High</th><th>Outside Appetite</th><th>Overdue Actions</th><th>Red KPIs</th></tr></thead><tbody>' +
+        '<tr><td class="divname">Group</td><td class="flag">9</td><td class="flag">1</td><td class="flag">5</td><td class="flag">1</td><td class="flag">3</td></tr><tr><td class="divname">Shared IT (fictitious)</td><td class="flag">2</td><td class="flag">1</td><td class="flag">1</td><td class="flag">1</td><td>0</td></tr><tr><td class="divname">Halyard Formwork (fictitious)</td><td class="flag">1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td class="divname">Halyard Cape Supplies (fictitious)</td><td class="flag">1</td><td>0</td><td class="flag">1</td><td>0</td><td>0</td></tr><tr><td class="divname">Halyard Sanitation (fictitious)</td><td class="flag">2</td><td>0</td><td>0</td><td class="flag">1</td><td>0</td></tr><tr><td class="divname">Halyard Access (fictitious)</td><td class="flag">2</td><td class="flag">1</td><td class="flag">1</td><td class="flag">1</td><td>0</td></tr><tr><td class="divname">Halyard Modular (fictitious)</td><td class="flag">1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td class="divname">Other Shared Services (fictitious)</td><td class="flag">1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>' +
+      '</tbody></table></div>' +
+    '</div>';
+
+  new ApexCharts(document.getElementById('chart-rating'), {
+    chart:{ type:'bar', height:200, background:'transparent', toolbar:{show:false}, animations:{ enabled:false } },
+    series:[{ name:'Open risks', data:[
+      {x:'Critical',y:0,fillColor:'#ff5470'},
+      {x:'High',y:3,fillColor:'#ff5470'},
+      {x:'Moderate',y:9,fillColor:'#ffb648'},
+      {x:'Low',y:7,fillColor:'#2fe88a'},
+    ]}],
+    xaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    yaxis:{ labels:{style:{colors:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'9.5px'}} },
+    plotOptions:{ bar:{ borderRadius:4, columnWidth:'50%' } },
+    dataLabels:{ enabled:true, style:{ colors:['#eaf3f7'], fontFamily:'JetBrains Mono', fontSize:'11px' }, offsetY:-18 },
+    grid:{ borderColor:'rgba(120,170,200,0.14)' },
+    legend:{ show:false },
+    tooltip:{ theme:'dark' },
+  }).render();
+
+  new ApexCharts(document.getElementById('chart-kpirag'), {
+    chart:{ type:'donut', height:200, background:'transparent', toolbar:{show:false}, animations:{ enabled:false } },
+    series:[3,3,6],
+    labels:['Red','Amber','Green'],
+    colors:['#ff5470','#ffb648','#2fe88a'],
+    legend:{ position:'bottom', labels:{colors:'#8499aa'}, fontFamily:'JetBrains Mono', fontSize:'10px', markers:{radius:3} },
+    dataLabels:{ enabled:true, style:{ fontFamily:'JetBrains Mono', fontSize:'11px' } },
+    plotOptions:{ pie:{ donut:{ labels:{ show:true, total:{ show:true, label:'KPIs', color:'#8499aa', fontFamily:'JetBrains Mono', fontSize:'10px' } } } } },
+    stroke:{ colors:['#060f1c'] },
+    tooltip:{ theme:'dark' },
+  }).render();
+
+  (function(){
+    var tierBtns = document.querySelectorAll('.rchip[data-tier]');
+    var outsideBtn = document.querySelector('.rchip[data-outside-toggle]');
+    var catSelect = document.getElementById('risk-cat-select');
+    var cards = document.querySelectorAll('.risk-card');
+    var countEl = document.getElementById('risk-filter-count');
+    var state = { tier:'all', outside:false, cat:'all' };
+
+    function apply(){
+      var shown = 0;
+      cards.forEach(function(card){
+        var okTier = state.tier==='all' || card.getAttribute('data-tier')===state.tier;
+        var okOutside = !state.outside || card.getAttribute('data-outside')==='true';
+        var okCat = state.cat==='all' || card.getAttribute('data-cat')===state.cat;
+        var show = okTier && okOutside && okCat;
+        card.classList.toggle('rcard-hidden', !show);
+        if (show) shown++;
+      });
+      countEl.textContent = shown + ' of ' + cards.length + ' risks shown';
+    }
+
+    tierBtns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        tierBtns.forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        state.tier = btn.getAttribute('data-tier');
+        apply();
+      });
+    });
+    outsideBtn.addEventListener('click', function(){
+      state.outside = !state.outside;
+      outsideBtn.classList.toggle('active', state.outside);
+      apply();
+    });
+    catSelect.addEventListener('change', function(){
+      state.cat = catSelect.value;
+      apply();
+    });
+    apply();
+  })();
+
+  setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, 80);
+};
+</script>
+<script src="tour-shell.js?v=9"></script>
+<script>DashboardShell.init(CONFIG);</script>
+
+</body>
+</html>

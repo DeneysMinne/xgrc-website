@@ -1867,4 +1867,7 @@ export const tourDashboards = [
   { slug: 'xrm', title: 'Sales Pipeline Overview', tag: 'XRM', solution: 'xrm', solutionLabel: 'XRM', href: '/xrm/',
     blurb: 'Weighted pipeline, win rate, forecast accuracy and approval governance, with a full audit trail on every deal.',
     shows: ['Pipeline by stage', 'Forecast vs actual', 'Approval SLA compliance'], kpis: 14, exceptions: 4 },
+  { slug: 'it-risk-performance', title: 'IT Risk & Performance Committee Dashboard', tag: 'IT Risk & Performance', solution: 'grc-software', solutionLabel: 'GRC Platform', href: '/grc-software/',
+    blurb: 'A group IT risk register and KPI scorecard for the audit committee, with category-specific risk appetite and an inherent-to-residual risk migration view.',
+    shows: ['Inherent vs residual heat map', 'Risk appetite by category', 'Division exceptions'], kpis: 12, exceptions: 6 },
 ];
