@@ -889,8 +889,60 @@ CONFIG.afterInit = function(ctx){
 
   setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, 80);
 };
+
+CONFIG.pdfExtra = function(doc, y, ctx){
+  var pdfSafe = ctx.pdfSafe, W = ctx.W, H = ctx.H;
+  function newPage(){ doc.addPage(); y = 64; }
+  function need(h){ if (y + h > H - 70) newPage(); }
+  var categories = [{"name":"Cybersecurity","appetite":4,"maxResidual":16,"over":true},{"name":"Data Privacy","appetite":4,"maxResidual":6,"over":true},{"name":"Business Continuity / DR","appetite":6,"maxResidual":12,"over":true},{"name":"Infrastructure & Availability","appetite":6,"maxResidual":9,"over":true},{"name":"Third-Party / Cloud","appetite":6,"maxResidual":9,"over":true},{"name":"Change & Project Delivery","appetite":9,"maxResidual":9,"over":false},{"name":"IT Governance & Compliance","appetite":6,"maxResidual":6,"over":false},{"name":"People & Skills","appetite":9,"maxResidual":6,"over":false}];
+  var outsideRisks = [{"id":"R-18","div":"Shared IT (fictitious)","cat":"Cybersecurity","desc":"Multi-factor authentication not enforced for all cloud administrator accounts","rScore":16,"appetite":4,"owner":"Group IT Security Manager","due":"2d overdue","status":"Overdue"},{"id":"R-02","div":"Halyard Access (fictitious)","cat":"Cybersecurity","desc":"Legacy VPN concentrator at regional site lacks MFA enforcement","rScore":12,"appetite":4,"owner":"Regional IT Lead","due":"5d overdue","status":"Overdue"},{"id":"R-19","div":"Group","cat":"Business Continuity / DR","desc":"No tested failback procedure from the DR site to the primary data centre","rScore":12,"appetite":6,"owner":"IT Infrastructure Manager","due":"due in 48d","status":"Not Started"},{"id":"R-08","div":"Group","cat":"Infrastructure & Availability","desc":"Core data centre UPS batteries beyond manufacturer end-of-life","rScore":9,"appetite":6,"owner":"Infrastructure Manager","due":"3d overdue","status":"Overdue"},{"id":"R-11","div":"Halyard Cape Supplies (fictitious)","cat":"Third-Party / Cloud","desc":"Payroll processing outsourced to a provider without a right-to-audit clause","rScore":9,"appetite":6,"owner":"Division Compliance Lead","due":"due in 38d","status":"In Progress"},{"id":"R-06","div":"Group","cat":"Business Continuity / DR","desc":"Disaster recovery failover for core ERP not tested in live conditions","rScore":8,"appetite":6,"owner":"IT Infrastructure Manager","due":"due in 33d","status":"Scheduled"},{"id":"R-01","div":"Group","cat":"Cybersecurity","desc":"Privileged account access not reviewed quarterly across core financial systems","rScore":6,"appetite":4,"owner":"Group IT Security Manager","due":"due in 18d","status":"In Progress"},{"id":"R-04","div":"Group","cat":"Data Privacy","desc":"Data retention schedule not enforced in legacy document archive","rScore":6,"appetite":4,"owner":"Data Protection Officer","due":"due in 40d","status":"In Progress"}];
+  var divisions = [{"division":"Group","openRisks":9,"critHigh":1,"outsideAppetite":5,"overdue":1,"redKpis":3},{"division":"Shared IT (fictitious)","openRisks":2,"critHigh":1,"outsideAppetite":1,"overdue":1,"redKpis":0},{"division":"Halyard Formwork (fictitious)","openRisks":1,"critHigh":0,"outsideAppetite":0,"overdue":0,"redKpis":0},{"division":"Halyard Cape Supplies (fictitious)","openRisks":1,"critHigh":0,"outsideAppetite":1,"overdue":0,"redKpis":0},{"division":"Halyard Sanitation (fictitious)","openRisks":2,"critHigh":0,"outsideAppetite":0,"overdue":1,"redKpis":0},{"division":"Halyard Access (fictitious)","openRisks":2,"critHigh":1,"outsideAppetite":1,"overdue":1,"redKpis":0},{"division":"Halyard Modular (fictitious)","openRisks":1,"critHigh":0,"outsideAppetite":0,"overdue":0,"redKpis":0},{"division":"Other Shared Services (fictitious)","openRisks":1,"critHigh":0,"outsideAppetite":0,"overdue":0,"redKpis":0}];
+
+  need(30);
+  doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(10,20,35);
+  doc.text('Risk appetite by category', 40, y); y += 18;
+  doc.setFontSize(9.5);
+  categories.forEach(function(c){
+    need(14);
+    var status = c.over ? 'OUTSIDE APPETITE' : 'within appetite';
+    var line = pdfSafe(c.name + ': highest residual ' + c.maxResidual + ' vs appetite ceiling ' + c.appetite + ' -- ' + status);
+    doc.setFont('helvetica', c.over ? 'bold' : 'normal');
+    doc.setTextColor(c.over ? 200 : 60, c.over ? 30 : 130, c.over ? 40 : 90);
+    doc.text(line, 40, y);
+    y += 14;
+  });
+  y += 10;
+
+  need(30);
+  doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(10,20,35);
+  doc.text('Risk register -- items outside appetite (' + outsideRisks.length + ' of 19 open risks)', 40, y); y += 18;
+  outsideRisks.forEach(function(r){
+    var body = pdfSafe(r.id + ' (' + r.div + ', ' + r.cat + '): ' + r.desc + '. Residual ' + r.rScore + ' vs appetite ' + r.appetite + '. Owner ' + r.owner + '. ' + r.due + '. Status: ' + r.status.toLowerCase() + '.');
+    doc.setFontSize(9.5);
+    var lines = doc.splitTextToSize(body, W - 40 - 40);
+    need(lines.length * 12 + 6);
+    doc.setFont('helvetica','normal'); doc.setTextColor(40,50,65);
+    doc.text(lines, 40, y);
+    y += lines.length * 12 + 6;
+  });
+  y += 10;
+
+  need(30);
+  doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(10,20,35);
+  doc.text('Division exception summary', 40, y); y += 18;
+  doc.setFontSize(9.5);
+  function plural(n, word){ return n + ' ' + word + (n === 1 ? '' : 's'); }
+  divisions.forEach(function(d){
+    need(14);
+    var line = pdfSafe(d.division + ': ' + plural(d.openRisks, 'open risk') + ', ' + d.critHigh + ' critical/high, ' + d.outsideAppetite + ' outside appetite, ' + plural(d.overdue, 'overdue action') + ', ' + plural(d.redKpis, 'red KPI'));
+    doc.setFont('helvetica','normal'); doc.setTextColor(40,50,65);
+    doc.text(line, 40, y);
+    y += 14;
+  });
+  return y;
+};
 </script>
-<script src="tour-shell.js?v=9"></script>
+<script src="tour-shell.js?v=10"></script>
 <script>DashboardShell.init(CONFIG);</script>
 
 </body>

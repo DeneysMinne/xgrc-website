@@ -276,7 +276,8 @@ function init(CONFIG){
     function need(h){ if (y + h > H - 70) newPage(); }
 
     doc.setFont('helvetica','bold'); doc.setFontSize(18); doc.setTextColor(10,20,35);
-    doc.text(CONFIG.pdfTitle, 40, y); y += 20;
+    const titleLines = doc.splitTextToSize(CONFIG.pdfTitle, W - 80);
+    doc.text(titleLines, 40, y); y += titleLines.length * 22 + 2;
     doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(90,100,115);
     doc.text('Board pack, ' + dateStr + '. Demonstration data: every figure is fictitious and illustrative.', 40, y); y += 28;
 
@@ -306,6 +307,10 @@ function init(CONFIG){
       doc.text(lines, 95, y);
       y += lines.length * 12 + 6;
     });
+
+    if (typeof CONFIG.pdfExtra === 'function') {
+      y = CONFIG.pdfExtra(doc, y, { need, newPage, pdfSafe, W, H }) || y;
+    }
 
     const pages = doc.getNumberOfPages();
     for (let i = 1; i <= pages; i++){
