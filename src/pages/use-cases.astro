@@ -1,6 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import { customerGroups, caseStudies } from '../data/site.js';
+import { publishedCaseStudyPages } from '../data/caseStudyPages.js';
+
+const hasPage = (slug) => publishedCaseStudyPages.some((p) => p.slug === slug);
 import { useCaseRegistry, useCaseCategories } from '../data/useCaseRegistry.js';
 ---
 <Base title="Use Cases | XGRC® Software" description="How organisations across mining, manufacturing, logistics and more use XGRC to drive compliance.">
@@ -49,7 +52,9 @@ import { useCaseRegistry, useCaseCategories } from '../data/useCaseRegistry.js';
             <span class="tag">{c.solution}</span>
             <h3>{c.company}</h3>
             <p>{c.summary}</p>
-            {c.pdf && (
+            {hasPage(c.slug) ? (
+              <a href={`/case-studies/${c.slug}/`} class="link-arrow">Read the case study &rarr;</a>
+            ) : c.pdf && (
               <a href={`/case-studies/${c.slug}.pdf`} class="link-arrow" download>Download case study &rarr;</a>
             )}
           </div>

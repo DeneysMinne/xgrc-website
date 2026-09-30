@@ -6,6 +6,8 @@
 const { name, logo, url, caseStudySlug } = Astro.props;
 const LOGO_BASE = '/assets/logos/customers/';
 const hasBack = Boolean(url || caseStudySlug);
+import { publishedCaseStudyPages } from '../data/caseStudyPages.js';
+const hasPage = !!caseStudySlug && publishedCaseStudyPages.some((p) => p.slug === caseStudySlug);
 ---
 
 {!logo ? (
@@ -25,9 +27,15 @@ const hasBack = Boolean(url || caseStudySlug);
         <span class="tb-name">{name}</span>
         <span class="tb-links">
           {caseStudySlug && (
-            <a href={`/case-studies/${caseStudySlug}.pdf`} class="tb-link" download aria-label={`${name} case study (PDF download)`}>
-              Case study <span aria-hidden="true">↓</span>
-            </a>
+            hasPage ? (
+              <a href={`/case-studies/${caseStudySlug}/`} class="tb-link" aria-label={`${name} case study`}>
+                Case study <span aria-hidden="true">→</span>
+              </a>
+            ) : (
+              <a href={`/case-studies/${caseStudySlug}.pdf`} class="tb-link" download aria-label={`${name} case study (PDF download)`}>
+                Case study <span aria-hidden="true">↓</span>
+              </a>
+            )
           )}
           {url && (
             <a href={url} class="tb-link" target="_blank" rel="noopener noreferrer" aria-label={`Visit ${name} website`}>
