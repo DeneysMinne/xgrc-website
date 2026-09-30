@@ -106,20 +106,38 @@ const schema = JSON.stringify({
 
   <!-- ── Hero ───────────────────────────────────────────── -->
   <section class="grc-hero">
-    <div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="/">Home</a><span>/</span><b>GRC Platform</b>
-      </nav>
-      <span class="eyebrow"><span class="dot"></span>GRC Platform</span>
-      <h1>Governance, Risk &amp; Compliance.<br>Unified.</h1>
-      <p class="lede">XGRC® is an enterprise GRC platform that brings governance, risk, compliance, ESG and data protection into one auditable system, eliminating silos and giving your organisation a single version of the truth.</p>
-      <div class="hero-actions">
-        <a href="/demo/" class="btn btn-primary">Book a Demo</a>
-        <a href="/solutions/" class="btn btn-ghost">Explore solutions &rarr;</a>
+    <div class="container grc-hero-inner">
+      <div class="grc-hero-copy">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span>/</span><b>GRC Platform</b>
+        </nav>
+        <span class="eyebrow"><span class="dot"></span>GRC Platform</span>
+        <h1>Governance, Risk &amp; Compliance.<br>Unified.</h1>
+        <p class="lede">XGRC® is an enterprise GRC platform that brings governance, risk, compliance, ESG and data protection into one auditable system, eliminating silos and giving your organisation a single version of the truth.</p>
+        <div class="hero-actions">
+          <a href="/demo/" class="btn btn-primary">Book a Demo</a>
+          <a href="/tour/" class="btn btn-ghost">Take the live tour <span aria-hidden="true">&rarr;</span></a>
+          <a href="/solutions/" class="btn btn-ghost">Explore solutions</a>
+        </div>
+        {compareLinks.length > 0 && (
+          <p class="compare-links">Comparing options? {compareLinks.map((c, n) => (<>{n > 0 && ' · '}<a href={`/compare/${c.slug}/`}>XGRC® vs {c.competitor}</a></>))}</p>
+        )}
       </div>
-      {compareLinks.length > 0 && (
-        <p class="compare-links">Comparing options? {compareLinks.map((c, n) => (<>{n > 0 && ' · '}<a href={`/compare/${c.slug}/`}>XGRC® vs {c.competitor}</a></>))}</p>
-      )}
+
+      <figure class="grc-hero-visual">
+        <a class="frame" href="/tour/enterprise-risk.html" aria-label="Open the live Enterprise Risk dashboard">
+          <span class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span>xgrcsoftware.com/tour</span></span>
+          <img
+            src="/assets/tour/hero-erm-900-v1.webp"
+            srcset="/assets/tour/hero-erm-900-v1.webp 900w, /assets/tour/hero-erm-1600-v1.webp 1600w"
+            sizes="(max-width: 860px) 92vw, 560px"
+            width="1600" height="1000"
+            alt="XGRC® Enterprise Risk dashboard showing risk appetite, a likelihood and impact heat map, and combined assurance"
+            loading="eager"
+          />
+        </a>
+        <figcaption>Illustrative data. <a href="/tour/">Click through all {tourDashboards.length} dashboards &rarr;</a></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -335,6 +353,8 @@ const schema = JSON.stringify({
       transparent 70%);
     pointer-events: none;
   }
+  .grc-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+  .grc-hero-copy { min-width: 0; }
   .crumbs { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--faint); display: flex; gap: 10px; align-items: center; margin-bottom: 26px; }
   .crumbs a { color: var(--mute); text-decoration: none; }
   .crumbs a:hover { color: var(--cyan); }
@@ -349,6 +369,27 @@ const schema = JSON.stringify({
   }
   .grc-hero .lede { max-width: 600px; margin-bottom: 32px; }
   .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .grc-hero-visual { margin: 0; display: grid; gap: 12px; perspective: 1400px; min-width: 0; }
+  .grc-hero-visual .frame { display: block; text-decoration: none; border-radius: 12px; overflow: hidden; border: 1px solid rgba(48,226,244,0.35); background: #0a1729;
+    box-shadow: 0 40px 90px rgba(0,0,0,0.55), 0 0 0 1px rgba(48,226,244,0.08), 0 0 60px rgba(48,226,244,0.10);
+    transform: rotateY(-9deg) rotateX(3deg); transform-origin: left center; transition: transform 0.6s var(--ease); }
+  .grc-hero-visual .frame:hover, .grc-hero-visual .frame:focus-visible { transform: rotateY(-3deg) rotateX(1deg); }
+  .grc-hero-visual .frame:focus-visible { outline: 2px solid var(--green-hi); outline-offset: 4px; }
+  .grc-hero-visual .frame img { display: block; width: 100%; height: auto; }
+  .grc-hero-visual .frame-bar { display: flex; align-items: center; gap: 6px; padding: 8px 12px; background: #081322; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 10.5px; color: var(--faint); }
+  .grc-hero-visual .frame-bar i { width: 8px; height: 8px; border-radius: 50%; background: #243546; display: inline-block; }
+  .grc-hero-visual .frame-bar span { margin-left: 8px; }
+  .grc-hero-visual figcaption { font-family: var(--font-mono); font-size: 11px; color: var(--faint); padding-left: 4px; }
+  .grc-hero-visual figcaption a { color: var(--cyan); text-decoration: none; }
+  .grc-hero-visual figcaption a:hover { color: var(--cyan-hi); }
+  @media (max-width: 860px) {
+    .grc-hero-inner { grid-template-columns: minmax(0, 1fr); }
+    .grc-hero-visual .frame, .grc-hero-visual .frame:hover { transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .grc-hero-visual .frame, .grc-hero-visual .frame:hover { transform: none; transition: none; }
+  }
 
   /* ── Capability cards ─────────────────────────────────── */
   .cap-card { text-decoration: none; display: flex; flex-direction: column; }
