@@ -11,7 +11,7 @@
 export const caseStudyPages = [
   {
     slug: 'tn-ceramics',
-    draft: true,
+    draft: false,
     datePublished: '2026-09-29',
     title: 'TN Ceramics Case Study: SHEQ, Quality and Risk | XGRC®',
     metaDescription: 'How TN Ceramics, a South African ceramics manufacturer, runs safety, quality, environment and enterprise risk on XGRC®, with GRC Link.',
@@ -56,7 +56,7 @@ export const caseStudyPages = [
   },
   {
     slug: 'vican-manufacturing',
-    draft: true,
+    draft: false,
     datePublished: '2026-09-29',
     title: 'Vican Manufacturing Case Study: SHEQX® and ISO 9001 | XGRC®',
     metaDescription: 'How Vican Manufacturing, a South African paint producer, uses SHEQX® and ISO 9001 quality management on XGRC®, with GRC Link.',
