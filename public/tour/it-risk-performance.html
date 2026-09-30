@@ -27,7 +27,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="tour-shell.css?v=11">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.49.1/apexcharts.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   .exec-tiles { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:22px; }
   .exec-tile { border-radius:12px; border:1px solid var(--line-strong); background:linear-gradient(160deg, var(--panel), rgba(255,255,255,0.01)); padding:16px 18px 18px; min-height:78px; display:flex; flex-direction:column; justify-content:space-between; gap:10px; }
@@ -896,303 +895,150 @@ var PDF_DATA = {
   divisions: [{"division":"Group","openRisks":9,"critHigh":1,"outsideAppetite":5,"overdue":1,"redKpis":3},{"division":"Shared IT (fictitious)","openRisks":2,"critHigh":1,"outsideAppetite":1,"overdue":1,"redKpis":0},{"division":"Halyard Formwork (fictitious)","openRisks":1,"critHigh":0,"outsideAppetite":0,"overdue":0,"redKpis":0},{"division":"Halyard Cape Supplies (fictitious)","openRisks":1,"critHigh":0,"outsideAppetite":1,"overdue":0,"redKpis":0},{"division":"Halyard Sanitation (fictitious)","openRisks":2,"critHigh":0,"outsideAppetite":0,"overdue":1,"redKpis":0},{"division":"Halyard Access (fictitious)","openRisks":2,"critHigh":1,"outsideAppetite":1,"overdue":1,"redKpis":0},{"division":"Halyard Modular (fictitious)","openRisks":1,"critHigh":0,"outsideAppetite":0,"overdue":0,"redKpis":0},{"division":"Other Shared Services (fictitious)","openRisks":1,"critHigh":0,"outsideAppetite":0,"overdue":0,"redKpis":0}]
 };
 
-CONFIG.pptxFilename = 'XGRC-IT-Risk-Performance-Board-Pack-Demo.pptx';
-
-CONFIG.customExport = function(ctx){
-  var KPIS = ctx.KPIS, EXC = ctx.EXC, agg = ctx.computeAgg(), showToast = ctx.showToast, TODAY = ctx.TODAY;
+CONFIG.pptxExtra = function(P, ctx, H){
+  var KPIS = ctx.KPIS, footerLine = ctx.footerLine;
   var categories = PDF_DATA.categories, outsideRisks = PDF_DATA.outsideRisks, divisions = PDF_DATA.divisions;
+  function kpi(id){ return KPIS.filter(function(k){ return k.id===id; })[0]; }
 
-  function run(){
-    var NAVY='1B2A4A', NAVY_DEEP='13203A', ICE='D6E4F0', ICE_SOFT='EFF5FA', WHITE='FFFFFF',
-        SLATE='44506B', FAINT='8592A8', RED='C0392B', RED_TINT='FBEAE8', AMBER='C87A1E',
-        AMBER_TINT='FBF0E1', GREEN='1E8F63', GREEN_TINT='E7F5EE';
-    var FONT_HEAD='Cambria', FONT_BODY='Calibri';
+  // ---- Risk Appetite by Category ----
+  {
+    var s = P.addSlide();
+    s.background = { color: H.WHITE };
+    H.sectionHeader(s, 'Risk Appetite by Category', 'Highest residual score per category against its own appetite ceiling');
 
-    var P = new window.PptxGenJS();
-    P.layout = 'LAYOUT_WIDE';
-    P.author = 'XGRC Software';
-    P.company = 'Halyard Industrial Group (fictitious)';
-    P.title = 'IT Risk & Performance Committee Pack';
+    var labels = categories.map(function(c){ return c.name; });
+    var residual = categories.map(function(c){ return c.maxResidual; });
+    var appetite = categories.map(function(c){ return c.appetite; });
+    var maxScale = Math.max.apply(null, residual.concat(appetite)) + 2;
 
-    function sectionHeader(slide, title, kicker){
-      slide.addShape(P.ShapeType.ellipse, { x:0.5, y:0.42, w:0.22, h:0.22, fill:{color:NAVY}, line:{type:'none'} });
-      slide.addText(title, { x:0.86, y:0.28, w:10.5, h:0.5, fontFace:FONT_HEAD, fontSize:24, bold:true, color:NAVY, isTextBox:true, margin:0 });
-      slide.addText(kicker || '', { x:0.86, y:0.72, w:10, h:0.3, fontFace:FONT_BODY, fontSize:11, color:FAINT, isTextBox:true, margin:0 });
-      slide.addShape(P.ShapeType.line, { x:0.5, y:1.12, w:12.33, h:0, line:{color:ICE, width:1} });
-    }
-    function footer(slide, pageLabel){
-      slide.addText('Halyard Industrial Group (fictitious)  ·  IT Risk & Performance Committee Pack  ·  Fictitious data, illustrative only', { x:0.5, y:7.14, w:10.5, h:0.28, fontFace:FONT_BODY, fontSize:8.5, color:FAINT, isTextBox:true, margin:0 });
-      slide.addText(pageLabel, { x:11.6, y:7.14, w:1.23, h:0.28, fontFace:FONT_BODY, fontSize:8.5, color:FAINT, align:'right', isTextBox:true, margin:0 });
-    }
-    function statCard(slide, x, y, w, h, value, label, tone){
-      var fillMap = { neutral:ICE_SOFT, red:RED_TINT, amber:AMBER_TINT, green:GREEN_TINT };
-      var valColorMap = { neutral:NAVY, red:RED, amber:AMBER, green:GREEN };
-      slide.addShape(P.ShapeType.roundRect, { x:x, y:y, w:w, h:h, rectRadius:0.08, fill:{color:fillMap[tone]||ICE_SOFT}, line:{type:'none'} });
-      slide.addText(String(value), { x:x+0.18, y:y+0.12, w:w-0.36, h:h*0.56, fontFace:FONT_HEAD, fontSize:30, bold:true, color:valColorMap[tone]||NAVY, isTextBox:true, margin:0, valign:'bottom' });
-      slide.addText(label, { x:x+0.18, y:y+h*0.62, w:w-0.36, h:h*0.36, fontFace:FONT_BODY, fontSize:10.5, color:SLATE, isTextBox:true, margin:0, valign:'top' });
-    }
-    function ragPillText(rag){ return rag==='red' ? 'BREACH' : rag==='amber' ? 'WATCH' : 'ON TARGET'; }
-    function ragColors(rag){ return rag==='red' ? [RED,RED_TINT] : rag==='amber' ? [AMBER,AMBER_TINT] : [GREEN,GREEN_TINT]; }
-    function kpi(id){ return KPIS.filter(function(k){ return k.id===id; })[0]; }
-
-    (function(){
-      var s = P.addSlide();
-      s.background = { color: NAVY_DEEP };
-      s.addShape(P.ShapeType.ellipse, { x:10.6, y:4.6, w:4.2, h:4.2, fill:{color:NAVY, transparency:40}, line:{type:'none'} });
-      s.addShape(P.ShapeType.ellipse, { x:11.6, y:5.9, w:2.6, h:2.6, fill:{color:ICE, transparency:85}, line:{type:'none'} });
-      s.addText('GROUP AUDIT & RISK COMMITTEE', { x:0.9, y:2.15, w:9, h:0.4, fontFace:FONT_BODY, fontSize:13, color:ICE, charSpacing:2, isTextBox:true, margin:0 });
-      s.addText('IT Risk & Performance', { x:0.85, y:2.55, w:10.5, h:1.3, fontFace:FONT_HEAD, fontSize:46, bold:true, color:WHITE, isTextBox:true, margin:0 });
-      s.addText('Committee Pack', { x:0.85, y:3.35, w:10.5, h:1.0, fontFace:FONT_HEAD, fontSize:46, bold:true, color:WHITE, isTextBox:true, margin:0 });
-      s.addText('Halyard Industrial Group (fictitious)', { x:0.9, y:4.55, w:9, h:0.45, fontFace:FONT_BODY, fontSize:17, italic:true, color:ICE, isTextBox:true, margin:0 });
-      s.addText('Reporting period ended ' + TODAY.toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'}), { x:0.9, y:5.0, w:9, h:0.4, fontFace:FONT_BODY, fontSize:13, color:'9FB3D6', isTextBox:true, margin:0 });
-      s.addShape(P.ShapeType.line, { x:0.9, y:6.55, w:3.2, h:0, line:{color:ICE, width:1, transparency:40} });
-      s.addText('Prepared for the Group Audit & Risk Committee. All figures, divisions and risks on this page are fictitious and illustrative.', { x:0.9, y:6.68, w:10, h:0.5, fontFace:FONT_BODY, fontSize:10, color:'7C8FB0', isTextBox:true, margin:0 });
-    })();
-
-    (function(){
-      var s = P.addSlide();
-      s.background = { color: WHITE };
-      sectionHeader(s, 'Executive Summary', 'Committee exception summary and headline metrics for the current cycle');
-
-      var critHighOpen = divisions.reduce(function(sum,d){ return sum + d.critHigh; }, 0);
-      var overdueActions = divisions.reduce(function(sum,d){ return sum + d.overdue; }, 0);
-      var redKpis = KPIS.filter(function(k){ return k.rag==='red'; });
-      var totalOpen = divisions.reduce(function(sum,d){ return sum + d.openRisks; }, 0);
-
-      var row1Y = 1.45, row2Y = 3.35, cw = 2.85, ch = 1.55, gap = 0.28, startX = 0.5;
-      statCard(s, startX+0*(cw+gap), row1Y, cw, ch, critHighOpen, 'Critical / High risks open', 'red');
-      statCard(s, startX+1*(cw+gap), row1Y, cw, ch, outsideRisks.length, 'Risks outside appetite', 'red');
-      statCard(s, startX+2*(cw+gap), row1Y, cw, ch, overdueActions, 'Overdue treatment actions', 'amber');
-      statCard(s, startX+3*(cw+gap), row1Y, cw, ch, redKpis.length, 'KPIs in breach (red)', 'red');
-
-      statCard(s, startX+0*(cw+gap), row2Y, cw, ch, kpi(1).valueLabel, 'Core systems availability', 'green');
-      statCard(s, startX+1*(cw+gap), row2Y, cw, ch, kpi(5).valueLabel, 'Patch compliance', 'amber');
-      statCard(s, startX+2*(cw+gap), row2Y, cw, ch, kpi(4).valueLabel, 'Critical vulnerabilities > 30 days', 'red');
-      statCard(s, startX+3*(cw+gap), row2Y, cw, ch, kpi(2).valueLabel, 'P1 incidents this cycle', 'red');
-
-      var topOverCats = categories.filter(function(c){ return c.over; }).sort(function(a,b){ return b.maxResidual - a.maxResidual; }).slice(0,2).map(function(c){ return c.name; });
-      var redNames = redKpis.map(function(k){ return k.name.toLowerCase(); });
-      var narrative = 'the estate is operating at a composite health score of ' + agg.health + '%. ' + totalOpen + ' risks are open across ' + divisions.length + ' divisions, of which ' + outsideRisks.length + ' currently exceed their category’s risk appetite ceiling. ' + topOverCats.join(' and ') + ' carry the highest exposure this cycle and warrant committee attention; ' + redNames.length + ' KPIs (' + redNames.join(', ') + ') are in breach of target.';
-
-      s.addShape(P.ShapeType.roundRect, { x:0.5, y:5.25, w:12.33, h:1.35, rectRadius:0.08, fill:{color:ICE_SOFT}, line:{type:'none'} });
-      s.addText([
-        { text:'Overall assessment: ', options:{ bold:true, color:NAVY } },
-        { text: narrative, options:{ color:SLATE } },
-      ], { x:0.75, y:5.42, w:11.83, h:1.05, fontFace:FONT_BODY, fontSize:12.5, isTextBox:true, margin:0, valign:'top', lineSpacingMultiple:1.15 });
-
-      footer(s, 'Page 2 of 8');
-    })();
-
-    (function(){
-      var s = P.addSlide();
-      s.background = { color: WHITE };
-      sectionHeader(s, 'Risk Appetite by Category', 'Highest residual score per category against its own appetite ceiling');
-
-      var labels = categories.map(function(c){ return c.name; });
-      var residual = categories.map(function(c){ return c.maxResidual; });
-      var appetite = categories.map(function(c){ return c.appetite; });
-      var maxScale = Math.max.apply(null, residual.concat(appetite)) + 2;
-
-      s.addChart(P.ChartType.bar, [
-        { name:'Highest residual score', labels:labels, values:residual },
-        { name:'Appetite ceiling', labels:labels, values:appetite },
-      ], {
-        x:0.5, y:1.3, w:8.6, h:5.65, barDir:'bar',
-        chartColors:[NAVY, ICE], showTitle:false,
-        showLegend:true, legendPos:'b', legendColor:SLATE, legendFontSize:11, legendFontFace:FONT_BODY,
-        showValue:true, dataLabelPosition:'outEnd', dataLabelFontSize:10, dataLabelColor:SLATE, dataLabelFontFace:FONT_BODY,
-        catAxisLabelColor:SLATE, catAxisLabelFontSize:11, catAxisLabelFontFace:FONT_BODY,
-        valAxisLabelColor:SLATE, valAxisLabelFontSize:10, valAxisLabelFontFace:FONT_BODY,
-        valAxisMaxVal:maxScale, valGridLine:{color:ICE, size:0.75}, catGridLine:{style:'none'}, barGapWidthPct:40,
-      });
-
-      s.addShape(P.ShapeType.roundRect, { x:9.35, y:1.3, w:3.48, h:5.65, rectRadius:0.08, fill:{color:ICE_SOFT}, line:{type:'none'} });
-      s.addText('Outside appetite this cycle', { x:9.6, y:1.5, w:3.0, h:0.35, fontFace:FONT_HEAD, fontSize:13, bold:true, color:NAVY, isTextBox:true, margin:0 });
-      var overCats = categories.filter(function(c){ return c.over; });
-      overCats.forEach(function(c, i){
-        var y = 2.0 + i * 0.62;
-        s.addShape(P.ShapeType.ellipse, { x:9.6, y:y+0.04, w:0.14, h:0.14, fill:{color:RED}, line:{type:'none'} });
-        s.addText(c.name, { x:9.85, y:y-0.06, w:2.8, h:0.3, fontFace:FONT_BODY, fontSize:11, bold:true, color:NAVY, isTextBox:true, margin:0 });
-        s.addText('Residual ' + c.maxResidual + ' vs ceiling ' + c.appetite, { x:9.85, y:y+0.2, w:2.8, h:0.28, fontFace:FONT_BODY, fontSize:9.5, color:SLATE, isTextBox:true, margin:0 });
-      });
-
-      footer(s, 'Page 3 of 8');
-    })();
-
-    (function(){
-      var s = P.addSlide();
-      s.background = { color: WHITE };
-      sectionHeader(s, 'KPI Scorecard', KPIS.length + ' KPIs tracked at Group level this reporting cycle');
-
-      var order = { green:0, amber:1, red:2 };
-      var sorted = KPIS.slice().sort(function(a,b){ return order[a.rag] - order[b.rag]; });
-
-      var headerRow = ['Metric','Actual','Target','Status','Owner'].map(function(t){
-        return { text:t, options:{ bold:true, color:WHITE, fill:{color:NAVY}, fontFace:FONT_BODY, fontSize:11 } };
-      });
-      var rows = [headerRow];
-      sorted.forEach(function(k, i){
-        var rc = ragColors(k.rag);
-        var zebra = i % 2 === 1 ? ICE_SOFT : WHITE;
-        rows.push([
-          { text:k.name, options:{ color:NAVY, fill:{color:zebra}, fontFace:FONT_BODY, fontSize:10.5, bold:true } },
-          { text:k.valueLabel, options:{ color:SLATE, fill:{color:zebra}, fontFace:FONT_BODY, fontSize:10.5, align:'center' } },
-          { text:k.target, options:{ color:FAINT, fill:{color:zebra}, fontFace:FONT_BODY, fontSize:10.5, align:'center' } },
-          { text:ragPillText(k.rag), options:{ color:rc[0], fill:{color:rc[1]}, fontFace:FONT_BODY, fontSize:9.5, bold:true, align:'center' } },
-          { text:k.owner, options:{ color:SLATE, fill:{color:zebra}, fontFace:FONT_BODY, fontSize:10 } },
-        ]);
-      });
-
-      s.addTable(rows, { x:0.5, y:1.3, w:12.33, h:5.7, colW:[4.1,1.5,1.5,1.7,3.53], border:{type:'solid', color:ICE, pt:0.5}, autoPage:false, valign:'middle', margin:[3,6,3,6] });
-
-      footer(s, 'Page 4 of 8');
-    })();
-
-    (function(){
-      var s = P.addSlide();
-      s.background = { color: WHITE };
-      sectionHeader(s, 'Where Leadership Should Focus', EXC.length + ' open KPI exceptions this cycle');
-
-      var colW = 5.95, gapX = 0.43, cardH = 1.68, gapY = 0.22;
-      EXC.forEach(function(e, i){
-        var sevLower = e.severity.toLowerCase();
-        var tint = sevLower === 'red' ? RED_TINT : AMBER_TINT;
-        var badge = sevLower === 'red' ? RED : AMBER;
-        var col = i % 2, r = Math.floor(i / 2);
-        var x = 0.5 + col * (colW + gapX);
-        var y = 1.35 + r * (cardH + gapY);
-        var targetTxt = e.kpi.target === 'Monitor' ? 'monitored, with no fixed target' : 'against a target of ' + e.kpi.target;
-        var detail = e.kpi.valueLabel + ' ' + targetTxt;
-        var age = e.status === 'Acknowledged' ? (e.ageDays + ' days · acknowledged') : (e.ageDays + ' days open');
-
-        s.addShape(P.ShapeType.roundRect, { x:x, y:y, w:colW, h:cardH, rectRadius:0.07, fill:{color:tint}, line:{type:'none'} });
-        s.addShape(P.ShapeType.ellipse, { x:x+0.22, y:y+0.22, w:0.36, h:0.36, fill:{color:badge}, line:{type:'none'} });
-        s.addText(sevLower === 'red' ? 'R' : 'A', { x:x+0.22, y:y+0.22, w:0.36, h:0.36, fontFace:FONT_HEAD, fontSize:13, bold:true, color:WHITE, align:'center', valign:'middle', isTextBox:true, margin:0 });
-        s.addText(e.kpi.name, { x:x+0.74, y:y+0.14, w:colW-1.0, h:0.4, fontFace:FONT_BODY, fontSize:13, bold:true, color:NAVY, isTextBox:true, margin:0 });
-        s.addText(detail, { x:x+0.74, y:y+0.55, w:colW-1.0, h:0.35, fontFace:FONT_BODY, fontSize:11, color:SLATE, isTextBox:true, margin:0 });
-        s.addText(e.kpi.owner, { x:x+0.74, y:y+0.95, w:colW-1.0, h:0.3, fontFace:FONT_BODY, fontSize:10, color:SLATE, isTextBox:true, margin:0 });
-        s.addText(age, { x:x+0.74, y:y+1.24, w:colW-1.0, h:0.3, fontFace:FONT_BODY, fontSize:9.5, italic:true, color:FAINT, isTextBox:true, margin:0 });
-      });
-
-      footer(s, 'Page 5 of 8');
-    })();
-
-    (function(){
-      var s = P.addSlide();
-      s.background = { color: WHITE };
-      var totalOpen = divisions.reduce(function(sum,d){ return sum + d.openRisks; }, 0);
-      sectionHeader(s, 'Risk Register: Outside Appetite', outsideRisks.length + ' of ' + totalOpen + ' open risks currently exceed their category appetite ceiling');
-
-      var headerRow = ['ID','Division','Category','Residual / Appetite','Owner','Status'].map(function(t){
-        return { text:t, options:{ bold:true, color:WHITE, fill:{color:NAVY}, fontFace:FONT_BODY, fontSize:10.5 } };
-      });
-      var rows = [headerRow];
-      outsideRisks.forEach(function(r, i){
-        var zebra = i % 2 === 1 ? ICE_SOFT : WHITE;
-        var overdue = r.status === 'Overdue';
-        rows.push([
-          { text:r.id, options:{ color:NAVY, fill:{color:zebra}, fontFace:FONT_BODY, fontSize:10, bold:true } },
-          { text:r.div, options:{ color:SLATE, fill:{color:zebra}, fontFace:FONT_BODY, fontSize:9.5 } },
-          { text:r.cat, options:{ color:SLATE, fill:{color:zebra}, fontFace:FONT_BODY, fontSize:9.5 } },
-          { text:r.rScore + ' / ' + r.appetite, options:{ color:RED, fill:{color:zebra}, fontFace:FONT_BODY, fontSize:10, bold:true, align:'center' } },
-          { text:r.owner, options:{ color:SLATE, fill:{color:zebra}, fontFace:FONT_BODY, fontSize:9.5 } },
-          { text:r.status, options:{ color: overdue ? RED : SLATE, fill:{color:zebra}, fontFace:FONT_BODY, fontSize:9.5, bold:overdue, align:'center' } },
-        ]);
-      });
-
-      s.addTable(rows, { x:0.5, y:1.3, w:12.33, h:4.7, colW:[1.1,2.55,2.35,1.7,2.83,1.8], border:{type:'solid', color:ICE, pt:0.5}, autoPage:false, valign:'middle', margin:[3,6,3,6] });
-
-      s.addShape(P.ShapeType.roundRect, { x:0.5, y:6.2, w:12.33, h:0.7, rectRadius:0.06, fill:{color:ICE_SOFT}, line:{type:'none'} });
-      s.addText('Full detail for every outside-appetite risk, including treatment action, target closure date and committee commentary, is maintained in the live risk register.', { x:0.72, y:6.32, w:11.9, h:0.48, fontFace:FONT_BODY, fontSize:10, italic:true, color:SLATE, isTextBox:true, margin:0, valign:'middle' });
-
-      footer(s, 'Page 6 of 8');
-    })();
-
-    (function(){
-      var s = P.addSlide();
-      s.background = { color: WHITE };
-      sectionHeader(s, 'Division Exception Summary', 'One row per division, reconciled to the same risk register and KPI set');
-
-      var headerRow = ['Division','Open Risks','Critical / High','Outside Appetite','Overdue Actions','Red KPIs'].map(function(t){
-        return { text:t, options:{ bold:true, color:WHITE, fill:{color:NAVY}, fontFace:FONT_BODY, fontSize:10.5, align:'center' } };
-      });
-      var rows = [headerRow];
-      divisions.forEach(function(d, i){
-        var zebra = i % 2 === 1 ? ICE_SOFT : WHITE;
-        function cell(v, flagRed){
-          return { text:String(v), options:{ color: (flagRed && v > 0) ? RED : SLATE, bold: flagRed && v > 0, fill:{color:zebra}, fontFace:FONT_BODY, fontSize:10.5, align:'center' } };
-        }
-        rows.push([
-          { text:d.division, options:{ color:NAVY, bold:true, fill:{color:zebra}, fontFace:FONT_BODY, fontSize:10.5 } },
-          cell(d.openRisks, false),
-          cell(d.critHigh, true),
-          cell(d.outsideAppetite, true),
-          cell(d.overdue, true),
-          cell(d.redKpis, true),
-        ]);
-      });
-
-      s.addTable(rows, { x:1.2, y:1.5, w:10.93, h:4.6, colW:[3.3,1.526,1.526,1.526,1.526,1.526], border:{type:'solid', color:ICE, pt:0.5}, autoPage:false, valign:'middle', margin:[3,6,3,6] });
-
-      footer(s, 'Page 7 of 8');
-    })();
-
-    (function(){
-      var s = P.addSlide();
-      s.background = { color: NAVY_DEEP };
-      s.addShape(P.ShapeType.ellipse, { x:-1.4, y:-1.4, w:3.6, h:3.6, fill:{color:NAVY, transparency:40}, line:{type:'none'} });
-      s.addShape(P.ShapeType.ellipse, { x:0.5, y:0.5, w:0.24, h:0.24, fill:{color:ICE}, line:{type:'none'} });
-      s.addText('Recommended Committee Actions', { x:0.88, y:0.36, w:10.5, h:0.5, fontFace:FONT_HEAD, fontSize:26, bold:true, color:WHITE, isTextBox:true, margin:0 });
-
-      var cyberOverdue = outsideRisks.filter(function(r){ return r.cat === 'Cybersecurity' && r.status === 'Overdue'; });
-      var cyberIds = cyberOverdue.map(function(r){ return r.id; }).join(', ');
-      var bcCat = categories.filter(function(c){ return c.name === 'Business Continuity / DR'; })[0];
-      var vendorRisk = outsideRisks.filter(function(r){ return r.cat === 'Third-Party / Cloud'; })[0];
-
-      var actions = [
-        ['Approve', 'an immediate remediation timeline for the ' + cyberOverdue.length + ' overdue Cybersecurity exception' + (cyberOverdue.length===1?'':'s') + ' (' + cyberIds + '), currently outside appetite.'],
-        ['Note', 'Patch Compliance (' + kpi(5).valueLabel + ') and Service Desk Within SLA (' + kpi(9).valueLabel + ') as standing Q4 monitoring items; both trended amber this cycle.'],
-        ['Request', 'an updated Disaster Recovery failback test plan, given the open Business Continuity exceptions against a ceiling of ' + (bcCat ? bcCat.appetite : 6) + '.'],
-        ['Endorse', 'continued right-to-audit remediation with the ' + (vendorRisk ? vendorRisk.div : 'relevant') + ' vendor (' + (vendorRisk ? vendorRisk.id : '') + '), currently in progress.'],
-      ];
-      actions.forEach(function(a, i){
-        var y = 1.5 + i * 1.2;
-        s.addShape(P.ShapeType.roundRect, { x:0.6, y:y, w:0.62, h:0.62, rectRadius:0.31, fill:{color:NAVY}, line:{color:ICE, width:1} });
-        s.addText(String(i+1), { x:0.6, y:y, w:0.62, h:0.62, fontFace:FONT_HEAD, fontSize:20, bold:true, color:ICE, align:'center', valign:'middle', isTextBox:true, margin:0 });
-        s.addText([
-          { text:a[0] + '  ', options:{ bold:true, color:WHITE } },
-          { text:a[1], options:{ color:'9FB3D6' } },
-        ], { x:1.45, y:y+0.02, w:11.1, h:0.95, fontFace:FONT_BODY, fontSize:14, isTextBox:true, margin:0, valign:'middle', lineSpacingMultiple:1.12 });
-      });
-
-      var commStat = null;
-      CONFIG.execStats.forEach(function(st){ if (/committee date/i.test(st.label)) commStat = st; });
-      var commDays = commStat ? commStat.value : 0;
-      var commDate = new Date(TODAY); commDate.setDate(commDate.getDate() + commDays);
-      var commDateStr = commDate.toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
-
-      s.addShape(P.ShapeType.line, { x:0.6, y:6.55, w:12.13, h:0, line:{color:NAVY, width:1} });
-      s.addText('Next Group Audit & Risk Committee date: ' + commDateStr + ' (in ' + commDays + ' days)', { x:0.6, y:6.68, w:8, h:0.35, fontFace:FONT_BODY, fontSize:11, color:ICE, isTextBox:true, margin:0 });
-      s.addText('Demonstration data — fictitious and illustrative', { x:8.6, y:6.68, w:4.13, h:0.35, fontFace:FONT_BODY, fontSize:9.5, italic:true, color:'7C8FB0', align:'right', isTextBox:true, margin:0 });
-    })();
-
-    P.writeFile({ fileName: CONFIG.pptxFilename }).then(function(){
-      if (showToast) showToast('Board pack exported (demonstration data)');
-    }).catch(function(err){
-      if (window.console) console.error(err);
-      if (showToast) showToast('Board pack export failed. Check your connection and try again.');
+    s.addChart(P.ChartType.bar, [
+      { name:'Highest residual score', labels:labels, values:residual },
+      { name:'Appetite ceiling', labels:labels, values:appetite },
+    ], {
+      x:0.5, y:1.3, w:8.6, h:5.65, barDir:'bar',
+      chartColors:[H.NAVY, H.ICE], showTitle:false,
+      showLegend:true, legendPos:'b', legendColor:H.SLATE, legendFontSize:11, legendFontFace:H.FONT_BODY,
+      showValue:true, dataLabelPosition:'outEnd', dataLabelFontSize:10, dataLabelColor:H.SLATE, dataLabelFontFace:H.FONT_BODY,
+      catAxisLabelColor:H.SLATE, catAxisLabelFontSize:11, catAxisLabelFontFace:H.FONT_BODY,
+      valAxisLabelColor:H.SLATE, valAxisLabelFontSize:10, valAxisLabelFontFace:H.FONT_BODY,
+      valAxisMaxVal:maxScale, valGridLine:{color:H.ICE, size:0.75}, catGridLine:{style:'none'}, barGapWidthPct:40,
     });
+
+    s.addShape(P.ShapeType.roundRect, { x:9.35, y:1.3, w:3.48, h:5.65, rectRadius:0.08, fill:{color:H.ICE_SOFT}, line:{type:'none'} });
+    s.addText('Outside appetite this cycle', { x:9.6, y:1.5, w:3.0, h:0.35, fontFace:H.FONT_HEAD, fontSize:13, bold:true, color:H.NAVY, isTextBox:true, margin:0 });
+    var overCats = categories.filter(function(c){ return c.over; });
+    overCats.forEach(function(c, i){
+      var y = 2.0 + i * 0.62;
+      s.addShape(P.ShapeType.ellipse, { x:9.6, y:y+0.04, w:0.14, h:0.14, fill:{color:H.RED}, line:{type:'none'} });
+      s.addText(c.name, { x:9.85, y:y-0.06, w:2.8, h:0.3, fontFace:H.FONT_BODY, fontSize:11, bold:true, color:H.NAVY, isTextBox:true, margin:0 });
+      s.addText('Residual ' + c.maxResidual + ' vs ceiling ' + c.appetite, { x:9.85, y:y+0.2, w:2.8, h:0.28, fontFace:H.FONT_BODY, fontSize:9.5, color:H.SLATE, isTextBox:true, margin:0 });
+    });
+
+    H.footer(s);
   }
 
-  if (window.PptxGenJS) { run(); return; }
-  var scriptEl = document.createElement('script');
-  scriptEl.src = 'https://cdn.jsdelivr.net/npm/pptxgenjs@4.0.1/dist/pptxgen.bundle.js';
-  scriptEl.onload = run;
-  scriptEl.onerror = function(){ if (showToast) showToast('Could not load the export library. Check your connection and try again.'); };
-  document.head.appendChild(scriptEl);
+  // ---- Risk Register: Outside Appetite ----
+  {
+    var s = P.addSlide();
+    s.background = { color: H.WHITE };
+    var totalOpen = divisions.reduce(function(sum,d){ return sum + d.openRisks; }, 0);
+    H.sectionHeader(s, 'Risk Register: Outside Appetite', outsideRisks.length + ' of ' + totalOpen + ' open risks currently exceed their category appetite ceiling');
+
+    var headerRow = ['ID','Division','Category','Residual / Appetite','Owner','Status'].map(function(t){
+      return { text:t, options:{ bold:true, color:H.WHITE, fill:{color:H.NAVY}, fontFace:H.FONT_BODY, fontSize:10.5 } };
+    });
+    var rows = [headerRow];
+    outsideRisks.forEach(function(r, i){
+      var zebra = i % 2 === 1 ? H.ICE_SOFT : H.WHITE;
+      var overdue = r.status === 'Overdue';
+      rows.push([
+        { text:r.id, options:{ color:H.NAVY, fill:{color:zebra}, fontFace:H.FONT_BODY, fontSize:10, bold:true } },
+        { text:r.div, options:{ color:H.SLATE, fill:{color:zebra}, fontFace:H.FONT_BODY, fontSize:9.5 } },
+        { text:r.cat, options:{ color:H.SLATE, fill:{color:zebra}, fontFace:H.FONT_BODY, fontSize:9.5 } },
+        { text:r.rScore + ' / ' + r.appetite, options:{ color:H.RED, fill:{color:zebra}, fontFace:H.FONT_BODY, fontSize:10, bold:true, align:'center' } },
+        { text:r.owner, options:{ color:H.SLATE, fill:{color:zebra}, fontFace:H.FONT_BODY, fontSize:9.5 } },
+        { text:r.status, options:{ color: overdue ? H.RED : H.SLATE, fill:{color:zebra}, fontFace:H.FONT_BODY, fontSize:9.5, bold:overdue, align:'center' } },
+      ]);
+    });
+
+    s.addTable(rows, { x:0.5, y:1.3, w:12.33, h:4.7, colW:[1.1,2.55,2.35,1.7,2.83,1.8], border:{type:'solid', color:H.ICE, pt:0.5}, autoPage:false, valign:'middle', margin:[3,6,3,6] });
+
+    s.addShape(P.ShapeType.roundRect, { x:0.5, y:6.2, w:12.33, h:0.7, rectRadius:0.06, fill:{color:H.ICE_SOFT}, line:{type:'none'} });
+    s.addText('Full detail for every outside-appetite risk, including treatment action, target closure date and committee commentary, is maintained in the live risk register.', { x:0.72, y:6.32, w:11.9, h:0.48, fontFace:H.FONT_BODY, fontSize:10, italic:true, color:H.SLATE, isTextBox:true, margin:0, valign:'middle' });
+
+    H.footer(s);
+  }
+
+  // ---- Division Exception Summary ----
+  {
+    var s = P.addSlide();
+    s.background = { color: H.WHITE };
+    H.sectionHeader(s, 'Division Exception Summary', 'One row per division, reconciled to the same risk register and KPI set');
+
+    var headerRow = ['Division','Open Risks','Critical / High','Outside Appetite','Overdue Actions','Red KPIs'].map(function(t){
+      return { text:t, options:{ bold:true, color:H.WHITE, fill:{color:H.NAVY}, fontFace:H.FONT_BODY, fontSize:10.5, align:'center' } };
+    });
+    var rows = [headerRow];
+    divisions.forEach(function(d, i){
+      var zebra = i % 2 === 1 ? H.ICE_SOFT : H.WHITE;
+      function cell(v, flagRed){
+        return { text:String(v), options:{ color: (flagRed && v > 0) ? H.RED : H.SLATE, bold: flagRed && v > 0, fill:{color:zebra}, fontFace:H.FONT_BODY, fontSize:10.5, align:'center' } };
+      }
+      rows.push([
+        { text:d.division, options:{ color:H.NAVY, bold:true, fill:{color:zebra}, fontFace:H.FONT_BODY, fontSize:10.5 } },
+        cell(d.openRisks, false), cell(d.critHigh, true), cell(d.outsideAppetite, true), cell(d.overdue, true), cell(d.redKpis, true),
+      ]);
+    });
+
+    s.addTable(rows, { x:1.2, y:1.5, w:10.93, h:4.6, colW:[3.3,1.526,1.526,1.526,1.526,1.526], border:{type:'solid', color:H.ICE, pt:0.5}, autoPage:false, valign:'middle', margin:[3,6,3,6] });
+
+    H.footer(s);
+  }
+
+  // ---- Recommended Committee Actions (closing bookend) ----
+  {
+    var s = P.addSlide();
+    s.background = { color: H.NAVY_DEEP };
+    s.addShape(P.ShapeType.ellipse, { x:-1.4, y:-1.4, w:3.6, h:3.6, fill:{color:H.NAVY, transparency:40}, line:{type:'none'} });
+    s.addShape(P.ShapeType.ellipse, { x:0.5, y:0.5, w:0.24, h:0.24, fill:{color:H.ICE}, line:{type:'none'} });
+    s.addText('Recommended Committee Actions', { x:0.88, y:0.36, w:10.5, h:0.5, fontFace:H.FONT_HEAD, fontSize:26, bold:true, color:H.WHITE, isTextBox:true, margin:0 });
+
+    var cyberOverdue = outsideRisks.filter(function(r){ return r.cat === 'Cybersecurity' && r.status === 'Overdue'; });
+    var cyberIds = cyberOverdue.map(function(r){ return r.id; }).join(', ');
+    var bcCat = categories.filter(function(c){ return c.name === 'Business Continuity / DR'; })[0];
+    var vendorRisk = outsideRisks.filter(function(r){ return r.cat === 'Third-Party / Cloud'; })[0];
+
+    var actions = [
+      ['Approve', 'an immediate remediation timeline for the ' + cyberOverdue.length + ' overdue Cybersecurity exception' + (cyberOverdue.length===1?'':'s') + ' (' + cyberIds + '), currently outside appetite.'],
+      ['Note', 'Patch Compliance (' + kpi(5).valueLabel + ') and Service Desk Within SLA (' + kpi(9).valueLabel + ') as standing Q4 monitoring items; both trended amber this cycle.'],
+      ['Request', 'an updated Disaster Recovery failback test plan, given the open Business Continuity exceptions against a ceiling of ' + (bcCat ? bcCat.appetite : 6) + '.'],
+      ['Endorse', 'continued right-to-audit remediation with the ' + (vendorRisk ? vendorRisk.div : 'relevant') + ' vendor (' + (vendorRisk ? vendorRisk.id : '') + '), currently in progress.'],
+    ];
+    actions.forEach(function(a, i){
+      var y = 1.5 + i * 1.2;
+      s.addShape(P.ShapeType.roundRect, { x:0.6, y:y, w:0.62, h:0.62, rectRadius:0.31, fill:{color:H.NAVY}, line:{color:H.ICE, width:1} });
+      s.addText(String(i + 1), { x:0.6, y:y, w:0.62, h:0.62, fontFace:H.FONT_HEAD, fontSize:20, bold:true, color:H.ICE, align:'center', valign:'middle', isTextBox:true, margin:0 });
+      s.addText([
+        { text:a[0] + '  ', options:{ bold:true, color:H.WHITE } },
+        { text:a[1], options:{ color:'9FB3D6' } },
+      ], { x:1.45, y:y+0.02, w:11.1, h:0.95, fontFace:H.FONT_BODY, fontSize:14, isTextBox:true, margin:0, valign:'middle', lineSpacingMultiple:1.12 });
+    });
+
+    var commStat = null;
+    CONFIG.execStats.forEach(function(st){ if (/committee date/i.test(st.label)) commStat = st; });
+    var commDays = commStat ? commStat.value : 0;
+    var commDate = new Date(ctx.TODAY); commDate.setDate(commDate.getDate() + commDays);
+    var commDateStr = commDate.toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+
+    s.addShape(P.ShapeType.line, { x:0.6, y:6.55, w:12.13, h:0, line:{color:H.NAVY, width:1} });
+    s.addText('Next Group Audit & Risk Committee date: ' + commDateStr + ' (in ' + commDays + ' days)', { x:0.6, y:6.68, w:8, h:0.35, fontFace:H.FONT_BODY, fontSize:11, color:H.ICE, isTextBox:true, margin:0 });
+    s.addText('Demonstration data — fictitious and illustrative', { x:8.6, y:6.68, w:4.13, h:0.35, fontFace:H.FONT_BODY, fontSize:9.5, italic:true, color:'7C8FB0', align:'right', isTextBox:true, margin:0 });
+  }
+
+  return { handledClosing: true };
 };
 </script>
-<script src="tour-shell.js?v=11"></script>
+<script src="tour-shell.js?v=12"></script>
 <script>DashboardShell.init(CONFIG);</script>
 
 </body>
