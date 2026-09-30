@@ -265,6 +265,10 @@ function init(CONFIG){
 
 
   document.getElementById('btn-export').addEventListener('click', ()=>{
+    if (typeof CONFIG.customExport === 'function') {
+      CONFIG.customExport({ KPIS, EXC, computeAgg, TODAY, showToast });
+      return;
+    }
     if (!window.jspdf) { showToast('PDF library did not load. Check your connection and try again.'); return; }
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ unit:'pt', format:'a4' });
