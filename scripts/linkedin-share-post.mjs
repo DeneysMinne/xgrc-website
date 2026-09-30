@@ -55,7 +55,8 @@ const SECRETS_DIR = path.join(SITE_ROOT, '.secrets')
 const REFRESH_TOKEN_PATH = path.join(SECRETS_DIR, 'linkedin-personal-refresh-token')
 const ORG_REFRESH_TOKEN_PATH = path.join(SECRETS_DIR, 'linkedin-org-refresh-token')
 const ORG_URN = 'urn:li:organization:17970825'
-const SITE_ORIGIN = 'https://www.xgrcsoftware.com'
+// Apex host + trailing slash = the canonical URL, so a click lands with no redirects
+const SITE_ORIGIN = 'https://xgrcsoftware.com'
 const IMAGES_DIR = path.join(SITE_ROOT, 'public', 'assets', 'images', 'insights')
 
 function readSecret(name) {
@@ -232,7 +233,7 @@ async function main() {
   if (!article) {
     throw new Error(`No article found in src/data/site.js for slug "${slug}"`)
   }
-  const articleUrl = `${SITE_ORIGIN}/insights/${slug}`
+  const articleUrl = `${SITE_ORIGIN}/insights/${slug}/`
 
   const targets = []
 
