@@ -1557,6 +1557,17 @@ export const articles = [
     image: 'cybersecurity-awareness-month-from-awareness-to-action.jpg',
     relatedSolutions: ['msxcyber', 'hakware'],
   },
+  {
+    slug: 'how-to-read-a-risk-heat-map',
+    title: 'How to Read a Risk Heat Map (5x5 Risk Matrix Explained)',
+    seoTitle: 'How to Read a Risk Heat Map (5x5 Matrix) | XGRC®',
+    excerpt: 'A risk heat map plots likelihood against impact so a committee can see exposure at a glance. What the bands mean, how inherent and residual risk differ on the same map, and the mistakes most people make reading one.',
+    metaDescription: 'How to read a 5x5 risk heat map: likelihood vs impact bands, colour coding, and the difference between inherent and residual risk, with a worked example.',
+    category: 'Risk',
+    date: '2026-10-05',
+    image: 'how-to-read-a-risk-heat-map.jpg',
+    relatedSolutions: ['erm'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1794,6 +1805,12 @@ export const articleFaqs = {
     { q: 'What is Shadow AI?', a: 'Shadow AI generally refers to the use of AI tools or applications outside an organisation\'s approved technology and governance environment. It can create concerns around information security, privacy, compliance and organisational oversight.' },
     { q: 'How can organisations turn cybersecurity awareness into action?', a: 'By connecting awareness activities to practical governance: identifying risks, assigning ownership, implementing controls, monitoring effectiveness, maintaining evidence, managing incidents and addressing identified weaknesses.' },
     { q: 'How does ISO/IEC 27001 support cybersecurity?', a: 'ISO/IEC 27001 provides a structured Information Security Management System approach that helps organisations systematically manage information security risks and continually improve their information security environment.' },
+  ],
+  'how-to-read-a-risk-heat-map': [
+    { q: 'What is a 5x5 risk matrix?', a: 'A 5x5 risk matrix is a grid that plots risks by likelihood (1 to 5) and impact (1 to 5), multiplied together to give a risk score from 1 to 25. It is the most common way to visualise and compare risks across an organisation at a glance.' },
+    { q: 'What do the colours on a risk heat map mean?', a: 'Colours represent risk score bands, typically low (1 to 5, green), moderate (6 to 11, yellow or amber), high (12 to 19, orange) and critical (20 to 25, red). The exact cut-offs vary by organisation and risk appetite, but the same scale should be used consistently across every risk reported into one pack.' },
+    { q: 'What is the difference between inherent and residual risk?', a: 'Inherent risk is the exposure before any controls are applied. Residual risk is what remains after controls, mitigations and existing safeguards are taken into account. Plotting both on matching heat maps shows whether controls are actually reducing exposure, not just whether a risk exists.' },
+    { q: 'How is a risk score calculated on a heat map?', a: 'Risk score is calculated by multiplying the likelihood rating by the impact rating, each scored 1 to 5, giving a result between 1 and 25. That score determines which band, and therefore which colour, the risk falls into on the map.' },
   ],
 };
 

@@ -2753,4 +2753,43 @@ Make October the Beginning, Not the End
 Cybersecurity Awareness Month creates a valuable opportunity to bring attention to cyber risk, but a secure organisation is not created in one month. It is built through thousands of decisions made throughout the year: when employees know how to respond to suspicious activity, when cybersecurity risks have clear owners, when critical controls are monitored, when incidents result in organisational learning, when AI is introduced within appropriate guardrails, when leadership has visibility and when the organisation continually evaluates and improves its information security environment. Awareness starts the conversation. Governance turns that conversation into action.
 
 This Cybersecurity Awareness Month, move beyond simply reminding employees to "be cyber aware". Ask whether your organisation can demonstrate that cybersecurity risks are identified, responsibilities are assigned, controls are monitored, actions are completed and leadership has the visibility it needs. <a href="/contact/">Speak to an XGRC® specialist</a> to see how MSXCyber® supports a structured, connected and auditable approach to information security governance.`,
+  'how-to-read-a-risk-heat-map': `Almost every risk committee pack has one: a grid of coloured boxes, usually red, amber and green, with risks plotted somewhere across it. Most people in the room can tell that red is bad and green is good. Far fewer can actually read the map, pick out a specific risk, or explain why it moved from one cell to another between reporting cycles. That gap matters, because a heat map that nobody can properly interrogate just becomes wallpaper.
+
+What a Risk Heat Map Actually Shows
+
+A risk heat map plots risks against two axes: how likely they are to happen, and how severe the consequences would be if they did. The standard version is a 5x5 grid, with likelihood running along one axis and impact along the other, each scored from 1 (lowest) to 5 (highest). Multiply the two scores together and every risk lands somewhere between 1 and 25.
+
+That number is the risk score, and it is what the colour of each cell represents. A risk rated likelihood 2, impact 2 scores 4 and sits in a pale corner of the grid. A risk rated likelihood 5, impact 5 scores 25 and sits in the deep red corner. The map is really just a visual shortcut for that multiplication, built so a committee can scan twenty or more risks in a few seconds instead of reading twenty rows of a spreadsheet.
+
+Reading the Bands
+
+Most organisations group the 1 to 25 score range into four bands, though the exact cut-offs vary by risk appetite and industry:
+
+- Low (1-5): accepted as part of normal operations, monitored but rarely escalated
+- Moderate (6-11): tracked by the risk owner, reviewed at department level
+- High (12-19): reported to senior management, usually with an active treatment plan
+- Critical (20-25): reported to the board or risk committee, with an owner and a deadline
+
+These bands are a convention, not a law of nature. What matters more than the exact numbers is that everyone reporting into the same pack uses the same scale, so a "high" risk in operations means the same thing as a "high" risk in IT.
+
+Inherent vs Residual Risk on the Same Map
+
+The most useful heat maps show two versions of the same risk set side by side: inherent risk, which is the exposure before any controls are applied, and residual risk, which is what remains after controls, mitigations and existing safeguards are taken into account.
+
+Plotting both tells you something a single map cannot. A risk that starts in the critical zone and ends up moderate after controls shows that the control environment is actually doing its job. A risk that starts high and stays high despite a long list of documented controls is a much more useful thing for a committee to see than either map on its own, because it points straight at a control that is not working, not just a risk that exists.
+
+For example, a risk rated likelihood 5, impact 4 inherently (score 20, critical) might drop to likelihood 2, impact 2 residually (score 4, low) once multi-factor authentication, monitoring and an incident response plan are factored in. If the residual score barely moves from the inherent one, that is usually the more important finding than the raw risk itself.
+
+Common Mistakes When Reading a Heat Map
+
+- Treating the grid position as precise. A score of 12 and a score of 15 both sit in "high", and the difference between them is rarely meaningful enough to argue over. The band matters more than the exact cell.
+- Comparing heat maps built on different scales. A 3x3 matrix and a 5x5 matrix are not interchangeable, and neither are two 5x5 matrices with different band cut-offs.
+- Only looking at residual risk. A residual-only map can hide a risk where the controls are doing enormous work to keep a very large inherent exposure under control, which is exactly the kind of single point of failure a committee should want visibility of.
+- Assuming the likelihood score is objective. Without decent incident, loss and near-miss data behind it, a likelihood rating is often someone's informed judgement rather than a measured frequency, and that is worth stating openly rather than presenting it as harder data than it is.
+
+What a Well-Reconciled Heat Map Should Do
+
+The number of risks plotted on the map should match the number of risks on the register behind it, for both the inherent and residual versions. If a heat map shows nineteen risks and the register lists twenty-three, something in the reporting pipeline is dropping or double-counting records, and that is a data quality problem a committee should ask about directly.
+
+The clearest way to see this in practice is to look at a live example rather than a static picture. XGRC®'s <a href="/tour/it-risk-performance.html">IT Risk & Performance Committee dashboard</a> plots inherent and residual risk on matching 5x5 heat maps side by side, with the risk count behind each half stated explicitly so the reconciliation is visible, not assumed. It is one of seventeen interactive examples in the full <a href="/tour/">XGRC® dashboard tour</a>, each built on fictitious data so you can explore freely.`,
 };
