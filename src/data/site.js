@@ -1586,6 +1586,17 @@ export const articles = [
     image: 'building-a-culture-of-cyber-resilience.jpg',
     relatedSolutions: ['msxcyber', 'integrated-assurance'],
   },
+  {
+    slug: 'what-should-go-in-a-grc-board-pack',
+    title: 'What Should Go In a GRC Board Pack? A Practical Template',
+    seoTitle: 'GRC Board Pack Template: What to Include | XGRC®',
+    excerpt: 'A board pack that gets read follows the same shape every cycle: an executive summary, a KPI scorecard, a focus-area section and a reconciled breakdown. The structure that works, and where most packs go wrong.',
+    metaDescription: 'What should go in a GRC board pack: executive summary, KPI scorecard, focus areas and a reconciled breakdown, with a practical template and a live example.',
+    category: 'GRC',
+    date: '2026-10-12',
+    image: 'what-should-go-in-a-grc-board-pack.jpg',
+    relatedSolutions: ['erm', 'compliance-hub'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1843,6 +1854,12 @@ export const articleFaqs = {
     { q: 'How is AI changing cyber resilience?', a: 'AI introduces new opportunities and risks. Employees may use AI systems to process organisational information, while unapproved AI applications can create information security and governance concerns. Organisations therefore need appropriate AI policies, risk assessments and guardrails.' },
     { q: 'What is the role of ISO/IEC 27001 in cyber resilience?', a: 'ISO/IEC 27001 provides a structured management-system approach for managing information security risks, responsibilities, controls, monitoring, audits, corrective actions and continual improvement, giving resilience a repeatable foundation.' },
     { q: 'How can organisations improve cyber resilience?', a: 'Through employee awareness, structured risk management, clearly assigned responsibilities, appropriate security controls, incident management, continual monitoring, assurance and connected governance.' },
+  ],
+  'what-should-go-in-a-grc-board-pack': [
+    { q: 'What is a GRC board pack?', a: 'A GRC board pack is the set of reporting materials, typically a slide deck or formatted document, prepared for a risk, audit or governance committee ahead of each meeting. It usually includes an executive summary, a KPI scorecard, items needing attention and supporting detail such as a risk register extract.' },
+    { q: 'How often should a GRC board pack be updated?', a: 'Most organisations update their board pack on the same cycle as the committee meets, commonly monthly or quarterly. The underlying data behind it should ideally be live and continuously maintained, so the pack is a snapshot of current reality rather than a separate, manually assembled document.' },
+    { q: 'What is the difference between a board pack and a risk register?', a: 'A risk register is the detailed, ongoing record of every identified risk, its assessment and its treatment. A board pack is a summarised reporting output drawn from that register (and other sources), built for a committee meeting rather than day-to-day risk management.' },
+    { q: 'Can a board pack be generated automatically from live data?', a: 'Yes, where the executive summary, KPI scorecard and register extract all draw from the same reconciled dataset, the whole pack can be generated directly from that data rather than assembled by hand each cycle, which also removes the risk of the summary and the detail disagreeing.' },
   ],
 };
 
