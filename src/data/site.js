@@ -1615,6 +1615,17 @@ export const articles = [
     image: 'why-integrated-assurance-matters-in-the-age-of-ai.jpg',
     relatedSolutions: ['integrated-assurance', 'ai-governance'],
   },
+  {
+    slug: 'esg-kpi-dashboard-what-to-track',
+    title: 'ESG KPI Dashboard: What to Track and How to Report It',
+    seoTitle: 'ESG KPI Dashboard: What to Track | XGRC®',
+    excerpt: 'ESG reporting is moving from an annual narrative to ongoing, KPI-driven tracking. Which metrics belong on an ESG dashboard across environmental, social, governance and disclosure, and how to present them.',
+    metaDescription: 'ESG KPI dashboard: which metrics to track across environmental, social, governance and disclosure, framework coverage, and how to report them well.',
+    category: 'ESG',
+    date: '2026-10-19',
+    image: 'esg-kpi-dashboard-what-to-track.jpg',
+    relatedSolutions: ['esg'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1892,6 +1903,12 @@ export const articleFaqs = {
     { q: 'What is the difference between AI governance and AI assurance?', a: 'AI governance establishes how AI should be managed through policies, responsibilities, risks and controls. AI assurance evaluates whether those governance mechanisms and controls are operating as intended.' },
     { q: 'What role does internal audit play in AI governance?', a: 'Internal audit can provide independent assurance over relevant aspects of AI governance, including risk management, control effectiveness, accountability, policy implementation, evidence and corrective actions.' },
     { q: 'Why is evidence important for AI assurance?', a: 'Evidence allows organisations to demonstrate that governance activities and controls are actually taking place. It supports auditability, accountability, traceability and better-informed assurance conclusions.' },
+  ],
+  'esg-kpi-dashboard-what-to-track': [
+    { q: 'What KPIs should an ESG dashboard track?', a: 'A well-rounded ESG dashboard tracks metrics across environmental (emissions, energy, waste, water), social (safety, training, diversity), governance (ethics training, whistleblower handling, pay ratio disclosure) and disclosure and assurance (framework coverage, assurance-ready data).' },
+    { q: 'What is assurance-ready ESG data?', a: 'Assurance-ready data is ESG data that is complete, evidenced and structured well enough to withstand external assurance or audit, rather than being compiled informally for internal reporting only. It typically means every disclosed figure has supporting evidence attached and traceable.' },
+    { q: 'Which ESG reporting frameworks should software support?', a: 'The most widely used are GRI for broad sustainability disclosure, SASB for industry-specific financially material topics, and ISSB (IFRS S1 and S2) where sustainability disclosures need to align with financial reporting. Many organisations report against more than one framework at once.' },
+    { q: 'How often should ESG KPIs be reported?', a: 'Operational ESG KPIs such as safety incidents or energy usage are commonly tracked monthly, while framework disclosure coverage and materiality are typically reviewed quarterly or ahead of the annual sustainability report. A live dashboard removes the need to choose one cadence, since the underlying data is always current.' },
   ],
 };
 
