@@ -7,6 +7,41 @@
 export const whatsNew = {
   "xrm": [
     {
+      "version": "1.72.0",
+      "date": "2026-10-01",
+      "category": "new",
+      "title": "Claude can add contacts and deal stakeholders",
+      "description": "Claude can now add the people named in an email or meeting as contacts under the right company, link them to a deal as stakeholders with their role, and cancel tasks that are no longer needed. Each change can be undone for 15 minutes."
+    },
+    {
+      "version": "1.72.0",
+      "date": "2026-10-01",
+      "category": "new",
+      "title": "Change many deals or leads at once from Claude",
+      "description": "Ask Claude to reassign, re-date, re-stage or re-categorise a group of deals or leads, for example \"all my overdue deals\". It shows how many will change and which will not, and why, before you confirm, and one undo reverses the whole batch. Administrators set the limit under Settings > AI access."
+    },
+    {
+      "version": "1.71.0",
+      "date": "2026-10-01",
+      "category": "new",
+      "title": "Update and close deals from Claude, with your confirmation",
+      "description": "Claude can now change a deal's value, probability or close date, move it to another stage, reassign it, convert a lead, and close deals as won or lost. It shows you exactly what will change, including who will receive the Deal Won email, and only makes the change once you say yes."
+    },
+    {
+      "version": "1.70.0",
+      "date": "2026-10-01",
+      "category": "new",
+      "title": "Claude can log calls, add notes and create leads for you",
+      "description": "Ask Claude to log a call or meeting, summarise an email onto a deal, add a note, create or update a lead, or create, complete and reschedule tasks. Everything is saved in your name, marked \"via Claude\" in the audit log, and can be undone for 15 minutes."
+    },
+    {
+      "version": "1.69.0",
+      "date": "2026-10-01",
+      "category": "new",
+      "title": "Connect Claude to XRM",
+      "description": "Your team can now connect Claude to XRM and ask it about their pipeline, deals, leads and tasks in plain language, from the desktop or their phone. An administrator switches it on under Settings > AI access; each person signs in and chooses what Claude may do, and Claude only ever sees and does what that person could."
+    },
+    {
       "version": "1.68.0",
       "date": "2026-09-28",
       "category": "new",
