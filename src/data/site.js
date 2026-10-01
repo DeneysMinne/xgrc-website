@@ -1387,6 +1387,17 @@ export const articles = [
     image: 'how-to-read-a-risk-heat-map.jpg',
     relatedSolutions: ['erm'],
   },
+  {
+    slug: 'what-should-go-in-a-grc-board-pack',
+    title: 'What Should Go In a GRC Board Pack? A Practical Template',
+    seoTitle: 'GRC Board Pack Template: What to Include | XGRC®',
+    excerpt: 'A board pack that gets read follows the same shape every cycle: an executive summary, a KPI scorecard, a focus-area section and a reconciled breakdown. The structure that works, and where most packs go wrong.',
+    metaDescription: 'What should go in a GRC board pack: executive summary, KPI scorecard, focus areas and a reconciled breakdown, with a practical template and a live example.',
+    category: 'GRC',
+    date: '2026-10-12',
+    image: 'what-should-go-in-a-grc-board-pack.jpg',
+    relatedSolutions: ['erm', 'compliance-hub'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1604,6 +1615,12 @@ export const articleFaqs = {
     { q: 'What do the colours on a risk heat map mean?', a: 'Colours represent risk score bands, typically low (1 to 5, green), moderate (6 to 11, yellow or amber), high (12 to 19, orange) and critical (20 to 25, red). The exact cut-offs vary by organisation and risk appetite, but the same scale should be used consistently across every risk reported into one pack.' },
     { q: 'What is the difference between inherent and residual risk?', a: 'Inherent risk is the exposure before any controls are applied. Residual risk is what remains after controls, mitigations and existing safeguards are taken into account. Plotting both on matching heat maps shows whether controls are actually reducing exposure, not just whether a risk exists.' },
     { q: 'How is a risk score calculated on a heat map?', a: 'Risk score is calculated by multiplying the likelihood rating by the impact rating, each scored 1 to 5, giving a result between 1 and 25. That score determines which band, and therefore which colour, the risk falls into on the map.' },
+  ],
+  'what-should-go-in-a-grc-board-pack': [
+    { q: 'What is a GRC board pack?', a: 'A GRC board pack is the set of reporting materials, typically a slide deck or formatted document, prepared for a risk, audit or governance committee ahead of each meeting. It usually includes an executive summary, a KPI scorecard, items needing attention and supporting detail such as a risk register extract.' },
+    { q: 'How often should a GRC board pack be updated?', a: 'Most organisations update their board pack on the same cycle as the committee meets, commonly monthly or quarterly. The underlying data behind it should ideally be live and continuously maintained, so the pack is a snapshot of current reality rather than a separate, manually assembled document.' },
+    { q: 'What is the difference between a board pack and a risk register?', a: 'A risk register is the detailed, ongoing record of every identified risk, its assessment and its treatment. A board pack is a summarised reporting output drawn from that register (and other sources), built for a committee meeting rather than day-to-day risk management.' },
+    { q: 'Can a board pack be generated automatically from live data?', a: 'Yes, where the executive summary, KPI scorecard and register extract all draw from the same reconciled dataset, the whole pack can be generated directly from that data rather than assembled by hand each cycle, which also removes the risk of the summary and the detail disagreeing.' },
   ],
 };
 
