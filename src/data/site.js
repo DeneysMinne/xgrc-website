@@ -1398,6 +1398,17 @@ export const articles = [
     image: 'what-should-go-in-a-grc-board-pack.jpg',
     relatedSolutions: ['erm', 'compliance-hub'],
   },
+  {
+    slug: 'esg-kpi-dashboard-what-to-track',
+    title: 'ESG KPI Dashboard: What to Track and How to Report It',
+    seoTitle: 'ESG KPI Dashboard: What to Track | XGRC®',
+    excerpt: 'ESG reporting is moving from an annual narrative to ongoing, KPI-driven tracking. Which metrics belong on an ESG dashboard across environmental, social, governance and disclosure, and how to present them.',
+    metaDescription: 'ESG KPI dashboard: which metrics to track across environmental, social, governance and disclosure, framework coverage, and how to report them well.',
+    category: 'ESG',
+    date: '2026-10-19',
+    image: 'esg-kpi-dashboard-what-to-track.jpg',
+    relatedSolutions: ['esg'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1621,6 +1632,12 @@ export const articleFaqs = {
     { q: 'How often should a GRC board pack be updated?', a: 'Most organisations update their board pack on the same cycle as the committee meets, commonly monthly or quarterly. The underlying data behind it should ideally be live and continuously maintained, so the pack is a snapshot of current reality rather than a separate, manually assembled document.' },
     { q: 'What is the difference between a board pack and a risk register?', a: 'A risk register is the detailed, ongoing record of every identified risk, its assessment and its treatment. A board pack is a summarised reporting output drawn from that register (and other sources), built for a committee meeting rather than day-to-day risk management.' },
     { q: 'Can a board pack be generated automatically from live data?', a: 'Yes, where the executive summary, KPI scorecard and register extract all draw from the same reconciled dataset, the whole pack can be generated directly from that data rather than assembled by hand each cycle, which also removes the risk of the summary and the detail disagreeing.' },
+  ],
+  'esg-kpi-dashboard-what-to-track': [
+    { q: 'What KPIs should an ESG dashboard track?', a: 'A well-rounded ESG dashboard tracks metrics across environmental (emissions, energy, waste, water), social (safety, training, diversity), governance (ethics training, whistleblower handling, pay ratio disclosure) and disclosure and assurance (framework coverage, assurance-ready data).' },
+    { q: 'What is assurance-ready ESG data?', a: 'Assurance-ready data is ESG data that is complete, evidenced and structured well enough to withstand external assurance or audit, rather than being compiled informally for internal reporting only. It typically means every disclosed figure has supporting evidence attached and traceable.' },
+    { q: 'Which ESG reporting frameworks should software support?', a: 'The most widely used are GRI for broad sustainability disclosure, SASB for industry-specific financially material topics, and ISSB (IFRS S1 and S2) where sustainability disclosures need to align with financial reporting. Many organisations report against more than one framework at once.' },
+    { q: 'How often should ESG KPIs be reported?', a: 'Operational ESG KPIs such as safety incidents or energy usage are commonly tracked monthly, while framework disclosure coverage and materiality are typically reviewed quarterly or ahead of the annual sustainability report. A live dashboard removes the need to choose one cadence, since the underlying data is always current.' },
   ],
 };
 

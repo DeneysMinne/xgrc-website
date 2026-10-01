@@ -2774,4 +2774,37 @@ A Practical Example
 XGRC®'s <a href="/tour/it-risk-performance.html">IT Risk & Performance Committee dashboard</a> follows this structure end to end: an executive summary, a KPI scorecard, a focus-area section, a risk register extract and a division-by-division breakdown, all reconciled to the same underlying risk data. The dashboard's "Export board pack" button turns that live data straight into a formatted PowerPoint deck in one click, in the same structure described above, rather than requiring someone to rebuild it by hand each cycle.
 
 It is one of seventeen live, interactive examples in the <a href="/tour/">XGRC® dashboard tour</a>, each on fictitious data, so you can click through and export a sample pack yourself to see the structure in practice.`,
+  'esg-kpi-dashboard-what-to-track': `ESG reporting has moved from a once-a-year narrative document to something closer to financial reporting: ongoing, KPI-driven, and increasingly subject to external assurance. That shift leaves a practical question most sustainability teams eventually hit: which KPIs actually belong on an ESG dashboard, and how should they be presented so the numbers hold up when someone checks them?
+
+The Three Pillars, and a Fourth
+
+Environmental, social and governance metrics each answer a different question, and a dashboard that blends them into one undifferentiated list makes all three harder to act on.
+
+- Environmental: emissions against target, energy intensity, waste diverted from landfill, water usage against target
+- Social: safety performance, training hours per employee, board and workforce diversity, supplier diversity spend
+- Governance: ethics training completion, whistleblower cases closed on time, executive pay ratio disclosure currency
+
+A fourth category belongs alongside them, even though it is not one of the original three: disclosure and assurance. This covers how much of what the organisation claims is actually backed by assurance-ready data, how complete framework disclosure is against a 100% target, and what fraction of required evidence is attached and auditable. As ESG moves toward mandatory, assured reporting, this category increasingly determines whether the other three can be trusted.
+
+Choosing Frameworks, Not Just Metrics
+
+Most organisations do not pick ESG KPIs from a blank page. They work backwards from the frameworks they report against, commonly GRI for broad sustainability disclosure, SASB for industry-specific financial materiality, and ISSB (IFRS S1 and S2) where climate and sustainability disclosures need to align with financial reporting. A dashboard that tracks framework disclosure coverage as its own metric, rather than assuming every KPI automatically satisfies every framework, gives a far more honest picture of readiness than a simple percentage-complete figure.
+
+Trend, Not Just a Snapshot
+
+A single current value tells you where a KPI sits today. A trend line against a target line, tracked over a full reporting cycle, tells you whether the organisation is closing the gap or drifting further from it, which is usually the more important question for a committee. Pillar-level trend charts, one line each for environmental, social and governance performance against their own targets, let a reporting committee see at a glance which pillar is improving and which is stalling, without reading twelve individual KPI cards first.
+
+Where Leadership Should Focus
+
+As with any KPI dashboard, the exceptions matter more than the full list. An ESG focus section should surface only the metrics currently in breach or on watch, each with its value against target, the owner responsible, and how long it has been open. A gender pay gap running above the target band, or an energy intensity reduction falling short of its year-on-year goal, belongs here with enough context to act on immediately, not buried in a KPI table with thirty other rows.
+
+Materiality: Ranking, Not Just Listing
+
+A materiality matrix, plotting each ESG topic by business impact against stakeholder importance, answers a question a flat KPI list cannot: which of these actually matters most, to whom. A topic can perform well on its own metric and still be low priority if neither investors nor the business consider it material, and the reverse is just as common. Without that ranking, a dashboard can end up giving equal visual weight to a topic nobody is asking about and one regulators are about to make mandatory.
+
+Seeing It Assembled
+
+XGRC®'s <a href="/tour/esg.html">ESG Performance dashboard</a> brings these pieces together: pillar trend lines against target, an assurance-readiness view across framework, data and Scope 3 coverage, a focus-area section for KPIs in breach or on watch, and a materiality matrix ranking topics by impact and stakeholder importance.
+
+It is one of seventeen live, interactive examples in the <a href="/tour/">XGRC® dashboard tour</a>, each built on fictitious data so you can filter, search and explore freely.`,
 };
