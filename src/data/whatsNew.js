@@ -212,6 +212,55 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.01",
+      "date": "2026-10-01",
+      "category": "new",
+      "title": "Approving a replacement retires what it replaces",
+      "description": "When a proposal replaces an earlier one, approving it offers to retire the record it supersedes, and the audit trail records the link between the two."
+    },
+    {
+      "version": "2026.10.01",
+      "date": "2026-10-01",
+      "category": "improved",
+      "title": "Find and tidy away empty draft processes",
+      "description": "The Cockpit now shows how many draft processes have no steps yet, and opens that list in one click. A draft that is no longer needed can be retired from its row on the Processes screen; it stays in the audit trail."
+    },
+    {
+      "version": "2026.10.01",
+      "date": "2026-10-01",
+      "category": "new",
+      "title": "One register of every proposal",
+      "description": "The Proposals register lists every proposal of every kind in one place. Filter by type, status, requirement or source document, by who raised or decided it, and by date, so nothing waiting on a decision gets missed."
+    },
+    {
+      "version": "2026.10.01",
+      "date": "2026-10-01",
+      "category": "new",
+      "title": "Search everything from the top bar",
+      "description": "A search bar in the top menu finds any process, requirement, proposal, task, run or document by its title or case number, grouped by type. You only ever see results you are allowed to open."
+    },
+    {
+      "version": "2026.10.01",
+      "date": "2026-10-01",
+      "category": "new",
+      "title": "Every record has a case number",
+      "description": "Proposals, requirements, processes, runs, tasks, documents and controls each get a permanent, readable case number, such as PRP00042 or REQ00017. It shows on screen and in the audit trail, so you can refer to a record in an email or a meeting and anyone can find it."
+    },
+    {
+      "version": "2026.10.01",
+      "date": "2026-10-01",
+      "category": "new",
+      "title": "Reject a proposal, with a reason",
+      "description": "Reviewers can now reject a requirement, requirement change or process proposal instead of leaving it waiting. A short reason is required and is recorded in the audit trail, so whoever raised it, person or AI, can see why."
+    },
+    {
+      "version": "2026.09.30",
+      "date": "2026-09-30",
+      "category": "new",
+      "title": "Connect Claude to XLOGIC",
+      "description": "Connect Claude to XLOGIC and ask it about your obligations, processes, proposals and readiness in plain language. Claude can draft requirements and process proposals for you, but it never approves anything: every proposal still waits for a person to decide. Each person connects with their own sign-in and sees only what they could see in XLOGIC; disconnect at any time from My Profile."
+    },
+    {
       "version": "2026.09.15",
       "date": "2026-09-15",
       "category": "new",
@@ -390,8 +439,8 @@ export const whatsNew = {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Default Lane Groups to get you started",
-      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
+      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
+      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
     },
     {
       "version": "2026-08-20",
@@ -411,15 +460,15 @@ export const whatsNew = {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Process Templates: preview a template before applying it, and ten to choose from",
-      "description": "Every template card now has a Preview button showing its real step-by-step shape (owners, evidence, cadence, SLA) before you commit to it. The catalog also grew from 2 templates to 10: task-with-escalation, evidence-gated release, decision-routed review, two-stage sign-off, incident response, change request lifecycle, third-party risk assessment, and recurring training completion, alongside the original approval-with-evidence and periodic-review-with-escalation."
+      "title": "Default Lane Groups to get you started",
+      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
     },
     {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
-      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
+      "title": "Process Templates: preview a template before applying it, and ten to choose from",
+      "description": "Every template card now has a Preview button showing its real step-by-step shape (owners, evidence, cadence, SLA) before you commit to it. The catalog also grew from 2 templates to 10: task-with-escalation, evidence-gated release, decision-routed review, two-stage sign-off, incident response, change request lifecycle, third-party risk assessment, and recurring training completion, alongside the original approval-with-evidence and periodic-review-with-escalation."
     },
     {
       "version": "2026-08-20",
