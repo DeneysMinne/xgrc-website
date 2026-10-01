@@ -120,6 +120,7 @@ const orgSchema = JSON.stringify({
          - Ad click IDs: gclid, plus gbraid/wbraid, which Google sends
            instead of gclid on some clicks (Peak Timbers' 24 Sep ad click
            carried only gbraid, so nothing was recorded).
+         - fbclid, Meta's click id on Facebook/Instagram ad clicks.
          - utm_* tags.
          Both are only set when present on the URL, so a later organic visit
          never wipes a real value. Landing page and referring site are
@@ -132,7 +133,7 @@ const orgSchema = JSON.stringify({
         const set = (k, v) => { document.cookie = `xgrc_${k}=${encodeURIComponent(v)}; Max-Age=${MAX_AGE}; Path=/; SameSite=Lax`; };
         const get = (k) => { const m = document.cookie.match(new RegExp(`(?:^|; )xgrc_${k}=([^;]*)`)); return m ? decodeURIComponent(m[1]) : ''; };
         const p = new URLSearchParams(window.location.search);
-        const TRACKED = ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        const TRACKED = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
         for (const key of TRACKED) {
           const value = p.get(key);
           if (value) set(key, value);

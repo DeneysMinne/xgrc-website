@@ -392,6 +392,8 @@ def _create_xrm_lead(data: dict) -> None:
         # link). XRM's integration route reads these under their plain names
         # (utm_source, not _utm_source) -- see app/integrations/routes.py.
         "gclid": data.get("_gclid") or None,
+        # Meta's click id (Facebook/Instagram ads), captured like gclid; XRM stores it on the lead.
+        "fbclid": data.get("_fbclid") or None,
         "utm_source": data.get("_utm_source") or None,
         "utm_medium": data.get("_utm_medium") or None,
         "utm_campaign": data.get("_utm_campaign") or None,
