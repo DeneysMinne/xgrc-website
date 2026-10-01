@@ -395,6 +395,13 @@ def _create_xrm_lead(data: dict) -> None:
         "utm_source": data.get("_utm_source") or None,
         "utm_medium": data.get("_utm_medium") or None,
         "utm_campaign": data.get("_utm_campaign") or None,
+        # XRM ENH-140: the rest of the first touch, stored on the lead itself
+        # (landing_page, first_referrer, heard_about columns) rather than only
+        # in the message text. Older XRM builds ignore unknown keys, so this is
+        # safe to deploy before or after XRM's ENH-140.
+        "landing_page": data.get("_landing_page") or None,
+        "first_referrer": data.get("_first_referrer") or None,
+        "heard_about": (data.get("heardAbout") or "").strip() or None,
     }
     resp = requests.post(
         XRM_LEAD_API_URL,
