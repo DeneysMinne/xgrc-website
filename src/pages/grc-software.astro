@@ -11,38 +11,66 @@ const capabilities = [
     tag: 'Governance',
     title: 'Policy, Governance & Board Reporting',
     body: 'Manage policies, document controls, board reporting, and stakeholder oversight from a single governance hub.',
-    href: '/solutions/#msx',
+    href: '/msx/',
   },
   {
     tag: 'Risk',
     title: 'Enterprise Risk Management',
     body: 'Identify, assess, and treat enterprise risk using a consistent framework aligned to ISO 31000 and COSO.',
-    href: '/solutions/#erm',
+    href: '/erm/',
   },
   {
     tag: 'Compliance',
     title: 'Compliance & Regulation',
     body: 'Track obligations across ISO standards, GDPR, POPIA, PAIA, and industry regulations with real-time compliance status.',
-    href: '/solutions/#compliance-hub',
+    href: '/compliance-hub/',
   },
   {
     tag: 'Data Protection',
     title: 'Data Protection & Privacy',
     body: 'Manage GDPR and POPIA obligations, data subject access requests, privacy impact assessments, and data breach response.',
-    href: '/solutions/#msxcyber',
+    href: '/msxcyber/',
   },
   {
     tag: 'Assurance',
     title: 'Internal Audit & Assurance',
     body: 'Plan, execute, and manage the full internal audit lifecycle, linked to risks, controls, and corrective actions.',
-    href: '/solutions/#integrated-assurance',
+    href: '/integrated-assurance/',
   },
   {
     tag: 'ESG',
     title: 'ESG, Safety & Operations',
     body: 'Collect and report ESG data, manage safety incidents and inspections, aligned to ISO 45001, ISO 14001, and GRI.',
-    href: '/solutions/#esg',
+    href: '/esg/',
   },
+];
+
+// What GRC software does, mapped to the XGRC® solution that delivers each job.
+const grcJobs = [
+  { title: 'Risk management', body: 'Risk registers, likelihood and impact scoring, risk appetite thresholds, key risk indicators and treatment plans, aligned to ISO 31000 and COSO.', href: '/erm/', label: 'Enterprise risk management software' },
+  { title: 'Compliance obligations', body: 'Obligations across ISO standards, GDPR, POPIA, PAIA and industry regulations with real-time compliance status, plus jurisdiction-specific regulatory intelligence from Libryo.', href: '/use-cases/regulatory-compliance/', label: 'Regulatory compliance' },
+  { title: 'Policies and governance execution', body: 'XLOGIC® converts policies, frameworks, controls and obligations into structured workflows with accountability, evidence capture and auditability.', href: '/xlogic/', label: 'XLOGIC®' },
+  { title: 'Audit and assurance', body: 'Risk-based internal audit planning, fieldwork, findings and a combined assurance matrix that maps every assurance provider to the risks they cover.', href: '/integrated-assurance/', label: 'Integrated Assurance' },
+  { title: 'Incidents and corrective actions', body: 'Incidents, inspections and non-conformances captured in the field, including offline in the SHEQX® iOS and Android apps, with corrective actions assigned and tracked to closure.', href: '/sheqx/', label: 'SHEQX®' },
+  { title: 'Reporting, evidence and governed AI', body: 'Executive dashboards and board reporting from live data, an audit trail behind every record, and MAIA® governed AI with a full AI interaction audit trail.', href: '/tour/', label: 'Take the live tour' },
+];
+
+// Buyer's checklist: how to choose GRC software.
+const checklist = [
+  { title: 'One data model, not a bundle', body: 'Ask whether risks, controls, obligations, audits and actions share one data model, or are separate modules sold together. Integrated GRC software links them without reconciliation.' },
+  { title: 'Your frameworks and laws', body: 'Check coverage of the standards and regulations you answer to, for example ISO 27001, ISO 9001, ISO 14001, ISO 45001 and ISO 31000, GDPR, and in South Africa POPIA, PAIA and King V.' },
+  { title: 'Start small, then expand', body: 'You should be able to go live with one discipline and add others module by module, rather than commit to a single big-bang rollout.' },
+  { title: 'Board-ready reporting', body: 'Dashboards and board packs should draw on current data, with an audit trail behind every figure, instead of being assembled by hand each quarter.' },
+  { title: 'Adoption by real users', body: 'Look for single sign-on, mobile capture for field teams and the languages your people work in. XGRC® supports Microsoft Entra ID sign-on and runs in English, Portuguese, French and Spanish.' },
+  { title: 'Integration with what you run', body: 'The platform should sit alongside your HR, ERP and IT systems rather than replace them, with API-based integration for data exchange where required.' },
+  { title: 'Independent security assurance', body: 'Ask for current certification and the hosting region. XGRC® is certified to ISO/IEC 27001:2022 and hosted in Microsoft Azure West Europe (Netherlands).' },
+];
+
+// GRC software compared with the usual alternatives (factual, no vendor names).
+const comparison = [
+  ['Spreadsheets and email', 'Early-stage programmes with few obligations, risks and owners.', 'No reliable change history, no enforced ownership and no links between risks, controls and evidence. Audit evidence is assembled reactively, and the spreadsheet becomes a source of risk in its own right.'],
+  ['Point solutions (separate risk, audit, ESG and compliance tools)', 'Solving one discipline quickly.', 'Each tool has its own data model, so the links between a risk, its controls, its audit findings and its actions are rebuilt by hand every reporting cycle.'],
+  ['Integrated GRC platform', 'Organisations with several regulations, business units or sites that need one defensible view of governance, risk and compliance.', 'Plan the rollout in phases: start with one discipline, agree common classifications and owners, then expand module by module.'],
 ];
 
 const globalFrameworks = ['GDPR', 'ISO 27001', 'ISO 9001', 'ISO 14001', 'ISO 45001', 'ISO 22000', 'ISO 31000'];
@@ -59,6 +87,12 @@ const whyPoints = [
 const faqs = [
   { q: 'What is GRC software?', a: 'GRC software brings governance, risk management and compliance activities onto one platform, so policies, risks, controls, audits and obligations are tracked in one auditable place instead of spreadsheets and email. XGRC® adds ESG and data protection (GDPR/POPIA) on the same foundation.' },
   { q: 'What is the purpose of a GRC tool?', a: 'A GRC tool gives leadership one auditable view of governance, risk and compliance. It holds the risk register, controls, policies, obligations, audits and actions together, assigns owners and tracks every action to closure, so evidence is ready when auditors, regulators or the board ask for it.' },
+  { q: 'What are GRC software solutions?', a: 'GRC software solutions are the applications that run governance, risk and compliance work: risk registers, policy and obligation management, internal audit, incident and corrective action tracking, and board reporting. They are sold either as separate point solutions or as one integrated GRC platform. XGRC® provides them as specialist solutions on one shared data foundation.' },
+  { q: 'What is a GRC platform?', a: 'A GRC platform is GRC software built on one data foundation that several disciplines share, so risk, compliance, audit, ESG and data protection teams work from the same records. Unlike a collection of separate tools, a control, the risk it treats, the obligation it satisfies and the audit that tested it stay linked automatically.' },
+  { q: 'What is integrated GRC software?', a: 'Integrated GRC software manages governance, risk and compliance on one connected system rather than in separate tools. A compliance failure updates the risk picture, an audit finding raises a tracked corrective action, and the board sees one current view. XGRC® is built this way, with Enterprise Risk Management, Integrated Assurance, SHEQX®, MSXCyber®, ESG and other solutions sharing one auditable data layer.' },
+  { q: 'How do I choose GRC software?', a: 'Start with the frameworks and regulations you must meet. Then check whether the platform holds risks, controls, obligations, audits and actions on one data model, whether you can go live with one discipline and expand, how board reporting is produced, how it handles sign-on, mobile use and languages, how it integrates with your existing systems, and what independent security certification it holds.' },
+  { q: 'What is the difference between GRC software and ERM software?', a: 'ERM software focuses on enterprise risk: the risk register, risk appetite, key risk indicators, treatment and board reporting. GRC software is broader and covers governance and compliance as well as risk. In XGRC®, Enterprise Risk Management is the risk pillar of the GRC platform, so you can start with ERM and connect compliance and assurance later.', link: { href: '/erm/', label: 'Enterprise risk management software' } },
+  { q: 'Is GRC software only for large enterprises?', a: 'No. XGRC® customers range from a single regional operation to the multinational headquarters it reports into. Smaller organisations usually start with one discipline and add more as their obligations grow.' },
   { q: 'How is XGRC® different from point solutions?', a: 'Most organisations run separate tools for risk, audit, ESG and compliance, each with its own data model. XGRC® connects them on one data layer, so a risk links to its controls, its audit findings, and its remediation actions automatically, no duplicate entry, no reconciliation between systems.' },
   { q: 'Does XGRC® support POPIA and GDPR?', a: 'Yes. XGRC® is purpose-built for South African and UK/EU regulatory environments, with dedicated workflows for POPIA, PAIA, King V and GDPR data protection obligations, including data subject access requests and privacy impact assessments.' },
   { q: 'How long does implementation take?', a: 'Implementation scope depends on how many disciplines (risk, audit, ESG, compliance, safety) and business units you bring onto the platform at once. Most customers start with one discipline live within weeks, then expand module by module rather than a single big-bang rollout.' },
@@ -99,8 +133,8 @@ const schema = JSON.stringify({
 });
 ---
 <Base
-  title="GRC Software: Governance, Risk & Compliance Platform | XGRC®"
-  description="XGRC® is an enterprise GRC platform for governance, risk, compliance, ESG and data protection in one auditable system. Trusted by 800+ companies."
+  title="GRC Software | Integrated GRC Platform & Solutions | XGRC®"
+  description="GRC software that unites governance, risk, compliance, ESG and data protection on one integrated GRC platform. ISO 27001:2022 certified, 800+ companies."
   ogImage="/assets/og/og-grc-software.jpg"
 >
   <script type="application/ld+json" set:html={schema} />
@@ -113,8 +147,8 @@ const schema = JSON.stringify({
           <a href="/">Home</a><span>/</span><b>GRC Platform</b>
         </nav>
         <span class="eyebrow"><span class="dot"></span>GRC Platform</span>
-        <h1>Governance, Risk &amp; Compliance.<br>Unified.</h1>
-        <p class="lede">XGRC® is an enterprise GRC platform that brings governance, risk, compliance, ESG and data protection into one auditable system, eliminating silos and giving your organisation a single version of the truth.</p>
+        <h1>GRC software.<br>Governance, risk &amp; compliance, unified.</h1>
+        <p class="lede">GRC software (governance, risk and compliance software) is a platform that manages an organisation's policies, risks, controls, obligations, audits and actions in one connected, auditable system, instead of spreadsheets and separate tools. XGRC® is an integrated GRC platform that adds ESG and data protection on the same foundation, giving your organisation a single version of the truth.</p>
         <div class="hero-actions">
           <a href="/demo/" class="btn btn-primary">Book a Demo</a>
           <a href="/tour/" class="btn btn-ghost">Take the live tour <span aria-hidden="true">&rarr;</span></a>
@@ -169,6 +203,26 @@ const schema = JSON.stringify({
             <p>{c.body}</p>
             <span class="link-arrow">Explore &rarr;</span>
           </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What GRC software does ───────────────────────── -->
+  <section class="section--tight" id="what-grc-software-does">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>What GRC software does</span>
+        <h2>What a GRC platform does, day to day.</h2>
+        <p class="lede">Whichever discipline you start with, GRC software solutions do the same core jobs. In XGRC® each one runs on the same data, so a risk links to its controls, its obligations, its audit findings and its corrective actions without double entry.</p>
+      </div>
+      <div class="grid cols-3">
+        {grcJobs.map((j) => (
+          <div class="card job-card">
+            <h3>{j.title}</h3>
+            <p>{j.body}</p>
+            <a href={j.href} class="link-arrow">{j.label} &rarr;</a>
+          </div>
         ))}
       </div>
     </div>
@@ -231,6 +285,49 @@ const schema = JSON.stringify({
     </div>
   </section>
 
+  <!-- ── How to choose ─────────────────────────────────── -->
+  <section class="section--tight" id="how-to-choose-grc-software">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Buyer's checklist</span>
+        <h2>How to choose GRC software.</h2>
+        <p class="lede">GRC software solutions vary widely in scope and depth. Use these questions to compare them on what matters once the system is live, not only in the demo.</p>
+      </div>
+      <ol class="checklist">
+        {checklist.map((c) => (
+          <li class="card check-card">
+            <h3>{c.title}</h3>
+            <p>{c.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── Comparison ────────────────────────────────────── -->
+  <section class="section--tight" id="grc-software-compared">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Compare the options</span>
+        <h2>Integrated GRC software compared with spreadsheets and point solutions.</h2>
+        <p class="lede">Most organisations reach integrated GRC software from one of two starting points: spreadsheets, or a growing set of single-purpose tools. Here is how the three approaches compare.</p>
+      </div>
+      <div class="cmp-table" role="table" aria-label="GRC software compared with spreadsheets and point solutions">
+        <div class="cmp-row cmp-row--head" role="row">
+          <span role="columnheader">Approach</span><span role="columnheader">Best suited to</span><span role="columnheader">Limits and what to plan for</span>
+        </div>
+        {comparison.map((r) => (
+          <div class="cmp-row" role="row">{r.map((c) => <span role="cell">{c}</span>)}</div>
+        ))}
+      </div>
+      <p class="cmp-links">
+        <a href="/insights/what-is-grc-software/" class="link-arrow">What is GRC software? &rarr;</a>
+        <a href="/insights/grc-vs-risk-management-software-why-the-difference-matters/" class="link-arrow">GRC vs risk management software &rarr;</a>
+        <a href="/insights/erm-vs-grc/" class="link-arrow">ERM vs GRC &rarr;</a>
+      </p>
+    </div>
+  </section>
+
   <!-- ── Case studies ─────────────────────────────────── -->
   <section class="section--tight">
     <div class="container">
@@ -266,6 +363,7 @@ const schema = JSON.stringify({
       <div class="section-head">
         <span class="eyebrow"><span class="dot"></span>Why XGRC®</span>
         <h2>Specific reasons to choose XGRC®.</h2>
+        <p class="lede">The XGRC® platform is certified to ISO/IEC 27001:2022, customer data is hosted in Microsoft Azure West Europe (Netherlands), and organisations such as KAP Ltd, African Rainbow Minerals, RCL Foods, Servest, Interwaste and Toyota South Africa rely on it. <a href="/customers/">See our customers</a> or <a href="/trust/">review our security and hosting</a>.</p>
       </div>
       <div class="why-grid">
         {whyPoints.map((w) => (
@@ -293,6 +391,7 @@ const schema = JSON.stringify({
           <details class="faq-item">
             <summary>{f.q}</summary>
             <p>{f.a}</p>
+            {f.link && <p><a href={f.link.href} class="link-arrow">{f.link.label} &rarr;</a></p>}
           </details>
         ))}
       </div>
@@ -395,6 +494,32 @@ const schema = JSON.stringify({
   /* ── Capability cards ─────────────────────────────────── */
   .cap-card { text-decoration: none; display: flex; flex-direction: column; }
   .cap-card .link-arrow { margin-top: auto; padding-top: 16px; }
+
+  /* ── What GRC software does ───────────────────────────── */
+  .job-card { display: flex; flex-direction: column; }
+  .job-card h3 { font-size: 1.05rem; margin: 0 0 8px; }
+  .job-card p { color: var(--mute); font-size: 0.93rem; line-height: 1.6; margin: 0; }
+  .job-card .link-arrow { margin-top: auto; padding-top: 16px; }
+
+  /* ── Buyer's checklist ───────────────────────────────── */
+  .checklist { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; counter-reset: chk; }
+  .check-card { counter-increment: chk; position: relative; padding-top: 44px; }
+  .check-card::before { content: counter(chk, decimal-leading-zero); position: absolute; top: 18px; left: 24px; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.08em; color: var(--cyan); }
+  .check-card h3 { font-size: 1.05rem; margin: 0 0 8px; }
+  .check-card p { color: var(--mute); font-size: 0.93rem; line-height: 1.6; margin: 0; }
+
+  /* ── Comparison table (mirrors the solution-page topic table) ── */
+  .cmp-table { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .cmp-row { display: grid; grid-template-columns: 1fr 2fr 2fr; gap: 16px; padding: 14px 18px; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--mute); line-height: 1.55; }
+  .cmp-row:first-child { border-top: none; }
+  .cmp-row span:first-child { color: var(--ink); font-weight: 500; }
+  .cmp-row--head { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(255, 255, 255, 0.03); }
+  .cmp-row--head span, .cmp-row--head span:first-child { color: var(--faint); font-weight: 400; }
+  .cmp-links { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 20px; }
+  @media (max-width: 760px) {
+    .cmp-row { grid-template-columns: 1fr; gap: 6px; }
+    .cmp-row--head { display: none; }
+  }
 
   /* ── Frameworks ──────────────────────────────────────── */
   .fw-split {

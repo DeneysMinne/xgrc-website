@@ -213,11 +213,11 @@ export const solutionDetails = {
     screenshot: '/assets/screenshots/erm-dashboard-new.webp',
     name: 'Enterprise Risk Management',
     tag: 'Enterprise Risk Intelligence',
-    metaTitle: 'ERM Software South Africa | Risk Register & ISO 31000 | XGRC®',
+    metaTitle: 'Enterprise Risk Management Software | ERM Software | XGRC®',
     h1: 'Enterprise risk management software',
     headline: 'Risk managed at enterprise scale, not spreadsheet scale.',
-    lede: 'A structured, auditable approach to enterprise, operational, and project risk, aligned to ISO 31000 and COSO ERM, with board-level dashboards, risk appetite monitoring, and corrective action tracking built in.',
-    metaDescription: 'ERM software aligned to ISO 31000, COSO and King V. Risk registers, controls, KRIs and board reporting on one platform. Built in South Africa.',
+    lede: 'Enterprise risk management (ERM) software is the system an organisation uses to identify, assess, treat, monitor and report risk across the whole business. XGRC® ERM gives you a structured, auditable approach to enterprise, operational and project risk, aligned to ISO 31000 and COSO ERM, with board-level dashboards, risk appetite monitoring and corrective action tracking built in.',
+    metaDescription: 'Enterprise risk management software aligned to ISO 31000, COSO and King V. Live risk registers, appetite, KRIs and board reporting. Built in South Africa.',
     challenges: [
       { title: 'Risk registers nobody maintains', body: 'Annual reviews produce impressive registers that are outdated before they are presented. Residual risk is never re-assessed.' },
       { title: 'Risk appetite defined, but not enforced', body: 'The board sets appetite thresholds. Operational decisions ignore them. There is no mechanism to detect or escalate breaches.' },
@@ -238,7 +238,28 @@ export const solutionDetails = {
     ],
     standards: ['ISO 31000', 'COSO ERM', 'King V', 'IFRS'],
     related: ['integrated-assurance', 'msx', 'msxcyber', 'ai-governance'],
+    testimonialCompanies: ['TN Ceramics'],
     sections: [
+      {
+        id: 'what-erm-software-does',
+        eyebrow: 'What ERM software does',
+        heading: 'What enterprise risk management software does.',
+        body: [
+          'Good risk management software follows the risk management cycle rather than storing a list. XGRC® ERM covers every stage on one platform, so the same risk record moves from identification to treatment to the board report without being copied between files.',
+        ],
+        items: [
+          { title: 'Identify', body: 'A central risk register with risk categorisation, emerging risk tracking and risk event capture across enterprise, operational and project risk.' },
+          { title: 'Assess', body: 'Likelihood and impact scoring, inherent and residual risk, and heat map visualisation, so a long list of risks becomes a prioritised one.' },
+          { title: 'Treat', body: 'Treatment plans with named owners, action accountability and residual risk tracking as each treatment takes effect.' },
+          { title: 'Monitor', body: 'Key risk indicators and risk appetite thresholds monitored against each risk, with escalation and breach alerts when a tolerance is exceeded.' },
+          { title: 'Report', body: 'Real-time board dashboards, management reporting and trend analysis drawn from the live register, not assembled by hand.' },
+          { title: 'Assure', body: 'Controls, audit findings and assurance coverage linked to each risk through Integrated Assurance, so the audit plan follows the risk profile.' },
+        ],
+        links: [
+          { href: '/insights/what-is-enterprise-risk-management/', label: 'What is enterprise risk management?' },
+          { href: '/insights/five-risk-management-process-steps/', label: 'The five risk management process steps' },
+        ],
+      },
       {
         id: 'risk-register-software',
         eyebrow: 'Risk register software',
@@ -289,6 +310,60 @@ export const solutionDetails = {
           { href: '/use-cases/enterprise-risk-management/', label: 'Enterprise risk management use case' },
         ],
       },
+      {
+        id: 'how-to-choose-erm-software',
+        eyebrow: 'Buyer\'s checklist',
+        heading: 'How to choose enterprise risk management software.',
+        body: [
+          'Most ERM software looks good in a demo with sample data. These six questions separate a system that is still maintained two years from now from one that becomes another stale register.',
+        ],
+        items: [
+          { title: 'Framework alignment', body: 'The risk process should follow ISO 31000, and the same risk data should answer COSO ERM and, in South Africa, King V, without separate registers for each.' },
+          { title: 'Appetite and KRIs that act', body: 'Risk appetite thresholds and key risk indicators should be monitored against each risk and escalate when a tolerance is breached, not sit as passive fields.' },
+          { title: 'Links to controls and assurance', body: 'Each risk should link to its controls, treatment actions and audit findings, so a failed control or an overdue action changes the residual risk.' },
+          { title: 'Board-ready reporting', body: 'Board and audit committee views should come straight from the live register, showing movement since the last meeting, with an audit trail behind every figure.' },
+          { title: 'Room to grow into GRC', body: 'Risk rarely stays separate from compliance, audit, ESG and information security. Choose a platform where those disciplines can be added on the same data later.' },
+          { title: 'Security and hosting', body: 'Ask for independent certification and where the data lives. XGRC® Software is certified to ISO/IEC 27001:2022 and hosted in Microsoft Azure West Europe (Netherlands).' },
+        ],
+        links: [
+          { href: '/insights/erm-software-vs-traditional-risk-tools/', label: 'ERM software vs traditional risk tools' },
+          { href: '/grc-software/', label: 'GRC software: the wider XGRC® platform' },
+        ],
+      },
+      {
+        id: 'erm-software-compared',
+        eyebrow: 'Compare the options',
+        heading: 'ERM software compared with spreadsheets, point solutions and GRC suites.',
+        body: [
+          'There are four common ways to run enterprise risk. Each has its place. The right choice depends on how many risks, owners, business units and frameworks you need to govern, and how closely risk has to connect to compliance and audit.',
+        ],
+        table: {
+          head: ['Approach', 'Best suited to', 'Limits and what to plan for'],
+          rows: [
+            ['Spreadsheet risk register', 'A small number of risks, one owner and an annual review cycle.', 'No enforced ownership, an unreliable change history, no appetite or KRI alerts and no link to controls or audit findings. The register ages between reviews.'],
+            ['Standalone risk tool (point solution)', 'A risk team that needs better scoring and a shared register than a spreadsheet allows.', 'Risk sits apart from compliance, audit and incidents, so the links between a risk, its controls and the findings against them are rebuilt by hand every reporting cycle.'],
+            ['Broad GRC suite', 'Organisations that need risk, compliance and audit on one data model.', 'Check the depth of the risk module itself: appetite, KRIs, treatment tracking and board reporting, as well as how long it takes to go live.'],
+            ['XGRC® ERM on the XGRC® platform', 'Organisations that want dedicated ERM now, connected to compliance, assurance, ESG and information security on the same data.', 'Agree risk categories, scoring criteria and appetite thresholds up front, then add further solutions module by module rather than in one big-bang rollout.'],
+          ],
+        },
+        links: [
+          { href: '/insights/enterprise-risk-management-vs-traditional-risk-management/', label: 'ERM vs traditional risk management' },
+          { href: '/use-cases/risk-register-template/', label: 'Moving on from a risk register template' },
+        ],
+      },
+      {
+        id: 'erm-proof',
+        eyebrow: 'Proof, not promises',
+        heading: 'Certified, securely hosted and in use.',
+        body: [
+          'XGRC® Software is certified to ISO/IEC 27001:2022 for information security management, and customer data is hosted in Microsoft Azure West Europe (Netherlands). Users can sign in with single sign-on through Microsoft Entra ID (Azure Active Directory).',
+          'The XGRC® platform is trusted by 800+ companies. TN Ceramics, a South African manufacturer supplying the mining industry, runs XGRC® ERM alongside SHEQX® and ENVIRX® and cut its high-priority enterprise risks by 40%.',
+        ],
+        links: [
+          { href: '/trust/', label: 'Security, hosting and certification' },
+          { href: '/customers/', label: 'XGRC® customers' },
+        ],
+      },
     ],
     outcome: {
       company: 'TN Ceramics',
@@ -298,17 +373,21 @@ export const solutionDetails = {
       pdf: '/case-studies/tn-ceramics.pdf',
     },
     geo: {
-      definition: 'Enterprise risk management software helps organisations identify, assess, treat, monitor and report on risks across business units, projects, strategic objectives and operational environments.',
+      definition: 'Enterprise risk management (ERM) software is a system for identifying, assessing, treating, monitoring and reporting the risks that could affect an organisation\'s objectives, across business units, projects, strategic objectives and operations. Unlike a spreadsheet risk register, it links every risk to an owner, its controls, key risk indicators (KRIs), the board\'s risk appetite and the actions raised to treat it, so the risk picture stays current between reviews.',
       usage: 'Organisations typically adopt XGRC® ERM when risk registers are maintained annually in spreadsheets, risk appetite thresholds are set but not enforced, and the board has no real-time view of residual risk. The XGRC® ERM solution connects enterprise risk to controls, assurance, compliance obligations, incidents and actions within the same secure data foundation used across XGRC® Software.',
       notThis: 'ERM is not a static annual risk register exercise. It is a live risk management system with board dashboards, KRI monitoring and appetite-breach alerts, designed to stay current between review cycles, not just at them.',
       faqs: [
-        { q: 'What is ERM software?', a: 'ERM (enterprise risk management) software is a system for identifying, assessing, treating, monitoring and reporting risks across a whole organisation. It replaces spreadsheet risk registers with a live register that links each risk to owners, controls, key risk indicators and treatment actions, and gives the board a current view of risk against appetite.' },
+        { q: 'What is enterprise risk management (ERM) software?', a: 'ERM (enterprise risk management) software is a system for identifying, assessing, treating, monitoring and reporting risks across a whole organisation. It replaces spreadsheet risk registers with a live register that links each risk to owners, controls, key risk indicators and treatment actions, and gives the board a current view of risk against appetite.' },
         { q: 'ERM vs ERP: what is the difference?', a: 'ERP (enterprise resource planning) software runs business transactions such as finance, procurement and inventory. ERM (enterprise risk management) software governs the risks to the business: what could go wrong, how likely it is, what controls are in place and whether they work. Many organisations run both, with ERM drawing on ERP data as a source of risk indicators.', link: { href: '/insights/erp-vs-erm/', label: 'Read: ERP vs ERM explained' } },
         { q: 'Is ERM software better than spreadsheets?', a: 'For more than a handful of risks and owners, yes. Spreadsheets cannot enforce ownership, track changes reliably, alert on appetite breaches or link risks to controls and audit findings. ERM software keeps the register live and auditable, so the figures in the board pack are the same figures the business works from.', link: { href: '/insights/erm-software-vs-traditional-risk-tools/', label: 'Read: ERM software vs traditional risk tools' } },
+        { q: 'What should I look for in enterprise risk management software?', a: 'Look for a risk process aligned to ISO 31000 that can also answer COSO ERM and King V, risk appetite thresholds and KRIs that escalate when breached, links from each risk to its controls, actions and audit findings, board reporting drawn from the live register, a path to add compliance and assurance on the same data, and independent security certification such as ISO/IEC 27001.' },
+        { q: 'What is enterprise risk and compliance software?', a: 'It is software that manages enterprise risk and compliance obligations together, so a compliance failure shows up in the risk picture and each risk links to the obligations it threatens. XGRC® ERM runs on the same platform as compliance, assurance, ESG and information security, so risk and compliance share one data foundation instead of two systems.', link: { href: '/grc-software/', label: 'See the XGRC® GRC software platform' } },
+        { q: 'What is the difference between ERM software and GRC software?', a: 'ERM software focuses on risk: the register, appetite, KRIs, treatment and board reporting. GRC software is broader, covering governance and compliance as well as risk and connecting all three. XGRC® provides both, with ERM as the risk pillar of the XGRC® GRC platform.', link: { href: '/insights/erm-vs-grc/', label: 'Read: ERM vs GRC' } },
         { q: 'Is XGRC® ERM aligned to ISO 31000?', a: 'Yes. ERM is aligned to ISO 31000 and COSO ERM, with King V and IFRS-aligned reporting for South African organisations.' },
         { q: 'Can ERM link to our internal audit function?', a: 'Yes. ERM connects directly to Integrated Assurance, so the audit plan reflects the current risk landscape rather than last year\'s assumptions.' },
         { q: 'Does ERM support board-level reporting?', a: 'Yes. ERM includes real-time board dashboards, risk appetite monitoring and trend analysis built for board and audit committee reporting.' },
         { q: 'How is ERM different from a risk spreadsheet?', a: 'ERM keeps risk data live and linked, appetite breaches, KRI thresholds and treatment plans are monitored continuously, with full audit trails, rather than reconciled manually once a year.' },
+        { q: 'Where is XGRC® ERM data hosted, and is it secure?', a: 'XGRC® Software is certified to ISO/IEC 27001:2022 for information security management, and customer data is hosted in Microsoft Azure West Europe (Netherlands). Users can sign in with single sign-on through Microsoft Entra ID.', link: { href: '/trust/', label: 'Visit the trust centre' } },
       ],
     },
   },
