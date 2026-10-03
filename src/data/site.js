@@ -1293,8 +1293,8 @@ export const articles = [
   {
     slug: 'what-is-sheq-software-complete-guide',
     title: 'What Is SHEQ Software? A Complete Guide',
-    seoTitle: 'What Is SHEQ? Meaning, Management Systems & Software | XGRC®',
-    metaDescription: 'What is SHEQ? SHEQ stands for safety, health, environment and quality. What a SHEQ management system is, and what modern SHEQ software does.',
+    seoTitle: 'SHEQ Software: What It Does and How to Choose It | XGRC®',
+    metaDescription: 'What SHEQ management software does, why teams outgrow spreadsheets, what modern SHEQ software should deliver and how it compares with traditional EHS tools.',
     dateModified: '2026-09-29',
     excerpt: 'SHEQ management has evolved well beyond paper-based registers and manual inspections. This guide explains what modern SHEQ software does and why it has become essential for compliance-driven organisations.',
     category: 'SHEQ',

@@ -22,3 +22,5 @@ form-handler/.venv/
 
 # sitemap lastmod ledger (src/integrations/sitemap-lastmod.mjs)
 .seo-lastmod.json
+.dist-next/
+.dist-prev/

@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "scripts/build-atomic.sh",
     "postbuild": "scripts/indexnow-submit.sh || true",
     "preview": "astro preview",
     "astro": "astro",
