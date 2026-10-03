@@ -17,7 +17,7 @@
 #   ./scripts/gsc-api.sh sitemaps                     # list sitemaps for xgrcsoftware.com
 #   ./scripts/gsc-api.sh submit-sitemap [feedUrl]      # register/resubmit a sitemap
 #   ./scripts/gsc-api.sh delete-sitemap <feedUrl>      # unregister a sitemap
-#   ./scripts/gsc-api.sh search-analytics [days]       # top queries, last N days (default 28)
+#   ./scripts/gsc-api.sh search-analytics [days] [dims] [limit]  # e.g. 90 page,query 1000 (default 28 query 25)
 #   ./scripts/gsc-api.sh inspect-url <url>             # URL Inspection API (index status)
 #
 # Set up 2026-07-25 alongside the Search Console API service account.
@@ -92,7 +92,9 @@ case "$cmd" in
         days="${2:-28}"
         start="$(date -u -d "-${days} days" +%F)"
         end="$(date -u -d "-1 day" +%F)"
-        body="$(jq -cn --arg s "$start" --arg e "$end" '{startDate:$s, endDate:$e, dimensions:["query"], rowLimit:25}')"
+        dims="${3:-query}"   # comma-separated: query, page, date, device, country
+        limit="${4:-25}"
+        body="$(jq -cn --arg s "$start" --arg e "$end" --arg d "$dims" --argjson l "$limit" '{startDate:$s, endDate:$e, dimensions:($d|split(",")), rowLimit:$l}')"
         curl -s -X POST -H "$AUTH_HEADER" -H 'Content-Type: application/json' \
             -d "$body" \
             "https://www.googleapis.com/webmasters/v3/sites/$(urlencode "$SITE")/searchAnalytics/query"
