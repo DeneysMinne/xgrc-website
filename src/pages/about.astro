@@ -172,7 +172,7 @@ const offices = [
               >
                 <span class="person-face">
                   {p.photo ? (
-                    <img class="p-photo" src={`/assets/team/${p.photo}`} alt="" aria-hidden="true" loading="lazy" />
+                    <img class="p-photo" src={`/assets/team/${p.photo}`} alt={p.name} aria-hidden="true" loading="lazy" />
                   ) : (
                     <span class="p-avatar" aria-hidden="true">{initials}</span>
                   )}

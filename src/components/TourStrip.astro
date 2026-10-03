@@ -24,7 +24,7 @@ const {
       <div class={`tstrip-grid n${Math.min(items.length, 4)}`}>
         {items.map((d) => (
           <a class="tstrip-card" href={`/tour/${d.slug}.html`}>
-            <span class="tstrip-shot"><img src={`/assets/tour/${d.slug}-v1.webp`} width="960" height="600" alt="" loading="lazy" /></span>
+            <span class="tstrip-shot"><img src={`/assets/tour/${d.slug}-v1.webp`} width="960" height="600" alt={`${d.title} dashboard preview`} aria-hidden="true" loading="lazy" /></span>
             <span class="tstrip-body">
               <span class="tstrip-live">Live demo · {d.tag}</span>
               <span class="tstrip-title">{d.title}</span>
