@@ -9,14 +9,13 @@ export default defineConfig({
   output: 'static',
   integrations: [
     sitemap({
-      // Keep utility pages out of the sitemap — it should list content pages,
-      // not login/retired-product/preview URLs. /login is still linked from
-      // the nav + footer on every page, so Google discovers it without a
-      // sitemap entry. /preview holds unlisted internal tools (not linked
-      // anywhere, also carries its own noindex meta tag) — kept out here too
-      // as defense in depth, though raw public/ files aren't Astro routes so
-      // this filter likely never sees them anyway.
-      filter: (page) => !page.includes('/login') && !page.includes('/pix') && !page.includes('/preview'),
+      // Keep retired-product and preview URLs out of the sitemap. /preview
+      // holds unlisted internal tools (also noindex); raw public/ files aren't
+      // Astro routes, so this is defence in depth. /login/ is indexed and
+      // listed since 2026-10-03: Bing showed ~7,400 impressions a year on
+      // "sheqx log in" / "xgrc login" with almost no clicks, because the
+      // login page was hidden and customers landed on the SHEQX sales page.
+      filter: (page) => !page.includes('/pix') && !page.includes('/preview'),
     }),
     // Real lastmod dates (must come after sitemap)
     sitemapLastmod(),
