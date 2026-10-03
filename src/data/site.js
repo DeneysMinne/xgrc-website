@@ -951,6 +951,7 @@ export const articles = [
   {
     slug: 'extended-enterprise-risk-management',
     title: 'What Is Extended Enterprise Risk Management?',
+    metaDescription: 'Much of an organisation\'s risk sits with suppliers, contractors and partners. Extended enterprise risk management is how you govern that exposure.',
     excerpt: 'A large share of an organisation\'s risk sits with its suppliers, contractors and partners. Extended enterprise risk management is the discipline of governing that third-party exposure.',
     category: 'ERM',
     date: '2026-07-25',
@@ -960,6 +961,8 @@ export const articles = [
   {
     slug: 'enterprise-risk-management-vs-traditional-risk-management',
     title: 'ERM vs Traditional Risk Management: What Is the Difference?',
+    seoTitle: 'ERM vs Traditional Risk Management: The Difference | XGRC®',
+    metaDescription: 'Traditional risk management is local and periodic; enterprise risk management is organisation-wide and continuous. What separates the two, and why.',
     excerpt: 'Traditional risk management is local and periodic; enterprise risk management is organisation-wide and continuous. What separates them, and why organisations move from one to the other.',
     category: 'ERM',
     date: '2026-07-25',
@@ -979,6 +982,8 @@ export const articles = [
   {
     slug: 'what-is-enterprise-risk-management',
     title: 'What Is Enterprise Risk Management? A Complete Guide',
+    seoTitle: 'What Is Enterprise Risk Management? A Complete Guide | XGRC®',
+    metaDescription: 'What enterprise risk management is, how it differs from traditional risk management, the ISO 31000 and COSO frameworks behind it, and how software helps.',
     excerpt: 'What enterprise risk management is, how it differs from traditional risk management, the ISO 31000 and COSO frameworks behind it, and how software sustains ERM across the whole organisation.',
     category: 'ERM',
     date: '2026-07-25',
@@ -988,6 +993,7 @@ export const articles = [
   {
     slug: 'erm-vs-grc',
     title: 'ERM vs GRC: What Is the Difference?',
+    metaDescription: 'ERM and GRC are often used interchangeably but are not the same. ERM is a discipline focused on risk; GRC is the wider setting it sits in. Which do you need?',
     excerpt: 'ERM and GRC are often used interchangeably but are not the same. Enterprise risk management is a discipline focused on risk; GRC is the broader environment it sits inside. How they relate, and which you need.',
     category: 'ERM',
     date: '2026-07-25',
@@ -997,6 +1003,8 @@ export const articles = [
   {
     slug: 'what-is-sheq',
     title: 'What Is SHEQ? Meaning and SHEQ Management Systems Explained',
+    seoTitle: 'What Is SHEQ? Meaning and Management Systems Explained | XGRC®',
+    metaDescription: 'SHEQ means safety, health, environment and quality. How it differs from HSE and SHERQ, and how a SHEQ system works under SA law and ISO 45001, 14001 and 9001.',
     excerpt: 'SHEQ stands for safety, health, environment and quality. What it means, how it differs from HSE and SHERQ, and how a SHEQ management system works under South African law and ISO 45001, 14001 and 9001.',
     category: 'SHEQ',
     date: '2026-09-28',
@@ -1006,6 +1014,8 @@ export const articles = [
   {
     slug: 'how-to-consolidate-sheq-management-across-multiple-sites',
     title: 'How to Consolidate SHEQ Management Across Multiple Sites',
+    seoTitle: 'How to Consolidate SHEQ Management Across Multiple Sites | XGRC®',
+    metaDescription: 'When every site runs its own SHEQ system, leadership cannot see the whole picture. How to consolidate SHEQ onto one system without losing site ownership.',
     excerpt: 'When every site runs its own SHEQ system, group leadership cannot see the whole picture. A practical approach to consolidating safety, health, environment and quality onto one system without losing site-level ownership.',
     category: 'SHEQ',
     date: '2026-09-28',
@@ -1015,6 +1025,8 @@ export const articles = [
   {
     slug: 'digital-sheq-management',
     title: 'Digital SHEQ Management: From Scattered Records to One Auditable Platform',
+    seoTitle: 'Digital SHEQ Management: One Auditable Platform | XGRC®',
+    metaDescription: 'SHEQ data often lives in email, spreadsheets and paper forms. How one auditable platform turns it into closed actions and sustained ISO certification.',
     excerpt: 'Safety, health, environment and quality data still lives in email, spreadsheets and paper forms at many organisations. Moving SHEQ management onto one auditable platform is what turns scattered records into closed actions, prevented incidents and sustained ISO certification.',
     category: 'SHEQ',
     date: '2026-07-25',
@@ -1024,6 +1036,8 @@ export const articles = [
   {
     slug: 'why-incident-reporting-is-critical-in-sheq-management',
     title: 'Why Incident Reporting Is Critical in SHEQ Management',
+    seoTitle: 'Why Incident Reporting Is Critical in SHEQ Management | XGRC®',
+    metaDescription: 'Incident reporting feeds every other SHEQ process. Why it matters legally and operationally in South Africa, and how to turn reports into corrective actions.',
     excerpt: 'Incident reporting is the input every other SHEQ process depends on. Why it matters legally and operationally in South Africa, what makes a report useful, and how to turn reports into closed corrective actions.',
     category: 'SHEQ',
     date: '2026-09-28',
@@ -1033,6 +1047,7 @@ export const articles = [
   {
     slug: 'what-is-grc-software',
     title: 'What Is GRC Software? A Practical Definition',
+    metaDescription: 'GRC software brings governance, risk and compliance onto one platform, so risks, controls, obligations and evidence are managed together, not in spreadsheets.',
     excerpt: 'GRC software brings governance, risk management and compliance onto one connected platform, so risks, controls, obligations and evidence are managed together instead of in disconnected spreadsheets and point tools.',
     category: 'GRC',
     date: '2026-07-22',
@@ -1042,6 +1057,7 @@ export const articles = [
   {
     slug: 'five-risk-management-process-steps',
     title: 'The Five Risk Management Process Steps',
+    metaDescription: 'The five risk management process steps: identify, assess, evaluate treatment, implement and monitor. Aligned to ISO 31000 and run on one platform.',
     excerpt: 'A structured, repeatable risk management cycle, identify, assess, evaluate treatment, implement and monitor, aligned to ISO 31000, and how to run it on one platform instead of scattered spreadsheets.',
     category: 'Risk Management',
     date: '2026-07-22',
@@ -1051,6 +1067,7 @@ export const articles = [
   {
     slug: 'what-is-governed-ai-for-grc',
     title: 'What Is Governed AI for GRC?',
+    metaDescription: 'Generic AI tools create as much governance risk as they solve. Governed AI for GRC is built for permissions, audit trails and accountability from the start.',
     excerpt: 'Generic AI tools create as much governance risk as they solve. Governed AI for GRC is a different category, built for permissions, audit trails, and accountability from the ground up.',
     category: 'AI & Governance',
     date: '2026-07-05',
@@ -1060,6 +1077,7 @@ export const articles = [
   {
     slug: 'what-is-iso-42001',
     title: 'What Is ISO/IEC 42001? The New AI Management System Standard',
+    seoTitle: 'What Is ISO/IEC 42001? The AI Management System Standard | XGRC®',
     excerpt: "ISO/IEC 42001 is the first international standard for AI management systems. Here's what it covers, who needs it, and how XGRC® is preparing.",
     category: 'AI & Governance',
     date: '2026-06-28',
@@ -1069,6 +1087,8 @@ export const articles = [
   {
     slug: 'supplier-compliance-software-vs-procurement-systems',
     title: 'Supplier Compliance Software vs Procurement Systems: What\'s the Difference?',
+    seoTitle: 'Supplier Compliance Software vs Procurement Systems | XGRC®',
+    metaDescription: 'Procurement systems manage purchasing; supplier compliance software manages risk. Confusing the two leaves gaps a purchase order was never designed to catch.',
     excerpt: "Procurement systems manage purchasing. Supplier compliance software manages risk. Confusing the two leaves compliance gaps that a purchase order was never designed to catch.",
     category: 'GRC',
     date: '2026-06-22',
@@ -1078,6 +1098,7 @@ export const articles = [
   {
     slug: 'policy-management-vs-governance-execution',
     title: 'Policy Management vs Governance Execution: Why Approved Policies Still Fail',
+    seoTitle: 'Policy Management vs Governance Execution | XGRC®',
     excerpt: 'A published policy is not a working control. The gap between policy management and governance execution is where compliance quietly breaks down.',
     category: 'GRC',
     date: '2026-06-20',
@@ -1087,6 +1108,8 @@ export const articles = [
   {
     slug: 'integrated-assurance-vs-internal-audit-software',
     title: 'Integrated Assurance vs Internal Audit Software: Beyond the Audit Plan',
+    seoTitle: 'Integrated Assurance vs Internal Audit Software | XGRC®',
+    metaDescription: 'Internal audit software runs the audit function. Integrated assurance connects every line of defence to one risk picture and closes the gaps between them.',
     excerpt: 'Internal audit software manages the audit function. Integrated assurance connects every line of defence to the same risk picture, closing the gaps between them.',
     category: 'GRC',
     date: '2026-06-18',
@@ -1096,6 +1119,8 @@ export const articles = [
   {
     slug: 'why-ai-governance-is-becoming-a-competitive-advantage',
     title: 'Why AI Governance Is Becoming a Competitive Advantage',
+    seoTitle: 'Why AI Governance Is Becoming a Competitive Advantage | XGRC®',
+    metaDescription: 'Organisations with effective AI governance are not simply reducing risk; they are building a stronger foundation for sustainable, responsible growth.',
     excerpt: 'Organisations that implement effective AI governance are not simply reducing risk; they are creating a stronger foundation for sustainable, responsible growth.',
     category: 'AI & Governance',
     date: '2026-06-15',
@@ -1103,6 +1128,8 @@ export const articles = [
   {
     slug: 'esg-reporting-is-no-longer-optional-its-strategic',
     title: 'ESG Reporting Is No Longer Optional: It\'s Strategic',
+    seoTitle: 'ESG Reporting Is No Longer Optional: It\'s Strategic | XGRC®',
+    metaDescription: 'Investors, regulators and customers now expect transparent, data-driven ESG accountability. Companies that wait risk reputational harm, fines and lost ground.',
     excerpt: 'Investors, regulators, and customers now expect transparent, data-driven ESG accountability. Companies that wait risk reputational harm, regulatory fines, and competitive disadvantage.',
     category: 'ESG',
     date: '2026-06-01',
@@ -1110,6 +1137,8 @@ export const articles = [
   {
     slug: 'top-5-risk-control-strategies-for-chemical-plants-using-sheqx',
     title: 'Top 5 Risk Control Strategies for Chemical Plants Using SHEQX®',
+    seoTitle: 'Top 5 Risk Control Strategies for Chemical Plants | XGRC®',
+    metaDescription: 'In chemical and process plants the margin for error is razor-thin. Five control strategies that change how SHEQ teams identify, track and close risk gaps.',
     excerpt: 'In the chemical and process-industry landscape, the margin for error is razor-thin. These five control strategies transform how SHEQ teams identify, track, and close risk gaps.',
     category: 'SHEQ',
     date: '2026-05-20',
@@ -1117,6 +1146,7 @@ export const articles = [
   {
     slug: 'preparing-your-organisation-for-iso-14001-2026',
     title: 'Preparing Your Organisation for ISO 14001:2026',
+    metaDescription: 'ISO 14001 is evolving. Organisations that prepare for ISO 14001:2026 now will meet the updated requirements without disrupting existing management systems.',
     excerpt: 'ISO 14001 is evolving. Organisations that start preparing now will be better positioned to meet the updated requirements without disrupting their existing management systems.',
     category: 'Environment',
     date: '2026-05-05',
@@ -1124,6 +1154,8 @@ export const articles = [
   {
     slug: 'mandatory-esg-reporting-in-southern-africa-how-companies-can-stay-ahead',
     title: 'Mandatory ESG Reporting in Southern Africa: How Companies Can Stay Ahead',
+    seoTitle: 'Mandatory ESG Reporting in Southern Africa: Staying Ahead | XGRC®',
+    metaDescription: 'ESG disclosure requirements are tightening across Southern Africa. Organisations that wait for final mandates will fall behind. How to stay ahead.',
     excerpt: 'Regulatory ESG disclosure requirements are tightening across Southern Africa. Organisations that wait for final mandates before acting will find themselves behind, and the gap is closing fast.',
     category: 'ESG',
     date: '2026-04-20',
@@ -1131,6 +1163,7 @@ export const articles = [
   {
     slug: 'solving-compliance-fatigue-through-automation',
     title: 'Solving Compliance Fatigue Through Automation',
+    metaDescription: 'Compliance fatigue is rising under growing regulatory pressure. How automation cuts duplication, improves accuracy and gives leaders audit confidence.',
     excerpt: 'Compliance fatigue is rising across organisations under increasing regulatory pressure. Automation reduces duplication, improves accuracy, and gives leaders confidence during audits.',
     category: 'GRC',
     date: '2026-04-05',
@@ -1138,6 +1171,7 @@ export const articles = [
   {
     slug: 'the-hidden-cost-of-cyber-incidents-for-ceos',
     title: 'The Hidden Cost of Cyber Incidents for CEOs',
+    metaDescription: 'The direct cost of a cyber incident is visible. Regulatory penalties, customer loss, downtime and reputational damage make up the real bill.',
     excerpt: 'The direct cost of a cyber incident is visible. The indirect costs, regulatory penalties, customer loss, operational downtime, and reputational damage, are what make the real bill.',
     category: 'Cyber',
     date: '2026-03-20',
@@ -1145,6 +1179,7 @@ export const articles = [
   {
     slug: 'how-xgrc-grc-solutions-support-mining-indaba-2026-objectives',
     title: 'How XGRC® GRC Solutions Support Mining Indaba 2026 Objectives',
+    seoTitle: 'How XGRC® GRC Solutions Support Mining Indaba 2026 Objectives',
     excerpt: 'Mining Indaba 2026 makes it clear: governance, sustainability, and risk management are no longer peripheral to mining success; they are central to it.',
     category: 'Mining',
     date: '2026-03-05',
@@ -1152,6 +1187,8 @@ export const articles = [
   {
     slug: 'navigating-south-africas-ehs-regulations-why-digital-compliance-tools-are-essential',
     title: 'Navigating South Africa\'s EHS Regulations: Why Digital Compliance Tools Are Essential',
+    seoTitle: 'Navigating South Africa\'s EHS Regulations | XGRC®',
+    metaDescription: 'South Africa\'s EHS legislation is complex, multi-jurisdictional and constantly updated. Why digital tools keep organisations on the right side of it.',
     excerpt: 'South Africa\'s EHS legislative landscape is complex, multi-jurisdictional, and constantly updated. Digital compliance tools are how organisations stay on the right side of it.',
     category: 'Environment',
     date: '2026-02-18',
@@ -1159,6 +1196,8 @@ export const articles = [
   {
     slug: 'cultivating-a-risk-aware-culture-tackling-the-people-risk-in-enterprise-risk-management',
     title: 'Cultivating a Risk-Aware Culture: Tackling the People Risk in ERM',
+    seoTitle: 'Cultivating a Risk-Aware Culture: The People Risk in ERM | XGRC®',
+    metaDescription: 'Risk frameworks, registers and tools do not manage risk on their own. People do. Why building a risk-aware organisation starts with culture, not software.',
     excerpt: 'Risk frameworks, registers, and tools are essential, but they do not manage risk on their own. People do. Building a risk-aware organisation starts with culture, not software.',
     category: 'Risk',
     date: '2026-02-03',
@@ -1166,6 +1205,8 @@ export const articles = [
   {
     slug: 'building-a-cyber-aware-culture-addressing-the-human-element-of-cyber-risk',
     title: 'Building a Cyber-Aware Culture: Addressing the Human Element of Cyber Risk',
+    seoTitle: 'Building a Cyber-Aware Culture: The Human Element | XGRC®',
+    metaDescription: 'Technical controls can only do so much. The human element is the main variable in cyber risk, and managing it takes a culture of awareness, not just policy.',
     excerpt: 'Technical controls can only do so much. The human element remains the most significant variable in cyber risk, and it requires a culture of awareness, not just policy.',
     category: 'Cyber',
     date: '2026-01-20',
@@ -1173,6 +1214,7 @@ export const articles = [
   {
     slug: 'navigating-esg-reporting',
     title: 'Navigating ESG Reporting: A Practical Roadmap',
+    metaDescription: 'Expectations of ESG transparency have never been higher. This article sets out the key ESG reporting hurdles and a practical roadmap to respond.',
     excerpt: 'The expectations on business to be transparent about ESG performance have never been higher. This article outlines the key hurdles and provides a roadmap to respond proactively.',
     category: 'ESG',
     date: '2026-01-06',
@@ -1180,6 +1222,8 @@ export const articles = [
   {
     slug: 'from-compliance-to-zero-harm-transforming-mine-safety-digitally',
     title: 'From Compliance to Zero Harm: Transforming Mine Safety Digitally',
+    seoTitle: 'From Compliance to Zero Harm: Digital Mine Safety | XGRC®',
+    metaDescription: 'Mining remains one of the highest-risk industries. Digital mine safety software is now central to moving from compliance to a genuine zero harm culture.',
     excerpt: 'Mining remains one of the highest-risk industries globally. Digital mine safety software is now central to moving from regulatory compliance to genuine zero harm culture.',
     category: 'SHEQ',
     date: '2025-12-15',
@@ -1187,6 +1231,8 @@ export const articles = [
   {
     slug: 'strengthening-haccp-and-iso-22000-through-digital-food-safety-governance',
     title: 'Strengthening HACCP and ISO 22000 Through Digital Food Safety Governance',
+    seoTitle: 'HACCP and ISO 22000: Digital Food Safety Governance | XGRC®',
+    metaDescription: 'HACCP and ISO 22000 provide the framework, but without digital oversight food safety governance stays reactive, fragmented and hard to demonstrate at audit.',
     excerpt: 'HACCP and ISO 22000 provide the framework, but without digital oversight food safety governance remains reactive, fragmented, and difficult to demonstrate at audit time.',
     category: 'Food Safety',
     date: '2025-12-01',
@@ -1194,6 +1240,8 @@ export const articles = [
   {
     slug: 'simplifying-esg-reporting-through-centralised-environmental-data',
     title: 'Simplifying ESG Reporting Through Centralised Environmental Data',
+    seoTitle: 'Simplifying ESG Reporting Through Centralised Data | XGRC®',
+    metaDescription: 'Environmental data is scattered across sites, systems and spreadsheets. Centralising it is the basis of credible ESG reporting that withstands scrutiny.',
     excerpt: 'Environmental data is scattered across sites, systems, and spreadsheets. Centralising it is the prerequisite for credible, consistent ESG reporting that withstands stakeholder scrutiny.',
     category: 'ESG',
     date: '2025-11-17',
@@ -1208,6 +1256,8 @@ export const articles = [
   {
     slug: 'double-materiality-in-esg',
     title: 'Double Materiality in ESG: What Organisations Need to Know',
+    seoTitle: 'Double Materiality in ESG: What You Need to Know | XGRC®',
+    metaDescription: 'Double materiality assesses how sustainability issues affect the business and how the business affects sustainability. Most are not ready for the second half.',
     excerpt: 'Double materiality requires assessing both how sustainability issues affect the business and how the business affects sustainability. Most organisations are not prepared for the second half.',
     category: 'ESG',
     date: '2025-10-20',
@@ -1225,6 +1275,8 @@ export const articles = [
   {
     slug: 'integrated-management-system-software-for-modern-compliance',
     title: 'Integrated Management System Software for Modern Compliance',
+    seoTitle: 'Integrated Management System Software for Compliance | XGRC®',
+    metaDescription: 'Multiple ISO standards and management systems mean duplicated effort. Integration removes it and creates a single, auditable picture of compliance.',
     excerpt: 'Multiple ISO standards, multiple management systems, multiple obligations. Integration is how leading organisations eliminate duplication and create a single, auditable picture of compliance.',
     category: 'GRC',
     date: '2025-09-22',
@@ -1232,6 +1284,7 @@ export const articles = [
   {
     slug: 'iso-31000-vs-coso-key-erm-framework-differences',
     title: 'ISO 31000 vs COSO: Key ERM Framework Differences',
+    metaDescription: 'ISO 31000 and COSO ERM are both widely adopted risk frameworks with different emphases. Knowing the difference helps you choose the right ERM foundation.',
     excerpt: 'ISO 31000 and COSO ERM are both widely adopted risk frameworks, but they are designed with different emphases. Understanding the distinction helps organisations choose the right foundation.',
     category: 'ERM',
     date: '2025-09-08',
@@ -1251,6 +1304,8 @@ export const articles = [
   {
     slug: 'erm-software-vs-traditional-risk-tools',
     title: 'ERM Software vs Traditional Risk Tools: Why Spreadsheets Create Risk',
+    seoTitle: 'ERM Software vs Traditional Risk Tools | XGRC®',
+    metaDescription: 'Spreadsheet risk registers create false confidence. Enterprise risk management software adds the visibility, accountability and live monitoring they lack.',
     excerpt: 'Spreadsheet-based risk registers create false confidence. Enterprise risk management software provides the visibility, accountability, and real-time monitoring that traditional tools cannot.',
     category: 'ERM',
     date: '2025-08-11',
@@ -1259,6 +1314,8 @@ export const articles = [
   {
     slug: 'grc-vs-risk-management-software-why-the-difference-matters',
     title: 'GRC vs Risk Management Software: Why the Difference Matters',
+    seoTitle: 'GRC vs Risk Management Software: Why It Matters | XGRC®',
+    metaDescription: 'GRC platforms and risk management software are often conflated. Choosing the wrong category creates the very gaps it was meant to close. Here is why.',
     excerpt: 'GRC platforms and risk management software are often conflated. The difference matters, because choosing the wrong category of solution creates the very gaps it was supposed to close.',
     category: 'GRC',
     date: '2025-07-28',
@@ -1267,6 +1324,7 @@ export const articles = [
   {
     slug: 'the-cost-of-fragmented-compliance-why-visibility-matters-more-than-ever',
     title: 'The Cost of Fragmented Compliance: Why Visibility Matters More Than Ever',
+    seoTitle: 'The Cost of Fragmented Compliance: Why Visibility Matters | XGRC®',
     excerpt: 'When compliance activities are scattered across disconnected systems, visibility disappears, and what leadership cannot see, they cannot govern.',
     category: 'GRC',
     date: '2025-07-14',
@@ -1274,6 +1332,8 @@ export const articles = [
   {
     slug: 'esg-reporting-is-evolving-why-spreadsheets-are-no-longer-enough',
     title: 'ESG Reporting Is Evolving: Why Spreadsheets Are No Longer Enough',
+    seoTitle: 'ESG Reporting: Why Spreadsheets Are No Longer Enough | XGRC®',
+    metaDescription: 'ESG reporting is now mainstream. Organisations still relying on spreadsheets are finding they were never built for the rigour reporting now demands.',
     excerpt: 'ESG reporting has moved into the mainstream. Organisations still relying on spreadsheets are discovering they were never built to support the governance rigour now required.',
     category: 'ESG',
     date: '2025-06-30',
@@ -1281,6 +1341,7 @@ export const articles = [
   {
     slug: 'why-compliance-visibility-improves-executive-decision-making',
     title: 'Why Compliance Visibility Improves Executive Decision-Making',
+    seoTitle: 'Why Compliance Visibility Improves Executive Decisions | XGRC®',
     excerpt: 'Why compliance visibility is becoming essential for executive decision-making, and how connected governance improves accountability and reduces risk.',
     category: 'GRC',
     date: '2026-08-13',
@@ -1290,6 +1351,7 @@ export const articles = [
   {
     slug: 'why-compliance-is-becoming-a-competitive-advantage',
     title: 'Why Compliance Is Becoming a Competitive Advantage',
+    seoTitle: 'Why Compliance Is Becoming a Competitive Advantage | XGRC®',
     excerpt: 'Learn how evidence-led compliance can strengthen trust, support supplier approval and reduce commercial friction with connected governance from XGRC®.',
     category: 'GRC',
     date: '2026-08-18',
@@ -1310,6 +1372,7 @@ export const articles = [
   {
     slug: 'building-a-compliance-culture',
     title: 'Building a Compliance Culture: Why Policy Alone Isn\'t Enough',
+    seoTitle: 'Building a Compliance Culture: Why Policy Isn\'t Enough | XGRC®',
     excerpt: 'A strong compliance culture is not built by policies alone. What actually makes employees understand, trust, and apply governance expectations.',
     category: 'GRC',
     date: '2026-08-24',
@@ -1319,6 +1382,7 @@ export const articles = [
   {
     slug: 'future-of-compliance-strategic-business-asset',
     title: 'The Future of Compliance: A Strategic Business Asset',
+    seoTitle: 'The Future of Compliance: A Strategic Business Asset | XGRC®',
     excerpt: 'Turn compliance into a strategic business asset. Connect obligations, evidence and assurance to investment, operational change and responsible AI with XGRC®.',
     category: 'GRC',
     date: '2026-08-27',
@@ -1329,6 +1393,8 @@ export const articles = [
   {
     slug: 'ai-governance-gap-enterprise-ai-risk',
     title: 'The AI Governance Gap: When Adoption Outpaces Control',
+    seoTitle: 'The AI Governance Gap: When Adoption Outpaces Control | XGRC®',
+    metaDescription: 'AI is spreading through organisations faster than the policies, oversight and audit trails meant to control it. Why that gap is the real enterprise AI risk.',
     excerpt: 'AI is spreading through organisations faster than the policies, oversight and audit trails meant to control it. This piece looks at why that gap is the real enterprise AI risk, and what closing it actually requires.',
     category: 'AI & Governance',
     date: '2026-09-02',
@@ -1338,6 +1404,7 @@ export const articles = [
   {
     slug: 'why-sheq-incidents-are-often-a-data-problem',
     title: 'Why SHEQ Incidents Are Often a Data Problem',
+    metaDescription: 'Fragmented SHEQ information across inspections, near misses and corrective action logs can hide the patterns that signal a serious incident is developing.',
     excerpt: 'Fragmented SHEQ information, scattered across inspections, near misses and corrective action logs, can hide the patterns that signal a serious incident is developing.',
     category: 'SHEQ',
     date: '2026-09-09',
@@ -1346,6 +1413,8 @@ export const articles = [
   {
     slug: 'can-your-organisation-prove-it-is-compliant-right-now',
     title: 'Can Your Organisation Prove It Is Compliant Right Now?',
+    seoTitle: 'Can Your Organisation Prove It Is Compliant Right Now? | XGRC®',
+    metaDescription: 'Knowing compliance work happens is not proof. Why centralised evidence and continuous visibility are now essential for audits and oversight.',
     excerpt: 'Knowing that compliance activities are happening isn\'t the same as being able to prove it. Here\'s why connected compliance management, with centralised evidence and continuous visibility, is becoming essential for audits and oversight.',
     category: 'Compliance Hub',
     date: '2026-09-16',
@@ -1354,6 +1423,8 @@ export const articles = [
   {
     slug: 'environmental-risk-is-becoming-enterprise-risk',
     title: 'Environmental Risk Is Becoming an Enterprise Risk',
+    seoTitle: 'Environmental Risk Is Becoming an Enterprise Risk | XGRC®',
+    metaDescription: 'Environmental incidents, permits and resource risks ripple into operations, finance and reputation. Connected governance catches them before they escalate.',
     excerpt: 'Environmental incidents, permits and resource risks increasingly ripple into operations, finance and reputation. Connected environmental governance gives management the visibility to catch these risks before they escalate.',
     category: 'Environment',
     date: '2026-09-23',
@@ -1362,6 +1433,8 @@ export const articles = [
   {
     slug: 'hidden-cost-management-systems-silos',
     title: 'The Hidden Cost of Running Management Systems in Silos',
+    seoTitle: 'The Hidden Cost of Management Systems in Silos | XGRC®',
+    metaDescription: 'Siloed management systems rarely fail outright; they get costly, through duplicated documents, repeated audits and manual reports. How integration fixes it.',
     excerpt: 'Fragmented management systems don\'t fail outright, they just get expensive: duplicated documents, repeated audits and manually consolidated reports become ordinary day-to-day work. Here\'s where that hidden cost comes from, and how integration removes it.',
     category: 'GRC',
     date: '2026-09-30',
@@ -1370,6 +1443,8 @@ export const articles = [
   {
     slug: 'cybersecurity-awareness-month-from-awareness-to-action',
     title: 'Cybersecurity Awareness Month: From Awareness to Action',
+    seoTitle: 'Cybersecurity Awareness Month: From Awareness to Action | XGRC®',
+    metaDescription: 'Turn Cybersecurity Awareness Month into action with clear ownership of cyber risk, tested controls, Shadow AI guardrails and real leadership visibility.',
     excerpt: 'Cybersecurity Awareness Month should go beyond reminders. Learn how organisations can turn cyber awareness into action through clear ownership, tested controls, Shadow AI guardrails and leadership visibility.',
     category: 'Cyber',
     date: '2026-10-01',

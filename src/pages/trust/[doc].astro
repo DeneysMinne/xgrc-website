@@ -12,8 +12,8 @@ if (!content) return Astro.redirect('/trust');
 ---
 
 <Base
-  title={`${content.title} | Trust Centre | XGRC® Software`}
-  description={content.intro || `${content.title} for XGRC® Software.`}
+  title={content.metaTitle || `${content.title} | Trust Centre | XGRC® Software`}
+  description={content.metaDescription || content.intro || `${content.title} for XGRC® Software.`}
 >
   <section class="page-head">
     <div class="container">

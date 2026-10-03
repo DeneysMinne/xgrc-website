@@ -14,6 +14,7 @@ const ENTITY = 'Strategix Application Solutions (Pty) Ltd';
 export const legalDocs = {
   'privacy-policy': {
     title: 'Privacy Policy',
+    metaDescription: 'How Strategix Application Solutions collects, uses, stores and protects personal information through the XGRC® website, sales and platform interactions.',
     version: '2.0',
     lastUpdated: '13 April 2026',
     effective: '30 April 2026',
@@ -33,6 +34,7 @@ export const legalDocs = {
 
   'cookie-policy': {
     title: 'Cookie Policy',
+    metaDescription: 'How the XGRC® Software website uses strictly necessary, analytics and preference cookies, and how you can manage your cookie preferences in your browser.',
     version: '2.0',
     lastUpdated: '13 April 2026',
     intro: null,
@@ -46,6 +48,7 @@ export const legalDocs = {
 
   'website-terms-of-use': {
     title: 'Website Terms of Use',
+    metaDescription: 'The terms that govern access to and use of the XGRC® Software website, covering intellectual property, permitted use, external links and governing law.',
     version: '2.0',
     lastUpdated: '13 April 2026',
     intro: null,
@@ -62,6 +65,7 @@ export const legalDocs = {
 
   'data-processing-addendum': {
     title: 'Data Processing Addendum',
+    metaDescription: 'The XGRC® Data Processing Addendum, incorporated into the SaaS Agreement, governs how Strategix processes Personal Information for the XGRC® platform.',
     version: '2.0',
     lastUpdated: '13 April 2026',
     effective: '30 April 2026',
@@ -96,6 +100,7 @@ export const legalDocs = {
 
   'end-user-licence-agreement': {
     title: 'End User Licence Agreement',
+    metaDescription: 'The End User Licence Agreement governing your individual use of the XGRC® platform as an Authorised User, alongside your organisation\'s SaaS Agreement.',
     version: '1.0',
     lastUpdated: '13 August 2026',
     effective: '13 August 2026',
@@ -118,6 +123,7 @@ export const legalDocs = {
 
   'acceptable-use-policy': {
     title: 'Acceptable Use Policy',
+    metaDescription: 'The XGRC® Acceptable Use Policy, part of the SaaS Agreement, sets out permitted and prohibited use of the platform by Customers and their Authorised Users.',
     version: '2.0',
     lastUpdated: '13 April 2026',
     effective: '30 April 2026',
@@ -156,6 +162,7 @@ export const legalDocs = {
 
   'support-policy': {
     title: 'Support Policy',
+    metaDescription: 'The XGRC® Support Policy, part of the SaaS Agreement, explains how Customers log support requests and how Strategix classifies and responds to them.',
     version: '2.0',
     lastUpdated: '13 April 2026',
     effective: '30 April 2026',
@@ -196,6 +203,7 @@ export const legalDocs = {
 
   'paia-manual': {
     title: 'PAIA Manual',
+    metaDescription: 'The Strategix PAIA Manual, prepared under section 51 of PAIA, explains what records are held, how to request access and how personal information is processed.',
     version: '1.03',
     lastUpdated: '27 June 2025',
     reference: 'Section 51 of PAIA',
@@ -323,6 +331,7 @@ export const legalDocs = {
 export const trustDocs = {
   subprocessors: {
     title: 'Subprocessor List',
+    metaDescription: 'The subprocessors Strategix engages to deliver the XGRC® platform, with region, purpose and data categories, maintained under the Data Processing Addendum.',
     version: '2.0',
     lastUpdated: '13 April 2026',
     effective: '30 April 2026',
@@ -340,6 +349,7 @@ export const trustDocs = {
   },
   'data-hosting': {
     title: 'Data Hosting',
+    metaDescription: 'Where XGRC® Customer Data is hosted and processed: Microsoft Azure West Europe (Netherlands), subprocessor locations and cross-border safeguards.',
     version: '2.0',
     lastUpdated: '13 April 2026',
     intro: 'This page provides information on where Customer Data is hosted and processed in connection with the XGRC® platform.',
@@ -351,6 +361,8 @@ export const trustDocs = {
   },
   'cybersecurity-data-protection-policy': {
     title: 'Cybersecurity & Data Protection Policy',
+    metaTitle: 'Cybersecurity & Data Protection Policy | XGRC® Software',
+    metaDescription: 'How Strategix secures the XGRC® platform: ISO 27001:2022 aligned governance, access control, encryption, monitoring, resilience and data protection.',
     version: '2.0',
     lastUpdated: '13 April 2026',
     effective: '30 April 2026',
