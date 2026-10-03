@@ -168,10 +168,11 @@ export const solutionDetails = {
     youtubeId: '5hZX0WIebCo',
     name: 'MSXCyber®',
     tag: 'Information Security Governance',
-    metaTitle: 'MSXCyber® Information Security Governance | XGRC®',
+    metaTitle: 'MSXCyber® ISMS & IT Risk Management Software | XGRC®',
+    h1: 'MSXCyber® ISMS and IT risk management software',
     headline: 'ISO 27001 compliance without the spreadsheet chaos.',
-    lede: 'MSXCyber® delivers a complete Information Security Management System aligned to ISO 27001:2022, with governance, risk management, and audit-ready evidence built in from day one. Data breaches now carry material financial, regulatory and operational consequences. Structured ISMS governance is no longer optional.',
-    metaDescription: 'MSXCyber® is an Information Security Management System aligned to ISO 27001:2022, with governance, risk management and audit-ready evidence built in.',
+    lede: 'MSXCyber® is IT risk management software and a complete Information Security Management System (ISMS) aligned to ISO 27001:2022, with governance, risk management, and audit-ready evidence built in from day one. Data breaches now carry material financial, regulatory and operational consequences. Structured ISMS governance is no longer optional.',
+    metaDescription: 'IT risk management software and ISMS aligned to ISO 27001:2022. Assess cyber and information security risk, track controls, incidents and audits in one place.',
     challenges: [
       { title: 'ISO 27001 gaps only found at audit', body: 'Without continuous monitoring, control weaknesses accumulate quietly between certification reviews.' },
       { title: 'Asset inventories in spreadsheets', body: 'Assets undocumented, risks unassessed. One security incident reveals just how fragile the inventory actually is.' },
@@ -191,12 +192,50 @@ export const solutionDetails = {
       { category: 'People & Communication', modules: ['Training', 'Stakeholder Management', 'Meeting Manager'] },
     ],
     standards: ['ISO 27001:2022', 'GDPR', 'POPIA', 'NIS Directive'],
+    sections: [
+      {
+        id: 'it-risk-management-software',
+        eyebrow: 'IT risk management software',
+        heading: 'What IT risk management software does.',
+        body: [
+          'IT risk management software gives an organisation one governed place to identify, assess, treat and monitor risks to its information, systems and services, and to prove to auditors and the board that the controls behind those risks are working. MSXCyber® does this inside an ISO 27001:2022 aligned ISMS, so IT, cyber and information security risk are managed in the same plan-do-check-act cycle as the rest of the management system.',
+        ],
+        items: [
+          { title: 'Know what you are protecting', body: 'An asset register records information assets, systems and owners, so every IT risk is tied to something real and someone accountable.' },
+          { title: 'Assess IT and cyber risk', body: 'Risk assessments score likelihood and impact for information security and cyber threats, and record the treatment chosen for each risk.' },
+          { title: 'Run and evidence controls', body: 'Controls, change management and non-conformances are tracked with owners and due dates, so the evidence for each control builds up as work is done.' },
+          { title: 'Handle incidents and events', body: 'Event management and monitoring capture security incidents and link them back to the risks and controls they affect.' },
+          { title: 'Audit and review', body: 'Internal audits, document control and management review run on the same platform, ready for ISO 27001 certification and surveillance audits.' },
+          { title: 'Meet privacy obligations', body: 'GDPR, POPIA and NIS Directive requirements sit alongside ISO 27001, so data protection and information security share one framework.' },
+        ],
+        links: [
+          { href: '/insights/streamlining-iso-27001-compliance-digitally/', label: 'Streamlining ISO 27001 compliance' },
+          { href: '/use-cases/iso-27001-readiness/', label: 'ISO 27001 readiness checklist' },
+        ],
+      },
+      {
+        id: 'it-risk-and-enterprise-risk',
+        eyebrow: 'IT risk and enterprise risk',
+        heading: 'How IT risk connects to enterprise risk.',
+        body: [
+          'IT and cyber risks rarely stay inside the IT department: an outage or breach becomes an operational, financial and reputational risk. Because MSXCyber® runs on the same XGRC® platform as Enterprise Risk Management, significant IT risks can be escalated into the enterprise risk register and reported to the board, without copying data between systems.',
+          'MSXCyber® governs the processes around your technical security tools; it does not replace firewalls, endpoint protection, vulnerability scanners or SIEM platforms. For penetration testing and vulnerability visibility, findings from the partner solution Hakware feed into MSXCyber® as governed risks and actions.',
+        ],
+        links: [
+          { href: '/erm/', label: 'Enterprise risk management software' },
+          { href: '/hakware/', label: 'Hakware penetration testing' },
+        ],
+      },
+    ],
     related: ['msx', 'erm', 'maia', 'ai-governance'],
     geo: {
       definition: 'ISMS software helps organisations manage information security governance, risk assessment, controls, incidents, internal audits and evidence required to support an ISO 27001-aligned Information Security Management System.',
       usage: 'Organisations typically adopt MSXCyber® when ISO 27001 evidence, asset inventories and incident response plans are still managed through spreadsheets and email, and they need continuous, audit-ready ISMS governance rather than a scramble before each certification review.',
       notThis: 'MSXCyber® supports information security governance and ISO 27001-aligned management processes. It does not replace technical security tools such as firewalls, endpoint protection, vulnerability scanners or SIEM platforms, for offensive security testing and vulnerability scanning, XGRC® partners with Hakware.',
       faqs: [
+        { q: 'What is IT risk management software?', a: 'IT risk management software is a system for identifying, assessing, treating and monitoring risks to an organisation\'s information, systems and services, with owners, controls and evidence recorded in one place. MSXCyber® provides this within an ISO 27001:2022 aligned ISMS.' },
+        { q: 'What is the difference between IT risk management software and ERM software?', a: 'IT risk management software focuses on information, systems and cyber threats, usually within an ISMS. Enterprise risk management software covers every category of risk across the organisation. On XGRC®, MSXCyber® and ERM share one platform, so significant IT risks can be escalated to the enterprise risk register.' },
+        { q: 'Is MSXCyber® cyber risk management software?', a: 'Yes. MSXCyber® manages cyber and information security risk assessments, controls, incidents and audits. It governs the processes around technical security tools rather than replacing them.' },
         { q: 'Does MSXCyber® replace our firewall or antivirus software?', a: 'No. MSXCyber® governs your ISMS, risk, controls, incidents and audit evidence. It does not replace technical security tools; it governs the processes around them.' },
         { q: 'Is MSXCyber® aligned to ISO 27001:2022?', a: 'Yes. MSXCyber® implements the full plan-do-check-act cycle aligned to ISO 27001:2022, alongside GDPR, POPIA and NIS Directive requirements.' },
         { q: 'Can MSXCyber® help with GDPR and POPIA compliance?', a: 'Yes. MSXCyber® links data protection obligations, processing records and incident response to the same ISMS governance framework.' },

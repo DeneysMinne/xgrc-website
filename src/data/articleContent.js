@@ -1189,7 +1189,7 @@ Modern cybersecurity compliance tools streamline Information Security Management
 
 How MSXCyber® Simplifies ISO 27001 Compliance
 
-<a href="/msxcyber/">MSXCyber®</a> provides a centralised cybersecurity and governance platform designed to support <a href="/use-cases/iso-27001-readiness/">ISO 27001</a> implementation and ongoing ISMS management. By connecting risks, controls, policies, incidents, and audit evidence within a single framework, MSXCyber® enables organisations to map and manage ISO 27001 controls digitally, track risk treatment plans in real time, maintain structured documentation repositories, generate audit-ready reports instantly, and strengthen overall cybersecurity governance. The result is a more efficient certification journey and stronger, sustainable compliance.
+MSXCyber®, the XGRC® <a href="/msxcyber/">IT risk management software and ISMS</a>, provides a centralised cybersecurity and governance platform designed to support <a href="/use-cases/iso-27001-readiness/">ISO 27001</a> implementation and ongoing ISMS management. By connecting risks, controls, policies, incidents, and audit evidence within a single framework, MSXCyber® enables organisations to map and manage ISO 27001 controls digitally, track risk treatment plans in real time, maintain structured documentation repositories, generate audit-ready reports instantly, and strengthen overall cybersecurity governance. The result is a more efficient certification journey and stronger, sustainable compliance.
 
 From Certification to Continuous Cyber Resilience
 
@@ -1416,7 +1416,7 @@ Where CEOs Should Focus Effort
 
 Build a cyber aware culture: training and simulations reduce human-driven incidents. Strengthen processes: controls, workflows, and reporting structures are essential. Assess and monitor vendors: supply chain breaches are becoming more common. Improve incident readiness: preparedness reduces impact and recovery time. Integrate cyber into <a href="/use-cases/enterprise-risk-management/">enterprise risk</a>: cyber must align with governance structures.
 
-Cyber risk is a business risk. Leaders who understand the hidden people, process, and vendor costs are better positioned to protect reputation, continuity, and long-term value.`,
+Cyber risk is a business risk. Leaders who understand the hidden people, process, and vendor costs are better positioned to protect reputation, continuity, and long-term value. Dedicated <a href="/msxcyber/">IT risk management software</a> gives them one governed view of cyber risks, controls, incidents and audit evidence, instead of piecing it together after an incident.`,
 
 'solving-compliance-fatigue-through-automation': `<a href="/compliance-hub/">Compliance</a> fatigue is rising across Southern Africa due to increasing regulatory pressure and manual processes that cannot scale. Automation reduces duplication, improves accuracy, and gives leaders confidence during audits.
 
@@ -2733,7 +2733,7 @@ This transforms cybersecurity reporting from technical information into governan
 
 How MSXCyber® Supports Structured Cybersecurity Governance
 
-Cybersecurity becomes difficult to govern when information is distributed across spreadsheets, emails, documents, registers and disconnected systems. <a href="/msxcyber/">MSXCyber® by XGRC® Software</a> supports organisations in managing information security governance through a structured and connected environment, aligned to ISO 27001:2022. Within the broader XGRC® Governance, Risk and Compliance Platform, organisations can bring together information relating to:
+Cybersecurity becomes difficult to govern when information is distributed across spreadsheets, emails, documents, registers and disconnected systems. MSXCyber®, the <a href="/msxcyber/">IT risk management software</a> from XGRC® Software, supports organisations in managing information security governance through a structured and connected environment, aligned to ISO 27001:2022. Within the broader XGRC® Governance, Risk and Compliance Platform, organisations can bring together information relating to:
 
 - Risks
 - Controls
