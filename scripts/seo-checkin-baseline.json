@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-03",
+  "bing_crawl": {
+    "InIndex": 891,
+    "Code4xx": 0,
+    "Code5xx": 15,
+    "CrawlErrors": 17,
+    "Code301": 683
+  },
+  "bing_crawl_date": "2026-09-30",
+  "bing_crawl_issues": 147,
+  "bing_queries_28d": {
+    "sheqx log in": [
+      1030,
+      4
+    ],
+    "xgrc login": [
+      464,
+      1
+    ],
+    "sheqx": [
+      453,
+      2
+    ],
+    "grc software": [
+      0,
+      0
+    ],
+    "sheq": [
+      4,
+      0
+    ],
+    "erm software": [
+      0,
+      0
+    ],
+    "what is sheq": [
+      15,
+      0
+    ],
+    "ALL login searches": [
+      1544,
+      5
+    ]
+  },
+  "ga4_7d": {
+    "sessions": 384.0,
+    "totalUsers": 322.0,
+    "newUsers": 323.0,
+    "screenPageViews": 647.0,
+    "engagementRate": 0.3489583333333333,
+    "averageSessionDuration": 94.56880209635416
+  },
+  "ads_7d": {
+    "clicks": 55,
+    "conversions": 0.0,
+    "cost": 1116.36
+  },
+  "nginx_7d": {
+    "5xx": 16,
+    "legacy_301": 138,
+    "legacy_404": 450
+  }
+}

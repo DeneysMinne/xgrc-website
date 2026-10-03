@@ -39,14 +39,14 @@ def graph_token() -> str:
         return json.load(resp)["access_token"]
 
 
-def send(subject: str, body_html: str) -> None:
+def send(subject: str, body_html: str, to: list[str] = TO) -> None:
     sender = os.environ.get("MS_SENDER", "info@xgrcsoftware.com")
     token = graph_token()
     payload = json.dumps({
         "message": {
             "subject": subject,
             "body": {"contentType": "HTML", "content": body_html},
-            "toRecipients": [{"emailAddress": {"address": a}} for a in TO],
+            "toRecipients": [{"emailAddress": {"address": a}} for a in to],
             "from": {"emailAddress": {"address": sender, "name": "XGRC Website"}},
         },
         "saveToSentItems": False,
@@ -62,7 +62,7 @@ def send(subject: str, body_html: str) -> None:
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: notify-team-email.py <subject> <body_html>", file=sys.stderr)
+    if len(sys.argv) not in (3, 4):
+        print("Usage: notify-team-email.py <subject> <body_html> [comma-separated recipients]", file=sys.stderr)
         sys.exit(1)
-    send(sys.argv[1], sys.argv[2])
+    send(sys.argv[1], sys.argv[2], sys.argv[3].split(",") if len(sys.argv) == 4 else TO)
