@@ -34,15 +34,18 @@ export const legalDocs = {
 
   'cookie-policy': {
     title: 'Cookie Policy',
-    metaDescription: 'How the XGRC® Software website uses strictly necessary, analytics and preference cookies, and how you can manage your cookie preferences in your browser.',
-    version: '2.0',
-    lastUpdated: '13 April 2026',
+    metaDescription: 'Which cookies the XGRC® Software website uses for analytics, advertising and session insight, and how to accept, reject or change your choice at any time.',
+    version: '2.1',
+    lastUpdated: '3 October 2026',
     intro: null,
     sections: [
       { h: '1. What Cookies Are', body: 'Cookies are small text files placed on your device by a website to support functionality, analytics, and preference management.' },
-      { h: '2. Categories of Cookies', body: 'We may use strictly necessary cookies (required for the website to function), analytics cookies (to understand how visitors use our site), and preference cookies (to remember your settings). We do not deploy non-essential cookies without appropriate notice or consent where required by applicable law.' },
-      { h: '3. Managing Preferences', body: 'You can manage cookies through your browser settings. Where implemented, you may also use the website cookie banner or preference centre to adjust your preferences.' },
-      { h: '4. More Information', body: 'For more information about how we handle personal information collected through the website, please refer to our Privacy Policy.' },
+      { h: '2. Your Choice', body: 'When you first visit this website, a cookie banner asks whether you accept analytics and advertising cookies. Nothing in sections 4 and 5 is set unless you choose Accept. You can change your choice at any time with the Cookie Settings link at the bottom of every page. If you choose Reject, we remove the analytics and advertising cookies already set by this website.' },
+      { h: '3. Strictly Necessary Cookies', body: 'xgrc_consent remembers whether you accepted or rejected cookies, so the banner does not appear on every page. It lasts 12 months and is always set, because the website needs it to respect your choice.' },
+      { h: '4. Analytics Cookies (only if you accept)', body: 'Google Analytics (_ga and _ga_ cookies, up to 2 years) counts visits and shows which pages are used. Microsoft Clarity (_clck for up to 1 year and _clsk for 1 day) records how pages are used, such as clicks, scrolling and page movement, so we can improve the website. Clarity masks text you type into forms. Without your consent, Google receives only cookieless signals that do not identify you or your device.' },
+      { h: '5. Advertising and Campaign Cookies (only if you accept)', body: 'Google Ads (_gcl cookies, 90 days) measures whether our advertising leads to enquiries. Our own xgrc_ cookies (90 days) record the campaign that brought you to the website, such as an ad click identifier or UTM tags, the first page you landed on and the referring website, so that an enquiry you send us can be linked to the campaign that led to it.' },
+      { h: '6. Managing Cookies in Your Browser', body: 'You can also block or delete cookies in your browser settings. Blocking strictly necessary cookies means the cookie banner will appear again on each visit.' },
+      { h: '7. More Information', body: 'For more information about how we handle personal information collected through the website, please refer to our Privacy Policy.' },
     ],
   },
 

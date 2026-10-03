@@ -1,0 +1,115 @@
+---
+// Cookie consent (2026-10-03). Analytics, advertising and session-recording
+// cookies wait for an explicit choice. Base.astro reads the choice in <head>
+// (window.xgrcConsent) and starts Google consent mode as denied until then;
+// this component shows the banner, records the choice and applies it.
+// The choice itself (xgrc_consent) is a strictly necessary cookie.
+//
+// Microsoft Clarity loads only after Accept. Set CLARITY_ID once the Clarity
+// project exists; while it is empty, Clarity never loads.
+const CLARITY_ID = '';
+---
+<div class="cc" id="cookie-consent" role="dialog" aria-modal="false" aria-labelledby="cc-title" aria-describedby="cc-text" hidden>
+  <div class="cc-inner">
+    <div class="cc-copy">
+      <p class="cc-title" id="cc-title">Cookies on xgrcsoftware.com</p>
+      <p class="cc-text" id="cc-text">
+        We use analytics and advertising cookies to understand how the site is used and to measure our campaigns.
+        They are only set if you accept. Read our <a href="/legal/cookie-policy/">Cookie Policy</a>.
+      </p>
+    </div>
+    <div class="cc-actions">
+      <button type="button" class="btn btn-ghost cc-btn" data-cc="denied">Reject</button>
+      <button type="button" class="btn btn-ghost cc-btn" data-cc="granted">Accept</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ CLARITY_ID }}>
+  (function () {
+    var banner = document.getElementById('cookie-consent');
+    // Read the saved choice here: Base.astro's head scripts are bundled as
+    // deferred modules, so they run after this inline script.
+    var saved = (document.cookie.match(/(?:^|; )xgrc_consent=(granted|denied)/) || [])[1] || '';
+    var isProduction = ['xgrcsoftware.com', 'www.xgrcsoftware.com'].indexOf(location.hostname) !== -1;
+    var YEAR = 31536000;
+    var NON_ESSENTIAL = /^(_ga|_gid|_gcl|_clck|_clsk|_uetsid|_uetvid|xgrc_(?!consent))/;
+
+    function loadClarity() {
+      if (!CLARITY_ID || window.clarity || !isProduction) return;
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+        t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, document, 'clarity', 'script', CLARITY_ID);
+      window.clarity('consentv2', { ad_Storage: 'granted', analytics_Storage: 'granted' });
+    }
+
+    function clearNonEssential() {
+      var host = location.hostname;
+      document.cookie.split('; ').forEach(function (c) {
+        var name = c.split('=')[0];
+        if (!NON_ESSENTIAL.test(name)) return;
+        ['', '; domain=' + host, '; domain=.' + host.replace(/^www\./, '')].forEach(function (d) {
+          document.cookie = name + '=; Max-Age=0; Path=/' + d;
+        });
+      });
+    }
+
+    function apply(choice) {
+      window.xgrcConsent = choice;
+      document.cookie = 'xgrc_consent=' + choice + '; Max-Age=' + YEAR + '; Path=/; SameSite=Lax; Secure';
+      var g = choice === 'granted' ? 'granted' : 'denied';
+      if (window.gtag) {
+        window.gtag('consent', 'update', { ad_storage: g, analytics_storage: g, ad_user_data: g, ad_personalization: g });
+      }
+      if (choice === 'granted') {
+        if (window.xgrcCaptureAttribution) window.xgrcCaptureAttribution();
+        loadClarity();
+      } else {
+        if (window.clarity) window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'denied' });
+        clearNonEssential();
+      }
+    }
+
+    banner.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-cc]');
+      if (!btn) return;
+      apply(btn.getAttribute('data-cc'));
+      banner.hidden = true;
+    });
+
+    // Footer "Cookie settings" reopens the banner.
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('[data-cookie-settings]')) return;
+      e.preventDefault();
+      banner.hidden = false;
+      banner.querySelector('[data-cc="denied"]').focus();
+    });
+
+    if (saved === 'granted') loadClarity();
+    else if (!saved) banner.hidden = false;
+  })();
+</script>
+
+<style>
+  .cc {
+    position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 1000;
+    max-width: 880px; margin: 0 auto;
+    background: var(--abyss); border: 1px solid var(--line-strong); border-radius: var(--radius-md);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  }
+  .cc[hidden] { display: none; }
+  .cc-inner { display: flex; align-items: center; gap: 20px; padding: 18px 22px; }
+  .cc-copy { flex: 1; min-width: 0; }
+  .cc-title { margin: 0 0 4px; font-family: var(--font-display); font-weight: 600; color: var(--ink); font-size: 0.98rem; }
+  .cc-text { margin: 0; color: var(--mute); font-size: 0.86rem; line-height: 1.5; }
+  .cc-text a { color: var(--cyan); }
+  .cc-actions { display: flex; gap: 10px; flex-shrink: 0; }
+  .cc-btn { min-width: 104px; justify-content: center; }
+  @media (max-width: 640px) {
+    .cc-inner { flex-direction: column; align-items: stretch; gap: 14px; padding: 16px; }
+    .cc-actions { width: 100%; }
+    .cc-btn { flex: 1; }
+  }
+</style>

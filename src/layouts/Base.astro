@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import { brand, socialLinks } from '../data/site.js';
 
 const {
@@ -87,22 +88,31 @@ const orgSchema = JSON.stringify({
       const GA_MEASUREMENT_ID = 'G-E8SHSDL5C4';
       const ADS_CONVERSION_ID = 'AW-744549022';
       const PRODUCTION_HOSTNAMES = ['xgrcsoftware.com', 'www.xgrcsoftware.com'];
-      if (PRODUCTION_HOSTNAMES.includes(window.location.hostname)) {
+      // Cookie consent (components/CookieConsent.astro): the visitor's saved
+      // choice, or '' when they have not chosen yet.
+      window.xgrcConsent = (document.cookie.match(/(?:^|; )xgrc_consent=(granted|denied)/) || [])[1] || '';
+      window.xgrcIsProduction = PRODUCTION_HOSTNAMES.includes(window.location.hostname);
+      if (window.xgrcIsProduction) {
         window.dataLayer = window.dataLayer || [];
         // Must push the `arguments` object itself. gtag.js silently ignores
         // plain arrays, so a rest-parameter version (`...args`) loads the
         // library but never sends a single hit.
         function gtag() { window.dataLayer.push(arguments); }
         window.gtag = gtag;
-        // No cookie-consent banner on this site yet, so grant default consent
-        // explicitly, otherwise gtag.js silently withholds every hit pending
-        // a consent signal that never arrives, and nothing ever reaches GA4/Ads.
+        // Consent mode: denied until the visitor accepts in the cookie banner,
+        // which sends gtag('consent', 'update', ...). While denied, gtag sets
+        // no cookies and sends only cookieless pings, which Google uses for
+        // modelled conversions. url_passthrough keeps ad click ids on internal
+        // links so a later Accept can still attribute the visit.
+        const consent = window.xgrcConsent === 'granted' ? 'granted' : 'denied';
         gtag('consent', 'default', {
-          ad_storage: 'granted',
-          analytics_storage: 'granted',
-          ad_user_data: 'granted',
-          ad_personalization: 'granted',
+          ad_storage: consent,
+          analytics_storage: consent,
+          ad_user_data: consent,
+          ad_personalization: consent,
         });
+        gtag('set', 'url_passthrough', true);
+        gtag('set', 'ads_data_redaction', true);
         gtag('js', new Date());
         gtag('config', GA_MEASUREMENT_ID);
         gtag('config', ADS_CONVERSION_ID);
@@ -114,7 +124,8 @@ const orgSchema = JSON.stringify({
       }
     </script>
 
-    <!-- Lead attribution, captured into first-party cookies (90 days) and
+    <!-- Lead attribution, captured into first-party cookies (90 days, only
+         after cookie consent) and
          read by every form via window.xgrcAttribution(). No gtag
          dependency, so it works even when analytics is blocked or broken.
          - Ad click IDs: gclid, plus gbraid/wbraid, which Google sends
@@ -134,20 +145,27 @@ const orgSchema = JSON.stringify({
         const get = (k) => { const m = document.cookie.match(new RegExp(`(?:^|; )xgrc_${k}=([^;]*)`)); return m ? decodeURIComponent(m[1]) : ''; };
         const p = new URLSearchParams(window.location.search);
         const TRACKED = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-        for (const key of TRACKED) {
-          const value = p.get(key);
-          if (value) set(key, value);
-        }
         const ref = document.referrer || '';
         const external = ref && !ref.startsWith(window.location.origin);
-        if (!get('landing_page') && (external || !ref)) {
-          set('landing_page', (window.location.pathname + window.location.search).slice(0, 300));
-          set('first_referrer', external ? ref.slice(0, 300) : '(direct)');
-        }
+        // Stored only after the visitor accepts cookies (CookieConsent.astro
+        // calls this on Accept, so the landing page's click ids are kept).
+        window.xgrcCaptureAttribution = function () {
+          for (const key of TRACKED) {
+            const value = p.get(key);
+            if (value) set(key, value);
+          }
+          if (!get('landing_page') && (external || !ref)) {
+            set('landing_page', (window.location.pathname + window.location.search).slice(0, 300));
+            set('first_referrer', external ? ref.slice(0, 300) : '(direct)');
+          }
+        };
+        if (window.xgrcConsent === 'granted') window.xgrcCaptureAttribution();
+        // Without consent nothing is stored, but a form still reports the
+        // click ids and UTM tags on the page it was submitted from.
         window.xgrcAttribution = function () {
           const out = {};
           for (const key of [...TRACKED, 'landing_page', 'first_referrer']) {
-            const value = get(key);
+            const value = get(key) || (TRACKED.includes(key) ? p.get(key) : '');
             if (value) out[`_${key}`] = value;
           }
           return out;
@@ -183,5 +201,6 @@ const orgSchema = JSON.stringify({
       <slot />
     </main>
     <Footer />
+    <CookieConsent />
   </body>
 </html>
