@@ -220,7 +220,7 @@ The move usually happens when the traditional approach stops coping. Registers t
 
 Making the Shift With XGRC®
 
-<a href="/use-cases/enterprise-risk-management/">Enterprise risk management software</a> gives the connected view that spreadsheets cannot sustain: a live risk register, risk appetite monitoring, key risk indicators, and assurance aligned to the risks that matter. <a href="/erm/">XGRC® Enterprise Risk Management</a> delivers this, aligned to ISO 31000 and COSO, on the same auditable platform used across compliance and assurance, so the shift from traditional risk management to ERM is a change in how risk is governed, not just where the spreadsheet lives.`,
+<a href="/erm/">Enterprise risk management software</a> gives the connected view that spreadsheets cannot sustain: a live risk register, risk appetite monitoring, key risk indicators, and assurance aligned to the risks that matter. XGRC® Enterprise Risk Management delivers this, aligned to ISO 31000 and COSO, on the same auditable platform used across compliance and assurance, so the shift from traditional risk management to ERM is a change in how risk is governed, not just where the spreadsheet lives. For a worked example, see the <a href="/use-cases/enterprise-risk-management/">enterprise risk management use case</a>.`,
 
 'erp-vs-erm': `ERP and ERM are one letter apart and frequently confused, but they refer to entirely different systems. One runs the business; the other governs its risk. If you have arrived here trying to work out which you need, the short answer is that they solve different problems and many organisations run both.
 
@@ -275,7 +275,7 @@ Risk that is managed in silos produces impressive registers that are outdated be
 
 How Software Supports Enterprise Risk Management
 
-At scale, ERM is difficult to sustain in spreadsheets. <a href="/use-cases/enterprise-risk-management/">Enterprise risk management software</a> provides the shared data foundation the discipline needs: a live risk register, risk appetite monitoring, KRIs tied to their risks, board-level dashboards, and corrective action tracking, all aligned to ISO 31000 and COSO. <a href="/erm/">XGRC® Enterprise Risk Management</a> delivers this within the wider XGRC® platform, so enterprise, operational and project risk are managed on the same auditable system used across compliance and assurance.
+At scale, ERM is difficult to sustain in spreadsheets. <a href="/erm/">Enterprise risk management software</a> provides the shared data foundation the discipline needs: a live risk register, risk appetite monitoring, KRIs tied to their risks, board-level dashboards, and corrective action tracking, all aligned to ISO 31000 and COSO. XGRC® Enterprise Risk Management delivers this within the wider XGRC® platform, so enterprise, operational and project risk are managed on the same auditable system used across compliance and assurance. For a worked example, see the <a href="/use-cases/enterprise-risk-management/">enterprise risk management use case</a>.
 
 Enterprise Risk Management and the Wider GRC Picture
 
@@ -301,7 +301,7 @@ In a mature GRC environment, the risk register does not stand alone. Risks link 
 
 Which Does Your Organisation Need?
 
-If the immediate problem is that risk is fragmented, registers are stale, and the board lacks one view of exposure, ERM is the priority. If the problem is broader, with governance, risk and compliance each managed in separate tools and disconnected data, then a GRC approach is the answer, with ERM as one part of it. In practice most organisations grow from one into the other: they start by getting risk under control, then connect it to compliance and assurance.
+If the immediate problem is that risk is fragmented, registers are stale, and the board lacks one view of exposure, ERM is the priority. If the problem is broader, with governance, risk and compliance each managed in separate tools and disconnected data, then a GRC approach is the answer, with ERM as one part of it. In practice most organisations grow from one into the other: they start by getting risk under control, then connect it to compliance and assurance. On XGRC®, that path runs from <a href="/erm/">enterprise risk management software</a> to the wider <a href="/grc-software/">GRC software</a> platform on the same data foundation.
 
 How XGRC® Brings Them Together
 
@@ -874,7 +874,7 @@ As compliance environments become more complex, many organisations are recognisi
 
 How XGRC® Helps Organisations Eliminate Compliance Silos
 
-Many compliance platforms focus on specific functions or isolated processes. While these solutions may solve individual challenges, they often contribute to the very fragmentation organisations are trying to eliminate. <a href="/compliance-hub/">COMPLIANCE HUB®</a> by XGRC® takes a different approach. Rather than managing compliance in isolation, XGRC® provides an integrated governance environment that connects compliance, risk, audit, and operational oversight within a single platform.
+Many compliance platforms focus on specific functions or isolated processes. While these solutions may solve individual challenges, they often contribute to the very fragmentation organisations are trying to eliminate. <a href="/compliance-hub/">COMPLIANCE HUB®</a> by XGRC® takes a different approach. Rather than managing compliance in isolation, XGRC® provides an integrated governance environment that connects compliance, risk, audit, and operational oversight within a single platform. The <a href="/grc-software/">GRC software</a> overview explains how those disciplines share one data foundation.
 
 This enables organisations to:
 
@@ -919,7 +919,7 @@ GRC platforms support alignment to recognised frameworks and standards, includin
 
 How XGRC® Software Delivers Integrated GRC
 
-XGRC® Software is designed as a single data foundation across governance, risk, and compliance. It connects specialised solutions including <a href="/msx/">MSX®</a>, <a href="/sheqx/">SHEQX®</a>, and <a href="/msxcyber/">MSXCyber®</a>. This ensures consistent data across functions, real-time visibility, full auditability, and scalable governance.
+XGRC® Software is designed as a single data foundation across governance, risk, and compliance. It connects specialised solutions including <a href="/msx/">MSX®</a>, <a href="/sheqx/">SHEQX®</a>, and <a href="/msxcyber/">MSXCyber®</a>. This ensures consistent data across functions, real-time visibility, full auditability, and scalable governance. The <a href="/grc-software/">integrated GRC software</a> overview shows how these solutions share one data foundation, and <a href="/erm/">enterprise risk management software</a> covers the risk pillar in depth.
 
 Risk management software solves a single problem. GRC platforms address the broader challenge of governance, risk, and compliance at scale. XGRC® Software enables organisations to move beyond isolated tools and establish a unified, controlled, and auditable environment.`,
 
@@ -1047,7 +1047,7 @@ Both frameworks are globally recognised and widely adopted. They form the founda
 
 How XGRC® Software Enables Both Frameworks
 
-XGRC® Software provides a single, secure, and auditable data foundation across governance, risk, and compliance. Through solutions like <a href="/msx/">MSX®</a>, organisations can centralise all risk data, standardise risk processes, align risk with strategy and performance, and maintain full audit trails. This allows ISO 31000 and COSO to be applied consistently across the organisation and not just defined on paper.
+XGRC® Software provides a single, secure, and auditable data foundation across governance, risk, and compliance. Through solutions like <a href="/msx/">MSX®</a>, organisations can centralise all risk data, standardise risk processes, align risk with strategy and performance, and maintain full audit trails. This allows ISO 31000 and COSO to be applied consistently across the organisation and not just defined on paper. For the risk pillar specifically, XGRC® <a href="/erm/">enterprise risk management software</a> follows the ISO 31000 process and maps the same risk data to COSO ERM and King V, with risk appetite thresholds, KRIs and board dashboards.
 
 ISO 31000 and COSO are not competing frameworks. They are complementary approaches to managing risk. The difference lies in how effectively they are implemented. XGRC® Software enables organisations to move from fragmented risk practices to a unified, governed, and auditable risk environment.`,
 
@@ -1558,7 +1558,7 @@ A single-purpose tool — a standalone risk register or an audit tracker — sol
 
 GRC Software and XGRC®
 
-<a href="/grc-software/">XGRC® Software</a> is a GRC platform built around this connected model. Specialist solutions — including <a href="/erm/">Enterprise Risk Management</a> aligned to ISO 31000 and COSO, <a href="/integrated-assurance/">Integrated Assurance</a>, <a href="/sheqx/">SHEQX®</a> for safety, health, environment and quality, and <a href="/msxcyber/">MSXCyber®</a> for ISO 27001-aligned information security — run on one secure, auditable data foundation. Because they share that foundation, risks, controls, obligations and evidence stay linked across disciplines instead of being duplicated across systems.
+XGRC® Software is a <a href="/grc-software/">GRC software platform</a> built around this connected model. Specialist solutions, including <a href="/erm/">Enterprise Risk Management</a> aligned to ISO 31000 and COSO, <a href="/integrated-assurance/">Integrated Assurance</a>, <a href="/sheqx/">SHEQX®</a> for safety, health, environment and quality, and <a href="/msxcyber/">MSXCyber®</a> for ISO 27001-aligned information security, run on one secure, auditable data foundation. Because they share that foundation, risks, controls, obligations and evidence stay linked across disciplines instead of being duplicated across systems.
 
 When Does an Organisation Need GRC Software?
 
@@ -1589,7 +1589,7 @@ Once the most suitable treatment has been selected, the organisation puts it int
 
 Step 5: Monitor and Review
 
-Risk management does not end once treatments are in place. ISO 31000 places continual monitoring and review at the centre of the process: treatments are tracked to confirm they are working, residual risk is reassessed, and the register is updated as circumstances change. This feedback loop keeps the process alive and responsive rather than a static document filed after an annual review.
+Risk management does not end once treatments are in place. ISO 31000 places continual monitoring and review at the centre of the process: treatments are tracked to confirm they are working, residual risk is reassessed, and the register is updated as circumstances change. This feedback loop keeps the process alive and responsive rather than a static document filed after an annual review. It is also the step that <a href="/erm/">enterprise risk management software</a> makes easiest to sustain, because residual risk, overdue treatments and key risk indicators are monitored continuously rather than reconciled once a year.
 
 Bringing the Process Together
 
@@ -1944,7 +1944,7 @@ Apply that distinction to shared reporting. Show who performed a test, what it c
 
 How XGRC® Supports the Shift
 
-<a href="/grc-software/">XGRC® Software</a> links governance, risk, compliance and assurance information, including obligations, controls, audits and actions. This supports a connected view of the records needed for oversight and decision-making. <a href="/erm/">XGRC® Enterprise Risk Management</a>, aligned to ISO 31000 and COSO, manages enterprise, operational and project risk on the same auditable platform.
+XGRC® Software is <a href="/grc-software/">GRC software</a> that links governance, risk, compliance and assurance information, including obligations, controls, audits and actions. This supports a connected view of the records needed for oversight and decision-making. <a href="/erm/">XGRC® Enterprise Risk Management</a>, aligned to ISO 31000 and COSO, manages enterprise, operational and project risk on the same auditable platform.
 
 <a href="/msx/">MSX®</a> supports a coordinated management programme with shared document control, governance workflows and performance evaluation. <a href="/integrated-assurance/">Integrated Assurance</a> connects audit planning, testing, findings and corrective actions with risks and assurance coverage.
 

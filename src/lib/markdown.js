@@ -116,6 +116,18 @@ export function solutionToMarkdown(slug) {
     const rows = d.moduleGroups.map((g) => `- **${g.category}:** ${g.modules.join(', ')}`).join('\n');
     parts.push(`## Modules\n\n${rows}`);
   }
+  // Optional topic sections (rendered on the page between modules and outcome).
+  for (const sec of d.sections || []) {
+    const block = [`## ${sec.heading}`];
+    (sec.body || []).forEach((para) => block.push(para));
+    if (sec.items?.length) block.push(sec.items.map((it) => `- **${it.title}:** ${it.body}`).join('\n'));
+    if (sec.table) {
+      const row = (cells) => `| ${cells.join(' | ')} |`;
+      block.push([row(sec.table.head), row(sec.table.head.map(() => '---')), ...sec.table.rows.map(row)].join('\n'));
+    }
+    if (sec.links?.length) block.push(sec.links.map((l) => `- ${htmlLink(l.href, l.label)}`).join('\n'));
+    parts.push(block.join('\n\n'));
+  }
   if (d.standards?.length) {
     parts.push(`## Standards & frameworks\n\n${d.standards.map((x) => `- ${x}`).join('\n')}`);
   }
