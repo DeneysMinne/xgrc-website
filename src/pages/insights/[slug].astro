@@ -2,6 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import { articles, articleFaqs, solutions } from '../../data/site.js';
 import { articleContent } from '../../data/articleContent.js';
+import { articleChecklists } from '../../data/articleChecklists.js';
+import { useCaseRegistry } from '../../data/useCaseRegistry.js';
 
 export function getStaticPaths() {
   return articles.map((a) => ({ params: { slug: a.slug }, props: { article: a } }));
@@ -61,6 +63,20 @@ function renderBody(text) {
 }
 
 const bodyHtml = renderBody(body);
+
+// "Free checklist" card (data/articleChecklists.js): once after the opening
+// section (before the second heading) and once after the article text.
+const checklistCase = (Array.isArray(useCaseRegistry) ? useCaseRegistry : Object.values(useCaseRegistry))
+  .find((u) => u.slug === articleChecklists[slug] && u.resource);
+const checklist = checklistCase && {
+  title: checklistCase.resource.title,
+  href: `/use-cases/${checklistCase.slug}/?from=${slug}#download`,
+  includes: (checklistCase.resource.includes || []).slice(0, 3),
+};
+const secondH2 = bodyHtml.indexOf('<h2>', bodyHtml.indexOf('<h2>') + 1);
+const [bodyIntro, bodyRest] = checklist && secondH2 > 0
+  ? [bodyHtml.slice(0, secondH2), bodyHtml.slice(secondH2)]
+  : [bodyHtml, ''];
 
 const schema = JSON.stringify({
   '@context': 'https://schema.org',
@@ -166,7 +182,28 @@ const catColor = categoryColors[article.category] || '#30e2f4';
     <!-- ── Article Body ───────────────────────────────── -->
     <div class="art-body">
       <div class="container">
-        <div class="art-content" set:html={bodyHtml} />
+        <div class="art-content" set:html={bodyIntro} />
+        {checklist && bodyRest && (
+          <aside class="art-checklist" aria-label="Free checklist">
+            <p class="art-checklist-eyebrow">Free checklist</p>
+            <p class="art-checklist-title">{checklist.title}</p>
+            {checklist.includes.length > 0 && (
+              <ul class="art-checklist-list">{checklist.includes.map((i) => <li>{i}</li>)}</ul>
+            )}
+            <a href={checklist.href} class="btn-primary art-checklist-btn" data-checklist-cta="mid">Get the free checklist &rarr;</a>
+          </aside>
+        )}
+        {bodyRest && <div class="art-content" set:html={bodyRest} />}
+        {checklist && (
+          <aside class="art-checklist" aria-label="Free checklist">
+            <p class="art-checklist-eyebrow">Free checklist</p>
+            <p class="art-checklist-title">{checklist.title}</p>
+            {checklist.includes.length > 0 && (
+              <ul class="art-checklist-list">{checklist.includes.map((i) => <li>{i}</li>)}</ul>
+            )}
+            <a href={checklist.href} class="btn-primary art-checklist-btn" data-checklist-cta="end">Get the free checklist &rarr;</a>
+          </aside>
+        )}
 
         {relatedSolutions.length > 0 && (
           <div class="art-related-solutions">
@@ -378,6 +415,11 @@ const catColor = categoryColors[article.category] || '#30e2f4';
 
   /* ── Related solutions ────────────────────────────────── */
   .art-related-solutions { max-width: 720px; margin: 0 0 48px; }
+  .art-checklist { max-width: 720px; margin: 8px 0 44px; padding: 22px 24px; border: 1px solid var(--line-strong); border-radius: var(--radius-md); background: linear-gradient(120deg, rgba(38,158,198,0.08), rgba(48,226,244,0.02)); }
+  .art-checklist-eyebrow { margin: 0 0 6px; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); }
+  .art-checklist-title { margin: 0 0 10px; font-family: var(--font-display); font-weight: 600; font-size: 1.12rem; color: var(--ink); }
+  .art-checklist-list { margin: 0 0 16px; padding-left: 18px; color: var(--mute); font-size: 0.92rem; line-height: 1.55; }
+  .art-checklist-btn { display: inline-flex; }
   .art-related-heading {
     font-family: var(--font-display);
     font-size: 1rem;
