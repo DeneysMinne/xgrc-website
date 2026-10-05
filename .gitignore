@@ -24,3 +24,4 @@ form-handler/.venv/
 .seo-lastmod.json
 .dist-next/
 .dist-prev/
+.build.lock

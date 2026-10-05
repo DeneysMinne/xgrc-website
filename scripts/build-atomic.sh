@@ -13,6 +13,15 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+# One build at a time: the hourly What's New sync, scheduled blog deploys and
+# manual builds can start together (seen 5 Oct 2026 07:00), and two builds
+# sharing .dist-next would publish a mix. A second build waits up to 10 min.
+exec 9>.build.lock
+if ! flock -w 600 9; then
+  echo "build-atomic: another build is still running after 10 min, giving up" >&2
+  exit 1
+fi
+
 NEXT=.dist-next
 PREV=.dist-prev
 rm -rf "$NEXT" "$PREV"
