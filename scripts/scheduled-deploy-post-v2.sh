@@ -40,6 +40,16 @@ NOTIFY_SCRIPT="$SCRIPT_DIR/notify-team-email.py"
 # absolute path instead of relying on PATH.
 CLAUDE_BIN="/home/XGRC_Admin/.local/bin/claude"
 
+# Long-lived token from `claude setup-token` (one line, chmod 600). An
+# interactive `claude` login on this account rotates the normal session and
+# silently broke these runs on 7 Oct 2026; the setup-token token is meant for
+# unattended use and survives that. Without the file, fall back to the normal login.
+CLAUDE_TOKEN_FILE="/home/XGRC_Admin/.config/claude-unattended-token"
+if [ -r "$CLAUDE_TOKEN_FILE" ]; then
+  CLAUDE_CODE_OAUTH_TOKEN=$(tr -d '[:space:]' < "$CLAUDE_TOKEN_FILE")
+  export CLAUDE_CODE_OAUTH_TOKEN
+fi
+
 REPO=/opt/www/XGRC_WEBSITE
 LOG="$REPO/scripts/scheduled-deploy-logs/$SLUG.log"
 mkdir -p "$(dirname "$LOG")"
