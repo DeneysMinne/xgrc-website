@@ -109,6 +109,8 @@ else
   echo "$CRON" > "$OUT/crontab.txt"
   grep -q 'sync-and-deploy-whats-new.sh' <<<"$CRON" && OK "hourly What's New sync present" || FAIL "hourly What's New sync missing"
   grep -q 'backup_db.sh' <<<"$CRON" && OK "XRM nightly backup present" || FAIL "XRM nightly backup line missing"
+  grep -q 'offsite-backups.sh' <<<"$CRON" && OK "off-server backup copy (03:15) present" \
+    || TODO "off-server copy not scheduled: add  15 3 * * * /opt/www/XGRC_WEBSITE/scripts/offsite-backups.sh >> /opt/www/XGRC_WEBSITE/scripts/scheduled-deploy-logs/offsite-backups.log 2>&1"
   grep -q 'xlogic/deploy/backup-prod.sh' <<<"$CRON" && OK "XLOGIC nightly backup present" \
     || TODO "XLOGIC nightly backup not installed: add  30 2 * * * /opt/www/xlogic/deploy/backup-prod.sh >> /opt/www/xlogic/backups/prod/backup.log 2>&1"
   today=$(date -u +%-d); month=$(date -u +%-m)
@@ -163,12 +165,13 @@ else
   h=$(age_hours "$d")
   [ "$h" -le 26 ] && OK "XLOGIC backup ${h}h old: $(basename "$d")" || FAIL "latest XLOGIC backup is ${h}h old: $d"
 fi
-if [ -r /etc/xlogic/backup-offsite.env ] && grep -q '^OFFSITE_RSYNC_DEST=.' /etc/xlogic/backup-offsite.env; then
-  OK "XLOGIC off-server destination set: $(grep '^OFFSITE_RSYNC_DEST=' /etc/xlogic/backup-offsite.env | cut -d= -f2-)"
+if [ -r /etc/xgrc/offsite-backup.env ] && grep -q '^OFFSITE_DEST=.' /etc/xgrc/offsite-backup.env; then
+  OK "off-server destination set: $(grep '^OFFSITE_DEST=' /etc/xgrc/offsite-backup.env | cut -d= -f2-)"
+  last=$(grep -E '=== Done' /opt/www/XGRC_WEBSITE/scripts/scheduled-deploy-logs/offsite-backups.log 2>/dev/null | tail -1)
+  [[ $last == *"Done ==="* ]] && OK "last off-server copy: ${last:1:20}" || FAIL "last off-server copy had problems or never ran: ${last:-no log}"
 else
-  TODO "no off-server backup destination (pve01:/tank/backup suggested): /etc/xlogic/backup-offsite.env"
+  TODO "no off-server destination: needs pve01 address + backup key authorised there, then /etc/xgrc/offsite-backup.env"
 fi
-TODO "XRM daily dumps are not copied off this server (same pve01 decision)"
 
 # ---------------------------------------------------------------------------
 section "7. Certificates and mail DNS"
