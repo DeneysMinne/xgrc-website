@@ -1756,7 +1756,7 @@ export const useCaseRegistry = [
     heroEyebrow: 'ISO Readiness · ISO/IEC 27001:2022',
     heroButtonLabel: 'Download the documentation checklist',
     title: 'ISO 27001 Mandatory Documents Checklist (2022) | XGRC®',
-    metaDescription: 'The ISO 27001:2022 documents you must have, what auditors expect, and what is worth adding. 60 items in four tiers, each mapped to its clause or Annex A control.',
+    metaDescription: 'The ISO 27001:2022 documents you must have, what auditors expect, and what is worth adding. 60 items in four tiers, each mapped to a clause or Annex A control.',
     h1: 'The ISO 27001 documentation checklist that matches the standard.',
     lede: 'What ISO/IEC 27001:2022 actually requires, what auditors expect to see, and what is worth adding once the basics are solid. Sorted into four tiers, with the clause or Annex A control for every item.',
     relatedSolution: 'msxcyber',
