@@ -3340,6 +3340,87 @@ Seeing It Assembled
 XGRC®'s <a href="/tour/esg.html">ESG Performance dashboard</a> brings these pieces together: pillar trend lines against target, an assurance-readiness view across framework, data and Scope 3 coverage, a focus-area section for KPIs in breach or on watch, and a materiality matrix ranking topics by impact and stakeholder importance.
 
 It is one of seventeen live, interactive examples in the <a href="/tour/">XGRC® dashboard tour</a>, each built on fictitious data so you can filter, search and explore freely.`,
+'iso-27001-mandatory-documents': `Most ISO 27001 Document Lists Are Padded
+
+Search for the documents ISO 27001 requires and you will find lists of 40, 47 or 50 "essential" items. Most of them mix three different things: what the standard requires, what a consultant's template pack happens to include, and what one organisation found useful. The result is predictable. Teams write documents that nobody maintains, while a few genuine requirements still go missing.
+
+ISO/IEC 27001:2022 asks for less than those lists suggest. This article explains what the standard actually requires, where Annex A adds to it, and what auditors expect to see even though no clause demands it. For the full item-by-item list, use our free <a href="/use-cases/iso-27001-documentation-checklist/">ISO 27001 documentation checklist</a>. It sorts 60 items into four tiers and maps each one to its clause or Annex A control.
+
+What Documented Information Means
+
+ISO 27001 does not talk about "documents" and "records" any more. It uses one term, documented information, and it sets no format. A controlled record in a system counts as much as a Word file, as long as it is identified, reviewed, approved where needed and protected, as clause 7.5 requires.
+
+That matters more than it sounds. Many organisations treat certification as a document-writing project. It is really an evidence project. The auditor wants to see that the ISMS runs, not that a folder is full.
+
+The Documents Clauses 4 to 10 Require
+
+Clauses 4 to 10 apply to every certified ISMS. Where they say documented information must be maintained or retained, you need it. In practice that comes to 16 items:
+
+- ISMS scope (4.3)
+- Information security policy (5.2)
+- Risk assessment process (6.1.2)
+- Risk treatment process (6.1.3)
+- Statement of Applicability (6.1.3 d)
+- Risk treatment plan (6.1.3 e)
+- Information security objectives (6.2)
+- Evidence of competence (7.2 d)
+- Documented information you decide is necessary (7.5.1 b)
+- Operational planning and control (8.1)
+- Risk assessment results (8.2)
+- Risk treatment results (8.3)
+- Monitoring and measurement results (9.1)
+- Internal audit programme and results (9.2.2)
+- Management review results (9.3.3)
+- Nonconformities and corrective actions (10.2)
+
+Two of these need care. Clause 7.5.1 b leaves the extent of extra documentation to you, so decide it deliberately rather than by habit. Clause 8.1 asks for enough evidence to show that processes ran as planned, including processes you outsource. Missing any of the 16 is a likely nonconformity.
+
+Where Annex A Adds More
+
+Annex A lists 93 controls in four themes: organisational, people, physical and technological. Some of those controls ask for something to be documented. Examples include topic-specific policies (A.5.1), the inventory of information and other associated assets (A.5.9), acceptable use rules (A.5.10), access control rules (A.5.15), documented operating procedures (A.5.37) and confidentiality agreements (A.6.6).
+
+These documents are only required when your Statement of Applicability includes the control. Most organisations include nearly all of them, so treat exclusion as the exception. Every excluded control needs a clear reason.
+
+Every included control also needs evidence that it operates, even where the control does not ask for a document. That evidence is usually a record rather than a policy: an access review, a backup restore test or a vulnerability scan.
+
+Four Myths That Create Extra Work
+
+- "You need an ISMS manual." ISO 27001 does not require one. A short handbook can help people find their way, but no auditor can raise a finding for not having one.
+- "Track preventive actions." Preventive action left the standard in 2013. Risk-based planning in clause 6 replaced it, and clause 10.2 covers corrective action only.
+- "Write a document control procedure." Clause 7.5 requires you to control documented information, not to write a procedure about it. A procedure is good practice, not a requirement.
+- "External audit reports are ISMS documents." Your certification body writes those. Keep them as records, but they do not count towards your own documented information.
+
+The Evidence Auditors Expect Anyway
+
+Some evidence is not mandated as a document, but auditors will ask for it. Having it ready makes conformity quick to prove and shortens the audit. The most common requests are:
+
+- An analysis of internal and external issues (4.1), including whether climate change is relevant, which Amendment 1:2024 added
+- An interested parties register (4.2) showing their requirements and which ones the ISMS addresses
+- A risk register that shows owners, ratings and treatment status
+- Awareness records that show people know the policy and their part in it (7.3)
+- A management review pack that covers every input listed in clause 9.3.2
+
+Clause 7.4 is a good example of the difference. It requires you to decide what to communicate, when, to whom and how. It does not require a written communication plan, although many organisations keep one because it is the easiest way to show the decision was made.
+
+Five Traps That Turn Complete Files Into Findings
+
+- The Statement of Applicability and the risk treatment plan disagree. Every included control should trace to a risk, a legal requirement or a business need. Auditors test this link first.
+- Objectives have no measure. Clause 6.2 asks how results will be evaluated. A goal with no metric, owner or date is a statement, not an objective.
+- Documents are uncontrolled. No version, owner, approval or review date. A good policy that is three years stale is still a finding.
+- Management reviews are thin. Clause 9.3.2 lists the inputs. Cover each one, including changes in the needs of interested parties, which the 2022 edition added.
+- Exclusions are weak. "Not applicable" with no reason invites challenge. Justify every excluded control in one clear sentence.
+
+The 2013 Transition Is Over
+
+The transition period to ISO/IEC 27001:2022 ended on 31 October 2025. Certificates issued against the 2013 edition are no longer valid. If your Statement of Applicability still lists 114 controls, or your policies cite 2013 control numbers, the documentation needs updating to the 93 controls of the 2022 edition.
+
+Keep the ISMS Live, Not in a Folder
+
+Most documentation problems are not missing documents. They are documents that were right once and then drifted. The Statement of Applicability stops matching the risk register, a policy passes its review date, and the evidence for a control sits in someone's inbox.
+
+<a href="/msxcyber/">MSXCyber®</a>, the ISMS within the XGRC® platform, keeps the Statement of Applicability, risks, controls, documents and audit evidence in one system, with clear owners and review dates. XGRC® Software is itself certified to ISO/IEC 27001:2022, so we run our own ISMS the same way.
+
+Start with the free <a href="/use-cases/iso-27001-documentation-checklist/">ISO 27001 documentation checklist</a>, or <a href="/demo/">book a demo</a> to see how MSXCyber® keeps your ISMS documentation current between audits.`,
 'iso-42001-implementation-ai-governance': `The Real Test Comes After the AI Policy Is Approved
 
 Your organisation has approved an AI policy and a pilot has passed review. Then a supplier changes its model, a team connects another data source, and an assistant that once drafted recommendations gains permission to act on them. Who checks whether the original approval still makes sense?
