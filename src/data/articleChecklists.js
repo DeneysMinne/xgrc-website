@@ -39,7 +39,7 @@ export const articleChecklists = {
   'from-compliance-to-zero-harm-transforming-mine-safety-digitally': 'safety-management',
   'strengthening-haccp-and-iso-22000-through-digital-food-safety-governance': 'iso-22000-readiness',
   'simplifying-esg-reporting-through-centralised-environmental-data': 'esg-reporting',
-  'streamlining-iso-27001-compliance-digitally': 'iso-27001-readiness',
+  'streamlining-iso-27001-compliance-digitally': 'iso-27001-documentation-checklist',
   'double-materiality-in-esg': 'esg-reporting',
   'environmental-compliance-software-for-regulatory-management': 'environmental-compliance',
   'integrated-management-system-software-for-modern-compliance': 'pas99-integrated-management-system',
@@ -71,4 +71,5 @@ export const articleChecklists = {
   'iso-42001-implementation-ai-governance': 'ai-governance-readiness',
   'iso-42001-vs-iso-27001': 'ai-governance-readiness',
   'king-v-and-the-rise-of-ai-governance': 'king-v-governance',
+  'iso-27001-mandatory-documents': 'iso-27001-documentation-checklist',
 };
