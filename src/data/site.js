@@ -1627,6 +1627,15 @@ export const articles = [
     relatedSolutions: ['esg'],
   },
   {
+    slug: 'iso-27001-mandatory-documents',
+    title: 'ISO 27001 Mandatory Documents: What the 2022 Standard Actually Requires',
+    excerpt: 'Most ISO 27001 document lists are padded. Here is what ISO/IEC 27001:2022 actually requires in clauses 4 to 10, where Annex A adds more, what auditors expect anyway, and the myths that create extra work.',
+    category: 'Cyber',
+    date: '2026-10-26',
+    image: 'iso-27001-mandatory-documents.jpg',
+    relatedSolutions: ['msxcyber'],
+  },
+  {
     slug: 'iso-42001-implementation-ai-governance',
     title: 'Implementing and Maintaining ISO/IEC 42001',
     excerpt: 'A practical guide to implementing and maintaining ISO/IEC 42001:2023: scope real AI use, assess risks and impacts, select controls, keep evidence current as AI changes, and prepare for certification without treating it as the finish line.',
@@ -1936,6 +1945,13 @@ export const articleFaqs = {
     { q: 'What is assurance-ready ESG data?', a: 'Assurance-ready data is ESG data that is complete, evidenced and structured well enough to withstand external assurance or audit, rather than being compiled informally for internal reporting only. It typically means every disclosed figure has supporting evidence attached and traceable.' },
     { q: 'Which ESG reporting frameworks should software support?', a: 'The most widely used are GRI for broad sustainability disclosure, SASB for industry-specific financially material topics, and ISSB (IFRS S1 and S2) where sustainability disclosures need to align with financial reporting. Many organisations report against more than one framework at once.' },
     { q: 'How often should ESG KPIs be reported?', a: 'Operational ESG KPIs such as safety incidents or energy usage are commonly tracked monthly, while framework disclosure coverage and materiality are typically reviewed quarterly or ahead of the annual sustainability report. A live dashboard removes the need to choose one cadence, since the underlying data is always current.' },
+  ],
+  'iso-27001-mandatory-documents': [
+    { q: 'How many documents does ISO 27001:2022 require?', a: 'Clauses 4 to 10 require 16 items of documented information for every certified ISMS, from the ISMS scope and information security policy to management review results and corrective actions. Annex A adds more, but only for the controls your Statement of Applicability includes.' },
+    { q: 'Is the Statement of Applicability mandatory?', a: 'Yes. Clause 6.1.3 d requires a Statement of Applicability covering all 93 Annex A controls: whether each is included or excluded, why, and whether it is implemented.' },
+    { q: 'Is a risk register mandatory for ISO 27001?', a: 'Not by that name. ISO 27001 requires documented information about the risk assessment process and its results (6.1.2 and 8.2). A risk register is the most common way to keep those results current, and auditors expect to see one.' },
+    { q: 'Does every Annex A control need a document?', a: 'No. Some controls ask for documentation, such as topic-specific policies, the asset inventory and access control rules. Every included control needs evidence that it operates, but that evidence is often a record, such as an access review or a restore test, rather than a written document.' },
+    { q: 'Do ISO 27001 documents have to be Word files?', a: 'No. ISO 27001 sets no format for documented information. A controlled record in a system counts as much as a Word file, as long as it is identified, reviewed, approved where needed and protected.' },
   ],
   'iso-42001-implementation-ai-governance': [
     { q: 'Is ISO/IEC 42001 only for AI developers?', a: 'No. It is intended for organisations providing or using AI-based products and services. Scope the management system around your actual role and activities.' },
