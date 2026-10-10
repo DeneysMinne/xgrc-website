@@ -115,7 +115,8 @@ def site_audit():
 def query_totals(rows):
     out = {}
     for q in WATCH_QUERIES:
-        hits = [r for r in rows if r['Query'].lower() == q]
+        # Ignore spacing: Bing reported 'sheqx log in' until Oct 2026, then 'sheq x login'.
+        hits = [r for r in rows if r['Query'].lower().replace(' ', '') == q.replace(' ', '')]
         out[q] = [sum(r['Impressions'] for r in hits), sum(r['Clicks'] for r in hits)]
     login = [r for r in rows if LOGIN_QUERIES.search(r['Query'])]
     out['ALL login searches'] = [sum(r['Impressions'] for r in login), sum(r['Clicks'] for r in login)]

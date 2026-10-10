@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import { articles, articleFaqs, solutions } from '../../data/site.js';
 import { articleContent } from '../../data/articleContent.js';
 import { articleChecklists } from '../../data/articleChecklists.js';
+import { articleSeo } from '../../data/articleSeo.js';
 import { useCaseRegistry } from '../../data/useCaseRegistry.js';
 
 export function getStaticPaths() {
@@ -78,11 +79,16 @@ const [bodyIntro, bodyRest] = checklist && secondH2 > 0
   ? [bodyHtml.slice(0, secondH2), bodyHtml.slice(secondH2)]
   : [bodyHtml, ''];
 
+// SEO overrides (data/articleSeo.js) win over the article's own fields.
+const seo = articleSeo[slug] || {};
+const metaDescription = seo.metaDescription || article.metaDescription || article.excerpt;
+const seoTitle = seo.seoTitle || article.seoTitle || `${article.title} | XGRC® Insights`;
+
 const schema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: article.title,
-  description: article.metaDescription || article.excerpt,
+  description: metaDescription,
   image: `https://xgrcsoftware.com/assets/images/insights/${imageFile}`,
   datePublished: article.date,
   dateModified: article.dateModified || article.date,
@@ -130,7 +136,7 @@ const categoryColors = {
 const catColor = categoryColors[article.category] || '#30e2f4';
 ---
 
-<Base title={article.seoTitle || `${article.title} | XGRC® Insights`} description={article.metaDescription || article.excerpt} ogImage={`/assets/images/insights/${imageFile}`} mdPath={`/insights/${slug}.md`}>
+<Base title={seoTitle} description={metaDescription} ogImage={`/assets/images/insights/${imageFile}`} mdPath={`/insights/${slug}.md`}>
   <script type="application/ld+json" set:html={schema} />
   <script type="application/ld+json" set:html={breadcrumbSchema} />
   {faqSchema && <script type="application/ld+json" set:html={faqSchema} />}
