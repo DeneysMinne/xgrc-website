@@ -53,6 +53,15 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const SITE_ROOT = path.join(__dirname, '..')
 const SECRETS_DIR = path.join(SITE_ROOT, '.secrets')
 const REFRESH_TOKEN_PATH = path.join(SECRETS_DIR, 'linkedin-personal-refresh-token')
+// Since 2026-10-10 personal posting uses its own app ("XGRC Personal Share",
+// Share on LinkedIn + OpenID only). Sharing the XGRC app with XRM's LinkedIn
+// Ads connector meant every re-authorisation of one revoked the other's token
+// (28 Sep -> ads broke 29 Sep; 7 Oct ads -> personal broke 8 Oct). An app
+// without the Advertising API gets no refresh token, only a 60-day access
+// token, stored here as {access_token, expires_at, sub}. When this file
+// exists it is used instead of the refresh-token flow below.
+const PERSONAL_TOKEN_PATH = path.join(SECRETS_DIR, 'linkedin-personal-token.json')
+const PERSONAL_TOKEN_WARN_DAYS = 14
 const ORG_REFRESH_TOKEN_PATH = path.join(SECRETS_DIR, 'linkedin-org-refresh-token')
 const ORG_URN = 'urn:li:organization:17970825'
 // Apex host + trailing slash = the canonical URL, so a click lands with no redirects
@@ -225,8 +234,11 @@ async function main() {
   const args = process.argv.slice(2)
   const slug = args.find(a => !a.startsWith('--'))
   const orgOnly = args.includes('--org-only')
-  if (!slug) {
-    console.error('Usage: node scripts/linkedin-share-post.mjs <slug> [--org-only]')
+  // --personal-only re-posts an article to the personal profile alone, e.g.
+  // after a personal-token failure, without posting to the company page twice.
+  const personalOnly = args.includes('--personal-only')
+  if (!slug || (orgOnly && personalOnly)) {
+    console.error('Usage: node scripts/linkedin-share-post.mjs <slug> [--org-only | --personal-only]')
     process.exit(1)
   }
   const article = articles.find(a => a.slug === slug)
@@ -241,23 +253,40 @@ async function main() {
   // an article that was already shared to the personal profile in a past
   // run (e.g. re-testing after the org app was set up) -- without it,
   // every normal invocation posts to both configured targets.
-  if (!orgOnly) {
+  if (!orgOnly && fs.existsSync(PERSONAL_TOKEN_PATH)) {
+    const { access_token: accessToken, expires_at: expiresAt, sub } = JSON.parse(fs.readFileSync(PERSONAL_TOKEN_PATH, 'utf8'))
+    const daysLeft = Math.floor((expiresAt * 1000 - Date.now()) / 86400000)
+    const expiryDate = new Date(expiresAt * 1000).toISOString().slice(0, 10)
+    if (daysLeft < 0) {
+      // Pushed as a failing target so it is reported like any other failure.
+      targets.push({ label: 'personal', getAccessToken: async () => {
+        throw new Error(`personal LinkedIn sign-in expired on ${expiryDate}: re-authorise the "XGRC Personal Share" app (60-day token)`)
+      }, authorUrn: `urn:li:person:${sub}` })
+    } else {
+      if (daysLeft <= PERSONAL_TOKEN_WARN_DAYS) {
+        console.error(`ALERT: [personal] LinkedIn sign-in expires in ${daysLeft} day(s) (${expiryDate}): re-authorise the "XGRC Personal Share" app before then.`)
+      }
+      targets.push({ label: 'personal', getAccessToken: async () => accessToken, authorUrn: `urn:li:person:${sub}` })
+    }
+  } else if (!orgOnly) {
     const { client_id: clientId, client_secret: clientSecret } = JSON.parse(readSecret('linkedin-app-client-secret.json'))
     const refreshToken = readSecret('linkedin-personal-refresh-token')
     const personUrn = readSecret('linkedin-personal-urn')
-    targets.push({ label: 'personal', clientId, clientSecret, refreshToken, refreshTokenPath: REFRESH_TOKEN_PATH, authorUrn: personUrn })
+    targets.push({ label: 'personal', getAccessToken: () => refreshAccessToken(clientId, clientSecret, refreshToken, REFRESH_TOKEN_PATH), authorUrn: personUrn })
   }
 
-  if (secretExists('linkedin-org-app-client-secret.json') && secretExists('linkedin-org-refresh-token')) {
+  if (personalOnly) {
+    // Company page deliberately skipped (see --personal-only above).
+  } else if (secretExists('linkedin-org-app-client-secret.json') && secretExists('linkedin-org-refresh-token')) {
     const { client_id: clientId, client_secret: clientSecret } = JSON.parse(readSecret('linkedin-org-app-client-secret.json'))
     const refreshToken = readSecret('linkedin-org-refresh-token')
-    targets.push({ label: 'org', clientId, clientSecret, refreshToken, refreshTokenPath: ORG_REFRESH_TOKEN_PATH, authorUrn: ORG_URN })
+    targets.push({ label: 'org', getAccessToken: () => refreshAccessToken(clientId, clientSecret, refreshToken, ORG_REFRESH_TOKEN_PATH), authorUrn: ORG_URN })
   } else {
     console.log('[org] Skipping company-page post: org credentials not set up yet (one-time OAuth authorization pending).')
   }
 
   const results = await Promise.allSettled(targets.map(async (t) => {
-    const accessToken = await refreshAccessToken(t.clientId, t.clientSecret, t.refreshToken, t.refreshTokenPath)
+    const accessToken = await t.getAccessToken()
     await postToTarget({ label: t.label, accessToken, authorUrn: t.authorUrn, article, articleUrl })
   }))
 
