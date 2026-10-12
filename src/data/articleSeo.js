@@ -31,6 +31,20 @@ export const articleSeo = {
     seoTitle: 'ISO 42001 vs ISO 27001: What\'s the Difference? | XGRC®',
     metaDescription: 'ISO 42001 vs ISO 27001: how an AI management system differs from an ISMS, where the two standards overlap, and why a connected approach to both makes sense.',
   },
+  // 2026-10-12: ranks 4.5 for "sheq meaning" (656 impressions/28d) and 7.2
+  // for "sheq" but drew 2 clicks. Lead with the meaning searchers type and
+  // promise more than the one-line definition Google already shows.
+  'what-is-sheq': {
+    seoTitle: 'SHEQ Meaning: What SHEQ Stands For (vs HSE, SHERQ) | XGRC®',
+    metaDescription: 'SHEQ stands for safety, health, environment and quality. How it differs from HSE and SHERQ, what a SHEQ system includes, plus a free checklist.',
+  },
+  // 2026-10-12: ranks 4.2 for "iso 14001 software" and 4.6 for "iso14001
+  // software" (buyer searches) with 0 clicks; the old title never named the
+  // standards the article covers in depth.
+  'integrated-management-system-software-for-modern-compliance': {
+    seoTitle: 'ISO 14001, 45001 & 9001 Software: One Integrated System | XGRC®',
+    metaDescription: 'ISO 14001, ISO 45001 and ISO 9001 software on one platform: one risk register, one audit trail and no duplicated effort across your management systems.',
+  },
   'king-v-and-the-rise-of-ai-governance': {
     metaDescription: 'King V covers financial years from 1 January 2026. Why AI governance is now a board issue, and how accountability, human oversight and assurance make it real.',
   },
