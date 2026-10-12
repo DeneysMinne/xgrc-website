@@ -1,0 +1,8 @@
+# Website form blocklist: submissions matching an entry are logged (with IP)
+# but never reach XRM or the inbox. One email domain or phone number per line.
+# Re-read on every submission; no restart needed after editing.
+
+# 2026-10-12 LEAD-0052 / LEAD-0066: quote-request fraud impersonating
+# Food Service Co (foodserviceco.co.za) via a lookalike domain.
+foodservicesco.co.za
++27797207472
