@@ -2062,7 +2062,7 @@ export const stats = [
   { value: '800+', label: 'Companies globally',        confirmed: true  },
   { value: '11',   label: 'Years of GRC expertise',    confirmed: true  },
   { value: '10+',  label: 'Solutions on one platform', confirmed: true  },
-  { value: '5',    label: 'Continents served',         confirmed: true  },
+  { value: '6',    label: 'Continents served',         confirmed: true  },
   // Uncomment and confirm before enabling — owner to supply verified number:
   // { value: '[[CONFIRM]]', label: 'Users governed', confirmed: false },
 ];
