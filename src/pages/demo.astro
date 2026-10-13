@@ -393,6 +393,8 @@ const FORM_ENDPOINT = "/api/demo";
         window.gtag?.('event', 'conversion', { send_to: 'AW-744549022/kcZiCJvVi90cEJ7Vg-MC' });
         // Microsoft Ads (UET) conversion goal: custom event, action submit_lead_form.
         window.uetq?.push('event', 'submit_lead_form', {});
+        // LinkedIn conversion "Demo request" (only fires if the visitor accepted cookies).
+        window.lintrk?.('track', { conversion_id: 31926209 });
       } else {
         throw new Error('non-2xx');
       }

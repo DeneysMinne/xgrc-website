@@ -8,6 +8,9 @@
 // Microsoft Clarity loads only after Accept. Set CLARITY_ID once the Clarity
 // project exists; while it is empty, Clarity never loads.
 const CLARITY_ID = 'yrvmi233q2';
+// LinkedIn Insight Tag (Campaign Manager partner id). LinkedIn has no cookieless
+// consent mode, so unlike gtag/UET it is not loaded at all until Accept.
+const LINKEDIN_PARTNER_ID = '500428';
 ---
 <div class="cc" id="cookie-consent" role="dialog" aria-modal="false" aria-labelledby="cc-title" aria-describedby="cc-text" hidden>
   <div class="cc-inner">
@@ -25,7 +28,7 @@ const CLARITY_ID = 'yrvmi233q2';
   </div>
 </div>
 
-<script is:inline define:vars={{ CLARITY_ID }}>
+<script is:inline define:vars={{ CLARITY_ID, LINKEDIN_PARTNER_ID }}>
   (function () {
     var banner = document.getElementById('cookie-consent');
     // Read the saved choice here: Base.astro's head scripts are bundled as
@@ -33,7 +36,7 @@ const CLARITY_ID = 'yrvmi233q2';
     var saved = (document.cookie.match(/(?:^|; )xgrc_consent=(granted|denied)/) || [])[1] || '';
     var isProduction = ['xgrcsoftware.com', 'www.xgrcsoftware.com'].indexOf(location.hostname) !== -1;
     var YEAR = 31536000;
-    var NON_ESSENTIAL = /^(_ga|_gid|_gcl|_clck|_clsk|_uetsid|_uetvid|xgrc_(?!consent))/;
+    var NON_ESSENTIAL = /^(_ga|_gid|_gcl|_clck|_clsk|_uetsid|_uetvid|li_fat_id|xgrc_(?!consent))/;
 
     function loadClarity() {
       if (!CLARITY_ID || window.clarity || !isProduction) return;
@@ -43,6 +46,21 @@ const CLARITY_ID = 'yrvmi233q2';
         y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
       })(window, document, 'clarity', 'script', CLARITY_ID);
       window.clarity('consentv2', { ad_Storage: 'granted', analytics_Storage: 'granted' });
+    }
+
+    function loadLinkedIn() {
+      if (!LINKEDIN_PARTNER_ID || window.lintrk || !isProduction) return;
+      window._linkedin_partner_id = LINKEDIN_PARTNER_ID;
+      window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+      window._linkedin_data_partner_ids.push(LINKEDIN_PARTNER_ID);
+      (function (l) {
+        if (!l) { window.lintrk = function (a, b) { window.lintrk.q.push([a, b]); }; window.lintrk.q = []; }
+        var s = document.getElementsByTagName('script')[0];
+        var b = document.createElement('script');
+        b.type = 'text/javascript'; b.async = true;
+        b.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
+        s.parentNode.insertBefore(b, s);
+      })(window.lintrk);
     }
 
     function clearNonEssential() {
@@ -67,6 +85,7 @@ const CLARITY_ID = 'yrvmi233q2';
       if (choice === 'granted') {
         if (window.xgrcCaptureAttribution) window.xgrcCaptureAttribution();
         loadClarity();
+        loadLinkedIn();
       } else {
         if (window.clarity) window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'denied' });
         clearNonEssential();
@@ -88,7 +107,7 @@ const CLARITY_ID = 'yrvmi233q2';
       banner.querySelector('[data-cc="denied"]').focus();
     });
 
-    if (saved === 'granted') loadClarity();
+    if (saved === 'granted') { loadClarity(); loadLinkedIn(); }
     else if (!saved) banner.hidden = false;
   })();
 </script>
