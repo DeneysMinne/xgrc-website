@@ -63,6 +63,7 @@ const CLARITY_ID = 'yrvmi233q2';
       if (window.gtag) {
         window.gtag('consent', 'update', { ad_storage: g, analytics_storage: g, ad_user_data: g, ad_personalization: g });
       }
+      if (window.uetq) window.uetq.push('consent', 'update', { ad_storage: g });
       if (choice === 'granted') {
         if (window.xgrcCaptureAttribution) window.xgrcCaptureAttribution();
         loadClarity();

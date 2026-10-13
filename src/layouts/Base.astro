@@ -121,6 +121,24 @@ const orgSchema = JSON.stringify({
         tag.async = true;
         tag.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
         document.head.appendChild(tag);
+
+        // Microsoft Advertising UET tag (Bing ads, test started 13 Oct 2026).
+        // Same consent model as gtag above: the default must be pushed before
+        // bat.js loads; CookieConsent.astro sends the update on Accept/Reject.
+        window.uetq = window.uetq || [];
+        window.uetq.push('consent', 'default', { ad_storage: consent });
+        (function (w, d, t, u, o) {
+          w[u] = w[u] || [], o.ts = (new Date()).getTime();
+          var n = d.createElement(t);
+          n.src = 'https://bat.bing.net/bat.js?ti=' + o.ti + ('uetq' != u ? '&q=' + u : '');
+          n.async = 1, n.onload = n.onreadystatechange = function () {
+            var s = this.readyState;
+            s && 'loaded' !== s && 'complete' !== s ||
+              (o.q = w[u], w[u] = new UET(o), w[u].push('pageLoad'), n.onload = n.onreadystatechange = null);
+          };
+          var i = d.getElementsByTagName(t)[0];
+          i.parentNode.insertBefore(n, i);
+        })(window, document, 'script', 'uetq', { ti: '187280568', enableAutoSpaTracking: true });
       }
     </script>
 
@@ -131,6 +149,7 @@ const orgSchema = JSON.stringify({
          - Ad click IDs: gclid, plus gbraid/wbraid, which Google sends
            instead of gclid on some clicks (Peak Timbers' 24 Sep ad click
            carried only gbraid, so nothing was recorded).
+         - msclkid, Microsoft Advertising's click id on Bing ad clicks.
          - fbclid, Meta's click id on Facebook/Instagram ad clicks.
          - utm_* tags.
          Both are only set when present on the URL, so a later organic visit
@@ -144,7 +163,7 @@ const orgSchema = JSON.stringify({
         const set = (k, v) => { document.cookie = `xgrc_${k}=${encodeURIComponent(v)}; Max-Age=${MAX_AGE}; Path=/; SameSite=Lax`; };
         const get = (k) => { const m = document.cookie.match(new RegExp(`(?:^|; )xgrc_${k}=([^;]*)`)); return m ? decodeURIComponent(m[1]) : ''; };
         const p = new URLSearchParams(window.location.search);
-        const TRACKED = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        const TRACKED = ['gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
         const ref = document.referrer || '';
         const external = ref && !ref.startsWith(window.location.origin);
         // Stored only after the visitor accepts cookies (CookieConsent.astro
