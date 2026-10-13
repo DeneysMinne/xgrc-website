@@ -535,6 +535,11 @@ def _create_xrm_lead(data: dict) -> None:
         "gclid": data.get("_gclid") or None,
         # Meta's click id (Facebook/Instagram ads), captured like gclid; XRM stores it on the lead.
         "fbclid": data.get("_fbclid") or None,
+        # XRM ENH-151: the other ad click ids, so XRM can report lead outcomes
+        # back to the platform the click came from (older XRM builds ignore them).
+        "msclkid": data.get("_msclkid") or None,
+        "gbraid": data.get("_gbraid") or None,
+        "wbraid": data.get("_wbraid") or None,
         "utm_source": data.get("_utm_source") or None,
         "utm_medium": data.get("_utm_medium") or None,
         "utm_campaign": data.get("_utm_campaign") or None,
