@@ -82,14 +82,14 @@ export const solutionDetails = {
     ],
     overview: 'SHEQX® manages the complete SHEQ lifecycle, from hazard identification and incident capture through risk treatment, compliance monitoring, and ISO-aligned audit management, across every site and business unit on one platform.',
     stats: [
-      { value: '24', label: 'Modules' },
+      { value: '30', label: 'Modules' },
       { value: 'ISO 9001', label: '14001 · 45001' },
       { value: 'Real-time', label: 'Action tracking' },
     ],
     moduleGroups: [
-      { category: 'Risk & Safety', modules: ['Incident Management', 'Risk Management', 'Emergency Preparedness', 'PPE Management', 'Medical Surveillance', 'Occupational Job Profiles'] },
+      { category: 'Risk & Safety', modules: ['Incident Management', 'Incident Quick Log', 'Near Miss', 'Safety Behaviour Observation', 'Risk Management', 'Bowtie', 'Fishbone', 'Emergency Preparedness', 'PPE Management', 'Medical Surveillance', 'Occupational Job Profiles'] },
       { category: 'Compliance & Legal', modules: ['Legal Requirements', 'Legal Appointments', 'Permit Management', 'MSDS Management'] },
-      { category: 'Quality & Operations', modules: ['Non-Conformance Management', 'Change Management', 'Calibration', 'Objectives & Targets', 'Strategy Management'] },
+      { category: 'Quality & Operations', modules: ['Non-Conformance Management', 'Opportunity for Improvement', 'Change Management', 'Calibration', 'Objectives & Targets', 'Strategy Management'] },
       { category: 'People & Training', modules: ['Training Records', 'Employee Management', 'Stakeholder Engagement', 'Suggestions'] },
       { category: 'Oversight', modules: ['Audit Management', 'Inspection Management', 'Document Manager', 'Meeting Management', 'Action Manager'] },
     ],
@@ -133,7 +133,7 @@ export const solutionDetails = {
     ],
     overview: 'MSX® is the integration layer that unifies multiple ISO management system disciplines into one coordinated programme, with consistent document control, governance workflows, audit management, and performance evaluation across the organisation.',
     stats: [
-      { value: '25', label: 'Modules' },
+      { value: '24', label: 'Modules' },
       { value: 'Multi-ISO', label: 'In one system' },
       { value: 'Continual', label: 'Improvement built in' },
     ],
@@ -183,7 +183,7 @@ export const solutionDetails = {
     stats: [
       { value: 'ISO 27001:2022', label: 'Aligned ISMS governance' },
       { value: '4', label: 'Standards supported' },
-      { value: '20+', label: 'Modules' },
+      { value: '16', label: 'Modules' },
     ],
     moduleGroups: [
       { category: 'Security Operations', modules: ['Asset Register', 'Monitoring', 'Inspections', 'Broadcasting', 'Event Management'] },
@@ -507,7 +507,7 @@ export const solutionDetails = {
     ],
     standards: ['ISO 14001', 'NEMA', 'King V', 'GHG Protocol'],
     related: ['sheqx', 'esg', 'msx'],
-    testimonialCompanies: ['Servest', 'Interwaste', 'Commercial Cold Holdings'],
+    testimonialCompanies: ['Servest', 'TN Ceramics'],
     regionalLink: { href: '/environmental-compliance-software-south-africa/', label: 'Environmental compliance software in South Africa' },
     learnLink: { href: '/insights/environmental-compliance-software-for-regulatory-management/', label: 'Environmental compliance and obligations software explained' },
     geo: {
@@ -825,7 +825,7 @@ export const solutionDetails = {
     ],
     overview: 'XRM manages the full sales lifecycle, from lead capture and qualification through opportunity progression, configurable approval workflows, quote generation and close, on one platform with a complete, queryable audit trail. Built-in dashboards, forecasting and sales-health flags give managers and leadership a live view of pipeline health without a manual reporting cycle.',
     stats: [
-      { value: '25+', label: 'Modules across the sales lifecycle' },
+      { value: '22', label: 'Modules across the sales lifecycle' },
       { value: 'ISO 27001', label: ':2022 certified platform' },
       { value: 'Full', label: 'Audit trail on every record' },
     ],
