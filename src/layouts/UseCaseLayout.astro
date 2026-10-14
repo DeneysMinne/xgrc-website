@@ -381,6 +381,10 @@ const schema = {
         }),
       }).catch(() => {}); // swallow errors — download still works
 
+      // GA4 lead event. Consent mode applies: without Accept it is sent as a
+      // cookieless ping and GA4 models it.
+      window.gtag?.('event', 'generate_lead', { lead_type: 'checklist', resource: pageUrl });
+
       // Trigger download immediately so user doesn't wait for email
       const a = document.createElement('a');
       a.href = pdfPath;

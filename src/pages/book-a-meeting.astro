@@ -299,6 +299,9 @@ const FORM_ENDPOINT = "/api/demo";
         success.hidden = false;
         success.scrollIntoView({ behavior: 'smooth', block: 'center' });
         window.gtag?.('event', 'conversion', { send_to: 'AW-744549022/kcZiCJvVi90cEJ7Vg-MC' });
+        // GA4 lead event (recommended event name). Consent mode applies: without Accept
+        // it is sent as a cookieless ping and GA4 models it.
+        window.gtag?.('event', 'generate_lead', { lead_type: 'meeting' });
         // Microsoft Ads (UET) conversion goal: custom event, action submit_lead_form.
         window.uetq?.push('event', 'submit_lead_form', {});
         // LinkedIn conversion "Demo request" (only fires if the visitor accepted cookies).

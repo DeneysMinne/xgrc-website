@@ -315,6 +315,9 @@ const solutions = ['SHEQX®', 'MSX®', 'MSXCyber®', 'ENVIRX®', 'ERM', 'ESG', '
         form.hidden = true;
         success.hidden = false;
         success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // GA4 lead event (recommended event name). Consent mode applies: without Accept
+        // it is sent as a cookieless ping and GA4 models it.
+        window.gtag?.('event', 'generate_lead', { lead_type: 'partner' });
       } else {
         throw new Error('non-2xx');
       }
