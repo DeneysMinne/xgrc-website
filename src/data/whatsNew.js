@@ -7,6 +7,13 @@
 export const whatsNew = {
   "xrm": [
     {
+      "version": "1.74.0",
+      "date": "2026-10-14",
+      "category": "new",
+      "title": "LinkedIn Lead Gen Form leads arrive in XRM automatically",
+      "description": "Leads from your LinkedIn Lead Gen Forms now appear in XRM within 15 minutes, tagged with the LinkedIn campaign they came from. If the same person already has an open lead, their response is added to it instead of creating a duplicate. Switch it on under Lead forms on your LinkedIn connection."
+    },
+    {
       "version": "1.73.0",
       "date": "2026-10-14",
       "category": "new",
