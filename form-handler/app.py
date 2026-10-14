@@ -228,6 +228,18 @@ def _verification_flags(data: dict) -> list:
     return flags
 
 
+# The opt-in wording shown on every lead form (src/components/MarketingOptIn.astro,
+# OPT_IN_TEXT). Keep the two identical: XRM stores this text as the consent evidence.
+OPT_IN_TEXT = ("Keep me updated about XGRC® Software news, events and offers by email or "
+               "WhatsApp. I can opt out at any time.")
+
+
+def _opted_in(data: dict) -> bool:
+    """XRM ENH-154: the form's unticked-by-default marketing opt-in."""
+    value = data.get("marketingConsent")
+    return value is True or (isinstance(value, str) and value.strip().lower() in ("yes", "true", "on"))
+
+
 def _source_summary(data: dict) -> list:
     """(label, value) pairs saying where this lead came from, from the
     attribution fields every form sends (window.xgrcAttribution() in
@@ -251,6 +263,8 @@ def _source_summary(data: dict) -> list:
         rows.append(("First page seen", data["_landing_page"]))
     if data.get("_source_page"):
         rows.append(("Submitted on", data["_source_page"]))
+    rows.append(("Marketing opt-in", "Yes, ticked: email and WhatsApp" if _opted_in(data)
+                 else "No (reply about this enquiry only)"))
     return rows
 
 
@@ -552,6 +566,11 @@ def _create_xrm_lead(data: dict) -> None:
         "landing_page": data.get("_landing_page") or None,
         "first_referrer": data.get("_first_referrer") or None,
         "heard_about": (data.get("heardAbout") or "").strip() or None,
+        # XRM ENH-154: the marketing opt-in, with its exact wording and the page,
+        # which XRM records as consent evidence. Older XRM builds ignore these.
+        "marketing_consent": _opted_in(data),
+        "consent_text": OPT_IN_TEXT,
+        "source_page": data.get("_source_page") or request.headers.get("Referer") or None,
     }
     resp = requests.post(
         XRM_LEAD_API_URL,

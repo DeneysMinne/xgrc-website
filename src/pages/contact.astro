@@ -1,4 +1,5 @@
 ---
+import MarketingOptIn from '../components/MarketingOptIn.astro';
 import Base from '../layouts/Base.astro';
 import { brand } from '../data/site.js';
 
@@ -85,6 +86,8 @@ const reasons = [
             <label for="message">Message <span class="req" aria-hidden="true">*</span></label>
             <textarea id="message" name="message" rows="4" required placeholder="How can we help?"></textarea>
           </div>
+
+          <MarketingOptIn />
 
           <div class="hp-field" aria-hidden="true">
             <label>Leave this field empty</label>

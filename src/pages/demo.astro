@@ -1,4 +1,5 @@
 ---
+import MarketingOptIn from '../components/MarketingOptIn.astro';
 import Base from '../layouts/Base.astro';
 import { brand } from '../data/site.js';
 
@@ -78,6 +79,7 @@ const FORM_ENDPOINT = "/api/demo";
           </div>
 
           <input type="hidden" name="_subject" value="Demo request from xgrcwebsite" />
+          <MarketingOptIn />
           <div class="hp-field" aria-hidden="true">
             <label>Leave this field empty</label>
             <input type="text" name="_hp" tabindex="-1" autocomplete="off" />
