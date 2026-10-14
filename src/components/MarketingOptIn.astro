@@ -1,0 +1,25 @@
+---
+// Marketing opt-in for lead forms (XRM ENH-154, POPIA s69). Unticked by
+// default: ticking it is the person's consent to marketing by email or
+// WhatsApp, and XRM records it with this wording and the page as evidence.
+// Leaving it unticked still lets us reply about the enquiry itself.
+// The form handler reads `marketingConsent` ("yes" when ticked).
+export const OPT_IN_TEXT = 'Keep me updated about XGRC® Software news, events and offers by email or WhatsApp. I can opt out at any time.';
+---
+<label class="opt-in">
+  <input type="checkbox" name="marketingConsent" value="yes" />
+  <span>
+    {OPT_IN_TEXT}
+    See our <a href="/legal/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>.
+  </span>
+</label>
+
+<style>
+  .opt-in {
+    display: flex; align-items: flex-start; gap: 10px;
+    margin: 4px 0 14px; font-size: 0.86rem; line-height: 1.5; color: var(--mute);
+    cursor: pointer; text-align: left;
+  }
+  .opt-in input { flex-shrink: 0; width: 18px; height: 18px; margin-top: 2px; accent-color: var(--cyan); cursor: pointer; }
+  .opt-in a { color: var(--cyan); }
+</style>

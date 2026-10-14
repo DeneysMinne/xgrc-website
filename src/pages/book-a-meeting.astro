@@ -1,4 +1,5 @@
 ---
+import MarketingOptIn from '../components/MarketingOptIn.astro';
 import Base from '../layouts/Base.astro';
 import { brand } from '../data/site.js';
 
@@ -81,6 +82,8 @@ const FORM_ENDPOINT = "/api/demo";
             <label for="message">What would you like to cover? <span class="opt">(optional)</span></label>
             <textarea id="message" name="message" rows="4" placeholder="e.g. Following up on our partner discussion..."></textarea>
           </div>
+
+          <MarketingOptIn />
 
           <div class="hp-field" aria-hidden="true">
             <label>Leave this field empty</label>
@@ -282,6 +285,7 @@ const FORM_ENDPOINT = "/api/demo";
         heardAbout: fd.get('heardAbout') || '',
         ...(window.xgrcAttribution?.() || {}),
         _meta_event_id: metaEventId,
+        marketingConsent: fd.get('marketingConsent') || '',
       };
 
       const res = await fetch(FORM_ENDPOINT, {

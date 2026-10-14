@@ -3,6 +3,7 @@
 // regulatory, and inspection checklist pages all render through this one layout.
 // Extracted from the original hand-copied src/pages/use-cases/*.astro files.
 // See docs/add-new-use-case.md to add a new page instead of copying this file.
+import MarketingOptIn from '../components/MarketingOptIn.astro';
 import Base from './Base.astro';
 import { solutionDetails, solutions } from '../data/site.js';
 import { useCaseRegistry } from '../data/useCaseRegistry.js';
@@ -295,6 +296,7 @@ const schema = {
             <label>Name<input type="text" name="name" required autocomplete="name" /></label>
             <label>Work email<input type="email" name="email" required autocomplete="email" /></label>
             <label>Company <span class="opt">(optional)</span><input type="text" name="company" autocomplete="organization" /></label>
+            <MarketingOptIn />
             <div class="hp-field" aria-hidden="true"><label>Leave this field empty<input type="text" name="_hp" tabindex="-1" autocomplete="off" /></label></div>
             <p class="form-error" data-error hidden>Please enter your name and a valid email address.</p>
             <button class="btn btn-primary" type="submit">Email me the checklist</button>
@@ -374,6 +376,7 @@ const schema = {
           _ga_client_id: (document.cookie.match(/_ga=GA\d\.\d\.(\d+\.\d+)/) || [])[1] || '',
           ...(window.xgrcAttribution?.() || {}),
           _hp: (data.get('_hp') || '').toString(),
+          marketingConsent: (data.get('marketingConsent') || '').toString(),
           _elapsed_ms: Date.now() - _loadT,
         }),
       }).catch(() => {}); // swallow errors — download still works
