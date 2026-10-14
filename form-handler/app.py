@@ -35,6 +35,7 @@ import logging
 import os
 import random
 import sys
+import threading
 import time
 from datetime import datetime, timezone
 
@@ -657,32 +658,50 @@ def demo_submit():
     data["_verify"] = _verification_flags(data)
     _log_submission(data)
 
+    # 14 Oct 2026: the XRM lead is created FIRST, inside the request (XRM is on
+    # this server, no internet needed). Everything that needs the internet
+    # (email via Microsoft Graph, GA4, Google Ads) runs in a background thread
+    # after the visitor already has their answer. Before this, a slow DNS
+    # lookup on the email step ran past gunicorn's 30 s timeout, the worker was
+    # killed, the visitor saw an error and the XRM lead was never created
+    # (LEAD-0071, Allbro, recovered from submissions.log).
+    if data["_repeat"]:
+        # Already a lead in XRM and already counted as a conversion; the
+        # email (marked as a repeat) carries anything new they wrote.
+        log.info("Repeat submission from <%s>, no new XRM lead", email)
+    else:
+        try:
+            _create_xrm_lead(data)
+        except Exception as exc:
+            log.error("XRM lead create failed: %s", exc)
+            # Still return success: the email below is the safety net.
+
+    threading.Thread(target=_after_response, args=(data,), daemon=True).start()
+    return jsonify({"ok": True}), 200
+
+
+def _after_response(data: dict) -> None:
+    """Internet-dependent follow-ups, off the request path. Each step is
+    independent: one failing never stops the others."""
+    email = data.get("email")
     try:
         _send_email(data)
     except Exception as exc:
-        log.error("Email send failed: %s", exc)
-        # Still return success — submission is saved; email failure is ops-side.
-
-    if data["_repeat"]:
-        # Already a lead in XRM and already counted as a conversion; the
-        # email above (marked as a repeat) carries anything new they wrote.
-        log.info("Repeat submission from <%s>, no new XRM lead", email)
-        return jsonify({"ok": True}), 200
-
+        log.error("Email send failed for <%s>: %s", email, exc)
+    if data.get("_repeat"):
+        return
     try:
-        _create_xrm_lead(data)
+        _send_ga4_event(data)
     except Exception as exc:
-        log.error("XRM lead create failed: %s", exc)
-        # Still return success — email is the existing safety net for this submission.
-
-    _send_ga4_event(data)
-    if data["_verify"]:
+        log.error("GA4 event failed for <%s>: %s", email, exc)
+    if data.get("_verify"):
         # Don't teach Google Ads that a suspicious lead is a conversion.
         log.info("Lead from <%s> flagged for verification: %s", email, "; ".join(data["_verify"]))
-    else:
+        return
+    try:
         _send_ads_conversion(data)
-
-    return jsonify({"ok": True}), 200
+    except Exception as exc:
+        log.error("Ads conversion failed for <%s>: %s", email, exc)
 
 
 @app.route("/api/demo/health", methods=["GET"])
