@@ -11,6 +11,10 @@ const CLARITY_ID = 'yrvmi233q2';
 // LinkedIn Insight Tag (Campaign Manager partner id). LinkedIn has no cookieless
 // consent mode, so unlike gtag/UET it is not loaded at all until Accept.
 const LINKEDIN_PARTNER_ID = '500428';
+// Meta Pixel (Facebook and Instagram ads). Like LinkedIn, it is not loaded at
+// all until Accept. Set META_PIXEL_ID once the Pixel exists in Events Manager;
+// while it is empty, the Pixel never loads and window.xgrcMetaLead does nothing.
+const META_PIXEL_ID = '';
 ---
 <div class="cc" id="cookie-consent" role="dialog" aria-modal="false" aria-labelledby="cc-title" aria-describedby="cc-text" hidden>
   <div class="cc-inner">
@@ -28,7 +32,7 @@ const LINKEDIN_PARTNER_ID = '500428';
   </div>
 </div>
 
-<script is:inline define:vars={{ CLARITY_ID, LINKEDIN_PARTNER_ID }}>
+<script is:inline define:vars={{ CLARITY_ID, LINKEDIN_PARTNER_ID, META_PIXEL_ID }}>
   (function () {
     var banner = document.getElementById('cookie-consent');
     // Read the saved choice here: Base.astro's head scripts are bundled as
@@ -36,7 +40,7 @@ const LINKEDIN_PARTNER_ID = '500428';
     var saved = (document.cookie.match(/(?:^|; )xgrc_consent=(granted|denied)/) || [])[1] || '';
     var isProduction = ['xgrcsoftware.com', 'www.xgrcsoftware.com'].indexOf(location.hostname) !== -1;
     var YEAR = 31536000;
-    var NON_ESSENTIAL = /^(_ga|_gid|_gcl|_clck|_clsk|_uetsid|_uetvid|li_fat_id|xgrc_(?!consent))/;
+    var NON_ESSENTIAL = /^(_ga|_gid|_gcl|_clck|_clsk|_uetsid|_uetvid|li_fat_id|_fbp|_fbc|xgrc_(?!consent))/;
 
     function loadClarity() {
       if (!CLARITY_ID || window.clarity || !isProduction) return;
@@ -63,6 +67,27 @@ const LINKEDIN_PARTNER_ID = '500428';
       })(window.lintrk);
     }
 
+    function loadMetaPixel() {
+      if (!META_PIXEL_ID || window.fbq || !isProduction) return;
+      (function (f, b, e, v, n, t, s) {
+        n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+        if (!f._fbq) f._fbq = n;
+        n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+        t = b.createElement(e); t.async = true; t.src = v;
+        s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      window.fbq('consent', 'grant');
+      window.fbq('init', META_PIXEL_ID);
+      window.fbq('track', 'PageView');
+    }
+
+    // Lead event for the demo and book-a-meeting forms. eventId is also sent to
+    // the form handler (_meta_event_id), so a later server-side Conversions API
+    // event for the same lead can be deduplicated against this one.
+    window.xgrcMetaLead = function (eventId) {
+      if (window.fbq && window.xgrcConsent === 'granted') window.fbq('track', 'Lead', {}, { eventID: eventId });
+    };
+
     function clearNonEssential() {
       var host = location.hostname;
       document.cookie.split('; ').forEach(function (c) {
@@ -86,7 +111,9 @@ const LINKEDIN_PARTNER_ID = '500428';
         if (window.xgrcCaptureAttribution) window.xgrcCaptureAttribution();
         loadClarity();
         loadLinkedIn();
+        loadMetaPixel();
       } else {
+        if (window.fbq) window.fbq('consent', 'revoke');
         if (window.clarity) window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'denied' });
         clearNonEssential();
       }
@@ -107,7 +134,7 @@ const LINKEDIN_PARTNER_ID = '500428';
       banner.querySelector('[data-cc="denied"]').focus();
     });
 
-    if (saved === 'granted') { loadClarity(); loadLinkedIn(); }
+    if (saved === 'granted') { window.xgrcConsent = 'granted'; loadClarity(); loadLinkedIn(); loadMetaPixel(); }
     else if (!saved) banner.hidden = false;
   })();
 </script>

@@ -379,6 +379,9 @@ const FORM_ENDPOINT = "/api/demo";
       const ga = (document.cookie.match(/_ga=GA\d\.\d\.(\d+\.\d+)/) || [])[1];
       if (ga) body._ga_client_id = ga;
       Object.assign(body, window.xgrcAttribution?.() || {});
+      // Shared with the Meta Lead event below so a server-side event can be deduplicated.
+      const metaEventId = 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+      body._meta_event_id = metaEventId;
       body._elapsed_ms = Date.now() - _loadT;
       const res  = await fetch(FORM_ENDPOINT, {
         method: 'POST',
@@ -395,6 +398,8 @@ const FORM_ENDPOINT = "/api/demo";
         window.uetq?.push('event', 'submit_lead_form', {});
         // LinkedIn conversion "Demo request" (only fires if the visitor accepted cookies).
         window.lintrk?.('track', { conversion_id: 31926209 });
+        // Meta Pixel Lead (only fires if the visitor accepted cookies and the Pixel ID is set).
+        window.xgrcMetaLead?.(metaEventId);
       } else {
         throw new Error('non-2xx');
       }
