@@ -7,6 +7,13 @@
 export const whatsNew = {
   "xrm": [
     {
+      "version": "1.73.0",
+      "date": "2026-10-14",
+      "category": "new",
+      "title": "Tell Google Ads which leads became real business",
+      "description": "Revenue Copilot can now send what happened to each ad-click lead back to Google Ads: qualified, became an opportunity, and won with the deal value. Google's bidding then learns which clicks bring real business, not just form fills. Switch it on per connection under Lead outcomes; XRM never changes your bids or budgets."
+    },
+    {
       "version": "1.72.0",
       "date": "2026-10-01",
       "category": "new",
