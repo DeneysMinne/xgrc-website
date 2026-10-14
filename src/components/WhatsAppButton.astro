@@ -30,6 +30,8 @@ const WA_PATH = 'M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45
       // Counted like a lead contact. Google and Microsoft get cookieless pings
       // until consent (consent mode); the Meta Pixel only exists after Accept.
       if (window.gtag) window.gtag('event', 'whatsapp_click', { link_location: where, page_path: location.pathname });
+      // Google Ads conversion "WhatsApp chat started" (id 7844629395, secondary: reported, not bid on).
+      if (window.gtag) window.gtag('event', 'conversion', { send_to: 'AW-744549022/v-5hCJOXzpwdEJ7Vg-MC' });
       if (window.uetq) window.uetq.push('event', 'whatsapp_click', { event_label: where });
       if (window.fbq && window.xgrcConsent === 'granted') window.fbq('track', 'Contact', { content_name: 'WhatsApp ' + where });
     });
