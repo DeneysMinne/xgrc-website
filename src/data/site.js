@@ -9,7 +9,10 @@ export const brand = {
   tagline: 'Synergy in Assurance, Strength in Compliance®',
   promise: 'Driving Compliance® within your organisation',
   email: 'info@xgrcsoftware.com',
-  phone: '+27 (0)87 802 0179'
+  phone: '+27 (0)87 802 0179',
+  // Sales WhatsApp (WhatsApp Business app, registered 13 Oct 2026).
+  whatsapp: '+27 78 401 6266',
+  whatsappLink: 'https://wa.me/27784016266'
 };
 
 export const socialLinks = [
