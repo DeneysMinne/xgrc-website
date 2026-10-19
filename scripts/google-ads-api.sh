@@ -37,7 +37,7 @@ REFRESH_TOKEN_FILE="${HERE}/.secrets/google-ads-refresh-token"
 
 MANAGER_ID="8918834747"
 CUSTOMER_ID="9599176549"
-API_VERSION="v22"
+API_VERSION="v23"  # v22 deprecated 19 Oct 2026
 
 for f in "$CLIENT_SECRET_FILE" "$DEV_TOKEN_FILE" "$REFRESH_TOKEN_FILE"; do
     if [ ! -f "$f" ]; then
