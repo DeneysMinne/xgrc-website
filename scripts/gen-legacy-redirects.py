@@ -152,6 +152,17 @@ def main():
     for slug, target in known.items():
         slug_rules.setdefault(slug, target)
 
+    # WordPress also served every post at its undated permalink (/slug/), and
+    # old links and bookmarks use both forms: 168 of them still 404'd on
+    # 19 Oct 2026. Same target as the dated rule; never shadow a live page.
+    for slug, target in sorted(slug_rules.items()):
+        if (DIST / slug).exists():
+            continue
+        for v in (f'/{slug}', f'/{slug}/'):
+            if v not in exact_sources and v != target:
+                exact.append((v, target))
+                exact_sources.add(v)
+
     lines = [BEGIN,
              '# Old URLs Bing still crawls that section 1 (built from GSC) missed.',
              '# Exact rules for the undated permalinks and WordPress leftovers:']
