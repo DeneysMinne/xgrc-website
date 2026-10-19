@@ -559,6 +559,8 @@ def _create_xrm_lead(data: dict) -> None:
         "msclkid": data.get("_msclkid") or None,
         "gbraid": data.get("_gbraid") or None,
         "wbraid": data.get("_wbraid") or None,
+        # LinkedIn ad click id (XRM ENH-162 stores it on the lead).
+        "li_fat_id": data.get("_li_fat_id") or None,
         "utm_source": data.get("_utm_source") or None,
         "utm_medium": data.get("_utm_medium") or None,
         "utm_campaign": data.get("_utm_campaign") or None,
