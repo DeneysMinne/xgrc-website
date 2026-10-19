@@ -255,6 +255,8 @@ def _source_summary(data: dict) -> list:
         rows.append(("Microsoft Ads", "Yes, arrived from a Bing ad click"))
     if data.get("_fbclid"):
         rows.append(("Meta Ads", "Yes, arrived from a Facebook or Instagram ad click"))
+    if data.get("_li_fat_id"):
+        rows.append(("LinkedIn Ads", "Yes, arrived from a LinkedIn ad click"))
     utm = " / ".join(v for v in (data.get("_utm_source"), data.get("_utm_medium"), data.get("_utm_campaign")) if v)
     if utm:
         rows.append(("Campaign", utm))

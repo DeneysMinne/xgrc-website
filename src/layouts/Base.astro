@@ -153,43 +153,87 @@ const orgSchema = JSON.stringify({
          - msclkid, Microsoft Advertising's click id on Bing ad clicks.
          - fbclid, Meta's click id on Facebook/Instagram ad clicks.
          - utm_* tags.
+         - li_fat_id, LinkedIn's click id on LinkedIn ad clicks.
          Both are only set when present on the URL, so a later organic visit
          never wipes a real value. Landing page and referring site are
          first-touch: set once, on the first visit from outside the site.
          Keeps the xgrc_gclid / xgrc_utm_* cookie names form-handler and
-         earlier forms already use. -->
+         earlier forms already use.
+         Without consent nothing is stored on the device. Instead, like
+         Google's url_passthrough, the values ride along in the URL of each
+         internal link the visitor clicks during that visit (added at click
+         time, so crawlers never see them), with the landing page as xgrc_lp
+         and the referring site as xgrc_ref. A form or a later Accept on any
+         page of the visit then still sees where the visit started. -->
     <script>
       (function () {
         const MAX_AGE = 7776000;
         const set = (k, v) => { document.cookie = `xgrc_${k}=${encodeURIComponent(v)}; Max-Age=${MAX_AGE}; Path=/; SameSite=Lax`; };
         const get = (k) => { const m = document.cookie.match(new RegExp(`(?:^|; )xgrc_${k}=([^;]*)`)); return m ? decodeURIComponent(m[1]) : ''; };
         const p = new URLSearchParams(window.location.search);
-        const TRACKED = ['gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        const TRACKED = ['gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid', 'li_fat_id', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
         const ref = document.referrer || '';
         const external = ref && !ref.startsWith(window.location.origin);
+        // Where this visit started: carried in the URL from an earlier page of
+        // the visit, else this page when the visitor arrived from outside.
+        // The referring site is kept to its origin (no path or query).
+        const CARRY_LP = 'xgrc_lp';
+        const CARRY_REF = 'xgrc_ref';
+        const arrived = external || !ref;
+        const landing = p.get(CARRY_LP) || (arrived ? window.location.pathname : '');
+        let referrer = p.get(CARRY_REF) || '';
+        if (!referrer && arrived) {
+          try { referrer = external ? new URL(ref).origin + '/' : '(direct)'; } catch (e) { referrer = '(direct)'; }
+        }
         // Stored only after the visitor accepts cookies (CookieConsent.astro
-        // calls this on Accept, so the landing page's click ids are kept).
+        // calls this on Accept, so the visit's click ids are kept).
         window.xgrcCaptureAttribution = function () {
           for (const key of TRACKED) {
             const value = p.get(key);
             if (value) set(key, value);
           }
-          if (!get('landing_page') && (external || !ref)) {
-            set('landing_page', (window.location.pathname + window.location.search).slice(0, 300));
-            set('first_referrer', external ? ref.slice(0, 300) : '(direct)');
+          if (!get('landing_page') && landing) {
+            set('landing_page', landing.slice(0, 300));
+            set('first_referrer', (referrer || '(direct)').slice(0, 300));
           }
         };
         if (window.xgrcConsent === 'granted') window.xgrcCaptureAttribution();
         // Without consent nothing is stored, but a form still reports the
-        // click ids and UTM tags on the page it was submitted from.
+        // click ids, UTM tags and start of the visit carried in the URL.
         window.xgrcAttribution = function () {
           const out = {};
-          for (const key of [...TRACKED, 'landing_page', 'first_referrer']) {
-            const value = get(key) || (TRACKED.includes(key) ? p.get(key) : '');
+          for (const key of TRACKED) {
+            const value = get(key) || p.get(key);
             if (value) out[`_${key}`] = value;
           }
+          const lp = get('landing_page') || landing;
+          const fr = get('first_referrer') || referrer;
+          if (lp) out._landing_page = lp;
+          if (fr) out._first_referrer = fr;
           return out;
         };
+        // Carry the visit's values onto internal links, only while the
+        // visitor has not accepted cookies (after Accept the cookies do it).
+        const carry = new URLSearchParams();
+        for (const key of TRACKED) if (p.get(key)) carry.set(key, p.get(key));
+        if (landing) carry.set(CARRY_LP, landing.slice(0, 200));
+        if (referrer) carry.set(CARRY_REF, referrer.slice(0, 100));
+        if (carry.toString()) {
+          const decorate = (e) => {
+            if (window.xgrcConsent === 'granted') return;
+            const a = e.target.closest && e.target.closest('a[href]');
+            if (!a) return;
+            let url;
+            try { url = new URL(a.href, window.location.href); } catch (err) { return; }
+            if (url.origin !== window.location.origin || /\.(pdf|xlsx?|docx?|zip|png|jpe?g|svg|webp)$/i.test(url.pathname)) return;
+            if (url.pathname === window.location.pathname && url.hash) return;
+            for (const [k, v] of carry) if (!url.searchParams.has(k)) url.searchParams.set(k, v);
+            a.href = url.toString();
+          };
+          document.addEventListener('mousedown', decorate, true);
+          document.addEventListener('click', decorate, true);
+          document.addEventListener('keydown', (e) => { if (e.key === 'Enter') decorate(e); }, true);
+        }
       })();
     </script>
     <!-- A full-page load to a URL with a #hash (e.g. a resource card linking
