@@ -7,25 +7,18 @@
 export const whatsNew = {
   "xrm": [
     {
+      "version": "1.78.0",
+      "date": "2026-10-20",
+      "category": "new",
+      "title": "See what each marketing channel costs per qualified lead, deal and rand of revenue",
+      "description": "Revenue Copilot now puts spend next to results for every channel: qualified leads, deals, pipeline value and won revenue, with cost per qualified lead, true customer acquisition cost and return on ad spend. Switch to By month to follow each month of leads as they mature, add agency, event and tool costs so acquisition cost is complete, and check a data quality line before trusting the numbers."
+    },
+    {
       "version": "1.76.0",
       "date": "2026-10-14",
       "category": "new",
       "title": "WhatsApp in XRM: one shared inbox, every message on the record",
       "description": "Connect your business WhatsApp number and every conversation with a lead or contact is kept on their timeline, one entry per day. The team shares an inbox with owners, unread counts and search; messages from unknown numbers wait to be turned into a lead or ignored, so spam never reaches your pipeline. Reply in your own words within 24 hours of their last message, or send an approved template after that. Consent is checked on every send, and STOP or START replies are recorded as evidence. An admin connects the number under Configuration, WhatsApp settings."
-    },
-    {
-      "version": "1.75.0",
-      "date": "2026-10-14",
-      "category": "new",
-      "title": "Record consent to be contacted",
-      "description": "Every lead and contact now has a Consent to contact section. Record when someone agrees to hear from you, or asks you to stop, by WhatsApp, email, SMS or phone. Nothing is ever overwritten, so the history is your proof, and XRM shows whether a marketing message is allowed right now. Consent moves across when a lead is converted."
-    },
-    {
-      "version": "1.75.0",
-      "date": "2026-10-14",
-      "category": "improved",
-      "title": "Claude can log WhatsApp chats and work with phone numbers",
-      "description": "With the XRM connector, Claude can now log a call, meeting or WhatsApp chat on a contact, create a lead or contact with only a phone number, and find people by phone number."
     },
     {
       "version": "1.75.0",
@@ -47,6 +40,20 @@ export const whatsNew = {
       "category": "improved",
       "title": "Leads and contacts with just a phone number",
       "description": "A lead or contact now needs an email address or a phone number, not always an email. A WhatsApp enquiry or a phone call with no email can be saved straight away, and converting such a lead reuses a contact who already has that number."
+    },
+    {
+      "version": "1.75.0",
+      "date": "2026-10-14",
+      "category": "improved",
+      "title": "Claude can log WhatsApp chats and work with phone numbers",
+      "description": "With the XRM connector, Claude can now log a call, meeting or WhatsApp chat on a contact, create a lead or contact with only a phone number, and find people by phone number."
+    },
+    {
+      "version": "1.75.0",
+      "date": "2026-10-14",
+      "category": "new",
+      "title": "Record consent to be contacted",
+      "description": "Every lead and contact now has a Consent to contact section. Record when someone agrees to hear from you, or asks you to stop, by WhatsApp, email, SMS or phone. Nothing is ever overwritten, so the history is your proof, and XRM shows whether a marketing message is allowed right now. Consent moves across when a lead is converted."
     },
     {
       "version": "1.74.1",
