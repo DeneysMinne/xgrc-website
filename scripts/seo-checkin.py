@@ -73,116 +73,94 @@ def ads(days):
 
 
 # Marketing results from XRM (Strategix tenant), added 20 Oct 2026 for the
-# closed-loop measurement brief (XRM ENH-162). Read-only. Leads are counted
-# by the week they arrived (a lead qualified later still counts in its own
-# week), excluding deleted and Disqualified leads.
+# closed-loop measurement brief (XRM ENH-162). The figures come from XRM's own
+# Revenue Copilot calculation (attribution_service), run read-only in XRM's
+# environment, so this email and the Revenue Copilot grid can never disagree.
+# Leads are counted by the days they arrived (a lead qualified later still
+# counts in its own week); windows are whole days up to yesterday.
 XRM_CLIENT_ID = 9
-CHANNEL_SQL = """
-  CASE WHEN COALESCE(l.gclid, l.gbraid, l.wbraid) IS NOT NULL THEN 'Google Ads'
-       WHEN l.msclkid IS NOT NULL OR (l.utm_source ILIKE 'bing' AND l.utm_medium ILIKE 'cpc') THEN 'Microsoft Ads'
-       WHEN l.li_fat_id IS NOT NULL OR l.utm_source ILIKE 'linkedin%' THEN 'LinkedIn'
-       WHEN l.fbclid IS NOT NULL OR l.utm_source ILIKE ANY (ARRAY['facebook%','instagram%','meta%']) THEN 'Meta'
-       WHEN s.name IN ('Referral', 'Partner', 'Event', 'Cold Outreach', 'Inbound Call') THEN s.name
-       WHEN s.name = 'Social Media' THEN 'Social media (unpaid)'
-       WHEN l.first_referrer ~* '(google|bing|duckduckgo|yahoo|ecosia)\\.' THEN 'Organic search'
-       WHEN l.first_referrer = '(direct)' THEN 'Direct'
-       WHEN l.first_referrer IS NOT NULL THEN 'Other website'
-       ELSE 'Unknown' END"""
-MARKETING_SQL = f"""
-WITH w AS (SELECT now() - interval '7 days' AS t7, now() - interval '14 days' AS t14,
-                  date_trunc('month', now()) AS mtd),
-q AS (SELECT qualified_status_id AS qs FROM xrm_ad_conversion_settings
-      WHERE client_id = {XRM_CLIENT_ID} AND qualified_status_id IS NOT NULL LIMIT 1),
-leads AS (
-  SELECT l.created_at, {CHANNEL_SQL} AS channel,
-         (l.converted_to_opportunity_id IS NOT NULL OR l.status_id = (SELECT qs FROM q)) AS qualified,
-         l.converted_to_opportunity_id IS NOT NULL AS opportunity
-  FROM xrm_lead l
-  LEFT JOIN xrm_lead_source s ON s.id = l.source_id AND s.client_id = l.client_id
-  LEFT JOIN xrm_lead_status st ON st.id = l.status_id AND st.client_id = l.client_id
-  WHERE l.client_id = {XRM_CLIENT_ID} AND l.is_active AND COALESCE(st.name, '') <> 'Disqualified'),
-spend AS (
-  SELECT CASE provider WHEN 'google_ads' THEN 'Google Ads' WHEN 'linkedin' THEN 'LinkedIn'
-                       WHEN 'microsoft_ads' THEN 'Microsoft Ads' WHEN 'meta' THEN 'Meta' END AS channel,
-         metric_date, spend
-  FROM xrm_marketing_metric_daily
-  WHERE client_id = {XRM_CLIENT_ID} AND provider IN ('google_ads', 'linkedin', 'microsoft_ads', 'meta'))
-SELECT json_build_object(
-  'leads', (SELECT json_agg(x) FROM (
-      SELECT channel,
-             count(*) FILTER (WHERE created_at >= w.t7) AS l7,
-             count(*) FILTER (WHERE created_at >= w.t14 AND created_at < w.t7) AS p7,
-             count(*) FILTER (WHERE created_at >= w.mtd) AS mtd,
-             count(*) FILTER (WHERE qualified AND created_at >= w.t7) AS q7,
-             count(*) FILTER (WHERE qualified AND created_at >= w.t14 AND created_at < w.t7) AS qp7,
-             count(*) FILTER (WHERE qualified AND created_at >= w.mtd) AS qmtd,
-             count(*) FILTER (WHERE opportunity AND created_at >= w.mtd) AS ommtd
-      FROM leads, w WHERE created_at >= LEAST(w.t14, w.mtd) GROUP BY channel ORDER BY channel) x),
-  'spend', (SELECT json_agg(x) FROM (
-      SELECT channel,
-             COALESCE(sum(spend) FILTER (WHERE metric_date >= current_date - 7), 0) AS s7,
-             COALESCE(sum(spend) FILTER (WHERE metric_date >= current_date - 14 AND metric_date < current_date - 7), 0) AS p7,
-             COALESCE(sum(spend) FILTER (WHERE metric_date >= date_trunc('month', current_date)), 0) AS mtd
-      FROM spend GROUP BY channel ORDER BY channel) x),
-  'uploads', (SELECT json_agg(x) FROM (
-      SELECT status, count(*) AS n FROM xrm_ad_conversion_event
-      WHERE client_id = {XRM_CLIENT_ID} AND created_at >= now() - interval '7 days' GROUP BY status) x),
-  'qualified_status_set', (SELECT count(*) FROM q) > 0)
+XRM_BACKEND = '/opt/www/xrm/xrm-backend'
+MARKETING_PY = f"""
+import json
+from datetime import date, timedelta
+from app.services import attribution_service as a
+c, today = {XRM_CLIENT_ID}, date.today()
+windows = {{'p7': (today - timedelta(days=14), today - timedelta(days=7)),
+           'l7': (today - timedelta(days=7), today),
+           'mtd': (today.replace(day=1), today + timedelta(days=1))}}
+out = {{}}
+for k, (s, e) in windows.items():
+    rows = a.compute_cohort_metrics(c, s, e, 90)
+    out[k] = {{'rows': rows, 'totals': a.cohort_totals(c, s, e, rows), 'quality': a.data_quality(c, s, e)}}
+print(json.dumps(out, default=str))
 """
+CHANNEL_NAMES = {'google_ads': 'Google Ads', 'linkedin': 'LinkedIn', 'microsoft_ads': 'Microsoft Ads', 'meta': 'Meta'}
 
 
 def marketing():
-    """Spend, leads, qualified leads and uploads from XRM (read-only)."""
+    """Revenue Copilot figures for the previous 7 days, last 7 days and month to date."""
     out = run('sudo', '-n', 'bash', '-c',
-              'set -a; . /etc/xrm/api.env; exec psql "$DATABASE_URL" -X -A -t -v ON_ERROR_STOP=1 -c "$0"',
-              MARKETING_SQL)
+              'set -a; . /etc/xrm/api.env; cd "$1" && exec .venv/bin/python -c "$0"',
+              MARKETING_PY, XRM_BACKEND)
     return json.loads(out.strip() or '{}')
 
 
 def marketing_rows(m):
     """Rows for the marketing table: measure | previous 7 days | last 7 days | month to date."""
-    def r(label, prev, now, mtd, better='up', money=False):
-        fmt = (lambda v: f'R{v:,.0f}') if money else (lambda v: f'{v:,}' if isinstance(v, int) else f'{v:,.1f}')
-        show = lambda v: 'n/a' if v is None else fmt(v)
+    def r(label, prev, now, mtd, better='up', money=False, percent=False):
+        def show(v):
+            if v is None:
+                return 'n/a'
+            if money:
+                return f'R{v:,.0f}'
+            if percent:
+                return f'{100 * v:.0f}%'
+            return f'{v:,}' if isinstance(v, int) else f'{v:,.1f}'
         mark = ''
         if None not in (prev, now) and now != prev:
             mark = ' style="color:#0a7d3c"' if (now > prev) == (better == 'up') else ' style="color:#b3261e"'
         return f'<tr><td>{html.escape(label)}</td><td>{show(prev)}</td><td{mark}><b>{show(now)}</b></td><td>{show(mtd)}</td></tr>'
 
-    leads = m.get('leads') or []
-    spend = {s['channel']: s for s in (m.get('spend') or [])}
-    by = {l['channel']: l for l in leads}
+    def by_channel(window):
+        return {row['channel']: row for row in m[window]['rows']}
+    p7, l7, mtd = by_channel('p7'), by_channel('l7'), by_channel('mtd')
+    get = lambda rows, ch, k: (rows.get(ch) or {}).get(k) or 0
+    label = lambda ch: CHANNEL_NAMES.get(ch, ch[:1].upper() + ch[1:])
+
     rows = ['<tr><th colspan=4 align=left>Spend by platform</th></tr>']
-    for ch in ('Google Ads', 'LinkedIn', 'Microsoft Ads', 'Meta'):
-        s = spend.get(ch)
-        if s:
-            rows.append(r(ch, float(s['p7']), float(s['s7']), float(s['mtd']), 'down', money=True))
+    for ch in CHANNEL_NAMES:
+        if any(ch in w for w in (p7, l7, mtd)):
+            rows.append(r(label(ch), get(p7, ch, 'spend'), get(l7, ch, 'spend'), get(mtd, ch, 'spend'), 'down', money=True))
         else:
-            rows.append(f'<tr><td>{ch}</td><td colspan=3>not connected to XRM, spend unknown</td></tr>')
+            rows.append(f'<tr><td>{label(ch)}</td><td colspan=3>not connected to XRM, spend unknown</td></tr>')
     rows.append('<tr><th colspan=4 align=left>Leads by channel (by the week they arrived), and how many are now qualified</th></tr>')
-    for l in leads:
-        rows.append(r(f'{l["channel"]}', l['p7'], l['l7'], l['mtd']))
-        if l['q7'] or l['qp7'] or l['qmtd']:
-            rows.append(r(f'{l["channel"]}: qualified', l['qp7'], l['q7'], l['qmtd']))
-    tot = lambda k: sum(l[k] for l in leads)
-    rows.append(r('All leads', tot('p7'), tot('l7'), tot('mtd')))
-    rows.append(r('All qualified leads', tot('qp7'), tot('q7'), tot('qmtd')))
-    rows.append(r('Opportunities created from this month\'s leads', None, None, tot('ommtd')))
+    channels = sorted({*p7, *l7, *mtd}, key=lambda ch: -get(mtd, ch, 'leads_count'))
+    for ch in channels:
+        if not (get(p7, ch, 'leads_count') or get(l7, ch, 'leads_count') or get(mtd, ch, 'leads_count')):
+            continue
+        rows.append(r(label(ch), get(p7, ch, 'leads_count'), get(l7, ch, 'leads_count'), get(mtd, ch, 'leads_count')))
+        if get(p7, ch, 'qualified_count') or get(l7, ch, 'qualified_count') or get(mtd, ch, 'qualified_count'):
+            rows.append(r(f'{label(ch)}: qualified', get(p7, ch, 'qualified_count'), get(l7, ch, 'qualified_count'),
+                          get(mtd, ch, 'qualified_count')))
+    t = {w: m[w]['totals'] for w in ('p7', 'l7', 'mtd')}
+    rows.append(r('All leads (incl. disqualified)', t['p7']['leads_count'], t['l7']['leads_count'], t['mtd']['leads_count']))
+    rows.append(r('All qualified leads', t['p7']['qualified_count'], t['l7']['qualified_count'], t['mtd']['qualified_count']))
+    rows.append(r('Deals created from these leads', t['p7']['opportunities_count'], t['l7']['opportunities_count'],
+                  t['mtd']['opportunities_count']))
     rows.append('<tr><th colspan=4 align=left>Cost per qualified lead (month to date)</th></tr>')
-    for ch, s in spend.items():
-        q = by.get(ch, {}).get('qmtd', 0)
-        cost = float(s['mtd'])
-        label = f'R{cost / q:,.0f}' if q else f'no qualified leads yet (R{cost:,.0f} spent)'
-        rows.append(f'<tr><td>{html.escape(ch)}</td><td colspan=3>{label}</td></tr>')
-    up = {u['status']: u['n'] for u in (m.get('uploads') or [])}
-    rows.append('<tr><th colspan=4 align=left>Results sent back to ad platforms (last 7 days)</th></tr>')
-    rows.append(f'<tr><td>Uploads</td><td colspan=3>{up.get("sent", 0)} sent, {up.get("failed", 0)} failed, '
-                f'{up.get("pending", 0)} waiting, {up.get("expired", 0)} expired</td></tr>')
-    unknown = by.get('Unknown', {})
-    share = lambda k, n: (100.0 * unknown.get(k, 0) / n) if n else None
+    for ch in CHANNEL_NAMES:
+        if ch in mtd:
+            q, cost = get(mtd, ch, 'qualified_count'), get(mtd, ch, 'spend')
+            text = f'R{cost / q:,.0f}' if q else f'no qualified leads yet (R{cost:,.0f} spent)'
+            rows.append(f'<tr><td>{label(ch)}</td><td colspan=3>{text}</td></tr>')
+    q = {w: m[w]['quality'] for w in ('p7', 'l7', 'mtd')}
+    rows.append('<tr><th colspan=4 align=left>Results sent back to ad platforms</th></tr>')
+    rows.append(r('Uploads sent', q['p7']['uploads_sent'], q['l7']['uploads_sent'], q['mtd']['uploads_sent']))
+    rows.append(r('Uploads failed or expired', q['p7']['uploads_failed'] + q['p7']['uploads_expired'],
+                  q['l7']['uploads_failed'] + q['l7']['uploads_expired'], q['mtd']['uploads_failed'] + q['mtd']['uploads_expired'], 'down'))
     rows.append('<tr><th colspan=4 align=left>Data quality</th></tr>')
-    rows.append(r('Leads with unknown source (%)', share('p7', tot('p7')), share('l7', tot('l7')),
-                  share('mtd', tot('mtd')), 'down'))
+    rows.append(r('Leads with unknown source', q['p7']['unknown_pct'], q['l7']['unknown_pct'], q['mtd']['unknown_pct'], 'down', percent=True))
+    rows.append(r('Repeat leads from the same person', q['p7']['repeat_leads'], q['l7']['repeat_leads'], q['mtd']['repeat_leads'], 'down'))
     return rows
 
 
