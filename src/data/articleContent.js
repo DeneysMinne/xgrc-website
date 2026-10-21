@@ -4567,4 +4567,68 @@ Close the Year with Evidence, Not Assumptions
 A year of SHEQ work deserves better than a page of totals. Use the year-end review to read your leading and lagging indicators together, find the patterns, test whether actions worked and leave the room with decisions. That is how a year of governance becomes a future of assurance on the shop floor.
 
 Before your review, work through the free <a href="/use-cases/safety-management/">safety management checklist</a>, or take the <a href="/tour/">live product tour</a> to see SHEQ dashboards built on sample data.`,
+'from-risk-registers-to-risk-intelligence': `Almost every organisation has a risk register. Far fewer have one that anybody consults when making a decision. The difference between the two is not the template or the scoring matrix. It is whether the register is a record compiled for the next committee meeting or a working view of exposure that changes as the business changes.
+
+What is a risk register?
+
+A risk register is the structured record of an organisation's identified risks, showing for each one its cause and consequence, owner, inherent and residual rating, the controls relied on, the treatment actions planned and their status. A living risk register goes further: it links each risk to the controls, incidents, audit findings and obligations that affect it, so its ratings move when the evidence moves.
+
+Why Static Risk Registers Fail
+
+The static register is easy to recognise. It is updated in the fortnight before the risk committee meets, usually by someone in the risk function emailing owners for changes. Ratings are carried forward unless someone objects. Controls are listed by name, with no indication of whether anyone has tested them. Treatment actions have due dates that passed two quarters ago.
+
+None of this is the fault of the people involved. A spreadsheet register has no connection to the operational systems where the evidence lives, so the only way to update it is to ask people what they think. That produces a register of opinions, which is a historical record rather than a view of current exposure. We compared the limitations of traditional tools in <a href="/insights/erm-software-vs-traditional-risk-tools/">ERM software versus traditional risk tools</a>.
+
+What Risk Intelligence Means in Practice
+
+Risk intelligence is not a product category. It is the ability to interpret risk information in the context of objectives, operations and obligations, and to notice when something has changed. Consider a supply chain disruption risk. On a static register it has a rating and three controls. In a connected view, the same risk shows that two critical suppliers have expired certifications, that a related incident was logged at a distribution centre last month, that internal audit rated the supplier onboarding control as partially effective, and that the treatment action to qualify an alternative supplier is overdue. Same risk, very different conversation.
+
+The point is not more data. It is that the evidence relevant to a risk arrives at the risk, rather than waiting for someone to remember it.
+
+What a Living Risk Register Contains
+
+A register that supports decisions usually has these characteristics:
+
+- Risks written as cause, event and consequence, so owners can tell what they are actually managing
+- A named owner with authority over the response, not just the person who filled in the form
+- Controls linked as records, each with an owner, a test date and an effectiveness rating
+- Live links to incidents, audit findings and compliance obligations that touch the risk
+- Treatment actions with owners and due dates, escalated automatically when they slip
+- Key risk indicators with thresholds tied to risk appetite
+
+If you are starting from a spreadsheet, our free <a href="/use-cases/risk-register-template/">risk register template</a> covers the core fields and is a sensible bridge to a connected register.
+
+Risk Ownership Is More Than a Name in a Column
+
+Every material risk needs an owner who coordinates assessment, monitoring and response. Ownership only means something when the owner knows the review frequency, the escalation triggers and what the committee expects to see. A useful test is to ask an owner, without notice, what has changed about their risk since the last review and what evidence supports the current rating. If the answer is a pause, the register is not doing its job.
+
+How Does a Risk Register Support King V?
+
+Principle 8 of King V asks the governing body to govern risk so that the organisation can set and achieve its strategic objectives. Among its recommended practices, the governing body agrees the nature and extent of risk the organisation should be willing to take, and the limit of potential loss it has the capacity to tolerate, and oversees that risk management is integrated and embedded in decision making. A register that is never consulted outside committee meetings cannot show integration into decisions. A register linked to objectives, appetite thresholds and current evidence can. The King V Code is available from the <a href="https://www.iodsa.co.za/page/king-v" rel="noopener">Institute of Directors in South Africa</a>, and <a href="https://www.iso.org/standard/65694.html" rel="noopener">ISO 31000:2018</a> provides the widely used guidance on the risk management process itself.
+
+Report Change, Not Just Ratings
+
+Boards and executive committees need to know what has moved, why, and what is being done. A heat map is a useful snapshot, and our guide on <a href="/insights/how-to-read-a-risk-heat-map/">how to read a risk heat map</a> explains its strengths and blind spots. But the more valuable report shows trend: risks whose residual rating rose this quarter, controls that failed testing, key risk indicators that crossed a threshold and treatment actions that are overdue. That turns the risk report from a reference document into a decision document, which is the shift we described in our November article on <a href="/insights/risk-visibility-executive-decision-making/">risk visibility and executive decision-making</a>.
+
+A Year-End Health Check for Your Risk Register
+
+Before the 2027 cycle begins, test the register against a few practical questions:
+
+- How many risk ratings changed during 2026, and was each change supported by evidence?
+- How many controls have never been tested, or were last tested more than a year ago?
+- How many treatment actions are overdue, and has anyone escalated them?
+- Can you show which incidents and audit findings relate to each of your top risks?
+- Did the register influence any significant decision this year?
+
+The answers will show whether you have a register or risk intelligence. Most organisations find a mix: a few well-managed risks and a long tail of entries carried forward unchanged.
+
+How XGRC® Enterprise Risk Management Connects the Register
+
+<a href="/erm/">Enterprise Risk Management</a> in XGRC® provides structured, auditable enterprise, operational and project risk management aligned to ISO 31000, COSO and King V. Risks are linked to controls, audit findings and actions, so the evidence relevant to a risk is visible on the risk itself, and board reporting draws from the same data the owners maintain. The underlying cost of keeping risk information disconnected is explored in <a href="/insights/hidden-cost-of-disconnected-risk-management/">the hidden cost of disconnected risk management</a>.
+
+From Register to Intelligence in 2027
+
+A risk register will always be needed. The aim for 2027 is to make it the place where evidence meets judgement, so that ratings reflect what is actually happening and the board sees change as it occurs. Start small: connect your top ten risks to their controls, incidents and actions, and see how different the next committee conversation becomes.
+
+Download the free <a href="/use-cases/risk-register-template/">risk register template</a>, or <a href="/demo/">book a demo</a> to see a connected risk register working on your own risk categories.`,
 };
