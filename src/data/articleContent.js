@@ -4382,4 +4382,73 @@ Resilience Is Controls You Can Prove
 From compliance to confidence means moving from "we have a control for that" to "here is the evidence it worked last month, including at our suppliers". Start by picking your ten most critical obligations and tracing each to its control, owner, latest evidence and any third party involved.
 
 Download the free <a href="/use-cases/vendor-management/">vendor management checklist</a> to review your third-party controls, or <a href="/demo/">book a Compliance Hub demo</a>. The <a href="/tour/">live XGRC® tour</a> also includes a vendor and third-party risk dashboard on sample data.`,
+'cybersecurity-governance-beyond-technical-controls': `Most South African boards now receive a cyber report. Many of those reports are lists of blocked attacks, patch percentages and phishing click rates, numbers that are accurate but leave directors unable to answer the only question that matters to them: are we exposed in ways that could hurt the business, and is someone accountable for fixing it?
+
+What Is Cybersecurity Governance?
+
+Cybersecurity governance is the set of roles, decisions, policies, risk processes and assurance through which the board and executive direct and oversee how an organisation protects its information and systems. Technical controls protect assets; governance decides which risks matter, who owns them, what level of risk is acceptable and how the board knows the controls are working.
+
+Put another way, firewalls and endpoint tools answer "how do we defend?" Governance answers "what are we defending, why, to what standard, and how do we know?" Organisations with strong technology and weak governance tend to discover their gaps during an incident, when the cost of discovery is highest. Our article on <a href="/insights/the-hidden-cost-of-cyber-incidents-for-ceos/">the hidden cost of cyber incidents for CEOs</a> sets out what that cost looks like.
+
+Why Technical Controls Are Not Enough
+
+Even well-funded security programmes show the same governance gaps.
+
+- Cyber risk is owned by IT alone, so business owners never decide what level of risk they accept for their systems and data.
+- Cyber risks sit in an IT register that never reaches the enterprise risk register or the board.
+- Controls are deployed but not tested, so nobody knows whether backups restore or privileged access is actually reviewed.
+- Supplier risk is invisible, even though cloud providers, managed service providers and software vendors hold critical data.
+- Board reporting is technical rather than risk-based, so directors cannot challenge it.
+
+A ransomware attack shows why this matters. The technical response is IT's job. The decisions that follow, such as whether to shut down operations, how to communicate with customers, whether to notify the regulator and what the business can tolerate while systems are restored, belong to executives and the board. If those decisions were never governed in advance, they are made in a crisis.
+
+What the Standards and South African Law Expect
+
+ISO/IEC 27001
+
+<a href="https://www.iso.org/standard/27001" rel="noopener">ISO/IEC 27001:2022</a> treats information security as a management system, not a technology stack. Clause 5 places leadership obligations on top management: demonstrating commitment, setting the information security policy and assigning roles, responsibilities and authorities. Risk assessment and treatment, internal audit and management review follow the same plan, do, check, act cycle as other ISO management systems. Our guide to <a href="/insights/streamlining-iso-27001-compliance-digitally/">streamlining ISO 27001 compliance digitally</a> covers the practical side.
+
+King V
+
+King V, published by the IoDSA on 31 October 2025, treats data, information and technology as a governance matter for the governing body. It expects the board to provide direction on and remain accountable for how data, information and technology are governed, including cyber security, even where it uses a committee to oversee the detail. For many boards this is the strongest prompt yet to move cyber from an IT update to a standing governance item. Our article on <a href="/insights/king-v-and-the-rise-of-ai-governance/">King V and the rise of AI governance</a> explores the AI dimension of the same principle.
+
+POPIA
+
+Section 19 of the Protection of Personal Information Act requires a responsible party to secure the integrity and confidentiality of personal information through appropriate, reasonable technical and organisational measures. That includes identifying foreseeable internal and external risks, maintaining safeguards, regularly verifying that they are effectively implemented and updating them in response to new risks. Section 22 requires notification of security compromises. The <a href="https://inforegulator.org.za/knowledge-base/category/popia/chapter-3-conditions-for-lawful-processing/part-a-processing-of-personal-information-in-general/condition-7-security-safeguards/" rel="noopener">Information Regulator's guidance on security safeguards</a> lists the relevant sections. Note the word "organisational": POPIA expects governance as well as technology.
+
+Five Elements of Effective Cybersecurity Governance
+
+Business Ownership of Cyber Risk
+
+Assign each material cyber risk to a business owner, such as the head of operations for plant systems or the finance director for payroll and banking, with IT and security as responsible implementers. Owners decide on treatment and accept residual risk within appetite.
+
+One Risk Register
+
+Escalate significant information security risks into the enterprise risk register using the same rating scale as other risks. That is how cyber competes fairly for attention and budget.
+
+Tested Controls
+
+Define key controls for the top cyber risks and test them: restore a backup, review privileged access, run an incident response exercise with executives. Record the result as evidence.
+
+Supplier Assurance
+
+Identify suppliers that hold your data or run critical services, define security requirements in contracts and obtain evidence that they are met. ISO/IEC 27001 Annex A includes controls on supplier relationships for this reason.
+
+Board-Level Reporting
+
+Report cyber to the board as risk: top risks against appetite, key control test results, significant incidents and lessons, supplier exposure and overdue actions. Keep the technical metrics for the management committee.
+
+Combined Assurance Over Cyber
+
+Cyber is a good test of whether combined assurance works. Management performs and monitors controls. A risk or information security function oversees them. Internal audit provides independent assurance, often supplemented by external penetration testing and ISO/IEC 27001 certification audits. When each provider reports separately, the board cannot see whether the top cyber risks have been tested by anyone, or whether three providers tested the same easy control. Mapping assurance to the cyber risks themselves fixes that. Our article on <a href="/insights/why-integrated-assurance-matters-in-the-age-of-ai/">why integrated assurance matters in the age of AI</a> develops the point.
+
+How MSXCyber® and Integrated Assurance Support Cybersecurity Governance
+
+<a href="/msxcyber/">MSXCyber®</a> supports an ISMS aligned to ISO/IEC 27001: information security governance, risk, controls, incidents, internal audit and audit-ready evidence. Information assets and systems have owners, risks are assessed and treated, and controls are tracked with owners and due dates, while significant IT risks can be escalated into the enterprise risk register and reported to the board. <a href="/integrated-assurance/">Integrated Assurance</a> coordinates internal audit and combined assurance against those same risks and controls, so the audit committee sees one assurance picture. The earlier post in this series on <a href="/insights/connected-compliance-controls-organisational-resilience/">connected compliance controls</a> covers how supplier evidence fits into the same model.
+
+Governance Is What Makes Security Confident
+
+Cyber resilience is not bought with another tool. It is built when the board knows the material risks, business owners accept them deliberately, controls are tested and assurance covers what matters. That is how cybersecurity moves from compliance to confidence.
+
+Start with the free <a href="/use-cases/iso-27001-readiness/">ISO 27001 readiness checklist</a> or the <a href="/use-cases/popia-compliance/">POPIA compliance checklist</a>, explore the ISMS governance dashboard in the <a href="/tour/">live XGRC® tour</a>, or <a href="/demo/">book an MSXCyber® demo</a>.`,
 };

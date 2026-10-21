@@ -1803,6 +1803,16 @@ export const articles = [
     imageAlt: 'Professional viewing a Compliance Hub dashboard on a laptop, ringed by compliance, controls and assurance icons',
     relatedSolutions: ['compliance-hub', 'xlogic'],
   },
+  {
+    slug: 'cybersecurity-governance-beyond-technical-controls',
+    title: 'Why Cybersecurity Governance Requires More Than Technical Controls',
+    excerpt: 'Firewalls protect systems; governance decides which risks matter and who answers for them. What ISO 27001, King V and POPIA expect, and five elements of effective cybersecurity governance.',
+    category: 'Cyber',
+    date: '2026-11-26',
+    image: 'cybersecurity-governance-beyond-technical-controls.jpg',
+    imageAlt: 'Analyst at security dashboards, with a padlock shield linked to governance, risk, policy and assurance icons',
+    relatedSolutions: ['msxcyber', 'integrated-assurance', 'erm'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2174,6 +2184,12 @@ export const articleFaqs = {
     { q: 'How often should compliance controls be tested?', a: 'Test frequency should follow risk. Key controls over high-risk obligations, such as privileged access, safety-critical permits or financial reconciliations, are commonly tested at least annually by an independent function and monitored more often by management. Lower-risk controls can be tested on a rotating cycle. Any control linked to a recent incident or audit finding should be retested after the fix.' },
     { q: 'Are we responsible for compliance failures by our suppliers?', a: 'Often, yes. Many obligations stay with your organisation even when the activity is outsourced. Under POPIA, for example, a responsible party must ensure by written contract that operators maintain appropriate security measures. Regulators and customers generally look to the organisation that owns the obligation, so supplier and contractor controls need vetting, evidence and ongoing monitoring.' },
     { q: 'What evidence should we collect from contractors?', a: 'It depends on the work they do and the obligations they touch. Typical items include company registration and tax documents, insurance, relevant permits or licences, health and safety files for site work, B-BBEE certificates where relevant, and security or data protection attestations for suppliers handling information. Track expiry dates so evidence stays current, not just present at onboarding.' },
+  ],
+  'cybersecurity-governance-beyond-technical-controls': [
+    { q: 'Who is accountable for cybersecurity governance in an organisation?', a: 'The governing body is accountable for how data, information and technology are governed, and King V makes this explicit for South African organisations. Executives own the material cyber risks in their areas, while the CIO or CISO is responsible for designing and running security controls. Boards often use a risk or audit committee for detailed oversight, but delegation does not remove the board\'s accountability.' },
+    { q: 'What does POPIA section 19 require for information security?', a: 'Section 19 requires a responsible party to secure the integrity and confidentiality of personal information by taking appropriate, reasonable technical and organisational measures. In practice that means identifying foreseeable risks, maintaining safeguards against them, regularly verifying that the safeguards are effectively implemented and updating them as risks change. Section 22 separately deals with notifying security compromises.' },
+    { q: 'How should cyber risk be reported to the board?', a: 'Report cyber as business risk, not as technical statistics. A useful board view shows the top cyber risks against appetite, results of key control tests such as backup restores and access reviews, significant incidents and lessons learned, critical supplier exposure and overdue remediation actions. Detailed technical metrics belong in management committees, with a summary escalated only when they indicate rising risk.' },
+    { q: 'Does ISO 27001 certification mean our cybersecurity governance is adequate?', a: 'Certification shows that an information security management system meets the standard\'s requirements within its defined scope at the time of audit. It is strong evidence of structured governance, but boards should still check that the scope covers the systems that matter most, that risks are owned by the business and that assurance is ongoing rather than limited to the annual audit.' },
   ],
 };
 
