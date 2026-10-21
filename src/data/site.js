@@ -1733,6 +1733,16 @@ export const articles = [
     imageAlt: 'Radiology technician at monitors in a dim scan room beside glowing icons for POPIA breach notification steps',
     relatedSolutions: ['msxcyber', 'erm'],
   },
+  {
+    slug: 'why-compliance-alone-is-no-longer-enough',
+    title: 'Why Compliance Alone Is No Longer Enough for Modern Organisations',
+    excerpt: 'Compliance proves you met the minimum on audit day. Going beyond compliance means proving your controls work every day, and integrated management systems are how organisations get there.',
+    category: 'GRC',
+    date: '2026-11-05',
+    image: 'why-compliance-alone-is-no-longer-enough.jpg',
+    imageAlt: 'Stacked paper files beside a laptop showing compliance dashboards, linked by glowing icons, in a city office',
+    relatedSolutions: ['msx', 'sheqx', 'envirx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2062,6 +2072,12 @@ export const articleFaqs = {
     { q: 'Does every POPIA security compromise have to be reported?', a: 'Section 22 applies whenever there are reasonable grounds to believe personal information has been accessed or acquired by an unauthorised person, and it sets no minimum size or risk threshold. Organisations should record every suspected compromise, assess it promptly and document the reasoning behind each notification decision, so they can show the Regulator how and why they acted.' },
     { q: 'Is health information treated differently under POPIA?', a: 'Yes. Information about a person\'s health or sex life is special personal information under section 26, alongside categories such as religious beliefs, race and biometric information. Processing it is prohibited unless a specific authorisation applies, and a breach involving it carries a higher risk of harm, such as medical aid fraud or targeted phishing, so expect closer scrutiny.' },
     { q: 'What must a breach notification to data subjects contain?', a: 'It must give enough information for people to protect themselves: a description of the possible consequences, the measures the organisation has taken or intends to take, recommendations on what the person should do, and the identity of the unauthorised person if known. It must be in writing, sent by email, post, a website notice, news media or as the Regulator directs.' },
+  ],
+  'why-compliance-alone-is-no-longer-enough': [
+    { q: 'Is ISO certification the same as being compliant?', a: 'No. ISO certification shows that a management system met a standard\'s requirements when it was audited by a certification body. Legal compliance is a separate obligation that applies every day, whether or not an auditor is present. Certification is strong evidence of a working system, but it does not by itself prove that every legal requirement is met or that every control is effective.' },
+    { q: 'What is the Harmonized Structure in ISO management system standards?', a: 'The Harmonized Structure is the common clause sequence, core text and terms that ISO management system standards share, covering context, leadership, planning, support, operation, performance evaluation and improvement. Because ISO 9001, ISO 14001, ISO 45001 and ISO/IEC 27001 follow it, organisations can run shared processes such as internal audit and management review once across several standards.' },
+    { q: 'Which processes should be integrated first in an IMS?', a: 'Internal audit and corrective action usually come first because they create the most duplicated effort and the most cross-disciplinary learning. Management review and document control follow naturally. Discipline-specific processes such as hazard identification or environmental aspects assessment stay specialised but should feed the shared risk method and the single corrective action register.' },
+    { q: 'Do we need a new standard to go beyond compliance?', a: 'No. Going beyond compliance is about how existing standards and legal obligations are managed, not adding another certificate. It means connecting risks, controls, incidents, audits and actions, verifying that actions worked, and reporting performance to leadership continuously. PAS 99 can help structure integration, but the change is mainly in process and evidence.' },
   ],
 };
 
