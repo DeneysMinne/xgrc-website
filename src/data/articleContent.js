@@ -4751,4 +4751,64 @@ Close the Year with a Review That Changes Something
 The best ISMS management reviews are short on slides and long on decisions. Use the year-end review to refresh risk, check the Statement of Applicability against evidence, learn from incidents and confirm ownership, then carry those decisions into your 2027 information security objectives.
 
 Use the free <a href="/use-cases/iso-27001-documentation-checklist/">ISO 27001 documentation checklist</a> to prepare your review pack, or take the <a href="/tour/">live product tour</a> to see information security dashboards on sample data.`,
+'environmental-compliance-2027-visibility-accountability': `An environmental authorisation, an atmospheric emission licence or a water use licence is not a certificate to frame and forget. Each one carries conditions, often dozens of them, that run for the life of the activity: monitoring frequencies, reporting deadlines, audit requirements, notification duties and limits that must be met every day. Most environmental non-compliance is not deliberate. It happens because nobody owned a condition, or because the evidence that it was met cannot be found.
+
+What is environmental compliance management?
+
+Environmental compliance management is the ongoing process of identifying every legal, permit and other environmental requirement that applies to an organisation, assigning an owner to each, monitoring performance against it and retaining evidence that it has been met. Its core unit is the individual condition or obligation, not the licence or the law as a whole.
+
+Know Your Instruments
+
+In South Africa, a single site can hold several environmental instruments under different laws and authorities. The most common are:
+
+- An environmental authorisation under the <a href="https://www.gov.za/documents/national-environmental-management-act" rel="noopener">National Environmental Management Act 107 of 1998</a>, with its approved environmental management programme
+- An atmospheric emission licence (AEL) under the National Environmental Management: Air Quality Act 39 of 2004, for listed activities
+- A water use licence (WUL) or general authorisation under the <a href="https://www.gov.za/documents/national-water-act" rel="noopener">National Water Act 36 of 1998</a>, covering the water uses listed in section 21
+- A waste management licence under the National Environmental Management: Waste Act 59 of 2008, for listed waste management activities
+
+Each instrument is issued by a different authority, with different reporting formats and different consequences for breach. Organisations operating elsewhere in Africa, the UK or the EU face their own equivalents, but the management principle is identical: you cannot comply with conditions you have not listed.
+
+Waste licensing also stayed on the agenda this year. A ministerial notice issued in December 2025 called on certain operators of historic waste disposal facilities and holders of older permits to apply for a waste management licence by 9 December 2027, as summarised by <a href="https://webberwentzel.com/News/Pages/operators-of-historic-waste-disposal-facilities-called-upon-to-apply-for-a-waste-management-licence.aspx" rel="noopener">Webber Wentzel</a>. If that notice could affect any of your sites, it belongs on the 2027 plan now.
+
+Break Every Instrument into Conditions
+
+The year-end review should start with a complete condition register. Take each authorisation, licence and EMPr and break it into individual conditions, recording for each one:
+
+- The exact requirement and the instrument and clause it comes from
+- The owner, by role and by name, at the site where it applies
+- The frequency or deadline, such as continuous, monthly, annual or on event
+- The evidence that demonstrates compliance, and where that evidence is kept
+- The status at year end and any open findings or actions
+
+This is tedious the first time and invaluable afterwards. Conditions that sit inside licences are easy to overlook when a site manager changes or a consultant who prepared the reports moves on.
+
+Who is responsible for environmental compliance?
+
+Legal responsibility rests with the holder of the instrument, but practical responsibility has to be assigned condition by condition. A stack monitoring requirement belongs with the plant engineer who runs the monitoring contract. A stormwater condition belongs with the site manager. An annual external audit of the environmental authorisation belongs with the environmental manager. Unassigned conditions are where non-compliance starts, and conditions owned by an absent consultant are only slightly better. The governance side of this is explored in our November article on <a href="/insights/connected-compliance-controls-organisational-resilience/">connected compliance controls</a>.
+
+Evaluate Compliance and Then Prove It
+
+ISO 14001 requires organisations to evaluate their fulfilment of compliance obligations and to keep documented information as evidence of the results. Even without certification, it is good discipline. For each condition, the year-end evaluation should answer three questions: were we compliant throughout the year, can we show it, and where did we fall short? Monitoring data, laboratory certificates, waste manifests, safe disposal certificates, external audit reports and submissions to authorities are the raw material. If they are spread across inboxes and site drives, assembling them becomes the main task. Our guide to <a href="/insights/environmental-compliance-software-for-regulatory-management/">environmental compliance software for regulatory management</a> describes how a central record changes that.
+
+Connect Compliance to Environmental Risk
+
+Compliance and risk are related but distinct. Compliance asks whether you met your obligations. Environmental risk asks what could cause harm, to the environment or to the organisation, whether or not a specific obligation exists. A spill risk on an unbunded diesel tank may not appear in any licence condition, yet it is a material risk. Keep both views, link them where they overlap, and report both. We set out why boards increasingly treat this as enterprise risk in <a href="/insights/environmental-risk-is-becoming-enterprise-risk/">environmental risk is becoming enterprise risk</a>.
+
+Keep ESG Disclosure and Compliance Separate but Linked
+
+Sustainability and ESG reports draw on some of the same data, such as emissions, water use and waste volumes, but they serve a different audience and follow different frameworks. Do not let a disclosure figure become a compliance record, or the reverse. Each needs its own controls and evidence, even where they share source data.
+
+Plan 2027 from the Review
+
+Close the review with an environmental compliance calendar for 2027: monitoring schedules, report submission dates, external audit dates, licence renewal and amendment lead times, and the internal audits that will test conditions most at risk. Give every item an owner. For the legal context, our article on <a href="/insights/navigating-south-africas-ehs-regulations-why-digital-compliance-tools-are-essential/">navigating South Africa's EHS regulations</a> is a useful companion.
+
+How ENVIRX® Supports Environmental Compliance Management
+
+<a href="/envirx/">ENVIRX®</a> provides environmental compliance and performance monitoring with auditable environmental records. Conditions, owners, monitoring results and evidence can be held in one place, so the year-end evaluation becomes a report rather than a search. Legal register content is available through our partner <a href="/libryo/">Libryo</a>, embedded in XGRC®. Our <a href="/environmental-compliance-software-south-africa/">environmental compliance software for South Africa</a> page explains how this applies to local instruments.
+
+Visibility and Accountability Are the Whole Job
+
+The organisations that move into 2027 with confidence will be those that know every condition they hold, who owns it and where the proof is. That is the practical meaning of turning a year of environmental governance into a future of assurance.
+
+Work through the free <a href="/use-cases/environmental-compliance/">environmental compliance checklist</a> to build your condition register, or <a href="/demo/">book a demo</a> to see conditions, owners and evidence managed in ENVIRX®.`,
 };

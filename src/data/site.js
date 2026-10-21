@@ -1863,6 +1863,16 @@ export const articles = [
     imageAlt: 'Woman reviewing cybersecurity dashboards on a laptop at dusk, with a padlock shield and security icons',
     relatedSolutions: ['msxcyber', 'integrated-assurance'],
   },
+  {
+    slug: 'environmental-compliance-2027-visibility-accountability',
+    title: 'Environmental Compliance in 2027: Why Visibility and Accountability Matter',
+    excerpt: 'Environmental non-compliance usually starts with an unowned condition. How to review authorisations and licences condition by condition, assign owners and prove compliance before 2027.',
+    category: 'Environment',
+    date: '2026-12-14',
+    image: 'environmental-compliance-2027-visibility-accountability.jpg',
+    imageAlt: 'Environmental officer in a hard hat holding a tablet, overlooking a river, mountains and an industrial area',
+    relatedSolutions: ['envirx', 'esg'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2270,6 +2280,12 @@ export const articleFaqs = {
     { q: 'Who should attend an ISMS management review?', a: 'Top management must take part, because clause 9.3 makes the review their responsibility. Attendees typically include an executive sponsor, the information security manager or CISO, the information officer under POPIA, IT and risk leads, and owners of high information risks. Internal audit may attend to present findings while maintaining its independence.' },
     { q: 'What evidence does a certification auditor expect from the management review?', a: 'Auditors expect documented information showing that the review took place, that each required clause 9.3 input was considered, and that decisions were made on continual improvement and any changes to the ISMS. Minutes, the input pack and a tracked list of resulting actions are normally enough, provided they show genuine discussion rather than a template.' },
     { q: 'How does POPIA affect the ISMS review in South Africa?', a: 'POPIA section 19 requires appropriate, reasonable technical and organisational measures to protect personal information, and section 22 requires notification of security compromises to the Information Regulator and affected data subjects. The management review should confirm that controls protecting personal information are working and that the incident process can support timely notification through the Regulator\'s eServices portal.' },
+  ],
+  'environmental-compliance-2027-visibility-accountability': [
+    { q: 'What environmental licences does a South African site typically need?', a: 'It depends on the activities. Common instruments include an environmental authorisation under NEMA for listed activities, an atmospheric emission licence under the Air Quality Act, a water use licence or general authorisation under the National Water Act, and a waste management licence under the Waste Act. Many sites hold several, each issued by a different authority with its own conditions.' },
+    { q: 'What is a condition register?', a: 'A condition register breaks each environmental authorisation, licence and management programme into its individual conditions. For every condition it records the requirement, the source clause, an owner, the frequency or deadline, the evidence of compliance and the current status. It turns long licence documents into a working list that can be monitored, audited and reported on.' },
+    { q: 'Is environmental compliance the same as ESG reporting?', a: 'No. Environmental compliance is about meeting legal, permit and other obligations and proving it to regulators and auditors. ESG reporting discloses wider sustainability performance to investors and stakeholders under frameworks they recognise. The two share data such as emissions and water use, but each needs its own controls, review and evidence.' },
+    { q: 'How often should environmental compliance be evaluated?', a: 'ISO 14001 leaves the frequency to the organisation, but it should reflect the risk and the instrument requirements. Many organisations track high-risk conditions monthly, evaluate all conditions at least annually, and align the annual evaluation with external audit cycles required by their authorisations. Any incident or change in operations should trigger an earlier review.' },
   ],
 };
 
