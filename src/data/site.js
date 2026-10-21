@@ -1703,6 +1703,16 @@ export const articles = [
     image: 'king-v-and-the-rise-of-ai-governance.jpg',
     relatedSolutions: ['ai-governance', 'integrated-assurance', 'msx'],
   },
+  {
+    slug: 'connected-governance-from-fragmented-systems',
+    title: 'From Fragmented Systems to Connected Governance: A Practical Approach',
+    excerpt: 'Connected governance links policies, obligations, risks, controls, findings and actions so you can prove a weakness was fixed. Here are five practical steps to get there.',
+    category: 'GRC',
+    date: '2026-11-03',
+    image: 'connected-governance-from-fragmented-systems.jpg',
+    imageAlt: 'Two staff in hi-vis vests walking past stacks of paper files in an operations office, illustrating fragmented records',
+    relatedSolutions: ['xlogic', 'msx', 'erm', 'integrated-assurance'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2014,6 +2024,12 @@ export const articleFaqs = {
     { q: 'Why should boards care about AI governance?', a: 'AI can affect organisational risk, operations, information, compliance, decision-making and stakeholder outcomes. Boards therefore need appropriate visibility and assurance over material AI use and the risks associated with it.' },
     { q: 'Is AI governance only an IT responsibility?', a: 'No. Technology teams play an important role, but effective AI governance may involve the board, executives, risk, compliance, information security, legal, internal audit and operational functions.' },
     { q: 'How can organisations strengthen AI governance?', a: 'Start by identifying where AI is used, then establish clear ownership, define policies, assess risks, implement appropriate controls, maintain human oversight, monitor performance, retain evidence and integrate AI into existing governance and assurance processes.' },
+  ],
+  'connected-governance-from-fragmented-systems': [
+    { q: 'What is the difference between connected governance and GRC software?', a: 'Connected governance is an operating approach: risks, obligations, controls, findings and actions are linked and owned so you can trace any issue end to end. GRC software is one way to support that approach. Software without defined relationships and owners simply moves the silos onto a new screen, while the approach can begin with a single business unit before any tool changes.' },
+    { q: 'Where should an organisation start with connected governance?', a: 'Start by mapping where governance information currently lives and who owns each register. Then pick one material risk and trace it from obligation to control, test result, findings, actions and evidence. The points where that trail breaks show where linking records will deliver the most value, and they make a far better first project than a big-bang system replacement.' },
+    { q: 'How does connected governance support combined assurance under King V?', a: 'Combined assurance needs a shared view of which risks are covered by management, specialist functions and internal or external audit. When each line keeps separate records, gaps and duplicated reviews stay hidden. Linking assurance activity to the same risk and control records lets audit and risk committees see coverage, overlaps and unassured material risks in one place.' },
+    { q: 'Does XGRC® replace our existing specialist tools?', a: 'Not necessarily. XGRC® is designed to bring risk, compliance, SHEQ, assurance and information security records into one connected platform, and organisations often phase adoption by module or business unit. XLOGIC® then turns policies and obligations into owned workflows with evidence capture. The right sequence depends on where fragmentation is causing the most risk today.' },
   ],
 };
 
