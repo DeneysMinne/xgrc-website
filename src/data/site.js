@@ -1713,6 +1713,16 @@ export const articles = [
     imageAlt: 'Two staff in hi-vis vests walking past stacks of paper files in an operations office, illustrating fragmented records',
     relatedSolutions: ['xlogic', 'msx', 'erm', 'integrated-assurance'],
   },
+  {
+    slug: 'why-compliance-alone-is-no-longer-enough',
+    title: 'Why Compliance Alone Is No Longer Enough for Modern Organisations',
+    excerpt: 'Compliance proves you met the minimum on audit day. Going beyond compliance means proving your controls work every day, and integrated management systems are how organisations get there.',
+    category: 'GRC',
+    date: '2026-11-05',
+    image: 'why-compliance-alone-is-no-longer-enough.jpg',
+    imageAlt: 'Stacked paper files beside a laptop showing compliance dashboards, linked by glowing icons, in a city office',
+    relatedSolutions: ['msx', 'sheqx', 'envirx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2030,6 +2040,12 @@ export const articleFaqs = {
     { q: 'Where should an organisation start with connected governance?', a: 'Start by mapping where governance information currently lives and who owns each register. Then pick one material risk and trace it from obligation to control, test result, findings, actions and evidence. The points where that trail breaks show where linking records will deliver the most value, and they make a far better first project than a big-bang system replacement.' },
     { q: 'How does connected governance support combined assurance under King V?', a: 'Combined assurance needs a shared view of which risks are covered by management, specialist functions and internal or external audit. When each line keeps separate records, gaps and duplicated reviews stay hidden. Linking assurance activity to the same risk and control records lets audit and risk committees see coverage, overlaps and unassured material risks in one place.' },
     { q: 'Does XGRC® replace our existing specialist tools?', a: 'Not necessarily. XGRC® is designed to bring risk, compliance, SHEQ, assurance and information security records into one connected platform, and organisations often phase adoption by module or business unit. XLOGIC® then turns policies and obligations into owned workflows with evidence capture. The right sequence depends on where fragmentation is causing the most risk today.' },
+  ],
+  'why-compliance-alone-is-no-longer-enough': [
+    { q: 'Is ISO certification the same as being compliant?', a: 'No. ISO certification shows that a management system met a standard\'s requirements when it was audited by a certification body. Legal compliance is a separate obligation that applies every day, whether or not an auditor is present. Certification is strong evidence of a working system, but it does not by itself prove that every legal requirement is met or that every control is effective.' },
+    { q: 'What is the Harmonized Structure in ISO management system standards?', a: 'The Harmonized Structure is the common clause sequence, core text and terms that ISO management system standards share, covering context, leadership, planning, support, operation, performance evaluation and improvement. Because ISO 9001, ISO 14001, ISO 45001 and ISO/IEC 27001 follow it, organisations can run shared processes such as internal audit and management review once across several standards.' },
+    { q: 'Which processes should be integrated first in an IMS?', a: 'Internal audit and corrective action usually come first because they create the most duplicated effort and the most cross-disciplinary learning. Management review and document control follow naturally. Discipline-specific processes such as hazard identification or environmental aspects assessment stay specialised but should feed the shared risk method and the single corrective action register.' },
+    { q: 'Do we need a new standard to go beyond compliance?', a: 'No. Going beyond compliance is about how existing standards and legal obligations are managed, not adding another certificate. It means connecting risks, controls, incidents, audits and actions, verifying that actions worked, and reporting performance to leadership continuously. PAS 99 can help structure integration, but the change is mainly in process and evidence.' },
   ],
 };
 
