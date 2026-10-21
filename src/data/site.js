@@ -1733,6 +1733,16 @@ export const articles = [
     imageAlt: 'Overflowing stacks of paper files and loose documents on a boardroom table, beside wooden blocks, at sunset',
     relatedSolutions: ['erm', 'integrated-assurance'],
   },
+  {
+    slug: 'risk-visibility-executive-decision-making',
+    title: 'How Risk Visibility Supports Better Executive Decision-Making',
+    excerpt: 'Boards need fewer pages and better signals. How to build risk reporting around appetite, key risk indicators and control effectiveness so executives can actually decide.',
+    category: 'ERM',
+    date: '2026-11-12',
+    image: 'risk-visibility-executive-decision-making.jpg',
+    imageAlt: 'Executive presenting an enterprise risk overview with a heat map on a large screen to colleagues in a boardroom',
+    relatedSolutions: ['erm', 'integrated-assurance'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2062,6 +2072,12 @@ export const articleFaqs = {
     { q: 'Do we need to abolish departmental risk registers?', a: 'No. Local teams should keep owning and maintaining their risks. What changes is that departmental registers become views of one shared structure using common rating criteria, rather than separate files. That lets the business keep local ownership while the risk function and the board see a consolidated, de-duplicated picture without manual reconciliation.' },
     { q: 'What are key risk indicators and why do they matter?', a: 'Key risk indicators are measurable signals that a risk is becoming more likely or more severe, such as overdue supplier payments, rising staff turnover in a critical team or repeated control exceptions. With agreed thresholds, they trigger escalation as soon as conditions deteriorate instead of waiting for the next quarterly review, which gives management more options to respond.' },
     { q: 'How long does it take to integrate risk registers?', a: 'Most organisations can make meaningful progress within two or three reporting cycles. Agreeing a common taxonomy and rating scale comes first, then consolidating and de-duplicating registers, then linking risks to controls, incidents, findings and actions. Tackling the top twenty enterprise risks first delivers board-level value early while the wider register is cleaned up.' },
+  ],
+  'risk-visibility-executive-decision-making': [
+    { q: 'How often should risk be reported to the board?', a: 'Most boards or risk committees receive a full risk report each quarter, aligned to their meeting cycle. That rhythm should be supplemented by immediate escalation when a key risk indicator breaches its threshold or a material risk moves outside appetite. Waiting for the next scheduled meeting to report a serious deterioration defeats the purpose of having thresholds at all.' },
+    { q: 'What is the difference between risk appetite and risk tolerance?', a: 'Risk appetite is the broad amount and type of risk an organisation is willing to accept to achieve its objectives. Risk tolerance sets measurable limits around specific risks or categories, such as a maximum exposure to one customer or a minimum standard for critical controls. Appetite guides strategy; tolerances make it reportable and give management clear triggers for escalation.' },
+    { q: 'How many risks should a board risk report show?', a: 'Focus on the top ten to fifteen enterprise risks, plus any risk outside appetite regardless of rank. Directors need trend, status of key controls and the actions in progress for those risks, not the full register. The complete register should remain available behind the summary so that any director can drill into detail when they want to challenge a rating.' },
+    { q: 'Can a GRC platform produce the board risk report automatically?', a: 'It can if the underlying records are structured and linked. When risks, controls, findings and actions sit in one system, summary tables, heat maps and indicator status can be generated directly, which removes manual consolidation and reconciliation errors. Management commentary and judgement on emerging risks still need to be written by people who understand the business.' },
   ],
 };
 
