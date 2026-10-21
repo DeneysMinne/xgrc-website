@@ -1843,6 +1843,16 @@ export const articles = [
     imageAlt: 'Environmental officer in a hard hat holding a tablet, overlooking a river, mountains and an industrial area',
     relatedSolutions: ['envirx', 'esg'],
   },
+  {
+    slug: 'connected-compliance-management-2027',
+    title: 'How to Prepare for a More Connected Compliance Management Approach in 2027',
+    excerpt: 'Your compliance is only as strong as the contractors and suppliers you rely on. A year-end guide to re-vetting, expiring documents, safety files and operator agreements before 2027.',
+    category: 'Compliance Hub',
+    date: '2026-12-15',
+    image: 'connected-compliance-management-2027.jpg',
+    imageAlt: 'Hands typing on a laptop beside stacks of files, with compliance checklist, governance and audit icons above',
+    relatedSolutions: ['compliance-hub', 'sheqx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2238,6 +2248,12 @@ export const articleFaqs = {
     { q: 'What is a condition register?', a: 'A condition register breaks each environmental authorisation, licence and management programme into its individual conditions. For every condition it records the requirement, the source clause, an owner, the frequency or deadline, the evidence of compliance and the current status. It turns long licence documents into a working list that can be monitored, audited and reported on.' },
     { q: 'Is environmental compliance the same as ESG reporting?', a: 'No. Environmental compliance is about meeting legal, permit and other obligations and proving it to regulators and auditors. ESG reporting discloses wider sustainability performance to investors and stakeholders under frameworks they recognise. The two share data such as emissions and water use, but each needs its own controls, review and evidence.' },
     { q: 'How often should environmental compliance be evaluated?', a: 'ISO 14001 leaves the frequency to the organisation, but it should reflect the risk and the instrument requirements. Many organisations track high-risk conditions monthly, evaluate all conditions at least annually, and align the annual evaluation with external audit cycles required by their authorisations. Any incident or change in operations should trigger an earlier review.' },
+  ],
+  'connected-compliance-management-2027': [
+    { q: 'What documents should a contractor provide before starting work in South Africa?', a: 'Typical requirements include a signed mandatary agreement in terms of section 37(2) of the OHS Act, a letter of good standing for compensation cover, proof of public liability insurance, a safety file with risk assessments and method statements, competency and training records, and medical fitness certificates where the work requires them. Exact requirements depend on the work and site.' },
+    { q: 'What is a mandatary agreement?', a: 'A mandatary agreement is a written agreement between an employer and a contractor, or other mandatary, setting out the arrangements and procedures for compliance with the Occupational Health and Safety Act. Section 37(2) uses such an agreement to limit the employer\'s liability for the contractor\'s acts or omissions, which is why it is a standard part of every contractor safety file.' },
+    { q: 'How often should contractors be re-vetted?', a: 'Re-vetting should follow risk. Contractors doing hazardous work, working on site or handling personal information are commonly re-vetted at least annually, while low-risk suppliers may be reviewed every two or three years. Time-bound documents such as insurance and certificates should be tracked continuously, whatever the re-vetting cycle, because they can lapse at any time.' },
+    { q: 'Can software manage contractor document expiry automatically?', a: 'Yes. A third-party compliance platform records each document with its expiry date, reminds the contractor and the internal owner before it lapses, and flags the contractor as non-compliant if it is not renewed. XGRC® Compliance Hub handles onboarding, document collection, evidence and ongoing assurance for suppliers and contractors in one place.' },
   ],
 };
 

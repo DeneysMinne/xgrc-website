@@ -4625,4 +4625,69 @@ Visibility and Accountability Are the Whole Job
 The organisations that move into 2027 with confidence will be those that know every condition they hold, who owns it and where the proof is. That is the practical meaning of turning a year of environmental governance into a future of assurance.
 
 Work through the free <a href="/use-cases/environmental-compliance/">environmental compliance checklist</a> to build your condition register, or <a href="/demo/">book a demo</a> to see conditions, owners and evidence managed in ENVIRX®.`,
+'connected-compliance-management-2027': `Compliance programmes are usually designed around what the organisation itself does. Yet on most sites a large share of the riskiest work is done by someone else: maintenance contractors, cleaning and security providers, labour brokers, transport companies, IT service providers and specialist consultants. Their failures become your incidents, your findings and, in some cases, your legal exposure. Preparing compliance management for 2027 therefore means looking outward as well as inward.
+
+What is contractor compliance management?
+
+Contractor compliance management is the structured process of vetting contractors and suppliers before work starts, collecting and verifying the documents and evidence their work requires, monitoring that evidence for expiry and change, and re-assessing them on a risk-based cycle. Its aim is to make third-party compliance as visible and accountable as your own.
+
+Start with Your Own Compliance Foundations
+
+Third-party compliance only works if your own compliance management is sound. That means each applicable obligation is identified, linked to the controls that address it, assigned to an owner and supported by evidence. A legal register tells you what applies; for South African organisations, legal register content is available through our partner <a href="/libryo/">Libryo</a>, embedded in XGRC®. Controls, owners and evidence then turn that register into something you can demonstrate. We discussed this foundation in our November article on <a href="/insights/connected-compliance-controls-organisational-resilience/">connected compliance controls and organisational resilience</a>.
+
+Once those foundations are clear, the obvious next question is which of your obligations are actually performed, wholly or partly, by third parties. The answer is usually more than expected.
+
+Why Contractors Are Part of Your Compliance
+
+South African law makes the connection explicit in several places. Under section 37 of the <a href="https://www.gov.za/documents/occupational-health-and-safety-act" rel="noopener">Occupational Health and Safety Act 85 of 1993</a>, an employer can be held liable for the acts and omissions of a mandatary, such as a contractor working on its premises. Section 37(2) limits that exposure where the parties have agreed in writing on the arrangements and procedures for compliance, which is why mandatary agreements and contractor safety files exist. The Construction Regulations 2014 add specific client duties for construction work, including being satisfied that a contractor has the necessary competencies and resources before appointment.
+
+Data protection follows the same logic. Under section 21 of <a href="https://www.gov.za/documents/protection-personal-information-act" rel="noopener">POPIA</a>, a responsible party must ensure, through a written contract, that any operator processing personal information on its behalf establishes and maintains the required security measures. Payroll bureaux, cloud providers, call centres and marketing agencies all fall into this category.
+
+What Should a Contractor Compliance Review Cover?
+
+Year end is a practical time to review the contractor base, because many contracts, insurance policies and certificates renew in the new year and sites often plan shutdown maintenance for January. A useful review covers five areas.
+
+Re-vetting Cycles
+
+Not every contractor needs the same scrutiny. Tier your third parties by risk, considering the hazard of the work, access to sites, systems or personal information, and their importance to operations. High-risk contractors may warrant annual re-vetting and periodic site audits, while low-risk suppliers can be reviewed less often. Record the tier and the next review date for each.
+
+Expiring Documents
+
+Most contractor non-compliance is not dramatic. It is a document that quietly expired. Build a list of every time-bound document you rely on and when each one lapses:
+
+- Letters of good standing with the Compensation Fund or a licensed mutual association
+- Public liability and professional indemnity insurance
+- Medical fitness certificates for workers in hazardous roles
+- Competency, training and equipment inspection certificates
+- B-BBEE certificates and tax compliance status where procurement policy requires them
+
+Contractor Safety Files
+
+For contractors working on site, confirm that each safety file is complete for the work actually being done in 2027, not the work done when the file was first approved. Check the signed mandatary agreement, the risk assessments and method statements, appointments and competency records, and the induction status of the people who will arrive on site.
+
+Operator Agreements and Data Access
+
+List every third party that processes personal information on your behalf, confirm a written agreement exists that addresses security safeguards, and check whether access still matches the current scope of work. Former suppliers with live accounts are a common finding.
+
+Performance and Incidents
+
+Review incidents, near misses, audit findings and service failures involving contractors during the year. A contractor with repeat findings should face closer monitoring or a remediation plan, whatever its documents say.
+
+Who owns contractor compliance?
+
+Ownership should sit with the business, not only with procurement or SHEQ. The person who engages a contractor should be accountable for ensuring it is vetted and its documents are current before work starts, with SHEQ, legal and information security providing standards and checks. Procurement systems manage purchase orders and payments; they are rarely built to hold evidence and expiry dates, a distinction we explored in <a href="/insights/supplier-compliance-software-vs-procurement-systems/">supplier compliance software versus procurement systems</a>.
+
+Moving from Annual Checks to Ongoing Assurance
+
+Annual reviews remain useful, but the documents that matter expire throughout the year. The aim for 2027 should be continuous visibility: automatic reminders before expiry, escalation when a contractor falls out of compliance, and a block on site access or new orders until the gap is closed. That shift from periodic to ongoing assurance is the core of <a href="/insights/how-proactive-compliance-reduces-business-risk/">how proactive compliance reduces business risk</a>, and the practical steps for suppliers are covered in <a href="/insights/vendor-compliance-management/">vendor compliance management</a>.
+
+How XGRC® Compliance Hub Manages Third-Party Compliance
+
+<a href="/compliance-hub/">XGRC® Compliance Hub</a> manages supplier, contractor and third-party compliance: structured onboarding, vetting, document collection, evidence and ongoing assurance. Contractors submit their documents through a structured process, expiry dates are tracked, and the compliance status of every third party is visible in one place instead of scattered across email threads and site files. For contractor safety, Compliance Hub works alongside <a href="/sheqx/">SHEQX®</a>, where incidents, inspections and corrective actions involving contractors are recorded.
+
+Your Compliance Is Only as Strong as Your Contractors
+
+Going into 2027, the most practical compliance improvement for many organisations is not another internal policy. It is knowing, at any moment, which contractors and suppliers are compliant, which documents expire next month and who is responsible for acting.
+
+Start with the free <a href="/use-cases/vendor-management/">vendor management checklist</a>, or <a href="/demo/">book a demo</a> to see contractor onboarding and document expiry tracking in Compliance Hub.`,
 };
