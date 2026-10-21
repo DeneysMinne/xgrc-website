@@ -4113,4 +4113,75 @@ From Reports to Decisions
 The test of board risk reporting is whether it changes what the board does. If the last three packs led to no decisions, challenges or reallocations, the reporting is informing nobody. Start by agreeing appetite statements for your top five risks and one KRI for each, then rebuild the summary page around them. That is a small change that moves risk reporting from compliance to confidence.
 
 Use the free <a href="/use-cases/enterprise-risk-management/">enterprise risk management checklist</a> to review your current reporting, or <a href="/demo/">book a demo</a> to see board-ready risk reporting in XGRC®.`,
+'sheq-accountability-operational-resilience': `When a fire alarm sounds at a plant, everyone knows who the fire marshals are. Ask who is accountable if the evacuation fails, and the answers start to vary: the SHEQ manager, the site manager, the emergency coordinator, the contractor who maintains the alarms. In a resilient organisation that question has one answer, and everyone knows it.
+
+Who Holds Ultimate Accountability in an Integrated SHEQ System?
+
+In an integrated SHEQ system, ultimate accountability for safety, health, environmental and quality performance, including emergency preparedness, rests with top management, in practice the chief executive. Tasks such as running drills, maintaining equipment and training wardens are delegated to named people, but accountability for the outcome is not delegated with them.
+
+South African law and the international standards point the same way. Section 16 of the <a href="https://www.gov.za/documents/occupational-health-and-safety-act" rel="noopener">Occupational Health and Safety Act 85 of 1993</a> requires every chief executive officer, as far as is reasonably practicable, to ensure that the employer's duties under the Act are properly discharged. The CEO may assign those duties to people under their control, the familiar "16(2) appointees", but the assignment does not relieve the CEO of responsibility or liability. Mines are regulated separately under the Mine Health and Safety Act, but the principle of accountable top management is the same.
+
+ISO 45001 takes the same position. Clause 5.1 requires top management to demonstrate leadership and commitment by taking overall responsibility and accountability for the prevention of work-related injury and ill health and for providing safe and healthy workplaces. Clause 8.2 then requires processes to prepare for and respond to potential emergencies, including testing and periodically reviewing them. The standard expects those processes to be run by competent people and owned by top management.
+
+Responsibility Versus Accountability
+
+Much SHEQ confusion comes from treating these words as interchangeable. Responsibility is about doing the work. Accountability is about answering for the result. A site emergency coordinator is responsible for the evacuation plan, drill schedule and warden training. The site manager may be accountable for the site's readiness. The CEO remains ultimately accountable for the organisation's readiness overall.
+
+A simple way to make this explicit for emergency preparedness is a short accountability map for each site.
+
+- Accountable: the CEO, through the site or general manager appointed under section 16(2).
+- Responsible: the emergency coordinator for plans, drills and warden appointments.
+- Responsible: maintenance for alarms, fire equipment and emergency lighting, with inspection records.
+- Consulted: health and safety representatives and the health and safety committee.
+- Informed: contractors and visitors through induction and site rules.
+
+The same pattern works for incident investigation, environmental permits, legal register compliance and quality nonconformities. What matters is that every SHEQ obligation has one accountable owner and that the owner can see whether the responsible people have done their part.
+
+Why Accountability Underpins Operational Resilience
+
+Operational resilience is the ability to keep critical operations running, or recover them quickly, when something goes wrong. SHEQ events are among the most common disruptions: an injury that stops a line, a spill that triggers a regulatory stop order, a quality failure that forces a recall. Each is more likely to escalate when accountability is vague.
+
+Unclear ownership shows up in the same few ways across sites.
+
+- Corrective actions that sit overdue because nobody with authority is chasing them.
+- Emergency drills that are scheduled but quietly skipped during busy periods.
+- Inspections recorded as complete while the defects they found remain open.
+- Contractor safety files that expire without anyone noticing.
+- Management reviews that discuss incident counts but not the actions behind them.
+
+None of these is a failure of policy. Each is a failure to connect a requirement to a person and then make that person's performance visible.
+
+Five Practical Ways to Strengthen SHEQ Accountability
+
+Write Down the Appointments
+
+Formalise section 16(2) and other legal appointments in writing, with a clear scope, and keep them current when people change roles. Link each appointee to the obligations, sites and processes they cover. An appointment letter in a personnel file that nobody can find during an inspection does little for accountability.
+
+Give Every Action an Owner and a Verifier
+
+Every corrective action needs an owner, a due date and someone who checks that it worked. Separating the person who closes an action from the person who verifies it is one of the simplest ways to stop premature closure.
+
+Make Overdue Items Escalate Automatically
+
+Agree escalation rules: for example, a critical action overdue by seven days goes to the site manager, and by thirty days to the executive. Escalation that depends on someone remembering to send an email will fail in busy months.
+
+Test Emergency Preparedness Like a Control
+
+Treat drills as control tests. Record the scenario, the response time, what went wrong and the actions raised, then review the plan. ISO 45001 expects emergency responses to be tested and reviewed, and an untested plan is an assumption, not a control.
+
+Bring Accountability into Management Review
+
+Management review should show accountability, not just statistics. Report overdue actions by owner, drills completed against plan and repeat findings by site. When leaders see names and dates rather than averages, follow-through improves.
+
+How Connected SHEQ Management Helps
+
+In many organisations incidents live in one system, inspections on paper, actions in spreadsheets and appointments in HR files. Linking them is what makes accountability visible. Our articles on <a href="/insights/digital-sheq-management/">digital SHEQ management</a> and <a href="/insights/how-to-consolidate-sheq-management-across-multiple-sites/">consolidating SHEQ across multiple sites</a> cover the practical side, and <a href="/insights/what-is-sheq/">what SHEQ is</a> sets out the basics for newer teams.
+
+<a href="/sheqx/">SHEQX®</a> manages SHEQ risks, incidents, inspections, audits, corrective actions and compliance in one place, aligned to ISO 9001, ISO 14001 and ISO 45001. Each record carries an owner and status, so leaders can see who is accountable for what and which actions are overdue across every site. South African organisations can find more on our <a href="/sheq-software-south-africa/">SHEQ software for South Africa</a> page. For a wider view of how SHEQ fits into enterprise governance, see the earlier post in this series on <a href="/insights/connected-governance-from-fragmented-systems/">connected governance</a>.
+
+Accountability Is What Turns Compliance into Confidence
+
+A SHEQ system can be fully documented and still fragile if nobody owns the outcomes. When accountability is written down, visible and tested, the organisation moves from compliance to confidence: it can show not only that it has an emergency plan, but that the plan works and someone answers for it.
+
+Download the free <a href="/use-cases/iso-45001-readiness/">ISO 45001 readiness checklist</a> or the <a href="/use-cases/safety-management/">safety management checklist</a> to review accountability across your sites, or <a href="/demo/">book a SHEQX® demo</a>.`,
 };

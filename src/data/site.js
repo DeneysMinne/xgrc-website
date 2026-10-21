@@ -1763,6 +1763,16 @@ export const articles = [
     imageAlt: 'Executive presenting an enterprise risk overview with a heat map on a large screen to colleagues in a boardroom',
     relatedSolutions: ['erm', 'integrated-assurance'],
   },
+  {
+    slug: 'sheq-accountability-operational-resilience',
+    title: 'Why SHEQ Accountability Is Essential to Operational Resilience',
+    excerpt: 'Who is ultimately accountable for emergency preparedness in an integrated SHEQ system? What OHS Act section 16 and ISO 45001 say, and five practical ways to make SHEQ accountability visible.',
+    category: 'SHEQ',
+    date: '2026-11-17',
+    image: 'sheq-accountability-operational-resilience.jpg',
+    imageAlt: 'SHEQ officers in hard hats and hi-vis at an industrial plant, with safety, health, environment and quality icons',
+    relatedSolutions: ['sheqx', 'msx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2110,6 +2120,12 @@ export const articleFaqs = {
     { q: 'What is the difference between risk appetite and risk tolerance?', a: 'Risk appetite is the broad amount and type of risk an organisation is willing to accept to achieve its objectives. Risk tolerance sets measurable limits around specific risks or categories, such as a maximum exposure to one customer or a minimum standard for critical controls. Appetite guides strategy; tolerances make it reportable and give management clear triggers for escalation.' },
     { q: 'How many risks should a board risk report show?', a: 'Focus on the top ten to fifteen enterprise risks, plus any risk outside appetite regardless of rank. Directors need trend, status of key controls and the actions in progress for those risks, not the full register. The complete register should remain available behind the summary so that any director can drill into detail when they want to challenge a rating.' },
     { q: 'Can a GRC platform produce the board risk report automatically?', a: 'It can if the underlying records are structured and linked. When risks, controls, findings and actions sit in one system, summary tables, heat maps and indicator status can be generated directly, which removes manual consolidation and reconciliation errors. Management commentary and judgement on emerging risks still need to be written by people who understand the business.' },
+  ],
+  'sheq-accountability-operational-resilience': [
+    { q: 'Who is ultimately accountable for emergency preparedness in an integrated SHEQ system?', a: 'Top management, in practice the chief executive. In South Africa, section 16 of the OHS Act makes the CEO answerable for ensuring the employer\'s duties are discharged, and ISO 45001 clause 5.1 gives top management overall responsibility and accountability for preventing injury and ill health. Emergency coordinators, wardens and maintenance teams are responsible for the work, but accountability stays at the top.' },
+    { q: 'What is a 16(2) appointee under the OHS Act?', a: 'A 16(2) appointee is a person to whom the chief executive officer has assigned some of the employer\'s duties under section 16(2) of the Occupational Health and Safety Act, typically a director or senior manager responsible for a site or division. The appointee acts under the CEO\'s control and directions, and the assignment does not relieve the CEO of responsibility or liability.' },
+    { q: 'Can the SHEQ manager be held accountable instead of the CEO?', a: 'The SHEQ manager can be responsible for many activities and can be held to account internally for their performance. Legally and under ISO 45001, however, ultimate accountability cannot be delegated away from top management. A sound structure makes the SHEQ manager responsible for systems and advice, line managers accountable for their areas and the CEO accountable overall.' },
+    { q: 'How do we show SHEQ accountability to an auditor?', a: 'Show written appointments linked to the obligations and sites they cover, corrective actions with named owners and verifiers, records of overdue items being escalated, emergency drills with findings and follow-up, and management review minutes that discuss performance by owner. An auditor looks for evidence that accountability is exercised, not only that it is written in a policy.' },
   ],
 };
 
