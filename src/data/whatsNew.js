@@ -282,6 +282,27 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.21.4",
+      "date": "2026-10-21",
+      "category": "new",
+      "title": "MAIA reads your contracts: who owes what, service levels and key dates",
+      "description": "Attach a contract and MAIA now drafts its obligations marked as ones you owe or ones the other party owes, and lists the service levels, start and end dates, renewal terms, notice period and value it finds, each with the sentence it came from. You choose what to accept. For obligations the other party owes, MAIA proposes a process to monitor them rather than to do their work. Process steps can now be due relative to the contract, such as 30 days before the notice deadline, and move automatically when the contract dates change or it renews."
+    },
+    {
+      "version": "2026.10.21.3",
+      "date": "2026-10-21",
+      "category": "new",
+      "title": "Contracts: obligations both ways, service levels and key dates",
+      "description": "Add your contracts to XLOGIC and govern them like your policies. Attach the contract and MAIA drafts its obligations for review, each marked as one you owe or one the other party owes, and each gets an owner, a process and evidence. Track service levels period by period: a missed target alerts the contract owner. XLOGIC works out the notice deadline from the end date and notice period and reminds the owner 90, 30 and 7 days ahead, so a contract never renews by accident. Task assignees also get a reminder two days before work falls due."
+    },
+    {
+      "version": "2026.10.21.2",
+      "date": "2026-10-21",
+      "category": "new",
+      "title": "Choose your standards, avoid duplicate requirements, export your SoA",
+      "description": "Each organisation now installs only the standards it works to, from a library that includes ISO 27001, ISO 42001 and ISO/IEC 27090, and can add more at any time. When a new policy is decomposed, XLOGIC spots obligations an existing requirement already covers and lets the reviewer map that requirement to the new clause instead of creating a duplicate process. The Statement of Applicability can now be exported as a PDF for your auditor, alongside the CSV."
+    },
+    {
       "version": "2026.10.21",
       "date": "2026-10-21",
       "category": "new",
@@ -516,8 +537,8 @@ export const whatsNew = {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
-      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
+      "title": "Process Templates: preview a template before applying it, and ten to choose from",
+      "description": "Every template card now has a Preview button showing its real step-by-step shape (owners, evidence, cadence, SLA) before you commit to it. The catalog also grew from 2 templates to 10: task-with-escalation, evidence-gated release, decision-routed review, two-stage sign-off, incident response, change request lifecycle, third-party risk assessment, and recurring training completion, alongside the original approval-with-evidence and periodic-review-with-escalation."
     },
     {
       "version": "2026-08-20",
@@ -544,15 +565,8 @@ export const whatsNew = {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Process Templates: preview a template before applying it, and ten to choose from",
-      "description": "Every template card now has a Preview button showing its real step-by-step shape (owners, evidence, cadence, SLA) before you commit to it. The catalog also grew from 2 templates to 10: task-with-escalation, evidence-gated release, decision-routed review, two-stage sign-off, incident response, change request lifecycle, third-party risk assessment, and recurring training completion, alongside the original approval-with-evidence and periodic-review-with-escalation."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
-      "category": "new",
-      "title": "Policy decomposition flags a policy with no approval or decision content",
-      "description": "When a policy is decomposed and none of the extracted requirements involve an approval or a risk-tier condition, XLOGIC now raises a review item in Cockpit rather than staying silent. Confirm the policy genuinely has none, or send it back for another look."
+      "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
+      "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
     },
     {
       "version": "2026-08-20",
@@ -560,6 +574,13 @@ export const whatsNew = {
       "category": "new",
       "title": "Overdue tasks with no Escalation step now email the task owner directly",
       "description": "Escalation is optional when a process is designed. Where a task breaches its SLA target and has no Escalation step configured, the step's owner role is now emailed the moment the breach is recorded, instead of relying only on Worklist or Cockpit to notice it."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "new",
+      "title": "Policy decomposition flags a policy with no approval or decision content",
+      "description": "When a policy is decomposed and none of the extracted requirements involve an approval or a risk-tier condition, XLOGIC now raises a review item in Cockpit rather than staying silent. Confirm the policy genuinely has none, or send it back for another look."
     },
     {
       "version": "2026-08-20",
