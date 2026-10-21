@@ -1923,6 +1923,16 @@ export const articles = [
     imageAlt: 'Environmental officer with a tablet overlooking an industrial site, with environmental and reporting icons',
     relatedSolutions: ['envirx'],
   },
+  {
+    slug: 'enterprise-risk-management-strategic-decisions',
+    title: 'Why Enterprise Risk Management Must Be Connected to Strategic Decision-Making',
+    excerpt: 'Risk registers are usually updated after strategy is set. Here is how to bring risk into strategic decisions using objectives, testable risk appetite, scenarios and outcome-based treatment.',
+    category: 'ERM',
+    date: '2027-01-14',
+    image: 'enterprise-risk-management-strategic-decisions.jpg',
+    imageAlt: 'Hand moving a gold chess piece beside a laptop, overlooking Table Mountain and the Cape Town skyline',
+    relatedSolutions: ['erm'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2366,6 +2376,12 @@ export const articleFaqs = {
     { q: 'When is greenhouse gas reporting due in South Africa?', a: 'Under the National Greenhouse Gas Emission Reporting Regulations, data providers submit the previous calendar year\'s emissions and activity data by 31 March each year, or the next working day if that date falls on a weekend or public holiday. Reporting is done through the greenhouse gas module of NAEIS. Confirm whether and how the regulations apply to your facilities with a qualified adviser.' },
     { q: 'How far ahead should licence renewals be planned?', a: 'Far enough ahead to complete any specialist studies, public participation and updated monitoring the authority will expect, plus the authority\'s own processing time. That varies by licence type and authority, so work backwards from the expiry date for each one and record the assumptions. For most organisations, renewals due in 2027 or early 2028 should be on this year\'s plan.' },
     { q: 'Who should own the environmental compliance plan?', a: 'The environmental manager usually coordinates the plan, but each task should belong to the person who actually performs or controls the activity, such as a plant manager for stack monitoring or a site manager for waste records. Executive oversight should sit with a named senior manager who receives the quarterly review and resolves escalations.' },
+  ],
+  'enterprise-risk-management-strategic-decisions': [
+    { q: 'What is the difference between strategic risk and operational risk?', a: 'Strategic risks affect whether the organisation achieves its strategic objectives, for example market shifts, major investment choices or regulatory change. Operational risks arise from day-to-day processes, people and systems, such as equipment failure or fraud. The two are connected: a cluster of operational weaknesses can become a strategic risk if it undermines a key objective.' },
+    { q: 'How does COSO ERM 2017 differ from the original COSO ERM framework?', a: 'The 2017 framework, Enterprise Risk Management: Integrating with Strategy and Performance, updated COSO\'s 2004 framework and is organised around five components and 20 principles. Its main shift is emphasis: it treats risk as something to consider while setting strategy and driving performance, not only as a set of controls applied once the strategy is fixed.' },
+    { q: 'Can ISO 31000 and COSO ERM be used together?', a: 'Yes. Many organisations use ISO 31000 for its principles and practical process, and COSO ERM for its governance and strategy emphasis, especially where boards and auditors are familiar with COSO. The two are compatible. What matters is applying one consistent method for assessment, appetite and reporting across the organisation.' },
+    { q: 'Who should own strategic risks?', a: 'Strategic risks should be owned by the executive accountable for the objective they threaten, not by the risk function. The risk function designs the method, facilitates assessment and challenges ratings. The board or its risk committee oversees the overall profile and approves appetite. Clear ownership keeps strategic risks in executive conversations rather than in a separate report.' },
   ],
 };
 

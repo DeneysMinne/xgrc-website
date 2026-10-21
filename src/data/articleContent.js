@@ -5116,4 +5116,61 @@ How ENVIRX® Supports an Environmental Compliance Plan
 Governance by Design for Environmental Compliance
 
 The organisations that finish 2027 without environmental surprises will be the ones that wrote their plan from their own conditions, owned every date and decided in January what happens when something goes wrong. Start with the free <a href="/use-cases/environmental-compliance/">environmental compliance checklist</a>, then take the <a href="/tour/">live XGRC® product tour</a> to see how conditions, monitoring and actions connect.`,
+'enterprise-risk-management-strategic-decisions': `Most strategy sessions end with a set of objectives, a budget and a list of initiatives. The risk register is updated a few weeks later, by different people, using the previous year's categories. By the time the two documents meet, the big decisions have already been made. That sequencing is the reason so many risk functions feel like commentators rather than participants.
+
+What Is Strategic Risk Management?
+
+Strategic risk management is the discipline of considering risk while strategy is being set, not after it has been approved. It tests whether a proposed strategy fits the organisation's risk appetite, identifies what could stop or accelerate each objective, and tracks whether the assumptions behind the plan still hold as the year unfolds. It turns enterprise risk management into an input to decisions.
+
+The major frameworks have moved firmly in this direction. COSO titled its 2017 framework <a href="https://www.coso.org/guidance-erm" rel="noopener">Enterprise Risk Management: Integrating with Strategy and Performance</a>, organised around five components: Governance and Culture; Strategy and Objective-Setting; Performance; Review and Revision; and Information, Communication and Reporting. ISO 31000 defines risk as the effect of uncertainty on objectives, an effect that can be positive or negative, as <a href="https://www.iso.org/news/ref2263.html" rel="noopener">ISO explained when the 2018 edition was published</a>. Both place objectives, not hazards, at the centre.
+
+Why a Risk Register Alone Cannot Do This
+
+A register lists risks, ratings and owners. It is essential, and our December article on <a href="/insights/from-risk-registers-to-risk-intelligence/">moving from risk registers to risk intelligence</a> shows how to keep one alive. But a register is organised around risks, while strategic decisions are organised around choices. Leaders choosing between expanding into a new province, acquiring a competitor or investing in automation need to understand how each option changes the organisation's exposure, not just what is on the current list.
+
+Start With Objectives and Ask Three Questions
+
+Take each strategic objective for 2027 and ask three questions in the strategy session itself, not afterwards:
+
+- What could prevent us achieving this, and how likely is it on our current plan?
+- What could help us exceed it, and are we positioned to take that opportunity?
+- What assumptions does this objective depend on, and how will we know if one fails?
+
+Describe the answers in business language, with causes, consequences and an accountable owner. "Supplier concentration in a single port could delay the Q3 product launch by up to a quarter" is a strategic risk statement. "Supply chain risk" is a category.
+
+Set Risk Appetite Against Objectives
+
+Risk appetite statements often fail because they are written at a level too abstract to guide a decision. A useful appetite statement connects to a specific objective and gives a boundary someone can test: a maximum tolerated concentration of revenue in one customer, a minimum liquidity buffer during an expansion, zero tolerance for operating without a required licence. When a proposal would push exposure past a boundary, the decision goes to the right forum by design rather than by chance.
+
+This is also how appetite becomes useful in reporting. Our November article on <a href="/insights/risk-visibility-executive-decision-making/">risk reporting to the board</a> covers how to show appetite breaches and key risk indicators to directors.
+
+Put a Risk Section in Every Decision Paper
+
+The simplest structural change is often the most effective. Require every investment proposal, business case and board paper above a defined threshold to include a short risk section: the objectives affected, the main risks the decision creates or reduces, how the decision sits against appetite and who will own the resulting risks. Keep it to half a page so it gets written properly.
+
+This does two things. It forces the proposer to think about risk before the meeting rather than during it, and it creates a record that links the decision to the risk register, so the risks it introduced are tracked rather than forgotten once the project starts.
+
+Use Scenarios to Test the Plan
+
+Scenario thinking is where strategic risk management earns its place. Pick two or three plausible scenarios that would stress the strategy, such as a prolonged disruption to electricity or logistics, a significant regulatory change in your sector or the loss of a major customer. For each, ask which objectives are affected, which controls and contingencies would respond, and how quickly leadership would know.
+
+Scenarios do not need precise probabilities. Where quantitative data is unavailable, record the assumptions behind qualitative judgements and set a date to revisit them. The value lies in the conversation and in the decisions it prompts, such as building inventory buffers or diversifying a supplier base.
+
+Link Treatment Plans to Accountability and Outcomes
+
+Every material risk needs a decided response: accept, reduce, share or avoid. Assign owners, deadlines and evidence requirements to the actions that deliver it. Then review whether completed actions actually changed the exposure. A treatment action marked complete while the residual rating is unchanged is a signal that the response was the wrong one.
+
+<a href="/erm/">Enterprise Risk Management</a> in XGRC® provides structured, auditable enterprise, operational and project risk aligned to ISO 31000, COSO and King V. Risks link to controls, audit findings and actions, so the line from a strategic objective down to the evidence that a treatment has worked is held in one place and feeds board reporting directly.
+
+Watch Leading Indicators Between Strategy Reviews
+
+Strategy is set once a year, but conditions change monthly. Choose a small set of forward-looking indicators tied to the assumptions behind each objective: control exceptions in critical processes, overdue critical maintenance, supplier delivery performance, staff turnover in key roles or movement in regulatory consultations. Each indicator should have a threshold that triggers a defined response, otherwise it is just a chart.
+
+Close the Loop After Major Decisions
+
+Few organisations review whether the risks they anticipated in a major decision actually materialised. A short post-decision review six or twelve months later, asking what we expected, what happened and what we missed, improves the next decision more than any methodology upgrade. Record the review so it informs the following strategy cycle.
+
+Governance by Design for Strategic Risk
+
+Connecting ERM to strategy is less about new tools than about timing and ownership: risk in the room when choices are made, appetite expressed in terms a decision can be tested against, and treatments judged by outcomes. For a broader introduction, see <a href="/insights/what-is-enterprise-risk-management/">what enterprise risk management is</a> and how <a href="/insights/erm-software-vs-traditional-risk-tools/">ERM software compares with traditional risk tools</a>. Then download the free <a href="/use-cases/enterprise-risk-management/">enterprise risk management checklist</a> and use it in your next strategy session.`,
 };
