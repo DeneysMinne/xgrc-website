@@ -1963,6 +1963,16 @@ export const articles = [
     imageAlt: 'Hands on a laptop keyboard beneath a glowing padlock shield linked to cloud, network and data security icons',
     relatedSolutions: ['msxcyber', 'compliance-hub', 'ai-governance'],
   },
+  {
+    slug: 'proactive-sheq-management-strategy-2027',
+    title: 'How to Build a Proactive SHEQ Management Strategy for 2027',
+    excerpt: 'A clean incident record can hide real risk. Build a proactive 2027 SHEQ strategy on hazard identification, worker participation, near misses and leading indicators that predict harm.',
+    category: 'SHEQ',
+    date: '2027-01-28',
+    image: 'proactive-sheq-management-strategy-2027.jpg',
+    imageAlt: 'White hard hat and hi-vis vest on a desk overlooking an industrial plant, with safety, health and environment icons',
+    relatedSolutions: ['sheqx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2430,6 +2440,12 @@ export const articleFaqs = {
     { q: 'Do ISMS objectives have to be measurable?', a: 'ISO/IEC 27001 clause 6.2 requires objectives to be measurable if practicable. Where a precise metric is not possible, define how achievement will be evaluated, for example through an audit result or a completed review with defined criteria. Auditors generally expect most objectives to have a measure, a target and a monitoring frequency.' },
     { q: 'How often should ISMS objectives be reviewed?', a: 'Monitor performance against objectives regularly, often monthly or quarterly, and review the objectives themselves at management review and whenever the risk assessment changes significantly. Clause 6.2 requires objectives to be updated as appropriate, so a major incident, new regulation or change in business strategy is a reason to revisit them mid-year.' },
     { q: 'Should AI be included in information security objectives?', a: 'If staff or systems use AI tools that process confidential or personal information, AI belongs in your risk assessment and is likely to warrant an objective. Common starting points are maintaining a register of AI systems in use and requiring risk-assessed approval before new tools handle sensitive data. ISO/IEC 42001 provides a dedicated management system framework where AI use is significant.' },
+  ],
+  'proactive-sheq-management-strategy-2027': [
+    { q: 'What is the difference between proactive and reactive SHEQ management?', a: 'Reactive SHEQ management responds after something goes wrong: investigating incidents, handling complaints and fixing failures. Proactive management works to prevent them, through hazard identification, planned inspections, near-miss reporting, worker participation and leading indicators. Both are needed. Incident investigation remains essential, but a proactive approach finds most weaknesses before they cause harm.' },
+    { q: 'What are good leading indicators for safety?', a: 'Good leading indicators measure the quality of prevention rather than the volume of activity. Examples include the share of high-severity actions closed on time, the proportion of critical controls verified as working, near-miss reports with completed follow-up and worker participation in risk assessments. Choose a small number linked to your most serious hazards and review them alongside lagging measures.' },
+    { q: 'What does ISO 45001 clause 5.4 require?', a: 'Clause 5.4 requires the organisation to establish, implement and maintain processes for consultation and participation of workers at all applicable levels and functions. It places particular emphasis on non-managerial workers, and expects the organisation to provide mechanisms, time, training and resources, timely access to information, and to remove obstacles to participation.' },
+    { q: 'How do you encourage near-miss reporting?', a: 'Make reporting quick, ideally from a mobile device at the point of work, and make sure reporters see a result. Acknowledge reports, share what was done and never treat a near-miss report as grounds for blame. Supervisors set the tone: when they report near misses themselves and act on others\' reports, reporting rates usually follow.' },
   ],
 };
 
