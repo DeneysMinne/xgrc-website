@@ -1913,6 +1913,16 @@ export const articles = [
     imageAlt: 'Stacked documents and a chain of icons from obligation to checklist, owner, review and evidence in an office',
     relatedSolutions: ['compliance-hub', 'xlogic'],
   },
+  {
+    slug: 'environmental-compliance-plan-2027',
+    title: 'Environmental Compliance Planning for 2027: From Obligations to Measurable Action',
+    excerpt: 'Most environmental breaches are planning failures. Turn authorisation conditions into a dated, owned 2027 calendar covering monitoring, statutory reporting, renewals, audits and exceedance response.',
+    category: 'Environment',
+    date: '2027-01-12',
+    image: 'environmental-compliance-plan-2027.jpg',
+    imageAlt: 'Environmental officer with a tablet overlooking an industrial site, with environmental and reporting icons',
+    relatedSolutions: ['envirx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2350,6 +2360,12 @@ export const articleFaqs = {
     { q: 'How detailed should each obligation entry be?', a: 'Detailed enough that someone new to the role could act on it. Record the specific section or condition, where it applies, what it means for the business in plain language, the owner, the control that meets it and the evidence expected. Avoid copying long statutory text into the register; link to the source and summarise the practical requirement instead.' },
     { q: 'How often should a compliance obligations register be reviewed?', a: 'Review high-consequence obligations at least annually and whenever the underlying requirement changes, such as an amended regulation, a renewed licence or a new contract. Lower-risk entries can follow a longer cycle. Record each review, including the date and reviewer, so you can show the register is maintained rather than created once and left alone.' },
     { q: 'Can supplier and contractor obligations sit in the same register?', a: 'Yes, and they should be linked. Obligations you flow down to suppliers and contractors, such as data protection, health and safety or environmental requirements, belong against the original obligation they support. XGRC® Compliance Hub manages the third-party evidence for those obligations, so an expired contractor document shows up as a gap against the requirement it affects.' },
+  ],
+  'environmental-compliance-plan-2027': [
+    { q: 'What should an environmental compliance plan include?', a: 'It should list every monitoring, sampling, reporting, inspection, audit and renewal activity your authorisations and legislation require, each with a due date, a named owner, the evidence it produces and the obligation it satisfies. It should also define the response process for exceedances and control failures, and the dates on which the plan itself is reviewed.' },
+    { q: 'When is greenhouse gas reporting due in South Africa?', a: 'Under the National Greenhouse Gas Emission Reporting Regulations, data providers submit the previous calendar year\'s emissions and activity data by 31 March each year, or the next working day if that date falls on a weekend or public holiday. Reporting is done through the greenhouse gas module of NAEIS. Confirm whether and how the regulations apply to your facilities with a qualified adviser.' },
+    { q: 'How far ahead should licence renewals be planned?', a: 'Far enough ahead to complete any specialist studies, public participation and updated monitoring the authority will expect, plus the authority\'s own processing time. That varies by licence type and authority, so work backwards from the expiry date for each one and record the assumptions. For most organisations, renewals due in 2027 or early 2028 should be on this year\'s plan.' },
+    { q: 'Who should own the environmental compliance plan?', a: 'The environmental manager usually coordinates the plan, but each task should belong to the person who actually performs or controls the activity, such as a plant manager for stack monitoring or a site manager for waste records. Executive oversight should sit with a named senior manager who receives the quarterly review and resolves escalations.' },
   ],
 };
 
