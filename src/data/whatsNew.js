@@ -282,6 +282,13 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.21",
+      "date": "2026-10-21",
+      "category": "new",
+      "title": "One requirement across ISO 27001, ISO 42001 and ISO/IEC 27090",
+      "description": "Run several standards as one management system. A requirement can now count towards clauses in more than one standard, so a supplier review built once covers ISO 27001 A.5.19 and ISO 42001 A.10.3 together. A built-in crosswalk suggests where your requirements probably also apply, and a new Standards page keeps a live Statement of Applicability for each standard: what applies and why, what covers each clause, and whether that work is healthy, exportable for your auditor. The cockpit now shows readiness per standard, and ISO 27001 includes all 93 Annex A controls."
+    },
+    {
       "version": "2026.10.01",
       "date": "2026-10-01",
       "category": "new",
