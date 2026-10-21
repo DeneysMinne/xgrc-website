@@ -4318,4 +4318,67 @@ A Year of Governance and a Future of Assurance
 If 2026 was a year of governance, with a new Code, new AI expectations and sharper regulatory scrutiny, then 2027 should be the year that governance becomes measurable assurance. That means fewer disconnected tools, fewer manual reconciliations and more decisions made from information the board can trust.
 
 To benchmark your starting point, work through the free <a href="/use-cases/king-v-governance/">King V governance checklist</a>, or take the <a href="/tour/">live product tour</a> to see connected risk, compliance and assurance dashboards on sample data.`,
+'annual-sheq-review': `December is when most SHEQ managers are asked the same question in different words: how did we do this year? The honest answer rarely fits on one slide, because a year of incidents, inspections, audits and corrective actions produces a great deal of data and surprisingly little insight unless someone deliberately turns one into the other.
+
+What is an annual SHEQ review?
+
+An annual SHEQ review is a structured, evidence-based assessment of a full year of safety, health, environmental and quality performance, presented to top management so that they can decide what to change. It examines leading and lagging indicators, incident and audit trends, the effectiveness of corrective actions and progress against objectives, and it produces recorded decisions, not just a report.
+
+Done well, the annual review also satisfies the management review requirements of ISO 45001, ISO 14001 and ISO 9001, which share the same clause 9.3 structure. Done badly, it is a statistics pack that confirms what everyone already believed.
+
+What must an ISO 45001 management review cover?
+
+Clause 9.3 of <a href="https://www.iso.org/standard/63787.html" rel="noopener">ISO 45001:2018</a> requires top management to review the OH&S management system at planned intervals. The required inputs give you a ready-made agenda for the year-end review:
+
+- The status of actions from previous management reviews
+- Changes in internal and external issues, legal and other requirements, and risks and opportunities
+- The extent to which the OH&S policy and objectives have been met
+- OH&S performance, including trends in incidents, nonconformities, corrective actions, monitoring results, compliance evaluation, audit results and worker consultation and participation
+- Adequacy of resources, relevant communication with interested parties and opportunities for continual improvement
+
+The standard also expects the outputs to be recorded and the relevant outputs communicated to workers and, where they exist, workers' representatives. That last point is often missed. A review whose conclusions never reach the shop floor has not closed the loop. If you run an integrated system, the quality and environmental inputs from ISO 9001 and ISO 14001 slot into the same meeting with little extra effort.
+
+Balance Leading and Lagging Indicators
+
+Lagging indicators tell you what has already gone wrong: lost time injuries, recordable cases, environmental incidents, customer complaints, product nonconformities. They matter, but on their own they are a poor guide to next year. A site with no recordable injuries may be well controlled, or it may simply have been lucky.
+
+Leading indicators measure the activities that prevent harm and failure. Useful examples for a year-end review include:
+
+- Planned inspections completed against schedule, and the proportion that found something
+- Near misses and hazard reports per site, read as a sign of reporting culture, not of danger
+- Corrective actions closed on time, and the proportion verified as effective
+- Training and competence records current for safety-critical roles
+- Contractor safety files reviewed before work started
+
+Read the two together. Falling recordable injuries alongside falling near-miss reports should prompt a question about whether people have stopped reporting. Rising near-miss reports with stable injury rates usually indicate a healthier culture, because people are surfacing problems before they hurt someone. We explored why the raw numbers can mislead in <a href="/insights/why-sheq-incidents-are-often-a-data-problem/">why SHEQ incidents are often a data problem</a>.
+
+Look for Patterns Across the Year
+
+The value of an annual view is that it reveals patterns a monthly report cannot. Group incidents and findings by root cause category, location, activity, shift and contractor rather than simply counting them. Three slips in different months may look unrelated until you see they all happened in the same loading bay after cleaning. An inspection finding that recurs at four sites suggests a design or procedure problem, not four careless supervisors.
+
+This is far easier when incidents, inspections, audits and actions sit in one system with consistent classifications. If each site keeps its own spreadsheet with its own categories, most of the review period is spent reconciling data instead of interpreting it. Our guide to <a href="/insights/how-to-consolidate-sheq-management-across-multiple-sites/">consolidating SHEQ management across multiple sites</a> covers the practical steps.
+
+Test Whether Corrective Actions Actually Worked
+
+Closure rates are the most flattering and least informative SHEQ metric. An action marked complete only shows that someone did something. The year-end review should sample significant actions and ask whether the hazard or failure has recurred since. Where it has, the original root cause analysis was probably too shallow, or the action addressed a symptom.
+
+Our November article on <a href="/insights/incident-reporting-to-continuous-improvement/">moving from incident reporting to continuous improvement</a> sets out how to build effectiveness checks into the action process, so that next year's review has better evidence to work with.
+
+Confirm Who Owns the Outcomes
+
+ISO 45001 clause 5.1 places accountability for the OH&S management system on top management, and in South Africa the Occupational Health and Safety Act places duties on the employer and its chief executive officer. The annual review is the moment to check that accountability is real: that each objective, significant risk and overdue action has a named owner at the right level, and that escalation happened when it should have. Our earlier piece on <a href="/insights/sheq-accountability-operational-resilience/">SHEQ accountability and operational resilience</a> discusses this in more detail.
+
+Turn the Review into Decisions for 2027
+
+A management review is only useful if it changes something. Close the meeting with recorded decisions: revised objectives and targets, resources approved or reallocated, changes to the inspection programme, procedures to rewrite, training to schedule and risks to reassess. Give each decision an owner and a date, and track them as actions so that the status of actions from previous reviews, the first input next year, is a simple report rather than an archaeological dig.
+
+How SHEQX® Supports the Year-End Review
+
+<a href="/sheqx/">SHEQX®</a> manages SHEQ risks, incidents, inspections, audits, corrective actions and compliance in one place, aligned to ISO 9001, ISO 14001 and ISO 45001. Because these records share one structure, the trends, overdue actions and recurring findings that feed clause 9.3 can be reported directly rather than compiled by hand, and management review decisions can be raised as tracked actions. For organisations in South Africa, our <a href="/sheq-software-south-africa/">SHEQ software for South Africa</a> page explains local regulatory alignment, and the importance of good incident data is covered in <a href="/insights/why-incident-reporting-is-critical-in-sheq-management/">why incident reporting is critical in SHEQ management</a>.
+
+Close the Year with Evidence, Not Assumptions
+
+A year of SHEQ work deserves better than a page of totals. Use the year-end review to read your leading and lagging indicators together, find the patterns, test whether actions worked and leave the room with decisions. That is how a year of governance becomes a future of assurance on the shop floor.
+
+Before your review, work through the free <a href="/use-cases/safety-management/">safety management checklist</a>, or take the <a href="/tour/">live product tour</a> to see SHEQ dashboards built on sample data.`,
 };

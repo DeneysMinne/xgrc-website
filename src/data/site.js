@@ -1793,6 +1793,16 @@ export const articles = [
     imageAlt: 'Businesswoman looking over the Cape Town skyline at sunset, with connected governance icons arcing across the sky',
     relatedSolutions: ['msx', 'integrated-assurance', 'ai-governance'],
   },
+  {
+    slug: 'annual-sheq-review',
+    title: 'A Year in SHEQ: Turning Safety, Health and Quality Data into Better Decisions',
+    excerpt: 'A practical guide to the annual SHEQ review: what ISO 45001 clause 9.3 requires, how to read leading and lagging indicators together, and how to turn a year of data into decisions.',
+    category: 'SHEQ',
+    date: '2026-12-03',
+    image: 'annual-sheq-review.jpg',
+    imageAlt: 'Two safety officers in hard hats reviewing SHEQ data on a tablet at an industrial site, with safety and quality icons',
+    relatedSolutions: ['sheqx', 'msx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2158,6 +2168,12 @@ export const articleFaqs = {
     { q: 'Does King V say anything about artificial intelligence?', a: 'Yes. Its information governance principle asks the governing body to oversee emerging technologies such as AI and machine learning. That includes ethical and trustworthy AI systems and human oversight proportionate to the severity of risk, plus ongoing oversight of systems that continue to learn and change their behaviour after deployment.' },
     { q: 'What changed in POPIA breach reporting?', a: 'From 1 April 2025 the Information Regulator moved security compromise reporting onto its eServices portal, and notifications under section 22 of POPIA submitted any other way are treated as non-compliant. The Regulator expects all security compromises to be reported, regardless of scale, so incident records and asset ownership need to be ready in advance.' },
     { q: 'What is the most important GRC priority for 2027?', a: 'For most organisations it is connection: linking risks, obligations, controls, evidence and actions so that the board receives one consistent picture. With connected data in place, King V disclosures, ISO audits, POPIA incident response and combined assurance reporting all become faster and more reliable. MSX® provides that coordinated structure across governance, risk, compliance and management systems.' },
+  ],
+  'annual-sheq-review': [
+    { q: 'How often must an ISO 45001 management review take place?', a: 'ISO 45001 requires top management to review the OH&S management system at planned intervals, but it does not prescribe a frequency. Most organisations hold at least one full review a year, often aligned with the financial year end, and many add shorter quarterly reviews of performance and actions so that the annual meeting is not the only checkpoint.' },
+    { q: 'What is the difference between leading and lagging SHEQ indicators?', a: 'Lagging indicators measure outcomes that have already happened, such as injuries, environmental incidents and quality failures. Leading indicators measure preventive activity, such as inspections completed, near misses reported, hazards closed and training kept current. A balanced review uses both, because lagging measures confirm results while leading measures show whether controls are likely to keep working.' },
+    { q: 'Can one management review cover ISO 9001, ISO 14001 and ISO 45001?', a: 'Yes. All three standards follow the same harmonised clause structure, and each has a clause 9.3 management review with similar inputs. An integrated review can cover them together, provided the discipline-specific inputs are each addressed and the outputs are recorded. Certification auditors generally accept an integrated review when the records show every required input was considered.' },
+    { q: 'Who should attend the annual SHEQ review?', a: 'Top management must take part, because the standards make them accountable for the review and its decisions. In practice the meeting also includes the SHEQ manager, operational and site managers, and where relevant quality, environmental and HR leads. Worker representatives should be consulted beforehand and receive the relevant outcomes afterwards, as ISO 45001 requires.' },
   ],
 };
 
