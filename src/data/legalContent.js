@@ -323,7 +323,7 @@ export const legalDocs = {
           ['Non-payment', 'SaaS cl.9.4', 'Day 31: written reminder. Day 45: suspension on notice. Day 60+: termination right on 7 Business Days’ notice. All outstanding fees immediately due on termination.'],
           ['Immediate suspension', 'SaaS cl.16', 'Security incident, material AUP breach, or continued access exposing Strategix to legal liability — customer notified as soon as reasonably practicable after suspension.'],
           ['Termination for cause', 'SaaS cl.11.1', 'Material breach not remedied within 14 Business Days of written notice, or insolvency/liquidation/business rescue — all fees for the remainder of any fixed term become immediately due.'],
-          ['Security incident', 'DPA cl.11', 'Customer notified immediately on reasonable grounds to believe of a breach, and within 72 hours of a confirmed breach at most, including nature of incident, data categories affected, and remediation steps.'],
+          ['Security incident', 'DPA cl.11', 'Customer notified immediately when a breach is reasonably suspected, and within 72 hours of confirming it at most, including nature of incident, data categories affected, and remediation steps.'],
           ['Subprocessor change', 'DPA cl.8', '10 Business Days’ advance notice for material changes; customer may object in writing within 10 Business Days on data protection grounds.'],
         ],
       }},
