@@ -1813,6 +1813,16 @@ export const articles = [
     imageAlt: 'Analyst at security dashboards, with a padlock shield linked to governance, risk, policy and assurance icons',
     relatedSolutions: ['msxcyber', 'integrated-assurance', 'erm'],
   },
+  {
+    slug: 'what-2026-taught-organisations-about-connected-grc',
+    title: 'What 2026 Taught Organisations About Connected Governance, Risk and Compliance',
+    excerpt: 'King V\'s first year, AI adoption outpacing governance and tougher POPIA expectations: five practical GRC lessons from 2026 and how to act on them before 2027 planning begins.',
+    category: 'GRC',
+    date: '2026-12-01',
+    image: 'what-2026-taught-organisations-about-connected-grc.jpg',
+    imageAlt: 'Businesswoman looking over the Cape Town skyline at sunset, with connected governance icons arcing across the sky',
+    relatedSolutions: ['msx', 'integrated-assurance', 'ai-governance'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2190,6 +2200,12 @@ export const articleFaqs = {
     { q: 'What does POPIA section 19 require for information security?', a: 'Section 19 requires a responsible party to secure the integrity and confidentiality of personal information by taking appropriate, reasonable technical and organisational measures. In practice that means identifying foreseeable risks, maintaining safeguards against them, regularly verifying that the safeguards are effectively implemented and updating them as risks change. Section 22 separately deals with notifying security compromises.' },
     { q: 'How should cyber risk be reported to the board?', a: 'Report cyber as business risk, not as technical statistics. A useful board view shows the top cyber risks against appetite, results of key control tests such as backup restores and access reviews, significant incidents and lessons learned, critical supplier exposure and overdue remediation actions. Detailed technical metrics belong in management committees, with a summary escalated only when they indicate rising risk.' },
     { q: 'Does ISO 27001 certification mean our cybersecurity governance is adequate?', a: 'Certification shows that an information security management system meets the standard\'s requirements within its defined scope at the time of audit. It is strong evidence of structured governance, but boards should still check that the scope covers the systems that matter most, that risks are owned by the business and that assurance is ongoing rather than limited to the annual audit.' },
+  ],
+  'what-2026-taught-organisations-about-connected-grc': [
+    { q: 'When did King V take effect in South Africa?', a: 'King V was released by the IoDSA on 31 October 2025 and applies to financial years beginning on or after 1 January 2026, with early adoption encouraged. It replaced King IV, reduced the number of principles from 17 to 13 and introduced a Disclosure Framework, which organisations use to explain how they applied each principle.' },
+    { q: 'Does King V say anything about artificial intelligence?', a: 'Yes. Its information governance principle asks the governing body to oversee emerging technologies such as AI and machine learning. That includes ethical and trustworthy AI systems and human oversight proportionate to the severity of risk, plus ongoing oversight of systems that continue to learn and change their behaviour after deployment.' },
+    { q: 'What changed in POPIA breach reporting?', a: 'From 1 April 2025 the Information Regulator moved security compromise reporting onto its eServices portal, and notifications under section 22 of POPIA submitted any other way are treated as non-compliant. The Regulator expects all security compromises to be reported, regardless of scale, so incident records and asset ownership need to be ready in advance.' },
+    { q: 'What is the most important GRC priority for 2027?', a: 'For most organisations it is connection: linking risks, obligations, controls, evidence and actions so that the board receives one consistent picture. With connected data in place, King V disclosures, ISO audits, POPIA incident response and combined assurance reporting all become faster and more reliable. MSX® provides that coordinated structure across governance, risk, compliance and management systems.' },
   ],
 };
 

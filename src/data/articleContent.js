@@ -4451,4 +4451,57 @@ Governance Is What Makes Security Confident
 Cyber resilience is not bought with another tool. It is built when the board knows the material risks, business owners accept them deliberately, controls are tested and assurance covers what matters. That is how cybersecurity moves from compliance to confidence.
 
 Start with the free <a href="/use-cases/iso-27001-readiness/">ISO 27001 readiness checklist</a> or the <a href="/use-cases/popia-compliance/">POPIA compliance checklist</a>, explore the ISMS governance dashboard in the <a href="/tour/">live XGRC® tour</a>, or <a href="/demo/">book an MSXCyber® demo</a>.`,
+'what-2026-taught-organisations-about-connected-grc': `Every year leaves a residue of lessons, but 2026 left an unusually clear one for South African boards and GRC teams. It was the first full reporting year in which many organisations applied King V, the year generative AI moved from pilot to everyday tool, and the year regulators kept asking for proof rather than promises.
+
+The headline lesson is simple. Governance, risk and compliance information is only useful when it is connected: when a board can trace a strategic risk to the controls that treat it, the obligations it touches, the evidence that the controls work and the actions still open. Organisations that could make that trace quickly had calmer committee cycles. Organisations that could not spent the year reconciling spreadsheets.
+
+What are the main GRC lessons from 2026?
+
+The main GRC lessons from 2026 are that outcomes now matter more than documented practices, that AI must be governed as a business risk rather than an IT project, that evidence has to exist before anyone asks for it, and that assurance only builds confidence when risk, compliance, internal audit and external providers plan and report together.
+
+Lesson One King V Shifted the Conversation to Outcomes
+
+King V, released by the Institute of Directors in South Africa on 31 October 2025, applies to financial years beginning on or after 1 January 2026, so for many organisations 2026 was the first year it applied in full. It consolidates King IV's 17 principles into 13 and introduces a Disclosure Framework that organisations use to explain how each principle was applied. The <a href="https://www.iodsa.co.za/news/713677/King-V-released-A-new-governance-Code-to-navigate-an-increasingly-complex-landscape-.htm" rel="noopener">IoDSA's release announcement</a> sets out the timing.
+
+The most quoted line in the Code itself is also the most practical: sound governance is not indicated by how many boxes can be ticked at the level of practices implemented. That is a direct challenge to the annual compliance checklist. Under Principle 8, the governing body is expected to oversee that compliance is integrated into organisation-wide risk management and that risk management is embedded in decision making. You cannot demonstrate either of those if your risk register, compliance register and audit findings live in three unconnected tools. Our <a href="/use-cases/king-v-governance/">King V governance checklist</a> breaks the principles into practical questions for a first-year review.
+
+Lesson Two AI Adoption Moved Faster Than AI Governance
+
+A common pattern this year was that staff began using generative AI tools for drafting, summarising and analysis well before any AI register, acceptable use policy or risk assessment existed. King V anticipated this. Its information governance principle asks the governing body to oversee emerging technologies such as AI, including human oversight that is proportionate to the severity of the risk and ongoing oversight of systems that learn and change behaviour.
+
+International frameworks point the same way. ISO/IEC 42001, published in December 2023, gives organisations a management system standard for AI, and the EU AI Act, in force since August 2024 with obligations phasing in, affects South African businesses that sell into or serve the EU. The practical lesson is that AI needs the same governance spine as any other risk: an inventory, an owner, a classification, controls and evidence. Our <a href="/ai-governance/">AI Governance</a> capability provides the AI register, EU AI Act classification and ISO/IEC 42001 readiness, and our article on <a href="/insights/king-v-and-the-rise-of-ai-governance/">King V and the rise of AI governance</a> covers the board's role in more depth.
+
+Lesson Three Evidence Has to Exist Before Anyone Asks
+
+POPIA enforcement continued to mature. Since 1 April 2025, the Information Regulator has required security compromise notifications under section 22 of POPIA to be submitted through its eServices portal, and its <a href="https://inforegulator.org.za/wp-content/uploads/2025/08/Fact-Sheet-on-security-compromises-2.pdf" rel="noopener">fact sheet on security compromises</a> states that all compromises must be reported irrespective of perceived scale. When a notification is due, nobody has time to work out who owns the asset, which safeguards were in place or when they were last tested.
+
+The same holds for ISO certification audits, customer due diligence and King V disclosures. The organisations that coped best were those that captured evidence as part of normal work, not as a scramble in the weeks before an audit. That is the theme of <a href="/insights/can-your-organisation-prove-it-is-compliant-right-now/">can your organisation prove it is compliant right now</a>, and it remains the single most useful test of a compliance programme.
+
+Lesson Four Assurance Only Builds Confidence When It Is Combined
+
+A familiar pattern in audit committees is a stack of assurance reports that cover overlapping ground while leaving some significant risks with no assurance at all. King V's assurance principle asks the governing body to satisfy itself that a combined assurance model is implemented, drawing together management line functions, risk and compliance functions and internal and external assurance providers so that the combined effort covers the significant risks and material matters.
+
+The lesson is not that every organisation needs more audits. It is that the audits, reviews and certifications already happening should be planned against one view of risk, with findings tracked in one place. <a href="/integrated-assurance/">Integrated Assurance</a> coordinates internal audit and combined assurance and links every finding directly to the risks, controls and actions it relates to.
+
+Lesson Five Fragmentation Has a Real Cost
+
+The fifth lesson is the one that sits beneath the other four. Governance failures are rarely caused by missing policies. Far more often they are caused by information that existed but was not connected: an incident that never reached the risk register, a supplier certificate that expired without anyone noticing, an audit finding closed on paper but not in practice. We set out the mechanics of this in <a href="/insights/the-cost-of-fragmented-compliance-why-visibility-matters-more-than-ever/">the cost of fragmented compliance</a> and in our November piece on <a href="/insights/connected-governance-from-fragmented-systems/">moving from fragmented systems to connected governance</a>.
+
+How should organisations carry these lessons into 2027?
+
+The year-end period is a good moment to test your own position against these lessons before the 2027 planning cycle locks in budgets and priorities. A short, honest review is more useful than a long one:
+
+- Can you trace each top-ten risk to its controls, its owner, its latest evidence and its open actions in under an hour?
+- Do you have an AI register, and does it include tools staff adopted informally during the year?
+- If a security compromise occurred tomorrow, could you assemble the facts needed for a section 22 notification without a manual hunt?
+- Does your audit committee see one combined assurance view, or a stack of separate reports?
+- Which governance activities still depend on one person's spreadsheet?
+
+Where the answers are uncomfortable, start with connection rather than more documentation. <a href="/msx/">MSX®</a> packages selected governance, risk, compliance and management system capabilities into one coordinated management system, so that risk, compliance, SHEQ and assurance information share the same structure instead of being reconciled by hand. As we argued in <a href="/insights/why-compliance-alone-is-no-longer-enough/">why compliance alone is no longer enough</a>, the goal is not more registers but confidence that the registers you have tell a true story.
+
+A Year of Governance and a Future of Assurance
+
+If 2026 was a year of governance, with a new Code, new AI expectations and sharper regulatory scrutiny, then 2027 should be the year that governance becomes measurable assurance. That means fewer disconnected tools, fewer manual reconciliations and more decisions made from information the board can trust.
+
+To benchmark your starting point, work through the free <a href="/use-cases/king-v-governance/">King V governance checklist</a>, or take the <a href="/tour/">live product tour</a> to see connected risk, compliance and assurance dashboards on sample data.`,
 };
