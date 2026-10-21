@@ -4806,4 +4806,59 @@ Ask one more question of every report: could you prove it right now? If the answ
 Governance by Design Starts in January
 
 A stronger 2027 does not need a new framework. It needs the existing one to be connected: decisions linked to owners, owners linked to risks and controls, and controls producing evidence as a matter of course. Start with the decision inventory this month. If you want to see how connected governance looks across risk, compliance and assurance, take the <a href="/tour/">live XGRC® product tour</a> or work through the free King V checklist with your company secretary.`,
+'compliance-obligations-to-accountable-action': `Ask a compliance team how many obligations apply to the business and you will usually get a number. Ask how many of those obligations have a named owner, an operating control and current evidence, and the room goes quiet. The list exists. The link between the list and the work does not.
+
+What Is a Compliance Obligations Register?
+
+A compliance obligations register is a structured record of every legal, regulatory, contractual and voluntary requirement that applies to an organisation. For each obligation it shows where the requirement comes from, what it means in practice, who owns it, which control meets it and what evidence proves that control is working. It is the backbone of a connected compliance framework.
+
+The last three columns are what turn a register into a management tool. Without them, you have a legal library. With them, you can answer the question every regulator, auditor and board member eventually asks: how do you know?
+
+Why Obligation Lists Are Not Enough
+
+Most organisations can identify their applicable requirements, often with outside help. Where they struggle is demonstrating how those requirements are implemented. The register says the business must protect personal information. The firewall team, the HR filing room and the outsourced payroll provider each do something about it, but nobody can show the whole picture in one view.
+
+The fix is a simple chain that every material obligation should follow: obligation, owner, control, evidence, action. If any link is missing, the obligation is met by luck rather than design. Our November article on <a href="/insights/connected-compliance-controls-organisational-resilience/">connected compliance controls</a> covers control design and testing in depth; this piece focuses on building the register that feeds them.
+
+Build a Defensible Obligations Inventory
+
+Start by identifying the sources: legislation and regulations, permits and licences, industry codes, contracts with customers and funders, certification standards and internal commitments such as published sustainability targets. For each obligation, record:
+
+- The source and the specific section or condition
+- Which sites, business units or activities it applies to
+- The interpretation owner, who decides what it means for the business
+- The operational owner, who makes sure it is met
+- The review frequency and the date it was last confirmed
+
+Legal interpretation should be confirmed by qualified specialists where the consequences are significant. Keeping legislation current is specialist work too. XGRC® embeds legal register content from our partner <a href="/libryo/">Libryo</a>, so the starting list of legal obligations is maintained at source rather than rebuilt in a spreadsheet each year.
+
+Map Obligations to Real Controls
+
+For each material obligation, identify the policy, process or operational control intended to meet it, then note how often it operates and what record it should leave. Take section 19 of POPIA, which requires a responsible party to secure personal information through appropriate, reasonable technical and organisational measures, and to regularly verify that its safeguards are effectively implemented. The <a href="https://inforegulator.org.za/knowledge-base/category/popia/chapter-3-conditions-for-lawful-processing/part-a-processing-of-personal-information-in-general/condition-7-security-safeguards/" rel="noopener">Information Regulator's guidance on security safeguards</a> sets out the condition. A register entry that stops at "POPIA section 19" proves nothing. One that links to quarterly access reviews, signed by a named manager, with exceptions logged as actions, can be defended.
+
+This mapping exercise is where gaps surface. You will find obligations with no operating control, controls that meet no recorded obligation, and controls everyone assumes someone else performs.
+
+Who Owns an Obligation When the Work Is Outsourced?
+
+Accountability does not transfer with the work. Under POPIA, an operator processing personal information on your behalf must be bound by a written contract to maintain security measures, yet the responsible party remains answerable for the outcome. The same logic applies to a contractor working on your site, a logistics provider carrying your hazardous goods or a cloud service holding your customer data.
+
+That is why a register must show which obligations are flowed down to suppliers and contractors, and how you know they are meeting them. The <a href="/compliance-hub/">XGRC® Compliance Hub</a> manages that third-party side of compliance: structured onboarding and vetting, document collection, evidence and ongoing assurance for the suppliers and contractors you rely on. When a contractor's insurance certificate or safety file expires, the gap appears against the obligation it supports, not in a filing cabinet. Our guide to <a href="/insights/vendor-compliance-management/">vendor compliance management</a> covers the supplier lifecycle in more detail, and the <a href="/use-cases/vendor-management/">vendor management checklist</a> is a useful starting point.
+
+Separate Doing From Checking
+
+Accountability is clearer when the person who performs a control is not the only person who confirms it worked. For each material obligation, name the control performer, the reviewer and the escalation point when the control fails. Set remediation deadlines that reflect the consequence of non-compliance, not the convenience of the team.
+
+<a href="/xlogic/">XLOGIC®</a> converts obligations and controls into structured workflows with this separation built in: tasks are assigned, evidence is captured at the step that requires it, and every approval leaves an audit trail.
+
+Monitor Change Systematically
+
+Requirements evolve. Regulations are amended, licences are renewed with new conditions and contracts are renegotiated. A change process should cover four steps: identify the change, assess whether it applies, update the affected controls and owners, and communicate to the people who need to act. Record the decision at each step, including decisions that a change does not apply, because that reasoning is often what an auditor asks for.
+
+Report Exceptions and Improvement
+
+Useful compliance reporting focuses on what needs attention: material exceptions, overdue actions, obligations with no current evidence and changes since the last report. A long list of green ticks tells management very little. Review recurring failures for systemic causes, because the same control failing at three sites is a design problem, not three local problems. This is also where <a href="/insights/how-proactive-compliance-reduces-business-risk/">proactive compliance reduces business risk</a>: exceptions spotted early cost far less than findings raised by a regulator.
+
+Start the Register With What Matters Most
+
+Governance by design does not mean mapping every obligation in January. Start with the twenty or thirty obligations whose breach would hurt most, build the full chain from obligation to evidence for each, then extend. The free <a href="/use-cases/compliance-management/">compliance management checklist</a> will help you prioritise, and if your exposure runs through suppliers and contractors, <a href="/demo/">book a demo of the XGRC® Compliance Hub</a> to see third-party evidence linked to the obligations it supports.`,
 };
