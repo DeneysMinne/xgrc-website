@@ -4313,4 +4313,73 @@ From Closure to Confidence
 Closing an incident is an administrative milestone. Closing the loop means being able to show that the cause was found, the action worked and every site learned from it. That is the difference between compliance and confidence in SHEQ.
 
 Download the free <a href="/use-cases/incident-management/">incident management checklist</a> to test your process against these six stages, or take the <a href="/tour/">live XGRC® tour</a>, which includes an incident and near-miss trends dashboard on sample data.`,
+'connected-compliance-controls-organisational-resilience': `Ask a compliance team how many controls it has and you will usually get a number. Ask how many of those controls were tested in the last quarter, who owns each one and what evidence shows it worked, and the conversation slows down. Ask the same about the controls your critical suppliers and contractors operate on your behalf, and it often stops.
+
+What Are Compliance Controls?
+
+Compliance controls are the specific activities, checks and safeguards an organisation operates to meet a legal, regulatory, contractual or internal obligation. A well-defined control has a stated objective, a named owner, a frequency, defined evidence and a way of testing whether it works. Controls connected to the obligations and risks they address are what turn a compliance register into resilience.
+
+That last point is the theme of this post. A register of obligations tells you what you must do. Controls are how you do it. Evidence is how you prove it. Resilience comes from keeping all three connected and from recognising that many of your controls are now operated by third parties.
+
+Why Disconnected Controls Undermine Resilience
+
+Controls often live apart from the obligations and risks they serve. The legal register sits with legal, the control list with compliance, the risk register with the risk team and the evidence in shared folders. Each list is maintained, but nobody can answer the joined-up questions.
+
+- Which obligations have no control mapped to them at all?
+- Which controls have not been performed or tested this period?
+- Which risks are rated low because of a control that is failing?
+- Which obligations depend on a supplier or contractor doing something we never verify?
+
+When an incident or an audit forces those questions, the answers are assembled under pressure. We explored this in <a href="/insights/can-your-organisation-prove-it-is-compliant-right-now/">can your organisation prove it is compliant right now</a>; the short version is that if the evidence is not connected before the question, it is too late to connect it after.
+
+Designing Controls That Can Be Tested
+
+Good control design is precise. "Management reviews access" is not a control; "the IT manager reviews privileged access to the payroll system each month and signs off exceptions within five working days" is. A useful template covers six elements.
+
+- Objective: the obligation or risk the control addresses.
+- Owner: one named person, not a team.
+- Activity and frequency: what is done, how often and by when.
+- Evidence: the record that proves it was done, such as a sign-off, a report or a reconciliation.
+- Test method: how design and operating effectiveness are checked, and by whom.
+- Escalation: what happens when the control is missed or fails.
+
+Testing should look at two things. Design effectiveness asks whether the control, if performed, would meet its objective. Operating effectiveness asks whether it was actually performed as designed over the period. A beautifully designed control that was skipped in three of the last twelve months is not effective. Our <a href="/use-cases/internal-controls/">internal controls checklist</a> walks through both tests.
+
+Mapping Obligations to Controls to Evidence
+
+The connection runs in a chain: obligation, control, owner, evidence, test result, and any finding or action that follows. Keeping that chain intact is what lets you answer a regulator or auditor in minutes rather than weeks. In XGRC®, the legal register content comes from our partner <a href="/libryo/">Libryo</a>, embedded in the platform, so that obligations can be tracked against the controls that address them.
+
+Three habits keep the chain healthy:
+
+- Review the mapping whenever an obligation changes, not once a year.
+- Store evidence against the control and period it supports, not in a general folder.
+- Link failed tests directly to corrective actions and to the related risk, so the risk rating reflects reality.
+
+Your Third Parties Operate Your Controls Too
+
+Here is where many control frameworks have a blind spot. Outsourced payroll, cloud hosting, security guarding, waste removal, maintenance contractors and labour brokers all perform activities that your obligations depend on. If the waste contractor does not hold valid permits, your environmental compliance is exposed. If the payroll bureau does not secure employee data, your privacy compliance is exposed. Your compliance is only as strong as the suppliers and contractors you rely on.
+
+South African law makes this explicit in places. Under the Protection of Personal Information Act, a responsible party must secure personal information with appropriate, reasonable technical and organisational measures, and must ensure through a written contract that any operator processing information on its behalf maintains those security measures. The Information Regulator's guidance on <a href="https://inforegulator.org.za/knowledge-base/category/popia/chapter-3-conditions-for-lawful-processing/part-a-processing-of-personal-information-in-general/condition-7-security-safeguards/" rel="noopener">POPIA's security safeguards condition</a> sets out the relevant sections. ISO/IEC 27001 likewise expects information security risks in supplier relationships to be managed through defined processes.
+
+Practically, third-party controls need the same rigour as internal ones:
+
+- Classify suppliers and contractors by the obligations and risks they touch.
+- Define what each must provide, such as permits, certificates, insurance, safety files or security attestations.
+- Vet before onboarding and re-vet on a schedule matched to the risk.
+- Track expiry dates and chase renewals before they lapse.
+- Feed third-party failures into your own risk register and corrective actions.
+
+Our articles on <a href="/insights/vendor-compliance-management/">vendor compliance management</a> and <a href="/insights/supplier-compliance-software-vs-procurement-systems/">supplier compliance software versus procurement systems</a> cover why procurement tools alone rarely do this well.
+
+How XGRC® Compliance Hub Extends Control Assurance to Third Parties
+
+<a href="/compliance-hub/">XGRC® Compliance Hub</a> manages supplier, contractor and third-party compliance: structured onboarding, vetting, document collection, evidence and ongoing assurance. Each supplier's required documents and attestations are collected and tracked in one place, expiries are visible before they lapse, and evidence sits against the supplier and requirement it supports. That gives you the same line of sight over controls operated outside your walls as over those operated inside.
+
+For internal controls, <a href="/xlogic/">XLOGIC®</a> converts policies, frameworks, controls and obligations into structured workflows with accountability, evidence capture and auditability, so a control becomes a scheduled, owned task with its evidence attached. Earlier posts in this series, on <a href="/insights/hidden-cost-of-disconnected-risk-management/">disconnected risk management</a> and <a href="/insights/risk-visibility-executive-decision-making/">risk visibility for executives</a>, show how those control results then feed risk ratings and board reporting.
+
+Resilience Is Controls You Can Prove
+
+From compliance to confidence means moving from "we have a control for that" to "here is the evidence it worked last month, including at our suppliers". Start by picking your ten most critical obligations and tracing each to its control, owner, latest evidence and any third party involved.
+
+Download the free <a href="/use-cases/vendor-management/">vendor management checklist</a> to review your third-party controls, or <a href="/demo/">book a Compliance Hub demo</a>. The <a href="/tour/">live XGRC® tour</a> also includes a vendor and third-party risk dashboard on sample data.`,
 };
