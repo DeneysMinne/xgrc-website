@@ -4045,4 +4045,72 @@ Count the Cost Before You Fix It
 A useful exercise for your next risk committee: estimate how many hours were spent last quarter compiling and reconciling risk information, and list any risk that appeared in more than one register under a different name. Both numbers tend to surprise. From compliance to confidence starts with knowing what you are not seeing.
 
 Download the free <a href="/use-cases/enterprise-risk-management/">enterprise risk management checklist</a> to assess your current approach, or <a href="/demo/">book a demo</a> to see a consolidated risk view in XGRC® ERM.`,
+'risk-visibility-executive-decision-making': `Executives rarely complain about too little risk information. They complain about forty-page risk reports that list everything and decide nothing. The problem is not volume; it is that the reporting is not built around the decisions the board and executive committee actually have to make.
+
+What Should Risk Reporting to the Board Include?
+
+Good risk reporting to the board shows the organisation's most material risks against its stated risk appetite, how each is trending, whether key controls are working, which risks have breached tolerance and what management is doing about them. It should let directors make or challenge decisions in minutes, with detail available behind every number.
+
+That standard is harder to meet than it sounds. It requires a defined risk appetite, consistent ratings, indicators that move before losses happen and a reliable link between risks and controls. This post covers each, with the South African governance context and practical examples. It builds on our earlier piece about <a href="/insights/hidden-cost-of-disconnected-risk-management/">the hidden cost of disconnected risk management</a>, which explains why many boards see an incomplete picture in the first place.
+
+Why Risk Visibility Matters for Executive Decisions
+
+Every strategic decision changes the organisation's risk profile. Entering a new market, acquiring a business, migrating core systems to the cloud or relying on a new logistics partner all bring exposures that cut across finance, operations, compliance and technology. If each function reports its piece separately, the executive committee sees four partial views and has to assemble the whole in the meeting.
+
+Risk visibility means the combined view exists before the meeting. A proposal to expand into a neighbouring country, for example, should arrive with its currency, regulatory, supply chain and information security risks rated on the same scale, linked to the strategic objective it serves and compared against appetite. That is the difference between risk information and risk-informed decisions. Our article on <a href="/insights/why-compliance-visibility-improves-executive-decision-making/">why compliance visibility improves executive decision-making</a> makes the same case for obligations and controls.
+
+Start with Risk Appetite
+
+Risk reporting is only meaningful against a reference point. Risk appetite is the amount and type of risk the organisation is willing to accept in pursuit of its objectives; tolerances translate that into measurable limits per risk category.
+
+Useful appetite statements are specific. "We have a low appetite for safety risk" says little. "We accept no fatalities and will stop work where a critical control is missing" or "we will not hold more than a set proportion of revenue with any single customer" gives management and the board something to report against. The <a href="https://www.coso.org/enterprise-risk-management" rel="noopener">COSO ERM framework</a> treats appetite as part of setting strategy, not an afterthought for the risk function.
+
+Once appetite is set, the most valuable line in any board report is simple: which risks are outside appetite or tolerance, since when, and what the plan is.
+
+Use Key Risk Indicators That Move Early
+
+Lagging measures such as losses, incidents and fines tell the board what has already happened. Key risk indicators (KRIs) are meant to warn before it happens. Good KRIs are tied to a specific risk, measured regularly from a reliable source and given thresholds that trigger escalation.
+
+- Supplier concentration risk: share of critical spend with suppliers rated high risk at last review.
+- Cyber risk: percentage of critical systems with overdue patches or unreviewed privileged access.
+- Safety risk: overdue critical control verifications and high-potential near misses per month.
+- Compliance risk: obligations with no current evidence of the control being performed.
+- People risk: vacancies in key roles open beyond an agreed period.
+
+Five to ten well-chosen KRIs for the top enterprise risks will tell a board more than a full register extract.
+
+Show Control Effectiveness, Not Just Ratings
+
+A residual risk rating assumes the controls work. If nobody has tested them, the rating is an opinion. Board reporting should therefore show, for each material risk, the key controls, when they were last tested or assured, and whether any audit findings or incidents suggest they are failing. This is where combined assurance becomes visible to directors: they can see which material risks have had independent assurance and which rely only on management's view.
+
+The King V Context
+
+For South African organisations, the <a href="https://www.iodsa.co.za/" rel="noopener">King V Code</a>, published by the IoDSA on 31 October 2025 and effective for financial years beginning on or after 1 January 2026, keeps the governance of risk with the governing body. The board may use a committee responsible for risk governance to do the detailed work, but delegation does not transfer its accountability. Risk reporting is the mechanism that makes that oversight real. A board that only receives a static register cannot credibly say it has exercised that responsibility.
+
+Designing the Board Risk Report
+
+A practical structure, which also works for a risk committee pack, looks like this.
+
+- A one-page summary: top risks, their trend since the last meeting and any appetite breaches.
+- A heat map of the top enterprise risks, with movement arrows rather than a static snapshot.
+- KRIs with thresholds and status for each top risk.
+- Control and assurance status for material risks, including overdue findings.
+- Emerging risks, with a short note on why they are on the radar.
+- Decisions or approvals required from the board.
+
+Our guides on <a href="/insights/what-should-go-in-a-grc-board-pack/">what should go in a GRC board pack</a> and <a href="/insights/how-to-read-a-risk-heat-map/">how to read a risk heat map</a> go deeper on layout and interpretation.
+
+One rule underpins all of it: every number in the board pack should trace back to the same records the business uses. If the summary and the detail disagree, directors will lose confidence in both.
+
+How XGRC® ERM Supports Board Risk Reporting
+
+<a href="/erm/">XGRC® Enterprise Risk Management</a> provides structured, auditable enterprise, operational and project risk management aligned to ISO 31000, COSO and King V. Risks are linked to their controls, audit findings and actions, and board reporting is produced from those linked records rather than compiled by hand. <a href="/integrated-assurance/">Integrated Assurance</a> adds the coverage view, showing where internal audit and combined assurance activity has tested the controls behind each material risk.
+
+To see this in practice, the <a href="/tour/">XGRC® live product tour</a> includes interactive risk dashboards on sample data, including board-pack exports.
+
+From Reports to Decisions
+
+The test of board risk reporting is whether it changes what the board does. If the last three packs led to no decisions, challenges or reallocations, the reporting is informing nobody. Start by agreeing appetite statements for your top five risks and one KRI for each, then rebuild the summary page around them. That is a small change that moves risk reporting from compliance to confidence.
+
+Use the free <a href="/use-cases/enterprise-risk-management/">enterprise risk management checklist</a> to review your current reporting, or <a href="/demo/">book a demo</a> to see board-ready risk reporting in XGRC®.`,
 };
