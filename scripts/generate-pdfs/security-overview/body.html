@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>XGRC® Security &amp; Trust Overview</title>
+<link rel="stylesheet" href="styles.css">
+<style>@page { size: A4; margin: 18mm 17mm 20mm; }</style>
+</head>
+<body>
+
+<section>
+  <h2>Contents</h2>
+  <div class="toc">
+    <div><span>·</span>At a glance</div>
+    <div><span>1</span>Executive summary</div>
+    <div><span>2</span>Governance and certification</div>
+    <div><span>3</span>Hosting, architecture and data residency</div>
+    <div><span>4</span>Data protection and privacy</div>
+    <div><span>5</span>Encryption and key management</div>
+    <div><span>6</span>Identity and access management</div>
+    <div><span>7</span>Application security and vulnerabilities</div>
+    <div><span>8</span>Security monitoring and operations</div>
+    <div><span>9</span>Incident response and breach notification</div>
+    <div><span>10</span>Business continuity and disaster recovery</div>
+    <div><span>11</span>Supplier, people and physical security</div>
+    <div><span>12</span>AI governance: MAIA® and AI agents</div>
+    <div><span>13</span>Support, maintenance and service levels</div>
+    <div><span>14</span>Shared responsibility and assurance</div>
+    <div><span>15</span>Frequently asked security questions</div>
+    <div><span>A</span>ISMS documents</div>
+    <div><span>B</span>Related documents and contact</div>
+  </div>
+</section>
+
+<section>
+  <h2>At a glance</h2>
+  <p class="lead">The facts procurement and security teams ask for first.</p>
+  <div class="glance">
+    <div class="hl"><b>Certification</b>ISO/IEC 27001:2022, certified by BSI (certificate IS 804839, valid to 28 August 2027), covering the design, development, delivery and support of the XGRC® cloud platform</div>
+    <div><b>Hosting</b>Microsoft Azure, West Europe (Netherlands). Azure holds ISO 27001, ISO 27017, ISO 27018 and SOC 2 Type II</div>
+    <div><b>Deployment</b>Cloud SaaS, multi-tenant with strict logical isolation between customers</div>
+    <div class="hl"><b>Encryption</b>TLS 1.2 or higher in transit; AES-256 at rest, with keys unique to each customer</div>
+    <div><b>Sign-in</b>Single sign-on and MFA with Microsoft Entra ID; MFA enforced for all Strategix administrative access</div>
+    <div><b>Access control</b>Role-based, down to module, dashboard and record; new modules start with no access</div>
+    <div class="hl"><b>Breach notification</b>Within 72 hours of a confirmed security incident affecting Customer Data</div>
+    <div><b>Security incident response</b>Severity 0: initial response within 4 hours, 24 hours a day, 7 days a week</div>
+    <div class="hl"><b>Recovery</b>RPO 1 hour, RTO 4 hours</div>
+    <div><b>Privacy</b>POPIA and GDPR; Data Processing Addendum meets POPIA section 21 and GDPR Article 28</div>
+    <div><b>Subprocessors</b>Two: Microsoft Azure (hosting) and Microsoft 365 (email), both in West Europe; 10 business days' notice of material changes</div>
+    <div><b>Your data</b>Yours. Copy on request within 30 days of exit; deleted within 90 days, with a Data Destruction Certificate</div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">1</span>Executive summary</h2>
+  <p class="lead">The XGRC® platform holds the records organisations are audited on: risks, incidents, controls, obligations, suppliers and evidence. We protect it accordingly, under an ISO/IEC 27001:2022 certified information security management system.</p>
+  <p>Strategix Application Solutions (Pty) Ltd is the original developer and operator of XGRC®. More than 800 companies on six continents use it. That gives us one responsibility above all others: the information you put into XGRC® stays confidential, intact and available, and remains yours.</p>
+  <p>This document explains how we meet that responsibility, from governance and hosting to encryption, access, monitoring, incident response, recovery, suppliers and AI. Where a commitment is contractual, we name the document that carries it: the XGRC® SaaS Agreement, the Data Processing Addendum, the Support Policy and the Cybersecurity &amp; Data Protection Policy, all published in our Trust Centre at xgrcsoftware.com/trust.</p>
+  <p>We also run our own information security management system on XGRC® itself. The policies, risks, controls, vulnerabilities and audits described here are recorded, assessed and tracked in the same platform our customers use.</p>
+</section>
+
+<section>
+  <h2><span class="num">2</span>Governance and certification</h2>
+  <p class="lead">Our information security management system (ISMS) is certified to ISO/IEC 27001:2022.</p>
+  <p>Its scope covers the design, development, delivery and support of the XGRC® cloud-based platform. BSI issued the certificate, IS 804839, on 29 August 2024; it is valid until 28 August 2027, and anyone can check it in BSI's public certificate directory.</p>
+  <h3>How the ISMS works</h3>
+  <ul>
+    <li><b>Policies:</b> a documented Information Security Policy and supporting policies for access control, cryptography, asset management, supplier security, communications, physical security, business continuity, incident management and secure development (Appendix A lists them).</li>
+    <li><b>Risk management:</b> information security risks are assessed and treated through a documented process, with a Statement of Applicability against the ISO/IEC 27001:2022 Annex A controls and a maintained risk treatment plan.</li>
+    <li><b>Roles:</b> defined roles, responsibilities and authorities for information security, with management accountable for the ISMS.</li>
+    <li><b>Measurement:</b> security objectives, a monitoring and measurement plan, an internal audit programme and management reviews.</li>
+    <li><b>Improvement:</b> nonconformities and corrective actions are logged and closed through a continual improvement process.</li>
+    <li><b>External audit:</b> an independent certification body audits the ISMS every year, with a full recertification audit every three years.</li>
+  </ul>
+  <h3>Frameworks we align to</h3>
+  <p>Alongside ISO/IEC 27001:2022, our security practices draw on the NIST Cybersecurity Framework (identify, protect, detect, respond, recover), the CIS Critical Security Controls and the OWASP Top 10 for web application risks.</p>
+  <h3>Privacy law</h3>
+  <p>We operate under South Africa's Protection of Personal Information Act (POPIA) and, where it applies to our customers, the EU General Data Protection Regulation (GDPR). Section 4 explains how.</p>
+  <h3>Compliance monitoring</h3>
+  <p>Compliance is monitored continuously, both for our own ISMS and for the obligations our customers track in XGRC®. Regulatory content and platform controls are updated as laws and standards change, so customers stay ahead of new requirements and reduce the risk of fines and penalties.</p>
+</section>
+
+<section>
+  <h2><span class="num">3</span>Hosting, architecture and data residency</h2>
+  <p class="lead">XGRC® runs on Microsoft Azure in the West Europe region (Netherlands), behind layered network defences, with every customer's data logically isolated from every other.</p>
+  <h3>Where your data lives</h3>
+  <ul>
+    <li><b>Primary hosting:</b> Microsoft Azure, West Europe (Netherlands). Customer Data is stored there.</li>
+    <li><b>Microsoft's own assurance:</b> Azure's infrastructure holds ISO/IEC 27001, ISO/IEC 27017, ISO/IEC 27018 and SOC 2 Type II certifications, and Microsoft runs the physical data centre security.</li>
+    <li><b>Subprocessors:</b> Microsoft Azure (hosting, infrastructure, storage) and Microsoft 365 (email delivery and notifications), both in West Europe. The live list is at xgrcsoftware.com/trust/subprocessors.</li>
+    <li><b>Cross-border transfers:</b> where personal information leaves South Africa, it is protected by the safeguards in the Data Processing Addendum and applicable law.</li>
+  </ul>
+  <h3>How the platform is built</h3>
+  <figure>
+    <svg viewBox="0 0 760 520" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif" font-size="13">
+      <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5d7083"/></marker></defs>
+      <rect x="280" y="4" width="200" height="52" rx="8" fill="#fff" stroke="#9fb3c4"/>
+      <text x="380" y="26" text-anchor="middle" font-family="Outfit" font-weight="600" fill="#0d1b2a">Your users</text>
+      <text x="380" y="44" text-anchor="middle" font-size="11.5" fill="#5d7083">Browsers and mobile apps</text>
+      <rect x="200" y="84" width="360" height="52" rx="8" fill="#fff" stroke="#9fb3c4"/>
+      <text x="380" y="106" text-anchor="middle" font-family="Outfit" font-weight="600" fill="#0d1b2a">Cloudflare</text>
+      <text x="380" y="124" text-anchor="middle" font-size="11.5" fill="#5d7083">DNS and web application firewall</text>
+      <rect x="72" y="164" width="616" height="340" rx="12" fill="#f2f7fa" stroke="#c4d3de"/>
+      <text x="88" y="186" font-family="Outfit" font-weight="600" fill="#005ca9">Microsoft Azure, West Europe</text>
+      <rect x="88" y="200" width="104" height="56" rx="8" fill="#fff" stroke="#9fb3c4"/>
+      <text x="140" y="222" text-anchor="middle" font-family="Outfit" font-weight="600" fill="#0d1b2a">Entra ID</text>
+      <text x="140" y="240" text-anchor="middle" font-size="11.5" fill="#5d7083">Sign-in, SSO</text>
+      <rect x="208" y="200" width="344" height="56" rx="8" fill="#fff" stroke="#9fb3c4"/>
+      <text x="380" y="222" text-anchor="middle" font-family="Outfit" font-weight="600" fill="#0d1b2a">Azure Load Balancer</text>
+      <text x="380" y="240" text-anchor="middle" font-size="11.5" fill="#5d7083">Spreads traffic across servers</text>
+      <rect x="96" y="276" width="256" height="140" rx="10" fill="none" stroke="#9fb3c4" stroke-dasharray="5 4"/>
+      <text x="344" y="270" text-anchor="end" font-size="10.5" fill="#5d7083">Network security group</text>
+      <rect x="112" y="288" width="224" height="44" rx="8" fill="#fff" stroke="#9fb3c4"/>
+      <text x="224" y="314" text-anchor="middle" fill="#0d1b2a">Application firewall</text>
+      <rect x="112" y="356" width="224" height="48" rx="8" fill="#fff" stroke="#9fb3c4"/>
+      <text x="224" y="384" text-anchor="middle" font-family="Outfit" font-weight="600" fill="#0d1b2a">Application servers</text>
+      <rect x="408" y="276" width="256" height="140" rx="10" fill="none" stroke="#9fb3c4" stroke-dasharray="5 4"/>
+      <text x="656" y="270" text-anchor="end" font-size="10.5" fill="#5d7083">Network security group</text>
+      <rect x="424" y="288" width="224" height="44" rx="8" fill="#fff" stroke="#9fb3c4"/>
+      <text x="536" y="314" text-anchor="middle" fill="#0d1b2a">API firewall</text>
+      <rect x="424" y="356" width="224" height="48" rx="8" fill="#fff" stroke="#9fb3c4"/>
+      <text x="536" y="384" text-anchor="middle" font-family="Outfit" font-weight="600" fill="#0d1b2a">API servers</text>
+      <rect x="192" y="428" width="376" height="64" rx="10" fill="none" stroke="#9fb3c4" stroke-dasharray="5 4"/>
+      <text x="578" y="456" font-size="10.5" fill="#5d7083">Network</text>
+      <text x="578" y="470" font-size="10.5" fill="#5d7083">security group</text>
+      <rect x="208" y="436" width="344" height="48" rx="8" fill="#e8f9fc" stroke="#269ec6" stroke-width="2"/>
+      <text x="380" y="458" text-anchor="middle" font-family="Outfit" font-weight="600" fill="#0d1b2a">Azure SQL Managed Instance</text>
+      <text x="380" y="475" text-anchor="middle" font-size="11.5" fill="#005ca9">Encrypted, isolated per customer</text>
+      <g fill="none" stroke="#5d7083" stroke-width="1.25">
+        <path d="M380 56V82" marker-end="url(#a)"/><path d="M380 136V198" marker-end="url(#a)"/>
+        <path d="M224 256V286" marker-end="url(#a)"/><path d="M536 256V286" marker-end="url(#a)"/>
+        <path d="M224 332V354" marker-end="url(#a)"/><path d="M536 332V354" marker-end="url(#a)"/>
+        <path d="M224 404V434" marker-end="url(#a)"/><path d="M536 404V434" marker-end="url(#a)"/>
+      </g>
+    </svg>
+    <figcaption>Traffic passes five layers of defence before it reaches your data. High-level view; detailed network and infrastructure maps are not shared, to protect the platform.</figcaption>
+  </figure>
+  <ul>
+    <li><b>Edge:</b> Cloudflare DNS and web application firewall filter traffic and block common web attacks before they reach Azure.</li>
+    <li><b>Application and API tiers:</b> separate application and API sets, each behind its own web application firewall.</li>
+    <li><b>Load balancing:</b> Azure Load Balancer spreads traffic across servers for availability.</li>
+    <li><b>Network segregation:</b> network security groups restrict traffic between tiers to what each needs.</li>
+    <li><b>Data tier:</b> Azure SQL Managed Instance, reachable only from the application tiers.</li>
+    <li><b>Identity:</b> Microsoft Entra ID for authentication and single sign-on.</li>
+    <li><b>Scaling:</b> resources scale automatically under heavy load, so peaks do not degrade service.</li>
+  </ul>
+  <h3>Multi-tenancy</h3>
+  <p>XGRC® is a multi-tenant platform with strict logical data isolation between customers, so one customer cannot see another's data.</p>
+</section>
+
+<section>
+  <h2><span class="num">4</span>Data protection and privacy</h2>
+  <p class="lead">You own your data. We process it only on your documented instructions, under a Data Processing Addendum written to POPIA section 21 and GDPR Article 28.</p>
+  <table>
+    <thead><tr><th style="width:22%">Topic</th><th>Our commitment</th><th style="width:20%">Where it is written</th></tr></thead>
+    <tbody>
+      <tr><td>Roles</td><td>You are the Responsible Party (controller); Strategix is the Operator (processor)</td><td>Data Processing Addendum, s3</td></tr>
+      <tr><td>Purpose</td><td>Personal information is processed only to provide and support the service: hosting, user management, support, backup, recovery and security monitoring</td><td>DPA, s4</td></tr>
+      <tr><td>No other use</td><td>Never used for any independent purpose, never sold, never disclosed except to deliver the service or where law requires</td><td>DPA, s6; Privacy Policy</td></tr>
+      <tr><td>Confidentiality</td><td>Everyone with access is bound by confidentiality obligations</td><td>DPA, s6</td></tr>
+      <tr><td>Subprocessors</td><td>Same-strength contractual terms; Strategix stays responsible; 10 business days' notice of material changes and a right to object</td><td>DPA, s8; Subprocessor List</td></tr>
+      <tr><td>Data subject requests</td><td>Reasonable assistance with access, correction and deletion requests</td><td>DPA, s10</td></tr>
+      <tr><td>Security incidents</td><td>Notification within 72 hours of a confirmed incident affecting Customer Data, with nature, scope, likely consequences and remediation</td><td>DPA, s11</td></tr>
+      <tr><td>Return</td><td>A copy of your data on request within 30 days of termination</td><td>DPA, s12</td></tr>
+      <tr><td>Deletion</td><td>Personal information deleted or irreversibly anonymised within 90 days of termination; backups stay protected until overwritten. A Data Destruction Certificate is issued once deletion is complete</td><td>DPA, s12</td></tr>
+      <tr><td>Evidence</td><td>Certificates, audit summaries or control statements on written request</td><td>DPA, s13</td></tr>
+      <tr><td>Changes</td><td>30 days' notice of material changes to the DPA</td><td>DPA, s15</td></tr>
+    </tbody>
+  </table>
+  <p class="small">The DPA, Privacy Policy, Subprocessor List and Data Hosting pages are published in full in our Trust Centre.</p>
+</section>
+
+<section>
+  <h2><span class="num">5</span>Encryption and key management</h2>
+  <p class="lead">Your data is encrypted whenever it moves and wherever it is stored.</p>
+  <ul>
+    <li><b>In transit:</b> all traffic between users, the platform and its services uses TLS 1.2 or TLS 1.3. Plain HTTP is redirected to HTTPS, and browsers are instructed to use HTTPS only (HTTP Strict Transport Security).</li>
+    <li><b>At rest:</b> stored data is encrypted with AES-256, the 256-bit Rijndael standard.</li>
+    <li><b>Per-customer keys:</b> each customer's data is encrypted with keys unique to that customer, so one customer's key cannot open another's data.</li>
+    <li><b>Key management:</b> keys are generated, stored, rotated and retired under our Cryptography Policy, with access limited to authorised personnel.</li>
+    <li><b>Mobile:</b> data the SHEQX® mobile apps capture offline is encrypted on the device, and users can clear it from the device at any time. The app keeps its reference data after syncing, so it keeps working offline without downloading everything again.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span>Identity and access management</h2>
+  <p class="lead">Your administrators decide exactly who sees what, down to a single record; our own staff get only the access their role needs.</p>
+  <h3>For your users</h3>
+  <ul>
+    <li><b>Single sign-on:</b> users can sign in through Microsoft Entra ID (Azure Active Directory), so your own password, MFA and leaver policies apply. Microsoft Entra ID is the supported identity provider for SSO.</li>
+    <li><b>Multi-factor authentication:</b> applied to your users through Microsoft Entra ID, under your own MFA policies.</li>
+    <li><b>Granular permissions:</b> administrators set add, edit, view and delete rights per module, dashboard and record.</li>
+    <li><b>Record-level security:</b> access can be limited by business unit and category, so people see only the records that belong to them.</li>
+    <li><b>Least access by default:</b> newly released features and modules start with no access until your administrator grants it, so an update never widens access silently.</li>
+    <li><b>Audit trail:</b> changes to records are logged with who made them and when.</li>
+  </ul>
+  <h3>For Strategix staff</h3>
+  <ul>
+    <li>Access to production systems follows least privilege and is granted per role under our Access Control Policy.</li>
+    <li>Multi-factor authentication is required for all administrative access.</li>
+    <li>Access is reviewed regularly and removed promptly when people change role or leave.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">7</span>Application security, vulnerabilities and change control</h2>
+  <p class="lead">We look for weaknesses every day and close the serious ones immediately, outside the normal release cycle.</p>
+  <ul>
+    <li><b>Secure development:</b> XGRC® is developed under our System Acquisition, Development and Maintenance Policy, designed against the OWASP Top 10 web application risks.</li>
+    <li><b>Change control:</b> every platform change follows a documented change control process.</li>
+    <li><b>Vulnerability scanning:</b> automated, AI-driven vulnerability assessments run daily through Hakware, our penetration-testing and vulnerability partner.</li>
+    <li><b>Tracked to closure:</b> each finding is recorded in XGRC® as a risk, assessed, given an action plan and closed with a control, the same way our customers manage theirs.</li>
+    <li><b>Penetration testing:</b> automated penetration testing runs daily, and a manual penetration test is carried out every year; an executive summary is available under NDA.</li>
+    <li><b>Patching:</b> critical security patches are deployed immediately, outside regular update cycles, with little or no disruption to service.</li>
+    <li><b>Browser protections:</b> the platform sends security headers that block clickjacking and content-type sniffing, alongside HTTPS-only enforcement.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">8</span>Security monitoring and operations</h2>
+  <p class="lead">The platform is watched around the clock, so threats are found and contained quickly.</p>
+  <ul>
+    <li><b>Security operations centre:</b> 24/7 monitoring by Hakware's security operations centre, using real-time threat intelligence.</li>
+    <li><b>SIEM:</b> security events from across the environment are collected and correlated in real time.</li>
+    <li><b>SOAR:</b> security orchestration, automation and response speeds up detection and containment.</li>
+    <li><b>Logging:</b> security, access and audit events are logged and retained indefinitely, so an investigation can always go back to the start.</li>
+    <li><b>Server hardening:</b> servers are hardened, with segregated system layers and restricted access to critical functions.</li>
+    <li><b>Capacity and performance:</b> resources and performance are monitored continuously, with automatic scaling under load.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">9</span>Incident response and breach notification</h2>
+  <p class="lead">A suspected security breach gets a response within 4 hours, at any hour, and you hear from us within 72 hours of a confirmed incident affecting your data.</p>
+  <h3>How we respond</h3>
+  <div class="keep"><p>Our Incident Response Team works to documented procedures in the ISMS:</p>
+  <div class="steps">
+    <div><em>01</em><b>Identify</b><span>Detect the incident and determine its scope and severity.</span></div>
+    <div><em>02</em><b>Contain</b><span>Limit the impact and stop further damage.</span></div>
+    <div><em>03</em><b>Eradicate</b><span>Remove the root cause.</span></div>
+    <div><em>04</em><b>Recover</b><span>Restore affected systems to full function, with the weakness closed.</span></div>
+    <div><em>05</em><b>Learn</b><span>Review the incident and strengthen controls and procedures.</span></div>
+  </div></div>
+  <h3>Our commitments</h3>
+  <table>
+    <thead><tr><th>Commitment</th><th style="width:34%">Target</th><th style="width:20%">Source</th></tr></thead>
+    <tbody>
+      <tr><td>Initial response to a confirmed or suspected security breach (Severity 0)</td><td>Within 4 hours, 24 hours a day, 7 days a week</td><td>Support Policy, s3 and s4</td></tr>
+      <tr><td>Notification of a confirmed security incident affecting Customer Data</td><td>Without undue delay, and within 72 hours</td><td>DPA, s11</td></tr>
+      <tr><td>What the notification contains</td><td>Nature of the incident; categories and approximate number of people and records affected; likely consequences; remediation steps</td><td>DPA, s11</td></tr>
+      <tr><td>Emergency security maintenance</td><td>May be done without prior notice</td><td>Support Policy, s8</td></tr>
+    </tbody>
+  </table>
+  <div class="callout"><b>Reporting a concern.</b> Customers report suspected security issues through the in-platform support portal, marked Severity 0. If the platform is unavailable, use the helpdesk details on xgrcsoftware.com/contact.</div>
+</section>
+
+<section>
+  <h2><span class="num">10</span>Business continuity and disaster recovery</h2>
+  <p class="lead">If the worst happens, you lose at most an hour of data and are back in service within four hours.</p>
+  <table>
+    <thead><tr><th style="width:30%">Measure</th><th>Commitment</th></tr></thead>
+    <tbody>
+      <tr><td>Recovery Point Objective (RPO)</td><td>1 hour: the most data that could be lost</td></tr>
+      <tr><td>Recovery Time Objective (RTO)</td><td>4 hours: the longest time to restore service</td></tr>
+      <tr><td>Backups</td><td>Daily full backups, hourly transaction logs, and data replicated across multiple locations</td></tr>
+      <tr><td>Backup retention</td><td>30 days, rolling</td></tr>
+      <tr><td>Testing</td><td>Recovery procedures tested every quarter; results reviewed yearly by our external ISO auditor</td></tr>
+      <tr><td>Scaling</td><td>Resources scale automatically during demand peaks or incidents, protecting the RPO and RTO</td></tr>
+      <tr><td>Planned maintenance</td><td>At least 48 hours' notice for maintenance expected to have material impact (Support Policy, s8)</td></tr>
+    </tbody>
+  </table>
+  <p>Business continuity is governed by our Business Continuity Management Policy and is part of the ISO/IEC 27001:2022 certification scope.</p>
+</section>
+
+<section>
+  <h2><span class="num">11</span>Supplier, people and physical security</h2>
+  <p class="lead">Security reaches past our own systems: to the suppliers we rely on, the people we employ and the buildings that hold the hardware.</p>
+  <h3>Suppliers</h3>
+  <ul>
+    <li>Every supplier is vetted under our Supplier Security Policy before engagement, including its compliance with POPIA, GDPR and other relevant law.</li>
+    <li>Suppliers are reviewed every year as part of our ISMS continual improvement.</li>
+    <li>Suppliers that process customer personal information are subprocessors: they sign terms at least as protective as our DPA, and you are notified before a material change.</li>
+  </ul>
+  <h3>People</h3>
+  <ul>
+    <li>Everyone who works on XGRC® signs confidentiality and non-disclosure agreements.</li>
+    <li>Background checks are carried out on hiring.</li>
+    <li>Staff complete security awareness training at least once a year under our Competence, Training and Awareness Policy.</li>
+  </ul>
+  <h3>Physical security</h3>
+  <p>XGRC® runs entirely in Microsoft Azure data centres, whose physical security (access control, surveillance, power and environmental protection) is certified under Microsoft's own ISO/IEC 27001 and SOC 2 Type II audits. Our offices are covered by our Physical and Environmental Security Policy.</p>
+</section>
+
+<section>
+  <h2><span class="num">12</span>AI governance: MAIA® and AI agents</h2>
+  <p class="lead">AI in XGRC® is governed like any other part of the platform: every interaction is recorded, every agent is limited to what it is allowed to do, and people make the decisions.</p>
+  <ul>
+    <li><b>Audit trail:</b> MAIA®, the platform's governed AI for business intelligence, data views and intelligent agents, records a full audit trail of AI interactions.</li>
+    <li><b>Your data and AI models:</b> Strategix never uses customer data to train AI models. You choose which AI model MAIA® uses: with your chosen provider, that provider's own data terms apply, and we can help you run a local model so prompts and data stay within your own environment.</li>
+    <li><b>Agent credentials:</b> Asgard, the XGRC® AI agents platform, keeps upstream API keys and OAuth tokens in an encrypted vault. Agents receive their own scoped keys, tool calls are brokered and filtered, keys can be revoked centrally, and every agent action is logged.</li>
+    <li><b>People decide:</b> XLOGIC®, which turns policies and obligations into workflows, lets AI draft proposals but never approve them; every proposal waits for a person.</li>
+    <li><b>Governing your own AI:</b> customers can govern their own AI systems in XGRC® AI Governance, aligned to ISO/IEC 42001 and the EU AI Act.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">13</span>Support, maintenance and service levels</h2>
+  <p class="lead">Support targets are contractual, set by severity in the XGRC® Support Policy, with security issues handled around the clock.</p>
+  <table>
+    <thead><tr><th style="width:9%">Severity</th><th>What it means</th><th style="width:19%">Initial response</th><th style="width:24%">Coverage</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td>Confirmed or suspected security breach, or an active vulnerability affecting the platform or Customer Data</td><td>Within 4 hours</td><td>24 hours, 7 days</td></tr>
+      <tr><td>1</td><td>Complete outage: no user can use the platform</td><td>Within 6 hours</td><td>Business hours plus on-call escalation</td></tr>
+      <tr><td>2</td><td>A module or major function unavailable</td><td>Within 24 hours</td><td>Business hours</td></tr>
+      <tr><td>3</td><td>Usable, but a defect needs a workaround</td><td>Within 3 business days</td><td>Business hours</td></tr>
+      <tr><td>4</td><td>Minor or cosmetic defect</td><td>Within 6 business days</td><td>Business hours</td></tr>
+      <tr><td>5</td><td>Question or enhancement request</td><td>Within 6 business days</td><td>Business hours</td></tr>
+    </tbody>
+  </table>
+  <ul>
+    <li><b>Channels:</b> the in-platform support portal; the helpdesk on xgrcsoftware.com/contact if the platform is unavailable.</li>
+    <li><b>Hours:</b> Monday to Friday, 08:00 to 17:00 South African Standard Time, excluding public holidays; Severity 0 on call outside these hours.</li>
+    <li><b>Escalation:</b> unresolved Severity 1 and 2 issues go to senior engineering and management within 24 hours of the first response.</li>
+    <li><b>Maintenance:</b> at least 48 hours' notice of maintenance expected to have material impact; urgent security fixes may be applied without notice.</li>
+    <li><b>Availability:</b> XGRC® is built for high availability on Microsoft Azure, with load balancing across servers, automatic scaling and the recovery objectives in section 10; service levels for faults are set by severity in the Support Policy.</li>
+    <li><b>Languages:</b> the platform runs in English, Portuguese, French and Spanish, with more on request.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">14</span>Shared responsibility and assurance</h2>
+  <p class="lead">Security is shared: we secure the platform, and you control who uses it and what goes into it.</p>
+  <table>
+    <thead><tr><th>Area</th><th class="c" style="width:17%">Strategix</th><th class="c" style="width:22%">Your organisation</th></tr></thead>
+    <tbody>
+      <tr><td>Infrastructure, hosting and network</td><td class="yes">●</td><td></td></tr>
+      <tr><td>Platform code, patching and vulnerability management</td><td class="yes">●</td><td></td></tr>
+      <tr><td>Encryption, backup and recovery</td><td class="yes">●</td><td></td></tr>
+      <tr><td>Monitoring and incident response for the platform</td><td class="yes">●</td><td></td></tr>
+      <tr><td>Choosing who has access, and with what rights</td><td></td><td class="yes">●</td></tr>
+      <tr><td>Your identity provider, passwords, MFA and leavers (with SSO)</td><td></td><td class="yes">●</td></tr>
+      <tr><td>Lawful basis, quality and accuracy of the data you upload</td><td></td><td class="yes">●</td></tr>
+      <tr><td>Responding to your data subjects (we assist)</td><td></td><td class="yes">●</td></tr>
+      <tr><td>Integrations and systems you connect to XGRC®</td><td></td><td class="yes">●</td></tr>
+    </tbody>
+  </table>
+  <h3>Evidence and audit rights</h3>
+  <ul>
+    <li><b>On request:</b> our ISO/IEC 27001:2022 certificate, audit summaries or control statements, subject to confidentiality (DPA, s13).</li>
+    <li><b>Security questionnaires:</b> we complete reasonable customer questionnaires; this document answers most standard ones.</li>
+    <li><b>On-site audits:</b> not a standard offering; available where law requires or where agreed in writing, subject to confidentiality, security, scope and cost controls.</li>
+    <li><b>Your own testing:</b> customer penetration tests by prior written agreement.</li>
+    <li><b>Internal documents:</b> ISMS policies are not shared externally, because they contain detail that could weaken our controls (Appendix A lists them).</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">15</span>Frequently asked security questions</h2>
+  <p class="lead">The questions procurement and security teams ask us most, answered in a line each.</p>
+  <table>
+    <thead><tr><th style="width:36%">Question</th><th>Answer</th><th style="width:9%">More</th></tr></thead>
+    <tbody>
+      <tr><td>Are you ISO 27001 certified?</td><td>Yes, ISO/IEC 27001:2022, certified by BSI (IS 804839, valid to 28 August 2027), for the design, development, delivery and support of XGRC®</td><td>s2</td></tr>
+      <tr><td>Do you have a SOC 2 report?</td><td>No; our assurance is ISO/IEC 27001:2022 certification. Microsoft Azure, our host, holds SOC 2 Type II</td><td>s3</td></tr>
+      <tr><td>Where is our data stored?</td><td>Microsoft Azure, West Europe (Netherlands)</td><td>s3</td></tr>
+      <tr><td>Can our data stay in South Africa?</td><td>Not today; Customer Data is hosted in West Europe, with cross-border safeguards under the DPA</td><td>s3, s4</td></tr>
+      <tr><td>Is the platform multi-tenant?</td><td>Yes, with strict logical isolation between customers and per-customer encryption keys</td><td>s3, s5</td></tr>
+      <tr><td>Is data encrypted?</td><td>Yes: TLS 1.2/1.3 in transit, AES-256 at rest</td><td>s5</td></tr>
+      <tr><td>Do you support SSO and MFA?</td><td>Yes: SSO and MFA through Microsoft Entra ID</td><td>s6</td></tr>
+      <tr><td>Can we restrict access by role, site or business unit?</td><td>Yes, by module, dashboard and record, and by business unit and category</td><td>s6</td></tr>
+      <tr><td>Do you log user activity?</td><td>Yes; record changes are kept in an audit trail</td><td>s6</td></tr>
+      <tr><td>How often do you test for vulnerabilities?</td><td>Automated vulnerability assessments and penetration testing daily; a manual penetration test yearly</td><td>s7</td></tr>
+      <tr><td>Do you have 24/7 monitoring?</td><td>Yes: Hakware's security operations centre, with SIEM and SOAR</td><td>s8</td></tr>
+      <tr><td>How quickly will you tell us about a breach?</td><td>Within 72 hours of a confirmed incident affecting your data</td><td>s9</td></tr>
+      <tr><td>What are your RPO and RTO?</td><td>RPO 1 hour, RTO 4 hours</td><td>s10</td></tr>
+      <tr><td>Do you test disaster recovery?</td><td>Yes, every quarter</td><td>s10</td></tr>
+      <tr><td>Who are your subprocessors?</td><td>Microsoft Azure and Microsoft 365, both in West Europe</td><td>s4</td></tr>
+      <tr><td>Will you sign our NDA or DPA?</td><td>Our DPA is part of every contract; we review customer terms on request</td><td>s4</td></tr>
+      <tr><td>What happens to our data when we leave?</td><td>A copy within 30 days on request; deletion within 90 days; then a Data Destruction Certificate</td><td>s4</td></tr>
+      <tr><td>Do you use our data to train AI?</td><td>No</td><td>s12</td></tr>
+      <tr><td>Do you screen and train staff?</td><td>Yes: background checks, confidentiality agreements, yearly security awareness training</td><td>s11</td></tr>
+      <tr><td>Do you assess your own suppliers?</td><td>Yes: vetted on engagement and reviewed yearly</td><td>s11</td></tr>
+      <tr><td>What is your support response for a security incident?</td><td>Within 4 hours, 24/7</td><td>s13</td></tr>
+      <tr><td>Can we audit you?</td><td>Certificates and audit summaries on request; on-site audits by written agreement</td><td>s14</td></tr>
+      <tr><td>Can we run our own penetration test?</td><td>Yes, with prior written agreement</td><td>s14</td></tr>
+      <tr><td>Is there a mobile app, and is it secure?</td><td>Yes, native iOS and Android apps for SHEQX®, with encrypted offline capture</td><td>s5</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">A</span>ISMS documents</h2>
+  <p class="lead">These documents make up our ISO/IEC 27001:2022 information security management system. They are maintained and executed in the XGRC® platform and are not shared externally.</p>
+  <table class="plain">
+    <thead><tr><th>Governance</th><th>Policies</th><th>Operations and assurance</th></tr></thead>
+    <tbody>
+      <tr><td>ISMS Scope Document</td><td>Information Security Policy</td><td>Risk Treatment Plan</td></tr>
+      <tr><td>Statement of Applicability</td><td>Access Control Policy</td><td>Monitoring and Measurement Plan</td></tr>
+      <tr><td>Information Security Objectives</td><td>Cryptography Policy</td><td>Internal Audit Programme and Audit Checklist</td></tr>
+      <tr><td>Roles, Responsibilities and Authorities</td><td>Asset Management Policy</td><td>Management Review Meeting Minutes</td></tr>
+      <tr><td>Risk Assessment and Risk Treatment Process</td><td>Supplier Security Policy</td><td>Corrective Actions Log</td></tr>
+      <tr><td>Compliance Obligations and Legal Requirements</td><td>Communications Security Policy</td><td>Nonconformity and Corrective Action Process</td></tr>
+      <tr><td>Communication Plan</td><td>Physical and Environmental Security Policy</td><td>Continual Improvement Process</td></tr>
+      <tr><td>Documented Information Management Policy</td><td>Business Continuity Management Policy</td><td>Operational Planning and Control Document</td></tr>
+      <tr><td>Competence, Training and Awareness Policy</td><td>Information Security Incident Management Policy</td><td></td></tr>
+      <tr><td></td><td>System Acquisition, Development and Maintenance Policy</td><td></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">B</span>Related documents</h2>
+  <p class="lead">All published in the XGRC® Trust Centre, xgrcsoftware.com/trust.</p>
+  <table>
+    <thead><tr><th style="width:36%">Document</th><th style="width:17%">Reference</th><th>Address</th></tr></thead>
+    <tbody>
+      <tr><td>Cybersecurity &amp; Data Protection Policy</td><td>XGRC-SEC-002</td><td><a href="https://xgrcsoftware.com/trust/cybersecurity-data-protection-policy/">xgrcsoftware.com/trust/cybersecurity-data-protection-policy</a></td></tr>
+      <tr><td>Data Processing Addendum</td><td>XGRC-DPA-002</td><td><a href="https://xgrcsoftware.com/legal/data-processing-addendum/">xgrcsoftware.com/legal/data-processing-addendum</a></td></tr>
+      <tr><td>Support Policy</td><td>XGRC-SUP-002</td><td><a href="https://xgrcsoftware.com/legal/support-policy/">xgrcsoftware.com/legal/support-policy</a></td></tr>
+      <tr><td>Subprocessor List</td><td>v2.0</td><td><a href="https://xgrcsoftware.com/trust/subprocessors/">xgrcsoftware.com/trust/subprocessors</a></td></tr>
+      <tr><td>Data Hosting</td><td>v2.0</td><td><a href="https://xgrcsoftware.com/trust/data-hosting/">xgrcsoftware.com/trust/data-hosting</a></td></tr>
+      <tr><td>Privacy Policy</td><td>v2.2</td><td><a href="https://xgrcsoftware.com/legal/privacy-policy/">xgrcsoftware.com/legal/privacy-policy</a></td></tr>
+      <tr><td>Acceptable Use Policy</td><td></td><td><a href="https://xgrcsoftware.com/legal/acceptable-use-policy/">xgrcsoftware.com/legal/acceptable-use-policy</a></td></tr>
+      <tr><td>End User Licence Agreement</td><td></td><td><a href="https://xgrcsoftware.com/legal/end-user-licence-agreement/">xgrcsoftware.com/legal/end-user-licence-agreement</a></td></tr>
+      <tr><td>ISO/IEC 27001:2022 certificate (BSI)</td><td>IS 804839</td><td><a href="https://www.bsigroup.com/en-GB/products-and-services/assessment-and-certification/validation-and-verification/client-directory-certificate/IS%20804839/">Verify in BSI's certificate directory</a></td></tr>
+    </tbody>
+  </table>
+  <h3>Contact</h3>
+  <div class="callout">Security questions, questionnaires and evidence requests: <b>info@xgrcsoftware.com</b> · <b>+27 (0)87 802 0179</b></div>
+  <p class="small">Strategix Application Solutions (Pty) Ltd, the developer and operator of XGRC® Software. XGRC®, SHEQX®, MSX®, MSXCyber®, ENVIRX®, MAIA® and XLOGIC® are registered trade marks of Strategix Application Solutions (Pty) Ltd. This document describes our security programme as at October 2026; contractual commitments are those in the documents it references.</p>
+</section>
+
+<script>
+  // Keep each heading with what follows it: wrap h2 + lead + the next block,
+  // and h3 + the next block, in one unbreakable unit (Chromium does not honour
+  // break-after: avoid between separate blocks).
+  for (const h of document.querySelectorAll('section > h2, section > h3')) {
+    const keep = document.createElement('div');
+    keep.className = 'keep';
+    h.before(keep);
+    keep.append(h);
+    let next = keep.nextElementSibling;
+    if (h.tagName === 'H2' && next && next.classList.contains('lead')) { keep.append(next); next = keep.nextElementSibling; }
+    // Long tables may split (their header row repeats); short blocks stay with the heading.
+    const longTable = next && next.tagName === 'TABLE' && next.querySelectorAll('tbody tr').length > 6;
+    if (next && next.tagName !== 'H2' && next.tagName !== 'H3' && !longTable) keep.append(next);
+  }
+</script>
+</body>
+</html>

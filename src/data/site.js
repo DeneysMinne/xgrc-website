@@ -164,7 +164,6 @@ export const solutionDetails = {
 
   msxcyber: {
     infographic: '/assets/infographics/msxcyber-infographic-v3.pdf',
-    booklet: '/resources/xgrc-cyber-security-booklet.pdf',
     logo: '/assets/logos/solutions/msxcyber.png',
     icon: '/assets/logos/solutions/icons/msxcyber.png',
     screenshot: '/assets/screenshots/msxcyber-dashboard.webp',
@@ -1978,7 +1977,7 @@ export const resources = [
   { type: 'E-Book', title: 'ENVIRX® E-Book', note: 'Environmental compliance and performance monitoring.', href: '/resources/xgrc-envirx-ebook.pdf', download: true },
   { type: 'Booklet', title: 'ERM Booklet', note: 'Enterprise risk management as a strategic capability.', href: '/resources/xgrc-erm-booklet.pdf', download: true },
   { type: 'Booklet', title: 'XGRC® Compliance Hub Booklet', note: 'Vendor, supplier and contractor compliance management.', href: '/resources/xgrc-compliance-hub-booklet.pdf', download: true },
-  { type: 'Booklet', title: 'Cyber Security Booklet', note: 'Information security and cyber risk management.', href: '/resources/xgrc-cyber-security-booklet.pdf', download: true },
+  { type: 'Overview', title: 'Security & Trust Overview', note: 'How XGRC® protects your data: ISO 27001 (BSI), hosting, encryption, recovery and security FAQs.', href: '/resources/xgrc-security-trust-overview-v3.pdf', download: true },
   { type: 'Brochure', title: 'Integrated Assurance Brochure', note: 'Combined assurance and four lines of defence.', href: '/resources/xgrc-integrated-assurance-brochure.pdf', download: true }
 ];
 
