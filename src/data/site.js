@@ -1933,6 +1933,16 @@ export const articles = [
     imageAlt: 'Hand moving a gold chess piece beside a laptop, overlooking Table Mountain and the Cape Town skyline',
     relatedSolutions: ['erm'],
   },
+  {
+    slug: 'assurance-mapping-2027-governance-plan',
+    title: 'Why Integrated Assurance Should Be Built into Your 2027 Governance Plan',
+    excerpt: 'Committees receive plenty of assurance reports but rarely see how they fit together. Build a 2027 assurance map that shows coverage, gaps and overlaps across every assurance provider.',
+    category: 'GRC',
+    date: '2027-01-19',
+    image: 'assurance-mapping-2027-governance-plan.jpg',
+    imageAlt: 'Laptop on a desk surrounded by assurance icons for audit, risk alerts, controls and evidence, at sunset',
+    relatedSolutions: ['integrated-assurance', 'maia'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2382,6 +2392,12 @@ export const articleFaqs = {
     { q: 'How does COSO ERM 2017 differ from the original COSO ERM framework?', a: 'The 2017 framework, Enterprise Risk Management: Integrating with Strategy and Performance, updated COSO\'s 2004 framework and is organised around five components and 20 principles. Its main shift is emphasis: it treats risk as something to consider while setting strategy and driving performance, not only as a set of controls applied once the strategy is fixed.' },
     { q: 'Can ISO 31000 and COSO ERM be used together?', a: 'Yes. Many organisations use ISO 31000 for its principles and practical process, and COSO ERM for its governance and strategy emphasis, especially where boards and auditors are familiar with COSO. The two are compatible. What matters is applying one consistent method for assessment, appetite and reporting across the organisation.' },
     { q: 'Who should own strategic risks?', a: 'Strategic risks should be owned by the executive accountable for the objective they threaten, not by the risk function. The risk function designs the method, facilitates assessment and challenges ratings. The board or its risk committee oversees the overall profile and approves appetite. Clear ownership keeps strategic risks in executive conversations rather than in a separate report.' },
+  ],
+  'assurance-mapping-2027-governance-plan': [
+    { q: 'What is the difference between an assurance map and an audit plan?', a: 'An audit plan sets out the work internal audit will perform in a period. An assurance map is broader: it shows all assurance providers across all material risks, including management, specialist functions, internal audit and external providers. The map is used to shape the audit plan, by showing where independent assurance is missing and where internal audit can rely on others.' },
+    { q: 'Who should own the assurance map?', a: 'Ownership varies. In many South African organisations the chief audit executive or the chief risk officer coordinates it, with the audit committee overseeing the combined assurance arrangements. Whoever coordinates it, each assurance provider should own the accuracy of its own column, and the map should be reviewed by the committee at least annually and when the risk profile changes materially.' },
+    { q: 'How detailed should an assurance map be?', a: 'Detailed enough to support decisions, but not so detailed that it cannot be maintained. Most organisations start at the level of their top enterprise risks and key obligations, with one row per risk. Add detail for the risks where gaps or overlaps are found. A map with thousands of rows that nobody updates gives less confidence than a focused one that is current.' },
+    { q: 'How can AI help with assurance mapping?', a: 'AI can help authorised users query a large assurance dataset quickly, for example to find risks with no recent independent assurance or open findings linked to a particular control. It should be governed: limited to the user\'s permissions, with every interaction logged and conclusions checked by a person. MAIA® in XGRC® works on that basis, proposing answers while people make the decisions.' },
   ],
 };
 

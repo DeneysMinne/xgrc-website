@@ -5173,4 +5173,64 @@ Few organisations review whether the risks they anticipated in a major decision 
 Governance by Design for Strategic Risk
 
 Connecting ERM to strategy is less about new tools than about timing and ownership: risk in the room when choices are made, appetite expressed in terms a decision can be tested against, and treatments judged by outcomes. For a broader introduction, see <a href="/insights/what-is-enterprise-risk-management/">what enterprise risk management is</a> and how <a href="/insights/erm-software-vs-traditional-risk-tools/">ERM software compares with traditional risk tools</a>. Then download the free <a href="/use-cases/enterprise-risk-management/">enterprise risk management checklist</a> and use it in your next strategy session.`,
+'assurance-mapping-2027-governance-plan': `Audit committees are rarely short of assurance reports. Internal audit reports, compliance reviews, SHEQ audits, ISO certification visits and external audit management letters all arrive on the agenda. What committees are often short of is a view of how those reports fit together: which material risks are well covered, which are covered three times over and which nobody has looked at in two years. That view is what an assurance map provides.
+
+What Is Assurance Mapping?
+
+Assurance mapping is the process of plotting an organisation's material risks against every source of assurance over them, from management and specialist functions to internal audit and external providers. For each risk, the map shows who provides assurance, what scope it covers, when it was last performed and how much confidence it gives. The result exposes gaps, overlaps and reliance decisions in one view.
+
+In December we covered <a href="/insights/combined-assurance-2027-planning/">how to plan the 2027 combined assurance cycle</a>, the King Code approach to coordinating assurance providers. The assurance map is the working tool that makes that plan concrete, and it is the reason integrated assurance belongs in your 2027 governance plan rather than in the internal audit department alone.
+
+The Problem With Disconnected Assurance
+
+When risk, compliance, SHEQ, information security and internal audit plan their work independently, two things happen. Business units receive overlapping requests for the same evidence in different formats, and important risks fall between the plans because each function assumes another is covering them. Neither problem is visible until someone draws the map.
+
+Step One Define the Rows
+
+Start from the risk register, not the audit universe. Take the organisation's material risks, typically the top twenty to forty enterprise and operational risks, and use them as the rows of the map. Add significant compliance obligations and critical processes where they are not already represented by a risk. Starting from risks keeps the map anchored to what matters to the board rather than to what is convenient to audit.
+
+Step Two Define the Columns
+
+The columns are assurance providers. The Institute of Internal Auditors' <a href="https://www.theiia.org/en/about-us/about-internal-audit/position-papers/" rel="noopener">Three Lines Model</a> offers a useful structure, though real organisations rarely fit it neatly:
+
+- Management and operational oversight, such as control self-assessments and supervisory reviews
+- Specialist functions, such as risk, compliance, SHEQ, legal and information security
+- Internal audit, providing independent assurance
+- External providers, such as the external auditor, certification bodies, regulators and specialist reviewers
+
+Keep the columns specific. "Second line" is too vague to plan against; "ISMS internal audit" and "SHEQ legal compliance audit" are not.
+
+Step Three Fill the Cells With Evidence
+
+For each cell, record what assurance the provider actually gives over that risk: the scope, the date of the most recent work, the result and a confidence rating agreed with the provider. Be strict. A certification body's surveillance audit samples the management system; it does not provide assurance over every control. A self-assessment questionnaire completed without evidence is weak assurance and should be rated as such.
+
+Consider a cyber risk. Monthly patching reports from IT operations give first-line assurance, an ISMS internal audit gives second-line assurance, and an ISO/IEC 27001 surveillance audit gives external assurance over the management system. If internal audit has not reviewed cyber governance for two years, the map shows it plainly, and the audit committee can decide whether that is acceptable.
+
+Step Four Find the Gaps and Overlaps
+
+With the map populated, look for three patterns. Material risks with little or no independent assurance are gaps. Risks reviewed by three providers in the same quarter, using similar tests, are overlaps where coordination could reduce the burden on the business. Risks where internal audit could rely on another provider's work, because the scope and quality are adequate, are reliance opportunities that free audit time for the gaps.
+
+Agree Common Evidence Expectations
+
+Different assurance providers often request similar evidence in different formats. Where appropriate, agree shared control descriptions, ownership and supporting records, so a single well-evidenced control can support several providers. Independence is preserved because each provider still forms its own view; what changes is that the business stops answering the same question repeatedly. Our comparison of <a href="/insights/integrated-assurance-vs-internal-audit-software/">integrated assurance and internal audit software</a> explains why this needs a shared data model rather than separate tools.
+
+Track Findings Through to Effectiveness
+
+A finding is not resolved because a management response was submitted. Each finding on the map should carry an owner, a due date and evidence of closure, and someone should verify that the remediation actually addressed the weakness. Escalate overdue or repeated high-risk findings to the committee. Over time, the map should show assurance confidence rising where findings are genuinely closed.
+
+<a href="/integrated-assurance/">Integrated Assurance</a> in XGRC® coordinates internal audit and combined assurance, linked directly to risks, controls and actions, so the map, the findings and the remediation sit in one connected record rather than in separate spreadsheets.
+
+Interrogating the Map With Governed AI
+
+A populated assurance map holds a great deal of information, and committee members tend to ask questions the standard report does not answer. <a href="/maia/">MAIA®</a> lets authorised users interrogate GRC data in plain language within their permissions, with a full audit trail of every AI interaction. A chief audit executive preparing for a committee meeting can ask which material risks have had no independent assurance in the past eighteen months, or which open findings relate to a particular risk, and review the answer against the underlying records. AI proposes, people decide. Our article on <a href="/insights/what-is-governed-ai-for-grc/">governed AI for GRC</a> explains why that control matters, and <a href="/insights/why-integrated-assurance-matters-in-the-age-of-ai/">why integrated assurance matters in the age of AI</a> covers the wider picture.
+
+What Should the Committee Actually See?
+
+The full map is a working document. The audit committee needs a summary: the number of material risks with adequate, partial and no independent assurance, the most significant gaps and what is proposed for each, overlaps that will be coordinated this year, and the reliance internal audit intends to place on other providers. Each item should trace back to the detailed map so a committee member can drill into any rating.
+
+Presenting the map this way changes the committee conversation. Instead of reviewing reports one at a time, members can ask whether the overall pattern of assurance matches the risk profile, and challenge the plan before the year's work begins rather than after it ends.
+
+Build the Map in the First Quarter
+
+Governance by design means the assurance map is built before the 2027 assurance plans are finalised, not reconstructed at year end to explain what was covered. Draft it with each assurance provider in the first quarter, present it to the audit committee alongside the internal audit plan and update it as work completes. Start with the free <a href="/use-cases/integrated-assurance/">integrated assurance checklist</a>, and book a <a href="/demo/">demo</a> to see an assurance map connected to live risks and findings.`,
 };
