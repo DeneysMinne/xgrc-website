@@ -1913,6 +1913,16 @@ export const articles = [
     imageAlt: 'Laptop on a desk surrounded by assurance icons for audit, risk alerts, controls and evidence, at sunset',
     relatedSolutions: ['integrated-assurance', 'maia'],
   },
+  {
+    slug: 'management-systems-continual-improvement',
+    title: 'How Management Systems Support Consistent Governance and Continuous Improvement',
+    excerpt: 'Most management systems record findings well and learn from them poorly. Here is how to close the improvement loop across ISO 9001, ISO 14001 and ISO 45001 using one connected cycle.',
+    category: 'GRC',
+    date: '2027-01-21',
+    image: 'management-systems-continual-improvement.jpg',
+    imageAlt: 'Laptop showing process maps and dashboards, ringed by improvement cycle icons for documents, people and results',
+    relatedSolutions: ['msx', 'sheqx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2350,6 +2360,12 @@ export const articleFaqs = {
     { q: 'Who should own the assurance map?', a: 'Ownership varies. In many South African organisations the chief audit executive or the chief risk officer coordinates it, with the audit committee overseeing the combined assurance arrangements. Whoever coordinates it, each assurance provider should own the accuracy of its own column, and the map should be reviewed by the committee at least annually and when the risk profile changes materially.' },
     { q: 'How detailed should an assurance map be?', a: 'Detailed enough to support decisions, but not so detailed that it cannot be maintained. Most organisations start at the level of their top enterprise risks and key obligations, with one row per risk. Add detail for the risks where gaps or overlaps are found. A map with thousands of rows that nobody updates gives less confidence than a focused one that is current.' },
     { q: 'How can AI help with assurance mapping?', a: 'AI can help authorised users query a large assurance dataset quickly, for example to find risks with no recent independent assurance or open findings linked to a particular control. It should be governed: limited to the user\'s permissions, with every interaction logged and conclusions checked by a person. MAIA® in XGRC® works on that basis, proposing answers while people make the decisions.' },
+  ],
+  'management-systems-continual-improvement': [
+    { q: 'What is the difference between continual and continuous improvement?', a: 'ISO standards use continual improvement to describe improvement that happens in recurring cycles, through planned reviews and corrective actions, rather than as an unbroken flow. Continuous improvement is the more common everyday term and is often used interchangeably. For certification purposes, what matters is evidence of repeated cycles that make the management system more suitable, adequate and effective.' },
+    { q: 'Which clause covers continual improvement in ISO 9001, ISO 14001 and ISO 45001?', a: 'In all three, clause 10, Improvement, covers continual improvement together with nonconformity and corrective action, because they follow the Harmonized Structure. Clause 9 supplies the evidence that drives improvement through monitoring, internal audit and management review. Sub-clause numbering within clause 10 varies slightly between standards, so check the edition you are certified to.' },
+    { q: 'Can one management review cover several ISO standards?', a: 'Yes. Many organisations hold a single integrated management review covering quality, environment, health and safety and information security, provided the required inputs and outputs of each standard are addressed and recorded. An integrated review often produces better decisions because top management sees related issues together, such as a process failure affecting both quality and safety.' },
+    { q: 'How do you show an auditor that a management system is improving?', a: 'Show the cycle rather than a statement. Trace examples from a finding or incident through root cause analysis, corrective action and an effectiveness check, and show management review decisions that changed objectives, resources or processes. Trend data, such as fewer repeat nonconformities over time, supports the case. Auditors look for evidence that the system learns, not just that it records.' },
   ],
 };
 
