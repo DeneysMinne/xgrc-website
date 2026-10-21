@@ -4688,4 +4688,67 @@ Make 2027 the Year Assurance Adds Up
 Combined assurance is not a new layer of bureaucracy. It is a way of making the assurance you already pay for answer the board's real question: are our significant risks under control, and how do we know? Plan the 2027 cycle from the risk register, map the providers, close the gaps and report once.
 
 Start with the free <a href="/use-cases/integrated-assurance/">integrated assurance checklist</a>, or <a href="/demo/">book a demo</a> to see an assurance map linked to a live risk register.`,
+'cybersecurity-governance-year-end-review': `Year end is when information security programmes are judged on two very different questions. The certification auditor asks whether the ISMS management review happened and was recorded. The board, if it is paying attention, asks something harder: are our most important information risks under control, and what should change next year? A good year-end review answers both at once.
+
+What is an ISMS management review?
+
+An ISMS management review is the formal, recorded review by top management of the information security management system, required by clause 9.3 of ISO/IEC 27001:2022. It considers defined inputs, from audit results and risk treatment status to changes in context and stakeholder needs, and produces decisions on improvement and any changes needed to the ISMS.
+
+It is not the same as an internal audit or a security status report. It is the point at which leadership takes ownership of what the ISMS has found and decides what to do about it.
+
+What the Management Review Clause Requires
+
+<a href="https://www.iso.org/standard/27001" rel="noopener">ISO/IEC 27001:2022</a> requires top management to review the ISMS at planned intervals to make sure it remains suitable, adequate and effective. The required inputs are:
+
+- The status of actions from previous management reviews
+- Changes in external and internal issues relevant to the ISMS
+- Changes in the needs and expectations of interested parties relevant to the ISMS
+- Feedback on information security performance, including nonconformities and corrective actions, monitoring and measurement results, audit results and fulfilment of objectives
+- Feedback from interested parties, results of risk assessment and status of the risk treatment plan, and opportunities for continual improvement
+
+The results must include decisions related to continual improvement opportunities and any needs for changes to the ISMS, and documented information must be kept as evidence. If you are preparing for certification, our earlier article on <a href="/insights/iso-27001-mandatory-documents/">ISO 27001 mandatory documents</a> covers the full documentation set.
+
+Refresh the Risk Assessment and Treatment Plan
+
+The status of the risk treatment plan is a required input, but year end is also the right time to ask whether the risk assessment itself still reflects reality. Changes during the year that should trigger reassessment include new cloud services, new suppliers with access to data, AI tools adopted by business units, office moves, mergers and changes in remote working. For each high information risk, confirm the treatment option, the owner, the controls applied and whether planned treatments were actually delivered. Treatments that slipped need a new date and a reason recorded, not a silent carry-forward.
+
+Review the Statement of Applicability
+
+The Statement of Applicability records which Annex A controls apply, why, and whether they are implemented. It often drifts out of date because it is maintained separately from the risk treatment plan. At year end, check that every control included is justified by a risk or requirement, that exclusions still make sense, and that implementation status matches the evidence. A control marked implemented with no test record is a finding waiting to happen.
+
+Learn from the Year's Incidents
+
+ISO/IEC 27001 Annex A includes a control on learning from information security incidents, and the management review is where that learning should reach leadership. Group the year's incidents and near misses by cause: phishing and credential compromise, misconfiguration, supplier failures, lost devices, human error. Ask whether the same root causes recurred and whether corrective actions changed anything.
+
+In South Africa, POPIA adds a regulatory dimension. Section 19 requires responsible parties to secure the integrity and confidentiality of personal information through appropriate, reasonable technical and organisational measures, and section 22 requires notification of security compromises. Since April 2025 the Information Regulator has required those notifications through its eServices portal, as set out in its <a href="https://inforegulator.org.za/wp-content/uploads/2025/08/Fact-Sheet-on-security-compromises-2.pdf" rel="noopener">fact sheet on security compromises</a>. The review should confirm that the incident process can produce what a notification needs, quickly. The business cost of getting this wrong is outlined in <a href="/insights/the-hidden-cost-of-cyber-incidents-for-ceos/">the hidden cost of cyber incidents for CEOs</a>.
+
+Who is accountable for cybersecurity governance?
+
+ISO/IEC 27001 clause 5.1 requires top management to demonstrate leadership and commitment to the ISMS, and King V's information governance principle asks the governing body to oversee information, technology and data, including security measures to protect business information. Technical teams implement controls; leadership owns the risk. The management review should confirm that every high information risk has a business owner, that policy approvals are current and that escalation routes worked during the year's incidents. We covered board accountability in more depth in our November article on <a href="/insights/cybersecurity-governance-beyond-technical-controls/">cybersecurity governance beyond technical controls</a>.
+
+Test Control Effectiveness Rather Than Existence
+
+A control's existence proves very little. The review should look at evidence of operation: access reviews completed, backups restored in testing, vulnerability remediation within agreed timeframes, awareness training completion and phishing simulation results. Where the evidence is thin, the decision might be to change how the control is monitored rather than to add a new control. Building that evidence habit is the subject of <a href="/insights/building-a-culture-of-cyber-resilience/">building a culture of cyber resilience</a>.
+
+Connect the ISMS to Wider Assurance
+
+Information security findings should not live in a separate silo. Internal audit, the certification body, penetration testers and supplier assessments all generate findings about information risk. Feeding them into one register, linked to the relevant risks and controls, lets the audit committee see cyber as part of the organisation's combined assurance picture rather than as a technical appendix.
+
+Year-End ISMS Review Questions
+
+- Were all actions from the last management review completed, and did they work?
+- Which changes in context, suppliers or technology have not yet been risk assessed?
+- Is the Statement of Applicability consistent with the risk treatment plan and the evidence?
+- Which incident root causes recurred, and what will change in 2027?
+- Can the board see information risk alongside the organisation's other significant risks?
+
+How MSXCyber® Supports the Management Review
+
+<a href="/msxcyber/">MSXCyber®</a> supports an ISMS aligned to ISO/IEC 27001, covering information security governance, risk, controls, incidents, internal audit and audit-ready evidence. Because risks, controls, incidents and audit findings share one structure, the inputs to clause 9.3 can be drawn from live records instead of assembled by hand, and review decisions can be tracked as actions. Findings can also flow into <a href="/integrated-assurance/">Integrated Assurance</a> so that information security sits within the wider assurance picture. Our overview of <a href="/insights/streamlining-iso-27001-compliance-digitally/">streamlining ISO 27001 compliance digitally</a> shows how this works day to day.
+
+Close the Year with a Review That Changes Something
+
+The best ISMS management reviews are short on slides and long on decisions. Use the year-end review to refresh risk, check the Statement of Applicability against evidence, learn from incidents and confirm ownership, then carry those decisions into your 2027 information security objectives.
+
+Use the free <a href="/use-cases/iso-27001-documentation-checklist/">ISO 27001 documentation checklist</a> to prepare your review pack, or take the <a href="/tour/">live product tour</a> to see information security dashboards on sample data.`,
 };
