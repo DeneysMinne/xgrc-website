@@ -4055,4 +4055,76 @@ Accountability Is What Turns Compliance into Confidence
 A SHEQ system can be fully documented and still fragile if nobody owns the outcomes. When accountability is written down, visible and tested, the organisation moves from compliance to confidence: it can show not only that it has an emergency plan, but that the plan works and someone answers for it.
 
 Download the free <a href="/use-cases/iso-45001-readiness/">ISO 45001 readiness checklist</a> or the <a href="/use-cases/safety-management/">safety management checklist</a> to review accountability across your sites, or <a href="/demo/">book a SHEQX® demo</a>.`,
+'incident-reporting-to-continuous-improvement': `Most SHEQ teams are good at recording incidents. The register is full, the forms are complete and the monthly report shows a healthy closure rate. Yet the same hand injury happens on the same line six months later. Recording an incident is the start of the process; the value is in what happens after.
+
+What Is Incident Investigation and Corrective Action?
+
+Incident investigation and corrective action is the process of finding out why an incident happened, beyond the immediate trigger, then taking action that removes or controls the underlying causes and checking that the action worked. It is complete only when there is evidence that recurrence has become less likely, not when the last task is ticked off.
+
+ISO 45001, ISO 14001 and ISO 9001 all require this in their improvement clauses. ISO 45001 clause 10.2, for example, covers incident, nonconformity and corrective action, and expects the organisation to determine causes, implement action and review its effectiveness. In South Africa, section 24 of the <a href="https://www.gov.za/documents/occupational-health-and-safety-act" rel="noopener">Occupational Health and Safety Act</a> also requires certain serious incidents to be reported to an inspector, so the investigation has a legal as well as a learning purpose.
+
+Why Closed Incidents Keep Coming Back
+
+When incidents recur, the root cause is usually in the process rather than the people.
+
+- Investigations stop at the first explanation, often "employee did not follow procedure".
+- Actions address the symptom, such as a toolbox talk, instead of the cause, such as an unguarded pinch point.
+- Nobody checks whether the action worked, so ineffective actions are closed as complete.
+- Incidents are not linked to the risk assessment, so the risk rating never changes.
+- Similar events at other sites are never compared, so each site learns alone.
+
+We looked at the data side of this problem in <a href="/insights/why-sheq-incidents-are-often-a-data-problem/">why SHEQ incidents are often a data problem</a>, and at why reporting matters in the first place in <a href="/insights/why-incident-reporting-is-critical-in-sheq-management/">why incident reporting is critical in SHEQ management</a>. This post focuses on the loop that follows the report.
+
+The Six Stages of a Closed Loop
+
+Report Quickly and Consistently
+
+Capture what happened, where, when, who was involved and what immediate actions were taken, using one form for injuries, near misses, environmental events and quality failures. Near misses matter as much as injuries: they show the same failure mode without the harm. A consistent classification, including potential severity as well as actual severity, lets you prioritise the investigations that matter most.
+
+Investigate Underlying Causes
+
+Match the depth of investigation to the potential severity, not just the outcome. A near miss that could have killed someone deserves a full investigation even though nobody was hurt. Use a structured method, such as five whys, a fishbone diagram or a barrier analysis, and keep asking why until you reach something management controls: design, maintenance, staffing, training, supervision or planning.
+
+Take a forklift striking a pedestrian barrier. The immediate cause is the driver's speed. The deeper causes may be a production target that rewards speed, a blind corner with no mirror and a pedestrian route that crosses the loading bay. Disciplining the driver addresses none of them.
+
+Choose Actions Using the Hierarchy of Controls
+
+Corrective actions should target the causes and favour stronger controls. Eliminating the hazard or engineering it out beats a new procedure, which beats retraining, which beats PPE. ISO 45001 builds the hierarchy of controls into its requirements for this reason. Every action needs an owner, a realistic due date and a clear description of what "done" looks like.
+
+Track Progress and Escalate
+
+Visibility drives completion. Owners need to see their open actions, and managers need to see overdue ones without asking. Agree escalation thresholds in advance so that overdue critical actions reach senior management automatically. Our <a href="/use-cases/action-management/">action management checklist</a> covers the essentials.
+
+Verify Effectiveness
+
+This is the stage most often skipped. After an agreed period, someone other than the action owner should check whether the action worked: an inspection of the new guard, an observation of the revised task, a review of whether similar events have stopped. If the answer is no, reopen the investigation. Record the verification, because it is the evidence that matters to an auditor and to the board.
+
+Share the Learning
+
+Turn significant investigations into short learning summaries and push them to every site with similar activities. Update the relevant risk assessment and, where needed, the procedure, training material and inspection checklist. One site's incident should improve every site's controls.
+
+Measuring Whether the Loop Is Working
+
+Closure rate on its own is a weak indicator; it rewards closing actions, not fixing problems. Better measures look at quality and outcomes.
+
+- Percentage of corrective actions verified as effective, and the share that failed verification.
+- Repeat incidents with the same root cause category within twelve months.
+- Average age of open critical actions.
+- Ratio of high-potential near misses investigated to those reported.
+
+These measures belong in management review, where they show leaders whether the incident process is producing learning or paperwork.
+
+Connecting Incidents to Risk and Accountability
+
+An incident is evidence about a control. If a control failed, the risk it protects against is higher than the register says. Linking each investigation to the relevant risk, control and action means that the risk rating can be revisited with real data and that accountable managers see the consequences in their own area. The previous post in this series, on <a href="/insights/sheq-accountability-operational-resilience/">SHEQ accountability and operational resilience</a>, explains why ownership of these actions has to be explicit.
+
+How SHEQX® Closes the Loop
+
+<a href="/sheqx/">SHEQX®</a> manages SHEQ incidents, inspections, audits, risks and corrective actions in one place, aligned to ISO 9001, ISO 14001 and ISO 45001. An incident, its investigation, its corrective actions and the related risk sit as linked records, so owners see their actions, managers see what is overdue and verification is recorded against the original event. For teams moving off paper and spreadsheets, our guide to <a href="/insights/digital-sheq-management/">digital SHEQ management</a> sets out what to expect.
+
+From Closure to Confidence
+
+Closing an incident is an administrative milestone. Closing the loop means being able to show that the cause was found, the action worked and every site learned from it. That is the difference between compliance and confidence in SHEQ.
+
+Download the free <a href="/use-cases/incident-management/">incident management checklist</a> to test your process against these six stages, or take the <a href="/tour/">live XGRC® tour</a>, which includes an incident and near-miss trends dashboard on sample data.`,
 };

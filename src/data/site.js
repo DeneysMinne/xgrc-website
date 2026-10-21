@@ -1753,6 +1753,16 @@ export const articles = [
     imageAlt: 'SHEQ officers in hard hats and hi-vis at an industrial plant, with safety, health, environment and quality icons',
     relatedSolutions: ['sheqx', 'msx'],
   },
+  {
+    slug: 'incident-reporting-to-continuous-improvement',
+    title: 'From Incident Reporting to Continuous Improvement: Closing the Loop',
+    excerpt: 'Recording incidents is the easy part. How to run incident investigation and corrective action as a closed loop: root causes, the hierarchy of controls, effectiveness checks and shared learning.',
+    category: 'SHEQ',
+    date: '2026-11-19',
+    image: 'incident-reporting-to-continuous-improvement.jpg',
+    imageAlt: 'Safety officer using a tablet beside a six-step cycle: report, investigate, take action, monitor, verify and learn',
+    relatedSolutions: ['sheqx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2094,6 +2104,12 @@ export const articleFaqs = {
     { q: 'What is a 16(2) appointee under the OHS Act?', a: 'A 16(2) appointee is a person to whom the chief executive officer has assigned some of the employer\'s duties under section 16(2) of the Occupational Health and Safety Act, typically a director or senior manager responsible for a site or division. The appointee acts under the CEO\'s control and directions, and the assignment does not relieve the CEO of responsibility or liability.' },
     { q: 'Can the SHEQ manager be held accountable instead of the CEO?', a: 'The SHEQ manager can be responsible for many activities and can be held to account internally for their performance. Legally and under ISO 45001, however, ultimate accountability cannot be delegated away from top management. A sound structure makes the SHEQ manager responsible for systems and advice, line managers accountable for their areas and the CEO accountable overall.' },
     { q: 'How do we show SHEQ accountability to an auditor?', a: 'Show written appointments linked to the obligations and sites they cover, corrective actions with named owners and verifiers, records of overdue items being escalated, emergency drills with findings and follow-up, and management review minutes that discuss performance by owner. An auditor looks for evidence that accountability is exercised, not only that it is written in a policy.' },
+  ],
+  'incident-reporting-to-continuous-improvement': [
+    { q: 'What is the difference between a correction and a corrective action?', a: 'A correction deals with the immediate effect, such as cleaning up a spill or replacing a damaged part. A corrective action removes or controls the cause so the event is less likely to happen again, such as redesigning the transfer point that caused the spill. Both are needed, but only corrective action prevents recurrence.' },
+    { q: 'How soon should corrective action effectiveness be verified?', a: 'Long enough for the action to be tested in normal operations, but not so long that recurrence goes unnoticed. For physical controls this may be a few weeks after installation; for changes to training or procedures it may be one to three months, using observations and incident trends. Set the verification date when the action is raised so it is not forgotten.' },
+    { q: 'Should near misses be investigated as thoroughly as injuries?', a: 'High-potential near misses should be. Investigation depth should follow the potential severity of the event, not the actual outcome. A near miss involving a suspended load or a vehicle and a pedestrian reveals the same failure as a fatality would, without the harm, which makes it one of the most valuable learning opportunities a site will get.' },
+    { q: 'Which root cause analysis method is best?', a: 'There is no single best method. Five whys suits simple events, fishbone diagrams help teams explore several categories of cause, and barrier or bow-tie analysis works well for high-potential events where several controls failed. Whichever method you use, keep going until you reach causes management can change, such as design, planning, resourcing or supervision.' },
   ],
 };
 
