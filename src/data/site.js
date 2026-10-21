@@ -1743,6 +1743,16 @@ export const articles = [
     imageAlt: 'Stacked paper files beside a laptop showing compliance dashboards, linked by glowing icons, in a city office',
     relatedSolutions: ['msx', 'sheqx', 'envirx'],
   },
+  {
+    slug: 'hidden-cost-of-disconnected-risk-management',
+    title: 'The Hidden Cost of Disconnected Risk Management Processes',
+    excerpt: 'Duplicated effort, late escalation, untreated interdependencies and board blind spots: the four hidden costs of disconnected risk processes, and practical steps towards integrated risk management.',
+    category: 'ERM',
+    date: '2026-11-10',
+    image: 'hidden-cost-of-disconnected-risk-management.jpg',
+    imageAlt: 'Overflowing stacks of paper files and loose documents on a boardroom table, beside wooden blocks, at sunset',
+    relatedSolutions: ['erm', 'integrated-assurance'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2078,6 +2088,12 @@ export const articleFaqs = {
     { q: 'What is the Harmonized Structure in ISO management system standards?', a: 'The Harmonized Structure is the common clause sequence, core text and terms that ISO management system standards share, covering context, leadership, planning, support, operation, performance evaluation and improvement. Because ISO 9001, ISO 14001, ISO 45001 and ISO/IEC 27001 follow it, organisations can run shared processes such as internal audit and management review once across several standards.' },
     { q: 'Which processes should be integrated first in an IMS?', a: 'Internal audit and corrective action usually come first because they create the most duplicated effort and the most cross-disciplinary learning. Management review and document control follow naturally. Discipline-specific processes such as hazard identification or environmental aspects assessment stay specialised but should feed the shared risk method and the single corrective action register.' },
     { q: 'Do we need a new standard to go beyond compliance?', a: 'No. Going beyond compliance is about how existing standards and legal obligations are managed, not adding another certificate. It means connecting risks, controls, incidents, audits and actions, verifying that actions worked, and reporting performance to leadership continuously. PAS 99 can help structure integration, but the change is mainly in process and evidence.' },
+  ],
+  'hidden-cost-of-disconnected-risk-management': [
+    { q: 'What is the difference between integrated risk management and ERM?', a: 'The terms overlap heavily. Enterprise risk management describes the discipline of managing risk across the whole organisation in line with its objectives. Integrated risk management emphasises the mechanics: one method, one rating scale and linked records across functions. In practice, a mature ERM programme is integrated, and integration is how most organisations make ERM work day to day.' },
+    { q: 'Do we need to abolish departmental risk registers?', a: 'No. Local teams should keep owning and maintaining their risks. What changes is that departmental registers become views of one shared structure using common rating criteria, rather than separate files. That lets the business keep local ownership while the risk function and the board see a consolidated, de-duplicated picture without manual reconciliation.' },
+    { q: 'What are key risk indicators and why do they matter?', a: 'Key risk indicators are measurable signals that a risk is becoming more likely or more severe, such as overdue supplier payments, rising staff turnover in a critical team or repeated control exceptions. With agreed thresholds, they trigger escalation as soon as conditions deteriorate instead of waiting for the next quarterly review, which gives management more options to respond.' },
+    { q: 'How long does it take to integrate risk registers?', a: 'Most organisations can make meaningful progress within two or three reporting cycles. Agreeing a common taxonomy and rating scale comes first, then consolidating and de-duplicating registers, then linking risks to controls, incidents, findings and actions. Tackling the top twenty enterprise risks first delivers board-level value early while the wider register is cleaned up.' },
   ],
 };
 
