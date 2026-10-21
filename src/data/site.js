@@ -1823,6 +1823,16 @@ export const articles = [
     imageAlt: 'Team reviewing assurance dashboards on a laptop, with audit, controls and risk icons around a central gear',
     relatedSolutions: ['integrated-assurance', 'erm'],
   },
+  {
+    slug: 'cybersecurity-governance-year-end-review',
+    title: 'Cybersecurity Governance at Year-End: Reviewing Risk, Accountability and Assurance',
+    excerpt: 'A practical guide to the year-end ISMS management review: what ISO/IEC 27001 clause 9.3 requires, how to refresh risk treatment and the SoA, and how POPIA and King V shape accountability.',
+    category: 'Cyber',
+    date: '2026-12-10',
+    image: 'cybersecurity-governance-year-end-review.jpg',
+    imageAlt: 'Woman reviewing cybersecurity dashboards on a laptop at dusk, with a padlock shield and security icons',
+    relatedSolutions: ['msxcyber', 'integrated-assurance'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2206,6 +2216,12 @@ export const articleFaqs = {
     { q: 'Who is responsible for combined assurance under King V?', a: 'King V places responsibility on the governing body, which may delegate it to the audit committee. The governing body should satisfy itself that a combined assurance model is implemented across management, risk and compliance functions and internal and external providers. Internal audit usually coordinates the practical work, and its charter should describe its role within combined assurance.' },
     { q: 'What is an assurance map?', a: 'An assurance map is a matrix that lists significant risks against every assurance provider, showing who gives assurance over each risk, when, and how much reliance can be placed on that work. It reveals risks with no independent assurance and areas where several providers duplicate effort, which makes it the starting point for a combined assurance plan.' },
     { q: 'How often should the combined assurance plan be updated?', a: 'Most organisations set the plan annually, aligned with the internal audit plan and the audit committee calendar, then refresh it when the risk profile changes materially. A quarterly check that coverage still matches the current significant risks is good practice, particularly after a major incident, acquisition, system change or new regulatory requirement.' },
+  ],
+  'cybersecurity-governance-year-end-review': [
+    { q: 'How often must an ISO 27001 management review be held?', a: 'ISO/IEC 27001 requires management reviews at planned intervals but does not set a frequency. An annual review is the common minimum, often scheduled before the surveillance or recertification audit. Many organisations add shorter quarterly reviews of risks, incidents and actions so that issues are not left waiting until the annual meeting.' },
+    { q: 'Who should attend an ISMS management review?', a: 'Top management must take part, because clause 9.3 makes the review their responsibility. Attendees typically include an executive sponsor, the information security manager or CISO, the information officer under POPIA, IT and risk leads, and owners of high information risks. Internal audit may attend to present findings while maintaining its independence.' },
+    { q: 'What evidence does a certification auditor expect from the management review?', a: 'Auditors expect documented information showing that the review took place, that each required clause 9.3 input was considered, and that decisions were made on continual improvement and any changes to the ISMS. Minutes, the input pack and a tracked list of resulting actions are normally enough, provided they show genuine discussion rather than a template.' },
+    { q: 'How does POPIA affect the ISMS review in South Africa?', a: 'POPIA section 19 requires appropriate, reasonable technical and organisational measures to protect personal information, and section 22 requires notification of security compromises to the Information Regulator and affected data subjects. The management review should confirm that controls protecting personal information are working and that the incident process can support timely notification through the Regulator\'s eServices portal.' },
   ],
 };
 
