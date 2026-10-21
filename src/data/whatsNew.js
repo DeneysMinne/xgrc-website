@@ -282,6 +282,13 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.21.5",
+      "date": "2026-10-21",
+      "category": "new",
+      "title": "Report an incident on a contract",
+      "description": "When something happens under a contract, such as a supplier reporting a security breach or a deliverable slipping, report it on the contract and XLOGIC starts the approved process for the obligation concerned. Its tasks land in the Worklist with the contract and what happened attached, and the contract lists every incident and its progress. Escalation steps now fire only when work actually goes overdue."
+    },
+    {
       "version": "2026.10.21.4",
       "date": "2026-10-21",
       "category": "new",
