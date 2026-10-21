@@ -1903,6 +1903,16 @@ export const articles = [
     imageAlt: 'Governance pillar icon at the centre of risk, compliance and audit icons, above a desk overlooking Cape Town',
     relatedSolutions: ['xlogic', 'erm', 'integrated-assurance'],
   },
+  {
+    slug: 'compliance-obligations-to-accountable-action',
+    title: 'From Compliance Obligations to Accountable Action: Building a Connected Compliance Framework',
+    excerpt: 'An obligations list is not a compliance framework. Learn how to build a register that links each requirement to an owner, a working control, current evidence and the suppliers you rely on.',
+    category: 'Compliance Hub',
+    date: '2027-01-07',
+    image: 'compliance-obligations-to-accountable-action.jpg',
+    imageAlt: 'Stacked documents and a chain of icons from obligation to checklist, owner, review and evidence in an office',
+    relatedSolutions: ['compliance-hub', 'xlogic'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2334,6 +2344,12 @@ export const articleFaqs = {
     { q: 'Does King V apply to private companies in South Africa?', a: 'King V is a voluntary, principles-based code and is not limited to listed companies. JSE-listed companies are subject to listing requirements that reference the King Code. Private companies, state-owned entities and non-profits often apply it voluntarily because funders, lenders and partners increasingly expect it. Check the IoDSA guidance for your sector.' },
     { q: 'How is a governance framework different from a GRC strategy?', a: 'A governance framework describes how the board directs and controls the organisation: who decides, who is accountable and how oversight works. A GRC strategy is the operating plan for running risk, compliance and assurance activities in support of that framework, including processes, data and technology choices. The framework sets the rules; the GRC strategy is how management delivers against them day to day.' },
     { q: 'How often should a corporate governance framework be reviewed?', a: 'Review it formally at least once a year, ideally ahead of the annual reporting cycle, and whenever something material changes: a new strategy, a merger, a new regulator, a significant incident or a revised governance code such as King V. Between formal reviews, track exceptions such as missed escalations or unowned controls, because they show where the design needs attention.' },
+  ],
+  'compliance-obligations-to-accountable-action': [
+    { q: 'What is the difference between a legal register and a compliance obligations register?', a: 'A legal register lists the legislation and regulations that apply to an organisation. A compliance obligations register is broader and more operational: it also captures permits, contracts, standards and voluntary commitments, and links each requirement to an owner, a control and evidence. The legal register tells you what the law says; the obligations register shows how you meet it.' },
+    { q: 'How detailed should each obligation entry be?', a: 'Detailed enough that someone new to the role could act on it. Record the specific section or condition, where it applies, what it means for the business in plain language, the owner, the control that meets it and the evidence expected. Avoid copying long statutory text into the register; link to the source and summarise the practical requirement instead.' },
+    { q: 'How often should a compliance obligations register be reviewed?', a: 'Review high-consequence obligations at least annually and whenever the underlying requirement changes, such as an amended regulation, a renewed licence or a new contract. Lower-risk entries can follow a longer cycle. Record each review, including the date and reviewer, so you can show the register is maintained rather than created once and left alone.' },
+    { q: 'Can supplier and contractor obligations sit in the same register?', a: 'Yes, and they should be linked. Obligations you flow down to suppliers and contractors, such as data protection, health and safety or environmental requirements, belong against the original obligation they support. XGRC® Compliance Hub manages the third-party evidence for those obligations, so an expired contractor document shows up as a gap against the requirement it affects.' },
   ],
 };
 
