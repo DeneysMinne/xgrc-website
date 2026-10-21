@@ -5168,4 +5168,64 @@ Objective performance reported by the team that owns it should be tested by some
 Governance by Design for Information Security
 
 Strong cybersecurity governance in 2027 starts with a handful of objectives the board can understand, each tied to a real risk, a named owner and a measure reviewed every month. Set them in January, test them with assurance and revisit them at the next management review. To check your ISMS foundations first, work through the free <a href="/use-cases/iso-27001-readiness/">ISO 27001 readiness checklist</a>.`,
+'proactive-sheq-management-strategy-2027': `A good safety record can be the most misleading number in the business. A site that reports no lost-time injuries for a year may be well managed, or it may be lucky, or it may simply have stopped reporting minor events. The incident rate cannot tell you which. A proactive SHEQ strategy is built on the measures that can.
+
+What Is Proactive SHEQ Management?
+
+Proactive SHEQ management is an approach to safety, health, environment and quality that directs effort at preventing harm and failure before it occurs, rather than responding after incidents. It relies on hazard identification, planned inspections, near-miss reporting, worker participation and leading indicators to find and fix weaknesses early, and uses incident data to confirm whether prevention is working.
+
+In December we looked at <a href="/insights/annual-sheq-review/">how to run an annual SHEQ review</a>, balancing leading and lagging indicators across the past year. This article turns that review into a forward-looking strategy for 2027.
+
+Read the Baseline Data Sceptically
+
+Before setting targets, look at what the data is really saying. Review incidents, near misses, inspection findings, audit nonconformities and overdue actions across every site and activity. Then ask awkward questions. Did reported near misses fall because conditions improved or because reporting declined? Do two sites define a recordable incident the same way? Are contractors' incidents captured in the same system as employees'?
+
+Distinguishing genuine improvement from reporting artefacts is the most important analysis a SHEQ manager can do in January. Our article on <a href="/insights/why-sheq-incidents-are-often-a-data-problem/">why SHEQ incidents are often a data problem</a> explores the most common distortions.
+
+Put Hazard Identification at the Centre
+
+Every proactive strategy rests on knowing where harm could occur. Hazard identification should be an ongoing activity, not a document produced when a site opens. Refresh risk assessments when processes, equipment, materials or people change, and involve the people doing the work, because they see hazards that a desk review misses.
+
+Prioritise the hazards with potential for serious injury or fatality, even where they have never caused harm. These are the exposures where a single failure matters most, and where the controls deserve the most frequent verification. The free <a href="/use-cases/hazard-identification/">hazard identification checklist</a> gives a structured starting point.
+
+Why Does Worker Participation Matter So Much?
+
+Workers are closest to the hazards and usually the first to notice when a control is not working. ISO 45001 recognises this in clause 5.4, which requires processes for consultation and participation of workers at all applicable levels, with particular emphasis on non-managerial workers. That includes removing barriers to participation, such as fear of reprisal, language and literacy, and making time and training available.
+
+In South Africa, the <a href="https://www.gov.za/documents/occupational-health-and-safety-act" rel="noopener">Occupational Health and Safety Act</a> provides the legal structure: section 17 requires employers with more than 20 employees at a workplace to designate health and safety representatives, and section 19 provides for health and safety committees. A proactive strategy treats these structures as a source of intelligence, not a compliance formality. Ask representatives which hazards worry them most, track the issues they raise and report back on what was done.
+
+Make Near-Miss Reporting Easy and Worthwhile
+
+Near misses are free lessons. They reveal the same failures that cause injuries, without the injury. Reporting rates depend on two things: how easy it is to report, and whether people see something happen as a result. A mobile form that takes a minute to complete, with feedback to the reporter when action is taken, does more for reporting culture than any campaign. See <a href="/insights/why-incident-reporting-is-critical-in-sheq-management/">why incident reporting is critical in SHEQ management</a> for the cultural side.
+
+Connect Inspections to Corrective Action
+
+An inspection creates value only when its findings lead to decisions. Plan inspections by risk, with high-hazard areas inspected more often. Prioritise each finding by severity, assign a realistic deadline and an owner, and retain evidence of closure. Then review repeat findings: the same guarding defect appearing on three consecutive inspections indicates a root cause that the corrective action has not reached.
+
+Learn From Investigations Without Blame
+
+When incidents do happen, the quality of the investigation decides whether the organisation learns. Look beyond individual error to the conditions that made the error likely: work design, supervision, equipment, time pressure, training and the way procedures are written. Share the lessons in a form frontline teams can use, such as a short toolbox talk rather than a ten-page report, and confirm after a set period that the preventive measures are working. An investigation that ends with "retrain the operator" has usually stopped too early.
+
+Choose Leading Indicators That Predict Rather Than Count
+
+Leading indicators are only useful if they measure the quality of prevention, not just activity. Inspection counts can rise while risk control deteriorates. Better indicators include:
+
+- Closure rate of high-severity actions within their due date
+- Proportion of critical controls verified as working during the period
+- Near-miss reports per site, read alongside the actions they generated
+- Participation of non-managerial workers in risk assessments and investigations
+
+Balance these with lagging measures such as recordable injuries and environmental incidents, and review both together. If leading indicators improve while serious incidents persist, the indicators are measuring the wrong things.
+
+Clarify Who Does What
+
+Proactive SHEQ management needs clear roles: who reports, who investigates, who approves corrective action and who verifies that it worked. Set escalation thresholds for serious hazards and repeated failures so they reach senior management quickly. Our November article on <a href="/insights/sheq-accountability-operational-resilience/">SHEQ accountability and operational resilience</a> covers where ultimate accountability sits.
+
+How SHEQX® Supports a Proactive Strategy
+
+<a href="/sheqx/">SHEQX®</a> manages SHEQ risks, incidents, inspections, audits, corrective actions and compliance, aligned to ISO 9001, ISO 14001 and ISO 45001. Hazards, near misses, inspection findings and actions share one record across sites, so a pattern at one operation can be seen at all of them, and leading indicators are drawn from the same data as the incident record. For South African operations, see our <a href="/sheq-software-south-africa/">SHEQ software for South Africa</a> page.
+
+Governance by Design Starts on the Shop Floor
+
+The most effective SHEQ strategies for 2027 will be built where the work happens: hazards identified with the people exposed to them, near misses treated as early warnings and indicators chosen because they predict harm. Pick one high-risk activity this month, involve the workers who do it in reviewing its hazards and controls, and measure what changes. To see how hazards, inspections and actions connect across sites, take the <a href="/tour/">live XGRC® product tour</a>.`,
 };
