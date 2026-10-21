@@ -4690,4 +4690,57 @@ Your Compliance Is Only as Strong as Your Contractors
 Going into 2027, the most practical compliance improvement for many organisations is not another internal policy. It is knowing, at any moment, which contractors and suppliers are compliant, which documents expire next month and who is responsible for acting.
 
 Start with the free <a href="/use-cases/vendor-management/">vendor management checklist</a>, or <a href="/demo/">book a demo</a> to see contractor onboarding and document expiry tracking in Compliance Hub.`,
+'grc-strategy-2027': `Every December, GRC leaders are asked for a plan for next year. The temptation is to produce a long list: a new policy framework, a refreshed risk methodology, an ISO certification, an AI policy, a new system. Long lists rarely survive the first quarter. A GRC strategy that works is shorter, sequenced and anchored in the decisions the organisation actually needs to make.
+
+What is a GRC strategy?
+
+A GRC strategy is a short, prioritised plan that sets out how an organisation will govern, manage risk and meet its obligations over the coming period: which outcomes it is aiming for, which gaps it will close first, who owns each workstream, how progress will be measured and which processes, data and technology will support it. It connects governance work to business objectives rather than to a list of frameworks.
+
+Begin with an Honest Baseline
+
+Before choosing priorities, establish where you are. Not in maturity model language, but in practical terms. Pick five or six recent events and trace how the organisation handled them: a significant incident, a failed audit control, a regulatory change, a supplier failure, a board question about a risk. For each, ask how long it took to get the facts, how many systems and people were involved, and whether the right owner acted. That trace will tell you more about your GRC position than any self-assessment questionnaire.
+
+If you are not sure what a GRC platform should cover, our overview of <a href="/insights/what-is-grc-software/">what GRC software is</a> and the comparison of <a href="/insights/erm-vs-grc/">ERM and GRC</a> are useful starting points.
+
+Find Where Governance Information Breaks
+
+Most baselines reveal the same pattern: risk assessments in one place, compliance findings in another, audit observations in a third, incidents in a fourth and actions in email. Each specialist team may be doing good work, but nobody can see the whole picture. Our article on <a href="/insights/hidden-cost-management-systems-silos/">the hidden cost of management system silos</a> sets out how that fragmentation shows up in rework, late escalation and inconsistent reporting.
+
+The goal is not to centralise everything. Specialists need their own tools and methods. The goal is a shared structure: one way of describing risks, obligations, controls, evidence and actions, so that information from different disciplines can be connected and reported together.
+
+Choose Three Priorities Rather Than Ten
+
+A strategy that tries to fix everything at once will fix nothing well. Choose no more than three priorities for 2027, each tied to a business outcome the executive committee cares about. Examples that often rise to the top:
+
+- Make the risk register a decision tool, with top risks linked to controls, evidence and actions, as described in <a href="/insights/from-risk-registers-to-risk-intelligence/">from risk registers to risk intelligence</a>
+- Build one combined assurance plan and one findings register, following the approach in <a href="/insights/combined-assurance-2027-planning/">planning the 2027 combined assurance cycle</a>
+- Bring AI use under governance, with a register, owners and proportionate controls
+- Close third-party compliance gaps for high-risk contractors and suppliers
+- Consolidate SHEQ, environmental and quality management systems into one integrated system
+
+Pick the ones that address your biggest exposure and your board's most frequent questions. Park the rest, explicitly, so they do not creep back in.
+
+Sequence the Year
+
+Sequencing matters as much as selection. A practical shape for most organisations is to spend the first quarter on structure: agreeing taxonomies, owners and the data each priority depends on. The second quarter is for migration and first use, starting with a pilot business unit or site. The third quarter is for extending coverage and testing whether reports support decisions. The fourth is for review, assurance and planning the next cycle. Each quarter should end with something visible to the executive committee, so momentum is maintained.
+
+Measure Outcomes Rather Than Activity
+
+Choose a handful of measures that show whether governance is improving, rather than how busy the GRC team is. Useful examples include the time taken to answer a board question about a top risk, the proportion of significant risks with tested controls, overdue actions as a share of the total, repeat audit findings and the proportion of high-risk contractors with current documents. Report them each quarter alongside the risk and assurance reports, so they become part of the governance rhythm.
+
+Where Does AI Fit in a GRC Strategy?
+
+AI belongs in a 2027 GRC strategy in two ways. First, as a risk to govern: King V asks governing bodies to oversee emerging technologies such as AI, including human oversight proportionate to the risk. The Code is available from the <a href="https://www.iodsa.co.za/page/king-v" rel="noopener">Institute of Directors in South Africa</a>. Second, as a tool for the GRC function itself, provided it is governed. The test is simple: can you show who asked what, what data the AI used, what it proposed and who decided? Our explainer on <a href="/insights/what-is-governed-ai-for-grc/">governed AI for GRC</a> covers the principles in more detail.
+
+How MSX® and MAIA® Support a 2027 GRC Strategy
+
+<a href="/msx/">MSX®</a> is an integrated programme option that packages selected governance, risk, compliance and management system capabilities into one coordinated management system. It provides the shared structure a GRC strategy depends on, so that risk, compliance, SHEQ, environmental and assurance information can be connected without forcing every team into the same workflow. Where policies and obligations need to become day-to-day processes, <a href="/xlogic/">XLOGIC®</a> converts them into structured workflows with accountability, evidence capture and auditability.
+
+<a href="/maia/">MAIA®</a> adds governed AI on top of that data. Authorised users can interrogate GRC information in plain language, within their existing permissions, with a full audit trail of every AI interaction. AI proposes, people decide. Customers choose the model, and customer data is never used to train AI models. For a GRC strategy, that means questions such as which top risks have untested controls, or which sites have the most overdue actions, can be answered in minutes rather than compiled over days.
+
+Building the Foundation for a Future of Assurance
+
+The organisations that make real progress in 2027 will not be those with the longest plans. They will be the ones that chose a few priorities, connected their governance information and measured whether decisions improved. If 2026 was a year of governance, a focused strategy is how 2027 becomes a year of assurance.
+
+Use the free <a href="/use-cases/compliance-management/">compliance management checklist</a> to test your baseline, or <a href="/demo/">book a demo</a> to see MSX® and MAIA® working together on sample GRC data.`,
 };
