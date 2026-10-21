@@ -3796,4 +3796,67 @@ AI will continue to create opportunities, but greater capability brings greater 
 King V provides a timely backdrop for this conversation. As boards work through their first year under the new code, AI needs to be part of the discussion about accountability, oversight, risk and responsible organisational performance. The objective is not to slow innovation, but to create an environment where it can happen responsibly. AI is no longer simply a technology conversation. It is a governance conversation.
 
 <a href="/contact/">Speak to an XGRC® specialist</a> to discover how AI Governance, MSX® and Integrated Assurance can help your board govern AI with clear accountability and evidence.`,
+'connected-governance-from-fragmented-systems': `A risk register in one spreadsheet, compliance obligations in another, audit findings in a third and corrective actions scattered across inboxes. Each team can answer for its own patch. Ask the board a simple question, such as whether last quarter's control failure has actually been fixed, and it can take a week of emails to find out.
+
+What Is Connected Governance?
+
+Connected governance is a way of running governance, risk and compliance so that policies, obligations, risks, controls, incidents, audit findings and actions are linked records with named owners, rather than separate lists. Any finding can be traced to the risk it affects, the control that failed, the action taken and the evidence that the fix worked.
+
+It does not replace specialist functions. Risk, compliance, SHEQ, information security and internal audit keep their expertise and their methods. What changes is that they work from shared information, so a weakness found by one team becomes visible to every team it affects. That is the core of this month's theme, from compliance to confidence: confidence comes from being able to show the whole chain, not from holding a certificate for each part of it.
+
+How Fragmentation Creates Governance Risk
+
+Fragmentation rarely starts as a decision. A SHEQ team buys an incident tool, IT adopts a separate ISMS tracker, finance keeps its risk register in Excel, and internal audit runs its own working papers. Each choice makes sense locally. Over time the organisation ends up with several versions of the truth and no reliable way to reconcile them. We have written before about <a href="/insights/the-cost-of-fragmented-compliance-why-visibility-matters-more-than-ever/">the cost of fragmented compliance</a> and the <a href="/insights/hidden-cost-management-systems-silos/">hidden cost of management system silos</a>; the governance risk is the part that is easiest to miss.
+
+Consider a typical chain. Internal audit finds that user access reviews on the payroll system have not been performed for two quarters. The finding goes into the audit report. An action is assigned by email to the IT manager. The related risk, unauthorised payroll changes, sits in the finance risk register with a rating that still assumes the control works. Three months later the action is marked complete, but nobody has checked whether the next review actually happened, and the risk rating never moved.
+
+Every individual step was done. The organisation still cannot prove the weakness was fixed, and its risk profile was wrong for the whole period. That gap between activity and assurance is what connected governance closes.
+
+Five Practical Steps Towards Connected Governance
+
+Most organisations cannot replace everything at once, and they should not try. These five steps work in sequence and can start with one business unit or one framework.
+
+Map Where Governance Information Lives
+
+List every place where risks, obligations, policies, controls, incidents, audit findings, actions and evidence are kept today. Include the spreadsheets and the shared folders, not only the systems. For each, note who owns it, how often it is updated and who relies on it. This baseline usually reveals two or three registers covering the same ground and at least one critical record that only one person can find.
+
+Define the Relationships That Matter
+
+Decide which links you need to be able to trace. A practical minimum is obligation to control, control to risk, finding to control, and action to finding. Once those relationships are defined, an isolated record becomes part of a chain you can follow in either direction, from a board-level risk down to the evidence, or from a failed control up to every risk it affects.
+
+Assign Accountability That Extends to Closure
+
+Every significant risk, control, obligation and action needs a named owner, not a department. Define what "done" means, who verifies it and when overdue items escalate. Accountability that ends at assigning a task is not accountability; it has to extend to confirming that the task changed the outcome it was meant to change.
+
+Agree What Leadership Needs to See
+
+Executives and boards do not need every record. They need material risks against appetite, overdue actions, controls that have failed testing and obligations at risk of breach. Agree that view first and work backwards to the data that feeds it, so the pack is generated from the same records the teams work in rather than rebuilt by hand. Our guide to <a href="/insights/what-should-go-in-a-grc-board-pack/">what should go in a GRC board pack</a> covers the structure in detail.
+
+Build Verification into Improvement
+
+Close the loop by checking whether actions worked. Re-test the control, re-rate the risk and record the result. Over time this gives you something more useful than a list of completed tasks: evidence that your governance system learns.
+
+Where King V and Combined Assurance Fit
+
+For South African organisations, connected governance is not only an efficiency argument. The <a href="https://www.iodsa.co.za/" rel="noopener">King V Code</a>, published by the IoDSA on 31 October 2025, continues the King Code's emphasis on the governing body overseeing risk, compliance and assurance, and combined assurance remains the expected model for coordinating management, specialist functions and internal and external audit. Combined assurance is hard to do well when each line of assurance keeps its own records, because nobody can see where coverage overlaps or where a material risk has no assurance at all.
+
+The same logic applies outside South Africa. The IIA's <a href="https://www.theiia.org/globalassets/documents/resources/the-iias-three-lines-model-an-update-of-the-three-lines-of-defense-july-2020/three-lines-model-updated-english.pdf" rel="noopener">Three Lines Model</a> assumes that management, risk and compliance functions and internal audit share information about risk and control. Connected records are what make that possible in practice.
+
+What Technology Should and Should Not Do
+
+Replacing ten spreadsheets with ten unrelated applications does not connect anything. Technology helps when it holds the relationships between records, enforces ownership and workflows, keeps an audit trail of who did what and when, and produces reporting from the live data. It does not help when it becomes another silo with a better interface. Our explainer on <a href="/insights/what-is-grc-software/">what GRC software is</a> sets out the difference.
+
+No platform substitutes for sound processes, sensible risk methodology and leaders who act on what they see. Software makes those things visible and repeatable; it does not create them.
+
+How XGRC® Supports Connected Governance
+
+<a href="/grc-software/">XGRC® Software</a> is a governance, risk and compliance platform built around linked records. <a href="/erm/">Enterprise Risk Management</a> links risks to controls, audit findings and actions and supports board reporting aligned to ISO 31000, COSO and King V. <a href="/integrated-assurance/">Integrated Assurance</a> coordinates internal audit and combined assurance against the same risks and controls. <a href="/msx/">MSX®</a> packages selected governance, risk, compliance and management system capabilities into one coordinated management system.
+
+<a href="/xlogic/">XLOGIC®</a> is the governance execution layer. It converts policies, frameworks, controls and obligations into structured workflows with clear accountability, evidence capture and an auditable record, which is how a policy statement becomes work that someone owns and can prove they did.
+
+If you want a structured starting point, our <a href="/use-cases/compliance-management/">compliance management checklist</a> helps you map current obligations, owners and evidence, which is the first of the five steps above.
+
+Start with One Chain
+
+Pick one material risk and try to trace it end to end today: the obligation or objective behind it, its controls, the last test result, open findings and actions, and the evidence. Where the trail breaks is where to start connecting. To see what a connected view looks like, take the <a href="/tour/">live XGRC® product tour</a> or <a href="/demo/">book a demo</a> with our team.`,
 };
