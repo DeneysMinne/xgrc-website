@@ -1923,6 +1923,16 @@ export const articles = [
     imageAlt: 'Laptop showing process maps and dashboards, ringed by improvement cycle icons for documents, people and results',
     relatedSolutions: ['msx', 'sheqx'],
   },
+  {
+    slug: 'cybersecurity-governance-2027-priorities',
+    title: 'Cybersecurity Governance in 2027: Connecting Risk, Accountability and Assurance',
+    excerpt: 'Information security objectives are not a project list. Set measurable 2027 ISMS objectives under ISO/IEC 27001 clause 6.2, covering suppliers, AI, POPIA safeguards and incident response.',
+    category: 'Cyber',
+    date: '2027-01-26',
+    image: 'cybersecurity-governance-2027-priorities.jpg',
+    imageAlt: 'Hands on a laptop keyboard beneath a glowing padlock shield linked to cloud, network and data security icons',
+    relatedSolutions: ['msxcyber', 'compliance-hub', 'ai-governance'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2366,6 +2376,12 @@ export const articleFaqs = {
     { q: 'Which clause covers continual improvement in ISO 9001, ISO 14001 and ISO 45001?', a: 'In all three, clause 10, Improvement, covers continual improvement together with nonconformity and corrective action, because they follow the Harmonized Structure. Clause 9 supplies the evidence that drives improvement through monitoring, internal audit and management review. Sub-clause numbering within clause 10 varies slightly between standards, so check the edition you are certified to.' },
     { q: 'Can one management review cover several ISO standards?', a: 'Yes. Many organisations hold a single integrated management review covering quality, environment, health and safety and information security, provided the required inputs and outputs of each standard are addressed and recorded. An integrated review often produces better decisions because top management sees related issues together, such as a process failure affecting both quality and safety.' },
     { q: 'How do you show an auditor that a management system is improving?', a: 'Show the cycle rather than a statement. Trace examples from a finding or incident through root cause analysis, corrective action and an effectiveness check, and show management review decisions that changed objectives, resources or processes. Trend data, such as fewer repeat nonconformities over time, supports the case. Auditors look for evidence that the system learns, not just that it records.' },
+  ],
+  'cybersecurity-governance-2027-priorities': [
+    { q: 'How many ISMS objectives should an organisation set?', a: 'There is no required number. Most organisations work well with five to ten objectives that cover their most significant information security risks and commitments. Too many objectives dilute attention and become hard to monitor; too few leave material risks without a measurable target. Each objective should earn its place by linking to a risk, a requirement or a policy commitment.' },
+    { q: 'Do ISMS objectives have to be measurable?', a: 'ISO/IEC 27001 clause 6.2 requires objectives to be measurable if practicable. Where a precise metric is not possible, define how achievement will be evaluated, for example through an audit result or a completed review with defined criteria. Auditors generally expect most objectives to have a measure, a target and a monitoring frequency.' },
+    { q: 'How often should ISMS objectives be reviewed?', a: 'Monitor performance against objectives regularly, often monthly or quarterly, and review the objectives themselves at management review and whenever the risk assessment changes significantly. Clause 6.2 requires objectives to be updated as appropriate, so a major incident, new regulation or change in business strategy is a reason to revisit them mid-year.' },
+    { q: 'Should AI be included in information security objectives?', a: 'If staff or systems use AI tools that process confidential or personal information, AI belongs in your risk assessment and is likely to warrant an objective. Common starting points are maintaining a register of AI systems in use and requiring risk-assessed approval before new tools handle sensitive data. ISO/IEC 42001 provides a dedicated management system framework where AI use is significant.' },
   ],
 };
 

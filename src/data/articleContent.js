@@ -5110,4 +5110,62 @@ How MSX® Connects the Cycle
 Governance by Design Through Continual Improvement
 
 A management system becomes a governance asset when the improvement cycle closes reliably: findings flow into root cause analysis, corrective actions are checked for effect, and management review makes decisions that change the system. Use the first quarter of 2027 to test your own cycle by tracing three recent findings from discovery to verified effectiveness. Then work through the free <a href="/use-cases/pas99-integrated-management-system/">PAS 99 integrated management system checklist</a> to see where integration would strengthen it.`,
+'cybersecurity-governance-2027-priorities': `Ask a security team for its information security objectives and you will often get a list of projects: deploy a new endpoint tool, complete the phishing campaign, migrate the firewall. Projects matter, but they are not objectives. An objective says what the organisation is trying to achieve and how it will know. Getting that distinction right is the most useful cybersecurity governance decision a leadership team can make in January.
+
+What Are ISMS Objectives?
+
+ISMS objectives are the measurable information security results an organisation commits to achieving, set under clause 6.2 of ISO/IEC 27001. They must be consistent with the information security policy, measurable where practicable, informed by risk assessment and treatment results, monitored, communicated and updated, and the plan to achieve each one must name what will be done, by whom, by when and how results will be evaluated.
+
+Clause 6.2 also requires the objectives to be available as documented information. In practice that means a short, maintained record, not a slide from last year's strategy session. The <a href="https://www.iso.org/standard/27001" rel="noopener">ISO/IEC 27001 standard</a> sets the requirement; how ambitious and specific the objectives are is a governance choice.
+
+Start From the Management Review You Just Held
+
+In December we described the <a href="/insights/cybersecurity-governance-year-end-review/">year-end ISMS management review</a>: refreshing the risk treatment plan, reviewing the Statement of Applicability and learning from the year's incidents. Those outputs are the raw material for 2027's objectives. A risk that moved up the register, a control that repeatedly failed testing or an incident pattern that surprised the team are all signals of where objectives should focus.
+
+Objectives written without that input tend to be generic. Objectives written from it tend to be specific to the organisation's real exposure, which is what auditors and boards both want to see.
+
+What Makes an ISMS Objective Useful?
+
+A useful objective describes an outcome, has a measure and target, names an owner and links to a risk. Compare two versions:
+
+- Weak: "Improve vulnerability management."
+- Better: "Remediate critical vulnerabilities on internet-facing systems within 14 days of disclosure, measured monthly, owned by the head of infrastructure, addressing the external attack risk on the register."
+
+The second version can be monitored, reported and challenged. It also makes resourcing conversations easier, because the gap between current performance and target is visible.
+
+Write the Plan Behind Each Objective
+
+Clause 6.2 asks for more than a target. For each objective, the plan should answer five questions: what will be done, what resources are needed, who is responsible, when it will be completed and how the results will be evaluated. For the vulnerability objective above, that might mean an additional scanning licence and a weekly remediation meeting, owned by the head of infrastructure, with full coverage of internet-facing assets by the end of March and results evaluated through monthly reporting and a mid-year internal audit sample.
+
+Writing the plan this way exposes objectives that have no budget or no realistic owner before the year starts, which is far cheaper than discovering it at the surveillance audit.
+
+Priority Areas for 2027 Objectives
+
+Every organisation's objectives should come from its own risk assessment, but several themes are likely to feature on many South African registers this year.
+
+Third-party and supplier security. Suppliers and cloud providers now hold or process much of the information an organisation is responsible for. ISO/IEC 27001 Annex A includes controls on supplier relationships and the use of cloud services, and POPIA requires that an operator processing personal information on your behalf is bound by contract to maintain appropriate security measures. A measurable objective might cover the proportion of critical suppliers with a current security assessment. The <a href="/compliance-hub/">XGRC® Compliance Hub</a> handles the onboarding, vetting and evidence side of that third-party assurance.
+
+AI use and AI security. Staff are using AI tools faster than most policies anticipated. An objective to establish and maintain a register of AI systems in use, with risk-assessed approval for any that process confidential or personal information, gives the board a baseline. Our <a href="/ai-governance/">AI Governance</a> capability supports an AI register and ISO/IEC 42001 readiness alongside the ISMS.
+
+Personal information protection. Section 19 of POPIA requires responsible parties to identify foreseeable risks to personal information, maintain safeguards, regularly verify that they are effectively implemented and update them in response to new risks. The <a href="https://inforegulator.org.za/knowledge-base/category/popia/chapter-3-conditions-for-lawful-processing/part-a-processing-of-personal-information-in-general/condition-7-security-safeguards/" rel="noopener">Information Regulator's security safeguards guidance</a> reads naturally as an objective framework: verification is an activity you can schedule and measure.
+
+Detection and response. Time to detect and contain incidents, and the share of incidents with completed post-incident reviews, tell leadership more about resilience than the number of alerts processed.
+
+Define Decision Rights Around Each Objective
+
+Objectives fail when nobody has authority to act on them. For each one, confirm which executive accepts the residual risk if the target is missed, who manages the controls and how material slippage is escalated. Cybersecurity responsibilities should align with the enterprise risk process and business continuity planning, so a missed security objective appears in the same forum as other material risks. We covered board accountability in detail in <a href="/insights/cybersecurity-governance-beyond-technical-controls/">cybersecurity governance beyond technical controls</a>.
+
+Report Objectives in Business Terms
+
+Executives need to see objectives framed around business impact: what exposure the objective reduces, where performance stands against target, and what decision or resource is needed. Avoid reporting raw technical counts without context. The financial and operational stakes of getting this wrong are set out in <a href="/insights/the-hidden-cost-of-cyber-incidents-for-ceos/">the hidden cost of cyber incidents for CEOs</a>.
+
+Use Assurance to Test What Is Reported
+
+Objective performance reported by the team that owns it should be tested by someone else. Internal ISMS audits, independent reviews and certification audits can confirm whether reported figures are supported by evidence. Record exceptions and track corrective actions to genuine closure, not just a changed status.
+
+<a href="/msxcyber/">MSXCyber®</a> provides ISMS support aligned to ISO/IEC 27001, covering information security governance, risk, controls, incidents, internal audit and audit-ready evidence. Objectives, the risks they address, the controls that deliver them and the evidence of performance sit together, so monitoring under clause 6.2 is a report rather than a project. Our article on <a href="/insights/streamlining-iso-27001-compliance-digitally/">streamlining ISO 27001 compliance digitally</a> covers the wider ISMS.
+
+Governance by Design for Information Security
+
+Strong cybersecurity governance in 2027 starts with a handful of objectives the board can understand, each tied to a real risk, a named owner and a measure reviewed every month. Set them in January, test them with assurance and revisit them at the next management review. To check your ISMS foundations first, work through the free <a href="/use-cases/iso-27001-readiness/">ISO 27001 readiness checklist</a>.`,
 };
