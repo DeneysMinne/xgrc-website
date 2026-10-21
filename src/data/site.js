@@ -1803,6 +1803,16 @@ export const articles = [
     imageAlt: 'Two safety officers in hard hats reviewing SHEQ data on a tablet at an industrial site, with safety and quality icons',
     relatedSolutions: ['sheqx', 'msx'],
   },
+  {
+    slug: 'from-risk-registers-to-risk-intelligence',
+    title: 'From Risk Registers to Risk Intelligence: Lessons for Enterprise Risk Management in 2027',
+    excerpt: 'Most risk registers are updated for the committee, not for decisions. Here is what a living risk register looks like, how it supports King V, and a five-question health check for year end.',
+    category: 'ERM',
+    date: '2026-12-07',
+    image: 'from-risk-registers-to-risk-intelligence.jpg',
+    imageAlt: 'Executive on a call at a window overlooking Table Mountain, with risk analytics and a world map overlaid',
+    relatedSolutions: ['erm', 'integrated-assurance'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2174,6 +2184,12 @@ export const articleFaqs = {
     { q: 'What is the difference between leading and lagging SHEQ indicators?', a: 'Lagging indicators measure outcomes that have already happened, such as injuries, environmental incidents and quality failures. Leading indicators measure preventive activity, such as inspections completed, near misses reported, hazards closed and training kept current. A balanced review uses both, because lagging measures confirm results while leading measures show whether controls are likely to keep working.' },
     { q: 'Can one management review cover ISO 9001, ISO 14001 and ISO 45001?', a: 'Yes. All three standards follow the same harmonised clause structure, and each has a clause 9.3 management review with similar inputs. An integrated review can cover them together, provided the discipline-specific inputs are each addressed and the outputs are recorded. Certification auditors generally accept an integrated review when the records show every required input was considered.' },
     { q: 'Who should attend the annual SHEQ review?', a: 'Top management must take part, because the standards make them accountable for the review and its decisions. In practice the meeting also includes the SHEQ manager, operational and site managers, and where relevant quality, environmental and HR leads. Worker representatives should be consulted beforehand and receive the relevant outcomes afterwards, as ISO 45001 requires.' },
+  ],
+  'from-risk-registers-to-risk-intelligence': [
+    { q: 'What columns should a risk register include?', a: 'At minimum a risk register needs a risk description written as cause, event and consequence, a category, an owner, inherent and residual ratings, the controls relied on, treatment actions with owners and due dates, and the date of last review. More mature registers add key risk indicators, appetite thresholds and links to related incidents, audit findings and obligations.' },
+    { q: 'How often should a risk register be reviewed?', a: 'Review frequency should follow the significance of the risk. Top strategic and operational risks are commonly reviewed monthly or quarterly by their owners and reported to the risk committee each quarter, while lower risks may be reviewed every six or twelve months. Any significant incident, control failure or change in the business should trigger an immediate review.' },
+    { q: 'Is a spreadsheet risk register good enough?', a: 'A spreadsheet can work for a small organisation with a short list of risks and one person maintaining it. It becomes unreliable when several owners update it, when risks need to link to controls, incidents and audit findings, or when the board needs an audit trail of who changed what and why. That is usually the point to move to a connected platform.' },
+    { q: 'What is the difference between a risk register and risk intelligence?', a: 'A risk register records risks and their ratings. Risk intelligence is the ability to interpret that information alongside objectives, controls, incidents and obligations, so you can see when exposure is changing and why. Enterprise Risk Management in XGRC® links each risk to its controls, findings and actions so that this context sits on the risk itself.' },
   ],
 };
 
