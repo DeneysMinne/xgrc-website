@@ -1783,6 +1783,16 @@ export const articles = [
     imageAlt: 'Woman working late at a laptop and code screen beside glowing icons for supplier breach response steps',
     relatedSolutions: ['compliance-hub', 'msxcyber'],
   },
+  {
+    slug: 'incident-reporting-to-continuous-improvement',
+    title: 'From Incident Reporting to Continuous Improvement: Closing the Loop',
+    excerpt: 'Recording incidents is the easy part. How to run incident investigation and corrective action as a closed loop: root causes, the hierarchy of controls, effectiveness checks and shared learning.',
+    category: 'SHEQ',
+    date: '2026-11-19',
+    image: 'incident-reporting-to-continuous-improvement.jpg',
+    imageAlt: 'Safety officer using a tablet beside a six-step cycle: report, investigate, take action, monitor, verify and learn',
+    relatedSolutions: ['sheqx'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2142,6 +2152,12 @@ export const articleFaqs = {
     { q: 'Are we responsible under POPIA if our supplier is breached?', a: 'Often, yes. Where a supplier processes personal information on your behalf, it acts as an operator and must notify you immediately of a suspected compromise under section 21. As the responsible party, you then carry the duty to assess the breach and notify the Information Regulator and affected people where required. Contracts should set out how and when the supplier will tell you.' },
     { q: 'How should a supplier respond to a customer\'s vulnerability enquiry?', a: 'Answer from evidence, not assumption. Confirm which services and components have been checked and what versions they run, state what is still under review and who owns it, and commit to a date for final confirmation. A clear partial answer with a follow-up date builds more trust than a quick blanket denial that may later need to be retracted.' },
     { q: 'What is PHP2Shell?', a: 'PHP2Shell is the name given to two critical PHP vulnerabilities, CVE-2026-109618 and CVE-2026-109619, patched on 21 October 2026. Security researchers report they can allow unauthenticated remote code execution on affected web servers. Fixed releases were issued for supported PHP branches, so organisations on older, unsupported versions need to upgrade or obtain patched packages from their distribution.' },
+  ],
+  'incident-reporting-to-continuous-improvement': [
+    { q: 'What is the difference between a correction and a corrective action?', a: 'A correction deals with the immediate effect, such as cleaning up a spill or replacing a damaged part. A corrective action removes or controls the cause so the event is less likely to happen again, such as redesigning the transfer point that caused the spill. Both are needed, but only corrective action prevents recurrence.' },
+    { q: 'How soon should corrective action effectiveness be verified?', a: 'Long enough for the action to be tested in normal operations, but not so long that recurrence goes unnoticed. For physical controls this may be a few weeks after installation; for changes to training or procedures it may be one to three months, using observations and incident trends. Set the verification date when the action is raised so it is not forgotten.' },
+    { q: 'Should near misses be investigated as thoroughly as injuries?', a: 'High-potential near misses should be. Investigation depth should follow the potential severity of the event, not the actual outcome. A near miss involving a suspended load or a vehicle and a pedestrian reveals the same failure as a fatality would, without the harm, which makes it one of the most valuable learning opportunities a site will get.' },
+    { q: 'Which root cause analysis method is best?', a: 'There is no single best method. Five whys suits simple events, fishbone diagrams help teams explore several categories of cause, and barrier or bow-tie analysis works well for high-potential events where several controls failed. Whichever method you use, keep going until you reach causes management can change, such as design, planning, resourcing or supervision.' },
   ],
 };
 
