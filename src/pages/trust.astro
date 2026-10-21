@@ -25,13 +25,13 @@ const sections = [
   },
 ];
 
-// Security & Trust Overview v3.0 (Oct 2026): the downloadable document and the
-// questions buyers ask most. Answers mirror the PDF's FAQ (section 15); source in
+// Security & Trust Overview v3.1 (Oct 2026): the downloadable document and the
+// questions buyers ask most. Answers mirror the PDF's FAQ (section 16); source in
 // scripts/generate-pdfs/security-overview/.
 const overviewPdf = '/resources/xgrc-security-trust-overview-v3.pdf';
 const facts = [
   { b: 'ISO/IEC 27001:2022', s: 'Certified by BSI, IS 804839' },
-  { b: '72 hours', s: 'Breach notification' },
+  { b: 'Immediate', s: 'Breach notice, 72 hours at most' },
   { b: 'RPO 1h · RTO 4h', s: 'Recovery objectives' },
   { b: 'AES-256', s: 'Per-customer keys' },
 ];
@@ -40,13 +40,16 @@ const faqs = [
   { q: 'Where is our data stored?', a: 'On Microsoft Azure in the West Europe region (Netherlands). Azure holds ISO 27001, ISO 27017, ISO 27018 and SOC 2 Type II certifications. There is no South African hosting option today; cross-border transfers are protected under our Data Processing Addendum.' },
   { q: 'Is our data encrypted?', a: 'Yes. Traffic uses TLS 1.2 or 1.3, and stored data is encrypted with AES-256 using keys unique to each customer, so one customer\'s key cannot open another\'s data.' },
   { q: 'Do you support single sign-on and MFA?', a: 'Yes, through Microsoft Entra ID (Azure Active Directory), so your own password, MFA and leaver policies apply. MFA is enforced for all Strategix administrative access.' },
-  { q: 'How quickly will you tell us about a breach?', a: 'We notify customers without undue delay, and within 72 hours of a confirmed security incident affecting their data. A suspected security breach receives an initial response within 4 hours, 24 hours a day, 7 days a week.' },
+  { q: 'How quickly will you tell us about a breach?', a: 'Immediately once we have reasonable grounds to believe your personal information has been accessed or acquired by an unauthorised person, and in every case within 72 hours of confirming an incident. A suspected security breach receives an initial response within 4 hours, 24 hours a day, 7 days a week.' },
   { q: 'What are your recovery objectives?', a: 'A Recovery Point Objective of 1 hour and a Recovery Time Objective of 4 hours, backed by daily backups, hourly transaction logs and replication across locations. Recovery is tested every quarter and reviewed yearly by our external ISO auditor.' },
   { q: 'How often do you test for vulnerabilities?', a: 'Automated vulnerability assessments and penetration testing run daily through our partner Hakware, and a manual penetration test is carried out every year. An executive summary is available under NDA.' },
   { q: 'Do you have 24/7 security monitoring?', a: 'Yes. Hakware\'s security operations centre monitors the platform around the clock, with SIEM and SOAR, and security, access and audit logs are retained indefinitely.' },
   { q: 'Do you use our data to train AI models?', a: 'No. Strategix never uses customer data to train AI models. You choose which model MAIA® uses, and we can help you run a local model so prompts and data stay within your own environment.' },
   { q: 'Who are your subprocessors?', a: 'Microsoft Azure (hosting) and Microsoft 365 (email), both in West Europe. Customers get 10 business days\' notice of material changes and a right to object.' },
   { q: 'What happens to our data when we leave?', a: 'You can request a copy within 30 days of termination. Personal information is then deleted or irreversibly anonymised within 90 days, and a Data Destruction Certificate is issued.' },
+  { q: 'Who is your Information Officer?', a: 'Jacob O\'Brien, with Deputy Information Officers Deneys Minne and Stan O\'Brien, reachable at paia@strategix.co.za. Our PAIA Manual explains how to request records we hold.' },
+  { q: 'How is EU personal data protected?', a: 'Data stays hosted in the Netherlands, and we sign the EU Standard Contractual Clauses on request for access from South Africa. Our Information Officer handles GDPR matters; we have no EU representative, as we act only as a processor.' },
+  { q: 'How do we report a vulnerability?', a: 'Customers log it through the support portal at Severity 0. Security researchers can email info@xgrcsoftware.com with the subject "Security vulnerability".' },
   { q: 'Do you have a SOC 2 report?', a: 'No. Our independent assurance is ISO/IEC 27001:2022 certification, and our hosting provider, Microsoft Azure, holds SOC 2 Type II.' },
 ];
 const faqSchema = JSON.stringify({
@@ -80,9 +83,9 @@ const policies = [
     <div class="container">
       <div class="card overview-card">
         <div class="overview-copy">
-          <span class="eyebrow"><span class="dot"></span>Security &amp; Trust Overview · v3.0</span>
+          <span class="eyebrow"><span class="dot"></span>Security &amp; Trust Overview · v3.1</span>
           <h2>The full security picture, in one document.</h2>
-          <p class="lede">Governance, hosting, encryption, access, monitoring, incident response, recovery, suppliers and AI, plus answers to the standard security questionnaire questions. Updated October 2026.</p>
+          <p class="lede">Governance, hosting, encryption, access, monitoring, incident response, recovery, suppliers, AI and privacy law (POPIA, PAIA and GDPR), plus answers to the standard security questionnaire questions. Updated October 2026.</p>
           <a href={overviewPdf} class="btn btn-primary" download>Download the PDF</a>
         </div>
         <div class="overview-facts">

@@ -26,7 +26,8 @@
     <div><span>12</span>AI governance: MAIA® and AI agents</div>
     <div><span>13</span>Support, maintenance and service levels</div>
     <div><span>14</span>Shared responsibility and assurance</div>
-    <div><span>15</span>Frequently asked security questions</div>
+    <div><span>15</span>Privacy law: POPIA, PAIA and GDPR</div>
+    <div><span>16</span>Frequently asked security questions</div>
     <div><span>A</span>ISMS documents</div>
     <div><span>B</span>Related documents and contact</div>
   </div>
@@ -42,7 +43,7 @@
     <div class="hl"><b>Encryption</b>TLS 1.2 or higher in transit; AES-256 at rest, with keys unique to each customer</div>
     <div><b>Sign-in</b>Single sign-on and MFA with Microsoft Entra ID; MFA enforced for all Strategix administrative access</div>
     <div><b>Access control</b>Role-based, down to module, dashboard and record; new modules start with no access</div>
-    <div class="hl"><b>Breach notification</b>Within 72 hours of a confirmed security incident affecting Customer Data</div>
+    <div class="hl"><b>Breach notification</b>Immediately once we have reasonable grounds to believe personal information was compromised, and within 72 hours of a confirmed incident</div>
     <div><b>Security incident response</b>Severity 0: initial response within 4 hours, 24 hours a day, 7 days a week</div>
     <div class="hl"><b>Recovery</b>RPO 1 hour, RTO 4 hours</div>
     <div><b>Privacy</b>POPIA and GDPR; Data Processing Addendum meets POPIA section 21 and GDPR Article 28</div>
@@ -87,7 +88,7 @@
   <ul>
     <li><b>Primary hosting:</b> Microsoft Azure, West Europe (Netherlands). Customer Data is stored there.</li>
     <li><b>Microsoft's own assurance:</b> Azure's infrastructure holds ISO/IEC 27001, ISO/IEC 27017, ISO/IEC 27018 and SOC 2 Type II certifications, and Microsoft runs the physical data centre security.</li>
-    <li><b>Subprocessors:</b> Microsoft Azure (hosting, infrastructure, storage) and Microsoft 365 (email delivery and notifications), both in West Europe. The live list is at xgrcsoftware.com/trust/subprocessors.</li>
+    <li><b>Subprocessors:</b> Microsoft Azure (hosting, infrastructure, storage) and Microsoft 365 (email delivery and notifications), both in West Europe. The live list is at xgrcsoftware.com/trust/subprocessors. Hakware, our security operations partner, sees only technical security telemetry, so it is not a subprocessor.</li>
     <li><b>Cross-border transfers:</b> where personal information leaves South Africa, it is protected by the safeguards in the Data Processing Addendum and applicable law.</li>
   </ul>
   <h3>How the platform is built</h3>
@@ -160,7 +161,7 @@
       <tr><td>Confidentiality</td><td>Everyone with access is bound by confidentiality obligations</td><td>DPA, s6</td></tr>
       <tr><td>Subprocessors</td><td>Same-strength contractual terms; Strategix stays responsible; 10 business days' notice of material changes and a right to object</td><td>DPA, s8; Subprocessor List</td></tr>
       <tr><td>Data subject requests</td><td>Reasonable assistance with access, correction and deletion requests</td><td>DPA, s10</td></tr>
-      <tr><td>Security incidents</td><td>Notification within 72 hours of a confirmed incident affecting Customer Data, with nature, scope, likely consequences and remediation</td><td>DPA, s11</td></tr>
+      <tr><td>Security incidents</td><td>Immediate notification once there are reasonable grounds to believe personal information was compromised (POPIA s21(2)), and within 72 hours of a confirmed incident, with nature, scope, likely consequences and remediation</td><td>DPA, s11</td></tr>
       <tr><td>Return</td><td>A copy of your data on request within 30 days of termination</td><td>DPA, s12</td></tr>
       <tr><td>Deletion</td><td>Personal information deleted or irreversibly anonymised within 90 days of termination; backups stay protected until overwritten. A Data Destruction Certificate is issued once deletion is complete</td><td>DPA, s12</td></tr>
       <tr><td>Evidence</td><td>Certificates, audit summaries or control statements on written request</td><td>DPA, s13</td></tr>
@@ -231,7 +232,7 @@
 
 <section>
   <h2><span class="num">9</span>Incident response and breach notification</h2>
-  <p class="lead">A suspected security breach gets a response within 4 hours, at any hour, and you hear from us within 72 hours of a confirmed incident affecting your data.</p>
+  <p class="lead">A suspected security breach gets a response within 4 hours, at any hour, and we notify you immediately once we have reasonable grounds to believe your personal information was compromised, and within 72 hours of confirming an incident.</p>
   <h3>How we respond</h3>
   <div class="keep"><p>Our Incident Response Team works to documented procedures in the ISMS:</p>
   <div class="steps">
@@ -246,12 +247,12 @@
     <thead><tr><th>Commitment</th><th style="width:34%">Target</th><th style="width:20%">Source</th></tr></thead>
     <tbody>
       <tr><td>Initial response to a confirmed or suspected security breach (Severity 0)</td><td>Within 4 hours, 24 hours a day, 7 days a week</td><td>Support Policy, s3 and s4</td></tr>
-      <tr><td>Notification of a confirmed security incident affecting Customer Data</td><td>Without undue delay, and within 72 hours</td><td>DPA, s11</td></tr>
+      <tr><td>Notification of a confirmed security incident affecting Customer Data</td><td>Immediately once there are reasonable grounds to believe personal information was compromised (POPIA s21(2)); in every case within 72 hours</td><td>DPA, s11</td></tr>
       <tr><td>What the notification contains</td><td>Nature of the incident; categories and approximate number of people and records affected; likely consequences; remediation steps</td><td>DPA, s11</td></tr>
       <tr><td>Emergency security maintenance</td><td>May be done without prior notice</td><td>Support Policy, s8</td></tr>
     </tbody>
   </table>
-  <div class="callout"><b>Reporting a concern.</b> Customers report suspected security issues through the in-platform support portal, marked Severity 0. If the platform is unavailable, use the helpdesk details on xgrcsoftware.com/contact.</div>
+  <div class="callout"><b>Reporting a concern.</b> Customers report suspected security issues through the in-platform support portal, marked Severity 0. If the platform is unavailable, use the helpdesk details on xgrcsoftware.com/contact. Security researchers can report a suspected vulnerability to <b>info@xgrcsoftware.com</b>, with "Security vulnerability" in the subject.</div>
 </section>
 
 <section>
@@ -355,7 +356,36 @@
 </section>
 
 <section>
-  <h2><span class="num">15</span>Frequently asked security questions</h2>
+  <h2><span class="num">15</span>Privacy law: POPIA, PAIA and GDPR</h2>
+  <p class="lead">We act as your operator under POPIA and your processor under GDPR, with a named Information Officer, a published PAIA manual and contractual safeguards for data that crosses borders.</p>
+  <h3>POPIA (South Africa)</h3>
+  <table>
+    <thead><tr><th style="width:30%">Requirement</th><th>How we meet it</th></tr></thead>
+    <tbody>
+      <tr><td>Operator agreement (s21)</td><td>The Data Processing Addendum is the written operator agreement; we process only on your instructions</td></tr>
+      <tr><td>Security safeguards (s19)</td><td>An ISO/IEC 27001:2022 certified ISMS, with the controls in sections 2 to 11</td></tr>
+      <tr><td>Breach notification (s21(2))</td><td>We notify you immediately once we have reasonable grounds to believe your personal information has been accessed or acquired by an unauthorised person, and in every case within 72 hours of confirming an incident</td></tr>
+      <tr><td>Cross-border transfers (s72)</td><td>Data is hosted in the Netherlands under the safeguards in the DPA and applicable law</td></tr>
+      <tr><td>Data subject rights</td><td>We help you respond to access, correction and deletion requests (DPA s10)</td></tr>
+      <tr><td>Information Officer</td><td>Jacob O'Brien; Deputy Information Officers Deneys Minne and Stan O'Brien; paia@strategix.co.za, +27 (0)87 802 0179</td></tr>
+    </tbody>
+  </table>
+  <h3>PAIA (South Africa)</h3>
+  <p>Our PAIA manual, prepared under section 51 of the Promotion of Access to Information Act, is published at <a href="https://xgrcsoftware.com/legal/paia-manual/">xgrcsoftware.com/legal/paia-manual</a>. It lists the records we hold, how to request access, how we process personal information and how to reach our Information Officer. Requests about your own personal information can also be made through our <a href="https://xgrcsoftware.com/legal/privacy-requests/">Privacy Requests</a> page.</p>
+  <h3>GDPR (European Union and United Kingdom)</h3>
+  <ul>
+    <li><b>Processor terms:</b> our DPA meets GDPR Article 28.</li>
+    <li><b>EU hosting:</b> Customer Data is hosted in the European Union (Netherlands).</li>
+    <li><b>Access from South Africa:</b> for customers subject to GDPR, we sign the EU Standard Contractual Clauses (Module 2 or 3) on request, covering access to data by our staff in South Africa.</li>
+    <li><b>Breach notification:</b> without undue delay, as Article 33(2) requires of a processor, and within 72 hours at most.</li>
+    <li><b>Data protection contact:</b> our Information Officer, Jacob O'Brien, handles data protection matters under both POPIA and GDPR. We have not appointed an EU representative, as we process EU personal data only as a processor for our customers.</li>
+  </ul>
+  <h3>Security partners and personal information</h3>
+  <p>Hakware, which runs our security operations centre and testing, sees only technical security telemetry: no customer data and no personal information. It is therefore not a subprocessor.</p>
+</section>
+
+<section>
+  <h2><span class="num">16</span>Frequently asked security questions</h2>
   <p class="lead">The questions procurement and security teams ask us most, answered in a line each.</p>
   <table>
     <thead><tr><th style="width:36%">Question</th><th>Answer</th><th style="width:9%">More</th></tr></thead>
@@ -371,10 +401,10 @@
       <tr><td>Do you log user activity?</td><td>Yes; record changes are kept in an audit trail</td><td>s6</td></tr>
       <tr><td>How often do you test for vulnerabilities?</td><td>Automated vulnerability assessments and penetration testing daily; a manual penetration test yearly</td><td>s7</td></tr>
       <tr><td>Do you have 24/7 monitoring?</td><td>Yes: Hakware's security operations centre, with SIEM and SOAR</td><td>s8</td></tr>
-      <tr><td>How quickly will you tell us about a breach?</td><td>Within 72 hours of a confirmed incident affecting your data</td><td>s9</td></tr>
+      <tr><td>How quickly will you tell us about a breach?</td><td>Immediately once we have reasonable grounds to believe your data was compromised; within 72 hours of confirmation at most</td><td>s9</td></tr>
       <tr><td>What are your RPO and RTO?</td><td>RPO 1 hour, RTO 4 hours</td><td>s10</td></tr>
       <tr><td>Do you test disaster recovery?</td><td>Yes, every quarter</td><td>s10</td></tr>
-      <tr><td>Who are your subprocessors?</td><td>Microsoft Azure and Microsoft 365, both in West Europe</td><td>s4</td></tr>
+      <tr><td>Who are your subprocessors?</td><td>Microsoft Azure and Microsoft 365, both in West Europe; Hakware sees technical security telemetry only</td><td>s4</td></tr>
       <tr><td>Will you sign our NDA or DPA?</td><td>Our DPA is part of every contract; we review customer terms on request</td><td>s4</td></tr>
       <tr><td>What happens to our data when we leave?</td><td>A copy within 30 days on request; deletion within 90 days; then a Data Destruction Certificate</td><td>s4</td></tr>
       <tr><td>Do you use our data to train AI?</td><td>No</td><td>s12</td></tr>
@@ -384,6 +414,11 @@
       <tr><td>Can we audit you?</td><td>Certificates and audit summaries on request; on-site audits by written agreement</td><td>s14</td></tr>
       <tr><td>Can we run our own penetration test?</td><td>Yes, with prior written agreement</td><td>s14</td></tr>
       <tr><td>Is there a mobile app, and is it secure?</td><td>Yes, native iOS and Android apps for SHEQX®, with encrypted offline capture</td><td>s5</td></tr>
+      <tr><td>Who is your Information Officer?</td><td>Jacob O'Brien, with Deputy Information Officers Deneys Minne and Stan O'Brien; paia@strategix.co.za</td><td>s15</td></tr>
+      <tr><td>Do you have a PAIA manual?</td><td>Yes, published at xgrcsoftware.com/legal/paia-manual under section 51 of PAIA</td><td>s15</td></tr>
+      <tr><td>How is EU data protected when accessed from South Africa?</td><td>We sign the EU Standard Contractual Clauses on request; data itself stays hosted in the Netherlands</td><td>s15</td></tr>
+      <tr><td>Do you have a DPO or EU representative?</td><td>Our Information Officer handles POPIA and GDPR matters; no EU representative, as we act only as a processor</td><td>s15</td></tr>
+      <tr><td>How do we report a vulnerability?</td><td>Customers: the support portal at Severity 0. Researchers: info@xgrcsoftware.com, subject "Security vulnerability"</td><td>s9</td></tr>
     </tbody>
   </table>
 </section>
@@ -402,7 +437,7 @@
       <tr><td>Compliance Obligations and Legal Requirements</td><td>Communications Security Policy</td><td>Nonconformity and Corrective Action Process</td></tr>
       <tr><td>Communication Plan</td><td>Physical and Environmental Security Policy</td><td>Continual Improvement Process</td></tr>
       <tr><td>Documented Information Management Policy</td><td>Business Continuity Management Policy</td><td>Operational Planning and Control Document</td></tr>
-      <tr><td>Competence, Training and Awareness Policy</td><td>Information Security Incident Management Policy</td><td></td></tr>
+      <tr><td>Competence, Training and Awareness Policy</td><td>Information Security Incident Management Policy</td><td>Incident Management Policy</td></tr>
       <tr><td></td><td>System Acquisition, Development and Maintenance Policy</td><td></td></tr>
     </tbody>
   </table>
@@ -422,12 +457,11 @@
       <tr><td>Privacy Policy</td><td>v2.2</td><td><a href="https://xgrcsoftware.com/legal/privacy-policy/">xgrcsoftware.com/legal/privacy-policy</a></td></tr>
       <tr><td>Acceptable Use Policy</td><td></td><td><a href="https://xgrcsoftware.com/legal/acceptable-use-policy/">xgrcsoftware.com/legal/acceptable-use-policy</a></td></tr>
       <tr><td>End User Licence Agreement</td><td></td><td><a href="https://xgrcsoftware.com/legal/end-user-licence-agreement/">xgrcsoftware.com/legal/end-user-licence-agreement</a></td></tr>
+      <tr><td>PAIA Manual</td><td>v1.03</td><td><a href="https://xgrcsoftware.com/legal/paia-manual/">xgrcsoftware.com/legal/paia-manual</a></td></tr>
+      <tr><td>Privacy Requests</td><td>v2.0</td><td><a href="https://xgrcsoftware.com/legal/privacy-requests/">xgrcsoftware.com/legal/privacy-requests</a></td></tr>
       <tr><td>ISO/IEC 27001:2022 certificate (BSI)</td><td>IS 804839</td><td><a href="https://www.bsigroup.com/en-GB/products-and-services/assessment-and-certification/validation-and-verification/client-directory-certificate/IS%20804839/">Verify in BSI's certificate directory</a></td></tr>
     </tbody>
   </table>
-  <h3>Contact</h3>
-  <div class="callout">Security questions, questionnaires and evidence requests: <b>info@xgrcsoftware.com</b> · <b>+27 (0)87 802 0179</b></div>
-  <p class="small">Strategix Application Solutions (Pty) Ltd, the developer and operator of XGRC® Software. XGRC®, SHEQX®, MSX®, MSXCyber®, ENVIRX®, MAIA® and XLOGIC® are registered trade marks of Strategix Application Solutions (Pty) Ltd. This document describes our security programme as at October 2026; contractual commitments are those in the documents it references.</p>
 </section>
 
 <script>

@@ -97,3 +97,17 @@ figcaption { font-size: 8pt; color: var(--mute); margin-top: 1.5mm; }
 .toc div { display: flex; gap: 3mm; padding: 1.1mm 0; border-bottom: 1px solid var(--rule); break-inside: avoid; font-size: 9.5pt; }
 .toc span { color: var(--blue); font-family: 'Outfit', sans-serif; font-weight: 600; width: 7mm; }
 .small { font-size: 8pt; color: var(--mute); }
+
+.cover .tagline { position: absolute; left: 20mm; bottom: 34mm; font-family: 'Outfit', sans-serif; font-weight: 600;
+  font-size: 10pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); }
+p.tagline { font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 9pt; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--blue); margin-top: 5mm; }
+
+.back h1 { top: 96mm; }
+.back .contact { position: absolute; top: 130mm; left: 20mm; right: 20mm; display: grid; grid-template-columns: 1fr 1fr; gap: 6mm 10mm; }
+.back .contact div { border-top: 1px solid rgba(120,170,200,0.3); padding-top: 3.5mm; font-size: 12pt; color: #fff; }
+.back .contact b { display: block; font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 8pt; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--cyan); margin-bottom: 1.5mm; }
+.back .tagline { bottom: 58mm; }
+.back .tagline.second { bottom: 50mm; color: #b9cbd8; }
+.back .meta { font-size: 7.5pt; line-height: 1.5; }

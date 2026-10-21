@@ -1,5 +1,5 @@
 // Builds public/resources/xgrc-security-trust-overview-v3.pdf from cover.html +
-// body.html (XGRC Security & Trust Overview v3.0, Oct 2026). The cover prints
+// body.html + back.html (XGRC Security & Trust Overview v3.1, Oct 2026). The cover prints
 // full-bleed with no footer; the body gets a running footer with page numbers.
 // The two are merged with pypdf from scripts/generate-pdfs/.venv.
 //
@@ -21,7 +21,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 
 const footer = `<div style="width:100%;font-family:Inter,Arial,sans-serif;font-size:7.5px;color:#5d7083;
   padding:0 17mm;display:flex;justify-content:space-between;">
-  <span>XGRC® Security &amp; Trust Overview · v3.0 · October 2026</span>
+  <span>XGRC® Security &amp; Trust Overview · v3.1 · October 2026</span>
   <span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span></div>`;
 
 const tmp = mkdtempSync(join(tmpdir(), 'xgrc-sec-'));
@@ -32,6 +32,7 @@ try {
     ['cover', { printBackground: true, preferCSSPageSize: true }],
     ['body', { printBackground: true, preferCSSPageSize: true, displayHeaderFooter: true,
                headerTemplate: '<span></span>', footerTemplate: footer }],
+    ['back', { printBackground: true, preferCSSPageSize: true }],
   ]) {
     await page.goto(pathToFileURL(join(here, `${name}.html`)).href, { waitUntil: 'networkidle' });
     await page.evaluate(() => document.fonts.ready);
@@ -46,11 +47,11 @@ execFileSync(py, ['-I', '-c', `
 import sys
 from pypdf import PdfWriter, PdfReader
 w = PdfWriter()
-for f in sys.argv[1:3]:
+for f in sys.argv[1:4]:
     for p in PdfReader(f).pages: w.add_page(p)
-w.add_metadata({'/Title': 'XGRC® Security & Trust Overview v3.0', '/Author': 'Strategix Application Solutions (Pty) Ltd',
-                '/Subject': 'Security, privacy and resilience of the XGRC® platform', '/Keywords': 'ISO 27001, POPIA, GDPR, security'})
-with open(sys.argv[3], 'wb') as fh: w.write(fh)
-`, join(tmp, 'cover.pdf'), join(tmp, 'body.pdf'), out], { stdio: 'inherit' });
+w.add_metadata({'/Title': 'XGRC® Security & Trust Overview v3.1', '/Author': 'Strategix Application Solutions (Pty) Ltd',
+                '/Subject': 'Security, privacy and resilience of the XGRC® platform', '/Keywords': 'ISO 27001, POPIA, PAIA, GDPR, security'})
+with open(sys.argv[4], 'wb') as fh: w.write(fh)
+`, join(tmp, 'cover.pdf'), join(tmp, 'body.pdf'), join(tmp, 'back.pdf'), out], { stdio: 'inherit' });
 rmSync(tmp, { recursive: true, force: true });
 console.log('Wrote', out);
