@@ -1763,6 +1763,16 @@ export const articles = [
     imageAlt: 'Safety officer using a tablet beside a six-step cycle: report, investigate, take action, monitor, verify and learn',
     relatedSolutions: ['sheqx'],
   },
+  {
+    slug: 'connected-compliance-controls-organisational-resilience',
+    title: 'How Connected Compliance Controls Strengthen Organisational Resilience',
+    excerpt: 'Compliance controls only build resilience when they are owned, tested and evidenced, including the ones your suppliers and contractors operate on your behalf. A practical guide to connecting them.',
+    category: 'Compliance Hub',
+    date: '2026-11-24',
+    image: 'connected-compliance-controls-organisational-resilience.jpg',
+    imageAlt: 'Professional viewing a Compliance Hub dashboard on a laptop, ringed by compliance, controls and assurance icons',
+    relatedSolutions: ['compliance-hub', 'xlogic'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2110,6 +2120,12 @@ export const articleFaqs = {
     { q: 'How soon should corrective action effectiveness be verified?', a: 'Long enough for the action to be tested in normal operations, but not so long that recurrence goes unnoticed. For physical controls this may be a few weeks after installation; for changes to training or procedures it may be one to three months, using observations and incident trends. Set the verification date when the action is raised so it is not forgotten.' },
     { q: 'Should near misses be investigated as thoroughly as injuries?', a: 'High-potential near misses should be. Investigation depth should follow the potential severity of the event, not the actual outcome. A near miss involving a suspended load or a vehicle and a pedestrian reveals the same failure as a fatality would, without the harm, which makes it one of the most valuable learning opportunities a site will get.' },
     { q: 'Which root cause analysis method is best?', a: 'There is no single best method. Five whys suits simple events, fishbone diagrams help teams explore several categories of cause, and barrier or bow-tie analysis works well for high-potential events where several controls failed. Whichever method you use, keep going until you reach causes management can change, such as design, planning, resourcing or supervision.' },
+  ],
+  'connected-compliance-controls-organisational-resilience': [
+    { q: 'What is the difference between a compliance control and a policy?', a: 'A policy states what the organisation intends or requires, such as protecting personal information. A control is the specific, repeatable activity that makes the policy happen, such as a monthly review of who can access a database, with a named owner and a record of each review. Policies set direction; controls produce evidence that the direction is followed.' },
+    { q: 'How often should compliance controls be tested?', a: 'Test frequency should follow risk. Key controls over high-risk obligations, such as privileged access, safety-critical permits or financial reconciliations, are commonly tested at least annually by an independent function and monitored more often by management. Lower-risk controls can be tested on a rotating cycle. Any control linked to a recent incident or audit finding should be retested after the fix.' },
+    { q: 'Are we responsible for compliance failures by our suppliers?', a: 'Often, yes. Many obligations stay with your organisation even when the activity is outsourced. Under POPIA, for example, a responsible party must ensure by written contract that operators maintain appropriate security measures. Regulators and customers generally look to the organisation that owns the obligation, so supplier and contractor controls need vetting, evidence and ongoing monitoring.' },
+    { q: 'What evidence should we collect from contractors?', a: 'It depends on the work they do and the obligations they touch. Typical items include company registration and tax documents, insurance, relevant permits or licences, health and safety files for site work, B-BBEE certificates where relevant, and security or data protection attestations for suppliers handling information. Track expiry dates so evidence stays current, not just present at onboarding.' },
   ],
 };
 
