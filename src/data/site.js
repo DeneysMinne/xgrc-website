@@ -1813,6 +1813,16 @@ export const articles = [
     imageAlt: 'Executive on a call at a window overlooking Table Mountain, with risk analytics and a world map overlaid',
     relatedSolutions: ['erm', 'integrated-assurance'],
   },
+  {
+    slug: 'combined-assurance-2027-planning',
+    title: 'Why Integrated Assurance Should Be Part of Your 2027 Planning',
+    excerpt: 'Combined assurance turns separate audits and reviews into one picture of risk coverage. What King V expects, how it fits the Three Lines Model, and how to plan the 2027 cycle.',
+    category: 'GRC',
+    date: '2026-12-08',
+    image: 'combined-assurance-2027-planning.jpg',
+    imageAlt: 'Team reviewing assurance dashboards on a laptop, with audit, controls and risk icons around a central gear',
+    relatedSolutions: ['integrated-assurance', 'erm'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2190,6 +2200,12 @@ export const articleFaqs = {
     { q: 'How often should a risk register be reviewed?', a: 'Review frequency should follow the significance of the risk. Top strategic and operational risks are commonly reviewed monthly or quarterly by their owners and reported to the risk committee each quarter, while lower risks may be reviewed every six or twelve months. Any significant incident, control failure or change in the business should trigger an immediate review.' },
     { q: 'Is a spreadsheet risk register good enough?', a: 'A spreadsheet can work for a small organisation with a short list of risks and one person maintaining it. It becomes unreliable when several owners update it, when risks need to link to controls, incidents and audit findings, or when the board needs an audit trail of who changed what and why. That is usually the point to move to a connected platform.' },
     { q: 'What is the difference between a risk register and risk intelligence?', a: 'A risk register records risks and their ratings. Risk intelligence is the ability to interpret that information alongside objectives, controls, incidents and obligations, so you can see when exposure is changing and why. Enterprise Risk Management in XGRC® links each risk to its controls, findings and actions so that this context sits on the risk itself.' },
+  ],
+  'combined-assurance-2027-planning': [
+    { q: 'Is combined assurance the same as the Three Lines Model?', a: 'No, but they are closely related. The IIA Three Lines Model describes roles: management owning risk, second line functions providing oversight and challenge, and internal audit providing independent assurance. Combined assurance, a King Code concept, coordinates the work of all those roles plus external providers so that together they cover the significant risks without gaps or needless duplication.' },
+    { q: 'Who is responsible for combined assurance under King V?', a: 'King V places responsibility on the governing body, which may delegate it to the audit committee. The governing body should satisfy itself that a combined assurance model is implemented across management, risk and compliance functions and internal and external providers. Internal audit usually coordinates the practical work, and its charter should describe its role within combined assurance.' },
+    { q: 'What is an assurance map?', a: 'An assurance map is a matrix that lists significant risks against every assurance provider, showing who gives assurance over each risk, when, and how much reliance can be placed on that work. It reveals risks with no independent assurance and areas where several providers duplicate effort, which makes it the starting point for a combined assurance plan.' },
+    { q: 'How often should the combined assurance plan be updated?', a: 'Most organisations set the plan annually, aligned with the internal audit plan and the audit committee calendar, then refresh it when the risk profile changes materially. A quarterly check that coverage still matches the current significant risks is good practice, particularly after a major incident, acquisition, system change or new regulatory requirement.' },
   ],
 };
 

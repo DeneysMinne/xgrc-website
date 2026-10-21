@@ -4445,4 +4445,61 @@ From Register to Intelligence in 2027
 A risk register will always be needed. The aim for 2027 is to make it the place where evidence meets judgement, so that ratings reflect what is actually happening and the board sees change as it occurs. Start small: connect your top ten risks to their controls, incidents and actions, and see how different the next committee conversation becomes.
 
 Download the free <a href="/use-cases/risk-register-template/">risk register template</a>, or <a href="/demo/">book a demo</a> to see a connected risk register working on your own risk categories.`,
+'combined-assurance-2027-planning': `Most organisations already spend a great deal on assurance. Internal audit runs its plan, the risk and compliance teams run their reviews, ISO certification bodies visit, the external auditor completes the statutory audit and specialist assessors test safety, security or environmental controls. The question audit committees increasingly ask is not whether there is enough assurance activity, but whether all of it adds up to confidence over the risks that matter.
+
+What is combined assurance?
+
+Combined assurance is the coordinated planning, execution and reporting of all assurance activity across an organisation, so that management, risk and compliance functions, internal audit and external providers together cover the significant risks without unnecessary duplication or gaps. King V asks the governing body to satisfy itself that such a model is in place.
+
+Where Combined Assurance Comes From
+
+Combined assurance is a South African governance concept, introduced in King III and carried through King IV into King V. Under King V's assurance principle, the governing body, usually through the audit committee, should satisfy itself that a combined assurance model is implemented which combines and optimises the contributions from participants in the assurance value chain, including management line functions, risk and compliance functions and internal and external assurance providers, so that the combined effort covers the significant risks and material matters. King V also expects the internal audit charter to address internal audit's role within combined assurance. The Code is available from the <a href="https://www.iodsa.co.za/page/king-v" rel="noopener">Institute of Directors in South Africa</a>.
+
+Combined assurance sits comfortably alongside the IIA's <a href="https://www.theiia.org/globalassets/documents/resources/the-iias-three-lines-model-an-update-of-the-three-lines-of-defense-july-2020/three-lines-model-updated-english.pdf" rel="noopener">Three Lines Model</a>, published in 2020. That model describes first line roles that own and manage risk, second line roles that provide expertise, monitoring and challenge, and internal audit as the third line, providing independent and objective assurance to the governing body. Combined assurance takes those roles and adds external providers, then asks how their work should be planned and reported together.
+
+Why Fragmented Assurance Leaves Gaps
+
+More audits do not automatically mean better coverage. When each provider plans independently, three things tend to happen. Popular areas such as financial controls receive attention from several directions, while risks that sit between functions, such as third-party cyber exposure or contractor safety, receive little or none. The audited areas experience assurance fatigue, answering similar questions from different teams. And findings from different providers are reported separately, so a weakness flagged by internal audit, an ISO auditor and a compliance review can look like three minor issues instead of one systemic one.
+
+We discussed how this differs from a traditional internal audit tool in <a href="/insights/integrated-assurance-vs-internal-audit-software/">integrated assurance versus internal audit software</a>.
+
+How to Plan the 2027 Combined Assurance Cycle
+
+December is the natural time to set next year's assurance plan, because internal audit plans, certification visits and external audit timetables are usually being agreed. A practical approach:
+
+Start from the Significant Risks
+
+Take the significant risks and material matters from the enterprise risk register, not from last year's audit plan. If your register is not current enough to support this, fix that first; our article on <a href="/insights/from-risk-registers-to-risk-intelligence/">moving from risk registers to risk intelligence</a> covers what a usable register looks like.
+
+List Every Assurance Provider
+
+Include management self-assessments and control testing, risk, compliance, SHEQ and information security reviews, internal audit, the external auditor, certification bodies for ISO 9001, ISO 14001, ISO 45001 or ISO/IEC 27001, and specialist providers such as safety or environmental assessors. Record what each one actually covers and the level of independence it offers.
+
+Map Coverage and Rate Reliance
+
+For each significant risk, record which providers give assurance, when, and how much reliance the audit committee can place on their work. The result is an assurance map: a matrix of risks against providers that shows overlaps and gaps at a glance. Our <a href="/use-cases/integrated-assurance/">integrated assurance checklist</a> lists the questions to ask while building it.
+
+Close Gaps and Remove Duplication
+
+Where a significant risk has no independent assurance, decide whether to add it to the internal audit plan, commission specialist work or accept the gap with a recorded rationale. Where several providers cover the same ground, agree who leads and whether others can rely on that work.
+
+Agree One Findings Register and One Report
+
+Findings from every provider should land in one register, classified consistently and linked to the risks and controls they relate to. The audit committee should then receive one combined assurance report showing coverage, significant findings and the status of remediation, rather than a separate pack from each provider. Our guide on <a href="/insights/what-should-go-in-a-grc-board-pack/">what should go in a GRC board pack</a> covers how to structure that report.
+
+Turning Findings into Improvement
+
+Assurance only creates value when findings lead to change. Every finding needs an owner, a priority, a due date and, for significant findings, a follow-up review that tests whether the fix worked. Repeat findings across providers are the most useful signal in the whole system: they often point to a flaw in control design or accountability that no single review would have exposed.
+
+This is also where combined assurance meets AI. As organisations rely more on AI-supported processes, the assurance plan needs to cover those processes too, a point we developed in <a href="/insights/why-integrated-assurance-matters-in-the-age-of-ai/">why integrated assurance matters in the age of AI</a>. Our November article on <a href="/insights/cybersecurity-governance-beyond-technical-controls/">cybersecurity governance beyond technical controls</a> shows how the same principle applies to cyber risk.
+
+How XGRC® Integrated Assurance Supports Combined Assurance
+
+<a href="/integrated-assurance/">Integrated Assurance</a> coordinates internal audit and combined assurance in one place, linked directly to the risks, controls and actions in <a href="/erm/">Enterprise Risk Management</a>. Assurance coverage can be viewed against the risk register, findings from different providers sit in one structure, and remediation actions are tracked to closure, so the audit committee report draws on the same data the assurance providers maintain. For internal audit teams, the free <a href="/use-cases/internal-audit/">internal audit checklist</a> is a useful companion to the assurance map.
+
+Make 2027 the Year Assurance Adds Up
+
+Combined assurance is not a new layer of bureaucracy. It is a way of making the assurance you already pay for answer the board's real question: are our significant risks under control, and how do we know? Plan the 2027 cycle from the risk register, map the providers, close the gaps and report once.
+
+Start with the free <a href="/use-cases/integrated-assurance/">integrated assurance checklist</a>, or <a href="/demo/">book a demo</a> to see an assurance map linked to a live risk register.`,
 };
