@@ -1883,6 +1883,16 @@ export const articles = [
     imageAlt: 'Hands typing on a laptop beside stacks of files, with compliance checklist, governance and audit icons above',
     relatedSolutions: ['compliance-hub', 'sheqx'],
   },
+  {
+    slug: 'grc-strategy-2027',
+    title: 'Building a Stronger Governance Foundation for 2027: Where to Begin Your GRC Strategy',
+    excerpt: 'A practical GRC strategy for 2027 is short, sequenced and tied to decisions. How to set a baseline, choose three priorities, measure outcomes and use governed AI across your GRC data.',
+    category: 'GRC',
+    date: '2026-12-17',
+    image: 'grc-strategy-2027.jpg',
+    imageAlt: 'Laptop showing GRC dashboards, linked to governance, risk, compliance, SHEQ, environment, cyber and MAIA® icons',
+    relatedSolutions: ['msx', 'maia', 'xlogic'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2302,6 +2312,12 @@ export const articleFaqs = {
     { q: 'What is a mandatary agreement?', a: 'A mandatary agreement is a written agreement between an employer and a contractor, or other mandatary, setting out the arrangements and procedures for compliance with the Occupational Health and Safety Act. Section 37(2) uses such an agreement to limit the employer\'s liability for the contractor\'s acts or omissions, which is why it is a standard part of every contractor safety file.' },
     { q: 'How often should contractors be re-vetted?', a: 'Re-vetting should follow risk. Contractors doing hazardous work, working on site or handling personal information are commonly re-vetted at least annually, while low-risk suppliers may be reviewed every two or three years. Time-bound documents such as insurance and certificates should be tracked continuously, whatever the re-vetting cycle, because they can lapse at any time.' },
     { q: 'Can software manage contractor document expiry automatically?', a: 'Yes. A third-party compliance platform records each document with its expiry date, reminds the contractor and the internal owner before it lapses, and flags the contractor as non-compliant if it is not renewed. XGRC® Compliance Hub handles onboarding, document collection, evidence and ongoing assurance for suppliers and contractors in one place.' },
+  ],
+  'grc-strategy-2027': [
+    { q: 'What should a GRC strategy include?', a: 'A GRC strategy should include a clear baseline of current practice, no more than three priorities tied to business outcomes, named owners for each workstream, a quarterly sequence of delivery, a small set of outcome measures and the processes, data and technology each priority depends on. It should be short enough for the executive committee to remember.' },
+    { q: 'How is a GRC strategy different from a corporate governance framework?', a: 'A corporate governance framework defines how the board and its committees direct and control the organisation, covering structures, roles and principles such as those in King V. A GRC strategy is the operational plan for improving how risk, compliance and assurance work in practice over a defined period. The framework sets direction; the strategy delivers improvements within it.' },
+    { q: 'Who should own the GRC strategy?', a: 'An executive sponsor, often the chief risk officer, chief financial officer or company secretary, should own the strategy and report on it to the relevant board committee. Delivery is shared between risk, compliance, internal audit, SHEQ and information security leads, each owning the workstreams in their area, with business unit heads accountable for adoption.' },
+    { q: 'Can AI be used safely in GRC work?', a: 'Yes, provided it is governed. Users should only access data within their permissions, every interaction should be logged, AI outputs should be proposals that people review, and customer data should not be used to train models. MAIA® is built on those principles, giving authorised users plain-language access to GRC data with a full audit trail.' },
   ],
 };
 
