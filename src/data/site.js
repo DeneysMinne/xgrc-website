@@ -1863,6 +1863,16 @@ export const articles = [
     imageAlt: 'Laptop showing GRC dashboards, linked to governance, risk, compliance, SHEQ, environment, cyber and MAIA® icons',
     relatedSolutions: ['msx', 'maia', 'xlogic'],
   },
+  {
+    slug: 'corporate-governance-framework-2027',
+    title: 'Building a Stronger Governance Foundation for 2027: Designing Your Governance Framework',
+    excerpt: 'A governance framework is only as strong as the evidence behind it. Here is where to begin in 2027: decisions, accountability, connected risk and evidence that appears as work gets done.',
+    category: 'GRC',
+    date: '2027-01-05',
+    image: 'corporate-governance-framework-2027.jpg',
+    imageAlt: 'Governance pillar icon at the centre of risk, compliance and audit icons, above a desk overlooking Cape Town',
+    relatedSolutions: ['xlogic', 'erm', 'integrated-assurance'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2270,6 +2280,12 @@ export const articleFaqs = {
     { q: 'How is a GRC strategy different from a corporate governance framework?', a: 'A corporate governance framework defines how the board and its committees direct and control the organisation, covering structures, roles and principles such as those in King V. A GRC strategy is the operational plan for improving how risk, compliance and assurance work in practice over a defined period. The framework sets direction; the strategy delivers improvements within it.' },
     { q: 'Who should own the GRC strategy?', a: 'An executive sponsor, often the chief risk officer, chief financial officer or company secretary, should own the strategy and report on it to the relevant board committee. Delivery is shared between risk, compliance, internal audit, SHEQ and information security leads, each owning the workstreams in their area, with business unit heads accountable for adoption.' },
     { q: 'Can AI be used safely in GRC work?', a: 'Yes, provided it is governed. Users should only access data within their permissions, every interaction should be logged, AI outputs should be proposals that people review, and customer data should not be used to train models. MAIA® is built on those principles, giving authorised users plain-language access to GRC data with a full audit trail.' },
+  ],
+  'corporate-governance-framework-2027': [
+    { q: 'What should a corporate governance framework include?', a: 'At minimum it should set out the board and committee structure, decision rights and delegations of authority, the policies that express the organisation\'s expectations, reporting lines for risk and compliance, and the arrangements for independent assurance. A framework that works also defines the evidence each of those elements produces, so directors can see that responsibilities are being carried out rather than assuming they are.' },
+    { q: 'Does King V apply to private companies in South Africa?', a: 'King V is a voluntary, principles-based code and is not limited to listed companies. JSE-listed companies are subject to listing requirements that reference the King Code. Private companies, state-owned entities and non-profits often apply it voluntarily because funders, lenders and partners increasingly expect it. Check the IoDSA guidance for your sector.' },
+    { q: 'How is a governance framework different from a GRC strategy?', a: 'A governance framework describes how the board directs and controls the organisation: who decides, who is accountable and how oversight works. A GRC strategy is the operating plan for running risk, compliance and assurance activities in support of that framework, including processes, data and technology choices. The framework sets the rules; the GRC strategy is how management delivers against them day to day.' },
+    { q: 'How often should a corporate governance framework be reviewed?', a: 'Review it formally at least once a year, ideally ahead of the annual reporting cycle, and whenever something material changes: a new strategy, a merger, a new regulator, a significant incident or a revised governance code such as King V. Between formal reviews, track exceptions such as missed escalations or unowned controls, because they show where the design needs attention.' },
   ],
 };
 

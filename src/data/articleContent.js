@@ -4743,4 +4743,67 @@ Building the Foundation for a Future of Assurance
 The organisations that make real progress in 2027 will not be those with the longest plans. They will be the ones that chose a few priorities, connected their governance information and measured whether decisions improved. If 2026 was a year of governance, a focused strategy is how 2027 becomes a year of assurance.
 
 Use the free <a href="/use-cases/compliance-management/">compliance management checklist</a> to test your baseline, or <a href="/demo/">book a demo</a> to see MSX® and MAIA® working together on sample GRC data.`,
+'corporate-governance-framework-2027': `Most boards will tell you they have a governance framework. Ask them to show how a material decision made last quarter was authorised, who owned the risk it created and where the evidence of follow-through sits, and the answer often takes a week to assemble. That gap between the framework on paper and governance in practice is where 2027 planning should begin.
+
+What Is a Corporate Governance Framework?
+
+A corporate governance framework is the set of structures, decision rights, policies and reporting lines through which a board directs and controls an organisation, together with the evidence that shows those responsibilities are being carried out. In practice it answers three questions: who decides, who acts, and how anyone can tell that it happened.
+
+Most organisations have the first two documented somewhere: a board charter, committee terms of reference, a delegation of authority. The third question is the one that separates a framework that exists from one that works. Governance by design means building the evidence into the framework from the start rather than reconstructing it before every audit committee meeting.
+
+Why King V Changes the Starting Point
+
+The <a href="https://www.iodsa.co.za/page/king-v" rel="noopener">King V Code on Corporate Governance for South Africa</a>, released by the IoDSA on 31 October 2025, applies to financial years beginning on or after 1 January 2026. It consolidates King IV's 17 principles into 13 and introduces a Disclosure Framework that organisations claiming to apply the Code use to explain how each principle has been applied. For a company with a calendar financial year, the first King V disclosures cover 2026 and are written in 2027.
+
+That timing matters. Disclosures are only as credible as the records behind them, and a board that has to describe how it governs risk, technology, ethics and stakeholder relationships will quickly find out whether its framework produces evidence or just policies. If you are mapping your current position, the <a href="/use-cases/king-v-governance/">King V governance checklist</a> is a practical place to start.
+
+Begin With Decisions Rather Than Documents
+
+The instinct at the start of a governance review is to collect documents: charters, policies, registers. A more useful starting point is a decision inventory. List the ten to fifteen decisions that could materially affect strategy, resilience, regulatory standing or stakeholder trust in the coming year. Typical examples include:
+
+- Capital commitments above a defined threshold
+- Accepting a risk that sits outside agreed appetite
+- Appointing or renewing a critical supplier or outsourced service
+- Approving a new AI use case that touches customers or employees
+- Entering a new market, site or regulated activity
+
+For each decision, record who makes it, what information they need, which risks and obligations it touches and what record proves it was made properly. This exercise exposes gaps faster than any document review, because it starts from how the organisation actually runs.
+
+Who Is Accountable and Who Only Thinks They Are?
+
+Governance fragments when ownership is assumed rather than assigned. A useful responsibility matrix separates four roles for every material area: those who approve, those who execute the controls, those who monitor outcomes and those who provide independent challenge. This mirrors the thinking behind the Three Lines Model and the combined assurance approach the King Code has long encouraged.
+
+Test the matrix against reality. Pick three recent exceptions, such as an overdue audit finding, a control failure or a late regulatory submission, and trace who knew, when they knew and who escalated. Where the trail goes cold, the framework has a design flaw, not a people problem.
+
+Connect Risk and Compliance to Strategy
+
+Risk registers and compliance obligations often run as parallel reporting exercises that never touch the strategic plan. In a well-designed framework, each strategic objective links to the significant risks that could derail it, each risk links to the controls and obligations that shape it, and each control has an owner and a status. Our December piece on <a href="/insights/grc-strategy-2027/">building a GRC strategy for 2027</a> covers where to begin with that operating model. The board-level point is simpler: if a director cannot see which objectives are exposed, the framework is not informing decisions.
+
+<a href="/erm/">Enterprise Risk Management</a> in XGRC® links risks to controls, audit findings and actions, aligned to ISO 31000, COSO and King V, so the connection between strategy and exposure is held in one place rather than rebuilt for each report.
+
+Make Evidence a By-Product of the Work
+
+Effective governance is demonstrable. Define which records support each key decision and control: approvals, control assessments, incident reviews, action closure and management reports. The aim is not to collect more files. It is to make the evidence that matters appear as people do their jobs, so nobody has to chase it later.
+
+This is the gap between writing a policy and executing it, which we explore in <a href="/insights/policy-management-vs-governance-execution/">policy management versus governance execution</a>. <a href="/xlogic/">XLOGIC®</a>, the governance execution layer in XGRC®, converts policies, controls and obligations into structured workflows with named accountability, evidence capture and a full audit trail. When an approval step requires a document before it can complete, the evidence exists because the process demanded it.
+
+A Practical First-Quarter Roadmap
+
+Ambitious governance programmes stall when they try to fix everything at once. A first quarter built around three steps is more realistic:
+
+- January: complete the decision inventory and confirm owners for each decision
+- February: map the evidence each decision and key control should produce, and baseline what exists today
+- March: select three improvements with the highest risk value, assign an executive sponsor and agree review dates
+
+Keep the baseline honest. Record how many material actions are overdue, how long escalations take and how many key controls lack a named owner. Those numbers become the measure of progress at the half-year board meeting.
+
+How Do You Know Governance Is Working?
+
+The number of policies issued or committee meetings held says little about whether governance works. Better measures ask whether material issues reach the right forum on time, whether actions close with evidence rather than a status change, and whether the figures in the board pack reconcile to the detail beneath them. Our guide to <a href="/insights/what-should-go-in-a-grc-board-pack/">what should go in a GRC board pack</a> sets out a structure that makes those measures visible to directors.
+
+Ask one more question of every report: could you prove it right now? If the answer depends on a person rather than a record, that is the next improvement to make, and the theme of our piece on <a href="/insights/can-your-organisation-prove-it-is-compliant-right-now/">proving compliance on demand</a>.
+
+Governance by Design Starts in January
+
+A stronger 2027 does not need a new framework. It needs the existing one to be connected: decisions linked to owners, owners linked to risks and controls, and controls producing evidence as a matter of course. Start with the decision inventory this month. If you want to see how connected governance looks across risk, compliance and assurance, take the <a href="/tour/">live XGRC® product tour</a> or work through the free King V checklist with your company secretary.`,
 };
