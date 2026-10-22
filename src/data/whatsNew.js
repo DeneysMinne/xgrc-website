@@ -282,6 +282,13 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.22.1",
+      "date": "2026-10-22",
+      "category": "new",
+      "title": "Requests: configurable forms, routing, deadlines and escalation",
+      "description": "Set up the kinds of request your organisation handles, such as legal advice, a new contract or a regulator letter, each with its own form, statuses, handling team, deadline and process. Every request goes to the least-loaded person in the team, starts its process with the answers attached, escalates when a set share of its time has passed, and closes when its work is done. Processes can now route on amounts, for example sending high-value requests to the Board."
+    },
+    {
       "version": "2026.10.21.5",
       "date": "2026-10-21",
       "category": "new",
@@ -543,20 +550,6 @@ export const whatsNew = {
     {
       "version": "2026-08-20",
       "date": "2026-08-20",
-      "category": "new",
-      "title": "Process Templates: preview a template before applying it, and ten to choose from",
-      "description": "Every template card now has a Preview button showing its real step-by-step shape (owners, evidence, cadence, SLA) before you commit to it. The catalog also grew from 2 templates to 10: task-with-escalation, evidence-gated release, decision-routed review, two-stage sign-off, incident response, change request lifecycle, third-party risk assessment, and recurring training completion, alongside the original approval-with-evidence and periodic-review-with-escalation."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
-      "category": "improved",
-      "title": "Processes: status badges now explain what they mean",
-      "description": "DRAFT, APPROVED, RETIRED, RUNNING, COMPLETED and CANCELLED status badges on the Processes screen now show a one-line explanation of what the status means and what to do next, on hover."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
       "category": "fixed",
       "title": "Clearer explanation when you lack permission for an action",
       "description": "A permission error used to show a bare technical code with no explanation. It now says what the action needs in plain English, and names which role(s) in your tenant can actually do it - so you know exactly who to ask."
@@ -565,8 +558,8 @@ export const whatsNew = {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Default Lane Groups to get you started",
-      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
+      "title": "Process Templates: preview a template before applying it, and ten to choose from",
+      "description": "Every template card now has a Preview button showing its real step-by-step shape (owners, evidence, cadence, SLA) before you commit to it. The catalog also grew from 2 templates to 10: task-with-escalation, evidence-gated release, decision-routed review, two-stage sign-off, incident response, change request lifecycle, third-party risk assessment, and recurring training completion, alongside the original approval-with-evidence and periodic-review-with-escalation."
     },
     {
       "version": "2026-08-20",
@@ -579,8 +572,15 @@ export const whatsNew = {
       "version": "2026-08-20",
       "date": "2026-08-20",
       "category": "new",
-      "title": "Overdue tasks with no Escalation step now email the task owner directly",
-      "description": "Escalation is optional when a process is designed. Where a task breaches its SLA target and has no Escalation step configured, the step's owner role is now emailed the moment the breach is recorded, instead of relying only on Worklist or Cockpit to notice it."
+      "title": "Default Lane Groups to get you started",
+      "description": "A new tenant used to start with zero lane groups and nothing to assign a role into on the canvas. Four sensible defaults - Governance & Oversight, Risk & Compliance, Technology & Security, and Operations - are now there from day one, ready to rename, reorder, or assign your own roles into."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "improved",
+      "title": "Processes: status badges now explain what they mean",
+      "description": "DRAFT, APPROVED, RETIRED, RUNNING, COMPLETED and CANCELLED status badges on the Processes screen now show a one-line explanation of what the status means and what to do next, on hover."
     },
     {
       "version": "2026-08-20",
@@ -588,6 +588,13 @@ export const whatsNew = {
       "category": "new",
       "title": "Policy decomposition flags a policy with no approval or decision content",
       "description": "When a policy is decomposed and none of the extracted requirements involve an approval or a risk-tier condition, XLOGIC now raises a review item in Cockpit rather than staying silent. Confirm the policy genuinely has none, or send it back for another look."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "new",
+      "title": "Overdue tasks with no Escalation step now email the task owner directly",
+      "description": "Escalation is optional when a process is designed. Where a task breaches its SLA target and has no Escalation step configured, the step's owner role is now emailed the moment the breach is recorded, instead of relying only on Worklist or Cockpit to notice it."
     },
     {
       "version": "2026-08-20",
