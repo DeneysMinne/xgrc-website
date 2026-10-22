@@ -282,6 +282,13 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.22.3",
+      "date": "2026-10-22",
+      "category": "new",
+      "title": "Authority matrices: approvals go to the right level, and out-of-authority approvals are blocked",
+      "description": "Set out who may approve each kind of decision and up to how much, optionally by category and legal entity. An approval step goes straight to the lowest level that covers the amount, anyone without enough authority is blocked, and every blocked attempt is recorded in a register with an optional daily summary. Approval steps can require a different person from whoever raised or worked the matter. Matrices are versioned, each approval records the version it was given under, and changes can require a second person's approval. People can lend their authority to a colleague while away, never above their own limits. New approval steps require a different person by default; switch it off on the step if one person runs everything. Everything else is optional: a small organisation can run one level, a group can switch on multiple legal entities."
+    },
+    {
       "version": "2026.10.22.1",
       "date": "2026-10-22",
       "category": "new",
