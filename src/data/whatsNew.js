@@ -282,6 +282,13 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.22.4",
+      "date": "2026-10-22",
+      "category": "new",
+      "title": "Need-to-know matters and entity segregation",
+      "description": "Requests and contracts can be restricted to named people and roles - for litigation, investigations or FIC matters - and request types can make every new request restricted. A restricted matter, its tasks, evidence, obligations and proposals are hidden from everyone else, administrators included; registers show only how many restricted matters you cannot open. Notifications about them carry the reference only. Organisations with more than one legal entity can tag matters with their entity and limit people to their own entities, while group oversight sees everything. All of it is optional and audited."
+    },
+    {
       "version": "2026.10.22.3",
       "date": "2026-10-22",
       "category": "new",
