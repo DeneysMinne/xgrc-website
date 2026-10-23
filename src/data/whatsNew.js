@@ -282,6 +282,13 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.23.1",
+      "date": "2026-10-23",
+      "category": "new",
+      "title": "Retention, legal hold and legal privilege",
+      "description": "Set how long each kind of request and contract is kept after it closes or ends - permanently or a number of years. Matters past their date appear in a disposal review; nothing is ever deleted automatically. Disposing of one removes its content and files and keeps a permanent record that it existed, under which rule, who disposed of it, and a fingerprint of what was removed. A legal hold stops disposal while a matter is in dispute. Matters can be marked legally privileged, so their documents are labelled on screen and in their file names, and every view and download of a document is now recorded. The audit trail now records fingerprints of answers and titles rather than the text itself."
+    },
+    {
       "version": "2026.10.22.4",
       "date": "2026-10-22",
       "category": "new",
