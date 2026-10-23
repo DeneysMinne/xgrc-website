@@ -4184,4 +4184,61 @@ Accountability Is What Turns Compliance into Confidence
 A SHEQ system can be fully documented and still fragile if nobody owns the outcomes. When accountability is written down, visible and tested, the organisation moves from compliance to confidence: it can show not only that it has an emergency plan, but that the plan works and someone answers for it.
 
 Download the free <a href="/use-cases/iso-45001-readiness/">ISO 45001 readiness checklist</a> or the <a href="/use-cases/safety-management/">safety management checklist</a> to review accountability across your sites, or <a href="/demo/">book a SHEQX® demo</a>.`,
+'third-party-security-incident-response': `Within the same week in October 2026, two very different messages landed in South African inboxes. One came from a cloud application hosting platform, telling customers that an attacker had accessed systems storing their environment variables, the settings that often hold API keys and database passwords, and asking them to rotate every credential immediately. The other came from large customers to their software suppliers, asking a simple question about a critical new PHP vulnerability: are you affected, and by when will you confirm?
+
+Both are third-party risk. In the first case, you are the customer whose supplier has been breached. In the second, you are the supplier whose customer needs answers. Most organisations are both at once, and few are equally prepared for each side.
+
+What is third-party security risk?
+
+Third-party security risk is the exposure an organisation carries because of the suppliers, service providers, contractors and platforms it relies on. A breach or vulnerability at any of them can expose your data, interrupt your operations or create legal duties for you, even when your own systems are untouched.
+
+When Your Supplier Is Breached
+
+The hosting platform's notice was a model of what a supplier should send: what happened, what may have been exposed, and exactly what customers needed to do. It also said the attack appeared to be part of a wider campaign against platform companies, aimed at stealing keys for AI services. Even so, the work of responding fell on its customers, and it had to start that day.
+
+A practical response plan for the first 72 hours after a supplier breach notice:
+
+- Confirm the notice is genuine through a channel you already trust, because breach announcements are a favourite lure for phishing
+- Identify every system, environment and credential that touches the affected supplier, including keys stored in their platform for other services
+- Rotate exposed credentials in order of impact, starting with production databases, payment and identity systems and AI or cloud API keys
+- Review logs of the downstream services for activity that used old credentials after the supplier's stated exposure window
+- Decide whether personal information may be involved and, if so, start the POPIA assessment, because the duty to notify rests with you as the responsible party
+- Record every decision, action and owner in one incident record
+
+That last step sounds administrative. It is what lets you tell your own customers, your board and, if needed, the Information Regulator what you did and when. Section 21 of the <a href="https://www.gov.za/documents/protection-personal-information-act" rel="noopener">Protection of Personal Information Act</a> requires an operator processing personal information for you to notify you immediately of a suspected compromise. What you do with that notice is then your responsibility, as we explained in <a href="/insights/popia-data-breach-notification/">POPIA data breach notification</a>.
+
+The breach also illustrates why credentials deserve their own governance. When a platform holds keys to other platforms, one compromise cascades. We explored the same problem for AI tools in <a href="/insights/ai-agent-security-api-keys/">securing AI agents and API keys</a>.
+
+When You Are the Supplier Being Asked
+
+The second message was about PHP2Shell, a pair of critical PHP vulnerabilities (CVE-2026-109618 and CVE-2026-109619) patched on 21 October 2026. According to <a href="https://www.helpnetsecurity.com/2026/10/21/php2shell-php-vulnerabilities-patched-cve-2026-109618-cve-2026-109619/" rel="noopener">Help Net Security</a>, they can allow unauthenticated remote code execution on web servers, and fixed releases were issued for PHP 8.2, 8.3, 8.4 and 8.5. Older, unsupported branches receive no upstream fix.
+
+Within hours, vendor managers at large organisations were asking every supplier the same question. Answering it well depends on three things most suppliers do not have ready:
+
+- An up-to-date inventory of the technology stack behind every service you provide, including components run by your own subcontractors
+- A clear owner for each service who can confirm versions and exposure, not a best guess from someone in sales
+- A documented patching standard with target timeframes by severity, so you can state when a fix will be applied, not just whether one exists
+
+The honest answer is sometimes "partly confirmed". A good supplier response says what has been verified, what is still being checked, by whom, and when the final confirmation will follow. That builds more trust than a fast, unqualified "not affected" that later has to be withdrawn.
+
+Third-Party Risk Works Both Ways
+
+The two scenarios share one root cause. In each, the organisation needed reliable information about systems it does not fully control, and needed it quickly. On the buying side, that means knowing which suppliers hold your data and credentials, what they have committed to, and how they will tell you when something goes wrong. On the supplying side, it means being able to evidence your own controls on demand.
+
+Questions worth putting to your management team:
+
+- Do we have a current register of suppliers that process personal information or hold our credentials?
+- Do our contracts require prompt breach notification and cooperation, and do we know the named contact at each supplier?
+- When a customer asks whether we are affected by a critical vulnerability, who answers, from what evidence, and how quickly?
+- When did we last test either process, and what did we learn?
+
+These are the same questions behind effective <a href="/insights/vendor-compliance-management/">vendor compliance management</a>, and they go well beyond what most procurement systems track, as we set out in <a href="/insights/supplier-compliance-software-vs-procurement-systems/">supplier compliance software vs procurement systems</a>. Both incidents also echo the help desk lesson from <a href="/insights/help-desk-social-engineering/">help desk social engineering</a>: attackers look for the most trusting link in the chain, and that link is often outside your walls.
+
+How XGRC® Helps on Both Sides
+
+The <a href="/compliance-hub/">XGRC® Compliance Hub</a> manages supplier and contractor compliance: structured onboarding, vetting, document collection, evidence and ongoing assurance, so you know which third parties matter and what they have committed to. <a href="/msxcyber/">MSXCyber®</a> supports your own information security management system aligned to ISO/IEC 27001, with risks, controls, incidents, corrective actions and audit-ready evidence in one place, so that when a customer asks, you can answer from evidence rather than memory.
+
+Start With Your Supplier Register
+
+Pick your ten most critical suppliers and check whether you could reach the right person at each within an hour, and whether your contract tells them to reach you. Then download our free vendor management checklist from our <a href="/use-cases/vendor-management/">vendor management</a> page, or take the <a href="/tour/">live product tour</a> to see third-party and security assurance working together.`,
 };

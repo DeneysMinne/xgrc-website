@@ -1773,6 +1773,16 @@ export const articles = [
     imageAlt: 'SHEQ officers in hard hats and hi-vis at an industrial plant, with safety, health, environment and quality icons',
     relatedSolutions: ['sheqx', 'msx'],
   },
+  {
+    slug: 'third-party-security-incident-response',
+    title: 'Third-Party Risk Works Both Ways: Supplier Breaches and Customer Questions',
+    excerpt: 'A hosting platform breach and a critical PHP flaw in one week. What to do when your supplier is breached, and how to answer when your customers ask if you are affected.',
+    category: 'Compliance Hub',
+    date: '2026-11-18',
+    image: 'third-party-security-incident-response.jpg',
+    imageAlt: 'Woman working late at a laptop and code screen beside glowing icons for supplier breach response steps',
+    relatedSolutions: ['compliance-hub', 'msxcyber'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2126,6 +2136,12 @@ export const articleFaqs = {
     { q: 'What is a 16(2) appointee under the OHS Act?', a: 'A 16(2) appointee is a person to whom the chief executive officer has assigned some of the employer\'s duties under section 16(2) of the Occupational Health and Safety Act, typically a director or senior manager responsible for a site or division. The appointee acts under the CEO\'s control and directions, and the assignment does not relieve the CEO of responsibility or liability.' },
     { q: 'Can the SHEQ manager be held accountable instead of the CEO?', a: 'The SHEQ manager can be responsible for many activities and can be held to account internally for their performance. Legally and under ISO 45001, however, ultimate accountability cannot be delegated away from top management. A sound structure makes the SHEQ manager responsible for systems and advice, line managers accountable for their areas and the CEO accountable overall.' },
     { q: 'How do we show SHEQ accountability to an auditor?', a: 'Show written appointments linked to the obligations and sites they cover, corrective actions with named owners and verifiers, records of overdue items being escalated, emergency drills with findings and follow-up, and management review minutes that discuss performance by owner. An auditor looks for evidence that accountability is exercised, not only that it is written in a policy.' },
+  ],
+  'third-party-security-incident-response': [
+    { q: 'What should we do first when a supplier reports a security breach?', a: 'Verify the notice through a channel you already trust, then identify every system and credential connected to that supplier and rotate exposed credentials in order of business impact. Review downstream logs for misuse, assess whether personal information may be involved, and record every decision and action in a single incident record so you can account for your response later.' },
+    { q: 'Are we responsible under POPIA if our supplier is breached?', a: 'Often, yes. Where a supplier processes personal information on your behalf, it acts as an operator and must notify you immediately of a suspected compromise under section 21. As the responsible party, you then carry the duty to assess the breach and notify the Information Regulator and affected people where required. Contracts should set out how and when the supplier will tell you.' },
+    { q: 'How should a supplier respond to a customer\'s vulnerability enquiry?', a: 'Answer from evidence, not assumption. Confirm which services and components have been checked and what versions they run, state what is still under review and who owns it, and commit to a date for final confirmation. A clear partial answer with a follow-up date builds more trust than a quick blanket denial that may later need to be retracted.' },
+    { q: 'What is PHP2Shell?', a: 'PHP2Shell is the name given to two critical PHP vulnerabilities, CVE-2026-109618 and CVE-2026-109619, patched on 21 October 2026. Security researchers report they can allow unauthenticated remote code execution on affected web servers. Fixed releases were issued for supported PHP branches, so organisations on older, unsupported versions need to upgrade or obtain patched packages from their distribution.' },
   ],
 };
 
