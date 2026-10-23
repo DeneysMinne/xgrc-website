@@ -1694,6 +1694,16 @@ export const articles = [
     image: 'iso-42001-vs-iso-27001.jpg',
     relatedSolutions: ['ai-governance', 'msxcyber'],
   },
+  {
+    slug: 'help-desk-social-engineering',
+    title: 'Your Help Desk Is Your Weakest Login: Stopping Social Engineering at the Reset',
+    excerpt: 'Attackers no longer need to break your MFA. They call your help desk and ask for a reset. Here is how to close that gap and prove the control is working.',
+    category: 'Cyber',
+    date: '2026-10-28',
+    image: 'help-desk-social-engineering.jpg',
+    imageAlt: 'Man on a phone call in a dim office beside glowing icons for help desk identity verification steps',
+    relatedSolutions: ['msxcyber'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -1998,6 +2008,12 @@ export const articleFaqs = {
     { q: 'Does ISO/IEC 42001 replace ISO/IEC 27001?', a: 'No. The standards have different purposes: ISO/IEC 42001 addresses AI management, while ISO/IEC 27001 addresses information security management.' },
     { q: 'Can ISO/IEC 42001 and ISO/IEC 27001 work together?', a: 'Yes. Both follow a management system approach, so organisations using AI can connect related AI governance and information security processes, particularly around risk, information, responsibilities, controls, monitoring, evidence and continual improvement.' },
     { q: 'Which standard should an organisation implement?', a: 'That depends on its objectives, context, risks and applicable requirements. Organisations seeking structured AI management should consider ISO/IEC 42001, while those seeking structured information security management should consider ISO/IEC 27001. Where both areas are material, a connected approach may be appropriate.' },
+  ],
+  'help-desk-social-engineering': [
+    { q: 'What is vishing?', a: 'Vishing, or voice phishing, is social engineering carried out over the phone. The attacker impersonates someone trusted, such as an employee, an executive, a supplier or IT support, to persuade the person on the other end to reveal information, reset credentials or approve an action. It works because a confident voice and an urgent story are harder to question than a suspicious email.' },
+    { q: 'Does multi-factor authentication stop help desk social engineering?', a: 'Not on its own. MFA protects the login, but if an attacker can persuade the help desk to reset or re-register the second factor, they receive a fully working account. MFA needs to be paired with a strict identity verification process for resets, such as calling back on a known number and requiring a second approver for privileged accounts.' },
+    { q: 'How should a help desk verify a caller\'s identity?', a: 'Avoid anything an attacker can look up or buy, such as ID numbers, staff numbers or dates of birth. Use a call-back to a number already held on record, confirmation from the person\'s line manager, or a video call with photo ID for high-risk requests. Notify the account owner through a separate channel after any reset, so an unauthorised change is spotted quickly.' },
+    { q: 'How often should we test the service desk against social engineering?', a: 'Test at least annually and after any significant change to the service desk, such as outsourcing, a new identity platform or staff turnover. Treat each test as a control test: record the result, raise corrective actions for any failures and track them to closure. Repeated testing shows whether the process is holding, not just whether it is documented.' },
   ],
 };
 
