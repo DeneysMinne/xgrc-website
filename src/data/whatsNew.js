@@ -282,6 +282,13 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.23.3",
+      "date": "2026-10-23",
+      "category": "new",
+      "title": "KPIs you define, with frozen monthly figures and a monthly pack",
+      "description": "Define the KPIs your organisation reports on, without code: a count, the share of matters meeting a condition (closed by the deadline, renewal identified 120 days ahead, a required field or document present), or the median time between two events (request to contract in force, raised to first response). Each KPI shows this month against its target, a twelve-month trend, a breakdown by type, stage, entity, role or person, and the records behind the figure. Closed months are frozen, so a reported figure never changes. Export figures and records as CSV, and send a monthly KPI pack to a chosen role. Starter KPIs include cycle times, on-time responses, task SLA compliance and blocked approval attempts."
+    },
+    {
       "version": "2026.10.23.2",
       "date": "2026-10-23",
       "category": "new",
