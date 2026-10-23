@@ -1723,6 +1723,16 @@ export const articles = [
     imageAlt: 'Two staff in hi-vis vests walking past stacks of paper files in an operations office, illustrating fragmented records',
     relatedSolutions: ['xlogic', 'msx', 'erm', 'integrated-assurance'],
   },
+  {
+    slug: 'popia-data-breach-notification',
+    title: 'When Health Data Leaks: What POPIA Requires After a Data Breach',
+    excerpt: 'A major South African pathology breach is a reminder that POPIA notification starts at discovery. What section 22 requires, and how to be ready before it happens.',
+    category: 'Cyber',
+    date: '2026-11-04',
+    image: 'popia-data-breach-notification.jpg',
+    imageAlt: 'Radiology technician at monitors in a dim scan room beside glowing icons for POPIA breach notification steps',
+    relatedSolutions: ['msxcyber', 'erm'],
+  },
 ];
 
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
@@ -2046,6 +2056,12 @@ export const articleFaqs = {
     { q: 'Where should an organisation start with connected governance?', a: 'Start by mapping where governance information currently lives and who owns each register. Then pick one material risk and trace it from obligation to control, test result, findings, actions and evidence. The points where that trail breaks show where linking records will deliver the most value, and they make a far better first project than a big-bang system replacement.' },
     { q: 'How does connected governance support combined assurance under King V?', a: 'Combined assurance needs a shared view of which risks are covered by management, specialist functions and internal or external audit. When each line keeps separate records, gaps and duplicated reviews stay hidden. Linking assurance activity to the same risk and control records lets audit and risk committees see coverage, overlaps and unassured material risks in one place.' },
     { q: 'Does XGRC® replace our existing specialist tools?', a: 'Not necessarily. XGRC® is designed to bring risk, compliance, SHEQ, assurance and information security records into one connected platform, and organisations often phase adoption by module or business unit. XLOGIC® then turns policies and obligations into owned workflows with evidence capture. The right sequence depends on where fragmentation is causing the most risk today.' },
+  ],
+  'popia-data-breach-notification': [
+    { q: 'How quickly must a data breach be reported under POPIA?', a: 'POPIA requires notification to the Information Regulator and affected data subjects as soon as reasonably possible after the compromise is discovered. There is no fixed number of hours, unlike the GDPR\'s 72-hour rule, but the Regulator expects any delay to be justified. A delay is permitted where a public body responsible for investigating crime or the Regulator decides notification would impede a criminal investigation.' },
+    { q: 'Does every POPIA security compromise have to be reported?', a: 'Section 22 applies whenever there are reasonable grounds to believe personal information has been accessed or acquired by an unauthorised person, and it sets no minimum size or risk threshold. Organisations should record every suspected compromise, assess it promptly and document the reasoning behind each notification decision, so they can show the Regulator how and why they acted.' },
+    { q: 'Is health information treated differently under POPIA?', a: 'Yes. Information about a person\'s health or sex life is special personal information under section 26, alongside categories such as religious beliefs, race and biometric information. Processing it is prohibited unless a specific authorisation applies, and a breach involving it carries a higher risk of harm, such as medical aid fraud or targeted phishing, so expect closer scrutiny.' },
+    { q: 'What must a breach notification to data subjects contain?', a: 'It must give enough information for people to protect themselves: a description of the possible consequences, the measures the organisation has taken or intends to take, recommendations on what the person should do, and the identity of the unauthorised person if known. It must be in writing, sent by email, post, a website notice, news media or as the Regulator directs.' },
   ],
 };
 

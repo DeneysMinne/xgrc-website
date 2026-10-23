@@ -3859,4 +3859,69 @@ If you want a structured starting point, our <a href="/use-cases/compliance-mana
 Start with One Chain
 
 Pick one material risk and try to trace it end to end today: the obligation or objective behind it, its controls, the last test result, open findings and actions, and the evidence. Where the trail breaks is where to start connecting. To see what a connected view looks like, take the <a href="/tour/">live XGRC® product tour</a> or <a href="/demo/">book a demo</a> with our team.`,
+'popia-data-breach-notification': `In October 2026, one of South Africa's largest pathology laboratory groups confirmed that attackers had breached its systems. A criminal group claimed to have copied databases holding tens of millions of patient admission records. The company disputed the scale, said the figure counted database entries rather than people, and reported that identity numbers and medical aid details may have been accessed. It notified the Information Regulator and kept its laboratories running.
+
+The facts of that case are still being established. The lesson for every organisation that holds personal information, and especially health information, is already clear.
+
+What does POPIA require after a data breach?
+
+Under section 22 of the Protection of Personal Information Act (POPIA), when there are reasonable grounds to believe that personal information has been accessed or acquired by an unauthorised person, the responsible party must notify the Information Regulator and the affected data subjects as soon as reasonably possible after discovering the compromise. There is no minimum size or risk threshold.
+
+Why Health Data Raises the Stakes
+
+POPIA treats information about a person's health as special personal information. Section 26 prohibits processing it except under specific conditions, and the consequences of exposure are more serious for the people involved. A leaked identity number combined with medical aid details is a ready-made kit for medical aid fraud, identity theft and highly convincing phishing, because the attacker can quote real details back to the victim.
+
+This is not only a hospital or laboratory problem. Employers hold medical certificates, occupational health records and injury-on-duty files. Insurers, medical schemes, wellness providers and payroll processors all handle health-related information. If your organisation keeps a sick-leave register or an incident register with injury details, you hold special personal information.
+
+What Section 22 Actually Asks You to Do
+
+The notification duty is short to read and hard to meet without preparation. In practice it means:
+
+- Notifying the <a href="https://inforegulator.org.za/" rel="noopener">Information Regulator</a> through its online eServices portal, which is now the channel for security compromise notifications
+- Notifying affected data subjects in writing, by email, post, a notice on your website, publication in the news media or as the Regulator directs
+- Giving data subjects enough information to protect themselves: the possible consequences, what you are doing about it, what they should do, and the identity of the unauthorised person if you know it
+- Doing this as soon as reasonably possible, delaying only where a public body responsible for investigating crime or the Regulator decides notification would impede a criminal investigation
+
+The full text is in the <a href="https://www.gov.za/documents/protection-personal-information-act" rel="noopener">Protection of Personal Information Act</a>. Two points are often missed. First, the clock starts at discovery, not when the investigation is finished, so waiting for a complete forensic report before notifying is risky. Second, if an operator such as a cloud provider, laboratory partner or payroll bureau processes information on your behalf, section 21 requires it to tell you immediately when it suspects a compromise. Your contracts should say how.
+
+The First 72 Hours
+
+Most organisations discover in the middle of an incident that nobody knows who decides what. A practical sequence for the first three days looks like this:
+
+- Hour 0 to 4: contain the incident, preserve logs and evidence, and open a single incident record that everyone works from
+- Hour 4 to 24: establish what information was involved, whose it was and whether special personal information is in scope
+- Day 1 to 2: decide on notification with the Information Officer, legal counsel and executive sponsor, and record the reasoning either way
+- Day 2 to 3: submit the Regulator notification, prepare data subject communication and brief the people who will answer the phones
+
+Each step depends on information you should already have: a record of what personal information you hold, where it lives, who can access it and which operators process it. That is the work POPIA's conditions for lawful processing ask for long before any breach occurs. Our <a href="/use-cases/popia-compliance/">POPIA compliance</a> overview covers those foundations.
+
+Disputed Claims Are Normal but Silence Is Not
+
+In the laboratory case, the attacker's claims and the company's account differed sharply. That is common. Criminal groups exaggerate to increase pressure, and early internal findings are often incomplete. The organisation that handles this well is not the one with a perfect answer on day one. It is the one that can show what it knew, when it knew it, what it did and why.
+
+That record matters to the Regulator, to the people affected and, increasingly, to your board. Governing bodies are expected to oversee technology and information governance, and a board that receives a coherent incident timeline is in a far better position than one piecing events together from emails. We covered the board's view in <a href="/insights/the-hidden-cost-of-cyber-incidents-for-ceos/">the hidden cost of cyber incidents for CEOs</a>.
+
+Many Breaches Start With a Person Rather Than a Server
+
+Breaches of this kind often begin with stolen or socially engineered credentials rather than an exotic technical exploit. If your help desk can be talked into resetting a password and multi-factor authentication, the best data protection controls downstream may never get a chance to work. We looked at that risk in <a href="/insights/help-desk-social-engineering/">help desk social engineering</a>.
+
+Questions to Ask Before It Happens
+
+A short readiness test for executives and Information Officers:
+
+- Do we know where special personal information sits in our systems, including spreadsheets and shared drives?
+- Is our Information Officer registered on the Regulator's eServices portal, and does a deputy have access?
+- Do our operator contracts require immediate notification of a suspected compromise?
+- Have we rehearsed a notification decision in the last year, with a record of the outcome?
+- Could we produce a timeline of the incident, with evidence, within a week?
+
+If any of these produce silence, that is the place to start. It is the same principle behind <a href="/insights/can-your-organisation-prove-it-is-compliant-right-now/">proving compliance right now</a> rather than at audit time.
+
+How XGRC® Supports Breach Readiness
+
+<a href="/msxcyber/">MSXCyber®</a> supports an information security management system aligned to ISO/IEC 27001, including incident logging, assessment, corrective actions and lessons learned, with audit-ready evidence held in one place. <a href="/erm/">Enterprise Risk Management</a> links privacy and cyber risks to the controls that manage them and reports them to the board. Together they give you a single, attributed record of what happened and what was done, which is exactly what a notification decision and any later enquiry depend on. For day-to-day incident handling, see our <a href="/use-cases/incident-management/">incident management</a> use case.
+
+Start With Your Register
+
+Before the next breach makes the news, find out whether you could answer the Regulator's first question: what information was involved and whose was it? Download our free POPIA compliance checklist to test your readiness, or take the <a href="/tour/">live product tour</a> to see how incidents, risks and evidence connect in one platform.`,
 };
