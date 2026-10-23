@@ -97,4 +97,7 @@ export const articleChecklists = {
   'management-systems-continual-improvement': 'pas99-integrated-management-system',
   'cybersecurity-governance-2027-priorities': 'iso-27001-readiness',
   'proactive-sheq-management-strategy-2027': 'hazard-identification',
+  'help-desk-social-engineering': 'iso-27001-readiness',
+  'popia-data-breach-notification': 'popia-compliance',
+  'third-party-security-incident-response': 'vendor-management',
 };

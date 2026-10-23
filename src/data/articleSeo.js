@@ -146,4 +146,16 @@ export const articleSeo = {
     seoTitle: 'Proactive SHEQ Management: A 2027 Strategy Guide | XGRC®',
     metaDescription: 'Build a proactive SHEQ management strategy for 2027: hazard identification, near-miss reporting, worker participation and leading indicators that predict harm.',
   },
+  'help-desk-social-engineering': {
+    seoTitle: 'Help Desk Social Engineering: Stop MFA Reset Fraud | XGRC®',
+    metaDescription: 'Help desk social engineering lets attackers talk their way past MFA. Learn how to verify callers, harden password resets and prove the control works.',
+  },
+  'popia-data-breach-notification': {
+    seoTitle: 'POPIA Data Breach Notification: What to Do and When | XGRC®',
+    metaDescription: 'POPIA data breach notification explained: what section 22 requires, why health data raises the stakes, and a practical 72-hour response plan.',
+  },
+  'third-party-security-incident-response': {
+    seoTitle: 'Third-Party Security Incident Response: A 72-Hour Plan | XGRC®',
+    metaDescription: 'Third-party security incident response for both sides: what to do when a supplier is breached, and how to answer customers about critical vulnerabilities.',
+  },
 };
