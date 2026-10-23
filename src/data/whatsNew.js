@@ -282,6 +282,13 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.23.2",
+      "date": "2026-10-23",
+      "category": "new",
+      "title": "Your own contract lifecycle: stages, gates, intake and renewals",
+      "description": "Contracts now move through stages you define, for example Received, Under review, Pending signature and Executed, each belonging to a phase (Draft, Active, Expired, Terminated or the new Cancelled) that drives reminders and retention. A stage can require fields to be filled in and a document to be attached before a contract enters it, and the contract screen says what is still missing. Add your own contract fields, such as governing law or risk rating. A request type can create the contract from its answers, and closing a termination, cancellation or renewal request can move its contract to a stage. Renewal requests can be raised automatically a set number of days before a contract ends. All of it is optional: change nothing and contracts work as before."
+    },
+    {
       "version": "2026.10.23.1",
       "date": "2026-10-23",
       "category": "new",
