@@ -3727,4 +3727,68 @@ AI Governance and Information Security Are Different but Connected
 ISO/IEC 42001 and ISO/IEC 27001 address different organisational needs: one focuses on managing artificial intelligence, the other on managing information security. But as AI becomes increasingly dependent on organisational information, the relationship between them matters more. AI needs appropriate governance, information needs appropriate protection, risks need clear ownership, controls need to be monitored, and leadership needs evidence that governance is working. For organisations using AI, the question is not whether to choose ISO/IEC 42001 or ISO/IEC 27001, but how to build a connected approach to both.
 
 <a href="/contact/">Speak to an XGRC® specialist</a> to discover how AI Governance and MSXCyber® can help your organisation govern AI responsibly and protect the information that enables it.`,
+'help-desk-social-engineering': `It starts with a phone call. Someone rings the IT service desk, sounding stressed and senior. They know the employee's name, their manager, their staff number and the project they are on. They have a new phone, they are locked out before a board meeting, and could the agent please reset their password and multi-factor authentication. Ten minutes later, the attacker is inside your network with a perfectly valid login.
+
+What is help desk social engineering?
+
+Help desk social engineering is an attack in which a criminal impersonates an employee, contractor or executive to persuade IT support staff to reset a password, re-register multi-factor authentication or grant access. No malware or technical exploit is needed. The attacker borrows a real identity, and your own support process hands over the keys.
+
+Why Attackers Call the Help Desk
+
+Organisations have spent years hardening the front door. Phishing filters are better, most staff know not to click strange links, and multi-factor authentication (MFA) is now standard on email and remote access. Attackers have adapted by going around those controls rather than through them. If a stolen password is useless without the second factor, the cheapest route is to convince someone to reset the second factor.
+
+This is not a theoretical pattern. A joint advisory from the US Cybersecurity and Infrastructure Security Agency and the FBI on the <a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-320a" rel="noopener">Scattered Spider group</a> describes exactly this technique: gathering personal details about employees, then using social engineering to convince help desk staff to reset passwords and MFA tokens, before registering the attacker's own devices to keep access. The <a href="https://www.verizon.com/business/resources/executivebriefs/2026-dbir-executive-summary.pdf" rel="noopener">2026 Verizon Data Breach Investigations Report</a> puts social engineering behind 16% of breaches, and records pretexting, the invented-scenario technique used in these calls, as a growing route into ransomware and extortion attacks.
+
+South African organisations are not exempt: service desks here face the same callers, and many are outsourced or shared across group companies, which adds more people who can approve a reset. When these incidents are reconstructed, the pattern is consistent: the weak point was not the firewall. It was a reasonable person following an unreasonable process.
+
+Why Awareness Training Alone Does Not Fix It
+
+The instinctive response is more training. Training matters, and we have written about <a href="/insights/building-a-cyber-aware-culture-addressing-the-human-element-of-cyber-risk/">building a cyber-aware culture</a> before. But help desk staff are measured on resolving calls quickly and keeping colleagues productive. A convincing caller with the right details, an urgent story and a senior title is designed to exploit precisely that helpfulness.
+
+If the only thing standing between an attacker and a full account takeover is an agent's judgement under time pressure, the control is weak no matter how good the training is. The fix is to change the process so that judgement is not the last line of defence.
+
+What a Strong Reset Process Looks Like
+
+A resilient identity verification process for password and MFA resets removes discretion from the riskiest moments. In practice that means:
+
+- Never verifying identity with information an attacker can find or buy, such as ID numbers, dates of birth, staff numbers or reporting lines
+- Calling the person back on a number already held in the HR or identity system, never the number they are calling from
+- Requiring a second approver, such as the employee's line manager, before resetting MFA or access for privileged and executive accounts
+- Using a stronger proof for high-risk requests, such as a video call with photo ID or an in-person check
+- Alerting the real account owner, through a separate channel, whenever their MFA or password is reset
+
+Two further controls make a large difference. First, treat MFA re-registration as a security event, not a routine ticket: log it, review it and look for it alongside new device sign-ins. Second, give help desk agents explicit permission to say no. An agent who follows the procedure and refuses a senior caller should be backed, never reprimanded.
+
+How Does ISO 27001 Address Help Desk Impersonation?
+
+<a href="https://www.iso.org/standard/27001" rel="noopener">ISO/IEC 27001:2022</a> does not mention help desks by name, but several Annex A controls apply directly. Control 5.17 covers the management of authentication information, including verifying a user's identity before issuing new or replacement credentials. Control 6.3 covers information security awareness, education and training. Controls 5.24 to 5.27 cover incident management planning, response and learning from incidents.
+
+For South African organisations, POPIA adds a legal dimension. Section 19 requires a responsible party to take appropriate, reasonable technical and organisational measures to secure personal information. A reset process that a stranger can talk their way through is difficult to defend as reasonable after the event. Our <a href="/use-cases/popia-compliance/">POPIA compliance</a> overview covers the wider obligations.
+
+Prove the Control Works in Practice
+
+Most organisations that are compromised this way had a policy. What they lacked was evidence that the policy was being followed on every call. Governance questions worth asking at management level include:
+
+- How many password and MFA resets did we process last month, and how many were for privileged accounts?
+- What percentage followed the call-back and second-approval steps?
+- When did we last test the help desk with a simulated impersonation call, and what happened?
+- Which findings from that test remain open, and who owns them?
+
+If nobody can answer those questions with data, the control is an intention, not a safeguard. Treat a simulated vishing test of the service desk the same way you would treat any other control test: plan it, record the result, raise corrective actions and track them to closure. That is the same discipline described in <a href="/insights/cybersecurity-awareness-month-from-awareness-to-action/">moving from awareness to action</a>.
+
+Remember the Accounts That Are Not People
+
+The same logic now extends beyond human users. Service accounts, API keys and AI agents increasingly hold powerful access, and the processes for issuing or replacing their credentials deserve the same scrutiny. We explored that risk in <a href="/insights/ai-agent-security-api-keys/">securing AI agents and API keys</a>. An attacker who cannot fool your help desk will look for the next most trusting process.
+
+The Cost of Getting It Wrong
+
+An account takeover through the help desk often gives an attacker legitimate, MFA-protected access that blends in with normal activity, which makes it slower to detect and harder to contain. The financial, operational and reputational consequences are the ones we described in <a href="/insights/the-hidden-cost-of-cyber-incidents-for-ceos/">the hidden cost of cyber incidents for CEOs</a>, and the incident may also trigger POPIA notification duties if personal information is accessed.
+
+How MSXCyber® Helps
+
+<a href="/msxcyber/">MSXCyber®</a> supports an information security management system aligned to ISO/IEC 27001. It lets you record identity and access risks, link them to the controls that manage them, assign owners, plan and record control tests such as simulated help desk calls, raise corrective actions from the findings and keep audit-ready evidence that the control is operating. When an incident does occur, it is logged, assessed and followed through to lessons learned in the same system.
+
+Start With One Call
+
+Pick up the phone this week and ask a trusted colleague to call your own service desk with a plausible lockout story. What happens next will tell you more about your exposure than any policy document. Then use our free <a href="/use-cases/iso-27001-readiness/">ISO 27001 readiness checklist</a> to see where identity verification sits in your wider security programme, or take the <a href="/tour/">live product tour</a> to see how MSXCyber® keeps the evidence in one place.`,
 };
