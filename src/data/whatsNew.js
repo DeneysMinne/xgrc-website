@@ -282,6 +282,13 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.24.4",
+      "date": "2026-10-24",
+      "category": "new",
+      "title": "Import contracts from a spreadsheet, and link schedules to master agreements",
+      "description": "Bring an existing contract register in from a CSV: every row is checked with the same rules as the contract form, problems are shown line by line before anything is saved, counterparties link to the parties register (or become new parties if you choose), and the valid rows are imported. Contracts can now belong to a master agreement as a schedule or statement of work, an amendment or a related contract; the master lists everything under it, always respecting need-to-know."
+    },
+    {
       "version": "2026.10.24.3",
       "date": "2026-10-24",
       "category": "new",
