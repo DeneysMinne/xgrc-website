@@ -282,6 +282,13 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.24.3",
+      "date": "2026-10-24",
+      "category": "new",
+      "title": "Ready-made Legal department pack",
+      "description": "Set up a legal department in one step: request types for legal instructions from the business, engaging external counsel and regulator correspondence, each with its own form, statuses, deadline and escalation, linked to law firms and regulators on the parties register, plus KPIs for instructions closed on time, regulator responses on time and external engagements per month. Everything the pack adds is yours to edit, and installing it again never overwrites your changes."
+    },
+    {
       "version": "2026.10.24.2",
       "date": "2026-10-24",
       "category": "new",
