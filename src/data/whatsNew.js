@@ -282,6 +282,13 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.24.2",
+      "date": "2026-10-24",
+      "category": "new",
+      "title": "Parties register, and request fields that link records",
+      "description": "Keep one record for each organisation you deal with: suppliers, customers, partners, law firms and regulators, with their contacts and the details you choose to keep. Contracts link to their party, so every contract with an organisation is on its page, and renaming a party updates its contracts. Request forms can now ask for a party (optionally only certain kinds, such as law firms), a contract or another request, so an instruction names the firm handling it and the contract it is about, and the party's page lists the requests that name it. A request that creates a contract can take its counterparty from a party field. Everything respects need-to-know: restricted matters are never shown or counted to people outside their access list."
+    },
+    {
       "version": "2026.10.23.3",
       "date": "2026-10-23",
       "category": "new",
