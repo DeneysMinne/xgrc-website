@@ -1,6 +1,97 @@
 // Full article body text keyed by slug.
 // Content sourced from xgrcsoftware.com — all rights reserved XGRC® Software.
 export const articleContent = {
+  'php2shell-critical-php-vulnerabilities-governance-response': `On Friday 23 October 2026, the Presidency took its website offline "as a precautionary measure in response to a global cybersecurity event". Its spokesperson described the move as a precaution, not a breach. The event behind it is PHP2Shell: two critical flaws in PHP, the programming language that runs most of the world's websites. This guide explains what PHP2Shell is, who is exposed, what to do this week, and the governance questions boards and risk owners should be asking.
+
+What Is PHP2Shell?
+
+PHP2Shell is the name given to two vulnerabilities in the core of PHP, tracked as CVE-2026-109618 and CVE-2026-109619. PHP's own security team rates both 9.2 out of 10 on the CVSS v4.0 scale. Both can allow an attacker to run their own code on a web server remotely, without logging in.
+
+In plain terms:
+
+- CVE-2026-109618: when PHP runs out of memory while it is still setting up a web request, the clean-up that follows can treat half-built data as valid, and an attacker can turn that into code execution
+- CVE-2026-109619: after certain errors, PHP can leave a pointer to memory that has already been freed, and the next request handled by the same server process can use it. The known attack path runs through a session upload feature that is switched on by default, before any of the website's own code runs
+
+Because the flaws sit in PHP itself, keeping WordPress, Drupal, Joomla or their plugins up to date does not fix them. The PHP runtime on the server has to be updated.
+
+How It Unfolded
+
+- 20 October: technical details leaked publicly before the planned disclosure, and the PHP project announced an emergency security release
+- 21 October: PHP released fixed versions 8.5.12, 8.4.27, 8.3.36 and 8.2.35. The US Cybersecurity and Infrastructure Security Agency (CISA) and the FBI urged organisations to patch immediately, and to take a system offline if it cannot be updated quickly
+- 21 October onwards: security vendors reported widespread scanning and exploitation attempts. Some attempts were seen before the fixes were published
+- 23 October: the Presidency took its website offline as a precaution
+
+When this article was written, neither CVE had been added to CISA's Known Exploited Vulnerabilities catalogue. Reports of confirmed, successful compromises were still limited and in some cases disputed. That is not a reason to wait. Attempts are widespread, working exploit code is public, and the cost of patching is far lower than the cost of an incident.
+
+Who Is Exposed?
+
+PHP is used by roughly seven in ten websites whose server-side language is known, according to W3Techs. That includes every WordPress, Drupal and Joomla site, many intranets and customer portals, and a long tail of commercial products that bundle PHP inside them.
+
+You are potentially exposed if any internet-facing system you own, host or depend on:
+
+- runs PHP below 8.5.12, 8.4.27, 8.3.36 or 8.2.35
+- runs PHP 8.1 or older. These branches are end of life and received no official release, only source code fixes for organisations that build PHP themselves
+- is a WordPress, Drupal, Joomla or similar site on shared or managed hosting, where the host controls the PHP version
+- is a vendor appliance or product that bundles PHP, which must be patched by the vendor
+
+South Africa is not a bystander. Public scans reported by MyBroadband found more than 9,800 internet-facing servers in South Africa running PHP. Not all of these are vulnerable, but each one needs checking. Several local hosting providers, including Afrihost and Xneelo, have said they are patching or have applied protections on the servers they manage. If your host manages PHP for you, ask them to confirm in writing which version your sites now run.
+
+What To Do This Week
+
+Treat this as a priority change, not routine maintenance:
+
+- Inventory: list every system where PHP runs, starting with internet-facing websites, portals and vendor products. Include sites run by agencies, marketing partners and subsidiaries
+- Patch: update to 8.5.12, 8.4.27, 8.3.36 or 8.2.35 or later, or apply your Linux distribution's security update
+- Restart: restart every PHP process (PHP-FPM pools, Apache) after patching. A patched package does nothing until the running processes are replaced
+- Verify: confirm the version actually serving web requests, not just the version installed on the command line
+- Isolate what you cannot patch: CISA and the FBI advise taking a system offline until it can be updated. A web application firewall (WAF) rule reduces risk but does not replace patching
+- Look back: review web server and PHP logs from 17 October onwards. Warning signs include PHP processes starting command shells or downloading files, new files appearing in website folders, unexpected admin accounts, and bursts of server errors or crashes
+- Watch for follow-ups: a third, related flaw, CVE-2026-115560, was disclosed on 23 October. It needs an unusual configuration, and switching off session upload progress (session.upload_progress.enabled=0) mitigates it
+
+If you find signs of compromise, isolate the affected system, preserve the logs and treat it as a security incident under your incident response plan.
+
+The Governance Questions Boards Should Ask
+
+PHP2Shell is a technical problem with a governance test inside it. The organisations that respond well this week are the ones that already know what they run, who owns it and how fast they can act. Boards, audit committees and risk owners should ask five questions:
+
+- Do we know where PHP runs? If the answer depends on someone's memory, the asset register is not doing its job
+- Who owns each exposed system, including the ones run by suppliers and hosting providers?
+- When was each one patched and restarted, and what evidence shows it?
+- Have we checked for signs of compromise since 17 October, not just applied the patch?
+- Which of our suppliers run PHP, and have they confirmed their position in writing?
+
+South African organisations also have regulatory obligations to keep in view:
+
+- POPIA section 22: a vulnerable or targeted server is not automatically notifiable. A compromise where there are reasonable grounds to believe personal information was accessed or acquired is. The Information Regulator and affected data subjects must then be notified as soon as reasonably possible, through the Regulator's eServices portal
+- Joint Standard 2 of 2024: banks, insurers and other financial institutions regulated by the Prudential Authority and the FSCA must manage vulnerabilities and patching, and notify the regulator of material cyber incidents
+- King V: the board remains accountable for technology and information governance. A critical, publicly known vulnerability is exactly the kind of event the board should hear about, with the response evidenced
+
+Record It as a Risk Event, Not an Email Thread
+
+The weakest part of most responses is not the patching. It is the evidence. Three months from now, an auditor, regulator or customer may ask what you did about PHP2Shell, and "IT sorted it" is not an answer.
+
+Record it once, in one place:
+
+- Log the vulnerability as a security event, linked to the affected assets and their owners
+- Assess the risk and record the treatment chosen for each asset: patched, isolated, retired or accepted with a documented reason
+- Assign the actions with owners and due dates, and attach the evidence: version checks, restart confirmation, supplier confirmations and log review results
+- Close it with a short report to the risk or audit committee
+
+This is the workflow MSXCyber® is built for. Its asset register, IT risk assessments, controls and event management tie a vulnerability like PHP2Shell to the systems it affects, the people who own them and the evidence that the exposure was closed. Continuous testing through our partner Hakware helps surface exposed services between annual penetration tests, rather than waiting for the next headline.
+
+Is XGRC® Affected?
+
+No. XGRC® Software has assessed its exposure to PHP2Shell and is not affected. Our platforms and this website do not run PHP. We have logged the assessment as a security event in our own environment, in line with our information security management system. Customers with questions can contact us through the support portal or at info@xgrcsoftware.com.
+
+Sources
+
+- PHP security releases, 21 October 2026: <a href="https://www.php.net/archive/2026.php">php.net</a>
+- CISA, "Critical Vulnerabilities in PHP Require Immediate Patching", 21 October 2026: <a href="https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching">cisa.gov</a>
+- CERT-EU Security Advisory 2026-018: <a href="https://cert.europa.eu/publications/security-advisories/2026-018">cert.europa.eu</a>
+- Tenable, PHP2Shell frequently asked questions: <a href="https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote">tenable.com</a>
+- Daily Maverick, Presidency website taken down, 23 October 2026: <a href="https://www.dailymaverick.co.za/article/2026-10-23-sas-presidency-website-taken-down-as-cybersecurity-flaw-sparks-warnings-across-the-world/">dailymaverick.co.za</a>
+- MyBroadband, South African PHP server exposure: <a href="https://mybroadband.co.za/news/security/673275-thousands-of-internet-servers-in-south-africa-at-risk-of-being-taken-over.html">mybroadband.co.za</a>
+- W3Techs, server-side language usage: <a href="https://w3techs.com/technologies/overview/programming_language">w3techs.com</a>`,
   'what-is-pas-99': `Most organisations that hold more than one ISO certificate run them as separate systems. Quality has its manual, its procedures and its internal audits. Environment has another set. Health and safety has a third, and information security a fourth. Each has its own document register, its own corrective action log and its own management review. The same people sit in four meetings to discuss overlapping risks, and the same auditors ask for the same evidence in four different formats. PAS 99, often written PAS99, exists to end that duplication. This guide explains what PAS 99 is, which standards it integrates and how to implement it.
 
 What Is PAS 99?

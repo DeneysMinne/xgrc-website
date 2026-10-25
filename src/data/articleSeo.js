@@ -8,6 +8,9 @@
 // 185-238 characters (limit 160), failing the SEO check-in on each publish.
 // Keep descriptions 120-160 characters and full titles (with suffix) <= 70.
 export const articleSeo = {
+  'php2shell-critical-php-vulnerabilities-governance-response': {
+    metaDescription: 'PHP2Shell explained: two critical PHP flaws, who is exposed, what South African organisations must do now, and what boards should ask.',
+  },
   'ai-agent-security-api-keys': {
     metaDescription: 'AI agents need access, not your real API keys. How stolen keys and manipulated agents differ, and how to build an access boundary the agent cannot rewrite.',
   },

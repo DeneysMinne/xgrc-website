@@ -1069,6 +1069,17 @@ export const caseStudies = [
 // citation). Absent it, dateModified falls back to `date`.
 export const articles = [
   {
+    slug: 'php2shell-critical-php-vulnerabilities-governance-response',
+    title: 'PHP2Shell: What the Critical PHP Flaws Mean for Your Organisation',
+    seoTitle: 'PHP2Shell: What the Critical PHP Flaws Mean | XGRC®',
+    excerpt: 'Two critical PHP flaws, known as PHP2Shell, put most of the web at risk and led the Presidency to take its website offline. Who is exposed, what to do this week, and the governance questions boards should ask.',
+    category: 'Cyber',
+    date: '2026-10-26',
+    image: 'php2shell-critical-php-vulnerabilities-governance-response.jpg',
+    imageAlt: 'PHP2Shell security advisory: what boards and risk owners should ask now',
+    relatedSolutions: ['msxcyber', 'hakware'],
+  },
+  {
     slug: 'what-is-pas-99',
     title: 'What Is PAS 99? Integrated Management Systems Explained',
     seoTitle: 'What Is PAS 99 (PAS99)? Integrated Management Systems | XGRC®',
@@ -1690,6 +1701,13 @@ export const articles = [
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
 // Only articles with an entry here render a FAQ section + FAQPage schema.
 export const articleFaqs = {
+  'php2shell-critical-php-vulnerabilities-governance-response': [
+    { q: 'What is PHP2Shell?', a: 'PHP2Shell is the name for two critical vulnerabilities in the core of PHP, CVE-2026-109618 and CVE-2026-109619, disclosed in October 2026. PHP rates both 9.2 on the CVSS v4.0 scale. They can allow an attacker to run code on a web server remotely without logging in.' },
+    { q: 'Which PHP versions fix PHP2Shell?', a: 'PHP 8.5.12, 8.4.27, 8.3.36 and 8.2.35, released on 21 October 2026. PHP 8.1 and older are end of life and received no official release. Restart PHP processes after patching, because the fix only applies once the running processes are replaced.' },
+    { q: 'Does updating WordPress fix PHP2Shell?', a: 'No. The flaws are in PHP itself, not in WordPress or its plugins. The PHP version on the server must be updated, which on shared or managed hosting is done by the hosting provider. Ask your host to confirm which version your site now runs.' },
+    { q: 'Do we have to report PHP2Shell to the Information Regulator?', a: 'Not just because a server was vulnerable or targeted. Under POPIA section 22, notification is required when there are reasonable grounds to believe personal information was accessed or acquired by an unauthorised person. If you find signs of compromise, treat it as a security incident and assess it against section 22.' },
+    { q: 'Is XGRC affected by PHP2Shell?', a: 'No. XGRC Software\'s platforms and website do not run PHP, so they are not affected. XGRC has logged its assessment as a security event in its own information security management system.' },
+  ],
   'what-is-pas-99': [
     { q: 'What is PAS 99?', a: 'PAS 99 is a Publicly Available Specification from BSI that sets out the requirements management system standards have in common. It lets an organisation meet those shared requirements once, in one integrated management system, instead of separately for ISO 9001, ISO 14001, ISO 45001, ISO/IEC 27001 and other standards.' },
     { q: 'Is PAS 99 a certifiable standard?', a: 'Certification bodies can assess an integrated management system against PAS 99, usually alongside certification to the underlying ISO standards. PAS 99 does not replace those certificates, because each ISO standard still has discipline-specific requirements.' },
