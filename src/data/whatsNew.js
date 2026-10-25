@@ -282,6 +282,20 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.25.2",
+      "date": "2026-10-25",
+      "category": "improved",
+      "title": "Search finds contracts, requests and parties",
+      "description": "The search bar now finds contracts, requests and parties by name, case number or id, alongside processes, requirements and tasks. It shows only what you may open: restricted matters stay hidden, and requests you have no part in are not listed unless you manage requests."
+    },
+    {
+      "version": "2026.10.25.2",
+      "date": "2026-10-25",
+      "category": "new",
+      "title": "Read a batch of signed contracts with MAIA",
+      "description": "Choose up to ten signed contracts and XLOGIC turns each into a draft contract with its document attached, while MAIA reads it: the obligations on both sides, the service levels, the contract name, the counterparty and the key dates. Everything MAIA finds waits for your review; nothing is accepted for you, and a counterparty is linked to your parties register when it is already there."
+    },
+    {
       "version": "2026.10.24.4",
       "date": "2026-10-24",
       "category": "new",
