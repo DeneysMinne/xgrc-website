@@ -7,6 +7,13 @@
 export const whatsNew = {
   "xrm": [
     {
+      "version": "1.80.0",
+      "date": "2026-10-26",
+      "category": "new",
+      "title": "See which keyword brought each lead",
+      "description": "Marketing decisions now has a Keywords view. For Google Ads it shows what each keyword cost and how many leads and qualified leads it produced, with a keep, watch or cut verdict, and opens the leads behind every number. Google leads are now matched to their campaign automatically."
+    },
+    {
       "version": "1.79.0",
       "date": "2026-10-26",
       "category": "new",
@@ -30,16 +37,16 @@ export const whatsNew = {
     {
       "version": "1.75.0",
       "date": "2026-10-14",
-      "category": "improved",
-      "title": "Find people by phone number, however it was typed",
-      "description": "Search for 084 444 5513, +27 84 444 5513 or 0844445513 and XRM finds the same person, in the Leads and Contacts lists and in the search bar. Set the country used for numbers without a country code in Maintenance > Settings."
+      "category": "new",
+      "title": "Record consent to be contacted",
+      "description": "Every lead and contact now has a Consent to contact section. Record when someone agrees to hear from you, or asks you to stop, by WhatsApp, email, SMS or phone. Nothing is ever overwritten, so the history is your proof, and XRM shows whether a marketing message is allowed right now. Consent moves across when a lead is converted."
     },
     {
       "version": "1.75.0",
       "date": "2026-10-14",
-      "category": "new",
-      "title": "Record consent to be contacted",
-      "description": "Every lead and contact now has a Consent to contact section. Record when someone agrees to hear from you, or asks you to stop, by WhatsApp, email, SMS or phone. Nothing is ever overwritten, so the history is your proof, and XRM shows whether a marketing message is allowed right now. Consent moves across when a lead is converted."
+      "category": "improved",
+      "title": "Find people by phone number, however it was typed",
+      "description": "Search for 084 444 5513, +27 84 444 5513 or 0844445513 and XRM finds the same person, in the Leads and Contacts lists and in the search bar. Set the country used for numbers without a country code in Maintenance > Settings."
     },
     {
       "version": "1.75.0",
