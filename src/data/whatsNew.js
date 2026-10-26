@@ -7,6 +7,13 @@
 export const whatsNew = {
   "xrm": [
     {
+      "version": "1.79.0",
+      "date": "2026-10-26",
+      "category": "new",
+      "title": "Marketing decisions: see where your marketing money works",
+      "description": "A new Revenue Copilot page shows, week by week, what each channel and campaign cost and how many leads, qualified leads, deals and won revenue it produced. Each campaign gets a keep, watch or cut verdict against your target cost per qualified lead, a budget what-if shows the likely effect of moving money between ad channels, and every number opens the leads behind it."
+    },
+    {
       "version": "1.78.0",
       "date": "2026-10-20",
       "category": "new",
@@ -23,16 +30,16 @@ export const whatsNew = {
     {
       "version": "1.75.0",
       "date": "2026-10-14",
-      "category": "new",
-      "title": "Log calls, meetings and WhatsApp chats on contacts and deals",
-      "description": "Contacts now have an Add Engagement button on their Activity tab, and so does a deal's Activity tab. Pick the type (including WhatsApp), say what was discussed, and save. A contact on exactly one open deal has it linked to that deal too. This records what happened; nothing is sent."
+      "category": "improved",
+      "title": "Find people by phone number, however it was typed",
+      "description": "Search for 084 444 5513, +27 84 444 5513 or 0844445513 and XRM finds the same person, in the Leads and Contacts lists and in the search bar. Set the country used for numbers without a country code in Maintenance > Settings."
     },
     {
       "version": "1.75.0",
       "date": "2026-10-14",
-      "category": "improved",
-      "title": "Find people by phone number, however it was typed",
-      "description": "Search for 084 444 5513, +27 84 444 5513 or 0844445513 and XRM finds the same person, in the Leads and Contacts lists and in the search bar. Set the country used for numbers without a country code in Maintenance > Settings."
+      "category": "new",
+      "title": "Record consent to be contacted",
+      "description": "Every lead and contact now has a Consent to contact section. Record when someone agrees to hear from you, or asks you to stop, by WhatsApp, email, SMS or phone. Nothing is ever overwritten, so the history is your proof, and XRM shows whether a marketing message is allowed right now. Consent moves across when a lead is converted."
     },
     {
       "version": "1.75.0",
@@ -52,8 +59,8 @@ export const whatsNew = {
       "version": "1.75.0",
       "date": "2026-10-14",
       "category": "new",
-      "title": "Record consent to be contacted",
-      "description": "Every lead and contact now has a Consent to contact section. Record when someone agrees to hear from you, or asks you to stop, by WhatsApp, email, SMS or phone. Nothing is ever overwritten, so the history is your proof, and XRM shows whether a marketing message is allowed right now. Consent moves across when a lead is converted."
+      "title": "Log calls, meetings and WhatsApp chats on contacts and deals",
+      "description": "Contacts now have an Add Engagement button on their Activity tab, and so does a deal's Activity tab. Pick the type (including WhatsApp), say what was discussed, and save. A contact on exactly one open deal has it linked to that deal too. This records what happened; nothing is sent."
     },
     {
       "version": "1.74.1",
@@ -281,6 +288,20 @@ export const whatsNew = {
     }
   ],
   "xlogic": [
+    {
+      "version": "2026.10.26.2",
+      "date": "2026-10-26",
+      "category": "improved",
+      "title": "A getting-started checklist and a setup that works from the first minute",
+      "description": "New organisations get a five-step checklist on the Cockpit that ticks itself off as you go. The setup wizard now gives everyday roles the right permissions and lets you take on a role yourself, so you can build and run your first process straight away. Empty screens explain what they are for and what to do next."
+    },
+    {
+      "version": "2026.10.26.2",
+      "date": "2026-10-26",
+      "category": "new",
+      "title": "Ten ready-made processes to start from",
+      "description": "Start from a proven process instead of a blank canvas: policy review and approval, document approval, supplier onboarding, incident response, corrective action, internal audit, risk assessment, management review, access review and complaint handling. Using one copies it into your organisation as a draft, with the requirement it answers and the roles it needs, ready for you to adapt and activate."
+    },
     {
       "version": "2026.10.26.1",
       "date": "2026-10-26",
