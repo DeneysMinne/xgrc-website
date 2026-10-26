@@ -282,6 +282,13 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.26.1",
+      "date": "2026-10-26",
+      "category": "improved",
+      "title": "Invitations you accept with one click, no temporary passwords",
+      "description": "New colleagues and new customers now get an email invitation and choose their own password from the link, instead of a temporary password to copy and change. The link works once and for 7 days, and the Users screen shows whether each invitation was opened and accepted. Partners see the same for each customer they set up. Password resets by an administrator send a link too, and signing up for the Free plan now takes you straight to choosing your password."
+    },
+    {
       "version": "2026.10.25.2",
       "date": "2026-10-25",
       "category": "improved",
