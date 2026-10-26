@@ -11,11 +11,16 @@ Usage:
   scripts/seo-checkin.py baseline          # capture today's numbers (run once)
   scripts/seo-checkin.py report <label>    # build the report and email it
   scripts/seo-checkin.py report <label> --dry-run   # print, don't email
+  scripts/seo-checkin.py push [--dry-run]   # send today's figures to XRM
 
 Cron runs the report every Monday 06:00 UTC from 26 Oct 2026, plus 31 Oct
 (see crontab). Since 20 Oct it also has a "Marketing results" table from XRM:
 spend, leads and qualified leads by channel, cost per qualified lead, upload
 status and data quality, week on week.
+
+Since 26 Oct (XRM ENH-164) `push` sends the same snapshot to XRM once a day
+(POST /api/integrations/site-metrics with the form handler's XRM key), where
+Revenue Copilot > Marketing decisions trends it next to spend and leads.
 """
 import datetime as dt
 import glob
@@ -305,11 +310,64 @@ def report(label, dry):
                     str(NOTIFY), subject, body, TO], check=True, timeout=60)
 
 
+def site_metrics(now, bad):
+    """The snapshot as XRM site metrics: key, group, label, value, which way is better."""
+    day = now['date']
+    out = []
+
+    def add(key, group, label, value, better='up'):
+        if value is not None:
+            out.append({'date': day, 'key': key, 'group': group, 'label': label,
+                        'value': value, 'better': better})
+
+    c = now['bing_crawl']
+    add('bing.index', 'Bing crawl', 'Pages in Bing index', c['InIndex'])
+    add('bing.5xx', 'Bing crawl', 'Server errors (5xx) seen by Bing', c['Code5xx'], 'down')
+    add('bing.4xx', 'Bing crawl', 'Not found (4xx) seen by Bing', c['Code4xx'], 'down')
+    add('bing.crawl_issues', 'Bing crawl', 'URLs with crawl issues', now['bing_crawl_issues'], 'down')
+    for q, (imp, clk) in now['bing_queries_28d'].items():
+        slug = re.sub(r'[^a-z0-9]+', '_', q.lower()).strip('_')
+        add(f'bing.q.{slug}.impressions', 'Bing searches, last 28 days', f'"{q}" impressions', imp)
+        add(f'bing.q.{slug}.clicks', 'Bing searches, last 28 days', f'"{q}" clicks', clk)
+    add('ga4.sessions_7d', 'Google, last 7 days', 'GA4 sessions (consented visitors only)', now['ga4_7d'].get('sessions'))
+    add('ads.clicks_7d', 'Google, last 7 days', 'Google Ads clicks', now['ads_7d']['clicks'])
+    add('ads.conversions_7d', 'Google, last 7 days', 'Google Ads conversions (qualified leads)', now['ads_7d']['conversions'])
+    n = now['nginx_7d']
+    add('server.5xx_7d', 'Our server, last 7 days', 'Server errors (5xx)', n['5xx'], 'down')
+    add('server.legacy_301_7d', 'Our server, last 7 days', 'Old WordPress URLs redirected', n['legacy_301'])
+    add('server.legacy_404_7d', 'Our server, last 7 days', 'Old WordPress URLs still 404', n['legacy_404'], 'down')
+    add('site.pages_failing_checks', 'Our server, last 7 days', 'Pages failing title/description/H1 checks', len(bad), 'down')
+    return out
+
+
+def push(dry):
+    """Send today's snapshot to XRM. The key and URL come from the form
+    handler's environment (never printed); the site-metrics endpoint sits
+    next to the website-lead one."""
+    body = json.dumps({'source': 'xgrcsoftware.com seo-checkin',
+                       'metrics': site_metrics(snapshot(), site_audit())})
+    if dry:
+        print(json.dumps(json.loads(body), indent=2))
+        return
+    out = subprocess.run(
+        ['sudo', '-n', 'bash', '-c',
+         'set -a; . /etc/xgrc/forms.env; set +a; '
+         'exec curl -sS --max-time 60 -X POST -H "Content-Type: application/json" '
+         '-H "X-Integration-Key: $XRM_LEAD_API_KEY" --data-binary @- '
+         '"${XRM_LEAD_API_URL%/website-lead}/site-metrics"'],
+        input=body, capture_output=True, text=True, timeout=90)
+    print(out.stdout.strip() or out.stderr.strip())
+    if '"saved"' not in out.stdout:
+        sys.exit(1)
+
+
 if __name__ == '__main__':
     if sys.argv[1:2] == ['baseline']:
         BASELINE.write_text(json.dumps(snapshot(), indent=2) + '\n')
         print(BASELINE.read_text())
     elif sys.argv[1:2] == ['report']:
         report(sys.argv[2], '--dry-run' in sys.argv)
+    elif sys.argv[1:2] == ['push']:
+        push('--dry-run' in sys.argv)
     else:
         print(__doc__)
