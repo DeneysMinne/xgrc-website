@@ -296,6 +296,34 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.27.1",
+      "date": "2026-10-27",
+      "category": "improved",
+      "title": "Easier on a phone and with a keyboard",
+      "description": "On a phone, lists show each row as a card and a task opens with its actions first. Every list that opens on a click now also opens from the keyboard, and the Worklist counts tasks for a role you hold as yours, the same way the Cockpit does."
+    },
+    {
+      "version": "2026.10.27.1",
+      "date": "2026-10-27",
+      "category": "new",
+      "title": "Upload policies and contracts as Word documents",
+      "description": "Policies and contracts can now be uploaded as Word (.docx) files as well as PDF, text and Markdown. MAIA reads them with their headings, lists and tables intact."
+    },
+    {
+      "version": "2026.10.27.1",
+      "date": "2026-10-27",
+      "category": "improved",
+      "title": "Seats are counted per person, not per role",
+      "description": "Each person uses one seat, however many roles they hold: an administrator seat if they hold an Admin role, otherwise an everyday seat. On Free that is an administrator and two colleagues, each with whatever roles they need. Users and Plan show the seats in use."
+    },
+    {
+      "version": "2026.10.27.1",
+      "date": "2026-10-27",
+      "category": "new",
+      "title": "Two-factor sign-in, and a view of where you are signed in",
+      "description": "Turn on two-factor sign-in from My Profile: after your password you give a code from an authenticator app on your phone, with ten recovery codes for when the phone is not to hand. Administrators can require it for everyone. My Profile also lists every device you are signed in on, and you can sign any of them out at once."
+    },
+    {
       "version": "2026.10.26.3",
       "date": "2026-10-26",
       "category": "new",
