@@ -98,6 +98,9 @@ const schema = JSON.stringify({
         <p class="lede sol-lede">{detail.lede}</p>
         <div class="sol-actions">
           <a href="/demo/" class="btn btn-primary">Request a demo</a>
+          {detail.freeLink && (
+            <a href={detail.freeLink.href} class="btn btn-ghost">{detail.freeLink.label}</a>
+          )}
           <a href="/solutions/" class="btn btn-ghost">All solutions &rarr;</a>
         </div>
         {detail.loginLink && (

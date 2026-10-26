@@ -646,6 +646,8 @@ export const solutionDetails = {
     name: 'XLOGIC®',
     tag: 'Governance Execution',
     metaTitle: 'XLOGIC® Governance Execution | XGRC®',
+    // XLOGIC® go-to-market (7.3): the Free plan page.
+    freeLink: { href: '/xlogic-free', label: 'Start free, no card' },
     headline: 'Policies that work. Controls that are actually enforced.',
     lede: 'XLOGIC® converts governance frameworks, policies, and controls into structured, enforceable workflows, so compliance is built into how work gets done, not bolted on afterwards through audits.',
     metaDescription: 'XLOGIC® converts governance frameworks, policies and controls into structured, enforceable workflows, so compliance is built into how work gets done.',

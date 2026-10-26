@@ -1,0 +1,195 @@
+---
+import Base from '../layouts/Base.astro';
+
+// XLOGIC® go-to-market (plan task 7.3): the Free plan, what each plan adds, and "Start free".
+// Plan contents mirror the app's own plan definitions (packages/shared entitlements.ts and the
+// plan seat limits); keep the two in step when a plan changes.
+const SIGNUP_URL = 'https://xlogic-app.xgrc.cloud/signup';
+
+const freeIncludes = [
+  ['Processes that run', 'Turn each requirement into a process with owners, deadlines and evidence, then run it.'],
+  ['Ten ready-made processes', 'Document approval, supplier onboarding, incident response, internal audit and more, copied in one click and yours to change.'],
+  ['Worklist and Cockpit', 'Everyone sees what is waiting on them; owners see what is late, blocked or missing evidence.'],
+  ['Evidence and audit trail', 'Files attached where the work happens, and a tamper-evident record of every change.'],
+  ['Three people', 'An administrator and two colleagues. Each person uses one seat, however many roles they hold.'],
+  ['Secure sign-in', 'Two-factor sign-in with an authenticator app, and a list of where you are signed in.'],
+];
+
+const plans = [
+  {
+    name: 'Free',
+    price: 'R0',
+    priceNote: 'for good',
+    people: '3 people (1 administrator, 2 colleagues)',
+    adds: ['Processes, runs, tasks and evidence', 'Ready-made process library', 'Worklist, Cockpit and audit trail', 'Two-factor sign-in'],
+    cta: { label: 'Start free', href: SIGNUP_URL, primary: true },
+  },
+  {
+    name: 'Advanced',
+    price: 'Talk to us',
+    priceNote: '',
+    people: '13 people (3 administrators, 10 colleagues)',
+    adds: [
+      'Everything in Free',
+      'MAIA® reads your policies and proposes the processes',
+      'Standards and Statement of Applicability',
+      'Controls and their effectiveness',
+      'Value chain',
+      'Claude connector',
+    ],
+    cta: { label: 'Talk to us', href: '/book-a-meeting', primary: false },
+  },
+  {
+    name: 'Enterprise',
+    price: 'Talk to us',
+    priceNote: '',
+    people: '55 people (5 administrators, 50 colleagues)',
+    adds: [
+      'Everything in Advanced',
+      'Contract management, with MAIA® reading the contracts',
+      'Requests with routing and escalation',
+      'Authority matrix and approval limits',
+      'Parties register',
+      'Need-to-know access, retention and legal hold',
+      'KPIs and a monthly pack',
+    ],
+    cta: { label: 'Talk to us', href: '/book-a-meeting', primary: false },
+  },
+];
+
+const faqs = [
+  { q: 'Is Free really free?', a: 'Yes. No card, no time limit. Free stays free; you move to a higher plan only if you want what it adds.' },
+  { q: 'What happens to my data if I move up a plan?', a: 'Everything stays where it is. A higher plan adds features to the same site; nothing is migrated or rebuilt.' },
+  { q: 'Can a partner set XLOGIC® up for us?', a: 'Yes. XGRC® partners can create your site, invite your people and recommend the right ready-made processes. If a partner sent you a sign-up link, use that one.' },
+  { q: 'Where is our data kept?', a: 'In XGRC®\'s ISO/IEC 27001-certified environment, separated from every other organisation\'s data. See the Trust Centre for detail.' },
+];
+---
+
+<Base
+  title="XLOGIC® Free | Governance processes that run | XGRC® Software"
+  description="Start XLOGIC® free: turn requirements into processes with owners, deadlines and evidence. Free for three people, no card, no time limit."
+>
+  <section class="section xf-hero">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span>XLOGIC® Free</span>
+      <h1>Run your first governance process <span class="grad">today, free.</span></h1>
+      <p class="lede">
+        XLOGIC® turns what you must do into processes people actually run, with an owner,
+        a deadline and evidence for every step. Start with a ready-made process and have it
+        running in minutes.
+      </p>
+      <div class="xf-ctas">
+        <a class="btn btn-primary" href={SIGNUP_URL} data-cta="xlogic-free-start">Start free</a>
+        <a class="btn btn-ghost" href="/xlogic">How XLOGIC® works</a>
+      </div>
+      <p class="xf-small">No card. No time limit. Free for an administrator and two colleagues.</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <h2>What Free includes</h2>
+      </div>
+      <div class="xf-grid">
+        {freeIncludes.map(([title, body]) => (
+          <div class="xf-card">
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight" id="plans">
+    <div class="container">
+      <div class="section-head">
+        <h2>Compare plans</h2>
+        <p class="lede">Every plan is the same product. Moving up adds features to the site you already have.</p>
+      </div>
+      <div class="xf-plans">
+        {plans.map((plan) => (
+          <div class={`xf-plan${plan.cta.primary ? ' xf-plan--free' : ''}`}>
+            <h3>{plan.name}</h3>
+            <p class="xf-price">
+              {plan.price}
+              {plan.priceNote && <span> {plan.priceNote}</span>}
+            </p>
+            <p class="xf-people">{plan.people}</p>
+            <ul>
+              {plan.adds.map((item) => <li>{item}</li>)}
+            </ul>
+            <a class={`btn ${plan.cta.primary ? 'btn-primary' : 'btn-ghost'}`} href={plan.cta.href}>
+              {plan.cta.label}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container xf-faq">
+      <div class="section-head">
+        <h2>Questions</h2>
+      </div>
+      {faqs.map((f) => (
+        <details>
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="section--tight xf-close">
+    <div class="container">
+      <h2>Your first process, running today.</h2>
+      <a class="btn btn-primary" href={SIGNUP_URL} data-cta="xlogic-free-start-bottom">Start free</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .xf-hero h1 { max-width: 22ch; margin-bottom: 18px; }
+  .xf-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .xf-small { color: var(--mute); font-size: 0.9rem; margin-top: 14px; }
+  .xf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .xf-card,
+  .xf-plan {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 22px;
+  }
+  .xf-card h3 { font-size: 1.05rem; margin: 0 0 8px; }
+  .xf-card p { color: var(--mute); margin: 0; }
+  .xf-plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    align-items: stretch;
+  }
+  .xf-plan { display: flex; flex-direction: column; }
+  .xf-plan--free { border-color: var(--green); box-shadow: 0 0 26px rgba(47, 232, 138, 0.15); }
+  .xf-plan h3 { margin: 0 0 6px; }
+  .xf-price { font-family: var(--font-display); font-size: 1.6rem; margin: 0; }
+  .xf-price span { font-size: 0.95rem; color: var(--mute); }
+  .xf-people { color: var(--mute); font-size: 0.9rem; margin: 6px 0 14px; }
+  .xf-plan ul { margin: 0 0 20px; padding-left: 18px; flex-grow: 1; }
+  .xf-plan li { margin: 4px 0; }
+  .xf-faq details {
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0;
+    max-width: 75ch;
+  }
+  .xf-faq summary { cursor: pointer; font-weight: 600; }
+  .xf-faq p { color: var(--mute); margin: 10px 0 0; }
+  .xf-close { text-align: center; }
+  .xf-close h2 { margin-bottom: 20px; }
+</style>
