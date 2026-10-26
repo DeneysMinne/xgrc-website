@@ -296,6 +296,20 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.26.3",
+      "date": "2026-10-26",
+      "category": "new",
+      "title": "See what each plan includes, and ask for an upgrade in one click",
+      "description": "A new Plan page shows what Free, Advanced and Enterprise include. Features your plan does not have are gathered at the bottom of the menu, each with a short preview of what it does, and an administrator can ask for the plan that includes it. The request goes straight to your XLOGIC partner or to XGRC."
+    },
+    {
+      "version": "2026.10.26.3",
+      "date": "2026-10-26",
+      "category": "new",
+      "title": "Partners: sign up a customer in one guided flow",
+      "description": "Partners now add a customer step by step: organisation, plan, their administrator and colleagues with everyday roles, and the processes to recommend, then a review. Everyone is invited by link. Partners can share their own processes with all their customers, see how far each customer has got with setting up, and give prospects their own Free sign-up link."
+    },
+    {
       "version": "2026.10.26.2",
       "date": "2026-10-26",
       "category": "improved",
