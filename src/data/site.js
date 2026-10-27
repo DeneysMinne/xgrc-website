@@ -66,7 +66,7 @@ export const solutionDetails = {
   sheqx: {
     infographic: '/assets/infographics/sheqx-infographic-v3.pdf',
     booklet: '/resources/xgrc-sheqx-booklet.pdf',
-    logo: '/assets/logos/solutions/sheqx.png',
+    logo: '/assets/logos/solutions/icons/sheqx.png',
     icon: '/assets/logos/solutions/icons/sheqx.png',
     screenshot: '/assets/screenshots/sheqx-dashboard.webp',
     youtubeId: 'hW3EPWIKj9s',
@@ -118,7 +118,7 @@ export const solutionDetails = {
 
   msx: {
     infographic: '/assets/infographics/msx-infographic-v3.pdf',
-    logo: '/assets/logos/solutions/msx.png',
+    logo: '/assets/logos/solutions/icons/msx.png',
     icon: '/assets/logos/solutions/icons/msx.png',
     screenshot: '/assets/screenshots/msx-dashboard.webp',
     name: 'MSX®',
@@ -164,7 +164,7 @@ export const solutionDetails = {
 
   msxcyber: {
     infographic: '/assets/infographics/msxcyber-infographic-v3.pdf',
-    logo: '/assets/logos/solutions/msxcyber.png',
+    logo: '/assets/logos/solutions/icons/msxcyber.png',
     icon: '/assets/logos/solutions/icons/msxcyber.png',
     screenshot: '/assets/screenshots/msxcyber-dashboard.webp',
     youtubeId: '5hZX0WIebCo',
@@ -249,7 +249,7 @@ export const solutionDetails = {
   erm: {
     infographic: '/assets/infographics/erm-infographic-v4.pdf',
     booklet: '/resources/xgrc-erm-booklet.pdf',
-    logo: '/assets/logos/solutions/erm.png',
+    logo: '/assets/logos/solutions/icons/erm.png',
     icon: '/assets/logos/solutions/icons/erm.png',
     screenshot: '/assets/screenshots/erm-dashboard-new.webp',
     name: 'Enterprise Risk Management',
@@ -434,7 +434,7 @@ export const solutionDetails = {
   },
 
   'integrated-assurance': {
-    logo: '/assets/logos/solutions/integrated-assurance.png',
+    logo: '/assets/logos/solutions/icons/integrated-assurance.png',
     icon: '/assets/logos/solutions/icons/integrated-assurance.png',
     screenshot: '/assets/screenshots/integrated-assurance-dashboard.webp',
     booklet: '/resources/xgrc-integrated-assurance-brochure.pdf',
@@ -480,7 +480,7 @@ export const solutionDetails = {
   envirx: {
     infographic: '/assets/infographics/envirx-infographic-v3.pdf',
     booklet: '/resources/xgrc-envirx-ebook.pdf',
-    logo: '/assets/logos/solutions/envirx.png',
+    logo: '/assets/logos/solutions/icons/envirx.png',
     icon: '/assets/logos/solutions/icons/envirx.png',
     screenshot: '/assets/screenshots/envirx-dashboard.webp',
     name: 'ENVIRX®',
@@ -527,7 +527,7 @@ export const solutionDetails = {
 
   esg: {
     infographic: '/assets/infographics/esg-infographic-v4.pdf',
-    logo: '/assets/logos/solutions/esg.png',
+    logo: '/assets/logos/solutions/icons/esg.png',
     icon: '/assets/logos/solutions/icons/esg.png',
     screenshot: '/assets/screenshots/esg-dashboard.webp',
     youtubeId: 'v3_97N3WUuI',
@@ -594,7 +594,7 @@ export const solutionDetails = {
   },
 
   'compliance-hub': {
-    logo: '/assets/logos/solutions/compliance-hub.png',
+    logo: '/assets/logos/solutions/icons/compliance-hub.png',
     icon: '/assets/logos/solutions/icons/compliance-hub.png',
     screenshot: '/assets/screenshots/compliance-hub-dashboard-v2.webp',
     booklet: '/resources/xgrc-compliance-hub-booklet.pdf',
@@ -640,7 +640,7 @@ export const solutionDetails = {
   },
 
   xlogic: {
-    logo: '/assets/logos/solutions/xlogic.png',
+    logo: '/assets/logos/solutions/icons/xlogic.png',
     icon: '/assets/logos/solutions/icons/xlogic.png',
     screenshot: '/assets/screenshots/xlogic-dashboard.webp',
     name: 'XLOGIC®',
@@ -683,7 +683,7 @@ export const solutionDetails = {
 
   maia: {
     infographic: '/assets/infographics/maia-infographic-v3.pdf',
-    logo: '/assets/logos/solutions/maia.png',
+    logo: '/assets/logos/solutions/icons/maia.png',
     icon: '/assets/logos/solutions/icons/maia.png',
     screenshot: '/assets/screenshots/maia-dashboard-v2.webp',
     youtubeId: 'inqCqT0uW2k',
@@ -807,7 +807,7 @@ export const solutionDetails = {
   },
 
   xrm: {
-    logo: '/assets/logos/solutions/xrm.png',
+    logo: '/assets/logos/solutions/icons/xrm.png',
     icon: '/assets/logos/solutions/icons/xrm.png',
     screenshot: '/assets/screenshots/xrm-dashboard.png',
     appUrl: 'xrm.xgrc.cloud',
