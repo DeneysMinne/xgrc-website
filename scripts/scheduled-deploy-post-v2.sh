@@ -106,6 +106,28 @@ share_to_linkedin() {
   fi
 }
 
+share_to_meta() {
+  # $1 = slug. Facebook Page (and Instagram, when configured) counterpart of
+  # share_to_linkedin, same best-effort discipline and ALERT: handling. Skips
+  # silently while the script is not on main yet or .secrets/meta-social.json
+  # does not exist (the script itself logs that and exits 0). Added 2026-10-14.
+  if [ ! -f "$REPO/scripts/meta-share-post.mjs" ]; then
+    return
+  fi
+  local meta_output
+  meta_output=$( cd "$REPO" && node scripts/meta-share-post.mjs "$1" 2>&1 )
+  printf '%s\n' "$meta_output" >> "$LOG"
+  local alerts
+  alerts=$(printf '%s\n' "$meta_output" | grep '^ALERT:')
+  if [ -n "$alerts" ]; then
+    log "WARNING: Facebook/Instagram share for $1 needs attention -- see ALERT lines above."
+    local alerts_html
+    alerts_html=$(printf '%s\n' "$alerts" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')
+    notify "XGRC blog: Facebook/Instagram share problem for $1" \
+      "<p>The blog post <strong>$1</strong> deployed fine, but Facebook/Instagram sharing hit a problem:</p><pre>$alerts_html</pre><p>Full log: $LOG</p>"
+  fi
+}
+
 cd "$REPO" || { log "FATAL: cannot cd to $REPO"; exit 1; }
 
 log "=== Starting scheduled deploy (claude-assisted v2): commit=$COMMIT slug=$SLUG ==="
@@ -188,6 +210,7 @@ elif printf '%s\n' "$LAST_LINE" | grep -q '^DEPLOY_SUCCESS:'; then
   notify "XGRC blog deployed: $SLUG" \
     "<p>The scheduled blog post is now live: <a href=\"https://www.xgrcsoftware.com/insights/$SLUG\">https://www.xgrcsoftware.com/insights/$SLUG</a></p>"
   share_to_linkedin "$SLUG"
+  share_to_meta "$SLUG"
 else
   log "FAILED or unclear result: $LAST_LINE"
   notify "XGRC blog deploy FAILED: $SLUG" \
