@@ -111,3 +111,6 @@ p.tagline { font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 9pt;
 .back .tagline { bottom: 58mm; }
 .back .tagline.second { bottom: 50mm; color: #b9cbd8; }
 .back .meta { font-size: 7.5pt; line-height: 1.5; }
+
+/* Links on the dark cover keep the fact text colour, underlined (BSI certificate). */
+.cover .fact a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }

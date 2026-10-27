@@ -28,7 +28,8 @@ const sections = [
 // Security & Trust Overview v3.1 (Oct 2026): the downloadable document and the
 // questions buyers ask most. Answers mirror the PDF's FAQ (section 16); source in
 // scripts/generate-pdfs/security-overview/.
-const overviewPdf = '/resources/xgrc-security-trust-overview-v3.pdf';
+// The query suffix makes Cloudflare fetch a fresh copy after the PDF is rebuilt; change it on each rebuild.
+const overviewPdf = '/resources/xgrc-security-trust-overview-v3.pdf?r=20261027';
 // BSI's public directory entry for our ISO/IEC 27001 certificate (opens on BSI's site).
 const bsiCertificate = 'https://www.bsigroup.com/en-GB/products-and-services/assessment-and-certification/validation-and-verification/client-directory-certificate/IS%20804839/';
 const facts = [
@@ -86,7 +87,7 @@ const policies = [
     <div class="container">
       <div class="card overview-card">
         <div class="overview-copy">
-          <span class="eyebrow"><span class="dot"></span>Security &amp; Trust Overview · v3.1</span>
+          <span class="eyebrow"><span class="dot"></span>Security &amp; Trust Overview</span>
           <h2>The full security picture, in one document.</h2>
           <p class="lede">Governance, hosting, encryption, access, monitoring, incident response, recovery, suppliers, AI and privacy law (POPIA, PAIA and GDPR), plus answers to the standard security questionnaire questions. Updated October 2026.</p>
           <a href={overviewPdf} class="btn btn-primary" download>Download the PDF</a>

@@ -1,5 +1,5 @@
 // Builds public/resources/xgrc-security-trust-overview-v3.pdf from cover.html +
-// body.html + back.html (XGRC Security & Trust Overview v3.1, Oct 2026). The cover prints
+// body.html + back.html (XGRC Security & Trust Overview, version 3.1, Oct 2026). The cover prints
 // full-bleed with no footer; the body gets a running footer with page numbers.
 // The two are merged with pypdf from scripts/generate-pdfs/.venv.
 //
@@ -17,11 +17,14 @@ const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..', '..', '..');
 const out = join(root, 'public', 'resources', 'xgrc-security-trust-overview-v3.pdf');
 const require = createRequire(import.meta.url);
+// The version lives in the PDF's metadata only; the cover, footer and title stay version-free.
+const VERSION = '3.1';
+const VERSION_DATE = 'October 2026';
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 
 const footer = `<div style="width:100%;font-family:Inter,Arial,sans-serif;font-size:7.5px;color:#5d7083;
   padding:0 17mm;display:flex;justify-content:space-between;">
-  <span>XGRC® Security &amp; Trust Overview · v3.1 · October 2026</span>
+  <span>XGRC® Security &amp; Trust Overview</span>
   <span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span></div>`;
 
 const tmp = mkdtempSync(join(tmpdir(), 'xgrc-sec-'));
@@ -49,9 +52,11 @@ from pypdf import PdfWriter, PdfReader
 w = PdfWriter()
 for f in sys.argv[1:4]:
     for p in PdfReader(f).pages: w.add_page(p)
-w.add_metadata({'/Title': 'XGRC® Security & Trust Overview v3.1', '/Author': 'Strategix Application Solutions (Pty) Ltd',
-                '/Subject': 'Security, privacy and resilience of the XGRC® platform', '/Keywords': 'ISO 27001, POPIA, PAIA, GDPR, security'})
+w.add_metadata({'/Title': 'XGRC® Security & Trust Overview', '/Author': 'Strategix Application Solutions (Pty) Ltd',
+                '/Subject': 'Security, privacy and resilience of the XGRC® platform (version ' + sys.argv[5] + ', ' + sys.argv[6] + ')',
+                '/Keywords': 'ISO 27001, POPIA, PAIA, GDPR, security, version ' + sys.argv[5],
+                '/Version': sys.argv[5], '/VersionDate': sys.argv[6]})
 with open(sys.argv[4], 'wb') as fh: w.write(fh)
-`, join(tmp, 'cover.pdf'), join(tmp, 'body.pdf'), join(tmp, 'back.pdf'), out], { stdio: 'inherit' });
+`, join(tmp, 'cover.pdf'), join(tmp, 'body.pdf'), join(tmp, 'back.pdf'), out, VERSION, VERSION_DATE], { stdio: 'inherit' });
 rmSync(tmp, { recursive: true, force: true });
 console.log('Wrote', out);
