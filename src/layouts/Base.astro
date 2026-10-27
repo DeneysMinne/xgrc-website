@@ -33,6 +33,15 @@ const orgSchema = JSON.stringify({
       foundingDate: '2015',
       email: brand.email,
       telephone: brand.phone,
+      // Must match the Google Business Profile address exactly (contact page wording).
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'First Floor, York House, Tybalt Place, Waterfall Park, Bekker Rd',
+        addressLocality: 'Midrand',
+        addressRegion: 'Gauteng',
+        postalCode: '1685',
+        addressCountry: 'ZA',
+      },
       sameAs: [...socialLinks.map((s) => s.url), 'https://www.strategix.co.za'],
       parentOrganization: { '@type': 'Organization', name: 'Strategix Group', url: 'https://www.strategix.co.za' },
     },
