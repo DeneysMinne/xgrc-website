@@ -296,6 +296,27 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.27.2",
+      "date": "2026-10-27",
+      "category": "new",
+      "title": "Ask XLOGIC",
+      "description": "Ask MAIA a question about your organisation, such as \"what is late this week?\", and get a short answer from your own records with links to the right screen. Available on plans that include MAIA."
+    },
+    {
+      "version": "2026.10.27.2",
+      "date": "2026-10-27",
+      "category": "new",
+      "title": "Watch it happen: a requirement's whole story, and an audit pack",
+      "description": "Open any requirement to see its life from the sentence in your policy to its evidence: who proposed, approved, built and ran it, every run and sign-off, each linked to the tamper-evident audit trail. Play the story step by step, or print it as an audit pack."
+    },
+    {
+      "version": "2026.10.27.2",
+      "date": "2026-10-27",
+      "category": "new",
+      "title": "XLOGIC in Action: your governance, live, and your next move",
+      "description": "\"How XLOGIC works\" is now XLOGIC in Action. It shows what changed since you were last here, the next few things you can usefully do (with the readiness each one gains), the eight stages with the real records sitting in each and who has them, and what is happening now. Your top next move also appears on the Cockpit. A short tour explains how XLOGIC works on your first visit and from the \"?\" button any time."
+    },
+    {
       "version": "2026.10.27.1",
       "date": "2026-10-27",
       "category": "improved",
