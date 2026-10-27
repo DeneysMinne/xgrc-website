@@ -10,8 +10,11 @@
  * Called from scheduled-deploy-post-v2.sh (share_to_meta) right after
  * DEPLOY_SUCCESS, next to share_to_linkedin.
  *
- * Usage: node scripts/meta-share-post.mjs <slug> [--facebook-only | --instagram-only] [--dry-run]
+ * Usage: node scripts/meta-share-post.mjs <slug> [--facebook-only | --instagram-only] [--dry-run] [--force]
  *   --dry-run prints what would be posted and calls nothing (no credentials needed).
+ *   --force posts even where the social share ledger says this article is
+ *   already on that platform (scripts/social-share-ledger.mjs); without it a
+ *   platform that already has the article is skipped, so re-runs never duplicate.
  *
  * Credentials: .secrets/meta-social.json (gitignored, chmod 600, VM-only),
  * written on the server during the live token session, never pasted anywhere:
@@ -36,6 +39,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { articles } from '../src/data/site.js'
+import { describe, recordShare, sharedEntry } from './social-share-ledger.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const SITE_ROOT = path.join(__dirname, '..')
@@ -91,6 +95,7 @@ async function postToFacebook({ token, pageId, article, articleUrl }) {
     access_token: pageToken,
   })
   console.log(`[facebook] Page post created: ${id} (article: ${articleUrl})`)
+  return id
 }
 
 async function postToInstagram({ token, igUserId, article, imageFile }) {
@@ -110,6 +115,7 @@ async function postToInstagram({ token, igUserId, article, imageFile }) {
   }
   const { id } = await graph('POST', `${igUserId}/media_publish`, { creation_id: containerId, access_token: token })
   console.log(`[instagram] Post published: ${id} (image: ${imageUrl})`)
+  return id
 }
 
 async function main() {
@@ -118,8 +124,9 @@ async function main() {
   const fbOnly = args.includes('--facebook-only')
   const igOnly = args.includes('--instagram-only')
   const dryRun = args.includes('--dry-run')
+  const force = args.includes('--force')
   if (!slug || (fbOnly && igOnly)) {
-    console.error('Usage: node scripts/meta-share-post.mjs <slug> [--facebook-only | --instagram-only] [--dry-run]')
+    console.error('Usage: node scripts/meta-share-post.mjs <slug> [--facebook-only | --instagram-only] [--dry-run] [--force]')
     process.exit(1)
   }
   const article = articles.find((a) => a.slug === slug)
@@ -130,10 +137,14 @@ async function main() {
     console.error(`ALERT: "${slug}" has no image: set in src/data/site.js; used ${imageFile}. Add image: '${imageFile}' to its entry.`)
   }
 
+  // Already on a platform (ledger) -> that platform is skipped unless --force.
+  const already = (platform) => (force ? null : sharedEntry(slug, platform))
+
   if (dryRun) {
+    const plan = (platform, post) => (already(platform) ? `skip: ${describe(already(platform))}` : post)
     console.log(JSON.stringify({
-      facebook: fbOnly || !igOnly ? { message: `${article.title}\n\n${article.excerpt}`, link: articleUrl } : 'skipped',
-      instagram: igOnly || !fbOnly ? { image_url: imageFile ? `${SITE_ORIGIN}/assets/images/insights/${imageFile}` : null } : 'skipped',
+      facebook: fbOnly || !igOnly ? plan('facebook', { message: `${article.title}\n\n${article.excerpt}`, link: articleUrl }) : 'skipped',
+      instagram: igOnly || !fbOnly ? plan('instagram', { image_url: imageFile ? `${SITE_ORIGIN}/assets/images/insights/${imageFile}` : null }) : 'skipped',
       credentials: fs.existsSync(CONFIG_PATH) ? 'present' : 'not set up',
     }, null, 2))
     return
@@ -146,17 +157,28 @@ async function main() {
   const { system_user_token: token, page_id: pageId, instagram_user_id: igUserId } = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'))
 
   const targets = []
-  if (!igOnly) {
+  if (!igOnly && already('facebook')) {
+    console.log(`[facebook] Skipping: ${describe(already('facebook'))}.`)
+  } else if (!igOnly) {
     if (token && pageId) targets.push({ label: 'facebook', run: () => postToFacebook({ token, pageId, article, articleUrl }) })
     else console.error('ALERT: [facebook] meta-social.json lacks system_user_token or page_id')
   }
-  if (!fbOnly && igUserId) {
+  if (!fbOnly && already('instagram')) {
+    console.log(`[instagram] Skipping: ${describe(already('instagram'))}.`)
+  } else if (!fbOnly && igUserId) {
     targets.push({ label: 'instagram', run: () => postToInstagram({ token, igUserId, article, imageFile }) })
   } else if (!fbOnly) {
     console.log('[instagram] Skipping: no instagram_user_id in meta-social.json.')
   }
 
-  const results = await Promise.allSettled(targets.map((t) => t.run()))
+  const results = await Promise.allSettled(targets.map(async (t) => {
+    const id = await t.run()
+    try {
+      recordShare(slug, t.label, { id, source: 'meta-share-post' })
+    } catch (err) {
+      console.error(`ALERT: [${t.label}] Posted (${id}) but could not record it in the share ledger, so a re-run would post it again: ${err.message}`)
+    }
+  }))
   let anySucceeded = false
   results.forEach((r, i) => {
     if (r.status === 'fulfilled') anySucceeded = true

@@ -11,7 +11,11 @@
  * LinkedIn outage must never be treated as the blog deploy itself having
  * failed.
  *
- * Usage: node scripts/linkedin-share-post.mjs <slug>
+ * Usage: node scripts/linkedin-share-post.mjs <slug> [--org-only | --personal-only] [--dry-run] [--force]
+ *   --dry-run says which targets would post or be skipped, and posts nothing.
+ *   --force posts even where the social share ledger says this article is
+ *   already on that target (scripts/social-share-ledger.mjs); without it a
+ *   target that already has the article is skipped, so re-runs never duplicate.
  *
  * Credentials read from .secrets/ (gitignored, chmod 600, VM-only):
  *   linkedin-app-client-secret.json      -- {client_id, client_secret} of
@@ -48,6 +52,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { articles } from '../src/data/site.js'
+import { describe, recordShare, sharedEntry } from './social-share-ledger.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const SITE_ROOT = path.join(__dirname, '..')
@@ -228,6 +233,7 @@ async function postToTarget({ label, accessToken, authorUrn, article, articleUrl
     thumbnailUrn,
   })
   console.log(`[${label}] LinkedIn post created: ${postId} (article: ${articleUrl}, thumbnail: ${thumbnailUrn || 'none'})`)
+  return postId
 }
 
 async function main() {
@@ -237,8 +243,10 @@ async function main() {
   // --personal-only re-posts an article to the personal profile alone, e.g.
   // after a personal-token failure, without posting to the company page twice.
   const personalOnly = args.includes('--personal-only')
+  const dryRun = args.includes('--dry-run')
+  const force = args.includes('--force')
   if (!slug || (orgOnly && personalOnly)) {
-    console.error('Usage: node scripts/linkedin-share-post.mjs <slug> [--org-only | --personal-only]')
+    console.error('Usage: node scripts/linkedin-share-post.mjs <slug> [--org-only | --personal-only] [--dry-run] [--force]')
     process.exit(1)
   }
   const article = articles.find(a => a.slug === slug)
@@ -285,9 +293,26 @@ async function main() {
     console.log('[org] Skipping company-page post: org credentials not set up yet (one-time OAuth authorization pending).')
   }
 
-  const results = await Promise.allSettled(targets.map(async (t) => {
+  // Already on a target (ledger key linkedin-personal / linkedin-org) -> skipped unless --force.
+  const pending = []
+  for (const t of targets) {
+    const entry = force ? null : sharedEntry(slug, `linkedin-${t.label}`)
+    if (entry) console.log(`[${t.label}] Skipping: ${describe(entry)}.`)
+    else pending.push(t)
+  }
+  if (dryRun) {
+    console.log(`[dry-run] Would post "${slug}" to: ${pending.map((t) => t.label).join(', ') || 'nothing'}`)
+    return
+  }
+
+  const results = await Promise.allSettled(pending.map(async (t) => {
     const accessToken = await t.getAccessToken()
-    await postToTarget({ label: t.label, accessToken, authorUrn: t.authorUrn, article, articleUrl })
+    const postId = await postToTarget({ label: t.label, accessToken, authorUrn: t.authorUrn, article, articleUrl })
+    try {
+      recordShare(slug, `linkedin-${t.label}`, { id: postId, source: 'linkedin-share-post' })
+    } catch (err) {
+      console.error(`ALERT: [${t.label}] Posted (${postId}) but could not record it in the share ledger, so a re-run would post it again: ${err.message}`)
+    }
   }))
 
   let anySucceeded = false
@@ -295,11 +320,11 @@ async function main() {
     if (result.status === 'fulfilled') {
       anySucceeded = true
     } else {
-      console.error(`ALERT: [${targets[i].label}] LinkedIn share failed: ${result.reason?.message ?? result.reason}`)
+      console.error(`ALERT: [${pending[i].label}] LinkedIn share failed: ${result.reason?.message ?? result.reason}`)
     }
   })
 
-  if (!anySucceeded && targets.length > 0) {
+  if (!anySucceeded && pending.length > 0) {
     throw new Error('Every configured LinkedIn target failed -- see per-target errors above.')
   }
 }
