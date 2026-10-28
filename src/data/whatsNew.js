@@ -296,6 +296,48 @@ export const whatsNew = {
   ],
   "xlogic": [
     {
+      "version": "2026.10.28.1",
+      "date": "2026-10-28",
+      "category": "new",
+      "title": "Training manuals for your plan",
+      "description": "Help now offers training manuals as PowerPoint and PDF: Getting started on Free, the full application on Advanced, the complete Enterprise manual, and a guide for partners. Each site sees the ones for its plan."
+    },
+    {
+      "version": "2026.10.28.1",
+      "date": "2026-10-28",
+      "category": "improved",
+      "title": "Policies & procedures",
+      "description": "Policies is now Policies & procedures: import a policy, a procedure or an SOP, and MAIA proposes the requirements inside it for you to approve."
+    },
+    {
+      "version": "2026.10.28.1",
+      "date": "2026-10-28",
+      "category": "new",
+      "title": "Full screen for the process canvas",
+      "description": "The full-screen button beside the zoom controls gives the diagram the whole window and fits it to the space. Press Esc or the button again to return."
+    },
+    {
+      "version": "2026.10.28.1",
+      "date": "2026-10-28",
+      "category": "improved",
+      "title": "Add a standard from the library, straight from Standards",
+      "description": "Don't see ISO 9001 or another standard? The standard picker on Standards now offers \"Add a standard from the library\", which opens the standards library with ISO 9001, 14001, 45001, 27001 and more."
+    },
+    {
+      "version": "2026.10.28.1",
+      "date": "2026-10-28",
+      "category": "improved",
+      "title": "Contract values with thousands separators, and a currency per site",
+      "description": "A contract value reads with its thousands grouped (2 500 000) as you type it. Currency is chosen from a list of every currency, and new contracts start in your site's own default currency, set in Contract setup. The key-date tiles on a contract are now the same size as the tiles beside them."
+    },
+    {
+      "version": "2026.10.28.1",
+      "date": "2026-10-28",
+      "category": "improved",
+      "title": "A menu that follows how XLOGIC works",
+      "description": "The menu now reads in the order the work flows: Sources (policies and procedures, contracts, standards), Requirements, Processes, Work, Assurance and Organisation. You see the screens of your own everyday work; \"Show everything\" at the foot of the menu lists every screen you may open. Modules your plan includes but nobody has used yet wait under More, and set-up screens are on one Settings page."
+    },
+    {
       "version": "2026.10.27.2",
       "date": "2026-10-27",
       "category": "new",
@@ -718,23 +760,23 @@ export const whatsNew = {
     {
       "version": "2026-08-20",
       "date": "2026-08-20",
-      "category": "fixed",
-      "title": "Clearer explanation when you lack permission for an action",
-      "description": "A permission error used to show a bare technical code with no explanation. It now says what the action needs in plain English, and names which role(s) in your tenant can actually do it - so you know exactly who to ask."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
-      "category": "new",
-      "title": "Process Templates: preview a template before applying it, and ten to choose from",
-      "description": "Every template card now has a Preview button showing its real step-by-step shape (owners, evidence, cadence, SLA) before you commit to it. The catalog also grew from 2 templates to 10: task-with-escalation, evidence-gated release, decision-routed review, two-stage sign-off, incident response, change request lifecycle, third-party risk assessment, and recurring training completion, alongside the original approval-with-evidence and periodic-review-with-escalation."
-    },
-    {
-      "version": "2026-08-20",
-      "date": "2026-08-20",
       "category": "new",
       "title": "Ten more frameworks: ISO 9001, 14001, 45001, 27001, 20000, 31000, 22301, 37001, 22000, 13485",
       "description": "Alongside ISO/IEC 42001, XLOGIC now ships the real clause structure for ISO 9001 (Quality), ISO 14001 (Environmental), ISO 45001 (Occupational Health & Safety), ISO/IEC 27001:2022 (Information Security), ISO/IEC 20000-1 (IT Service Management), ISO 31000 (Risk Management), ISO 22301 (Business Continuity), ISO 37001 (Anti-Bribery), ISO 22000 (Food Safety), and ISO 13485 (Medical Devices) - ready to link requirements against."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "improved",
+      "title": "Processes: status badges now explain what they mean",
+      "description": "DRAFT, APPROVED, RETIRED, RUNNING, COMPLETED and CANCELLED status badges on the Processes screen now show a one-line explanation of what the status means and what to do next, on hover."
+    },
+    {
+      "version": "2026-08-20",
+      "date": "2026-08-20",
+      "category": "fixed",
+      "title": "Clearer explanation when you lack permission for an action",
+      "description": "A permission error used to show a bare technical code with no explanation. It now says what the action needs in plain English, and names which role(s) in your tenant can actually do it - so you know exactly who to ask."
     },
     {
       "version": "2026-08-20",
@@ -746,9 +788,9 @@ export const whatsNew = {
     {
       "version": "2026-08-20",
       "date": "2026-08-20",
-      "category": "improved",
-      "title": "Processes: status badges now explain what they mean",
-      "description": "DRAFT, APPROVED, RETIRED, RUNNING, COMPLETED and CANCELLED status badges on the Processes screen now show a one-line explanation of what the status means and what to do next, on hover."
+      "category": "new",
+      "title": "Process Templates: preview a template before applying it, and ten to choose from",
+      "description": "Every template card now has a Preview button showing its real step-by-step shape (owners, evidence, cadence, SLA) before you commit to it. The catalog also grew from 2 templates to 10: task-with-escalation, evidence-gated release, decision-routed review, two-stage sign-off, incident response, change request lifecycle, third-party risk assessment, and recurring training completion, alongside the original approval-with-evidence and periodic-review-with-escalation."
     },
     {
       "version": "2026-08-20",
