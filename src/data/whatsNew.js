@@ -7,6 +7,13 @@
 export const whatsNew = {
   "xrm": [
     {
+      "version": "1.81.0",
+      "date": "2026-10-29",
+      "category": "new",
+      "title": "Marketing Hub: everything you publish, in one place",
+      "description": "A new Marketing Hub shows what your website and social channels publish. The Command centre lists what goes out in the next 7 days and whether each channel (blog, LinkedIn, Facebook, Instagram, Google Business Profile) is healthy. The Calendar shows every channel by month, week or as a list, and Content lists every post with where it was shared and its history. All times are South African time. This first phase only shows: your website keeps publishing exactly as before. Admins turn Marketing Hub on from its page."
+    },
+    {
       "version": "1.80.0",
       "date": "2026-10-26",
       "category": "new",
@@ -37,13 +44,6 @@ export const whatsNew = {
     {
       "version": "1.75.0",
       "date": "2026-10-14",
-      "category": "new",
-      "title": "Record consent to be contacted",
-      "description": "Every lead and contact now has a Consent to contact section. Record when someone agrees to hear from you, or asks you to stop, by WhatsApp, email, SMS or phone. Nothing is ever overwritten, so the history is your proof, and XRM shows whether a marketing message is allowed right now. Consent moves across when a lead is converted."
-    },
-    {
-      "version": "1.75.0",
-      "date": "2026-10-14",
       "category": "improved",
       "title": "Find people by phone number, however it was typed",
       "description": "Search for 084 444 5513, +27 84 444 5513 or 0844445513 and XRM finds the same person, in the Leads and Contacts lists and in the search bar. Set the country used for numbers without a country code in Maintenance > Settings."
@@ -51,9 +51,9 @@ export const whatsNew = {
     {
       "version": "1.75.0",
       "date": "2026-10-14",
-      "category": "improved",
-      "title": "Leads and contacts with just a phone number",
-      "description": "A lead or contact now needs an email address or a phone number, not always an email. A WhatsApp enquiry or a phone call with no email can be saved straight away, and converting such a lead reuses a contact who already has that number."
+      "category": "new",
+      "title": "Record consent to be contacted",
+      "description": "Every lead and contact now has a Consent to contact section. Record when someone agrees to hear from you, or asks you to stop, by WhatsApp, email, SMS or phone. Nothing is ever overwritten, so the history is your proof, and XRM shows whether a marketing message is allowed right now. Consent moves across when a lead is converted."
     },
     {
       "version": "1.75.0",
@@ -68,6 +68,13 @@ export const whatsNew = {
       "category": "new",
       "title": "Log calls, meetings and WhatsApp chats on contacts and deals",
       "description": "Contacts now have an Add Engagement button on their Activity tab, and so does a deal's Activity tab. Pick the type (including WhatsApp), say what was discussed, and save. A contact on exactly one open deal has it linked to that deal too. This records what happened; nothing is sent."
+    },
+    {
+      "version": "1.75.0",
+      "date": "2026-10-14",
+      "category": "improved",
+      "title": "Leads and contacts with just a phone number",
+      "description": "A lead or contact now needs an email address or a phone number, not always an email. A WhatsApp enquiry or a phone call with no email can be saved straight away, and converting such a lead reuses a contact who already has that number."
     },
     {
       "version": "1.74.1",
