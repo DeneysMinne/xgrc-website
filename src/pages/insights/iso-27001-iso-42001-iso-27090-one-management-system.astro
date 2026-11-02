@@ -95,8 +95,8 @@ const schema = JSON.stringify({
   dateModified: article.dateModified || article.date,
   author: { '@type': 'Organization', name: 'XGRC® Software', url: 'https://xgrcsoftware.com' },
   contributor: [
-    { '@type': 'Person', name: 'Bernard Coetzee', jobTitle: 'Independent cybersecurity, governance and risk consultant' },
-    { '@type': 'Person', name: 'Wikus van Niekerk', jobTitle: 'Group General Counsel', worksFor: { '@type': 'Organization', name: 'Strategix Group' } },
+    { '@type': 'Person', name: 'Bernard Coetzee', jobTitle: 'Independent cybersecurity, governance and risk consultant', image: 'https://xgrcsoftware.com/assets/images/people/bernard-coetzee.jpg', sameAs: ['https://www.linkedin.com/in/bcoetzee/'] },
+    { '@type': 'Person', name: 'Wikus van Niekerk', jobTitle: 'Group General Counsel', worksFor: { '@type': 'Organization', name: 'Strategix Group' }, image: 'https://xgrcsoftware.com/assets/images/people/wikus-van-niekerk.jpg', sameAs: ['https://www.linkedin.com/in/wikus-van-niekerk-b00b78204/'] },
   ],
   about: ['ISO/IEC 27001', 'ISO/IEC 42001', 'ISO/IEC 27090', 'Harmonized Structure'],
   publisher: { '@type': 'Organization', name: 'XGRC® Software', url: 'https://xgrcsoftware.com' },
@@ -142,7 +142,7 @@ const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeUR
           <p class="hero-dek">With contributions from <strong>Bernard Coetzee</strong> and <strong>Wikus van Niekerk</strong></p>
           <div class="hero-meta">
             <div class="avatars" aria-hidden="true">
-              <span class="av av-b">BC</span><span class="av av-w">WvN</span>
+              <img class="av av-b" src="/assets/images/people/bernard-coetzee.jpg" alt="" width="40" height="40" /><img class="av av-w" src="/assets/images/people/wikus-van-niekerk.jpg" alt="" width="40" height="40" />
             </div>
             <p>
               <span>By XGRC® Software</span>
@@ -235,7 +235,7 @@ const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeUR
               <p>Every ISO management system standard is built on the same frame. Once you see that, ISO 27001 and ISO 42001 stop being two projects. <mark>Risk does not respect the boundaries between standards,</mark> so run them as one system, and AI risk lands in the same register the business already watches.</p>
             </blockquote>
             <figcaption>
-              <span class="av av-b av-lg" aria-hidden="true">BC</span>
+              <img class="av av-b av-lg" src="/assets/images/people/bernard-coetzee.jpg" alt="" width="52" height="52" loading="lazy" />
               <span><strong>Bernard Coetzee</strong><span>Independent cybersecurity, governance and risk consultant</span></span>
             </figcaption>
           </figure>
@@ -329,7 +329,7 @@ const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeUR
               <p>The introduction of AI does not necessarily create a separate compliance regime. POPIA, King IV™ (and especially the new King V™) and ISO/IEC 27001 already require an organisation to determine who is accountable for information and how it is protected. Most organisations already make use of AI through enterprise applications, cloud services and productivity tools, and as such should already form part of their compliance and risk management programmes. The purpose of ISO/IEC 27090 is thus complementary as it provides the ISMS team with a specific and practical way to identify and treat specific AI threats and compromises. <mark>The framework, in essence requires the organisation to name the AI threat, assess it, put a control and an owner against it, all while continuously monitoring and improving them.</mark></p>
             </blockquote>
             <figcaption>
-              <span class="av av-w av-lg" aria-hidden="true">WvN</span>
+              <img class="av av-w av-lg" src="/assets/images/people/wikus-van-niekerk.jpg" alt="" width="52" height="52" loading="lazy" />
               <span><strong>Wikus van Niekerk</strong><span>Group General Counsel, Strategix</span></span>
             </figcaption>
           </figure>
@@ -466,16 +466,16 @@ const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeUR
           <h2 id="contrib-h" class="small-h">The contributors</h2>
           <div class="contrib-grid">
             <div class="person">
-              <span class="av av-b av-xl" aria-hidden="true">BC</span>
+              <img class="av av-b av-xl" src="/assets/images/people/bernard-coetzee.jpg" alt="Bernard Coetzee" width="68" height="68" loading="lazy" />
               <div>
-                <p class="p-name">Bernard Coetzee</p>
+                <p class="p-name"><a href="https://www.linkedin.com/in/bcoetzee/" target="_blank" rel="noopener">Bernard Coetzee</a></p>
                 <p class="p-role">Independent cybersecurity, governance and risk consultant with close to two decades of information security experience across financial services, retail and technology.</p>
               </div>
             </div>
             <div class="person">
-              <span class="av av-w av-xl" aria-hidden="true">WvN</span>
+              <img class="av av-w av-xl" src="/assets/images/people/wikus-van-niekerk.jpg" alt="Wikus van Niekerk" width="68" height="68" loading="lazy" />
               <div>
-                <p class="p-name">Wikus van Niekerk</p>
+                <p class="p-name"><a href="https://www.linkedin.com/in/wikus-van-niekerk-b00b78204/" target="_blank" rel="noopener">Wikus van Niekerk</a></p>
                 <p class="p-role">Group General Counsel at Strategix (the XGRC parent group), whose work took Strategix Technology Solutions to ISO/IEC 27001:2022 certification.</p>
               </div>
             </div>
@@ -663,14 +663,15 @@ const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeUR
   .hero-meta p { margin: 0; font-family: var(--font-mono); font-size: 12px; color: var(--mute); display: flex; flex-wrap: wrap; gap: 8px; }
   .dot { color: var(--faint); }
   .avatars { display: flex; }
-  .avatars .av + .av { margin-left: -6px; }
   .av {
     display: inline-grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%;
     font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.02em; color: var(--void);
     border: 2px solid var(--void);
   }
-  .av-b { background: linear-gradient(135deg, #7af3ff, var(--c1)); }
-  .av-w { background: linear-gradient(135deg, #5cffa8, var(--c3)); font-size: 11px; }
+  img.av { object-fit: cover; background: var(--abyss); }
+  .av-b { background: linear-gradient(135deg, #7af3ff, var(--c1)); box-shadow: 0 0 0 2px var(--c1); }
+  .av-w { background: linear-gradient(135deg, #5cffa8, var(--c3)); font-size: 11px; box-shadow: 0 0 0 2px var(--c3); }
+  .avatars .av + .av { margin-left: -8px; }
   .av-lg { width: 52px; height: 52px; font-size: 16px; }
   .av-lg.av-w { font-size: 14px; }
   .av-xl { width: 68px; height: 68px; font-size: 20px; }
@@ -944,6 +945,9 @@ const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeUR
   .contrib { margin-top: 64px; padding-top: 36px; border-top: 1px solid var(--line); }
   .contrib-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .person { display: flex; gap: 16px; align-items: flex-start; padding: 20px; border-radius: var(--radius-md); background: var(--panel); border: 1px solid var(--line); }
+  .p-name a { color: var(--ink); text-decoration: none; background-image: linear-gradient(var(--c1), var(--c1)); background-size: 0 1px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size 0.25s; }
+  .p-name a:hover { background-size: 100% 1px; }
+  .p-name a::after { content: ' in'; font: 600 10px var(--font-mono); color: var(--c1); border: 1px solid rgba(48, 226, 244, 0.4); border-radius: 4px; padding: 1px 4px; margin-left: 8px; vertical-align: 2px; }
   .p-name { margin: 2px 0 6px !important; font-family: var(--font-display); font-weight: 700; color: var(--ink); font-size: 1.05rem; }
   .p-role { margin: 0 !important; font-size: 14px; color: var(--mute); line-height: 1.55; }
 
