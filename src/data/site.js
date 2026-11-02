@@ -1708,6 +1708,18 @@ export const articles = [
     relatedSolutions: ['ai-governance', 'msxcyber'],
   },
   {
+    slug: 'iso-27001-iso-42001-iso-27090-one-management-system',
+    title: 'One Management System for AI and Information Security: ISO 27001, ISO 42001 and ISO/IEC 27090',
+    excerpt: 'With contributions from Bernard Coetzee and Wikus van Niekerk: why ISO/IEC 27001 and ISO/IEC 42001 share one frame and should run as one management system, and how the new ISO/IEC 27090 brings AI security threats into the ISMS you already run.',
+    category: 'AI & Governance',
+    date: '2026-11-02',
+    image: 'iso-27001-iso-42001-iso-27090-one-management-system.jpg',
+    imageAlt: 'Three interlocking rings labelled ISO/IEC 27001, ISO/IEC 42001 and ISO/IEC 27090 converging into one management system',
+    contributors: ['Bernard Coetzee', 'Wikus van Niekerk'],
+    feature: true, // bespoke page: src/pages/insights/iso-27001-iso-42001-iso-27090-one-management-system.astro
+    relatedSolutions: ['msx', 'maia', 'ai-governance', 'msxcyber'],
+  },
+  {
     slug: 'help-desk-social-engineering',
     title: 'Your Help Desk Is Your Weakest Login: Stopping Social Engineering at the Reset',
     excerpt: 'Attackers no longer need to break your MFA. They call your help desk and ask for a reset. Here is how to close that gap and prove the control is working.',
@@ -1731,6 +1743,12 @@ export const articles = [
 // FAQs shown on individual /insights/[slug] articles, keyed by article slug.
 // Only articles with an entry here render a FAQ section + FAQPage schema.
 export const articleFaqs = {
+  'iso-27001-iso-42001-iso-27090-one-management-system': [
+    { q: 'Can ISO/IEC 27001 and ISO/IEC 42001 be implemented as one management system?', a: 'Yes. Both follow ISO’s Harmonized Structure, so context, leadership, document control, internal audit, management review and corrective action can be shared. Each standard keeps its own specific requirements and Annex A controls.' },
+    { q: 'Is ISO/IEC 27090 a certifiable standard?', a: 'No. ISO/IEC 27090 is guidance on addressing security threats and compromises to AI systems. It is designed to complement ISO/IEC 27001 and ISO/IEC 27002, not to be certified against.' },
+    { q: 'Do we need ISO/IEC 42001 to use ISO/IEC 27090?', a: 'No. An organisation with an ISO/IEC 27001 ISMS can use ISO/IEC 27090 to bring AI security threats into its existing risk assessment, whether or not it also adopts ISO/IEC 42001.' },
+    { q: 'What is the Harmonized Structure?', a: 'The common structure ISO uses for all its management system standards, formerly called Annex SL: the same ten clauses, core text and core definitions, so standards such as ISO 9001, ISO 14001, ISO 45001, ISO/IEC 27001 and ISO/IEC 42001 can be integrated.' },
+  ],
   'php2shell-critical-php-vulnerabilities-governance-response': [
     { q: 'What is PHP2Shell?', a: 'PHP2Shell is the name for two critical vulnerabilities in the core of PHP, CVE-2026-109618 and CVE-2026-109619, disclosed in October 2026. PHP rates both 9.2 on the CVSS v4.0 scale. They can allow an attacker to run code on a web server remotely without logging in.' },
     { q: 'Which PHP versions fix PHP2Shell?', a: 'PHP 8.5.12, 8.4.27, 8.3.36 and 8.2.35, released on 21 October 2026. PHP 8.1 and older are end of life and received no official release. Restart PHP processes after patching, because the fix only applies once the running processes are replaced.' },

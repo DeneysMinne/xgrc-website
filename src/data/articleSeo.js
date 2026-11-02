@@ -34,6 +34,10 @@ export const articleSeo = {
     seoTitle: 'ISO 42001 vs ISO 27001: What\'s the Difference? | XGRC®',
     metaDescription: 'ISO 42001 vs ISO 27001: how an AI management system differs from an ISMS, where the two standards overlap, and why a connected approach to both makes sense.',
   },
+  'iso-27001-iso-42001-iso-27090-one-management-system': {
+    seoTitle: 'ISO 27001, 42001 and 27090: One Management System | XGRC®',
+    metaDescription: 'Run ISO 27001 and ISO 42001 as one management system on the Harmonized Structure, and use the new ISO/IEC 27090 to bring AI security threats into your ISMS.',
+  },
   // 2026-10-12: ranks 4.5 for "sheq meaning" (656 impressions/28d) and 7.2
   // for "sheq" but drew 2 clicks. Lead with the meaning searchers type and
   // promise more than the one-line definition Google already shows.

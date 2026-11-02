@@ -7,7 +7,8 @@ import { articleSeo } from '../../data/articleSeo.js';
 import { useCaseRegistry } from '../../data/useCaseRegistry.js';
 
 export function getStaticPaths() {
-  return articles.map((a) => ({ params: { slug: a.slug }, props: { article: a } }));
+  // Feature articles (feature: true) have their own bespoke page in this folder.
+  return articles.filter((a) => !a.feature).map((a) => ({ params: { slug: a.slug }, props: { article: a } }));
 }
 
 const { slug } = Astro.params;

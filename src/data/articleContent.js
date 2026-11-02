@@ -3604,6 +3604,88 @@ Make AI Governance Work Beyond October
 Use Cybersecurity Awareness Month to select one material AI use case and follow it through ownership, assessment, approval, controls, monitoring and review. Then use that experience to establish a repeatable programme across the organisation. The objective is not simply to say that AI is governed; it is to show how that governance works when people, systems and risks change.
 
 <a href="/contact/">Speak to an XGRC® specialist</a> about implementing and maintaining your AIMS with the new AI Governance solution.`,
+'iso-27001-iso-42001-iso-27090-one-management-system': `Our recent article on <a href="/insights/iso-42001-vs-iso-27001/">ISO/IEC 42001 vs ISO/IEC 27001</a> set out what separates the two standards: one governs artificial intelligence, the other information security. Two industry practitioners responded with points that deserve an article of their own.
+
+The differences are real. The way to manage them, however, is not two separate systems.
+
+Same frame, different requirements
+
+Bernard Coetzee, an independent cybersecurity, governance and risk consultant with close to two decades of information security experience across financial services, retail and technology, pointed out that the ISO management system standards share a common foundation. That means they can be seen, and run, together.
+
+“Every ISO management system standard is built on the same frame. Once you see that, ISO 27001 and ISO 42001 stop being two projects. Risk does not respect the boundaries between standards, so run them as one system, and AI risk lands in the same register the business already watches.” Bernard Coetzee.
+
+That common foundation is ISO’s Harmonized Structure, known until 2021 as Annex SL. Every recent ISO management system standard uses it, including ISO 9001, ISO 14001, ISO 45001, ISO/IEC 27001:2022 and ISO/IEC 42001:2023.
+
+Each has the same ten clauses, the same core text and the same core definitions. Clauses 4 to 10 carry the requirements:
+
+- Clause 4, Context of the organisation (issues, interested parties, scope). Shared: one context; the scope names both information security and AI.
+- Clause 5, Leadership (commitment, policy, roles). Shared: two policies, or one policy with both commitments.
+- Clause 6, Planning (risks, opportunities, objectives). Partly shared: one risk method, but AI adds an impact assessment.
+- Clause 7, Support (resources, competence, awareness, documented information). Shared: one document control, one competence record.
+- Clause 8, Operation (running the processes and controls). Partly shared: different controls, one way of running them.
+- Clause 9, Performance evaluation (monitoring, internal audit, management review). Shared: one audit programme, one management review.
+- Clause 10, Improvement (nonconformity, corrective action, continual improvement). Shared: one corrective action process.
+
+What can be shared
+
+An organisation already certified to ISO/IEC 27001 has most of the machinery ISO/IEC 42001 needs. These can be extended rather than rebuilt:
+
+- The context analysis and the risk method
+- Document control and competence records
+- Internal audit and management review
+- Corrective action and continual improvement
+
+One internal audit programme can cover both standards, and one management review can consider both sets of results. This is the same logic behind PAS 99 and integrated management systems: one skeleton, with each discipline’s specific requirements attached to it.
+
+What stays separate
+
+Sharing the frame does not make the standards interchangeable. Each keeps requirements the other does not have:
+
+- ISO/IEC 27001 keeps its Annex A of 93 information security controls, and the Statement of Applicability that justifies each one.
+- ISO/IEC 42001 adds an AI system impact assessment, looking at effects on individuals, groups and society. It also has its own Annex A of AI-specific controls, covering areas such as data for AI systems, the AI system life cycle and the use of AI by third parties.
+- Objectives and metrics differ. Information security objectives measure confidentiality, integrity and availability; AI objectives also cover fairness, transparency and human oversight.
+
+The practical test is simple: anything that describes how the organisation governs is shared; anything that describes what is being protected or assessed stays specific.
+
+Where ISO/IEC 27090 fits
+
+If ISO/IEC 42001 tells an organisation how to govern AI, and ISO/IEC 27001 provides the framework for managing information security, a practical question remains: how should AI-specific security threats be identified, assessed and incorporated into the ISMS and risk register already maintained by the organisation?
+
+Wikus van Niekerk, Group General Counsel at Strategix (the XGRC parent group), whose work took Strategix Technology Solutions to ISO/IEC 27001:2022 certification, pointed to the answer: ISO/IEC 27090.
+
+“The introduction of AI does not necessarily create a separate compliance regime. POPIA, King IV™ (and especially the new King V™) and ISO/IEC 27001 already require an organisation to determine who is accountable for information and how it is protected. Most organisations already make use of AI through enterprise applications, cloud services and productivity tools, and as such should already form part of their compliance and risk management programmes. The purpose of ISO/IEC 27090 is thus complementary as it provides the ISMS team with a specific and practical way to identify and treat specific AI threats and compromises. The framework, in essence requires the organisation to name the AI threat, assess it, put a control and an owner against it, all while continuously monitoring and improving them.” Wikus van Niekerk.
+
+ISO/IEC 27090:2026, Cybersecurity, Artificial intelligence (AI), Addressing security threats and compromises to AI systems, was published in October 2026. It is guidance, not a certifiable standard, and is written to complement ISO/IEC 27001 and ISO/IEC 27002.
+
+It describes threats that ordinary security controls were not designed for, across the AI system life cycle:
+
+- Data poisoning: corrupting training or fine-tuning data so the model learns the wrong behaviour.
+- Evasion: inputs crafted to make a model misclassify or misjudge.
+- Model extraction and inversion: recovering a model, or the data it was trained on, by querying it.
+- Membership inference: working out whether a specific person’s data was used in training.
+- Prompt injection: instructions hidden in content that make a generative AI system act against its purpose.
+
+Bringing AI threats into the ISMS you already run
+
+None of this needs a second security programme. Each step below extends something an ISO/IEC 27001 system already has:
+
+- Inventory. Add AI systems, models, datasets and AI services to the asset inventory (ISO/IEC 27002 control 5.9), including AI features inside software you buy.
+- Risk assessment. Add ISO/IEC 27090 threat scenarios to the existing method in clause 6.1.2, so AI risks are scored and owned like any other.
+- Suppliers. Extend supplier security (controls 5.19 to 5.22) to AI providers: where data goes, whether it trains their models, and how they handle incidents.
+- Development and change. Apply secure development and testing (8.25 to 8.29) to model changes, prompts and training data, not only to code.
+- Monitoring. Log and monitor AI system behaviour (8.15 and 8.16) for signs of misuse, drift or injection.
+- One review. Report AI security risks into the same internal audit and management review that ISO/IEC 42001 and ISO/IEC 27001 already share.
+
+The result is one management system with one risk register, in which AI threats, AI impacts and information security risks are visible side by side.
+
+One system, fewer gaps
+
+Bernard’s point and Wikus’s point arrive at the same place. The standards were designed to fit together, and the newest guidance assumes they will.
+
+Organisations that run ISO/IEC 27001 and ISO/IEC 42001 as separate projects duplicate effort. Worse, they leave gaps where AI risks fall between two registers.
+
+XGRC® <a href="/msx/">MSX®</a> manages multiple ISO standards as one integrated management system, and <a href="/maia/">MAIA®</a> brings governed AI, with a full audit trail, to the same data. To see how one register can hold information security and AI risks together, <a href="/demo/">book a demo</a>.`,
+
 'iso-42001-vs-iso-27001': `AI Is Creating a New Governance Conversation
 
 Artificial intelligence is rapidly becoming part of everyday business. Organisations are using AI to automate processes, analyse information, improve productivity, support decision-making and introduce new digital capabilities. At the same time, they continue to face growing information security risks as technology becomes more deeply embedded across their operations. That raises an important governance question: how should organisations manage AI while continuing to protect their information?
@@ -3648,7 +3730,7 @@ The simplest distinction is that ISO/IEC 42001 is about artificial intelligence 
 - Controls: AI-related management controls versus information security controls
 - Monitoring: AI management system performance versus ISMS performance
 
-What they share is the management system discipline itself, including a commitment to continual improvement. They are not competing standards. They address different governance requirements that increasingly overlap as organisations adopt AI.
+What they share is the management system discipline itself, including a commitment to continual improvement. They are not competing standards. They address different governance requirements that increasingly overlap as organisations adopt AI. Two practitioners took this further in our follow-up, <a href="/insights/iso-27001-iso-42001-iso-27090-one-management-system/">one management system for ISO 27001, ISO 42001 and ISO/IEC 27090</a>.
 
 Where Do AI and Information Security Meet?
 

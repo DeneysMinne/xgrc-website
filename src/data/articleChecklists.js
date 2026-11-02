@@ -70,6 +70,7 @@ export const articleChecklists = {
   'esg-kpi-dashboard-what-to-track': 'esg-reporting',
   'iso-42001-implementation-ai-governance': 'ai-governance-readiness',
   'iso-42001-vs-iso-27001': 'ai-governance-readiness',
+  'iso-27001-iso-42001-iso-27090-one-management-system': 'ai-governance-readiness',
   'king-v-and-the-rise-of-ai-governance': 'king-v-governance',
   'iso-27001-mandatory-documents': 'iso-27001-documentation-checklist',
   // November 2026 to January 2027 series (scheduled from 3 Nov 2026).
