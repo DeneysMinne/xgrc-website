@@ -57,10 +57,10 @@ const schema = {
       <h1>{entry.headline}</h1>
       {base.summary && <p class="lede">{base.summary}</p>}
       <ul class="facts">
-        <li><span>Company</span>{company}</li>
+        <li><span>Company</span>{entry.companyUrl ? <a href={entry.companyUrl} target="_blank" rel="noopener">{company}</a> : company}</li>
         <li><span>Location</span>{entry.location}</li>
         <li><span>Solutions</span><div>{entry.solutions.map((s, i) => (<>{i > 0 && ', '}<a href={s.href}>{s.name}</a></>))}</div></li>
-        {entry.partner && <li><span>Implementation partner</span>{entry.partner}</li>}
+        {entry.partner && <li><span>Implementation partner</span>{entry.partnerUrl ? <a href={entry.partnerUrl} target="_blank" rel="noopener">{entry.partner}</a> : entry.partner}</li>}
       </ul>
       {pdf && <a href={pdf} class="btn btn-ghost" download>Download the PDF case study</a>}
     </div>
@@ -92,6 +92,43 @@ const schema = {
       <p>{entry.solution}</p>
       <ul>{entry.highlights.map((h) => <li>{h}</li>)}</ul>
 
+      {entry.implementation && (
+        <>
+          <h2>Implementation</h2>
+          <p>{entry.implementation.intro}{entry.partnerUrl && <> Implementation partner: <a href={entry.partnerUrl} target="_blank" rel="noopener">{entry.partner}</a>.</>}</p>
+          <ul>{entry.implementation.steps.map((st) => <li>{st}</li>)}</ul>
+          {entry.implementation.modules && (
+            <>
+              <h3>Modules implemented</h3>
+              <ul class="chips">{entry.implementation.modules.map((m) => <li>{m}</li>)}</ul>
+            </>
+          )}
+          {entry.implementation.note && <p>{entry.implementation.note}</p>}
+        </>
+      )}
+
+      {entry.resultsList && (
+        <>
+          <h2>The results</h2>
+          {entry.resultsIntro && <p>{entry.resultsIntro}</p>}
+          <ul>{entry.resultsList.map((r) => <li>{r}</li>)}</ul>
+        </>
+      )}
+
+      {entry.lessons && (
+        <>
+          <h2>Lessons learned</h2>
+          <ol>{entry.lessons.map((l) => <li>{l}</li>)}</ol>
+        </>
+      )}
+
+      {(entry.quotes || []).map((q) => (
+        <figure class="quote">
+          <blockquote>"{q.text}"</blockquote>
+          <figcaption>{q.name}, {q.role}</figcaption>
+        </figure>
+      ))}
+
       {entry.quote && (
         <figure class="quote">
           <blockquote>"{entry.quote.text}"</blockquote>
@@ -100,6 +137,7 @@ const schema = {
       )}
 
       {entry.outlook && (<><h2>What's next</h2><p>{entry.outlook}</p></>)}
+      {entry.conclusion && (<><h2>Conclusion</h2><p>{entry.conclusion}</p></>)}
     </div>
   </section>
 
@@ -134,7 +172,11 @@ const schema = {
   .r-detail { color: var(--mute); font-size: 0.88rem; line-height: 1.5; }
   .prose h2 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); margin: 34px 0 12px; }
   .prose p, .prose li { color: var(--mute); line-height: 1.75; font-size: 0.98rem; }
-  .prose ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+  .prose ul, .prose ol { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+  .prose h3 { font-size: 1.05rem; margin: 22px 0 10px; color: var(--ink); }
+  .prose a { color: var(--cyan); }
+  .prose ul.chips { list-style: none; padding: 0; flex-direction: row; flex-wrap: wrap; gap: 8px; }
+  .prose ul.chips li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 4px 12px; font-size: 0.9rem; color: var(--ink); }
   .quote { margin: 34px 0; padding: 22px 26px; border-left: 3px solid var(--cyan); background: rgba(255, 255, 255, 0.03); border-radius: 0 14px 14px 0; }
   .quote blockquote { margin: 0 0 10px; color: var(--ink); font-size: 1.05rem; line-height: 1.6; }
   .quote figcaption { color: var(--mute); font-size: 0.9rem; }

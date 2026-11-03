@@ -96,6 +96,71 @@ export const caseStudyPages = [
     },
     outlook: 'Vican Manufacturing plans to expand its use of SHEQX®, adding predictive analytics and further sustainability reporting, with GRC Link supporting continuous improvement.',
   },
+  {
+    slug: 'commercial-cold-holdings',
+    draft: true,
+    datePublished: '2026-11-03',
+    title: 'Commercial Cold Holdings Case Study: SHEQX® | XGRC®',
+    metaDescription: 'How Commercial Cold Holdings, one of the world\'s 25 largest cold storage groups, digitised SHEQ with SHEQX®, implemented by OSA International.',
+    headline: 'Commercial Cold Holdings: group-wide SHEQ visibility with SHEQX®',
+    location: 'South Africa, Namibia and Mozambique',
+    partner: 'OSA International',
+    partnerUrl: 'https://osa-int.cloud/',
+    companyUrl: 'https://www.cchcold.com/',
+    solutions: [
+      { name: 'SHEQX®', href: '/sheqx/' },
+    ],
+    about: 'Commercial Cold Holdings (CCH) is Southern Africa\'s leading cold storage and logistics provider, committed to reducing food waste, enhancing food security and supporting economic growth across the continent. With facilities in South Africa, Namibia and Mozambique, CCH serves a broad range of industries including agriculture, fishing, fruit exports, retail and food services. As one of the 25 largest refrigerated warehousing providers globally, CCH operates in a highly regulated environment where food safety, quality assurance and environmental compliance are non-negotiable.',
+    challenges: [
+      'Fragmented SHEQ data across business units',
+      'Manual compliance tracking and limited audit traceability',
+      'Poor visibility into compliance risks, expiry dates and corrective actions',
+      'Time-consuming incident and non-conformance reporting (NCR) processes',
+    ],
+    solution: 'In partnership with OSA International, CCH implemented SHEQX®, a centralised, cloud-based compliance platform from XGRC® Software. SHEQX® was selected for its ability to digitally transform the way SHEQ is monitored, reported and managed across CCH\'s network. The platform allows CCH to unify its approach to workplace safety, environmental stewardship and food quality management, ensuring alignment with ISO 22000, ISO 14001 and ISO 45001.',
+    highlights: [
+      'Real-time incident, audit and inspection capture via mobile devices',
+      'A centralised, auditable database for all SHEQ documentation and data',
+      'Automated compliance tracking across sites, certifications and legal registers',
+      'Smart notifications and escalations for incidents, actions and document expiries',
+      'Live dashboards for compliance performance monitoring and decision support',
+    ],
+    results: [
+      { figure: 'Top 25', label: 'cold storage group globally', detail: 'among the largest refrigerated warehousing providers in the world' },
+      { figure: '3', label: 'countries', detail: 'South Africa, Namibia and Mozambique' },
+      { figure: '6', label: 'SHEQX® modules', detail: 'implemented in the initial rollout' },
+      { figure: '1 Aug 2024', label: 'group-wide go-live', detail: 'after a phased implementation led by OSA International' },
+    ],
+    implementation: {
+      intro: 'The rollout began in mid-2024 and followed a phased, well-governed implementation plan led by OSA International.',
+      steps: [
+        'Core system configuration and document migration',
+        'Setup of employee profiles and training paths',
+        'Two focused training sessions for super users and administrators in July',
+        'Group-wide go-live on 1 August 2024',
+      ],
+      modules: ['Profile Management', 'Document Manager', 'Action Manager', 'Inspection and NCR Management', 'Incident Management', 'Mobile Application Access'],
+      note: 'The initial rollout covered major CCH facilities including Paarden Eiland, Duncan Dock, Epping, Walvis Bay, Midrand, Keystone, Richmond, Aeroton and Greenbushes, laying the foundation for group-wide standardisation.',
+    },
+    resultsIntro: 'Since the go-live, CCH has seen meaningful improvements in both compliance capability and operational confidence. By consolidating SHEQ data into a single platform, CCH has unlocked better reporting, faster decision-making and a more responsive compliance culture.',
+    resultsList: [
+      'Group-wide, real-time SHEQ visibility across all operations',
+      'Faster incident response and trend identification',
+      'Improved audit readiness and ISO alignment',
+      'Reduced manual effort and fewer data errors',
+      'Greater assurance in maintaining export-critical certifications (FSSC 22000, PPECB, DALRRD, HACCP)',
+    ],
+    lessons: [
+      'Early stakeholder engagement drives smoother adoption',
+      'Super user training is key to building internal capability',
+      'SHEQ digitisation should be seen as an enabler, not an overhead, for performance, food safety and customer trust',
+    ],
+    quotes: [
+      { text: 'Implementing SHEQX® has been a turning point in our compliance journey. We have not only digitised key processes but also gained real-time visibility into SHEQ performance across the group.', name: 'Larna Jodamus', role: 'Group Compliance Manager, CCH' },
+      { text: 'SHEQX® empowers our teams to manage risk proactively. With better data and mobile functionality, we have created a safer, smarter operating environment.', name: 'Jurie Schoeman', role: 'Chief Operations Officer, CCH' },
+    ],
+    conclusion: 'Through its partnership with OSA International and the adoption of SHEQX®, CCH has strengthened its position as a compliance-first, food safety-driven cold chain leader. The digitisation of SHEQ has enabled CCH to meet international expectations, support sustainable growth and build confidence with both regulators and customers.',
+  },
 ];
 
 export const publishedCaseStudyPages = caseStudyPages.filter((c) => !c.draft);
