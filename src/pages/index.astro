@@ -6,6 +6,10 @@ import Testimonials from '../components/Testimonials.astro';
 import LogoTile from '../components/LogoTile.astro';
 import { pillars, solutions, stats, brand, tourDashboards } from '../data/site.js';
 import TourStrip from '../components/TourStrip.astro';
+import FeatureReveal from '../components/FeatureReveal.astro';
+import SolutionVisual from '../components/SolutionVisual.astro';
+import '../styles/feature.css';
+import { lookFor, solutionIcon } from '../data/solutionLooks.js';
 
 const trustedLogos = [
   { name: 'Fraser Alexander', logo: 'Fraser-Alexander.jpg' },
@@ -19,6 +23,7 @@ const trustedLogos = [
   { name: 'Toyota South Africa', logo: 'Toyota.png' },
 ];
 const previewSolutions = solutions.slice(0, 6);
+const pillarAcc = ['#30e2f4', '#fb923c', '#a78bfa', '#3ecf8e'];
 const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed);
 ---
 
@@ -28,6 +33,7 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
   ogImage="/assets/og/og-xgrc-platform.jpg"
 >
   <Hero />
+  <div class="fp home" style="--acc: #30e2f4">
 
   <!-- B. Proof-stats band -->
   {visibleStats.length > 0 && (
@@ -43,26 +49,22 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
     </section>
   )}
 
-  <!-- C. MAIA® — promoted above pillars, outcome-first copy -->
-  <section class="section--tight">
-    <div class="container">
-      <div class="card maia">
-        <div>
-          <span class="eyebrow"><span class="dot"></span>Governed AI · MAIA®</span>
+  <!-- C. MAIA® and AI Governance spotlight -->
+  <section class="fp-sec tight">
+    <div class="container spot-grid">
+      <div class="spot maia rv" style="--sacc: #c084fc">
+        <div class="spot-vis"><SolutionVisual slug="maia" icon={solutionIcon('maia')} /></div>
+        <div class="spot-body">
+          <span class="fp-eb">Governed AI · MAIA®</span>
           <h2>Ask your governance data anything.</h2>
           <p class="lede">MAIA® is governed AI embedded within XGRC®, so decision-makers get instant answers from risk registers, policies and audit records, through controlled, audited AI integrations with a complete interaction audit trail.</p>
           <a href="/maia/" class="link-arrow">Explore MAIA® →</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- C2. AI Governance — new solution, promoted alongside MAIA® -->
-  <section class="section--tight">
-    <div class="container">
-      <div class="card ai-gov">
-        <div>
-          <span class="eyebrow"><span class="dot"></span>New · AI Governance</span>
+      <div class="spot ai-gov rv" style="--sacc: #60a5fa">
+        <div class="spot-vis"><SolutionVisual slug="msxcyber" standards={['EU AI Act', 'ISO/IEC 42001']} /></div>
+        <div class="spot-body">
+          <span class="fp-eb">New · AI Governance</span>
           <h2>The AI register says what AI you run. XGRC says whether it's governed.</h2>
           <p class="lede">Govern every AI system your organisation builds or uses against the EU AI Act and ISO/IEC 42001 — classification, impact assessment, risk, controls, human oversight, incidents and change, all mapped to your AI register.</p>
           <a href="/ai-governance/" class="link-arrow">Explore AI Governance →</a>
@@ -72,18 +74,19 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
   </section>
 
   <!-- Problem + pillars -->
-  <section class="section">
+  <section class="fp-sec">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>The problem we solve</span>
-        <h2>Governance, risk, compliance and cyber security still operate in silos.</h2>
+      <div class="fp-head center rv">
+        <span class="fp-eb">The problem we solve</span>
+        <h2 class="fp-h2">Governance, risk, compliance and cyber security still operate in silos.</h2>
         <p class="lede">Decision-makers face critical blind spots. We unify them into one smart, scalable, and intuitive platform built on a single auditable foundation.</p>
       </div>
       <SsotConvergence />
-      <div class="grid cols-4">
-        {pillars.map((p) => (
-          <div class="card">
-            <span class="tag">{p.name}</span>
+      <div class="pillars">
+        {pillars.map((p, i) => (
+          <div class="pillar rv" style={`--pacc: ${pillarAcc[i % pillarAcc.length]}`}>
+            <span class="pillar-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <span class="pillar-name">{p.name}</span>
             <p>{p.body}</p>
           </div>
         ))}
@@ -105,23 +108,26 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
   </section>
 
   <!-- Solutions preview -->
-  <section class="section">
+  <section class="fp-sec">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>One platform, many lenses</span>
-        <h2>Specialist solutions, built on one foundation.</h2>
+      <div class="fp-head center rv">
+        <span class="fp-eb">One platform, many lenses</span>
+        <h2 class="fp-h2">Specialist solutions, built on one foundation.</h2>
         <p class="lede">Adopt the solution that addresses your most pressing challenge today. Combine more over time, without migrating data or rebuilding processes.</p>
       </div>
-      <div class="grid cols-3">
+      <div class="fp-cards">
         {previewSolutions.map((s) => (
-          <a href={`/solutions/#${s.slug}`} class={`card ${s.partner ? 'card--partner' : ''}`}>
-            <span class="tag">{s.tag}</span>
+          <a href={`/solutions/#${s.slug}`} class={`fp-card rv ${s.partner ? 'card--partner' : ''}`} style={`--racc: ${lookFor(s.slug).acc}`}>
+            <span class="fp-card-top">
+              {solutionIcon(s.slug) ? <img src={solutionIcon(s.slug)} alt="" width="34" height="34" loading="lazy" /> : <span class="fp-mono" aria-hidden="true">AI</span>}
+              <span class="fp-tag">{s.tag}</span>
+            </span>
             <h3>{s.name}</h3>
             <p>{s.blurb}</p>
           </a>
         ))}
       </div>
-      <div style="margin-top:28px;">
+      <div class="sol-more">
         <a href="/solutions/" class="btn btn-ghost">See all solutions</a>
       </div>
     </div>
@@ -139,9 +145,10 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
   <Testimonials variant="home" />
 
   <!-- Contact CTA -->
-  <section class="section" id="contact">
+  <section class="fp-sec" id="contact">
     <div class="container">
-      <div class="card cta">
+      <div class="fp-cta cta rv">
+        <span class="fp-eb">Book a demo</span>
         <h2>Ready to see it in action?</h2>
         <p class="lede">Whether you are addressing a single risk domain or coordinating assurance across the enterprise, the XGRC® <a href="/grc-software/">GRC software platform</a> gives you the foundation to move forward with confidence.</p>
         <div class="cta-actions">
@@ -152,9 +159,44 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
       </div>
     </div>
   </section>
+  </div>
 </Base>
+<FeatureReveal />
 
 <style>
+  /* Stats as gradient figures */
+  .stat-value { background: linear-gradient(120deg, var(--c1), var(--c2)); -webkit-background-clip: text; background-clip: text; color: transparent !important; }
+
+  /* MAIA® + AI Governance spotlight */
+  .spot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .spot { position: relative; overflow: hidden; isolation: isolate; display: grid; grid-template-rows: auto 1fr; border-radius: 26px; border: 1px solid color-mix(in srgb, var(--sacc) 40%, var(--line)); background: radial-gradient(70% 60% at 50% 0%, color-mix(in srgb, var(--sacc) 16%, transparent), transparent 70%), var(--panel); transition: transform 0.3s var(--ease), border-color 0.3s; }
+  .spot:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--sacc) 65%, transparent); }
+  .spot-vis { --acc: var(--sacc); padding: 18px 40px 0; max-height: 300px; overflow: hidden; }
+  .spot-vis :global(.sv) { max-width: 340px; }
+  .spot-body { padding: 8px clamp(24px, 3vw, 36px) clamp(26px, 3vw, 36px); }
+  .spot-body .fp-eb { color: var(--sacc); }
+  .spot-body h2 { font: 800 clamp(1.35rem, 2.3vw, 1.85rem)/1.2 var(--font-display); letter-spacing: -0.02em; margin: 0 0 12px; color: var(--ink); text-wrap: balance; }
+  .spot-body .lede { color: var(--mute); font-size: 1rem; margin-bottom: 16px; }
+  .spot-body .link-arrow { color: var(--sacc); }
+
+  /* Pillars */
+  .pillars { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .pillar { position: relative; padding: 24px 22px; border-radius: 20px; background: var(--panel); border: 1px solid var(--line); overflow: hidden; transition: border-color 0.25s, transform 0.25s var(--ease); }
+  .pillar::before { content: ''; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--pacc), transparent); }
+  .pillar:hover { border-color: color-mix(in srgb, var(--pacc) 50%, transparent); transform: translateY(-4px); }
+  .pillar-n { position: absolute; right: 18px; top: 16px; font: 800 2.2rem/1 var(--font-display); color: color-mix(in srgb, var(--pacc) 22%, transparent); }
+  .pillar-name { display: inline-block; font: 500 11.5px var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--pacc); margin-bottom: 12px; }
+  .pillar p { color: var(--mute); font-size: 0.95rem; line-height: 1.6; margin: 0; }
+  .sol-more { margin-top: 28px; text-align: center; }
+
+  /* CTA */
+  .cta .lede { color: var(--mute); margin: 0 auto 26px; max-width: 60ch; }
+  .cta .lede a { color: var(--acc); }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .contactline { font: 500 12px var(--font-mono); color: var(--faint); margin: 22px 0 0; }
+  @media (max-width: 1000px) { .spot-grid { grid-template-columns: 1fr; } .pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .pillars { grid-template-columns: 1fr; } }
+
   /* ── B. Stats band ────────────────────────────────────── */
   .stats-band {
     padding: 48px 0;
@@ -198,18 +240,6 @@ const visibleStats = import.meta.env.DEV ? stats : stats.filter(s => s.confirmed
     .stat-cell:nth-child(4) { border-top: 1px solid var(--line); }
   }
 
-  /* ── C. MAIA® card ─────────────────────────────────────── */
-  .maia { background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02)); border-color: var(--line-strong); }
-  .maia h2 { margin-bottom: 0.4em; }
-  .maia .lede { margin-bottom: 18px; }
-  /* ── C2. AI Governance card ───────────────────────────── */
-  .ai-gov { background: linear-gradient(120deg, rgba(47,232,138,0.06), rgba(48,226,244,0.03)); border-color: var(--line-strong); }
-  .ai-gov h2 { margin-bottom: 0.4em; }
-  .ai-gov .lede { margin-bottom: 18px; }
-  .cta { text-align: center; padding: clamp(36px, 6vw, 64px); background: linear-gradient(160deg, rgba(47,232,138,0.07), rgba(48,226,244,0.03)); border-color: var(--line-strong); }
-  .cta .lede { margin: 12px auto 26px; }
-  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-  .contactline { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
 
   /* ── Trusted by strip ─────────────────────────────────── */
   .trusted-strip { padding: 64px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
