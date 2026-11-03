@@ -1,7 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
+import FeatureReveal from '../components/FeatureReveal.astro';
+import '../styles/feature.css';
+import { solutionIcon } from '../data/solutionLooks.js';
 import { milestones, people, stats } from '../data/site.js';
 
+const orbitIcons = ['sheqx', 'msx', 'envirx', 'msxcyber', 'erm', 'esg', 'integrated-assurance', 'compliance-hub', 'maia', 'xlogic', 'xrm'];
 const visibleStats = import.meta.env.DEV ? stats : stats.filter((s) => s.confirmed);
 
 const divisions = [
@@ -24,13 +28,28 @@ const offices = [
 ---
 
 <Base title="About Us | XGRC® Software" description="XGRC® Software is built and owned by Strategix. Since 2015 we have helped organisations replace fragmented oversight with one secure, auditable GRC platform.">
-  <section class="page-head">
-    <div class="container">
-      <span class="eyebrow"><span class="dot"></span>About Us</span>
-      <h1>Built to make governance executable.</h1>
-      <p class="lede">XGRC® Software is built and owned by Strategix. Since 2015 we have helped organisations replace fragmented oversight with one secure, auditable platform. ISO 27001:2022 certified, with a presence in Johannesburg, Cape Town and the United Kingdom.</p>
+  <div class="fp" style="--acc: #30e2f4">
+  <header class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
+    <div class="container fp-hero-grid">
+      <div>
+        <span class="fp-chip">About Us</span>
+        <h1 class="fp-title">Built to make <span class="fp-hl">governance executable.</span></h1>
+        <p class="fp-dek">XGRC® Software is built and owned by Strategix. Since 2015 we have helped organisations replace fragmented oversight with one secure, auditable platform. ISO 27001:2022 certified, with a presence in Johannesburg, Cape Town and the United Kingdom.</p>
+      </div>
+      <div class="orbit" aria-hidden="true">
+        <div class="orbit-halo"></div>
+        <div class="orbit-ring r1"></div>
+        <div class="orbit-ring r2"></div>
+        <div class="orbit-spin">
+          {orbitIcons.map((s, i) => (
+            <span class="orbit-ic" style={`--a: ${(360 / orbitIcons.length) * i}deg`}><img src={solutionIcon(s)} alt="" width="44" height="44" /></span>
+          ))}
+        </div>
+        <img class="orbit-core" src="/assets/xgrc-cube.png" alt="" width="120" height="120" />
+      </div>
     </div>
-  </section>
+  </header>
 
   <!-- Proof-stats band -->
   {visibleStats.length > 0 && (
@@ -47,15 +66,15 @@ const offices = [
   )}
 
   <!-- Vertical timeline -->
-  <section class="section">
+  <section class="fp-sec">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Our journey</span>
-        <h2>A decade of Driving Compliance®.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Our journey</span>
+        <h2 class="fp-h2">A decade of Driving Compliance®.</h2>
       </div>
       <ol class="timeline">
         {milestones.map((m, i) => (
-          <li class={`event ${i % 2 === 0 ? 'is-left' : 'is-right'}`}>
+          <li class={`event rv ${i % 2 === 0 ? 'is-left' : 'is-right'}`}>
             <div class="node" aria-hidden="true"></div>
             <div class="body">
               <div class="year">{m.year}</div>
@@ -69,7 +88,7 @@ const offices = [
   </section>
 
   <!-- Backed by Strategix Group -->
-  <section class="section--tight">
+  <section class="fp-sec tight">
     <div class="container">
       <div class="grid cols-2 backing-grid">
         <div>
@@ -153,11 +172,11 @@ const offices = [
 
   <!-- Humans behind the code — renders nothing until people[] is populated -->
   {people.length > 0 && (
-    <section class="section--tight">
+    <section class="fp-sec tight">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow"><span class="dot"></span>The humans behind the code</span>
-          <h2>Meet the humans behind the code.</h2>
+        <div class="fp-head rv">
+        <span class="fp-eb">The humans behind the code</span>
+        <h2 class="fp-h2">Meet the humans behind the code.</h2>
           <p class="lede">Enterprise software doesn't build itself. Hover over the team, or tap on mobile, to see what makes each of us tick.</p>
         </div>
         <div class="people">
@@ -196,11 +215,25 @@ const offices = [
       </div>
     </section>
   )}
+  </div>
 </Base>
+<FeatureReveal />
 
 <style>
-  .page-head { padding: 130px 0 0; }
-  .page-head h1 { margin: 8px 0 18px; }
+  .orbit { position: relative; width: min(100%, 460px); aspect-ratio: 1; margin: 0 auto; }
+  .orbit-halo { position: absolute; inset: 14%; border-radius: 50%; background: radial-gradient(closest-side, rgba(48, 226, 244, 0.35), transparent); filter: blur(30px); }
+  .orbit-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(140, 190, 220, 0.18); }
+  .orbit-ring.r1 { inset: 4%; border-style: dashed; border-color: rgba(48, 226, 244, 0.4); }
+  .orbit-ring.r2 { inset: 24%; }
+  .orbit-spin { position: absolute; inset: 0; animation: orbitSpin 60s linear infinite; }
+  .orbit-ic { position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; margin: -29px; border-radius: 16px; display: grid; place-items: center; background: rgba(9, 20, 35, 0.9); border: 1px solid var(--line-strong); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4); transform: rotate(var(--a)) translateY(calc(-1 * min(46vw, 210px))) rotate(calc(-1 * var(--a))); }
+  .orbit-ic img { width: 38px; height: 38px; object-fit: contain; animation: orbitSpin 60s linear infinite reverse; }
+  .orbit-core { position: absolute; left: 50%; top: 50%; width: 30%; height: auto; transform: translate(-50%, -50%); filter: drop-shadow(0 0 30px rgba(48, 226, 244, 0.55)); animation: corePulse 4s ease-in-out infinite; }
+  @keyframes orbitSpin { to { transform: rotate(360deg); } }
+  @keyframes corePulse { 50% { transform: translate(-50%, -50%) scale(1.05); } }
+  @media (max-width: 640px) { .orbit-ic { width: 46px; height: 46px; margin: -23px; transform: rotate(var(--a)) translateY(-40vw) rotate(calc(-1 * var(--a))); } .orbit-ic img { width: 30px; height: 30px; } }
+  @media (prefers-reduced-motion: reduce) { .orbit-spin, .orbit-ic img, .orbit-core { animation: none; } }
+
 
   /* proof-stats band */
   .stats-band { padding: 48px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }

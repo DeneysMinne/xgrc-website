@@ -75,8 +75,8 @@ const kind = {
         <path d={`M ${C.x - 30} ${C.y + 2} l 22 22 l 42 -46`} class="tick draw" />
         {around(Math.min(std.length, 4), 175, 45).map((p, i) => (
           <g class="node-in" style={`--d:${i * 150}ms`}>
-            <rect x={p.x - 58} y={p.y - 14} width="116" height="28" rx="14" class="pill" />
-            <text x={p.x} y={p.y + 4.5} class="lbl strong" text-anchor="middle">{short(std[i], 16)}</text>
+            <rect x={p.x - 72} y={p.y - 14} width="144" height="28" rx="14" class="pill" />
+            <text x={p.x} y={p.y + 4.5} class="lbl strong" text-anchor="middle">{short(std[i], 20)}</text>
           </g>
         ))}
       </g>

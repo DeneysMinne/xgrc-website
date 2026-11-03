@@ -1,5 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import FeatureReveal from '../components/FeatureReveal.astro';
+import '../styles/feature.css';
+import SolutionVisual from '../components/SolutionVisual.astro';
 import { brand } from '../data/site.js';
 
 const sections = [
@@ -75,17 +78,24 @@ const policies = [
   description="Review XGRC® Software hosting, certifications, subprocessors and data protection commitments: everything your procurement, security or legal team needs."
   ogImage="/assets/og/og-trust-centre.jpg"
 >
-  <section class="page-head">
-    <div class="container">
-      <span class="eyebrow"><span class="dot"></span>Trust Centre</span>
-      <h1>Security and compliance, on the record.</h1>
-      <p class="lede">Everything your procurement, security, or legal team needs to evaluate XGRC® Software: hosting, certifications, subprocessors and data protection commitments.</p>
+  <div class="fp" style="--acc: #2fe88a">
+  <header class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
+    <div class="container fp-hero-grid">
+      <div>
+        <span class="fp-chip">Trust Centre</span>
+        <h1 class="fp-title">Security and compliance,<span class="fp-hl"> on the record.</span></h1>
+        <p class="fp-dek">Everything your procurement, security, or legal team needs to evaluate XGRC® Software: hosting, certifications, subprocessors and data protection commitments.</p>
+      </div>
+      <div class="trust-vis">
+        <SolutionVisual slug="msxcyber" standards={facts.map((f) => f.b)} />
+      </div>
     </div>
-  </section>
+  </header>
 
-  <section class="section--tight">
+  <section class="fp-sec tight">
     <div class="container">
-      <div class="card overview-card">
+      <div class="card overview-card rv">
         <div class="overview-copy">
           <span class="eyebrow"><span class="dot"></span>Security &amp; Trust Overview</span>
           <h2>The full security picture, in one document.</h2>
@@ -99,11 +109,11 @@ const policies = [
     </div>
   </section>
 
-  <section class="section">
+  <section class="fp-sec">
     <div class="container">
       <div class="grid cols-2 trust-grid">
         {sections.map((s) => (
-          <a class="card trust-card" href={s.href}>
+          <a class="card trust-card rv" href={s.href}>
             <h3>{s.title}</h3>
             <p>{s.body}</p>
             <span class="link-arrow">Read more &rarr;</span>
@@ -113,12 +123,12 @@ const policies = [
     </div>
   </section>
 
-  <section class="section--tight">
+  <section class="fp-sec tight">
     <div class="container">
-      <span class="eyebrow"><span class="dot"></span>FAQ</span>
-      <h2 class="faq-title">Security questions, answered.</h2>
-      <div class="faq-list">
-        {faqs.map((f) => (<details class="faq-item"><summary>{f.q}</summary><p>{f.a}</p>{f.link && (
+      <span class="fp-eb">FAQ</span>
+      <h2 class="fp-h2 faq-title">Security questions, answered.</h2>
+      <div class="fp-faqs">
+        {faqs.map((f, i) => (<details class="fp-faq rv"><summary><span class="fp-fq-n">{String(i + 1).padStart(2, '0')}</span><span class="fp-fq-q">{f.q}</span><span class="fp-fq-ic" aria-hidden="true"></span></summary><p>{f.a}</p>{f.link && (
           <a href={f.link.href} class="btn btn-ghost faq-link" target="_blank" rel="noopener" aria-label={`${f.link.label} (opens in a new tab)`}>{f.link.label} <span aria-hidden="true">↗</span></a>
         )}</details>))}
       </div>
@@ -127,9 +137,9 @@ const policies = [
   </section>
   <script type="application/ld+json" set:html={faqSchema} />
 
-  <section class="section--tight">
+  <section class="fp-sec tight">
     <div class="container">
-      <div class="card policies-card">
+      <div class="card policies-card rv">
         <span class="eyebrow"><span class="dot"></span>Policies</span>
         <h2>Privacy Policy, Cookie Policy & Website Terms.</h2>
         <p class="lede">Our full legal and policy documentation is published in the Legal Hub, including the Data Processing Addendum and SaaS-incorporated policies.</p>
@@ -143,9 +153,9 @@ const policies = [
     </div>
   </section>
 
-  <section class="section">
+  <section class="fp-sec">
     <div class="container">
-      <div class="card cta-block">
+      <div class="fp-cta cta-block rv">
         <div class="cta-tag"><span class="dot"></span>Due diligence</div>
         <h2>Need a security questionnaire completed, or a signed DPA?</h2>
         <p class="lede">Our team can provide security questionnaire responses, certification evidence, and signed data processing documentation for procurement review.</p>
@@ -156,10 +166,11 @@ const policies = [
       </div>
     </div>
   </section>
+  </div>
 </Base>
+<FeatureReveal />
 
 <style>
-  .page-head { padding: 130px 0 0; }
   .overview-card { display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: center;
     background: linear-gradient(120deg, rgba(48,226,244,0.08), rgba(38,158,198,0.02)); border-color: var(--line-strong); }
   .overview-card h2 { margin: 6px 0 12px; }
@@ -175,10 +186,11 @@ const policies = [
   .faq-item summary::-webkit-details-marker { display: none; }
   .faq-item[open] summary { color: var(--cyan); }
   .faq-item p { color: var(--mute); padding: 0 0 16px; line-height: 1.65; margin: 0; }
-  .faq-link { margin: 0 0 18px; padding: 10px 18px; font-size: 0.92rem; }
+  .faq-link { margin: 0 18px 18px 50px; padding: 10px 18px; font-size: 0.92rem; }
+  .trust-vis { position: relative; }
+  .faq-more a, .policy-link--all { color: var(--acc) !important; }
   .faq-more { color: var(--mute); margin-top: 18px; font-size: 0.92rem; }
   .faq-more a { color: var(--cyan); }
-  .page-head h1 { margin: 8px 0 18px; max-width: 20ch; }
   .trust-grid { gap: 24px; }
   .trust-card { text-decoration: none; display: flex; flex-direction: column; cursor: pointer; }
   .trust-card h3 { margin-bottom: 10px; }
@@ -190,12 +202,6 @@ const policies = [
   .policy-link { font-size: 0.9rem; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; }
   .policy-link:hover { color: var(--cyan); border-color: var(--cyan); }
   .policy-link--all { color: var(--cyan); border: none; font-weight: 500; }
-  .cta-block {
-    text-align: center;
-    padding: clamp(36px, 6vw, 64px);
-    background: linear-gradient(160deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02));
-    border-color: var(--line-strong);
-  }
   .cta-tag {
     display: inline-flex; align-items: center; gap: 8px;
     font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
