@@ -1,6 +1,8 @@
 ---
 import MarketingOptIn from '../components/MarketingOptIn.astro';
 import Base from '../layouts/Base.astro';
+import '../styles/feature.css';
+import '../styles/form-page.css';
 import { brand } from '../data/site.js';
 
 const FORM_ENDPOINT = "/api/demo";
@@ -10,7 +12,9 @@ const FORM_ENDPOINT = "/api/demo";
   title="Book a Demo | XGRC® Software"
   description="See XGRC® in action. Book a personalised demo and we'll show you how the platform addresses your governance, risk and compliance challenges."
 >
+  <div class="fp fp-form" style="--acc: #2fe88a">
   <section class="demo-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
     <div class="container">
       <span class="eyebrow"><span class="dot"></span>Book a demo</span>
       <h1>See XGRC® <span class="grad">in action.</span></h1>
@@ -149,6 +153,7 @@ const FORM_ENDPOINT = "/api/demo";
 
     </div>
   </section>
+  </div>
 </Base>
 
 <style>

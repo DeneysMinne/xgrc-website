@@ -1,6 +1,8 @@
 ---
 import MarketingOptIn from '../components/MarketingOptIn.astro';
 import Base from '../layouts/Base.astro';
+import '../styles/feature.css';
+import '../styles/form-page.css';
 import { brand } from '../data/site.js';
 
 const FORM_ENDPOINT = "/api/demo";
@@ -17,7 +19,9 @@ const reasons = [
   title="Contact Us | XGRC® Software"
   description="Get in touch with XGRC® Software about legal and compliance queries, procurement and security reviews, partnerships, or a general enquiry."
 >
+  <div class="fp fp-form" style="--acc: #a78bfa">
   <section class="demo-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
     <div class="container">
       <span class="eyebrow"><span class="dot"></span>Contact us</span>
       <h1>Get in <span class="grad">touch.</span></h1>
@@ -162,6 +166,7 @@ const reasons = [
 
     </div>
   </section>
+  </div>
 </Base>
 
 <style>
