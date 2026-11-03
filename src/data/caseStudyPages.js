@@ -20,6 +20,7 @@ export const caseStudyPages = [
     headline: 'TN Ceramics: safety, quality, environment and risk on one platform',
     location: 'South Africa',
     partner: 'GRC Link',
+    partnerLogo: 'grc-link.png', // from grclink.online
     solutions: [
       { name: 'SHEQX®', href: '/sheqx/' },
       { name: 'ENVIRX®', href: '/envirx/' },
@@ -67,6 +68,7 @@ export const caseStudyPages = [
     headline: 'Vican Manufacturing: safety, quality and compliance with SHEQX® and ISO 9001',
     location: 'South Africa',
     partner: 'GRC Link',
+    partnerLogo: 'grc-link.png', // from grclink.online
     solutions: [
       { name: 'SHEQX®', href: '/sheqx/' },
       { name: 'ISO 9001 quality management', href: '/use-cases/iso-9001-readiness/' },
@@ -109,6 +111,7 @@ export const caseStudyPages = [
     headline: 'Commercial Cold Holdings: group-wide SHEQ visibility with SHEQX®',
     location: 'South Africa, Namibia and Mozambique',
     partner: 'OSA International',
+    partnerLogo: 'osa-international.png', // from osa-int.cloud
     partnerUrl: 'https://osa-int.cloud/',
     companyUrl: 'https://www.cchcold.com/',
     solutions: [

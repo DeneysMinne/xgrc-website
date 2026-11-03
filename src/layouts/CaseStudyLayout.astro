@@ -4,7 +4,7 @@
 // Content always comes from the data file; this layout only presents it. The PDF stays
 // available as a download.
 import Base from './Base.astro';
-import { caseStudies, customerGroups } from '../data/site.js';
+import { caseStudies, customerGroups, implementationPartners } from '../data/site.js';
 import { publishedCaseStudyPages } from '../data/caseStudyPages.js';
 
 const { entry, preview = false } = Astro.props;
@@ -18,6 +18,9 @@ const customer = customerGroups.flatMap((g) => g.customers).find((c) => c.caseSt
 const logoFile = customer?.logo || entry.logo;
 const logo = logoFile ? `/assets/logos/customers/${logoFile}` : null;
 const companyUrl = entry.companyUrl || customer?.url || null;
+const partnerInfo = entry.partner ? implementationPartners.find((p) => p.name === entry.partner) : null;
+const partnerUrl = entry.partnerUrl || partnerInfo?.url || null;
+const partnerLogo = entry.partnerLogo ? `/assets/logos/partners/${entry.partnerLogo}` : null;
 const initials = (name) => String(name).split(/\s+/).filter((w) => /^[A-Za-z]/.test(w)).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
 
 // Hero visual: the dashboard of the first solution the customer runs.
@@ -85,7 +88,7 @@ const schema = {
       author: { '@type': 'Organization', name: 'XGRC® Software' },
       publisher: { '@type': 'Organization', name: 'XGRC® Software', url: 'https://xgrcsoftware.com' },
       about: { '@type': 'Organization', name: company, ...(companyUrl ? { url: companyUrl } : {}) },
-      ...(entry.partner ? { contributor: { '@type': 'Organization', name: entry.partner, ...(entry.partnerUrl ? { url: entry.partnerUrl } : {}) } } : {}),
+      ...(entry.partner ? { contributor: { '@type': 'Organization', name: entry.partner, ...(partnerUrl ? { url: partnerUrl } : {}) } } : {}),
       mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
     },
     {
@@ -123,7 +126,9 @@ const schema = {
             {logo ? <img class="cust-logo" src={logo} alt={`${company} logo`} width="64" height="64" /> : <span class="cust-logo mono" aria-hidden="true">{initials(company)}</span>}
             <span class="x-mark" aria-hidden="true">×</span>
             <span class="xgrc-mark">XGRC<sup>®</sup></span>
-            {entry.partner && (<><span class="x-mark" aria-hidden="true">×</span><span class="partner-mark">{entry.partner}</span></>)}
+            {entry.partner && (<><span class="x-mark" aria-hidden="true">×</span>{partnerUrl
+              ? <a class={partnerLogo ? 'partner-logo' : 'partner-mark'} href={partnerUrl} target="_blank" rel="noopener" title={`Implementation partner: ${entry.partner}`}>{partnerLogo ? <img src={partnerLogo} alt={entry.partner} height="40" /> : entry.partner}</a>
+              : <span class="partner-mark">{entry.partner}</span>}</>)}
           </div>
           <h1 class="hero-title">
             <span class="ht-a">{hB ? hA : entry.headline}</span>
@@ -185,7 +190,7 @@ const schema = {
           {base.sector && <div><dt>Sector</dt><dd>{base.sector}</dd></div>}
           <div><dt>Location</dt><dd>{entry.location}</dd></div>
           <div><dt>Solutions</dt><dd>{entry.solutions.map((s, i) => (<>{i > 0 && ', '}<a href={s.href}>{s.name}</a></>))}</dd></div>
-          {entry.partner && <div><dt>Implementation partner</dt><dd>{entry.partnerUrl ? <a href={entry.partnerUrl} target="_blank" rel="noopener">{entry.partner}</a> : entry.partner}</dd></div>}
+          {entry.partner && <div><dt>Implementation partner</dt><dd>{partnerUrl ? <a href={partnerUrl} target="_blank" rel="noopener">{entry.partner}</a> : entry.partner}</dd></div>}
         </dl>
         <div class="toc-share">
           <a href={shareUrl} target="_blank" rel="noopener" class="share-btn">Share on LinkedIn</a>
@@ -230,8 +235,9 @@ const schema = {
             <div class="sec-head rv"><span class="sec-n">{secN.implementation}</span><h2>Implementation</h2></div>
             {entry.partner && (
               <div class="partner rv">
+                {partnerLogo && <a class="p-logo" href={partnerUrl} target="_blank" rel="noopener"><img src={partnerLogo} alt={`${entry.partner} logo`} height="44" loading="lazy" /></a>}
                 <span class="p-tag">Implementation partner</span>
-                <span class="p-name">{entry.partnerUrl ? <a href={entry.partnerUrl} target="_blank" rel="noopener">{entry.partner}</a> : entry.partner}</span>
+                <span class="p-name">{partnerUrl ? <a href={partnerUrl} target="_blank" rel="noopener">{entry.partner}</a> : entry.partner}</span>
                 <p>{entry.implementation.intro}</p>
               </div>
             )}
@@ -453,6 +459,11 @@ const schema = {
   .xgrc-mark { font: 700 20px var(--font-display); letter-spacing: -0.01em; background: linear-gradient(180deg, var(--c1), #eaf05a); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .xgrc-mark sup { font-size: 0.5em; }
   .partner-mark { font: 600 13px var(--font-mono); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 99px; padding: 5px 12px; background: var(--panel); }
+  .partner-logo { display: inline-flex; align-items: center; height: 56px; padding: 8px 14px; border-radius: 14px; background: #fff; box-shadow: 0 0 0 1px var(--line-strong), 0 10px 30px rgba(0, 0, 0, 0.35); transition: transform 0.2s var(--ease); }
+  .partner-logo:hover { transform: translateY(-2px); }
+  .partner-logo img { height: 100%; width: auto; display: block; }
+  .p-logo { float: right; display: inline-flex; height: 56px; padding: 8px 12px; margin: 0 0 8px 16px; border-radius: 12px; background: #fff; }
+  .p-logo img { height: 100%; width: auto; display: block; }
   .hero-title { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin: 0 0 20px; color: var(--ink); }
   .ht-a { display: block; font-size: clamp(2.1rem, 4.6vw, 3.8rem); }
   .ht-b { display: block; margin-top: 12px; font-size: clamp(1.25rem, 2.3vw, 1.9rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; background: linear-gradient(90deg, var(--c1), var(--c2) 55%, var(--c3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
