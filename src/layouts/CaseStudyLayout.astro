@@ -1,15 +1,73 @@
 ---
-// Reusable HTML case study page with Article schema (SEO Fix Spec T16).
-// Data: src/data/caseStudyPages.js, merged with `caseStudies` in site.js.
-// The PDF stays available as a download.
+// Case study page, feature standard (matches the ISO 27090 feature article's design system).
+// Data: src/data/caseStudyPages.js, merged with `caseStudies` and `customerGroups` in site.js.
+// Content always comes from the data file; this layout only presents it. The PDF stays
+// available as a download.
 import Base from './Base.astro';
-import { caseStudies } from '../data/site.js';
+import { caseStudies, customerGroups } from '../data/site.js';
+import { publishedCaseStudyPages } from '../data/caseStudyPages.js';
 
 const { entry, preview = false } = Astro.props;
 const base = caseStudies.find((c) => c.slug === entry.slug) || {};
 const company = base.company || entry.slug;
 const path = preview ? `/preview/case-studies/${entry.slug}/` : `/case-studies/${entry.slug}/`;
+const pageUrl = `https://xgrcsoftware.com${path}`;
 const pdf = base.pdf ? `/case-studies/${entry.slug}.pdf` : null;
+
+const customer = customerGroups.flatMap((g) => g.customers).find((c) => c.caseStudySlug === entry.slug || c.name === company);
+const logo = customer?.logo ? `/assets/logos/customers/${customer.logo}` : null;
+const companyUrl = entry.companyUrl || customer?.url || null;
+const initials = (name) => String(name).split(/\s+/).filter((w) => /^[A-Za-z]/.test(w)).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+
+// Hero visual: the dashboard of the first solution the customer runs.
+const shots = {
+  '/sheqx/': '/assets/screenshots/sheqx-dashboard.webp',
+  '/envirx/': '/assets/screenshots/envirx-dashboard.webp',
+  '/erm/': '/assets/screenshots/erm-dashboard-new.webp',
+  '/msx/': '/assets/screenshots/msx-dashboard.webp',
+  '/msxcyber/': '/assets/screenshots/msxcyber-dashboard.webp',
+};
+const lead = entry.solutions.find((s) => shots[s.href]) || null;
+const heroShot = lead ? shots[lead.href] : '/assets/screenshots/sheqx-dashboard.webp';
+
+// Split the headline at its colon: company in white, the rest in the gradient.
+const [hA, ...hRest] = entry.headline.split(':');
+const hB0 = hRest.join(':').trim();
+const hB = hB0 ? hB0[0].toUpperCase() + hB0.slice(1) : '';
+
+// Result figures that are plain numbers count up on scroll.
+const counter = (fig) => { const m = String(fig).match(/^(\d+)(%?)$/); return m ? { to: +m[1], suffix: m[2] } : null; };
+
+const quotes = [...(entry.quotes || []), ...(entry.quote ? [entry.quote] : [])];
+
+const toc = [
+  { id: 'about', label: `About ${company}` },
+  { id: 'challenge', label: 'The challenge' },
+  { id: 'solution', label: 'The solution' },
+  entry.implementation && { id: 'implementation', label: 'Implementation' },
+  entry.resultsList && { id: 'results', label: 'The results' },
+  entry.lessons && { id: 'lessons', label: 'Lessons learned' },
+  quotes.length && { id: 'voices', label: 'In their words' },
+  (entry.conclusion || entry.outlook) && { id: 'next', label: entry.conclusion ? 'Conclusion' : "What's next" },
+].filter(Boolean).map((t, i) => ({ ...t, n: String(i + 1).padStart(2, '0') }));
+const secN = Object.fromEntries(toc.map((t) => [t.id, t.n]));
+
+const icons = [
+  'M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm4 17h2', // mobile
+  'M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zm0 0v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3', // database
+  'M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3zm-3 9l2 2 4-4', // shield check
+  'M6 16V11a6 6 0 1 1 12 0v5l2 2H4l2-2zm4 4a2 2 0 0 0 4 0', // bell
+  'M4 20V10m6 10V4m6 16v-7m4 7H2', // chart
+  'M12 3l9 5-9 5-9-5 9-5zm-9 9l9 5 9-5M3 16l9 5 9-5', // layers
+];
+
+const others = publishedCaseStudyPages.filter((p) => p.slug !== entry.slug).map((p) => {
+  const b = caseStudies.find((c) => c.slug === p.slug) || {};
+  const cu = customerGroups.flatMap((g) => g.customers).find((c) => c.caseStudySlug === p.slug || c.name === b.company);
+  return { slug: p.slug, company: b.company || p.slug, sector: b.sector, headline: p.headline, logo: cu?.logo ? `/assets/logos/customers/${cu.logo}` : null };
+});
+
+const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
 
 const parts = (text) => String(text).split(/(\[CONFIRM[^\]]*\])/g).filter(Boolean)
   .map((t) => ({ t, confirm: t.startsWith('[CONFIRM') }));
@@ -25,8 +83,9 @@ const schema = {
       dateModified: entry.dateModified || entry.datePublished,
       author: { '@type': 'Organization', name: 'XGRC® Software' },
       publisher: { '@type': 'Organization', name: 'XGRC® Software', url: 'https://xgrcsoftware.com' },
-      about: { '@type': 'Organization', name: company },
-      mainEntityOfPage: { '@type': 'WebPage', '@id': `https://xgrcsoftware.com${path}` },
+      about: { '@type': 'Organization', name: company, ...(companyUrl ? { url: companyUrl } : {}) },
+      ...(entry.partner ? { contributor: { '@type': 'Organization', name: entry.partner, ...(entry.partnerUrl ? { url: entry.partnerUrl } : {}) } } : {}),
+      mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
     },
     {
       '@type': 'BreadcrumbList',
@@ -48,140 +107,558 @@ const schema = {
     </div>
   )}
 
-  <section class="page-head">
-    <div class="container narrow">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="/">Home</a><span>/</span><a href="/customers/">Customers</a><span>/</span><b>{company}</b>
-      </nav>
-      <span class="eyebrow"><span class="dot"></span>Case study · {base.sector || 'Customer'}</span>
-      <h1>{entry.headline}</h1>
-      {base.summary && <p class="lede">{base.summary}</p>}
-      <ul class="facts">
-        <li><span>Company</span>{entry.companyUrl ? <a href={entry.companyUrl} target="_blank" rel="noopener">{company}</a> : company}</li>
-        <li><span>Location</span>{entry.location}</li>
-        <li><span>Solutions</span><div>{entry.solutions.map((s, i) => (<>{i > 0 && ', '}<a href={s.href}>{s.name}</a></>))}</div></li>
-        {entry.partner && <li><span>Implementation partner</span>{entry.partnerUrl ? <a href={entry.partnerUrl} target="_blank" rel="noopener">{entry.partner}</a> : entry.partner}</li>}
-      </ul>
-      {pdf && <a href={pdf} class="btn btn-ghost" download>Download the PDF case study</a>}
-    </div>
-  </section>
+  <div class="cs" id="cs">
+    <div class="progress" aria-hidden="true"><span id="cs-progress"></span></div>
 
-  <section class="section--tight">
-    <div class="container">
-      <div class="results">
-        {entry.results.map((r) => (
-          <div class="card result">
-            <span class="r-fig">{r.figure}</span>
-            <span class="r-label">{r.label}</span>
-            {r.detail && <span class="r-detail">{r.detail}</span>}
+    <!-- ── Hero ─────────────────────────────────────────── -->
+    <header class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <nav class="crumb" aria-label="Breadcrumb">
+            <a href="/customers/">Customers</a><span aria-hidden="true">/</span><span>{base.sector || 'Customer'}</span><span aria-hidden="true">/</span><span class="crumb-tag">Case study</span>
+          </nav>
+          <div class="brandline">
+            {logo ? <img class="cust-logo" src={logo} alt={`${company} logo`} width="64" height="64" /> : <span class="cust-logo mono" aria-hidden="true">{initials(company)}</span>}
+            <span class="x-mark" aria-hidden="true">×</span>
+            <span class="xgrc-mark">XGRC<sup>®</sup></span>
+            {entry.partner && (<><span class="x-mark" aria-hidden="true">×</span><span class="partner-mark">{entry.partner}</span></>)}
           </div>
-        ))}
+          <h1 class="hero-title">
+            <span class="ht-a">{hB ? hA : entry.headline}</span>
+            {hB && <span class="ht-b">{hB}</span>}
+          </h1>
+          {base.summary && <p class="hero-dek">{base.summary}</p>}
+          <div class="chips" aria-label="Solutions">
+            {entry.solutions.map((s, i) => <a href={s.href} class={`chip c${(i % 3) + 1}`}>{s.name}</a>)}
+          </div>
+          <div class="hero-actions">
+            <a href="/demo/" class="btn btn-primary">Book a demo</a>
+            {pdf && <a href={pdf} class="btn btn-ghost" download>Download the PDF</a>}
+          </div>
+        </div>
+
+        <figure class="hero-fig" aria-label={`${lead ? lead.name : 'XGRC®'} dashboard`}>
+          <div class="halo" aria-hidden="true"></div>
+          <div class="frame">
+            <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>{lead ? lead.name : 'XGRC®'}</span><b class="live"><em></em>LIVE</b></div>
+            <img src={heroShot} alt={`${lead ? lead.name : 'XGRC®'} dashboard on the XGRC® platform`} width="1600" height="1000" loading="eager" />
+          </div>
+          {entry.results.slice(0, 2).map((r, i) => (
+            <div class={`float f${i + 1}`}>
+              <span class="fl-fig">{r.figure}</span>
+              <span class="fl-label">{r.label}</span>
+            </div>
+          ))}
+        </figure>
       </div>
+    </header>
+
+    <!-- ── Results band ─────────────────────────────────── -->
+    <section class="container band" aria-label="At a glance">
+      <div class="results">
+        {entry.results.map((r, i) => {
+          const c = counter(r.figure);
+          return (
+            <div class={`res rv r${(i % 4) + 1}`} style={`--d:${i * 90}ms`}>
+              <span class="res-n">{String(i + 1).padStart(2, '0')}</span>
+              <span class="res-fig" data-to={c?.to} data-suffix={c?.suffix}>{r.figure}</span>
+              <span class="res-label">{r.label}</span>
+              {r.detail && <span class="res-detail">{r.detail}</span>}
+              <span class="res-glow" aria-hidden="true"></span>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- ── Body ─────────────────────────────────────────── -->
+    <div class="container layout">
+      <aside class="toc" aria-label="In this case study">
+        <p class="toc-h">In this case study</p>
+        <ol>
+          {toc.map((t) => <li><a href={`#${t.id}`} data-toc={t.id}><span class="toc-n">{t.n}</span>{t.label}</a></li>)}
+        </ol>
+        <dl class="glance">
+          <div><dt>Company</dt><dd>{companyUrl ? <a href={companyUrl} target="_blank" rel="noopener">{company}</a> : company}</dd></div>
+          {base.sector && <div><dt>Sector</dt><dd>{base.sector}</dd></div>}
+          <div><dt>Location</dt><dd>{entry.location}</dd></div>
+          <div><dt>Solutions</dt><dd>{entry.solutions.map((s, i) => (<>{i > 0 && ', '}<a href={s.href}>{s.name}</a></>))}</dd></div>
+          {entry.partner && <div><dt>Implementation partner</dt><dd>{entry.partnerUrl ? <a href={entry.partnerUrl} target="_blank" rel="noopener">{entry.partner}</a> : entry.partner}</dd></div>}
+        </dl>
+        <div class="toc-share">
+          <a href={shareUrl} target="_blank" rel="noopener" class="share-btn">Share on LinkedIn</a>
+          <button type="button" class="share-btn" data-copy={pageUrl}>Copy link</button>
+        </div>
+      </aside>
+
+      <article class="prose">
+        <!-- About -->
+        <section id="about" class="sec first">
+          <div class="sec-head rv"><span class="sec-n">{secN.about}</span><h2>About {company}</h2></div>
+          <p class="lede rv">{entry.about}</p>
+        </section>
+
+        <!-- Challenge -->
+        <section id="challenge" class="sec">
+          <div class="sec-head rv"><span class="sec-n">{secN.challenge}</span><h2>The challenge</h2></div>
+          <ol class="pains">
+            {entry.challenges.map((c, i) => (
+              <li class="pain rv" style={`--d:${i * 70}ms`}><span class="pain-n">{String(i + 1).padStart(2, '0')}</span><span>{c}</span></li>
+            ))}
+          </ol>
+        </section>
+
+        <!-- Solution -->
+        <section id="solution" class="sec">
+          <div class="sec-head rv"><span class="sec-n">{secN.solution}</span><h2>The solution</h2></div>
+          <p class="rv">{entry.solution}</p>
+          <div class="caps">
+            {entry.highlights.map((h, i) => (
+              <div class="cap rv" style={`--d:${i * 70}ms`}>
+                <svg class="cap-ic" viewBox="0 0 24 24" aria-hidden="true"><path d={icons[i % icons.length]} /></svg>
+                <p>{h}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Implementation -->
+        {entry.implementation && (
+          <section id="implementation" class="sec">
+            <div class="sec-head rv"><span class="sec-n">{secN.implementation}</span><h2>Implementation</h2></div>
+            {entry.partner && (
+              <div class="partner rv">
+                <span class="p-tag">Implementation partner</span>
+                <span class="p-name">{entry.partnerUrl ? <a href={entry.partnerUrl} target="_blank" rel="noopener">{entry.partner}</a> : entry.partner}</span>
+                <p>{entry.implementation.intro}</p>
+              </div>
+            )}
+            {!entry.partner && <p class="rv">{entry.implementation.intro}</p>}
+            <div class="steps-wrap" id="cs-steps">
+              <div class="steps-rail" aria-hidden="true"><span id="cs-steps-fill"></span></div>
+              <ol class="steps">
+                {entry.implementation.steps.map((st, i) => (
+                  <li class={`step rv${i === entry.implementation.steps.length - 1 ? ' last' : ''}`}><span class="st-n">{i + 1}</span><p>{st}</p></li>
+                ))}
+              </ol>
+            </div>
+            {entry.implementation.modules && (
+              <div class="modules rv">
+                <p class="small-h">Modules implemented</p>
+                <ul>{entry.implementation.modules.map((m, i) => <li><span>{String(i + 1).padStart(2, '0')}</span>{m}</li>)}</ul>
+              </div>
+            )}
+            {entry.implementation.note && <p class="rv note">{entry.implementation.note}</p>}
+          </section>
+        )}
+
+        <!-- Results -->
+        {entry.resultsList && (
+          <section id="results" class="sec">
+            <div class="sec-head rv"><span class="sec-n">{secN.results}</span><h2>The results</h2></div>
+            {entry.resultsIntro && <p class="rv">{entry.resultsIntro}</p>}
+            <ul class="wins">
+              {entry.resultsList.map((r, i) => (
+                <li class="win rv" style={`--d:${i * 70}ms`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" /></svg><span>{r}</span></li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <!-- Lessons -->
+        {entry.lessons && (
+          <section id="lessons" class="sec">
+            <div class="sec-head rv"><span class="sec-n">{secN.lessons}</span><h2>Lessons learned</h2></div>
+            <ol class="lessons">
+              {entry.lessons.map((l, i) => <li class="lesson rv" style={`--d:${i * 90}ms`}><span class="l-n">{i + 1}</span><p>{l}</p></li>)}
+            </ol>
+          </section>
+        )}
+
+        <!-- Voices -->
+        {quotes.length > 0 && (
+          <section id="voices" class="sec">
+            <div class="sec-head rv"><span class="sec-n">{secN.voices}</span><h2>In their words</h2></div>
+            {quotes.map((q, i) => (
+              <figure class={`quote rv ${i % 2 ? 'q-g' : 'q-c'}`}>
+                <svg class="q-mark" viewBox="0 0 64 48" aria-hidden="true"><path d="M0 48V28C0 12 8 2 26 0l2 7C18 10 14 16 14 24h12v24H0zm36 0V28c0-16 8-26 26-28l2 7c-10 3-14 9-14 17h12v24H36z" /></svg>
+                <blockquote><p>{q.text}</p></blockquote>
+                <figcaption>
+                  <span class={`av ${i % 2 ? 'av-g' : 'av-c'}`} aria-hidden="true">{initials(q.name)}</span>
+                  <span><strong>{parts(q.name).map((p) => p.confirm ? <mark class="confirm">{p.t}</mark> : p.t)}</strong><span>{q.role}</span></span>
+                </figcaption>
+              </figure>
+            ))}
+          </section>
+        )}
+
+        <!-- Conclusion / What's next -->
+        {(entry.conclusion || entry.outlook) && (
+          <section id="next" class="sec">
+            <div class="sec-head rv"><span class="sec-n">{secN.next}</span><h2>{entry.conclusion ? 'Conclusion' : "What's next"}</h2></div>
+            {entry.outlook && <p class="statement rv">{entry.outlook}</p>}
+            {entry.conclusion && <p class="statement rv">{entry.conclusion}</p>}
+          </section>
+        )}
+
+        <div class="share-row rv">
+          <span>Share this case study</span>
+          <a href={shareUrl} target="_blank" rel="noopener" class="share-btn">Share on LinkedIn</a>
+          <button type="button" class="share-btn" data-copy={pageUrl}>Copy link</button>
+        </div>
+      </article>
     </div>
-  </section>
 
-  <section class="section--tight">
-    <div class="container narrow prose">
-      <h2>About {company}</h2>
-      <p>{entry.about}</p>
-
-      <h2>The challenge</h2>
-      <ul>{entry.challenges.map((c) => <li>{c}</li>)}</ul>
-
-      <h2>The solution</h2>
-      <p>{entry.solution}</p>
-      <ul>{entry.highlights.map((h) => <li>{h}</li>)}</ul>
-
-      {entry.implementation && (
-        <>
-          <h2>Implementation</h2>
-          <p>{entry.implementation.intro}{entry.partnerUrl && <> Implementation partner: <a href={entry.partnerUrl} target="_blank" rel="noopener">{entry.partner}</a>.</>}</p>
-          <ul>{entry.implementation.steps.map((st) => <li>{st}</li>)}</ul>
-          {entry.implementation.modules && (
-            <>
-              <h3>Modules implemented</h3>
-              <ul class="chips">{entry.implementation.modules.map((m) => <li>{m}</li>)}</ul>
-            </>
-          )}
-          {entry.implementation.note && <p>{entry.implementation.note}</p>}
-        </>
-      )}
-
-      {entry.resultsList && (
-        <>
-          <h2>The results</h2>
-          {entry.resultsIntro && <p>{entry.resultsIntro}</p>}
-          <ul>{entry.resultsList.map((r) => <li>{r}</li>)}</ul>
-        </>
-      )}
-
-      {entry.lessons && (
-        <>
-          <h2>Lessons learned</h2>
-          <ol>{entry.lessons.map((l) => <li>{l}</li>)}</ol>
-        </>
-      )}
-
-      {(entry.quotes || []).map((q) => (
-        <figure class="quote">
-          <blockquote>"{q.text}"</blockquote>
-          <figcaption>{q.name}, {q.role}</figcaption>
-        </figure>
-      ))}
-
-      {entry.quote && (
-        <figure class="quote">
-          <blockquote>"{entry.quote.text}"</blockquote>
-          <figcaption>{parts(entry.quote.name).map((p) => p.confirm ? <mark>{p.t}</mark> : p.t)}, {entry.quote.role}</figcaption>
-        </figure>
-      )}
-
-      {entry.outlook && (<><h2>What's next</h2><p>{entry.outlook}</p></>)}
-      {entry.conclusion && (<><h2>Conclusion</h2><p>{entry.conclusion}</p></>)}
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="card cta-band">
+    <!-- ── CTA ──────────────────────────────────────────── -->
+    <section class="container cta-wrap">
+      <div class="cta rv">
+        <div class="cta-bg" aria-hidden="true"></div>
         <h2>See what XGRC® could do for your organisation.</h2>
-        <p class="lede">Talk to us about your sites, standards and obligations, and we will show you the platform using your own processes.</p>
-        <a href="/demo/" class="btn btn-primary">Book a demo</a>
+        <p>Talk to us about your sites, standards and obligations, and we will show you the platform using your own processes.</p>
+        <div class="cta-actions">
+          <a href="/demo/" class="btn btn-primary">Book a demo</a>
+          {entry.solutions.slice(0, 2).map((s) => <a href={s.href} class="btn btn-ghost">Explore {s.name}</a>)}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- ── More case studies ───────────────────────────── -->
+    {others.length > 0 && (
+      <section class="container more">
+        <p class="more-h">More customer stories</p>
+        <div class="more-grid">
+          {others.map((o) => (
+            <a class="more-card rv" href={`/case-studies/${o.slug}/`}>
+              {o.logo ? <img src={o.logo} alt="" width="48" height="48" loading="lazy" /> : <span class="m-mono" aria-hidden="true">{initials(o.company)}</span>}
+              <span class="m-body"><span class="m-sector">{o.sector}</span><span class="m-title">{o.headline}</span></span>
+              <span class="m-go" aria-hidden="true">→</span>
+            </a>
+          ))}
+          <a class="more-card more-all rv" href="/customers/"><span class="m-body"><span class="m-sector">All customers</span><span class="m-title">See every organisation running on XGRC®</span></span><span class="m-go" aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    )}
+  </div>
 </Base>
 
+<script>
+  const root = document.getElementById('cs');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Scroll reveal (content stays visible without JS or with reduced motion).
+  if (root && 'IntersectionObserver' in window && !reduce) {
+    root.classList.add('fx');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        const fig = e.target.querySelector('.res-fig[data-to]');
+        if (fig) {
+          const to = Number(fig.dataset.to);
+          const suffix = fig.dataset.suffix || '';
+          const t0 = performance.now();
+          const tick = (t) => {
+            const p = Math.min(1, (t - t0) / 1100);
+            fig.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    root.querySelectorAll('.rv').forEach((el) => io.observe(el));
+  }
+
+  // Reading progress and the implementation rail.
+  const bar = document.getElementById('cs-progress');
+  const steps = document.getElementById('cs-steps');
+  const fill = document.getElementById('cs-steps-fill');
+  const prose = document.querySelector('.cs .prose');
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      if (bar && prose) {
+        const r = prose.getBoundingClientRect();
+        bar.style.transform = `scaleX(${Math.min(1, Math.max(0, -r.top / (r.height - window.innerHeight)))})`;
+      }
+      if (steps && fill) {
+        const r = steps.getBoundingClientRect();
+        fill.style.transform = `scaleY(${Math.min(1, Math.max(0, (window.innerHeight * 0.6 - r.top) / r.height))})`;
+      }
+      ticking = false;
+    });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Contents: mark the section being read.
+  const links = document.querySelectorAll('.cs .toc a[data-toc]');
+  if ('IntersectionObserver' in window && links.length) {
+    const tio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) links.forEach((l) => l.classList.toggle('active', l.dataset.toc === e.target.id));
+      });
+    }, { rootMargin: '-35% 0px -60% 0px' });
+    links.forEach((l) => { const s = document.getElementById(l.dataset.toc); if (s) tio.observe(s); });
+  }
+
+  // Copy link.
+  document.querySelectorAll('.cs [data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy);
+        const t = btn.textContent;
+        btn.textContent = 'Link copied';
+        setTimeout(() => { btn.textContent = t; }, 1800);
+      } catch { /* clipboard blocked */ }
+    });
+  });
+</script>
+
 <style>
+  .cs { --c1: #30e2f4; --c2: #a78bfa; --c3: #2fe88a; --amber: #fbbf24; --rose: #fb7185; padding-top: 74px; overflow-x: clip; }
   .draft-banner { position: sticky; top: 74px; z-index: 20; background: #3a2d05; color: #ffe8a3; border-bottom: 1px solid #806516; padding: 10px 16px; text-align: center; font-size: 0.9rem; }
-  mark { background: rgba(255, 196, 0, 0.18); color: #ffd966; border-radius: 4px; padding: 0 3px; }
-  .page-head { padding: 130px 0 0; }
-  .page-head h1 { margin: 8px 0 16px; }
-  .narrow { max-width: 860px; }
-  .crumbs { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--faint); display: flex; gap: 10px; align-items: center; margin-bottom: 26px; flex-wrap: wrap; }
-  .crumbs a { color: var(--mute); text-decoration: none; }
-  .crumbs b { color: var(--ink); font-weight: 500; }
-  .facts { list-style: none; padding: 0; margin: 22px 0 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; }
-  .facts li { color: var(--ink); font-size: 0.95rem; display: flex; flex-direction: column; gap: 2px; }
-  .facts li span { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--faint); }
-  .facts a { color: var(--cyan); }
+  mark.confirm, .draft-banner mark { background: rgba(255, 196, 0, 0.18); color: #ffd966; border-radius: 4px; padding: 0 3px; }
+
+  /* ── Progress ─────────────────────────────────────── */
+  .progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 101; pointer-events: none; }
+  .progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3)); transform: scaleX(0); transform-origin: 0 50%; }
+
+  /* ── Hero ─────────────────────────────────────────── */
+  .hero { position: relative; padding: clamp(28px, 5vw, 64px) 0 clamp(36px, 5vw, 64px); isolation: isolate; }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(40% 50% at 78% 40%, rgba(167, 139, 250, 0.16), transparent 70%),
+      radial-gradient(35% 45% at 88% 78%, rgba(47, 232, 138, 0.12), transparent 70%),
+      radial-gradient(45% 55% at 70% 12%, rgba(48, 226, 244, 0.14), transparent 70%),
+      linear-gradient(rgba(120, 170, 200, 0.06) 1px, transparent 1px) 0 0 / 44px 44px,
+      linear-gradient(90deg, rgba(120, 170, 200, 0.06) 1px, transparent 1px) 0 0 / 44px 44px;
+    mask-image: linear-gradient(180deg, #000 60%, transparent);
+  }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 64px); align-items: center; }
+  .crumb { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: var(--font-mono); font-size: 12px; color: var(--mute); margin-bottom: 24px; }
+  .crumb a { color: var(--mute); text-decoration: none; }
+  .crumb a:hover { color: var(--c1); }
+  .crumb-tag { color: var(--c3); border: 1px solid rgba(47, 232, 138, 0.35); padding: 2px 10px; border-radius: 99px; background: rgba(47, 232, 138, 0.07); }
+  .brandline { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+  .cust-logo { width: 56px; height: 56px; border-radius: 14px; object-fit: contain; background: #fff; padding: 4px; box-shadow: 0 0 0 1px var(--line-strong), 0 10px 30px rgba(0, 0, 0, 0.35); }
+  .cust-logo.mono { display: grid; place-items: center; background: linear-gradient(135deg, #7af3ff, var(--c1)); color: var(--void); font: 800 18px var(--font-display); }
+  .x-mark { color: var(--faint); font-size: 18px; }
+  .xgrc-mark { font: 700 20px var(--font-display); letter-spacing: -0.01em; background: linear-gradient(180deg, var(--c1), #eaf05a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .xgrc-mark sup { font-size: 0.5em; }
+  .partner-mark { font: 600 13px var(--font-mono); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 99px; padding: 5px 12px; background: var(--panel); }
+  .hero-title { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin: 0 0 20px; color: var(--ink); }
+  .ht-a { display: block; font-size: clamp(2.1rem, 4.6vw, 3.8rem); }
+  .ht-b { display: block; margin-top: 12px; font-size: clamp(1.25rem, 2.3vw, 1.9rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; background: linear-gradient(90deg, var(--c1), var(--c2) 55%, var(--c3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero-dek { font-size: clamp(1rem, 1.35vw, 1.12rem); line-height: 1.65; color: var(--mute); margin: 0 0 22px; max-width: 58ch; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+  .chip { font-family: var(--font-mono); font-size: 12px; padding: 6px 12px; border-radius: 99px; border: 1px solid; text-decoration: none; transition: transform 0.2s var(--ease); }
+  .chip:hover { transform: translateY(-1px); }
+  .chip.c1 { color: var(--c1); border-color: rgba(48, 226, 244, 0.35); background: rgba(48, 226, 244, 0.06); }
+  .chip.c2 { color: var(--c2); border-color: rgba(167, 139, 250, 0.4); background: rgba(167, 139, 250, 0.07); }
+  .chip.c3 { color: var(--c3); border-color: rgba(47, 232, 138, 0.35); background: rgba(47, 232, 138, 0.06); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  .hero-fig { position: relative; margin: 0; perspective: 1400px; }
+  .halo { position: absolute; inset: 8% 4%; background: radial-gradient(closest-side, rgba(48, 226, 244, 0.28), transparent); filter: blur(30px); z-index: -1; }
+  .frame { border-radius: 16px; overflow: hidden; border: 1px solid rgba(140, 200, 230, 0.28); background: #0b1726; box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55), 0 0 60px rgba(48, 226, 244, 0.1); transform: rotateY(-8deg) rotateX(4deg); transform-origin: 60% 50%; animation: tilt-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .bar { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 14px; background: #0f2133; border-bottom: 1px solid rgba(140, 200, 230, 0.15); }
+  .bar i { width: 10px; height: 10px; border-radius: 50%; background: #2a4258; }
+  .bar span { margin-left: 10px; font: 500 12.5px var(--font-body); color: #8aa1b4; }
+  .live { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font: 600 10px var(--font-mono); letter-spacing: 0.14em; color: var(--c3); }
+  .live em { width: 7px; height: 7px; border-radius: 50%; background: var(--c3); box-shadow: 0 0 10px var(--c3); animation: pulse 2s ease-in-out infinite; }
+  .frame img { display: block; width: 100%; height: auto; }
+  .float { position: absolute; display: flex; flex-direction: column; gap: 2px; padding: 14px 18px; border-radius: 16px; background: rgba(8, 20, 34, 0.86); backdrop-filter: blur(10px); border: 1px solid var(--line-strong); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45); animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both, bob 6s ease-in-out infinite; max-width: 220px; }
+  .float.f1 { left: -6%; bottom: 12%; animation-delay: 0.6s, 1.6s; }
+  .float.f2 { right: -4%; top: -6%; animation-delay: 0.8s, 2.4s; }
+  .fl-fig { font: 800 clamp(1.4rem, 2.4vw, 2rem) var(--font-display); letter-spacing: -0.02em; line-height: 1.05; background: linear-gradient(90deg, var(--c1), var(--c3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .f2 .fl-fig { background: linear-gradient(90deg, var(--c2), var(--c1)); -webkit-background-clip: text; background-clip: text; }
+  .fl-label { font-size: 12.5px; color: var(--mute); line-height: 1.35; }
+  @keyframes tilt-in { from { opacity: 0; transform: rotateY(-22deg) rotateX(10deg) translateY(30px); } }
+  @keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+  @keyframes bob { 50% { translate: 0 -8px; } }
+  @keyframes pulse { 50% { opacity: 0.35; } }
+
+  /* ── Results band ─────────────────────────────────── */
+  .band { margin-top: 8px; }
   .results { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-  .result { display: flex; flex-direction: column; gap: 4px; }
-  .r-fig { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; color: var(--cyan); line-height: 1.1; }
-  .r-label { color: var(--ink); font-weight: 500; }
-  .r-detail { color: var(--mute); font-size: 0.88rem; line-height: 1.5; }
-  .prose h2 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); margin: 34px 0 12px; }
-  .prose p, .prose li { color: var(--mute); line-height: 1.75; font-size: 0.98rem; }
-  .prose ul, .prose ol { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
-  .prose h3 { font-size: 1.05rem; margin: 22px 0 10px; color: var(--ink); }
-  .prose a { color: var(--cyan); }
-  .prose ul.chips { list-style: none; padding: 0; flex-direction: row; flex-wrap: wrap; gap: 8px; }
-  .prose ul.chips li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 4px 12px; font-size: 0.9rem; color: var(--ink); }
-  .quote { margin: 34px 0; padding: 22px 26px; border-left: 3px solid var(--cyan); background: rgba(255, 255, 255, 0.03); border-radius: 0 14px 14px 0; }
-  .quote blockquote { margin: 0 0 10px; color: var(--ink); font-size: 1.05rem; line-height: 1.6; }
-  .quote figcaption { color: var(--mute); font-size: 0.9rem; }
-  .cta-band { text-align: center; padding: clamp(40px, 6vw, 64px); background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(0,92,169,0.05)); border-color: var(--line-strong); }
-  .cta-band .lede { margin: 0 auto 26px; }
-  @media (max-width: 860px) { .results { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 520px) { .facts { grid-template-columns: 1fr; } }
+  .res { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 6px; padding: 24px 22px 22px; border-radius: var(--radius-lg); background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012)); border: 1px solid var(--line); }
+  .res::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 2px; }
+  .r1::before { background: linear-gradient(90deg, var(--c1), transparent); }
+  .r2::before { background: linear-gradient(90deg, var(--c2), transparent); }
+  .r3::before { background: linear-gradient(90deg, var(--c3), transparent); }
+  .r4::before { background: linear-gradient(90deg, var(--amber), transparent); }
+  .res-n { font: 500 11px var(--font-mono); color: var(--faint); }
+  .res-fig { font: 800 clamp(2rem, 3.6vw, 2.9rem) var(--font-display); letter-spacing: -0.03em; line-height: 1.05; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .r1 .res-fig { color: var(--c1); }
+  .r2 .res-fig { color: var(--c2); }
+  .r3 .res-fig { color: var(--c3); }
+  .r4 .res-fig { color: var(--amber); }
+  .res-label { color: var(--ink); font-weight: 600; line-height: 1.35; }
+  .res-detail { color: var(--mute); font-size: 0.87rem; line-height: 1.5; }
+  .res-glow { position: absolute; right: -40px; bottom: -40px; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(closest-side, rgba(48, 226, 244, 0.12), transparent); }
+
+  /* ── Layout ───────────────────────────────────────── */
+  .layout { display: grid; grid-template-columns: 240px minmax(0, 760px); gap: 64px; justify-content: center; padding-top: 40px; }
+  .toc { position: sticky; top: 104px; align-self: start; font-size: 13px; }
+  .toc-h { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); margin: 0 0 14px; }
+  .toc ol { list-style: none; margin: 0 0 24px; padding: 0; border-left: 1px solid var(--line); }
+  .toc li a { display: flex; gap: 10px; padding: 7px 0 7px 16px; margin-left: -1px; border-left: 2px solid transparent; color: var(--mute); text-decoration: none; line-height: 1.4; transition: color 0.2s, border-color 0.2s; }
+  .toc li a:hover { color: var(--ink); }
+  .toc li a.active { color: var(--ink); border-left-color: var(--c1); }
+  .toc-n { font-family: var(--font-mono); font-size: 11px; color: var(--faint); padding-top: 2px; }
+  .toc a.active .toc-n { color: var(--c1); }
+  .glance { margin: 0 0 22px; padding: 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--panel); display: flex; flex-direction: column; gap: 12px; }
+  .glance dt { font: 500 10.5px var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); margin-bottom: 2px; }
+  .glance dd { margin: 0; color: var(--ink); line-height: 1.45; }
+  .glance a { color: var(--c1); text-decoration: none; }
+  .glance a:hover { text-decoration: underline; }
+  .toc-share { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .share-btn { font: 500 12px var(--font-mono); color: var(--mute); background: var(--panel); border: 1px solid var(--line); border-radius: 99px; padding: 7px 14px; cursor: pointer; text-decoration: none; transition: color 0.2s, border-color 0.2s; }
+  .share-btn:hover { color: var(--ink); border-color: var(--line-strong); }
+
+  /* ── Prose ────────────────────────────────────────── */
+  .prose { font-size: clamp(1rem, 1.2vw, 1.08rem); line-height: 1.8; color: color-mix(in srgb, var(--ink) 86%, transparent); min-width: 0; }
+  .prose p { margin: 0 0 1.3em; }
+  .prose a { color: var(--c1); text-decoration: underline; text-decoration-color: rgba(48, 226, 244, 0.35); text-underline-offset: 3px; }
+  .prose a.share-btn { color: var(--mute); text-decoration: none; }
+  .lede { font-size: clamp(1.1rem, 1.55vw, 1.26rem); line-height: 1.7; color: var(--ink); }
+  .lede::first-letter { float: left; font-family: var(--font-display); font-weight: 800; font-size: 4.1em; line-height: 0.82; margin: 0.08em 0.12em 0 0; background: linear-gradient(160deg, var(--c1), var(--c2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sec { padding-top: 64px; scroll-margin-top: 90px; }
+  .sec.first { padding-top: 8px; }
+  .sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 22px; }
+  .sec-n { font-family: var(--font-mono); font-size: 13px; color: var(--c1); border: 1px solid rgba(48, 226, 244, 0.35); border-radius: 8px; padding: 3px 8px; transform: translateY(-6px); }
+  .sec-head h2 { font-family: var(--font-display); font-size: clamp(1.6rem, 3.1vw, 2.3rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.15; color: var(--ink); margin: 0; }
+  .small-h { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--ink); margin: 0 0 14px !important; }
+
+  /* Challenge */
+  .pains { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .pain { display: flex; gap: 14px; align-items: flex-start; padding: 18px; border-radius: 16px; background: linear-gradient(160deg, rgba(251, 113, 133, 0.07), rgba(255, 255, 255, 0.012)); border: 1px solid rgba(251, 113, 133, 0.2); color: var(--ink); line-height: 1.5; font-size: 0.97rem; }
+  .pain:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .pain-n { flex: none; font: 600 12px var(--font-mono); color: var(--rose); border: 1px solid rgba(251, 113, 133, 0.4); border-radius: 8px; padding: 2px 7px; margin-top: 2px; }
+
+  /* Solution capabilities */
+  .caps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 8px; }
+  .cap { display: flex; gap: 14px; align-items: flex-start; padding: 18px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); transition: border-color 0.25s, transform 0.25s var(--ease); }
+  .cap:hover { border-color: rgba(48, 226, 244, 0.4); transform: translateY(-2px); }
+  .cap:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .cap p { margin: 0 !important; color: var(--ink); line-height: 1.5; font-size: 0.97rem; }
+  .cap-ic { flex: none; width: 38px; height: 38px; padding: 8px; border-radius: 11px; background: rgba(48, 226, 244, 0.08); border: 1px solid rgba(48, 226, 244, 0.3); fill: none; stroke: var(--c1); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .cap:nth-child(3n+2) .cap-ic { stroke: var(--c2); background: rgba(167, 139, 250, 0.08); border-color: rgba(167, 139, 250, 0.35); }
+  .cap:nth-child(3n) .cap-ic { stroke: var(--c3); background: rgba(47, 232, 138, 0.08); border-color: rgba(47, 232, 138, 0.3); }
+
+  /* Implementation */
+  .partner { position: relative; padding: 22px 24px; border-radius: 18px; margin: 0 0 28px; background: linear-gradient(120deg, rgba(167, 139, 250, 0.1), rgba(48, 226, 244, 0.05)); border: 1px solid rgba(167, 139, 250, 0.35); }
+  .p-tag { display: block; font: 500 11px var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--c2); margin-bottom: 4px; }
+  .p-name { display: block; font: 800 1.5rem var(--font-display); letter-spacing: -0.02em; color: var(--ink); margin-bottom: 8px; }
+  .prose .p-name a { color: var(--ink); text-decoration-color: rgba(167, 139, 250, 0.6); }
+  .partner p { margin: 0 !important; color: var(--mute); }
+  .steps-wrap { position: relative; margin: 0 0 28px; }
+  .steps-rail { position: absolute; left: 17px; top: 18px; bottom: 18px; width: 2px; background: var(--line); border-radius: 2px; overflow: hidden; }
+  .steps-rail span { position: absolute; inset: 0; background: linear-gradient(var(--c1), var(--c2), var(--c3)); transform: scaleY(0); transform-origin: 50% 0; }
+  .steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .step { position: relative; display: flex; gap: 18px; align-items: center; }
+  .st-n { flex: none; position: relative; z-index: 1; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font: 700 14px var(--font-display); color: var(--void); background: linear-gradient(135deg, #7af3ff, var(--c1)); box-shadow: 0 0 0 4px var(--void), 0 0 18px rgba(48, 226, 244, 0.35); }
+  .step.last .st-n { background: linear-gradient(135deg, #5cffa8, var(--c3)); box-shadow: 0 0 0 4px var(--void), 0 0 18px rgba(47, 232, 138, 0.45); }
+  .step p { margin: 0 !important; flex: 1; padding: 14px 18px; border-radius: 14px; background: var(--panel); border: 1px solid var(--line); color: var(--ink); line-height: 1.5; }
+  .step.last p { border-color: rgba(47, 232, 138, 0.4); background: rgba(47, 232, 138, 0.06); font-weight: 600; }
+  .modules { margin: 0 0 22px; }
+  .modules ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .modules li { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line); background: linear-gradient(160deg, rgba(48, 226, 244, 0.06), transparent); color: var(--ink); font-weight: 600; font-size: 0.95rem; line-height: 1.35; }
+  .modules li span { font: 500 11px var(--font-mono); color: var(--c1); }
+  .note { color: var(--mute); font-size: 0.97rem; border-left: 2px solid var(--line-strong); padding-left: 16px; }
+
+  /* Results */
+  .wins { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .win { display: flex; gap: 14px; align-items: center; padding: 14px 18px; border-radius: 14px; background: linear-gradient(90deg, rgba(47, 232, 138, 0.08), rgba(255, 255, 255, 0.012) 70%); border: 1px solid rgba(47, 232, 138, 0.22); color: var(--ink); line-height: 1.5; }
+  .win svg { flex: none; width: 28px; height: 28px; padding: 5px; border-radius: 50%; background: rgba(47, 232, 138, 0.14); fill: none; stroke: var(--c3); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .win strong { color: var(--c3); font-weight: 700; }
+
+  /* Lessons */
+  .lessons { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .lesson { display: flex; gap: 20px; align-items: center; padding: 20px 22px; border-radius: 18px; background: var(--panel); border: 1px solid var(--line); }
+  .l-n { flex: none; font: 800 2.6rem var(--font-display); line-height: 1; width: 44px; text-align: center; background: linear-gradient(160deg, var(--c1), var(--c2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lesson p { margin: 0 !important; color: var(--ink); font: 600 1.05rem/1.45 var(--font-display); letter-spacing: -0.01em; }
+
+  /* Quotes */
+  .quote { position: relative; margin: 0 0 22px; padding: clamp(26px, 4vw, 40px); border-radius: var(--radius-lg); background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)); border: 1px solid var(--line); overflow: hidden; }
+  .quote::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 3px; }
+  .q-c::before { background: linear-gradient(var(--c1), transparent); }
+  .q-g::before { background: linear-gradient(var(--c3), transparent); }
+  .q-mark { position: absolute; top: 22px; right: 26px; width: 64px; opacity: 0.12; }
+  .q-c .q-mark { fill: var(--c1); }
+  .q-g .q-mark { fill: var(--c3); }
+  .quote blockquote { margin: 0 0 22px; }
+  .quote blockquote p { margin: 0 !important; font: 500 clamp(1.15rem, 2vw, 1.45rem)/1.5 var(--font-display); color: var(--ink); letter-spacing: -0.01em; }
+  .quote figcaption { display: flex; align-items: center; gap: 14px; }
+  .quote figcaption strong { display: block; color: var(--ink); font-size: 15px; }
+  .quote figcaption span span { display: block; color: var(--mute); font-size: 13px; line-height: 1.4; }
+  .av { flex: none; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; font: 700 15px var(--font-display); color: var(--void); border: 2px solid var(--void); }
+  .av-c { background: linear-gradient(135deg, #7af3ff, var(--c1)); box-shadow: 0 0 0 2px var(--c1); }
+  .av-g { background: linear-gradient(135deg, #5cffa8, var(--c3)); box-shadow: 0 0 0 2px var(--c3); }
+
+  /* Closing */
+  .statement { font-family: var(--font-display); font-size: clamp(1.25rem, 2.3vw, 1.7rem); font-weight: 700; line-height: 1.4; letter-spacing: -0.02em; color: var(--ink); padding: 26px 0; margin: 0 0 18px !important; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .share-row > span { font: 500 12px var(--font-mono); color: var(--faint); margin-right: 6px; }
+
+  /* CTA */
+  .cta-wrap { padding: clamp(56px, 8vw, 96px) 0 0; }
+  .cta { position: relative; overflow: hidden; isolation: isolate; text-align: center; padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 56px); border-radius: 28px; border: 1px solid var(--line-strong); }
+  .cta-bg { position: absolute; inset: 0; z-index: -1; background: radial-gradient(50% 80% at 20% 0%, rgba(48, 226, 244, 0.16), transparent 70%), radial-gradient(50% 80% at 85% 100%, rgba(167, 139, 250, 0.16), transparent 70%), radial-gradient(40% 60% at 60% 40%, rgba(47, 232, 138, 0.08), transparent 70%), rgba(255, 255, 255, 0.02); }
+  .cta h2 { font: 800 clamp(1.6rem, 3.4vw, 2.6rem)/1.15 var(--font-display); letter-spacing: -0.025em; margin: 0 0 14px; color: var(--ink); }
+  .cta p { color: var(--mute); max-width: 56ch; margin: 0 auto 28px; line-height: 1.65; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+  /* More */
+  .more { padding: clamp(48px, 7vw, 80px) 0 clamp(56px, 8vw, 96px); }
+  .more-h { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); margin: 0 0 16px; }
+  .more-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .more-card { display: flex; align-items: center; gap: 16px; padding: 18px; border-radius: 18px; background: var(--panel); border: 1px solid var(--line); text-decoration: none; transition: border-color 0.25s, transform 0.25s var(--ease); }
+  .more-card:hover { border-color: rgba(48, 226, 244, 0.45); transform: translateY(-3px); }
+  .more-card img, .m-mono { flex: none; width: 48px; height: 48px; border-radius: 12px; object-fit: contain; background: #fff; padding: 3px; }
+  .m-mono { display: grid; place-items: center; background: linear-gradient(135deg, #7af3ff, var(--c1)); color: var(--void); font: 800 15px var(--font-display); padding: 0; }
+  .m-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
+  .m-sector { font: 500 11px var(--font-mono); color: var(--c3); text-transform: uppercase; letter-spacing: 0.06em; }
+  .m-title { color: var(--ink); font-weight: 600; line-height: 1.35; font-size: 0.95rem; }
+  .m-go { color: var(--c1); font-size: 20px; transition: transform 0.25s var(--ease); }
+  .more-card:hover .m-go { transform: translateX(4px); }
+  .more-all { background: linear-gradient(120deg, rgba(48, 226, 244, 0.08), rgba(167, 139, 250, 0.06)); }
+
+  /* Reveal */
+  .fx .rv { opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: var(--d, 0ms); }
+  .fx .rv.in { opacity: 1; transform: none; }
+
+  /* ── Responsive ───────────────────────────────────── */
+  @media (max-width: 1180px) {
+    .layout { grid-template-columns: minmax(0, 760px); }
+    .toc { position: static; order: 2; }
+    .toc ol { display: none; }
+    .toc .toc-h { display: none; }
+    .glance { margin-top: 8px; }
+  }
+  @media (max-width: 1000px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-fig { max-width: 640px; margin: 18px auto 0; width: 100%; }
+    .results { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .more-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .pains, .caps { grid-template-columns: 1fr; }
+    .modules ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .float { padding: 10px 13px; max-width: 160px; }
+    .float.f1 { left: 2%; bottom: -8%; }
+    .float.f2 { right: 2%; top: -10%; }
+    .frame { transform: none; animation: none; }
+    .lesson { gap: 14px; padding: 16px; }
+    .l-n { font-size: 2rem; width: 32px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .frame, .float, .live em { animation: none; }
+  }
 </style>
