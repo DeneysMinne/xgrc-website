@@ -33,7 +33,10 @@ const related = articles
   .filter((a) => a.category === article.category && a.slug !== slug)
   .slice(0, 3);
 
-// Convert plain-text article body to structured HTML
+// Convert plain-text article body to structured HTML. Headings get an id and a
+// section number so the contents list can link to them; the words are untouched.
+const headings = [];
+const slugify = (t) => t.toLowerCase().replace(/<[^>]+>/g, '').replace(/&[a-z]+;/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
 function renderBody(text) {
   const blocks = text.trim().split(/\n\n+/);
   return blocks
@@ -55,7 +58,11 @@ function renderBody(text) {
         !/[.,:;]$/.test(trimmed) &&
         !trimmed.startsWith('-')
       ) {
-        return `<h2>${trimmed}</h2>`;
+        let id = slugify(trimmed) || `section-${headings.length + 1}`;
+        if (headings.some((h) => h.id === id)) id = `${id}-${headings.length + 1}`;
+        const n = String(headings.length + 1).padStart(2, '0');
+        headings.push({ id, n, label: trimmed.replace(/<[^>]+>/g, '') });
+        return `<h2 id="${id}" class="sec-h"><span class="sec-n" aria-hidden="true">${n}</span><span>${trimmed}</span></h2>`;
       }
 
       // Paragraph
@@ -75,7 +82,7 @@ const checklist = checklistCase && {
   href: `/use-cases/${checklistCase.slug}/?from=${slug}#download`,
   includes: (checklistCase.resource.includes || []).slice(0, 3),
 };
-const secondH2 = bodyHtml.indexOf('<h2>', bodyHtml.indexOf('<h2>') + 1);
+const secondH2 = bodyHtml.indexOf('<h2', bodyHtml.indexOf('<h2') + 1);
 const [bodyIntro, bodyRest] = checklist && secondH2 > 0
   ? [bodyHtml.slice(0, secondH2), bodyHtml.slice(secondH2)]
   : [bodyHtml, ''];
@@ -135,6 +142,18 @@ const categoryColors = {
   'Risk': '#f87171',
 };
 const catColor = categoryColors[article.category] || '#30e2f4';
+
+// The first paragraph opens with a drop cap.
+const firstP = bodyHtml.indexOf('<p>');
+const toc = [...headings, ...(faqs ? [{ id: 'faqs', n: String(headings.length + 1).padStart(2, '0'), label: 'Frequently asked questions' }] : [])];
+const pageUrl = `https://xgrcsoftware.com/insights/${slug}/`;
+const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
+const solIcon = (s) => ['msx', 'msxcyber', 'esg', 'sheqx', 'erm', 'integrated-assurance', 'envirx', 'compliance-hub', 'xlogic', 'maia', 'xrm'].includes(s.slug) ? `/assets/logos/solutions/icons/${s.slug}.png` : null;
+// Split the title at its first colon or question mark for the two-tone headline.
+const tm = article.title.match(/^(.+?[:?])\s+(.+)$/);
+const titleA = tm ? tm[1] : article.title;
+const titleB = tm ? tm[2] : '';
+const moreArticles = related.length ? related : articles.filter((a) => a.slug !== slug && !a.feature).slice(0, 3);
 ---
 
 <Base title={seoTitle} description={metaDescription} ogImage={`/assets/images/insights/${imageFile}`} mdPath={`/insights/${slug}.md`}>
@@ -142,498 +161,394 @@ const catColor = categoryColors[article.category] || '#30e2f4';
   <script type="application/ld+json" set:html={breadcrumbSchema} />
   {faqSchema && <script type="application/ld+json" set:html={faqSchema} />}
 
-  <div class="art-page">
+  <div class="art" id="art" style={`--acc: ${catColor}`}>
+    <div class="progress" aria-hidden="true"><span id="art-progress"></span></div>
 
-    <!-- ── Breadcrumb ──────────────────────────────────── -->
-    <nav class="art-breadcrumb" aria-label="Breadcrumb">
-      <div class="container art-breadcrumb-inner">
-        <a href="/insights/">← Insights</a>
-        <span aria-hidden="true">/</span>
-        <span>{article.category}</span>
-      </div>
-    </nav>
-
-    <!-- ── Header ─────────────────────────────────────── -->
-    <header class="art-header">
-      <div class="container art-header-inner">
-        <div class="art-meta">
-          <span class="art-cat" style={`--cat-color: ${catColor}`}>{article.category}</span>
-          <span class="art-sep" aria-hidden="true">·</span>
-          <span class="art-author">By XGRC® Software</span>
-          <span class="art-sep" aria-hidden="true">·</span>
-          <span class="art-date"><time datetime={article.date}>{formattedDate}</time></span>
-          {updatedDate && (<><span class="art-sep" aria-hidden="true">·</span><span class="art-date">Updated <time datetime={article.dateModified}>{updatedDate}</time></span></>)}
-          <span class="art-sep" aria-hidden="true">·</span>
-          <span class="art-read">{readTime} min read</span>
+    <!-- ── Hero ─────────────────────────────────────────── -->
+    <header class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <nav class="crumb" aria-label="Breadcrumb">
+            <a href="/insights/">Insights</a><span aria-hidden="true">/</span><span class="crumb-cat">{article.category}</span>
+          </nav>
+          <h1 class="hero-title">
+            <span class="ht-a">{titleA}</span>
+            {titleB && <span class="ht-b">{titleB}</span>}
+          </h1>
+          <p class="hero-dek">{article.excerpt}</p>
+          <div class="hero-meta">
+            <img class="av" src="/assets/xgrc-cube.png" alt="" width="40" height="40" />
+            <p>
+              <span>By XGRC® Software</span>
+              <span class="dot" aria-hidden="true">·</span>
+              <time datetime={article.date}>{formattedDate}</time>
+              {updatedDate && (<><span class="dot" aria-hidden="true">·</span><span>Updated <time datetime={article.dateModified}>{updatedDate}</time></span></>)}
+              <span class="dot" aria-hidden="true">·</span>
+              <span>{readTime} min read</span>
+            </p>
+          </div>
         </div>
-        <h1 class="art-title">{article.title}</h1>
-        <p class="art-excerpt">{article.excerpt}</p>
+        <figure class="hero-fig">
+          <div class="halo" aria-hidden="true"></div>
+          <img
+            src={`/assets/images/insights/${imageFile}`}
+            alt={article.imageAlt || article.title}
+            class="hero-img"
+            width="1200"
+            height="630"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
       </div>
     </header>
 
-    <!-- ── Hero Image ─────────────────────────────────── -->
-    <div class="art-img-wrap">
-      <div class="container">
-        <img
-          src={`/assets/images/insights/${imageFile}`}
-          alt={article.imageAlt || article.title}
-          class="art-hero-img"
-          width="1200"
-          height="630"
-          loading="eager"
-          decoding="async"
-        />
-      </div>
-    </div>
+    <!-- ── Body ─────────────────────────────────────────── -->
+    <div class="container layout">
+      <aside class="toc" aria-label="In this article">
+        {toc.length > 1 && (
+          <>
+            <p class="toc-h">In this article</p>
+            <ol>
+              {toc.map((t) => <li><a href={`#${t.id}`} data-toc={t.id}><span class="toc-n">{t.n}</span>{t.label}</a></li>)}
+            </ol>
+          </>
+        )}
+        {checklist && (
+          <a class="toc-check" href={checklist.href} data-checklist-cta="side">
+            <span class="tc-eb">Free checklist</span>
+            <span class="tc-t">{checklist.title}</span>
+            <span class="tc-go">Download →</span>
+          </a>
+        )}
+        <div class="toc-share">
+          <a href={shareUrl} target="_blank" rel="noopener" class="share-btn">Share on LinkedIn</a>
+          <button type="button" class="share-btn" data-copy={pageUrl}>Copy link</button>
+        </div>
+      </aside>
 
-    <!-- ── Article Body ───────────────────────────────── -->
-    <div class="art-body">
-      <div class="container">
-        <div class="art-content" set:html={bodyIntro} />
+      <article class="prose">
+        <div class="content" set:html={bodyIntro} />
         {checklist && bodyRest && (
-          <aside class="art-checklist" aria-label="Free checklist">
-            <p class="art-checklist-eyebrow">Free checklist</p>
-            <p class="art-checklist-title">{checklist.title}</p>
-            {checklist.includes.length > 0 && (
-              <ul class="art-checklist-list">{checklist.includes.map((i) => <li>{i}</li>)}</ul>
-            )}
-            <a href={checklist.href} class="btn-primary art-checklist-btn" data-checklist-cta="mid">Get the free checklist &rarr;</a>
+          <aside class="check rv" aria-label="Free checklist">
+            <div class="check-doc" aria-hidden="true"><i></i><i></i><i></i><i></i><b>✓</b></div>
+            <div class="check-body">
+              <p class="check-eb">Free checklist</p>
+              <p class="check-title">{checklist.title}</p>
+              {checklist.includes.length > 0 && (
+                <ul class="check-list">{checklist.includes.map((i) => <li>{i}</li>)}</ul>
+              )}
+              <a href={checklist.href} class="btn btn-primary" data-checklist-cta="mid">Get the free checklist →</a>
+            </div>
           </aside>
         )}
-        {bodyRest && <div class="art-content" set:html={bodyRest} />}
+        {bodyRest && <div class="content" set:html={bodyRest} />}
         {checklist && (
-          <aside class="art-checklist" aria-label="Free checklist">
-            <p class="art-checklist-eyebrow">Free checklist</p>
-            <p class="art-checklist-title">{checklist.title}</p>
-            {checklist.includes.length > 0 && (
-              <ul class="art-checklist-list">{checklist.includes.map((i) => <li>{i}</li>)}</ul>
-            )}
-            <a href={checklist.href} class="btn-primary art-checklist-btn" data-checklist-cta="end">Get the free checklist &rarr;</a>
+          <aside class="check rv" aria-label="Free checklist">
+            <div class="check-doc" aria-hidden="true"><i></i><i></i><i></i><i></i><b>✓</b></div>
+            <div class="check-body">
+              <p class="check-eb">Free checklist</p>
+              <p class="check-title">{checklist.title}</p>
+              {checklist.includes.length > 0 && (
+                <ul class="check-list">{checklist.includes.map((i) => <li>{i}</li>)}</ul>
+              )}
+              <a href={checklist.href} class="btn btn-primary" data-checklist-cta="end">Get the free checklist →</a>
+            </div>
           </aside>
         )}
 
         {relatedSolutions.length > 0 && (
-          <div class="art-related-solutions">
-            <h3 class="art-related-heading">Related solutions</h3>
-            <div class="art-rel-sol-list">
+          <section class="sols rv" aria-label="Related solutions">
+            <p class="small-eb">Related solutions</p>
+            <div class="sol-grid">
               {relatedSolutions.map((s) => (
-                <a href={`/${s.slug}/`} class="rel-sol-link">{s.name} &rarr;</a>
+                <a href={`/${s.slug}/`} class="sol">
+                  {solIcon(s) ? <img src={solIcon(s)} alt="" width="44" height="44" loading="lazy" /> : <span class="sol-mono" aria-hidden="true">{s.name.slice(0, 2)}</span>}
+                  <span class="sol-body"><span class="sol-tag">{s.tag}</span><span class="sol-name">{s.name}</span></span>
+                  <span class="sol-go" aria-hidden="true">→</span>
+                </a>
               ))}
             </div>
-          </div>
+          </section>
         )}
 
         {faqs && (
-          <div class="art-faqs">
-            <h3 class="art-related-heading">Frequently asked</h3>
+          <section id="faqs" class="faqs">
+            <h2 class="sec-h rv"><span class="sec-n" aria-hidden="true">{String(headings.length + 1).padStart(2, '0')}</span><span>Frequently asked questions</span></h2>
             <div class="faq-list">
-              {faqs.map((f) => (
-                <details class="faq-item">
-                  <summary>{f.q}</summary>
+              {faqs.map((f, i) => (
+                <details class="faq rv">
+                  <summary><span class="fq-n">{String(i + 1).padStart(2, '0')}</span><span class="fq-q">{f.q}</span><span class="fq-ic" aria-hidden="true"></span></summary>
                   <p>{f.a}</p>
                 </details>
               ))}
             </div>
-          </div>
+          </section>
         )}
-      </div>
+
+        <div class="share-row">
+          <span>Share this article</span>
+          <a href={shareUrl} target="_blank" rel="noopener" class="share-btn">Share on LinkedIn</a>
+          <button type="button" class="share-btn" data-copy={pageUrl}>Copy link</button>
+        </div>
+      </article>
     </div>
 
-    <!-- ── CTA ────────────────────────────────────────── -->
-    <div class="art-cta-wrap">
-      <div class="container">
-        <div class="art-cta">
-          <p class="art-cta-eyebrow">Take the next step</p>
-          <h2 class="art-cta-heading">Ready to strengthen your {article.category} programme?</h2>
-          <p class="art-cta-body">See how XGRC® gives your team the visibility, accountability, and control it needs — without the spreadsheet chaos.</p>
-          <div class="art-cta-btns">
-            <a href="/demo/" class="btn-primary">Book a Demo</a>
-            <a href="/solutions/" class="btn-ghost">Explore Solutions →</a>
-          </div>
+    <!-- ── CTA ──────────────────────────────────────────── -->
+    <section class="container cta-wrap">
+      <div class="cta rv">
+        <div class="cta-bg" aria-hidden="true"></div>
+        <p class="cta-eb">Take the next step</p>
+        <h2>Ready to strengthen your {article.category} programme?</h2>
+        <p>See how XGRC® gives your team the visibility, accountability, and control it needs, without the spreadsheet chaos.</p>
+        <div class="cta-actions">
+          <a href="/demo/" class="btn btn-primary">Book a Demo</a>
+          <a href="/solutions/" class="btn btn-ghost">Explore Solutions →</a>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- ── Related Articles ───────────────────────────── -->
-    {related.length > 0 && (
-      <div class="art-related-wrap">
-        <div class="container">
-          <h3 class="art-related-heading">More on {article.category}</h3>
-          <div class="art-related-grid">
-            {related.map((r) => (
-              <a href={`/insights/${r.slug}/`} class="rel-card">
-                <div class="rel-card-img">
-                  <img src={`/assets/images/insights/${r.image || `${r.slug}.jpg`}`} alt={r.title} loading="lazy" decoding="async" />
-                </div>
-                <div class="rel-card-body">
-                  <span class="rel-cat">{r.category}</span>
-                  <p class="rel-title">{r.title}</p>
-                  <span class="rel-arrow">Read →</span>
-                </div>
-              </a>
-            ))}
-          </div>
-          <div class="art-back">
-            <a href="/insights/">← All Insights</a>
-          </div>
-        </div>
+    <!-- ── More ─────────────────────────────────────────── -->
+    <section class="container more">
+      <div class="more-head">
+        <p class="small-eb">{related.length ? `More on ${article.category}` : 'More insights'}</p>
+        <a href="/insights/" class="more-all">All Insights →</a>
       </div>
-    )}
-    {related.length === 0 && (
-      <div class="art-back-only">
-        <div class="container">
-          <a href="/insights/" class="art-back-link">← All Insights</a>
-        </div>
+      <div class="more-grid">
+        {moreArticles.map((r) => (
+          <a href={`/insights/${r.slug}/`} class="more-card rv">
+            <span class="more-img"><img src={`/assets/images/insights/${r.image || `${r.slug}.jpg`}`} alt={r.title} loading="lazy" decoding="async" /></span>
+            <span class="more-body">
+              <span class="more-cat">{r.category}</span>
+              <span class="more-title">{r.title}</span>
+              <span class="more-go">Read →</span>
+            </span>
+          </a>
+        ))}
       </div>
-    )}
-
+    </section>
   </div>
 </Base>
 
+<script>
+  const root = document.getElementById('art');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Reveal on scroll (content stays visible without JS or with reduced motion).
+  if (root && 'IntersectionObserver' in window && !reduce) {
+    root.querySelectorAll('.content > h2, .content > ul, .content > ol').forEach((el) => el.classList.add('rv'));
+    root.classList.add('fx');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    root.querySelectorAll('.rv').forEach((el) => io.observe(el));
+  }
+
+  // Reading progress.
+  const bar = document.getElementById('art-progress');
+  const prose = document.querySelector('.art .prose');
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      if (bar && prose) {
+        const r = prose.getBoundingClientRect();
+        bar.style.transform = `scaleX(${Math.min(1, Math.max(0, -r.top / (r.height - window.innerHeight)))})`;
+      }
+      ticking = false;
+    });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Contents: mark the section being read.
+  const links = document.querySelectorAll('.art .toc a[data-toc]');
+  if ('IntersectionObserver' in window && links.length) {
+    const tio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) links.forEach((l) => l.classList.toggle('active', l.dataset.toc === e.target.id)); });
+    }, { rootMargin: '-25% 0px -70% 0px' });
+    links.forEach((l) => { const s = document.getElementById(l.dataset.toc); if (s) tio.observe(s); });
+  }
+
+  // Copy link.
+  document.querySelectorAll('.art [data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy);
+        const t = btn.textContent;
+        btn.textContent = 'Link copied';
+        setTimeout(() => { btn.textContent = t; }, 1800);
+      } catch { /* clipboard blocked */ }
+    });
+  });
+</script>
+
 <style>
-  /* ── Page scaffold ──────────────────────────────────── */
-  .art-page {
-    padding-top: 80px; /* nav height */
-  }
+  .art { --c1: #30e2f4; --c2: #a78bfa; --c3: #2fe88a; padding-top: 74px; overflow-x: clip; }
 
-  /* ── Breadcrumb ─────────────────────────────────────── */
-  .art-breadcrumb {
-    padding: 20px 0 0;
-  }
-  .art-breadcrumb-inner {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--mute);
-  }
-  .art-breadcrumb-inner a {
-    color: var(--mute);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .art-breadcrumb-inner a:hover { color: var(--cyan); }
+  /* ── Progress ─────────────────────────────────────── */
+  .progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 101; pointer-events: none; }
+  .progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--acc), var(--c1), var(--c2)); transform: scaleX(0); transform-origin: 0 50%; }
 
-  /* ── Header ─────────────────────────────────────────── */
-  .art-header { padding: 36px 0 40px; }
-  .art-header-inner { max-width: 780px; }
+  /* ── Hero ─────────────────────────────────────────── */
+  .hero { position: relative; padding: clamp(28px, 5vw, 60px) 0 clamp(36px, 5vw, 64px); isolation: isolate; }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(42% 55% at 78% 45%, color-mix(in srgb, var(--acc) 20%, transparent), transparent 70%),
+      radial-gradient(35% 45% at 92% 80%, rgba(167, 139, 250, 0.10), transparent 70%),
+      radial-gradient(40% 50% at 10% 10%, rgba(48, 226, 244, 0.08), transparent 70%),
+      linear-gradient(rgba(120, 170, 200, 0.06) 1px, transparent 1px) 0 0 / 44px 44px,
+      linear-gradient(90deg, rgba(120, 170, 200, 0.06) 1px, transparent 1px) 0 0 / 44px 44px;
+    mask-image: linear-gradient(180deg, #000 60%, transparent);
+  }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr); gap: clamp(28px, 4vw, 60px); align-items: center; }
+  .crumb { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: var(--font-mono); font-size: 12px; color: var(--mute); margin-bottom: 24px; }
+  .crumb a { color: var(--mute); text-decoration: none; }
+  .crumb a:hover { color: var(--acc); }
+  .crumb-cat { color: var(--acc); border: 1px solid color-mix(in srgb, var(--acc) 45%, transparent); background: color-mix(in srgb, var(--acc) 10%, transparent); padding: 2px 10px; border-radius: 99px; }
+  .hero-title { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.03em; line-height: 1.06; margin: 0 0 20px; color: var(--ink); }
+  .ht-a { display: block; font-size: clamp(1.9rem, 4vw, 3.3rem); }
+  .ht-b { display: block; margin-top: 12px; font-size: clamp(1.2rem, 2.2vw, 1.8rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.22; background: linear-gradient(90deg, var(--acc), var(--c1) 55%, var(--c2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero-dek { font-size: clamp(1rem, 1.35vw, 1.12rem); line-height: 1.7; color: var(--mute); margin: 0 0 24px; max-width: 60ch; }
+  .hero-meta { display: flex; align-items: center; gap: 14px; }
+  .hero-meta p { margin: 0; font-family: var(--font-mono); font-size: 12px; color: var(--mute); display: flex; flex-wrap: wrap; gap: 8px; }
+  .dot { color: var(--faint); }
+  .av { width: 40px; height: 40px; border-radius: 50%; object-fit: contain; padding: 5px; background: var(--abyss); box-shadow: 0 0 0 2px color-mix(in srgb, var(--acc) 70%, transparent); flex: none; }
+  .hero-fig { position: relative; margin: 0; }
+  .halo { position: absolute; inset: 6% 4%; z-index: -1; background: radial-gradient(closest-side, color-mix(in srgb, var(--acc) 35%, transparent), transparent); filter: blur(34px); }
+  .hero-img { display: block; width: 100%; height: auto; border-radius: 18px; border: 1px solid color-mix(in srgb, var(--acc) 35%, var(--line)); box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5); animation: lift 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes lift { from { opacity: 0; transform: translateY(26px) scale(0.98); } }
 
-  .art-meta {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-  }
-  .art-cat {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    background: color-mix(in srgb, var(--cat-color) 15%, transparent);
-    color: var(--cat-color);
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    font-size: 10px;
-  }
-  .art-sep { color: var(--faint); }
-  .art-date, .art-read, .art-author { color: var(--mute); }
+  /* ── Layout ───────────────────────────────────────── */
+  .layout { display: grid; grid-template-columns: 240px minmax(0, 740px); gap: 64px; justify-content: center; padding-top: 28px; }
+  .toc { position: sticky; top: 104px; align-self: start; font-size: 13px; max-height: calc(100vh - 124px); overflow: auto; scrollbar-width: none; }
+  .toc-h { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); margin: 0 0 14px; }
+  .toc ol { list-style: none; margin: 0 0 22px; padding: 0; border-left: 1px solid var(--line); }
+  .toc li a { display: flex; gap: 10px; padding: 7px 0 7px 16px; margin-left: -1px; border-left: 2px solid transparent; color: var(--mute); text-decoration: none; line-height: 1.4; transition: color 0.2s, border-color 0.2s; }
+  .toc li a:hover { color: var(--ink); }
+  .toc li a.active { color: var(--ink); border-left-color: var(--acc); }
+  .toc-n { font-family: var(--font-mono); font-size: 11px; color: var(--faint); padding-top: 2px; }
+  .toc a.active .toc-n { color: var(--acc); }
+  .toc-check { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; margin-bottom: 18px; border-radius: 14px; text-decoration: none; border: 1px solid color-mix(in srgb, var(--acc) 40%, transparent); background: linear-gradient(150deg, color-mix(in srgb, var(--acc) 12%, transparent), transparent); transition: transform 0.2s var(--ease); }
+  .toc-check:hover { transform: translateY(-2px); }
+  .tc-eb { font: 500 10.5px var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--acc); }
+  .tc-t { color: var(--ink); font-weight: 600; line-height: 1.35; }
+  .tc-go { color: var(--acc); font-size: 12.5px; }
+  .toc-share { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .share-btn { font: 500 12px var(--font-mono); color: var(--mute); background: var(--panel); border: 1px solid var(--line); border-radius: 99px; padding: 7px 14px; cursor: pointer; text-decoration: none; transition: color 0.2s, border-color 0.2s; }
+  .share-btn:hover { color: var(--ink); border-color: var(--line-strong); }
 
-  .art-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 4vw, 3rem);
-    font-weight: 800;
-    letter-spacing: -0.025em;
-    line-height: 1.15;
-    color: var(--ink);
-    margin: 0 0 20px;
+  /* ── Prose ────────────────────────────────────────── */
+  .prose { min-width: 0; }
+  .content { font-size: clamp(1rem, 1.2vw, 1.08rem); line-height: 1.8; color: color-mix(in srgb, var(--ink) 86%, transparent); }
+  .content :global(p) { margin: 0 0 1.35em; }
+  .content :global(a) { color: var(--c1); text-decoration: underline; text-decoration-color: rgba(48, 226, 244, 0.35); text-underline-offset: 3px; }
+  .content :global(a:hover) { text-decoration-color: var(--c1); }
+  .prose > .content:first-child :global(p:first-of-type) { font-size: clamp(1.1rem, 1.5vw, 1.24rem); line-height: 1.7; color: var(--ink); }
+  .prose > .content:first-child :global(p:first-of-type::first-letter) {
+    float: left; font-family: var(--font-display); font-weight: 800; font-size: 4.1em; line-height: 0.82; margin: 0.08em 0.12em 0 0;
+    background: linear-gradient(160deg, var(--acc), var(--c2)); -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .art-excerpt {
-    font-size: clamp(1rem, 1.5vw, 1.15rem);
-    color: var(--mute);
-    line-height: 1.7;
-    margin: 0;
-    max-width: 68ch;
-  }
+  .content :global(.sec-h), .faqs .sec-h { display: flex; align-items: baseline; gap: 16px; font-family: var(--font-display); font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.2; color: var(--ink); margin: 2.2em 0 0.7em; scroll-margin-top: 92px; }
+  .content :global(.sec-h:first-child) { margin-top: 0.6em; }
+  .content :global(.sec-n), .faqs .sec-n { flex: none; font: 500 13px var(--font-mono); color: var(--acc); border: 1px solid color-mix(in srgb, var(--acc) 45%, transparent); border-radius: 8px; padding: 3px 8px; transform: translateY(-5px); }
+  .content :global(ul), .content :global(ol) { list-style: none; margin: 0 0 1.5em; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .content :global(li) { position: relative; padding: 12px 16px 12px 44px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); line-height: 1.6; color: var(--ink); }
+  .content :global(li::before) { content: ''; position: absolute; left: 16px; top: 1.15em; width: 12px; height: 12px; border-radius: 4px; background: color-mix(in srgb, var(--acc) 20%, transparent); border: 1.5px solid var(--acc); }
 
-  /* ── Hero Image ─────────────────────────────────────── */
-  .art-img-wrap { padding-bottom: 52px; }
-  /* Show the whole image at its own proportions. The hero images carry
-     their message in the picture itself (caption, product logo), so any
-     crop loses content. The old max-height + object-fit: cover, with the
-     width/height attributes never overridden, kept the height while the
-     width shrank on phones and cut them to a narrow middle strip. */
-  .art-hero-img {
-    width: 100%;
-    height: auto;
-    border-radius: var(--radius-lg, 12px);
-    display: block;
-    border: 1px solid var(--line);
-  }
+  /* Checklist card */
+  .check { position: relative; display: flex; gap: 24px; align-items: center; margin: 12px 0 44px; padding: clamp(22px, 3vw, 30px); border-radius: 22px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--acc) 40%, var(--line)); background: radial-gradient(60% 120% at 0% 0%, color-mix(in srgb, var(--acc) 16%, transparent), transparent 70%), rgba(255, 255, 255, 0.025); }
+  .check-doc { flex: none; position: relative; width: 92px; height: 116px; border-radius: 10px; background: linear-gradient(160deg, #13263a, #0b1726); border: 1px solid var(--line-strong); padding: 16px 12px; display: flex; flex-direction: column; gap: 9px; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45); transform: rotate(-5deg); }
+  .check-doc i { display: block; height: 6px; border-radius: 3px; background: rgba(140, 190, 220, 0.25); }
+  .check-doc i:nth-child(2) { width: 75%; }
+  .check-doc i:nth-child(4) { width: 55%; }
+  .check-doc b { position: absolute; right: -10px; bottom: -10px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--acc); color: var(--void); font-size: 16px; box-shadow: 0 0 20px color-mix(in srgb, var(--acc) 60%, transparent); }
+  .check-eb { margin: 0 0 4px; font: 500 11px var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--acc); }
+  .check-title { margin: 0 0 10px; font: 700 1.2rem/1.3 var(--font-display); color: var(--ink); }
+  .check-list { margin: 0 0 16px; padding-left: 18px; color: var(--mute); font-size: 0.93rem; line-height: 1.6; }
 
-  /* ── Article Body ───────────────────────────────────── */
-  .art-body { padding-bottom: 72px; }
-  .art-content {
-    max-width: 720px;
-    font-size: clamp(1rem, 1.2vw, 1.08rem);
-    line-height: 1.8;
-    color: var(--ink);
-  }
+  /* Related solutions */
+  .small-eb { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); margin: 0 0 14px; }
+  .sols { margin: 8px 0 48px; }
+  .sol-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .sol { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); text-decoration: none; transition: border-color 0.25s, transform 0.25s var(--ease); }
+  .sol:hover { border-color: color-mix(in srgb, var(--acc) 55%, transparent); transform: translateY(-2px); }
+  .sol img { width: 44px; height: 44px; object-fit: contain; flex: none; }
+  .sol-mono { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; flex: none; background: linear-gradient(135deg, #7af3ff, var(--c1)); color: var(--void); font: 800 14px var(--font-display); }
+  .sol-body { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+  .sol-tag { font: 500 10.5px var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--acc); }
+  .sol-name { color: var(--ink); font-weight: 600; }
+  .sol-go { color: var(--acc); transition: transform 0.25s var(--ease); }
+  .sol:hover .sol-go { transform: translateX(4px); }
 
-  /* typography within article content */
-  .art-content :global(h2) {
-    font-family: var(--font-display);
-    font-size: clamp(1.2rem, 2vw, 1.5rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin: 2.4em 0 0.6em;
-    line-height: 1.3;
-  }
-  .art-content :global(h2:first-child) { margin-top: 0; }
+  /* FAQs */
+  .faqs { scroll-margin-top: 92px; }
+  .faq-list { display: flex; flex-direction: column; gap: 10px; }
+  .faq { border-radius: 16px; background: var(--panel); border: 1px solid var(--line); transition: border-color 0.25s; }
+  .faq[open] { border-color: color-mix(in srgb, var(--acc) 45%, transparent); background: linear-gradient(160deg, color-mix(in srgb, var(--acc) 7%, transparent), transparent); }
+  .faq summary { display: flex; align-items: center; gap: 14px; padding: 16px 18px; cursor: pointer; list-style: none; color: var(--ink); font-weight: 600; line-height: 1.45; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .fq-n { flex: none; font: 500 11px var(--font-mono); color: var(--acc); }
+  .fq-q { flex: 1; }
+  .fq-ic { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line-strong); position: relative; transition: transform 0.3s var(--ease); }
+  .fq-ic::before, .fq-ic::after { content: ''; position: absolute; left: 50%; top: 50%; width: 9px; height: 1.5px; background: var(--ink); transform: translate(-50%, -50%); }
+  .fq-ic::after { transform: translate(-50%, -50%) rotate(90deg); transition: opacity 0.2s; }
+  .faq[open] .fq-ic { transform: rotate(180deg); border-color: var(--acc); }
+  .faq[open] .fq-ic::after { opacity: 0; }
+  .faq p { margin: 0; padding: 0 18px 18px 50px; color: var(--mute); line-height: 1.7; }
 
-  .art-content :global(p) {
-    margin: 0 0 1.4em;
-    color: color-mix(in srgb, var(--ink) 85%, transparent);
-  }
+  .share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .share-row > span { font: 500 12px var(--font-mono); color: var(--faint); margin-right: 6px; }
 
-  .art-content :global(ul) {
-    margin: 0 0 1.4em;
-    padding-left: 1.4em;
-    list-style: none;
-  }
-  .art-content :global(li) {
-    position: relative;
-    padding-left: 1em;
-    margin-bottom: 0.6em;
-    color: color-mix(in srgb, var(--ink) 85%, transparent);
-  }
-  .art-content :global(li::before) {
-    content: '→';
-    position: absolute;
-    left: -0.6em;
-    color: var(--cyan);
-    font-size: 0.8em;
-    top: 0.15em;
-  }
+  /* CTA */
+  .cta-wrap { padding: clamp(56px, 8vw, 96px) 0 0; }
+  .cta { position: relative; overflow: hidden; isolation: isolate; text-align: center; padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 56px); border-radius: 28px; border: 1px solid var(--line-strong); }
+  .cta-bg { position: absolute; inset: 0; z-index: -1; background: radial-gradient(50% 80% at 18% 0%, color-mix(in srgb, var(--acc) 20%, transparent), transparent 70%), radial-gradient(50% 80% at 85% 100%, rgba(167, 139, 250, 0.16), transparent 70%), rgba(255, 255, 255, 0.02); }
+  .cta-eb { font: 500 11px var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--acc); margin: 0 0 10px; }
+  .cta h2 { font: 800 clamp(1.6rem, 3.4vw, 2.5rem)/1.15 var(--font-display); letter-spacing: -0.025em; margin: 0 0 14px; color: var(--ink); }
+  .cta p:not(.cta-eb) { color: var(--mute); max-width: 56ch; margin: 0 auto 28px; line-height: 1.65; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 
-  /* ── Related solutions ────────────────────────────────── */
-  .art-related-solutions { max-width: 720px; margin: 0 0 48px; }
-  .art-checklist { max-width: 720px; margin: 8px 0 44px; padding: 22px 24px; border: 1px solid var(--line-strong); border-radius: var(--radius-md); background: linear-gradient(120deg, rgba(38,158,198,0.08), rgba(48,226,244,0.02)); }
-  .art-checklist-eyebrow { margin: 0 0 6px; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); }
-  .art-checklist-title { margin: 0 0 10px; font-family: var(--font-display); font-weight: 600; font-size: 1.12rem; color: var(--ink); }
-  .art-checklist-list { margin: 0 0 16px; padding-left: 18px; color: var(--mute); font-size: 0.92rem; line-height: 1.55; }
-  .art-checklist-btn { display: inline-flex; }
-  .art-related-heading {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--mute);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin: 0 0 16px;
-  }
-  .art-rel-sol-list { display: flex; flex-wrap: wrap; gap: 12px; }
-  .rel-sol-link {
-    display: inline-block;
-    padding: 9px 16px;
-    border: 1px solid var(--line);
-    border-radius: 100px;
-    color: var(--cyan);
-    font-size: 0.88rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .rel-sol-link:hover { border-color: var(--cyan); color: var(--cyan-hi); }
+  /* More */
+  .more { padding: clamp(48px, 7vw, 80px) 0 clamp(56px, 8vw, 96px); }
+  .more-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .more-all { font: 500 13px var(--font-mono); color: var(--acc); text-decoration: none; }
+  .more-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .more-card { display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; background: var(--panel); border: 1px solid var(--line); text-decoration: none; transition: border-color 0.25s, transform 0.25s var(--ease); }
+  .more-card:hover { border-color: color-mix(in srgb, var(--acc) 50%, transparent); transform: translateY(-4px); }
+  .more-img { display: block; aspect-ratio: 1200 / 630; overflow: hidden; }
+  .more-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s var(--ease); }
+  .more-card:hover .more-img img { transform: scale(1.04); }
+  .more-body { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 18px; }
+  .more-cat { font: 500 10.5px var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--acc); }
+  .more-title { color: var(--ink); font-weight: 600; line-height: 1.4; }
+  .more-go { color: var(--mute); font-size: 13px; margin-top: 2px; }
 
-  /* ── Article FAQs ─────────────────────────────────────── */
-  .art-faqs { max-width: 720px; margin: 0 0 48px; }
-  .art-faqs .faq-list { display: flex; flex-direction: column; gap: 10px; }
-  .art-faqs .faq-item {
-    border: 1px solid var(--line);
-    border-radius: var(--radius-md, 10px);
-    background: var(--panel);
-    padding: 16px 18px;
-  }
-  .art-faqs .faq-item summary {
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--ink);
-    font-size: 0.96rem;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-  .art-faqs .faq-item summary::-webkit-details-marker { display: none; }
-  .art-faqs .faq-item summary::after {
-    content: '+';
-    font-family: var(--font-mono);
-    color: var(--cyan);
-    font-size: 1.1rem;
-    flex-shrink: 0;
-    transition: transform 0.2s;
-  }
-  .art-faqs .faq-item[open] summary::after { transform: rotate(45deg); }
-  .art-faqs .faq-item p { color: var(--mute); font-size: 0.92rem; margin-top: 10px; line-height: 1.6; }
+  /* Reveal */
+  .fx .rv { opacity: 0; transform: translateY(16px); transition: opacity 0.6s var(--ease), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .fx .rv.in { opacity: 1; transform: none; }
 
-  /* ── CTA ────────────────────────────────────────────── */
-  .art-cta-wrap {
-    padding: 0 0 80px;
+  /* ── Responsive ───────────────────────────────────── */
+  @media (max-width: 1180px) {
+    .layout { grid-template-columns: minmax(0, 760px); }
+    .toc { position: static; max-height: none; order: 2; margin-top: 8px; }
+    .toc-h, .toc ol { display: none; }
   }
-  .art-cta {
-    background: linear-gradient(135deg, rgba(48,226,244,0.06), rgba(38,158,198,0.03));
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius-lg, 12px);
-    padding: clamp(36px, 5vw, 64px);
-    max-width: 760px;
+  @media (max-width: 1000px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-fig { max-width: 720px; }
+    .more-grid { grid-template-columns: 1fr; }
   }
-  .art-cta-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--cyan);
-    margin: 0 0 12px;
+  @media (max-width: 640px) {
+    .sol-grid { grid-template-columns: 1fr; }
+    .check { flex-direction: column; align-items: flex-start; }
+    .check-doc { width: 70px; height: 88px; }
+    .faq p { padding-left: 18px; }
   }
-  .art-cta-heading {
-    font-family: var(--font-display);
-    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin: 0 0 14px;
-    line-height: 1.25;
-  }
-  .art-cta-body {
-    color: var(--mute);
-    font-size: 0.98rem;
-    line-height: 1.65;
-    margin: 0 0 28px;
-  }
-  .art-cta-btns {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  .btn-primary {
-    display: inline-block;
-    padding: 12px 28px;
-    background: var(--cyan);
-    color: #000;
-    font-weight: 700;
-    font-size: 0.9rem;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-  .btn-primary:hover { opacity: 0.85; }
-  .btn-ghost {
-    display: inline-block;
-    padding: 12px 4px;
-    color: var(--mute);
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .btn-ghost:hover { color: var(--ink); }
-
-  /* ── Related ────────────────────────────────────────── */
-  .art-related-wrap {
-    padding: 0 0 80px;
-    border-top: 1px solid var(--line);
-  }
-  .art-related-heading {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--mute);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin: 52px 0 28px;
-  }
-  .art-related-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-  .rel-card {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    overflow: hidden;
-    text-decoration: none;
-    color: var(--ink);
-    transition: border-color 0.25s, transform 0.25s;
-  }
-  .rel-card:hover {
-    border-color: var(--line-strong);
-    transform: translateY(-2px);
-  }
-  .rel-card-img {
-    aspect-ratio: 16/9;
-    overflow: hidden;
-  }
-  .rel-card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s;
-    display: block;
-  }
-  .rel-card:hover .rel-card-img img { transform: scale(1.04); }
-  .rel-card-body {
-    padding: 18px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1;
-  }
-  .rel-cat {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--cyan);
-  }
-  .rel-title {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    margin: 0;
-    flex: 1;
-  }
-  .rel-arrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--mute);
-    margin-top: 4px;
-  }
-
-  .art-back { margin-top: 40px; }
-  .art-back a, .art-back-link {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--mute);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .art-back a:hover, .art-back-link:hover { color: var(--ink); }
-  .art-back-only { padding: 0 0 80px; }
-
-  @media (max-width: 900px) {
-    .art-related-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 600px) {
-    .art-related-grid { grid-template-columns: 1fr; }
-    .art-cta-btns { flex-direction: column; align-items: flex-start; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-img { animation: none; }
   }
 </style>
