@@ -57,6 +57,7 @@ export const caseStudyPages = [
   {
     slug: 'vican-manufacturing',
     draft: false,
+    logo: 'Vican.png', // from vican.co.za (Vican_Yellow_Watermark.png)
     datePublished: '2026-09-29',
     title: 'Vican Manufacturing Case Study: SHEQX® and ISO 9001 | XGRC®',
     metaDescription: 'How Vican Manufacturing, a South African paint producer, uses SHEQX® and ISO 9001 quality management on XGRC®, with GRC Link.',

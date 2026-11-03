@@ -15,7 +15,8 @@ const pageUrl = `https://xgrcsoftware.com${path}`;
 const pdf = base.pdf ? `/case-studies/${entry.slug}.pdf` : null;
 
 const customer = customerGroups.flatMap((g) => g.customers).find((c) => c.caseStudySlug === entry.slug || c.name === company);
-const logo = customer?.logo ? `/assets/logos/customers/${customer.logo}` : null;
+const logoFile = customer?.logo || entry.logo;
+const logo = logoFile ? `/assets/logos/customers/${logoFile}` : null;
 const companyUrl = entry.companyUrl || customer?.url || null;
 const initials = (name) => String(name).split(/\s+/).filter((w) => /^[A-Za-z]/.test(w)).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
 
@@ -64,7 +65,7 @@ const icons = [
 const others = publishedCaseStudyPages.filter((p) => p.slug !== entry.slug).map((p) => {
   const b = caseStudies.find((c) => c.slug === p.slug) || {};
   const cu = customerGroups.flatMap((g) => g.customers).find((c) => c.caseStudySlug === p.slug || c.name === b.company);
-  return { slug: p.slug, company: b.company || p.slug, sector: b.sector, headline: p.headline, logo: cu?.logo ? `/assets/logos/customers/${cu.logo}` : null };
+  return { slug: p.slug, company: b.company || p.slug, sector: b.sector, headline: p.headline, logo: (cu?.logo || p.logo) ? `/assets/logos/customers/${cu?.logo || p.logo}` : null };
 });
 
 const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
