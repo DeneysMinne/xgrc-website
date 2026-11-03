@@ -1,0 +1,12 @@
+<script>
+  // Reveal-on-scroll for feature-standard pages (.fp root). Content stays visible
+  // without JS or with reduced motion.
+  const fpRoot = document.querySelector('.fp');
+  if (fpRoot && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    fpRoot.classList.add('fx');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    fpRoot.querySelectorAll('.rv').forEach((el) => io.observe(el));
+  }
+</script>

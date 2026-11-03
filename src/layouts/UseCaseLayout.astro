@@ -8,6 +8,7 @@ import MarketingOptIn from '../components/MarketingOptIn.astro';
 import Base from './Base.astro';
 import { solutionDetails, solutions } from '../data/site.js';
 import { useCaseRegistry } from '../data/useCaseRegistry.js';
+import { lookFor, solutionIcon } from '../data/solutionLooks.js';
 
 const { entry } = Astro.props;
 const {
@@ -39,22 +40,8 @@ const related = relatedUseCases
   .filter(Boolean);
 
 // Per-solution look: accent colour, dashboard screenshot and product icon.
-const looks = {
-  'sheqx': { acc: '#fbbf24', shot: 'sheqx-dashboard.webp' },
-  'envirx': { acc: '#34d399', shot: 'envirx-dashboard.webp' },
-  'esg': { acc: '#3ecf8e', shot: 'esg-dashboard.webp' },
-  'erm': { acc: '#fb923c', shot: 'erm-dashboard-new.webp' },
-  'msx': { acc: '#30e2f4', shot: 'msx-dashboard.webp' },
-  'msxcyber': { acc: '#a78bfa', shot: 'msxcyber-dashboard.webp' },
-  'integrated-assurance': { acc: '#60a5fa', shot: 'integrated-assurance-dashboard.webp' },
-  'compliance-hub': { acc: '#f472b6', shot: 'compliance-hub-dashboard-v2.webp' },
-  'xlogic': { acc: '#2dd4bf', shot: 'xlogic-dashboard.webp' },
-  'maia': { acc: '#c084fc', shot: 'maia-dashboard-v2.webp' },
-  'ai-governance': { acc: '#60a5fa', shot: 'ai-governance-dashboard-register.webp' },
-};
-const look = looks[relatedSolution] || looks.msx;
-const iconSlugs = ['msx', 'msxcyber', 'esg', 'sheqx', 'erm', 'integrated-assurance', 'envirx', 'compliance-hub', 'xlogic', 'maia', 'xrm'];
-const iconFor = (s) => (iconSlugs.includes(s) ? `/assets/logos/solutions/icons/${s}.png` : null);
+const look = lookFor(relatedSolution);
+const iconFor = solutionIcon;
 const solIcon = iconFor(relatedSolution);
 const solName = solution?.name || 'XGRC®';
 
@@ -319,7 +306,7 @@ const schema = {
             </a>
           )}
           {related.map((r) => {
-            const rl = looks[r.relatedSolution] || looks.msx;
+            const rl = lookFor(r.relatedSolution);
             return (
               <a class="rel-card rv" href={`/use-cases/${r.slug}/`} style={`--racc: ${rl.acc}`}>
                 <span class="rel-body">

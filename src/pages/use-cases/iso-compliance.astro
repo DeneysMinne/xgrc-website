@@ -1,5 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
+import FeatureReveal from '../../components/FeatureReveal.astro';
+import '../../styles/feature.css';
+import { lookFor, solutionIcon } from '../../data/solutionLooks.js';
 import { useCaseRegistry } from '../../data/useCaseRegistry.js';
 
 const isoPages = useCaseRegistry.filter((u) => u.category === 'ISO Readiness');
@@ -49,55 +52,76 @@ const schema = {
 ---
 <Base title="ISO Compliance Software | Readiness & Gap Assessment | XGRC®" description="ISO 9001, 14001, 45001, 27001, 22000 and 31000 readiness and gap assessment software for South African organisations, from XGRC®.">
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-  <section class="page-head">
-    <div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="/">Home</a><span>/</span><a href="/use-cases/">Use Cases</a><span>/</span><b>ISO Compliance</b>
-      </nav>
-      <span class="eyebrow"><span class="dot"></span>ISO Compliance</span>
-      <h1>ISO readiness, gap assessment and certification support in one platform.</h1>
-      <p class="lede">XGRC® supports readiness and gap assessment across the ISO standards that matter most for quality, safety, environmental, information security and risk management. The same platform carries you from the first gap assessment to certification, and keeps the system working through every surveillance audit after it.</p>
+  <div class="fp" style="--acc: #a78bfa">
+  <header class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
+    <div class="container fp-hero-grid">
+      <div>
+        <nav class="fp-crumb" aria-label="Breadcrumb">
+          <a href="/">Home</a><span aria-hidden="true">/</span><a href="/use-cases/">Use Cases</a><span aria-hidden="true">/</span><b>ISO Compliance</b>
+        </nav>
+        <span class="fp-chip">ISO Compliance</span>
+        <h1 class="fp-title">ISO readiness, gap assessment and certification support<span class="fp-hl"> in one platform.</span></h1>
+        <p class="fp-dek">XGRC® supports readiness and gap assessment across the ISO standards that matter most for quality, safety, environmental, information security and risk management. The same platform carries you from the first gap assessment to certification, and keeps the system working through every surveillance audit after it.</p>
+        <div class="fp-actions">
+          <a href="#guides" class="btn btn-primary">Explore the guides</a>
+          <a href="/demo/" class="btn btn-ghost">Book a demo</a>
+        </div>
+      </div>
+      <div class="stds" aria-hidden="true">
+        <div class="stds-halo"></div>
+        {standards.map((s, i) => (
+          <div class="std-pill" style={`--sa: ${lookFor(s.sol).acc}; --d: ${i * 90}ms`}>
+            {solutionIcon(s.sol) && <img src={solutionIcon(s.sol)} alt="" width="30" height="30" />}
+            <span class="sp-std">{s.std}</span>
+            <span class="sp-topic">{s.topic}</span>
+          </div>
+        ))}
+      </div>
     </div>
-  </section>
+  </header>
 
-  <section class="section--tight">
+  <section class="fp-sec tight" id="guides">
     <div class="container">
-      <div class="grid cols-3">
+      <div class="fp-cards">
         {isoPages.map((u) => (
-          <a class="card uc-card" href={`/use-cases/${u.slug}/`}>
-            <span class="tag">{u.category}</span>
+          <a class="fp-card rv" href={`/use-cases/${u.slug}/`} style={`--racc: ${lookFor(u.relatedSolution).acc}`}>
+            <span class="fp-card-top">
+              {solutionIcon(u.relatedSolution) ? <img src={solutionIcon(u.relatedSolution)} alt="" width="34" height="34" loading="lazy" /> : <span class="fp-mono" aria-hidden="true">AI</span>}
+              <span class="fp-tag">{u.category}</span>
+            </span>
             <h3>{u.crumbLabel}</h3>
             <p>{u.lede}</p>
-            <span class="link-arrow">View readiness guide &rarr;</span>
+            <span class="fp-go">View readiness guide &rarr;</span>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section--tight">
-    <div class="container narrow">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>How readiness works</span>
-        <h2>From gap assessment to a certificate you keep.</h2>
-        <p class="lede">Most certification projects stall for the same reason: the evidence lives in shared drives, inboxes and spreadsheets, and nobody can see which clauses are actually covered. Readiness is quicker when every clause, gap, action and record sits in one place.</p>
+  <section class="fp-sec fp-band">
+    <div class="container fp-split">
+      <div class="fp-head rv">
+        <span class="fp-eb">How readiness works</span>
+        <h2 class="fp-h2">From gap assessment to a certificate you keep.</h2>
+        <p class="fp-lede">Most certification projects stall for the same reason: the evidence lives in shared drives, inboxes and spreadsheets, and nobody can see which clauses are actually covered. Readiness is quicker when every clause, gap, action and record sits in one place.</p>
       </div>
-      <ol class="steps">
-        {steps.map((s) => (
-          <li><h3>{s.t}</h3><p>{s.d}</p></li>
+      <ol class="fp-steps">
+        {steps.map((s, i) => (
+          <li class="fp-step rv"><span class="fp-node">{String(i + 1).padStart(2, '0')}</span><div class="fp-step-body"><h3>{s.t}</h3><p>{s.d}</p></div></li>
         ))}
       </ol>
     </div>
   </section>
 
-  <section class="section--tight">
+  <section class="fp-sec">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>South African context</span>
-        <h2>Each standard, and the law it sits beside.</h2>
-        <p class="lede">An ISO certificate shows that a management system works. In South Africa it sits beside legislation that auditors, inspectors and customers also test, so readiness should cover both.</p>
+      <div class="fp-head rv">
+        <span class="fp-eb">South African context</span>
+        <h2 class="fp-h2">Each standard, and the law it sits beside.</h2>
+        <p class="fp-lede">An ISO certificate shows that a management system works. In South Africa it sits beside legislation that auditors, inspectors and customers also test, so readiness should cover both.</p>
       </div>
-      <div class="std-table" role="table" aria-label="ISO standards and South African legislation">
+      <div class="std-table rv" role="table" aria-label="ISO standards and South African legislation">
         <div class="std-row std-row--head" role="row">
           <span role="columnheader">Standard</span><span role="columnheader">What it covers</span><span role="columnheader">South African link</span><span role="columnheader">Supported by</span>
         </div>
@@ -106,7 +130,7 @@ const schema = {
             <span role="cell"><a href={`/use-cases/${s.uc}/`}>{s.std}</a></span>
             <span role="cell">{s.topic}</span>
             <span role="cell">{s.law}</span>
-            <span role="cell"><a href={`/${s.sol}/`}>{s.solName}</a></span>
+            <span role="cell"><a class="std-sol" href={`/${s.sol}/`} style={`--sa: ${lookFor(s.sol).acc}`}>{solutionIcon(s.sol) && <img src={solutionIcon(s.sol)} alt="" width="22" height="22" loading="lazy" />}{s.solName}</a></span>
           </div>
         ))}
       </div>
@@ -114,16 +138,16 @@ const schema = {
     </div>
   </section>
 
-  <section class="section--tight">
-    <div class="container narrow">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Frequently asked</span>
-        <h2>Common questions.</h2>
+  <section class="fp-sec">
+    <div class="container fp-split">
+      <div class="fp-head rv">
+        <span class="fp-eb">Frequently asked</span>
+        <h2 class="fp-h2">Common questions.</h2>
       </div>
-      <div class="faq-list">
-        {faqs.map((f) => (
-          <details class="faq-item">
-            <summary>{f.q}</summary>
+      <div class="fp-faqs">
+        {faqs.map((f, i) => (
+          <details class="fp-faq rv">
+            <summary><span class="fp-fq-n">{String(i + 1).padStart(2, '0')}</span><span class="fp-fq-q">{f.q}</span><span class="fp-fq-ic" aria-hidden="true"></span></summary>
             <p>{f.a}</p>
           </details>
         ))}
@@ -131,45 +155,47 @@ const schema = {
     </div>
   </section>
 
-  <section class="section">
+  <section class="fp-sec">
     <div class="container">
-      <div class="card cta-band">
+      <div class="fp-cta rv">
         <h2>See your ISO readiness in one view.</h2>
-        <p class="lede">We will walk you through a gap assessment for the standard you are working towards, using your own scope.</p>
-        <a href="/demo/" class="btn btn-primary">Book a demo</a>
+        <p>We will walk you through a gap assessment for the standard you are working towards, using your own scope.</p>
+        <div class="fp-actions"><a href="/demo/" class="btn btn-primary">Book a demo</a></div>
       </div>
     </div>
   </section>
+  </div>
 </Base>
+<FeatureReveal />
 <style>
-  .page-head { padding: 130px 0 0; }
-  .page-head h1 { margin: 8px 0 18px; max-width: 26ch; }
-  .crumbs { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--faint); display: flex; gap: 10px; align-items: center; margin-bottom: 26px; }
-  .crumbs a { color: var(--mute); text-decoration: none; }
-  .crumbs a:hover { color: var(--cyan); }
-  .crumbs b { color: var(--ink); font-weight: 500; }
-  .uc-card { text-decoration: none; display: flex; flex-direction: column; }
-  .uc-card .link-arrow { margin-top: auto; padding-top: 16px; }
   .narrow { max-width: 860px; }
-  .steps { list-style: none; counter-reset: step; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
-  .steps li { counter-increment: step; position: relative; padding: 18px 20px 18px 64px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255, 255, 255, 0.02); }
-  .steps li::before { content: counter(step); position: absolute; left: 20px; top: 18px; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-mono); font-size: 13px; color: var(--cyan); border: 1px solid var(--line-strong); }
-  .steps h3 { font-size: 1.02rem; margin: 2px 0 6px; }
-  .steps p { color: var(--mute); font-size: 0.93rem; line-height: 1.6; margin: 0; }
-  .std-table { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-  .std-row { display: grid; grid-template-columns: 1fr 1.2fr 2.6fr 1fr; gap: 16px; padding: 14px 18px; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--mute); line-height: 1.55; }
+  .stds { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .stds-halo { position: absolute; inset: 0; z-index: -1; background: radial-gradient(closest-side, rgba(167, 139, 250, 0.3), transparent); filter: blur(40px); }
+  .std-pill { display: grid; grid-template-columns: 30px minmax(0, 1fr); column-gap: 12px; align-items: center; padding: 16px 18px; border-radius: 16px; background: rgba(9, 20, 35, 0.8); border: 1px solid color-mix(in srgb, var(--sa) 40%, var(--line)); box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4); animation: spIn 0.8s calc(0.2s + var(--d)) cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .std-pill:nth-child(odd) { transform: translateY(14px); }
+  @keyframes spIn { from { opacity: 0; translate: 0 18px; } }
+  .std-pill img { grid-row: span 2; width: 30px; height: 30px; object-fit: contain; }
+  .sp-std { font: 800 1.05rem var(--font-display); color: var(--sa); }
+  .sp-topic { font-size: 12.5px; color: var(--mute); }
+  .std-table { border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: var(--panel); }
+  .std-row { display: grid; grid-template-columns: 1fr 1.2fr 2.6fr 1.1fr; gap: 16px; padding: 16px 20px; border-top: 1px solid var(--line); font-size: 0.93rem; color: var(--mute); line-height: 1.55; align-items: center; transition: background 0.2s; }
+  .std-row:not(.std-row--head):hover { background: rgba(255, 255, 255, 0.025); }
   .std-row:first-child { border-top: none; }
   .std-row--head { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--faint); background: rgba(255, 255, 255, 0.03); }
-  .std-row a { color: var(--cyan); text-decoration: none; }
+  .std-row a { color: var(--acc); text-decoration: none; }
   .std-row a:hover { text-decoration: underline; }
-  .std-row span:first-child { color: var(--ink); font-weight: 500; }
+  .std-row span:first-child { color: var(--ink); font-weight: 600; }
+  .std-row span:first-child a { font: 700 1rem var(--font-display); }
+  .std-sol { display: inline-flex; align-items: center; gap: 8px; color: var(--sa) !important; font-weight: 600; }
+  .std-sol img { width: 22px; height: 22px; object-fit: contain; }
   .note { color: var(--mute); margin-top: 18px; font-size: 0.95rem; line-height: 1.6; }
-  .note a { color: var(--cyan); }
-  .cta-band { text-align: center; padding: clamp(40px, 6vw, 64px); background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(0,92,169,0.05)); border-color: var(--line-strong); }
-  .cta-band .lede { margin: 0 auto 26px; }
+  .note a { color: var(--acc); }
   @media (max-width: 760px) {
     .std-row { grid-template-columns: 1fr 1fr; }
     .std-row--head { display: none; }
     .std-row span:nth-child(3) { grid-column: 1 / -1; order: 3; }
+    .stds { grid-template-columns: 1fr 1fr; }
+    .std-pill:nth-child(odd) { transform: none; }
   }
+  @media (prefers-reduced-motion: reduce) { .std-pill { animation: none; } }
 </style>
