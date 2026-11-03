@@ -1,8 +1,9 @@
 ---
-// Shared template for every /use-cases/[slug]/ page — use case, ISO readiness,
+// Shared template for every /use-cases/[slug]/ page: use case, ISO readiness,
 // regulatory, and inspection checklist pages all render through this one layout.
-// Extracted from the original hand-copied src/pages/use-cases/*.astro files.
 // See docs/add-new-use-case.md to add a new page instead of copying this file.
+// Each page takes the accent colour, dashboard and icon of its related solution,
+// so pages share one design language without looking identical.
 import MarketingOptIn from '../components/MarketingOptIn.astro';
 import Base from './Base.astro';
 import { solutionDetails, solutions } from '../data/site.js';
@@ -37,6 +38,40 @@ const related = relatedUseCases
   .map((s) => useCaseRegistry.find((u) => u.slug === s))
   .filter(Boolean);
 
+// Per-solution look: accent colour, dashboard screenshot and product icon.
+const looks = {
+  'sheqx': { acc: '#fbbf24', shot: 'sheqx-dashboard.webp' },
+  'envirx': { acc: '#34d399', shot: 'envirx-dashboard.webp' },
+  'esg': { acc: '#3ecf8e', shot: 'esg-dashboard.webp' },
+  'erm': { acc: '#fb923c', shot: 'erm-dashboard-new.webp' },
+  'msx': { acc: '#30e2f4', shot: 'msx-dashboard.webp' },
+  'msxcyber': { acc: '#a78bfa', shot: 'msxcyber-dashboard.webp' },
+  'integrated-assurance': { acc: '#60a5fa', shot: 'integrated-assurance-dashboard.webp' },
+  'compliance-hub': { acc: '#f472b6', shot: 'compliance-hub-dashboard-v2.webp' },
+  'xlogic': { acc: '#2dd4bf', shot: 'xlogic-dashboard.webp' },
+  'maia': { acc: '#c084fc', shot: 'maia-dashboard-v2.webp' },
+  'ai-governance': { acc: '#60a5fa', shot: 'ai-governance-dashboard-register.webp' },
+};
+const look = looks[relatedSolution] || looks.msx;
+const iconSlugs = ['msx', 'msxcyber', 'esg', 'sheqx', 'erm', 'integrated-assurance', 'envirx', 'compliance-hub', 'xlogic', 'maia', 'xrm'];
+const iconFor = (s) => (iconSlugs.includes(s) ? `/assets/logos/solutions/icons/${s}.png` : null);
+const solIcon = iconFor(relatedSolution);
+const solName = solution?.name || 'XGRC®';
+
+// Headline: the same words, with the second idea set in the accent gradient.
+const splitters = [
+  /^(.+?\.)(\s.+)$/,
+  /^(.+?)(\s—\s.+)$/,
+  /^(.+?,)(\s+not\s.+)$/,
+  /^(.+?,)(\s.+)$/,
+  /^(.+?)(\s(?:means|that|for|before|beyond)\s.+)$/,
+];
+const hm = splitters.map((r) => h1.match(r)).find(Boolean);
+const [h1a, h1b] = hm ? [hm[1], hm[2]] : [h1, ''];
+
+const rows = Array.from({ length: Math.max(manual.length, withXgrc.length) }, (_, i) => [manual[i], withXgrc[i]]);
+const pad = (i) => String(i + 1).padStart(2, '0');
+
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -69,76 +104,114 @@ const schema = {
 <Base title={title} description={metaDescription} mdPath={`/use-cases/${slug}.md`}>
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
+  <div class="uc" id="uc" style={`--acc: ${look.acc}`}>
+
   <!-- ============ HERO ============ -->
-  <section class="page-head">
-    <div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="/">Home</a><span>/</span><a href="/use-cases/">Use Cases</a><span>/</span><b>{crumbLabel}</b>
-      </nav>
-      <span class="eyebrow"><span class="dot"></span>{heroEyebrow}</span>
-      <h1>{h1}</h1>
-      <p class="lede">{lede}</p>
-      <div class="hero-cta">
-        {resource && (
-          <button class="btn btn-primary" data-open-download type="button">{heroButtonLabel}</button>
-        )}
-        <a href="#demo" class="btn btn-ghost">Book a demo</a>
+  <header class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <nav class="crumb" aria-label="Breadcrumb">
+          <a href="/">Home</a><span aria-hidden="true">/</span><a href="/use-cases/">Use Cases</a><span aria-hidden="true">/</span><b>{crumbLabel}</b>
+        </nav>
+        <span class="eb-chip"><span class="eb-dot"></span>{heroEyebrow}</span>
+        <h1 class="hero-title">{h1a}{h1b && <span class="hl">{h1b}</span>}</h1>
+        <p class="hero-dek">{lede}</p>
+        <div class="hero-cta">
+          {resource && (
+            <button class="btn btn-primary" data-open-download type="button">{heroButtonLabel}</button>
+          )}
+          <a href="#demo" class="btn btn-ghost">Book a demo</a>
+        </div>
       </div>
+      <figure class="hero-fig" aria-label={`${solName} dashboard`}>
+        <div class="halo" aria-hidden="true"></div>
+        <div class="frame">
+          <div class="bar" aria-hidden="true">
+            <i></i><i></i><i></i>
+            {solIcon && <img src={solIcon} alt="" width="18" height="18" />}
+            <span>{solName}</span>
+            <em class="live"><b></b>LIVE</em>
+          </div>
+          <img class="shot" src={`/assets/screenshots/${look.shot}`} alt={`${solName} dashboard on the XGRC® platform`} width="1600" height="1000" loading="eager" decoding="async" />
+        </div>
+        {withXgrc[0] && (
+          <div class="float f1" aria-hidden="true">
+            <span class="f-ok">✓</span>
+            <span><span class="f-eb">With {compareLabel}</span><span class="f-t">{withXgrc[0]}</span></span>
+          </div>
+        )}
+        {frameworks.length > 0 && (
+          <div class="float f2" aria-hidden="true">
+            <span class="f-eb">Aligned to</span>
+            <span class="f-chips">{frameworks.slice(0, 3).map((f) => <span>{f}</span>)}</span>
+          </div>
+        )}
+      </figure>
     </div>
-  </section>
+  </header>
 
   <!-- ============ THE PROBLEM ============ -->
   {problems.length > 0 && (
-    <section class="section--tight">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow"><span class="dot"></span>The problem</span>
-          <h2>{problemHeadline}</h2>
-          {problemIntro && <p class="lede">{problemIntro}</p>}
+    <section class="sec">
+      <div class="container split">
+        <div class="split-head rv">
+          <span class="sec-eb">The problem</span>
+          <h2 class="sec-title">{problemHeadline}</h2>
+          {problemIntro && <p class="sec-lede">{problemIntro}</p>}
         </div>
-        <div class="grid cols-2">
-          {problems.map((p) => (
-            <div class="card problem"><p>{p}</p></div>
+        <ol class="pains">
+          {problems.map((p, i) => (
+            <li class="pain rv">
+              <span class="pain-x" aria-hidden="true">×</span>
+              <span class="pain-n" aria-hidden="true">{pad(i)}</span>
+              <p>{p}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   )}
 
   <!-- ============ THE XGRC APPROACH ============ -->
   {approach.length > 0 && (
-    <section class="section">
+    <section class="sec sec-band">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow"><span class="dot"></span>{approachEyebrow}</span>
-          <h2>{approachHeadline}</h2>
+        <div class="center-head rv">
+          <span class="sec-eb">{approachEyebrow}</span>
+          <h2 class="sec-title">{approachHeadline}</h2>
         </div>
-        <div class="grid cols-3 steps">
+        <ol class="rail" style={`--n: ${approach.length}`}>
           {approach.map((step, i) => (
-            <div class="card step">
-              <span class="step-no">{String(i + 1).padStart(2, '0')}</span>
+            <li class="rail-step rv" style={`--d: ${i * 70}ms`}>
+              <span class="rail-node">{pad(i)}</span>
               <p>{step}</p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   )}
 
   <!-- ============ HOW IT WORKS ============ -->
   {howItWorks.length > 0 && (
-    <section class="section--tight">
+    <section class="sec">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow"><span class="dot"></span>How it works</span>
-          <h2>{howItWorksHeadline}</h2>
+        <div class="center-head rv">
+          <span class="sec-eb">How it works</span>
+          <h2 class="sec-title">{howItWorksHeadline}</h2>
         </div>
-        <div class="grid cols-2 howgrid">
-          <ul class="ticks">
-            {howItWorks.map((h) => (<li>{h}</li>))}
+        <div class="how">
+          <ul class="caps">
+            {howItWorks.map((h) => (<li class="cap rv"><span class="cap-ic" aria-hidden="true"></span>{h}</li>))}
           </ul>
           {platformNote && (
-            <div class="card platform">
+            <div class="platform rv">
+              <div class="platform-bg" aria-hidden="true"></div>
+              <div class="platform-top">
+                {solIcon ? <img src={solIcon} alt="" width="52" height="52" loading="lazy" /> : <span class="sol-mono" aria-hidden="true">{solName.slice(0, 2)}</span>}
+                <span class="platform-eb">{solName}</span>
+              </div>
               <h3>{platformNote.title}</h3>
               <p>{platformNote.body}</p>
             </div>
@@ -150,21 +223,23 @@ const schema = {
 
   <!-- ============ MANUAL VS XGRC ============ -->
   {manual.length > 0 && withXgrc.length > 0 && (
-    <section class="section">
+    <section class="sec sec-band">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow"><span class="dot"></span>From manual to {compareLabel}</span>
-          <h2>{compareHeadline}</h2>
+        <div class="center-head rv">
+          <span class="sec-eb">From manual to {compareLabel}</span>
+          <h2 class="sec-title">{compareHeadline}</h2>
         </div>
-        <div class="grid cols-2 compare">
-          <div class="card col-manual">
-            <span class="compare-label">Manual approach</span>
-            <ul class="bars">{manual.map((m) => (<li>{m}</li>))}</ul>
+        <div class="vs">
+          <div class="vs-head" aria-hidden="true">
+            <span class="vs-l">Manual approach</span><span></span><span class="vs-r">{compareLabel} approach</span>
           </div>
-          <div class="card col-xgrc">
-            <span class="compare-label">{compareLabel} approach</span>
-            <ul class="bars">{withXgrc.map((x) => (<li>{x}</li>))}</ul>
-          </div>
+          {rows.map(([m, x]) => (
+            <div class="vs-row rv">
+              {m ? <p class="vs-m"><span class="sr-only">Manual approach: </span>{m}</p> : <span class="vs-empty"></span>}
+              <span class="vs-arrow" aria-hidden="true">→</span>
+              {x ? <p class="vs-x"><span class="sr-only">{compareLabel} approach: </span>{x}</p> : <span class="vs-empty"></span>}
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -172,19 +247,20 @@ const schema = {
 
   <!-- ============ DOWNLOADABLE RESOURCE (gated) ============ -->
   {resource && (
-    <section class="section--tight" id="resource">
+    <section class="sec sec-tight" id="resource">
       <div class="container">
-        <div class="card resource">
-          <div class="resource-body">
-            <span class="eyebrow"><span class="dot"></span>Free resource</span>
+        <div class="check rv">
+          <div class="check-doc" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><b>✓</b></div>
+          <div class="check-body">
+            <span class="sec-eb">Free resource</span>
             <h2>{resource.title}</h2>
-            <ul class="ticks compact">
+            <ul class="check-list">
               {resource.includes.map((r) => (<li>{r}</li>))}
             </ul>
           </div>
-          <div class="resource-action">
+          <div class="check-action">
             <button class="btn btn-primary" data-open-download type="button">Download the checklist</button>
-            <span class="resource-note">{resource.note}</span>
+            <span class="check-note">{resource.note}</span>
           </div>
         </div>
       </div>
@@ -193,59 +269,71 @@ const schema = {
 
   <!-- ============ STANDARDS + SCOPE ============ -->
   {(frameworks.length > 0 || scope.length > 0) && (
-    <section class="section--tight">
-      <div class="container">
-        <div class="grid cols-2">
-          {frameworks.length > 0 && (
-            <div>
-              <span class="eyebrow"><span class="dot"></span>Standards and frameworks</span>
-              <h3 class="chips-head">{frameworksHeadline}</h3>
-              <ul class="chips">{frameworks.map((s) => (<li>{s}</li>))}</ul>
-            </div>
-          )}
-          {scope.length > 0 && (
-            <div>
-              <span class="eyebrow"><span class="dot"></span>Scope of application</span>
-              <h3 class="chips-head">{scopeHeadline}</h3>
-              <ul class="chips">{scope.map((s) => (<li>{s}</li>))}</ul>
-            </div>
-          )}
-        </div>
+    <section class="sec sec-tight">
+      <div class="container tags">
+        {frameworks.length > 0 && (
+          <div class="tag-panel rv">
+            <span class="sec-eb">Standards and frameworks</span>
+            <h3>{frameworksHeadline}</h3>
+            <ul class="chips">{frameworks.map((s) => (<li>{s}</li>))}</ul>
+          </div>
+        )}
+        {scope.length > 0 && (
+          <div class="tag-panel rv">
+            <span class="sec-eb">Scope of application</span>
+            <h3>{scopeHeadline}</h3>
+            <ul class="chips alt">{scope.map((s) => (<li>{s}</li>))}</ul>
+          </div>
+        )}
       </div>
     </section>
   )}
 
   <!-- ============ RELATED ============ -->
   {(solution || related.length > 0) && (
-    <section class="section--tight">
+    <section class="sec sec-tight">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow"><span class="dot"></span>Related</span>
-          <h2>Explore the connected platform.</h2>
+        <div class="rel-head rv">
+          <div>
+            <span class="sec-eb">Related</span>
+            <h2 class="sec-title sm">Explore the connected platform.</h2>
+          </div>
+          <div class="rel-links">
+            {hub && (<a href={hub.href} class="rel-link">{hub.label} &rarr;</a>)}
+            {solution?.regionalLink && (<a href={solution.regionalLink.href} class="rel-link">{solution.regionalLink.label} &rarr;</a>)}
+          </div>
         </div>
-        {hub && (
-          <p class="lede"><a href={hub.href} class="link-arrow">{hub.label} &rarr;</a></p>
-        )}
-        {solution?.regionalLink && (
-          <p class="lede"><a href={solution.regionalLink.href} class="link-arrow">{solution.regionalLink.label} &rarr;</a></p>
-        )}
-        <div class="grid cols-3">
+        <div class="rel-grid">
           {solution && (
-            <a class="card uc-card" href={`/${relatedSolution}/`}>
-              <span class="tag">Solution</span>
-              <h3>{solution.name}</h3>
-              <p>{solution.tag}</p>
-              <span class="link-arrow">Explore {solution.name} &rarr;</span>
+            <a class="rel-card rel-sol rv" href={`/${relatedSolution}/`}>
+              <span class="rel-shot"><img src={`/assets/screenshots/${look.shot}`} alt="" loading="lazy" decoding="async" /></span>
+              <span class="rel-body">
+                <span class="rel-top">
+                  {solIcon ? <img src={solIcon} alt="" width="36" height="36" loading="lazy" /> : <span class="sol-mono sm" aria-hidden="true">{solName.slice(0, 2)}</span>}
+                  <span class="rel-tag">Solution</span>
+                </span>
+                <h3>{solution.name}</h3>
+                <p>{solution.tag}</p>
+                <span class="rel-go">Explore {solution.name} &rarr;</span>
+              </span>
             </a>
           )}
-          {related.map((r) => (
-            <a class="card uc-card" href={`/use-cases/${r.slug}/`}>
-              <span class="tag">{r.category}</span>
-              <h3>{r.crumbLabel}</h3>
-              <p>{r.lede}</p>
-              <span class="link-arrow">View use case &rarr;</span>
-            </a>
-          ))}
+          {related.map((r) => {
+            const rl = looks[r.relatedSolution] || looks.msx;
+            return (
+              <a class="rel-card rv" href={`/use-cases/${r.slug}/`} style={`--racc: ${rl.acc}`}>
+                <span class="rel-body">
+                  <span class="rel-top">
+                    {iconFor(r.relatedSolution) ? <img src={iconFor(r.relatedSolution)} alt="" width="36" height="36" loading="lazy" /> : <span class="sol-mono sm" aria-hidden="true">AI</span>}
+                    <span class="rel-tag">{r.category}</span>
+                  </span>
+                  <h3>{r.crumbLabel}</h3>
+                  <p>{r.lede}</p>
+                  <span class="rel-go">View use case &rarr;</span>
+                </span>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -253,16 +341,16 @@ const schema = {
 
   <!-- ============ FAQ ============ -->
   {faqs.length > 0 && (
-    <section class="section--tight">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow"><span class="dot"></span>Frequently asked</span>
-          <h2>Common questions.</h2>
+    <section class="sec sec-tight">
+      <div class="container faq-wrap">
+        <div class="split-head rv">
+          <span class="sec-eb">Frequently asked</span>
+          <h2 class="sec-title">Common questions.</h2>
         </div>
         <div class="faq-list">
-          {faqs.map((f) => (
-            <details class="faq-item">
-              <summary>{f.q}</summary>
+          {faqs.map((f, i) => (
+            <details class="faq rv">
+              <summary><span class="fq-n">{pad(i)}</span><span class="fq-q">{f.q}</span><span class="fq-ic" aria-hidden="true"></span></summary>
               <p>{f.a}</p>
             </details>
           ))}
@@ -272,15 +360,22 @@ const schema = {
   )}
 
   <!-- ============ CTA ============ -->
-  <section class="section" id="demo">
+  <section class="sec" id="demo">
     <div class="container">
-      <div class="card cta-band">
+      <div class="cta rv">
+        <div class="cta-bg" aria-hidden="true"></div>
+        {solIcon && <img class="cta-ic" src={solIcon} alt="" width="56" height="56" loading="lazy" />}
         <h2>{ctaHeadline}</h2>
-        <p class="lede">{ctaBody}</p>
-        <a href="/demo/" class="btn btn-primary">Book a demo</a>
+        <p>{ctaBody}</p>
+        <div class="cta-actions">
+          <a href="/demo/" class="btn btn-primary">Book a demo</a>
+          {resource && <button class="btn btn-ghost" data-open-download type="button">Download the checklist</button>}
+        </div>
       </div>
     </div>
   </section>
+
+  </div>
 
   <!-- ============ DOWNLOAD MODAL ============ -->
   {resource && (
@@ -399,55 +494,195 @@ const schema = {
   </script>
 )}
 
+
+<script>
+  // Reveal on scroll (content stays visible without JS or with reduced motion).
+  const ucRoot = document.getElementById('uc');
+  if (ucRoot && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    ucRoot.classList.add('fx');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    ucRoot.querySelectorAll('.rv').forEach((el) => io.observe(el));
+  }
+</script>
+
 <style>
-  .page-head { padding: 130px 0 0; }
-  .page-head h1 { margin: 8px 0 18px; max-width: 22ch; }
-  .crumbs { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--faint); display: flex; gap: 10px; align-items: center; margin-bottom: 26px; }
-  .crumbs a { color: var(--mute); text-decoration: none; }
-  .crumbs a:hover { color: var(--cyan); }
-  .crumbs b { color: var(--ink); font-weight: 500; }
+  .uc { --c1: #30e2f4; --c2: #a78bfa; --c3: #2fe88a; --bad: #f87171; padding-top: 74px; overflow-x: clip; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+  /* ── Hero ─────────────────────────────────────────── */
+  .hero { position: relative; padding: clamp(28px, 5vw, 64px) 0 clamp(48px, 6vw, 80px); isolation: isolate; }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(42% 55% at 78% 45%, color-mix(in srgb, var(--acc) 22%, transparent), transparent 70%),
+      radial-gradient(35% 45% at 95% 85%, rgba(167, 139, 250, 0.10), transparent 70%),
+      radial-gradient(40% 50% at 8% 8%, rgba(48, 226, 244, 0.08), transparent 70%),
+      linear-gradient(rgba(120, 170, 200, 0.06) 1px, transparent 1px) 0 0 / 44px 44px,
+      linear-gradient(90deg, rgba(120, 170, 200, 0.06) 1px, transparent 1px) 0 0 / 44px 44px;
+    mask-image: linear-gradient(180deg, #000 60%, transparent);
+  }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+  .crumb { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-bottom: 22px; }
+  .crumb a { color: var(--mute); text-decoration: none; }
+  .crumb a:hover { color: var(--acc); }
+  .crumb b { color: var(--ink); font-weight: 500; }
+  .eb-chip { display: inline-flex; align-items: center; gap: 8px; font: 500 12px var(--font-mono); letter-spacing: 0.06em; color: var(--acc); border: 1px solid color-mix(in srgb, var(--acc) 45%, transparent); background: color-mix(in srgb, var(--acc) 9%, transparent); padding: 6px 13px; border-radius: 99px; }
+  .eb-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acc); box-shadow: 0 0 10px var(--acc); }
+  .hero-title { font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem, 4.2vw, 3.4rem); letter-spacing: -0.03em; line-height: 1.07; margin: 20px 0 22px; color: var(--ink); text-wrap: balance; }
+  .hl { background: linear-gradient(90deg, var(--acc), var(--c1) 60%, var(--c2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero-dek { font-size: clamp(1rem, 1.35vw, 1.13rem); line-height: 1.7; color: var(--mute); margin: 0; max-width: 60ch; }
   .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
 
-  .problem p { color: var(--ink); font-size: 1rem; }
-  .problem::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--blue); opacity: 0.55; }
+  .hero-fig { position: relative; margin: 0; padding: 18px 0 30px; }
+  .halo { position: absolute; inset: 4% 2%; z-index: -1; background: radial-gradient(closest-side, color-mix(in srgb, var(--acc) 38%, transparent), transparent); filter: blur(40px); }
+  .frame { border-radius: 16px; overflow: hidden; background: #0b1726; border: 1px solid color-mix(in srgb, var(--acc) 35%, var(--line)); box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55); transform: perspective(1600px) rotateY(-7deg) rotateX(2deg); animation: lift 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes lift { from { opacity: 0; transform: perspective(1600px) rotateY(-7deg) rotateX(2deg) translateY(28px); } }
+  .bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #0f2034; border-bottom: 1px solid var(--line); }
+  .bar > i { width: 9px; height: 9px; border-radius: 50%; background: #2a3e55; }
+  .bar img { width: 18px; height: 18px; object-fit: contain; margin-left: 10px; }
+  .bar span { margin-left: 6px; font: 500 12.5px var(--font-body); color: #8aa1b4; }
+  .live { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font: 600 10px var(--font-mono); font-style: normal; letter-spacing: 0.14em; color: var(--c3); }
+  .live b { width: 7px; height: 7px; border-radius: 50%; background: var(--c3); box-shadow: 0 0 8px var(--c3); animation: pulse 2s infinite; }
+  @keyframes pulse { 50% { opacity: 0.35; } }
+  .shot { display: block; width: 100%; height: auto; }
+  .float { position: absolute; display: flex; gap: 12px; align-items: center; padding: 12px 16px; border-radius: 14px; background: rgba(9, 20, 35, 0.86); backdrop-filter: blur(10px); border: 1px solid color-mix(in srgb, var(--acc) 40%, var(--line)); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45); max-width: 290px; animation: rise 1s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+  .f1 { left: -22px; bottom: 0; }
+  .f2 { right: -12px; top: 0; flex-direction: column; align-items: flex-start; gap: 8px; animation-delay: 0.75s; }
+  .f-ok { flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--acc); color: var(--void); font-weight: 800; box-shadow: 0 0 18px color-mix(in srgb, var(--acc) 55%, transparent); }
+  .f-eb { display: block; font: 500 10px var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--acc); }
+  .f-t { display: block; color: var(--ink); font-size: 13.5px; font-weight: 600; line-height: 1.35; margin-top: 2px; }
+  .f-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .f-chips span { font: 500 11px var(--font-mono); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 99px; padding: 3px 9px; background: rgba(255, 255, 255, 0.04); }
 
-  .steps .step { display: flex; gap: 16px; align-items: flex-start; }
-  .step-no { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--cyan); border: 1px solid var(--line-strong); border-radius: 8px; padding: 5px 9px; background: rgba(48,226,244,0.06); flex: none; }
-  .step p { color: var(--ink); font-size: 0.98rem; }
+  /* ── Sections ─────────────────────────────────────── */
+  .sec { padding: clamp(56px, 8vw, 104px) 0; position: relative; }
+  .sec-tight { padding: clamp(32px, 5vw, 60px) 0; }
+  .sec-band { background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.022) 18%, rgba(255, 255, 255, 0.022) 82%, transparent); }
+  .sec-eb { display: inline-block; font: 500 11.5px var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--acc); margin-bottom: 12px; }
+  .sec-title { font: 800 clamp(1.7rem, 3.4vw, 2.6rem)/1.12 var(--font-display); letter-spacing: -0.028em; color: var(--ink); margin: 0 0 14px; text-wrap: balance; }
+  .sec-title.sm { font-size: clamp(1.4rem, 2.6vw, 2rem); margin: 0; }
+  .sec-lede { color: var(--mute); font-size: 1.05rem; line-height: 1.7; margin: 0; max-width: 54ch; }
+  .center-head { text-align: center; max-width: 760px; margin: 0 auto clamp(32px, 5vw, 56px); }
 
-  .howgrid { align-items: start; }
-  .ticks { list-style: none; display: grid; gap: 14px; }
-  .ticks li { position: relative; padding-left: 30px; color: var(--ink); }
-  .ticks li::before { content: ""; position: absolute; left: 0; top: 7px; width: 14px; height: 14px; border-radius: 4px; border: 2px solid var(--cyan); }
-  .ticks.compact li { font-size: 0.95rem; }
-  .platform { background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02)); border-color: var(--line-strong); }
-  .platform h3 { margin-bottom: 10px; }
+  /* Problem */
+  .split { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+  .split-head { position: sticky; top: 110px; }
+  .pains { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .pain { position: relative; display: flex; align-items: center; gap: 18px; padding: 20px 22px; border-radius: 18px; background: var(--panel); border: 1px solid var(--line); overflow: hidden; }
+  .pain::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--bad), transparent); }
+  .pain-x { flex: none; width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-size: 20px; color: var(--bad); background: rgba(248, 113, 113, 0.1); border: 1px solid rgba(248, 113, 113, 0.3); }
+  .pain-n { position: absolute; right: 16px; top: 10px; font: 500 11px var(--font-mono); color: var(--faint); }
+  .pain p { margin: 0; color: var(--ink); font-size: 1.02rem; line-height: 1.55; padding-right: 18px; }
 
-  .compare-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; display: inline-block; margin-bottom: 16px; }
-  .col-manual .compare-label { color: var(--faint); }
-  .col-xgrc { border-color: var(--line-strong); background: linear-gradient(120deg, rgba(48,226,244,0.05), transparent); }
-  .col-xgrc .compare-label { color: var(--cyan); }
-  .bars { list-style: none; display: grid; gap: 12px; }
-  .bars li { padding: 11px 14px; border-radius: var(--radius-sm); font-size: 0.95rem; }
-  .col-manual .bars li { background: rgba(255,255,255,0.03); color: var(--mute); border: 1px solid var(--line); }
-  .col-xgrc .bars li { background: rgba(48,226,244,0.06); color: var(--ink); border: 1px solid var(--line-strong); }
+  /* Approach rail */
+  .rail { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 18px; position: relative; }
+  .rail::before { content: ''; position: absolute; top: 25px; left: calc(50% / var(--n)); right: calc(50% / var(--n)); height: 2px; background: linear-gradient(90deg, var(--acc), var(--c1), var(--c2)); opacity: 0.55; }
+  .rail-step { position: relative; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .rail-node { position: relative; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font: 600 14px var(--font-mono); color: var(--acc); background: var(--void); border: 2px solid var(--acc); box-shadow: 0 0 0 6px var(--void), 0 0 24px color-mix(in srgb, var(--acc) 40%, transparent); }
+  .rail-step p { margin: 0; padding: 16px 14px; border-radius: 14px; background: var(--panel); border: 1px solid var(--line); color: var(--ink); font-size: 0.95rem; line-height: 1.5; width: 100%; flex: 1; }
+  .fx .rail-step.rv { transition-delay: var(--d); }
 
-  .resource { display: flex; gap: 36px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: linear-gradient(120deg, rgba(38,158,198,0.07), rgba(48,226,244,0.02)); border-color: var(--line-strong); }
-  .resource-body { flex: 1 1 360px; }
-  .resource-body h2 { margin: 4px 0 10px; font-size: clamp(1.5rem, 2.4vw, 2rem); }
-  .resource-action { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
-  .resource-note { font-family: var(--font-mono); font-size: 11px; color: var(--faint); letter-spacing: 0.06em; }
+  /* How it works */
+  .how { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 48px); align-items: stretch; }
+  .caps { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; align-content: start; }
+  .cap { display: flex; align-items: center; gap: 16px; padding: 16px 18px; border-radius: 14px; background: var(--panel); border: 1px solid var(--line); color: var(--ink); line-height: 1.5; transition: border-color 0.25s, transform 0.25s var(--ease); }
+  .cap:hover { border-color: color-mix(in srgb, var(--acc) 50%, transparent); transform: translateX(4px); }
+  .cap-ic { flex: none; width: 26px; height: 26px; border-radius: 8px; background: color-mix(in srgb, var(--acc) 16%, transparent); border: 1.5px solid var(--acc); position: relative; }
+  .cap-ic::after { content: ''; position: absolute; left: 8px; top: 4px; width: 6px; height: 11px; border: solid var(--acc); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  .platform { position: relative; overflow: hidden; isolation: isolate; padding: clamp(28px, 4vw, 44px); border-radius: 24px; border: 1px solid color-mix(in srgb, var(--acc) 40%, var(--line)); display: flex; flex-direction: column; justify-content: center; }
+  .platform-bg { position: absolute; inset: 0; z-index: -1; background: radial-gradient(70% 80% at 100% 0%, color-mix(in srgb, var(--acc) 22%, transparent), transparent 70%), radial-gradient(60% 70% at 0% 100%, rgba(167, 139, 250, 0.12), transparent 70%), rgba(255, 255, 255, 0.025); }
+  .platform-top { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+  .platform-top img { width: 52px; height: 52px; object-fit: contain; filter: drop-shadow(0 0 16px color-mix(in srgb, var(--acc) 50%, transparent)); }
+  .platform-eb { font: 600 13px var(--font-mono); letter-spacing: 0.06em; color: var(--acc); }
+  .platform h3 { font: 800 clamp(1.3rem, 2.2vw, 1.75rem)/1.2 var(--font-display); letter-spacing: -0.02em; color: var(--ink); margin: 0 0 12px; }
+  .platform p { color: var(--mute); line-height: 1.75; margin: 0; }
+  .sol-mono { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; flex: none; background: linear-gradient(135deg, #7af3ff, var(--acc)); color: var(--void); font: 800 16px var(--font-display); }
+  .sol-mono.sm { width: 36px; height: 36px; border-radius: 10px; font-size: 12px; }
 
-  .chips-head { margin-bottom: 18px; max-width: 24ch; }
-  .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
-  .chips li { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); border: 1px solid var(--line); border-radius: 100px; padding: 8px 15px; background: rgba(48,226,244,0.05); }
+  /* Manual vs XGRC */
+  .vs { max-width: 980px; margin: 0 auto; display: grid; gap: 12px; }
+  .vs-head, .vs-row { display: grid; grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr); align-items: stretch; gap: 10px; }
+  .vs-head span { font: 500 11px var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; padding: 0 4px 4px; }
+  .vs-l { color: var(--faint); }
+  .vs-r { color: var(--acc); }
+  .vs-m, .vs-x { margin: 0; padding: 15px 18px; border-radius: 14px; line-height: 1.5; font-size: 0.97rem; display: flex; align-items: center; }
+  .vs-m { color: var(--mute); background: rgba(255, 255, 255, 0.02); border: 1px dashed var(--line-strong); }
+  .vs-x { color: var(--ink); font-weight: 500; background: linear-gradient(120deg, color-mix(in srgb, var(--acc) 12%, transparent), rgba(255, 255, 255, 0.02)); border: 1px solid color-mix(in srgb, var(--acc) 45%, transparent); }
+  .vs-arrow { display: grid; place-items: center; color: var(--acc); font-size: 20px; }
 
-  .uc-card { text-decoration: none; display: flex; flex-direction: column; }
-  .uc-card .link-arrow { margin-top: auto; padding-top: 16px; }
+  /* Checklist */
+  .check { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: clamp(22px, 3vw, 40px); align-items: center; padding: clamp(26px, 4vw, 44px); border-radius: 26px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--acc) 40%, var(--line)); background: radial-gradient(60% 120% at 0% 0%, color-mix(in srgb, var(--acc) 17%, transparent), transparent 70%), radial-gradient(50% 100% at 100% 100%, rgba(167, 139, 250, 0.10), transparent 70%), rgba(255, 255, 255, 0.025); }
+  .check-doc { position: relative; width: 108px; height: 136px; border-radius: 12px; background: linear-gradient(160deg, #13263a, #0b1726); border: 1px solid var(--line-strong); padding: 18px 14px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45); transform: rotate(-6deg); }
+  .check-doc i { display: block; height: 6px; border-radius: 3px; background: rgba(140, 190, 220, 0.25); }
+  .check-doc i:nth-child(2) { width: 75%; }
+  .check-doc i:nth-child(4) { width: 55%; }
+  .check-doc b { position: absolute; right: -12px; bottom: -12px; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--acc); color: var(--void); font-size: 17px; box-shadow: 0 0 22px color-mix(in srgb, var(--acc) 60%, transparent); }
+  .check-body h2 { font: 800 clamp(1.35rem, 2.4vw, 1.9rem)/1.2 var(--font-display); letter-spacing: -0.02em; color: var(--ink); margin: 0 0 14px; }
+  .check-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 22px; }
+  .check-list li { position: relative; padding-left: 24px; color: var(--mute); font-size: 0.94rem; line-height: 1.5; }
+  .check-list li::before { content: '✓'; position: absolute; left: 0; color: var(--acc); font-weight: 700; }
+  .check-action { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .check-note { font: 500 11px var(--font-mono); color: var(--faint); letter-spacing: 0.06em; max-width: 26ch; }
 
-  .cta-band { text-align: center; padding: clamp(40px, 6vw, 64px); background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(0,92,169,0.05)); border-color: var(--line-strong); }
-  .cta-band .lede { margin: 0 auto 26px; }
+  /* Standards + scope */
+  .tags { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 18px; }
+  .tag-panel { padding: clamp(24px, 3vw, 34px); border-radius: 22px; background: var(--panel); border: 1px solid var(--line); }
+  .tag-panel h3 { font: 700 clamp(1.15rem, 1.8vw, 1.4rem)/1.3 var(--font-display); color: var(--ink); margin: 0 0 18px; max-width: 28ch; }
+  .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips li { font: 500 12px var(--font-mono); color: var(--acc); border: 1px solid color-mix(in srgb, var(--acc) 35%, transparent); border-radius: 99px; padding: 8px 15px; background: color-mix(in srgb, var(--acc) 7%, transparent); }
+  .chips.alt li { color: var(--ink); border-color: var(--line-strong); background: rgba(255, 255, 255, 0.03); }
 
+  /* Related */
+  .rel-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 26px; }
+  .rel-links { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+  .rel-link { font: 500 13px var(--font-mono); color: var(--acc); text-decoration: none; }
+  .rel-link:hover { text-decoration: underline; }
+  .rel-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .rel-card { --racc: var(--acc); display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: var(--panel); border: 1px solid var(--line); text-decoration: none; transition: border-color 0.25s, transform 0.25s var(--ease); }
+  .rel-card:hover { border-color: color-mix(in srgb, var(--racc) 55%, transparent); transform: translateY(-4px); }
+  .rel-shot { display: block; aspect-ratio: 16 / 8; overflow: hidden; border-bottom: 1px solid var(--line); }
+  .rel-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; transition: transform 0.5s var(--ease); }
+  .rel-card:hover .rel-shot img { transform: scale(1.04); }
+  .rel-body { display: flex; flex-direction: column; gap: 8px; padding: 20px 22px 22px; flex: 1; }
+  .rel-top { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .rel-top img { width: 36px; height: 36px; object-fit: contain; }
+  .rel-tag { font: 500 10.5px var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--racc); }
+  .rel-body h3 { font: 700 1.15rem/1.3 var(--font-display); color: var(--ink); margin: 0; }
+  .rel-body p { color: var(--mute); font-size: 0.93rem; line-height: 1.6; margin: 0; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .rel-go { margin-top: auto; padding-top: 10px; color: var(--racc); font-size: 13.5px; font-weight: 500; }
+
+  /* FAQ */
+  .faq-wrap { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .faq-list { display: flex; flex-direction: column; gap: 10px; }
+  .faq { border-radius: 16px; background: var(--panel); border: 1px solid var(--line); transition: border-color 0.25s; }
+  .faq[open] { border-color: color-mix(in srgb, var(--acc) 45%, transparent); background: linear-gradient(160deg, color-mix(in srgb, var(--acc) 7%, transparent), transparent); }
+  .faq summary { display: flex; align-items: center; gap: 14px; padding: 17px 18px; cursor: pointer; list-style: none; color: var(--ink); font-weight: 600; line-height: 1.45; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .fq-n { flex: none; font: 500 11px var(--font-mono); color: var(--acc); }
+  .fq-q { flex: 1; }
+  .fq-ic { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line-strong); position: relative; transition: transform 0.3s var(--ease); }
+  .fq-ic::before, .fq-ic::after { content: ''; position: absolute; left: 50%; top: 50%; width: 9px; height: 1.5px; background: var(--ink); transform: translate(-50%, -50%); }
+  .fq-ic::after { transform: translate(-50%, -50%) rotate(90deg); transition: opacity 0.2s; }
+  .faq[open] .fq-ic { transform: rotate(180deg); border-color: var(--acc); }
+  .faq[open] .fq-ic::after { opacity: 0; }
+  .faq p { margin: 0; padding: 0 18px 18px 50px; color: var(--mute); line-height: 1.7; }
+
+  /* CTA */
+  .cta { position: relative; overflow: hidden; isolation: isolate; text-align: center; padding: clamp(44px, 6vw, 80px) clamp(20px, 5vw, 56px); border-radius: 30px; border: 1px solid var(--line-strong); }
+  .cta-bg { position: absolute; inset: 0; z-index: -1; background: radial-gradient(50% 80% at 18% 0%, color-mix(in srgb, var(--acc) 22%, transparent), transparent 70%), radial-gradient(50% 80% at 85% 100%, rgba(167, 139, 250, 0.16), transparent 70%), rgba(255, 255, 255, 0.02); }
+  .cta-ic { width: 56px; height: 56px; object-fit: contain; margin: 0 auto 18px; display: block; filter: drop-shadow(0 0 20px color-mix(in srgb, var(--acc) 55%, transparent)); }
+  .cta h2 { font: 800 clamp(1.6rem, 3.4vw, 2.6rem)/1.15 var(--font-display); letter-spacing: -0.025em; margin: 0 auto 14px; color: var(--ink); max-width: 24ch; text-wrap: balance; }
+  .cta p { color: var(--mute); max-width: 56ch; margin: 0 auto 28px; line-height: 1.65; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+  /* Reveal */
+  .fx .rv { opacity: 0; transform: translateY(16px); transition: opacity 0.6s var(--ease), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .fx .rv.in { opacity: 1; transform: none; }
+
+  /* Download modal (unchanged) */
   .hp-field { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
   .modal { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; }
   .modal[hidden] { display: none; }
@@ -467,8 +702,41 @@ const schema = {
   .eyebrow.ok { color: var(--green); border-color: rgba(47,232,138,0.3); background: rgba(47,232,138,0.06); }
   .eyebrow.ok .dot { background: var(--green); box-shadow: 0 0 9px var(--green); }
 
-  @media (max-width: 700px) {
-    .resource { flex-direction: column; align-items: flex-start; }
-    .resource-action { width: 100%; }
+  /* ── Responsive ───────────────────────────────────── */
+  @media (max-width: 1100px) {
+    .rail { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 28px; }
+    .rail::before { display: none; }
+    .check { grid-template-columns: auto minmax(0, 1fr); }
+    .check-action { grid-column: 1 / -1; flex-direction: row; align-items: center; flex-wrap: wrap; }
+    .check-note { max-width: none; }
+  }
+  @media (max-width: 1000px) {
+    .hero-grid, .split, .how, .faq-wrap { grid-template-columns: 1fr; }
+    .split-head { position: static; }
+    .hero-fig { max-width: 720px; }
+    .rel-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 680px) {
+    .rail { grid-template-columns: 1fr; gap: 12px; }
+    .rail::before { display: block; top: 26px; bottom: 26px; left: 25px; right: auto; width: 2px; height: auto; background: linear-gradient(180deg, var(--acc), var(--c2)); }
+    .rail-step { flex-direction: row; text-align: left; align-items: center; }
+    .rail-node { flex: none; }
+    .vs-head { display: none; }
+    .vs-row { grid-template-columns: 1fr; gap: 6px; }
+    .vs-arrow { transform: rotate(90deg); height: 22px; }
+    .vs-empty { display: none; }
+    .rel-grid { grid-template-columns: 1fr; }
+    .check { grid-template-columns: 1fr; }
+    .check-doc { width: 76px; height: 96px; padding: 12px 10px; gap: 7px; }
+    .check-list { grid-template-columns: 1fr; }
+    .f1 { left: 8px; bottom: -6px; max-width: 78%; }
+    .f2 { display: none; }
+    .frame { transform: none; animation: none; }
+    .faq p { padding-left: 18px; }
+    .pain { padding: 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .frame, .float { animation: none; }
+    .live b { animation: none; }
   }
 </style>
