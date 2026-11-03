@@ -354,7 +354,7 @@ CONFIG.afterInit = function(ctx){
   document.getElementById('exposure-list').innerHTML = exposures.map(e=>{
     return '<div class="exp-row" data-rank="'+e.rank+'"><span class="exp-rank">'+e.rank+'</span><span class="exp-badge" style="background:'+e.badgeColor+';">'+e.badge+'</span>' +
       '<div class="exp-main"><div class="exp-name">'+e.name+'</div><div class="exp-owner">Owner '+e.owner+' · '+e.system+'</div></div>' +
-      '<span class="exp-score">'+scoreOf[e.rank]+'/25</span>' +
+      '<span class="exp-score">'+scoreOf[e.rank]+'\u002F25</span>' +
       '<span class="exp-status '+e.status+'">'+e.statusLabel+'</span></div>';
   }).join('');
   document.querySelectorAll('.exp-row').forEach(el=>{
@@ -364,7 +364,7 @@ CONFIG.afterInit = function(ctx){
       const cell = Object.keys(NAMED).find(k=>NAMED[k].rank===rank);
       const [l,i] = cell.split(',').map(Number);
       const panel = document.getElementById('cell-detail');
-      panel.innerHTML = '<div class="ct">#'+rank+' '+e.name+'</div><div class="cr">'+LIKELIHOOD[l-1]+' likelihood × '+IMPACT[i-1]+' impact · score '+scoreOf[rank]+'/25 · owner '+e.owner+'</div>';
+      panel.innerHTML = '<div class="ct">#'+rank+' '+e.name+'</div><div class="cr">'+LIKELIHOOD[l-1]+' likelihood × '+IMPACT[i-1]+' impact · score '+scoreOf[rank]+'\u002F25 · owner '+e.owner+'</div>';
       panel.classList.add('show');
       panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
     });

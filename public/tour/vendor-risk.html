@@ -181,8 +181,8 @@ CONFIG.afterInit = function(ctx){
         if (!v) return;
         document.getElementById('vm-tier').textContent = v.tier + ' tier · ' + v.category;
         document.getElementById('vm-name').textContent = v.name;
-        document.getElementById('vm-risk').textContent = v.risk + '/100';
-        document.getElementById('vm-crit').textContent = v.crit + '/100';
+        document.getElementById('vm-risk').textContent = v.risk + '\u002F100';
+        document.getElementById('vm-crit').textContent = v.crit + '\u002F100';
         document.getElementById('vm-spend').textContent = v.spend + '% of vendor spend';
         document.getElementById('vm-category').textContent = v.category;
         document.getElementById('vm-assessed').textContent = v.lastAssessed;
