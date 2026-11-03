@@ -1,0 +1,291 @@
+---
+// Signature visual for each solution page: one animated, decorative SVG per
+// solution, drawn from that solution's own data (standards, module groups).
+// Colours come from --acc on the page root. Purely decorative (aria-hidden).
+interface Props { slug: string; standards?: string[]; groups?: string[]; icon?: string | null }
+const { slug, standards = [], groups = [], icon = null } = Astro.props;
+
+const C = { x: 240, y: 210 };
+const polar = (r: number, deg: number) => {
+  const a = ((deg - 90) * Math.PI) / 180;
+  return { x: +(C.x + r * Math.cos(a)).toFixed(1), y: +(C.y + r * Math.sin(a)).toFixed(1) };
+};
+const around = (n: number, r: number, offset = 0) => Array.from({ length: n }, (_, i) => polar(r, offset + (360 / n) * i));
+const std = standards.slice(0, 6);
+const short = (t: string, n = 22) => (t.length > n ? `${t.slice(0, n - 1)}…` : t);
+
+// ERM heat map: colour by likelihood x impact.
+const heat = (i: number, j: number) => {
+  const s = (4 - i) + j; // 0..8
+  return s >= 7 ? '#f87171' : s >= 5 ? '#fb923c' : s >= 3 ? '#fbbf24' : '#34d399';
+};
+const hot = new Set(['0-4', '1-3', '0-3', '2-4']);
+const kind = {
+  sheqx: 'loop', msx: 'venn', msxcyber: 'shield', erm: 'heat', 'integrated-assurance': 'lines', envirx: 'sites',
+  esg: 'esg', 'compliance-hub': 'network', xlogic: 'flow', maia: 'neural', libryo: 'globe', hakware: 'radar', xrm: 'funnel',
+}[slug] || 'loop';
+---
+<div class={`sv sv-${kind}`} aria-hidden="true">
+  <div class="sv-halo"></div>
+  <svg viewBox="0 0 480 420" role="presentation" focusable="false">
+    <defs>
+      <radialGradient id={`svg-core-${slug}`} cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="var(--acc)" stop-opacity="0.45" />
+        <stop offset="100%" stop-color="var(--acc)" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id={`svg-line-${slug}`} x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="var(--acc)" />
+        <stop offset="100%" stop-color="#a78bfa" />
+      </linearGradient>
+    </defs>
+
+    {kind === 'loop' && (
+      <g>
+        <circle cx={C.x} cy={C.y} r="120" fill={`url(#svg-core-${slug})`} />
+        <circle cx={C.x} cy={C.y} r="150" class="ring" />
+        <circle cx={C.x} cy={C.y} r="150" class="ring-dash spin" />
+        <path id={`loop-${slug}`} d={`M ${C.x} ${C.y - 150} a 150 150 0 1 1 -0.1 0`} fill="none" />
+        <circle r="6" class="runner"><animateMotion dur="7s" repeatCount="indefinite" rotate="auto"><mpath href={`#loop-${slug}`} /></animateMotion></circle>
+        {around(groups.length, 150).map((p, i) => (
+          <g class="node-in" style={`--d:${i * 140}ms`}>
+            <circle cx={p.x} cy={p.y} r="11" class="node" />
+            <text x={p.x} y={p.y + (p.y < C.y ? -22 : 32)} class="lbl" text-anchor="middle">{short(groups[i], 24)}</text>
+          </g>
+        ))}
+      </g>
+    )}
+
+    {kind === 'venn' && (
+      <g>
+        {[[-58, -48], [58, -48], [-58, 48], [58, 48]].slice(0, Math.max(2, std.length)).map(([dx, dy], i) => (
+          <g class="node-in" style={`--d:${i * 160}ms`}>
+            <circle cx={C.x + dx} cy={C.y + dy} r="104" class={`venn v${i}`} />
+            <text x={C.x + dx * 2.35} y={C.y + dy * 2.6 + (dy < 0 ? -6 : 14)} class="lbl strong" text-anchor="middle">{std[i]}</text>
+          </g>
+        ))}
+        <circle cx={C.x} cy={C.y} r="40" class="core pulse" />
+      </g>
+    )}
+
+    {kind === 'shield' && (
+      <g>
+        <circle cx={C.x} cy={C.y} r="165" class="ring-dash spin" />
+        <circle cx={C.x} cy={C.y} r="132" class="ring spin-rev" />
+        <path d={`M ${C.x} ${C.y - 105} L ${C.x + 82} ${C.y - 72} L ${C.x + 76} ${C.y + 22} C ${C.x + 66} ${C.y + 70} ${C.x + 30} ${C.y + 96} ${C.x} ${C.y + 112} C ${C.x - 30} ${C.y + 96} ${C.x - 66} ${C.y + 70} ${C.x - 76} ${C.y + 22} L ${C.x - 82} ${C.y - 72} Z`} class="shield" />
+        <path d={`M ${C.x - 30} ${C.y + 2} l 22 22 l 42 -46`} class="tick draw" />
+        {around(Math.min(std.length, 4), 175, 45).map((p, i) => (
+          <g class="node-in" style={`--d:${i * 150}ms`}>
+            <rect x={p.x - 58} y={p.y - 14} width="116" height="28" rx="14" class="pill" />
+            <text x={p.x} y={p.y + 4.5} class="lbl strong" text-anchor="middle">{short(std[i], 16)}</text>
+          </g>
+        ))}
+      </g>
+    )}
+
+    {kind === 'heat' && (
+      <g>
+        {Array.from({ length: 5 }, (_, i) => Array.from({ length: 5 }, (_, j) => (
+          <rect x={120 + j * 54} y={70 + i * 54} width="48" height="48" rx="9" fill={heat(i, j)} class={`cell ${hot.has(`${i}-${j}`) ? 'hot' : ''}`} style={`--d:${(i + j) * 70}ms`} />
+        )))}
+        <text x="240" y="372" class="lbl" text-anchor="middle">Impact →</text>
+        <text x="96" y="205" class="lbl" text-anchor="middle" transform="rotate(-90 96 205)">Likelihood →</text>
+      </g>
+    )}
+
+    {kind === 'lines' && (
+      <g>
+        {[0, 1, 2, 3].map((i) => (
+          <g class="plate-in" style={`--d:${i * 180}ms`}>
+            <path d={`M 240 ${90 + i * 62} L 390 ${150 + i * 62} L 240 ${210 + i * 62} L 90 ${150 + i * 62} Z`} class={`plate p${i}`} />
+            <text x="150" y={156 + i * 62} class="lbl strong" text-anchor="middle">{i + 1}</text>
+          </g>
+        ))}
+        <path d="M 240 60 L 240 380" class="beam" />
+      </g>
+    )}
+
+    {kind === 'sites' && (
+      <g>
+        {Array.from({ length: 9 }, (_, r) => Array.from({ length: 12 }, (_, c) => (<circle cx={42 + c * 36} cy={60 + r * 38} r="1.6" class="dotgrid" />)))}
+        {[[110, 120], [360, 100], [400, 280], [130, 320], [250, 70]].map(([x, y], i) => (
+          <g class="node-in" style={`--d:${i * 150}ms`}>
+            <line x1={C.x} y1={C.y} x2={x} y2={y} class="link flow" />
+            <circle cx={x} cy={y} r="22" class="ping" style={`animation-delay:${i * 0.5}s`} />
+            <circle cx={x} cy={y} r="8" class="node" />
+          </g>
+        ))}
+        <circle cx={C.x} cy={C.y} r="44" class="core" />
+      </g>
+    )}
+
+    {kind === 'esg' && (
+      <g>
+        {[['E', 175, 170], ['S', 305, 170], ['G', 240, 280]].map(([t, x, y], i) => (
+          <g class="node-in" style={`--d:${i * 180}ms`}>
+            <circle cx={x} cy={y} r="88" class={`venn v${i === 2 ? 4 : i}`} />
+            <text x={+x + (i === 0 ? -34 : i === 1 ? 34 : 0)} y={+y + (i === 2 ? 46 : -20)} class="big" text-anchor="middle">{t}</text>
+          </g>
+        ))}
+        {around(Math.min(std.length, 6), 196, 0).map((p, i) => (
+          <text x={p.x} y={p.y + 4} class="lbl" text-anchor="middle" style={`--d:${i * 90}ms`}>{short(std[i], 18)}</text>
+        ))}
+      </g>
+    )}
+
+    {kind === 'network' && (
+      <g>
+        {around(8, 150, 22.5).map((p, i) => (
+          <g class="node-in" style={`--d:${i * 90}ms`}>
+            <line x1={C.x} y1={C.y} x2={p.x} y2={p.y} class="link flow" />
+            <rect x={p.x - 22} y={p.y - 16} width="44" height="32" rx="9" class="pill" />
+            <circle cx={p.x + 15} cy={p.y - 13} r="6" class={`status s${[0, 0, 1, 0, 2, 0, 1, 0][i]}`} />
+          </g>
+        ))}
+        <circle cx={C.x} cy={C.y} r="58" class="core pulse" />
+      </g>
+    )}
+
+    {kind === 'flow' && (
+      <g>
+        <path d="M 70 210 C 130 210 130 120 200 120 S 270 300 340 300 S 400 210 420 210" class="link flow thick" />
+        <rect x="34" y="166" width="72" height="90" rx="10" class="doc" />
+        {[0, 1, 2].map((i) => (<rect x="48" y={186 + i * 18} width={i === 1 ? 30 : 44} height="6" rx="3" class="docline" />))}
+        {[[200, 120], [270, 210], [340, 300]].map(([x, y], i) => (
+          <g class="node-in" style={`--d:${200 + i * 200}ms`}>
+            <circle cx={x} cy={y} r="24" class="node big-node" />
+            <text x={x} y={y + 5} class="lbl strong" text-anchor="middle">{i + 1}</text>
+            {groups[i] && <text x={x} y={y + (i === 0 ? -38 : 48)} class="lbl" text-anchor="middle">{short(groups[i], 26)}</text>}
+          </g>
+        ))}
+        <circle cx="432" cy="210" r="22" class="ok" />
+        <path d="M 422 210 l 7 7 l 14 -15" class="tick-dark" />
+      </g>
+    )}
+
+    {kind === 'neural' && (
+      <g>
+        {around(6, 90, 0).map((a, i) => around(10, 165, i * 6).filter((_, k) => k % 2 === i % 2).map((b) => (<line x1={a.x} y1={a.y} x2={b.x} y2={b.y} class="syn" />)))}
+        {around(6, 90, 0).map((p) => (<line x1={C.x} y1={C.y} x2={p.x} y2={p.y} class="link flow" />))}
+        {around(10, 165, 0).map((p, i) => (<circle cx={p.x} cy={p.y} r="6" class="node twinkle" style={`animation-delay:${i * 0.3}s`} />))}
+        {around(6, 90, 0).map((p, i) => (<circle cx={p.x} cy={p.y} r="10" class="node node-in" style={`--d:${i * 100}ms`} />))}
+        <circle cx={C.x} cy={C.y} r="46" class="core pulse" />
+      </g>
+    )}
+
+    {kind === 'globe' && (
+      <g>
+        <circle cx={C.x} cy={C.y} r="150" class="ring" />
+        <g class="spin-slow">{[0, 40, 80, 120].map((r) => (<ellipse cx={C.x} cy={C.y} rx={150 - r} ry="150" class="mer" />))}</g>
+        {[-90, -45, 0, 45, 90].map((dy) => (<ellipse cx={C.x} cy={C.y + dy} rx={Math.sqrt(150 * 150 - dy * dy)} ry={12} class="mer" />))}
+        {[[180, 130], [300, 160], [210, 260], [330, 250], [260, 110], [150, 220]].map(([x, y], i) => (
+          <g><circle cx={x} cy={y} r="16" class="ping" style={`animation-delay:${i * 0.45}s`} /><circle cx={x} cy={y} r="5" class="node" /></g>
+        ))}
+      </g>
+    )}
+
+    {kind === 'radar' && (
+      <g>
+        {[50, 100, 150].map((r) => (<circle cx={C.x} cy={C.y} r={r} class="ring" />))}
+        <line x1="90" y1={C.y} x2="390" y2={C.y} class="ring" /><line x1={C.x} y1="60" x2={C.x} y2="360" class="ring" />
+        <g class="sweep"><path d={`M ${C.x} ${C.y} L ${C.x} ${C.y - 150} A 150 150 0 0 1 ${polar(150, 50).x} ${polar(150, 50).y} Z`} fill={`url(#svg-core-${slug})`} /><line x1={C.x} y1={C.y} x2={C.x} y2={C.y - 150} class="beam" /></g>
+        {[[300, 140, 2], [170, 260, 1], [320, 280, 0], [190, 120, 1]].map(([x, y, s], i) => (<circle cx={x} cy={y} r="7" class={`status s${s} blip`} style={`animation-delay:${i * 0.7}s`} />))}
+      </g>
+    )}
+
+    {kind === 'funnel' && (
+      <g>
+        {groups.slice(0, 5).map((g, i) => {
+          const w = 380 - i * 58;
+          return (
+            <g class="plate-in" style={`--d:${i * 140}ms`}>
+              <rect x={240 - w / 2} y={70 + i * 58} width={w} height="44" rx="12" class={`bar b${i}`} />
+              <text x="240" y={98 + i * 58} class="lbl strong" text-anchor="middle">{short(g, 26)}</text>
+            </g>
+          );
+        })}
+      </g>
+    )}
+
+    {icon && (kind === 'loop' || kind === 'venn' || kind === 'sites' || kind === 'network' || kind === 'neural') && (
+      <image href={icon} x={C.x - 26} y={C.y - 26} width="52" height="52" class="core-ic" />
+    )}
+  </svg>
+</div>
+
+<style>
+  .sv { position: relative; width: 100%; max-width: 520px; margin: 0 auto; aspect-ratio: 480 / 420; }
+  .sv svg { width: 100%; height: 100%; overflow: visible; display: block; }
+  .sv-halo { position: absolute; inset: 10%; z-index: -1; background: radial-gradient(closest-side, color-mix(in srgb, var(--acc) 30%, transparent), transparent); filter: blur(30px); }
+  .ping, .pulse, .cell, .core-ic { transform-box: fill-box; }
+  .ring { fill: none; stroke: rgba(140, 190, 220, 0.18); stroke-width: 1.5; }
+  .ring-dash { fill: none; stroke: var(--acc); stroke-width: 2; stroke-dasharray: 4 12; opacity: 0.7; transform-origin: center; }
+  .node { fill: var(--void); stroke: var(--acc); stroke-width: 2.5; }
+  .big-node { stroke-width: 3; }
+  .runner { fill: var(--acc); filter: drop-shadow(0 0 8px var(--acc)); }
+  .lbl { fill: var(--mute); font: 500 12px var(--font-mono); letter-spacing: 0.02em; }
+  .lbl.strong { fill: var(--ink); font-weight: 600; }
+  .big { fill: var(--ink); font: 800 34px var(--font-display); }
+  .core { fill: var(--void); stroke: var(--acc); stroke-width: 2; filter: drop-shadow(0 0 18px color-mix(in srgb, var(--acc) 60%, transparent)); }
+  .venn { stroke-width: 1.8; }
+  .v0 { fill: color-mix(in srgb, var(--acc) 14%, transparent); stroke: var(--acc); }
+  .v1 { fill: rgba(167, 139, 250, 0.12); stroke: #a78bfa; }
+  .v2 { fill: rgba(47, 232, 138, 0.11); stroke: #2fe88a; }
+  .v3 { fill: rgba(251, 191, 36, 0.10); stroke: #fbbf24; }
+  .v4 { fill: rgba(48, 226, 244, 0.11); stroke: #30e2f4; }
+  .shield { fill: color-mix(in srgb, var(--acc) 14%, rgba(9, 20, 35, 0.9)); stroke: var(--acc); stroke-width: 2.5; filter: drop-shadow(0 0 24px color-mix(in srgb, var(--acc) 50%, transparent)); }
+  .tick { fill: none; stroke: var(--ink); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; }
+  .tick-dark { fill: none; stroke: var(--void); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+  .ok { fill: #2fe88a; filter: drop-shadow(0 0 12px rgba(47, 232, 138, 0.6)); }
+  .pill { fill: rgba(9, 20, 35, 0.92); stroke: color-mix(in srgb, var(--acc) 50%, transparent); stroke-width: 1.2; }
+  .cell { opacity: 0.85; }
+  .plate { stroke-width: 1.5; }
+  .p0 { fill: color-mix(in srgb, var(--acc) 30%, rgba(9, 20, 35, 0.9)); stroke: var(--acc); }
+  .p1 { fill: rgba(167, 139, 250, 0.22); stroke: #a78bfa; }
+  .p2 { fill: rgba(47, 232, 138, 0.18); stroke: #2fe88a; }
+  .p3 { fill: rgba(48, 226, 244, 0.16); stroke: #30e2f4; }
+  .beam { stroke: var(--acc); stroke-width: 2; stroke-dasharray: 3 7; opacity: 0.8; }
+  .dotgrid { fill: rgba(140, 190, 220, 0.25); }
+  .link { stroke: color-mix(in srgb, var(--acc) 60%, transparent); stroke-width: 1.5; fill: none; stroke-dasharray: 6 8; }
+  .link.thick { stroke-width: 3; }
+  .ping { fill: none; stroke: var(--acc); stroke-width: 1.5; transform-origin: center; }
+  .status.s0 { fill: #2fe88a; }
+  .status.s1 { fill: #fbbf24; }
+  .status.s2 { fill: #f87171; }
+  .doc { fill: #13263a; stroke: rgba(140, 190, 220, 0.35); stroke-width: 1.2; }
+  .docline { fill: rgba(140, 190, 220, 0.35); }
+  .syn { stroke: rgba(140, 190, 220, 0.12); stroke-width: 1; }
+  .mer { fill: none; stroke: color-mix(in srgb, var(--acc) 40%, transparent); stroke-width: 1; }
+  .bar { stroke-width: 1.4; }
+  .b0 { fill: color-mix(in srgb, var(--acc) 30%, rgba(9, 20, 35, 0.9)); stroke: var(--acc); }
+  .b1 { fill: color-mix(in srgb, var(--acc) 22%, rgba(9, 20, 35, 0.9)); stroke: var(--acc); }
+  .b2 { fill: rgba(167, 139, 250, 0.2); stroke: #a78bfa; }
+  .b3 { fill: rgba(167, 139, 250, 0.14); stroke: #a78bfa; }
+  .b4 { fill: rgba(47, 232, 138, 0.18); stroke: #2fe88a; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .spin { animation: spin 40s linear infinite; transform-origin: 240px 210px; transform-box: view-box; }
+    .spin-rev { animation: spin 60s linear infinite reverse; transform-origin: 240px 210px; transform-box: view-box; }
+    .spin-slow { animation: squish 9s ease-in-out infinite; transform-origin: 240px 210px; transform-box: view-box; }
+    .sweep { animation: spin 5s linear infinite; transform-origin: 240px 210px; transform-box: view-box; }
+    .pulse { animation: pulse 3s ease-in-out infinite; transform-origin: center; }
+    .flow { animation: flow 1.6s linear infinite; }
+    .ping { animation: ping 2.6s ease-out infinite; }
+    .twinkle { animation: twinkle 2.8s ease-in-out infinite; }
+    .blip { animation: twinkle 3.2s ease-in-out infinite; }
+    .cell.hot { animation: hot 2.2s ease-in-out infinite; transform-origin: center; }
+    .cell { animation: cellIn 0.6s calc(0.2s + var(--d)) cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .node-in { animation: fadeUp 0.7s calc(0.2s + var(--d, 0ms)) cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .plate-in { animation: fadeUp 0.8s calc(0.2s + var(--d, 0ms)) cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .draw { animation: draw 1.4s 0.6s ease forwards; stroke-dashoffset: 100; }
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes squish { 50% { transform: scaleX(0.55); } }
+  @keyframes pulse { 50% { transform: scale(1.06); } }
+  @keyframes flow { to { stroke-dashoffset: -28; } }
+  @keyframes ping { 0% { transform: scale(0.4); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
+  @keyframes twinkle { 50% { opacity: 0.35; } }
+  @keyframes hot { 50% { opacity: 1; transform: scale(1.08); filter: drop-shadow(0 0 10px #f87171); } }
+  @keyframes cellIn { from { opacity: 0; transform: scale(0.6); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+</style>

@@ -13,6 +13,8 @@ export const solutionLooks = {
   'maia': { acc: '#c084fc', shot: 'maia-dashboard-v2.webp' },
   'ai-governance': { acc: '#60a5fa', shot: 'ai-governance-dashboard-register.webp' },
   'xrm': { acc: '#38bdf8', shot: 'xrm-dashboard.png' },
+  'libryo': { acc: '#22d3ee', shot: 'compliance-hub-dashboard-v2.webp' },
+  'hakware': { acc: '#f87171', shot: 'msxcyber-dashboard.webp' },
 };
 
 const ICONS = ['msx', 'msxcyber', 'esg', 'sheqx', 'erm', 'integrated-assurance', 'envirx', 'compliance-hub', 'xlogic', 'maia', 'xrm'];
