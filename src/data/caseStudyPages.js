@@ -98,7 +98,7 @@ export const caseStudyPages = [
   },
   {
     slug: 'commercial-cold-holdings',
-    draft: true,
+    draft: false,
     datePublished: '2026-11-03',
     title: 'Commercial Cold Holdings Case Study: SHEQX® | XGRC®',
     metaDescription: 'How Commercial Cold Holdings, one of the world\'s 25 largest cold storage groups, digitised SHEQ with SHEQX®, implemented by OSA International.',
