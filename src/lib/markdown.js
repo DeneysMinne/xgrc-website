@@ -162,7 +162,7 @@ export function whatsNewToMarkdown(product) {
     .join('\n\n');
 
   const parts = [
-    `# ${name} — What's New`,
+    `# ${name}: What's New`,
     'Real updates, shipped and in production — not a roadmap.',
     items,
     `---\n\nSource: ${SITE}/whats-new/${product}`,

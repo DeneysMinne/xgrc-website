@@ -14,7 +14,7 @@
 export const industries = [
   {
     slug: 'manufacturing',
-    draft: true,
+    draft: false,
     name: 'Manufacturing',
     title: 'Manufacturing Compliance Software South Africa | XGRC®',
     metaDescription: 'Safety, quality, environmental and supplier compliance software for South African manufacturers: OHS Act, ISO 9001, 14001 and 45001 on one platform.',
@@ -42,7 +42,7 @@ export const industries = [
   },
   {
     slug: 'mining',
-    draft: true,
+    draft: false,
     name: 'Mining',
     title: 'Mine Safety & Compliance Software South Africa | XGRC®',
     metaDescription: 'Mine safety and compliance software for South Africa: Mine Health and Safety Act, MPRDA, NEMA and water use licence obligations on one auditable platform.',

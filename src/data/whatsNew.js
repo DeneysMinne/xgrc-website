@@ -298,7 +298,7 @@ export const whatsNew = {
       "date": "2026-07-17",
       "category": "new",
       "title": "The calendar now shows your whole pipeline, not just tasks",
-      "description": "Your calendar has been rebuilt around colour-coded layers you switch on and off — tasks, reminders, follow-ups, meetings, deal close dates and quote expiries all in one timeline. Overdue items are flagged, finished ones struck through, and you can drag an item to a new day to reschedule it (moving a deal close date or quote expiry asks first). New Month, Week and Agenda views, a Mine/Team switch, and an admin Calendar Layers settings page to control colours, defaults and reschedule rules."
+      "description": "Your calendar has been rebuilt around colour-coded layers you switch on and off: tasks, reminders, follow-ups, meetings, deal close dates and quote expiries all in one timeline. Overdue items are flagged, finished ones struck through, and you can drag an item to a new day to reschedule it (moving a deal close date or quote expiry asks first). New Month, Week and Agenda views, a Mine/Team switch, and an admin Calendar Layers settings page to control colours, defaults and reschedule rules."
     }
   ],
   "xlogic": [

@@ -4,12 +4,15 @@ import SsotConvergence from '../components/SsotConvergence.astro';
 import FeatureReveal from '../components/FeatureReveal.astro';
 import '../styles/feature.css';
 import { lookFor, solutionIcon } from '../data/solutionLooks.js';
-import { brand, caseStudies, tourDashboards } from '../data/site.js';
+import { brand, caseStudies, tourDashboards, customerGroups } from '../data/site.js';
 import { publishedComparisons } from '../data/comparisons.js';
+import { publishedCaseStudyPages } from '../data/caseStudyPages.js';
 
 // Per-card colour and icon from the solution each card links to
 const slugOf = (href) => href.replace(/^\/|\/$/g, '').split('/')[0];
 const capLook = (href) => ({ acc: lookFor(slugOf(href)).acc, icon: solutionIcon(slugOf(href)) });
+const allCustomers = customerGroups.flatMap((g) => g.customers);
+const csLogo = (c) => publishedCaseStudyPages.find((p) => p.slug === c.slug)?.logo || allCustomers.find((x) => x.caseStudySlug === c.slug || x.name === c.company)?.logo;
 const jobAcc = (href) => ({ 'use-cases': '#f472b6', tour: '#a78bfa' })[slugOf(href)] || lookFor(slugOf(href)).acc;
 
 const compareLinks = publishedComparisons.filter((c) => c.linkFrom.includes('grc-software'));
@@ -353,6 +356,7 @@ const schema = JSON.stringify({
       <div class="cs-grid">
         {caseStudies.map((c) => (
           <div class="fp-card cs-card rv">
+            {csLogo(c) && <span class="cs-logo"><img src={`/assets/logos/customers/${csLogo(c)}`} alt="" loading="lazy" decoding="async" /></span>}
             <div class="cs-meta">
               <span class="fp-tag">{c.sector}</span>
               <span class="cs-solution">{c.solution}</span>
@@ -583,6 +587,9 @@ const schema = JSON.stringify({
   @media (max-width: 900px) { .cs-grid .cs-card { max-width: calc(50% - 8px); } }
   @media (max-width: 620px) { .cs-grid .cs-card { max-width: 100%; } }
   .cs-card .fp-go { text-decoration: none; }
+  .cs-logo { margin-bottom: 8px; width: 84px; height: 84px; flex: none; border-radius: 14px; display: flex; align-items: center; justify-content: center; padding: 11px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.10); border-top-color: rgba(255, 255, 255, 0.22); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: 0 5px 22px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.13); overflow: hidden; transition: transform 0.4s var(--ease); }
+  .cs-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .cs-card:hover .cs-logo { transform: translateY(-4px); }
   .cs-card h3 { font-size: 1.2rem; }
   .cs-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
   .cs-solution { font-family: var(--font-mono); font-size: 11px; color: var(--mute); letter-spacing: 0.06em; }
