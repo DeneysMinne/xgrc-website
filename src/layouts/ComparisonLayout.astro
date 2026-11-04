@@ -3,6 +3,8 @@
 // Data: src/data/comparisons.js. Unconfirmed facts are written as
 // "[CONFIRM: ...]" and highlighted here so they are easy to find in review.
 import Base from './Base.astro';
+import FeatureReveal from '../components/FeatureReveal.astro';
+import '../styles/feature.css';
 
 const { entry, preview = false } = Astro.props;
 const { slug, competitor, title, metaDescription, h1, intro, suits, features, sections, faqs, lastReviewed } = entry;
@@ -40,27 +42,37 @@ const schema = {
     </div>
   )}
 
-  <section class="page-head">
-    <div class="container narrow">
-      <span class="eyebrow"><span class="dot"></span>Comparison</span>
-      <h1>{h1}</h1>
-      <p class="lede">{intro}</p>
+  <div class="fp cmpx" style="--acc: #30e2f4">
+  <section class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
+    <div class="container fp-hero-grid">
+      <div>
+      <nav class="fp-crumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><b>XGRC® vs {competitor}</b></nav>
+      <span class="fp-chip">Comparison</span>
+      <h1 class="fp-title">{h1}</h1>
+      <p class="fp-dek">{intro}</p>
       <p class="meta">Last reviewed {reviewed}</p>
+      </div>
+      <div class="vs" aria-hidden="true">
+        <span class="vs-side vs-us"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" width="64" height="64" /><b>XGRC®</b><i>{features.length} capabilities compared</i></span>
+        <span class="vs-mid">vs</span>
+        <span class="vs-side vs-them"><em>{competitor.slice(0, 1)}</em><b>{competitor}</b><i>Last reviewed {reviewed}</i></span>
+      </div>
     </div>
   </section>
 
   <section class="section--tight">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Who each suits</span>
-        <h2>Which one fits your organisation?</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Who each suits</span>
+        <h2 class="fp-h2">Which one fits your organisation?</h2>
       </div>
       <div class="grid cols-2">
-        <div class="card suit suit--xgrc">
+        <div class="card suit suit--xgrc rv">
           <h3>XGRC® suits</h3>
           <ul>{suits.xgrc.map((s) => <li>{parts(s).map((p) => p.confirm ? <mark>{p.t}</mark> : p.t)}</li>)}</ul>
         </div>
-        <div class="card suit">
+        <div class="card suit rv">
           <h3>{competitor} suits</h3>
           <ul>{suits.competitor.map((s) => <li>{parts(s).map((p) => p.confirm ? <mark>{p.t}</mark> : p.t)}</li>)}</ul>
         </div>
@@ -70,11 +82,11 @@ const schema = {
 
   <section class="section--tight">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Features</span>
-        <h2>Feature comparison.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Features</span>
+        <h2 class="fp-h2">Feature comparison.</h2>
       </div>
-      <div class="cmp-table" role="table" aria-label={`XGRC® and ${competitor} feature comparison`}>
+      <div class="cmp-table rv" role="table" aria-label={`XGRC® and ${competitor} feature comparison`}>
         <div class="cmp-row cmp-row--head" role="row">
           <span role="columnheader">Capability</span><span role="columnheader">XGRC®</span><span role="columnheader">{competitor}</span>
         </div>
@@ -92,10 +104,10 @@ const schema = {
   {sections.map((sec) => (
     <section class="section--tight">
       <div class="container">
-        <h2 class="sec-h">{sec.heading}</h2>
+        <h2 class="sec-h rv">{sec.heading}</h2>
         <div class="grid cols-2">
-          <div class="card detail"><h3>XGRC®</h3><p>{parts(sec.xgrc).map((p) => p.confirm ? <mark>{p.t}</mark> : p.t)}</p></div>
-          <div class="card detail"><h3>{competitor}</h3><p>{parts(sec.competitor).map((p) => p.confirm ? <mark>{p.t}</mark> : p.t)}</p></div>
+          <div class="card detail detail--us rv"><h3>XGRC®</h3><p>{parts(sec.xgrc).map((p) => p.confirm ? <mark>{p.t}</mark> : p.t)}</p></div>
+          <div class="card detail rv"><h3>{competitor}</h3><p>{parts(sec.competitor).map((p) => p.confirm ? <mark>{p.t}</mark> : p.t)}</p></div>
         </div>
       </div>
     </section>
@@ -103,14 +115,14 @@ const schema = {
 
   <section class="section--tight">
     <div class="container narrow">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Frequently asked</span>
-        <h2>Common questions.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Frequently asked</span>
+        <h2 class="fp-h2">Common questions.</h2>
       </div>
-      <div class="faq-list">
-        {faqs.map((f) => (
-          <details class="faq-item">
-            <summary>{f.q}</summary>
+      <div class="fp-faqs">
+        {faqs.map((f, i) => (
+          <details class="fp-faq rv">
+            <summary><span class="fp-fq-n">{String(i + 1).padStart(2, '0')}</span><span class="fp-fq-q">{f.q}</span><span class="fp-fq-ic" aria-hidden="true"></span></summary>
             <p>{f.a}</p>
           </details>
         ))}
@@ -120,39 +132,54 @@ const schema = {
 
   <section class="section">
     <div class="container">
-      <div class="card cta-band">
+      <div class="fp-cta rv">
         <h2>See XGRC® with your own processes.</h2>
-        <p class="lede">The fastest way to compare is to see it. We will walk you through XGRC® using your sites, standards and obligations.</p>
-        <a href="/demo/" class="btn btn-primary">Book a demo</a>
+        <p>The fastest way to compare is to see it. We will walk you through XGRC® using your sites, standards and obligations.</p>
+        <div class="fp-actions"><a href="/demo/" class="btn btn-primary">Book a demo</a></div>
       </div>
     </div>
   </section>
+  </div>
+  <FeatureReveal />
 </Base>
 
 <style>
   .draft-banner { position: sticky; top: 74px; z-index: 20; background: #3a2d05; color: #ffe8a3; border-bottom: 1px solid #806516; padding: 10px 16px; text-align: center; font-size: 0.9rem; }
   mark { background: rgba(255, 196, 0, 0.18); color: #ffd966; border-radius: 4px; padding: 0 3px; }
-  .page-head { padding: 130px 0 0; }
-  .page-head h1 { margin: 8px 0 16px; }
   .narrow { max-width: 860px; }
-  .meta { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 14px; }
-  .suit h3, .detail h3 { font-size: 1.05rem; margin: 0 0 12px; }
+  .meta { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 18px; }
+  /* Hero: versus panel */
+  .vs { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 14px; }
+  .vs-side { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; padding: 30px 18px; border-radius: 24px; border: 1px solid var(--line); background: var(--panel); }
+  .vs-side img { width: 64px; height: 64px; }
+  .vs-side b { font: 800 1.2rem var(--font-display); color: var(--ink); }
+  .vs-side i { font-style: normal; font: 500 10.5px var(--font-mono); letter-spacing: 0.06em; color: var(--faint); }
+  .vs-us { border-color: color-mix(in srgb, var(--acc) 55%, transparent); background: radial-gradient(80% 80% at 50% 0%, color-mix(in srgb, var(--acc) 18%, transparent), transparent 70%), var(--panel); box-shadow: 0 0 50px color-mix(in srgb, var(--acc) 16%, transparent); }
+  .vs-them em { width: 64px; height: 64px; border-radius: 18px; display: grid; place-items: center; font: 800 1.8rem var(--font-display); font-style: normal; color: var(--mute); background: rgba(255,255,255,0.05); border: 1px solid var(--line-strong); }
+  .vs-mid { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; font: 800 1rem var(--font-display); text-transform: uppercase; color: var(--void); background: linear-gradient(135deg, var(--c1), var(--c2)); box-shadow: 0 0 30px rgba(48,226,244,0.4); }
+  .suit h3, .detail h3 { font: 700 1.08rem var(--font-display); margin: 0 0 12px; }
+  .suit, .detail { border-radius: 20px; }
   .suit ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; color: var(--mute); font-size: 0.94rem; line-height: 1.6; }
-  .suit--xgrc { border-color: var(--line-strong); }
+  .suit--xgrc, .detail--us { border-color: color-mix(in srgb, var(--acc) 45%, transparent); background: radial-gradient(70% 70% at 0% 0%, color-mix(in srgb, var(--acc) 10%, transparent), transparent 70%), var(--panel); }
+  .suit--xgrc h3, .detail--us h3 { color: var(--acc); }
+  .suit--xgrc li::marker { color: var(--acc); }
   .detail p { color: var(--mute); font-size: 0.94rem; line-height: 1.65; margin: 0; }
-  .sec-h { font-size: clamp(1.4rem, 2.6vw, 1.9rem); margin-bottom: 18px; }
-  .cmp-table { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .sec-h { font: 800 clamp(1.4rem, 2.6vw, 1.9rem)/1.2 var(--font-display); letter-spacing: -0.02em; margin-bottom: 18px; }
+  .cmp-table { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--panel); }
   .cmp-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 16px; padding: 13px 18px; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--mute); line-height: 1.5; }
   .cmp-row:first-child { border-top: none; }
   .cmp-row span:first-child { color: var(--ink); font-weight: 500; }
+  .cmp-row span:nth-child(2) { color: var(--ink); }
   .cmp-row--head { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(255, 255, 255, 0.03); }
   .cmp-row--head span, .cmp-row--head span:first-child { color: var(--faint); font-weight: 400; }
+  .cmp-row--head span:nth-child(2) { color: var(--acc); }
   .cmp-mob { display: none; color: var(--faint); font-weight: 400; }
-  .cta-band { text-align: center; padding: clamp(40px, 6vw, 64px); background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(0,92,169,0.05)); border-color: var(--line-strong); }
-  .cta-band .lede { margin: 0 auto 26px; }
+  .cmpx .fp-faqs { max-width: 900px; }
+  @media (min-width: 761px) { .cmp-row span:nth-child(2) { position: relative; } .cmp-row:not(.cmp-row--head) span:nth-child(2)::before { content: ''; position: absolute; left: -8px; top: -13px; bottom: -13px; width: 1px; background: color-mix(in srgb, var(--acc) 35%, transparent); } }
   @media (max-width: 760px) {
     .cmp-row { grid-template-columns: 1fr; gap: 4px; }
     .cmp-row--head { display: none; }
     .cmp-mob { display: inline; }
   }
+  @media (max-width: 480px) { .vs { grid-template-columns: 1fr; } .vs-mid { margin: 0 auto; } }
 </style>

@@ -1,5 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
+import FeatureReveal from '../../components/FeatureReveal.astro';
+import '../../styles/feature.css';
 import { legalDocs } from '../../data/legalContent.js';
 
 const binding = ['data-processing-addendum', 'acceptable-use-policy', 'support-policy'];
@@ -8,35 +10,53 @@ const publicNotices = ['privacy-policy', 'cookie-policy', 'website-terms-of-use'
 const reference = ['contract-framework'];
 
 const docCard = (slug) => ({ slug, ...legalDocs[slug] });
+const total = binding.length + endUser.length + publicNotices.length + reference.length;
+const stack = [...binding, ...endUser].slice(0, 3).map(docCard);
 ---
 
 <Base
   title="Legal Hub | XGRC® Software"
   description="All legal terms, contractual addenda, operational policies and customer transparency documents for XGRC® Software, from Strategix Application Solutions."
 >
-  <section class="page-head">
-    <div class="container">
-      <span class="eyebrow"><span class="dot"></span>Legal</span>
-      <h1>Legal Hub.</h1>
-      <p class="lede">All legal terms, contractual addenda, operational policies, and customer transparency documents that support the delivery of XGRC® Software.</p>
+  <div class="fp legal" style="--acc: #7dd3fc">
+  <section class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
+    <div class="container fp-hero-grid">
+      <div>
+        <nav class="fp-crumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><b>Legal</b></nav>
+        <span class="fp-chip">Legal</span>
+        <h1 class="fp-title"><span class="fp-hl">Legal Hub.</span></h1>
+        <p class="fp-dek">All legal terms, contractual addenda, operational policies, and customer transparency documents that support the delivery of XGRC® Software.</p>
+        <ul class="lg-jump">
+          <li><a href="#binding" style="--gc: #7dd3fc">Binding<b>{binding.length}</b></a></li>
+          <li><a href="#end-user" style="--gc: #a78bfa">End user<b>{endUser.length}</b></a></li>
+          <li><a href="#notices" style="--gc: #2fe88a">Public notices<b>{publicNotices.length}</b></a></li>
+          <li><a href="#reference" style="--gc: #fbbf24">Reference<b>{reference.length + 1}</b></a></li>
+        </ul>
+      </div>
+      <div class="seal" aria-hidden="true">
+        {stack.map((d, i) => (<div class={`seal-doc sd-${i}`}><span>{d.reference || 'Legal'}</span><b>{d.title}</b><i></i><i></i><i></i></div>))}
+        <div class="seal-mark"><svg viewBox="0 0 64 64"><path d="M32 6l20 8v15c0 13-8.5 23-20 29C20.5 52 12 42 12 29V14z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M23 32l6 6 12-13" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><b>{total}</b><span>documents</span></div>
+      </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="fp-sec tight lg-group" id="binding" style="--gc: #7dd3fc">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Incorporated by reference</span>
-        <h2>Binding customer documents.</h2>
-        <p class="lede">These documents are incorporated by reference into the XGRC® SaaS Agreement. By signing the Proposal & Order Form, the customer confirms it has reviewed and accepts these documents.</p>
+      <div class="fp-head rv">
+        <span class="fp-eb"><span class="lg-n">01</span>Incorporated by reference</span>
+        <h2 class="fp-h2">Binding customer documents.</h2>
+        <p class="fp-lede">These documents are incorporated by reference into the XGRC® SaaS Agreement. By signing the Proposal & Order Form, the customer confirms it has reviewed and accepts these documents.</p>
       </div>
-      <div class="grid cols-3">
+      <div class="fp-cards">
         {binding.map((slug) => {
           const d = docCard(slug);
           return (
-            <a class="card doc-card" href={`/legal/${slug}/`}>
+            <a class="fp-card doc-card rv" href={`/legal/${slug}/`}>
+              <span class="fp-card-top"><span class="doc-ic" aria-hidden="true"></span>{d.reference && <span class="fp-tag">{d.reference}</span>}</span>
               <h3>{d.title}</h3>
               <p>{d.intro}</p>
-              <span class="link-arrow">Read {d.title} &rarr;</span>
+              <span class="fp-go">Read {d.title} &rarr;</span>
             </a>
           );
         })}
@@ -44,21 +64,22 @@ const docCard = (slug) => ({ slug, ...legalDocs[slug] });
     </div>
   </section>
 
-  <section class="section--tight">
+  <section class="fp-sec tight lg-group" id="end-user" style="--gc: #a78bfa">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>For individual platform users</span>
-        <h2>End User Licence Agreement.</h2>
-        <p class="lede">Accepted individually by every Authorised User the first time they log in to the XGRC® platform, alongside (not instead of) the agreements already in force between Strategix and their organisation.</p>
+      <div class="fp-head rv">
+        <span class="fp-eb"><span class="lg-n">02</span>For individual platform users</span>
+        <h2 class="fp-h2">End User Licence Agreement.</h2>
+        <p class="fp-lede">Accepted individually by every Authorised User the first time they log in to the XGRC® platform, alongside (not instead of) the agreements already in force between Strategix and their organisation.</p>
       </div>
-      <div class="grid cols-3">
+      <div class="fp-cards">
         {endUser.map((slug) => {
           const d = docCard(slug);
           return (
-            <a class="card doc-card" href={`/legal/${slug}/`}>
+            <a class="fp-card doc-card rv" href={`/legal/${slug}/`}>
+              <span class="fp-card-top"><span class="doc-ic" aria-hidden="true"></span>{d.reference && <span class="fp-tag">{d.reference}</span>}</span>
               <h3>{d.title}</h3>
               <p>{d.intro}</p>
-              <span class="link-arrow">Read {d.title} &rarr;</span>
+              <span class="fp-go">Read {d.title} &rarr;</span>
             </a>
           );
         })}
@@ -66,21 +87,22 @@ const docCard = (slug) => ({ slug, ...legalDocs[slug] });
     </div>
   </section>
 
-  <section class="section">
+  <section class="fp-sec tight lg-group" id="notices" style="--gc: #2fe88a">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Public notices</span>
-        <h2>Website & privacy policies.</h2>
-        <p class="lede">Informational notices governing use of the XGRC® website and how we handle personal information.</p>
+      <div class="fp-head rv">
+        <span class="fp-eb"><span class="lg-n">03</span>Public notices</span>
+        <h2 class="fp-h2">Website & privacy policies.</h2>
+        <p class="fp-lede">Informational notices governing use of the XGRC® website and how we handle personal information.</p>
       </div>
-      <div class="grid cols-3">
+      <div class="fp-cards">
         {publicNotices.map((slug) => {
           const d = docCard(slug);
           return (
-            <a class="card doc-card" href={`/legal/${slug}/`}>
+            <a class="fp-card doc-card rv" href={`/legal/${slug}/`}>
+              <span class="fp-card-top"><span class="doc-ic" aria-hidden="true"></span>{d.reference && <span class="fp-tag">{d.reference}</span>}</span>
               <h3>{d.title}</h3>
               <p>{d.intro || `${d.title} for XGRC® Software.`}</p>
-              <span class="link-arrow">Read {d.title} &rarr;</span>
+              <span class="fp-go">Read {d.title} &rarr;</span>
             </a>
           );
         })}
@@ -88,37 +110,65 @@ const docCard = (slug) => ({ slug, ...legalDocs[slug] });
     </div>
   </section>
 
-  <section class="section--tight">
+  <section class="fp-sec tight lg-group" id="reference" style="--gc: #fbbf24">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Reference</span>
-        <h2>How our contracts fit together.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb"><span class="lg-n">04</span>Reference</span>
+        <h2 class="fp-h2">How our contracts fit together.</h2>
       </div>
-      <div class="grid cols-3">
+      <div class="fp-cards">
         {reference.map((slug) => {
           const d = docCard(slug);
           return (
-            <a class="card doc-card" href={`/legal/${slug}/`}>
+            <a class="fp-card doc-card rv" href={`/legal/${slug}/`}>
+              <span class="fp-card-top"><span class="doc-ic" aria-hidden="true"></span>{d.reference && <span class="fp-tag">{d.reference}</span>}</span>
               <h3>{d.title}</h3>
               <p>{d.intro}</p>
-              <span class="link-arrow">Read {d.title} &rarr;</span>
+              <span class="fp-go">Read {d.title} &rarr;</span>
             </a>
           );
         })}
-        <a class="card doc-card" href="/trust/">
+        <a class="fp-card doc-card rv" href="/trust/">
+          <span class="fp-card-top"><span class="doc-ic shield" aria-hidden="true"></span><span class="fp-tag">Trust</span></span>
           <h3>Trust Centre</h3>
           <p>Security, hosting, subprocessors, and data protection information for procurement due diligence.</p>
-          <span class="link-arrow">Visit Trust Centre &rarr;</span>
+          <span class="fp-go">Visit Trust Centre &rarr;</span>
         </a>
       </div>
     </div>
   </section>
+  </div>
+  <FeatureReveal />
 </Base>
 
 <style>
-  .page-head { padding: 130px 0 0; }
-  .page-head h1 { margin: 8px 0 18px; }
-  .doc-card { text-decoration: none; display: flex; flex-direction: column; cursor: pointer; }
+  .legal .fp-title { font-size: clamp(2.6rem, 6vw, 4.6rem); }
+  .lg-jump { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .lg-jump a { display: inline-flex; align-items: center; gap: 8px; font: 500 12px var(--font-mono); color: var(--mute); text-decoration: none; border: 1px solid var(--line); border-radius: 99px; padding: 7px 8px 7px 14px; transition: 0.2s; }
+  .lg-jump a:hover { color: var(--ink); border-color: color-mix(in srgb, var(--gc) 60%, transparent); }
+  .lg-jump b { color: var(--gc); background: color-mix(in srgb, var(--gc) 12%, transparent); border-radius: 99px; padding: 1px 8px; font-weight: 600; }
+  /* Hero: stacked documents under a seal */
+  .seal { position: relative; height: 360px; max-width: 480px; width: 100%; margin-left: auto; }
+  .seal-doc { position: absolute; width: 62%; aspect-ratio: 0.78; padding: 22px; border-radius: 16px; display: flex; flex-direction: column; gap: 10px; background: linear-gradient(170deg, #12233a, #0a1524); border: 1px solid var(--line-strong); box-shadow: 0 24px 50px rgba(0,0,0,0.45); }
+  .seal-doc span { font: 500 10px var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--acc); }
+  .seal-doc b { font: 700 1rem/1.3 var(--font-display); color: var(--ink); }
+  .seal-doc i { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.08); } .seal-doc i:nth-of-type(2) { width: 80%; } .seal-doc i:nth-of-type(3) { width: 64%; }
+  .sd-0 { left: 0; top: 30px; transform: rotate(-8deg); } .sd-1 { left: 18%; top: 10px; transform: rotate(-1deg); } .sd-2 { left: 36%; top: 34px; transform: rotate(7deg); }
+  .seal-mark { position: absolute; right: 0; bottom: 0; z-index: 3; width: 150px; height: 150px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--acc); background: radial-gradient(circle, #10243b, #08131f 70%); border: 1px solid color-mix(in srgb, var(--acc) 55%, transparent); box-shadow: 0 0 0 10px color-mix(in srgb, var(--acc) 7%, transparent), 0 0 50px color-mix(in srgb, var(--acc) 30%, transparent); animation: sealSpin 8s ease-in-out infinite; }
+  .seal-mark svg { width: 46px; height: 46px; }
+  .seal-mark b { font: 800 1.6rem/1 var(--font-display); color: var(--ink); }
+  .seal-mark span { font: 500 9.5px var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); }
+  @keyframes sealSpin { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @media (prefers-reduced-motion: reduce) { .seal-mark { animation: none; } }
+  @media (max-width: 1000px) { .seal { margin: 0 auto; } }
+  @media (max-width: 480px) { .seal { height: 300px; } .seal-doc { padding: 16px; } .seal-doc b { font-size: 0.85rem; } .seal-mark { width: 120px; height: 120px; } }
+
+  .lg-group { --acc: var(--gc); }
+  .lg-group:nth-of-type(odd) { background: linear-gradient(180deg, transparent, rgba(255,255,255,0.02) 20%, rgba(255,255,255,0.02) 80%, transparent); }
+  .lg-n { display: inline-grid; place-items: center; width: 26px; height: 26px; margin-right: 10px; border-radius: 50%; border: 1.5px solid var(--gc); font-size: 10.5px; letter-spacing: 0; vertical-align: middle; }
+  .doc-card { cursor: pointer; }
   .doc-card p { font-size: 0.9rem; }
-  .doc-card .link-arrow { margin-top: auto; padding-top: 16px; }
+  .doc-ic { width: 30px; height: 36px; border-radius: 6px; position: relative; background: color-mix(in srgb, var(--racc) 14%, transparent); border: 1.5px solid color-mix(in srgb, var(--racc) 70%, transparent); flex: none; }
+  .doc-ic::before { content: ''; position: absolute; left: 6px; right: 6px; top: 9px; height: 2px; background: var(--racc); box-shadow: 0 6px 0 var(--racc), 0 12px 0 color-mix(in srgb, var(--racc) 60%, transparent); border-radius: 2px; }
+  .doc-ic.shield { border-radius: 8px 8px 15px 15px; }
 </style>

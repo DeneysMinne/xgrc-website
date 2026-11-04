@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import FeatureReveal from '../components/FeatureReveal.astro';
+import '../styles/feature.css';
 import { videos, videoCategories } from '../data/site.js';
 
 // VideoObject schema for every embedded video — makes the hub eligible for
@@ -23,29 +25,53 @@ const videoSchema = JSON.stringify({
     },
   })),
 });
+const lead = videos[0];
+const thumbs = videos.slice(1, 4);
 ---
 <Base title="Video Hub | XGRC® Software" description="Platform overviews, product walkthroughs and training videos across the XGRC® Software suite. See governance, risk and compliance in action on one platform.">
   <script type="application/ld+json" set:html={videoSchema} />
-  <section class="page-head">
-    <div class="container">
-      <span class="eyebrow"><span class="dot"></span>Video Hub</span>
-      <h1>See XGRC® in motion.</h1>
-      <p class="lede">Platform overviews, product walkthroughs, and training content across the XGRC® suite.</p>
+  <div class="fp vids" style="--acc: #f87171">
+  <section class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
+    <div class="container fp-hero-grid">
+      <div>
+        <nav class="fp-crumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><b>Video Hub</b></nav>
+        <span class="fp-chip">Video Hub</span>
+        <h1 class="fp-title">See XGRC® <span class="fp-hl">in motion.</span></h1>
+        <p class="fp-dek">Platform overviews, product walkthroughs, and training content across the XGRC® suite.</p>
+        <ul class="cat-jump">
+          {videoCategories.filter((c) => videos.some((v) => v.category === c)).map((c) => (<li><a href={`#${c.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`}>{c}<b>{videos.filter((v) => v.category === c).length}</b></a></li>))}
+        </ul>
+      </div>
+      <div class="reel" aria-hidden="true">
+        {lead && (
+          <div class="reel-main">
+            <img src={`https://i.ytimg.com/vi/${lead.youtubeId}/hqdefault.jpg`} alt="" width="480" height="360" loading="eager" />
+            <span class="reel-play"></span>
+            <span class="reel-cap">{lead.title}</span>
+          </div>
+        )}
+        <div class="reel-strip">
+          {thumbs.map((v, i) => (<span class="reel-th" style={`--d: ${i * 120}ms`}><img src={`https://i.ytimg.com/vi/${v.youtubeId}/mqdefault.jpg`} alt="" width="320" height="180" loading="eager" /></span>))}
+        </div>
+      </div>
     </div>
   </section>
 
-  {videoCategories.map((cat) => {
+  {videoCategories.map((cat, ci) => {
     const catVideos = videos.filter((v) => v.category === cat);
     return (
-      <section class="section--tight">
+      <section class={`fp-sec tight${catVideos.length === 0 ? ' is-empty' : ''}`} id={cat.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}>
         <div class="container">
-          <div class="section-head">
-            <span class="eyebrow"><span class="dot"></span>{cat}</span>
+          <div class="cat-head rv">
+            <span class="cat-n">{String(ci + 1).padStart(2, '0')}</span>
+            <span class="fp-eb">{cat}</span>
+            {catVideos.length > 0 && <span class="cat-c">{catVideos.length} video{catVideos.length === 1 ? '' : 's'}</span>}
           </div>
           {catVideos.length > 0 ? (
             <div class="vid-grid">
               {catVideos.map((v) => (
-                <div class="vid-card">
+                <div class="vid-card rv">
                   <div class="yt-wrap">
                     <iframe
                       src={`https://www.youtube-nocookie.com/embed/${v.youtubeId}`}
@@ -69,16 +95,45 @@ const videoSchema = JSON.stringify({
       </section>
     );
   })}
+  </div>
+  <FeatureReveal />
 </Base>
 
 <style>
-  .page-head { padding: 130px 0 0; }
-  .page-head h1 { margin: 8px 0 18px; }
-  .vid-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
-  .vid-card { display: flex; flex-direction: column; gap: 14px; }
-  .yt-wrap { position: relative; width: 100%; padding-top: 56.25%; border-radius: var(--radius-lg); overflow: hidden; background: var(--panel); }
+  .cat-jump { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .cat-jump a { display: inline-flex; align-items: center; gap: 8px; font: 500 12px var(--font-mono); color: var(--mute); text-decoration: none; border: 1px solid var(--line); border-radius: 99px; padding: 7px 8px 7px 14px; transition: 0.2s; }
+  .cat-jump a:hover { color: var(--ink); border-color: color-mix(in srgb, var(--acc) 55%, transparent); }
+  .cat-jump b { font-weight: 600; color: var(--acc); background: color-mix(in srgb, var(--acc) 12%, transparent); border-radius: 99px; padding: 1px 8px; }
+  /* Hero reel */
+  .reel { position: relative; }
+  .reel-main { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 16 / 9; border: 1px solid color-mix(in srgb, var(--acc) 45%, transparent); box-shadow: 0 40px 90px rgba(0,0,0,0.55), 0 0 70px color-mix(in srgb, var(--acc) 18%, transparent); transform: perspective(1400px) rotateY(-7deg); }
+  .reel-main img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.1) brightness(0.8); }
+  .reel-main::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(4,10,20,0.92)); }
+  .reel-play { position: absolute; left: 50%; top: 45%; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; background: var(--acc); z-index: 2; box-shadow: 0 0 0 10px color-mix(in srgb, var(--acc) 22%, transparent), 0 0 50px var(--acc); animation: pulse 2.4s ease-in-out infinite; }
+  .reel-play::before { content: ''; position: absolute; left: 30px; top: 23px; border-left: 22px solid #fff; border-top: 15px solid transparent; border-bottom: 15px solid transparent; }
+  .reel-cap { position: absolute; left: 20px; right: 20px; bottom: 16px; z-index: 2; font: 700 1.05rem/1.3 var(--font-display); color: #fff; }
+  .reel-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+  .reel-th { border-radius: 12px; overflow: hidden; aspect-ratio: 16 / 9; border: 1px solid var(--line-strong); animation: thIn 0.6s var(--d) both cubic-bezier(0.16, 1, 0.3, 1); }
+  .reel-th img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.8; }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 10px color-mix(in srgb, var(--acc) 22%, transparent), 0 0 40px var(--acc); } 50% { box-shadow: 0 0 0 18px color-mix(in srgb, var(--acc) 10%, transparent), 0 0 60px var(--acc); } }
+  @keyframes thIn { from { opacity: 0; transform: translateY(12px); } }
+  @media (prefers-reduced-motion: reduce) { .reel-play, .reel-th { animation: none; } }
+  @media (max-width: 1000px) { .reel-main { transform: none; } }
+
+  .cat-head { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .cat-head .fp-eb { margin: 0; font-size: 13px; }
+  .cat-n { font: 800 1.9rem/1 var(--font-display); color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--acc) 70%, transparent); }
+  .cat-c { margin-left: auto; font: 500 11px var(--font-mono); color: var(--faint); }
+  .is-empty { padding: 14px 0; }
+  .is-empty .cat-head { margin-bottom: 8px; opacity: 0.75; }
+  .vid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
+  .vid-card { display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: var(--panel); border: 1px solid var(--line); transition: border-color 0.25s, transform 0.25s var(--ease); }
+  .vid-card:hover { border-color: color-mix(in srgb, var(--acc) 50%, transparent); transform: translateY(-3px); }
+  .yt-wrap { position: relative; width: 100%; padding-top: 56.25%; overflow: hidden; background: #000; }
   .yt-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-  .vid-title { font-size: 1.05rem; margin-bottom: 6px; }
-  .vid-meta p { color: var(--mute); font-size: 0.92rem; }
-  .empty { color: var(--faint); font-size: 0.9rem; }
+  .vid-meta { padding: 18px 20px 20px; }
+  .vid-title { font: 700 1.05rem/1.35 var(--font-display); margin: 0 0 6px; color: var(--ink); }
+  .vid-meta p { color: var(--mute); font-size: 0.92rem; margin: 0; line-height: 1.6; }
+  .empty { color: var(--faint); font-size: 0.9rem; margin: 0; }
+  @media (max-width: 400px) { .vid-grid { grid-template-columns: 1fr; } }
 </style>

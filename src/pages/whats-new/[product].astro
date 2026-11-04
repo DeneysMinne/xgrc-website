@@ -1,5 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
+import FeatureReveal from '../../components/FeatureReveal.astro';
+import '../../styles/feature.css';
+import { lookFor, solutionIcon } from '../../data/solutionLooks.js';
 import { solutions, solutionDetails } from '../../data/site.js';
 import { whatsNew } from '../../data/whatsNew.js';
 
@@ -17,6 +20,9 @@ const productName = detail?.name || sol?.name || product.toUpperCase();
 
 const CATEGORY_LABEL = { new: 'New', improved: 'Improved', fixed: 'Fixed', security: 'Security' };
 const CATEGORY_COLOR = { new: 'var(--cyan)', improved: 'var(--green)', fixed: '#f5a623', security: '#f5605c' };
+const acc = lookFor(product).acc;
+const icon = solutionIcon(product);
+const counts = Object.keys(CATEGORY_LABEL).map((k) => ({ k, n: entries.filter((e) => e.category === k).length })).filter((c) => c.n > 0);
 
 function formatDate(d) {
   return new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -53,25 +59,35 @@ const breadcrumbSchema = JSON.stringify({
   <script type="application/ld+json" set:html={schema} />
   <script type="application/ld+json" set:html={breadcrumbSchema} />
 
-  <nav class="wn-breadcrumb" aria-label="Breadcrumb">
-    <div class="container wn-breadcrumb-inner">
-      <a href={`/${product}/`}>&larr; {productName}</a>
-      <span aria-hidden="true">/</span>
-      <span>What's New</span>
-    </div>
-  </nav>
-
-  <section class="section--tight">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>What's New</span>
-        <h1>{productName} — What's New.</h1>
-        <p class="lede">Real updates, shipped and in production — not a roadmap.</p>
+  <div class="fp wn" style={`--acc: ${acc}`}>
+  <section class="fp-hero wn-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
+    <div class="container wn-hero-grid">
+      <div>
+        <nav class="fp-crumb wn-breadcrumb-inner" aria-label="Breadcrumb">
+          <a href={`/${product}/`}>&larr; {productName}</a>
+          <span aria-hidden="true">/</span>
+          <b>What's New</b>
+        </nav>
+        <span class="fp-chip">What's New</span>
+        <h1 class="fp-title">{productName} <span class="fp-hl">— What's New.</span></h1>
+        <p class="fp-dek">Real updates, shipped and in production — not a roadmap.</p>
       </div>
+      <div class="wn-badge" aria-hidden="true">
+        {icon && <img src={icon} alt="" width="64" height="64" />}
+        <b>{entries.length}</b>
+        <span>updates shipped</span>
+        <ul>{counts.map((c) => <li style={`--cat-color: ${CATEGORY_COLOR[c.k]}`}><i></i>{c.n} {CATEGORY_LABEL[c.k]}</li>)}</ul>
+      </div>
+    </div>
+  </section>
 
+  <section class="fp-sec tight">
+    <div class="container">
       <div class="wn-list">
         {entries.map((e) => (
-          <div class="wn-item">
+          <div class="wn-item rv" style={`--cat-color: ${CATEGORY_COLOR[e.category] || 'var(--cyan)'}`}>
+            <span class="wn-node" aria-hidden="true"></span>
             <div class="wn-meta">
               <span class="wn-cat" style={`--cat-color: ${CATEGORY_COLOR[e.category] || 'var(--cyan)'}`}>
                 {CATEGORY_LABEL[e.category] || e.category}
@@ -88,40 +104,43 @@ const breadcrumbSchema = JSON.stringify({
     </div>
   </section>
 
-  <section class="section--tight">
+  <section class="fp-sec">
     <div class="container">
-      <div class="wn-cta">
-        <p class="eyebrow"><span class="dot"></span>See it for yourself</p>
+      <div class="fp-cta rv">
+        <p class="fp-eb">See it for yourself</p>
         <h2>{productName} keeps getting better.</h2>
-        <p class="lede">Book a demo to see the current version in action.</p>
-        <div class="wn-cta-btns">
+        <p>Book a demo to see the current version in action.</p>
+        <div class="fp-actions">
           <a href="/demo/" class="btn btn-primary">Book a demo</a>
           <a href={`/${product}/`} class="btn btn-ghost">Back to {productName}</a>
         </div>
       </div>
     </div>
   </section>
+  </div>
+  <FeatureReveal />
 </Base>
 
 <style>
-  .wn-breadcrumb { border-bottom: 1px solid var(--line); padding: 22px 0; }
-  .wn-breadcrumb-inner { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--mute); }
-  .wn-breadcrumb-inner a { color: var(--mute); text-decoration: none; }
-  .wn-breadcrumb-inner a:hover { color: var(--cyan); }
+  .wn-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .wn-badge { min-width: 250px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 26px 28px; border-radius: 24px; background: radial-gradient(80% 80% at 100% 0%, color-mix(in srgb, var(--acc) 18%, transparent), transparent 70%), var(--panel); border: 1px solid color-mix(in srgb, var(--acc) 40%, transparent); box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 50px color-mix(in srgb, var(--acc) 14%, transparent); }
+  .wn-badge img { width: 56px; height: 56px; object-fit: contain; margin-bottom: 10px; }
+  .wn-badge b { font: 800 3.4rem/1 var(--font-display); letter-spacing: -0.04em; background: linear-gradient(90deg, var(--acc), var(--c1)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .wn-badge > span { font: 500 11px var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); }
+  .wn-badge ul { list-style: none; margin: 16px 0 0; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 6px; width: 100%; }
+  .wn-badge li { display: flex; align-items: center; gap: 8px; font: 500 12px var(--font-mono); color: var(--mute); }
+  .wn-badge li i { width: 8px; height: 8px; border-radius: 50%; background: var(--cat-color); box-shadow: 0 0 8px var(--cat-color); }
 
-  .wn-list { max-width: 760px; display: flex; flex-direction: column; gap: 28px; }
-  .wn-item { padding-bottom: 28px; border-bottom: 1px solid var(--line); }
-  .wn-item:last-child { border-bottom: none; padding-bottom: 0; }
-  .wn-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--mute); }
-  .wn-cat {
-    font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--cat-color); border: 1px solid var(--cat-color); border-radius: 999px;
-    padding: 2px 9px;
-  }
+  .wn-list { max-width: 820px; display: flex; flex-direction: column; gap: 16px; position: relative; padding-left: 38px; }
+  .wn-list::before { content: ''; position: absolute; left: 9px; top: 12px; bottom: 12px; width: 2px; background: linear-gradient(180deg, var(--acc), var(--c2), transparent); opacity: 0.5; }
+  .wn-item { position: relative; padding: 22px 24px; border-radius: 18px; background: var(--panel); border: 1px solid var(--line); transition: border-color 0.25s; }
+  .wn-item:hover { border-color: color-mix(in srgb, var(--cat-color) 50%, transparent); }
+  .wn-node { position: absolute; left: -36px; top: 26px; width: 16px; height: 16px; border-radius: 50%; background: var(--void); border: 3px solid var(--cat-color); box-shadow: 0 0 0 4px var(--void), 0 0 14px var(--cat-color); }
+  .wn-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 10px; font-family: var(--font-mono); font-size: 12px; color: var(--mute); }
+  .wn-cat { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cat-color); border: 1px solid var(--cat-color); background: color-mix(in srgb, var(--cat-color) 10%, transparent); border-radius: 999px; padding: 2px 9px; }
   .wn-version { color: var(--faint); }
-  .wn-title { margin: 0 0 6px; font-size: 1.15rem; }
-  .wn-desc { color: var(--mute); font-size: 0.95rem; line-height: 1.6; margin: 0; }
-
-  .wn-cta { max-width: 640px; }
-  .wn-cta-btns { display: flex; gap: 14px; margin-top: 22px; flex-wrap: wrap; }
+  .wn-title { margin: 0 0 6px; font: 700 1.15rem/1.35 var(--font-display); color: var(--ink); }
+  .wn-desc { color: var(--mute); font-size: 0.95rem; line-height: 1.65; margin: 0; }
+  @media (max-width: 760px) { .wn-hero-grid { grid-template-columns: 1fr; } .wn-badge { min-width: 0; } }
+  @media (max-width: 480px) { .wn-list { padding-left: 28px; } .wn-node { left: -27px; } .wn-list::before { left: 6px; } .wn-item { padding: 18px; } }
 </style>

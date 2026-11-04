@@ -1,29 +1,54 @@
 ---
 import Base from '../layouts/Base.astro';
+import FeatureReveal from '../components/FeatureReveal.astro';
+import '../styles/feature.css';
+import { lookFor, solutionIcon } from '../data/solutionLooks.js';
 import { resources } from '../data/site.js';
 import { useCaseRegistry } from '../data/useCaseRegistry.js';
 
 const checklistResources = useCaseRegistry
   .filter((u) => u.resource)
   .sort((a, b) => new Date(b.resource.dateAdded || 0) - new Date(a.resource.dateAdded || 0));
+
+const catAcc = { 'ISO Readiness': '#30e2f4', 'Inspection Checklist': '#fbbf24', Regulatory: '#a78bfa', 'Use Case': '#2fe88a' };
+// Booklet colour and icon from the solution named in its title
+const docSlug = (t) => [['SHEQX', 'sheqx'], ['ENVIRX', 'envirx'], ['ERM', 'erm'], ['Compliance Hub', 'compliance-hub'], ['Security', 'msxcyber'], ['Integrated Assurance', 'integrated-assurance']].find(([k]) => t.includes(k))?.[1] || 'msx';
+const fan = checklistResources.slice(0, 3);
 ---
 
 <Base title="Resources | XGRC® Software" description="Download ISO gap assessments, inspection checklists, booklets and brochures for the XGRC® platform and its solutions, plus the platform release log.">
-  <section class="page-head">
-    <div class="container">
-      <span class="eyebrow"><span class="dot"></span>Resources</span>
-      <h1>Guides, checklists and product detail.</h1>
-      <p class="lede">Downloadable material across the suite. ISO gap assessments, inspection checklists, booklets, brochures, and the platform release log.</p>
+  <div class="fp resx" style="--acc: #2fe88a">
+  <section class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
+    <div class="container fp-hero-grid">
+      <div>
+        <nav class="fp-crumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><b>Resources</b></nav>
+        <span class="fp-chip">Resources</span>
+        <h1 class="fp-title">Guides, checklists <span class="fp-hl">and product detail.</span></h1>
+        <p class="fp-dek">Downloadable material across the suite. ISO gap assessments, inspection checklists, booklets, brochures, and the platform release log.</p>
+      </div>
+      <div class="fan" aria-hidden="true">
+        {fan.map((u, i) => (
+          <div class={`fan-doc fd-${i}`} style={`--racc: ${catAcc[u.category] || '#2fe88a'}`}>
+            <span class="fd-tag">{u.category}</span>
+            <b>{u.resource.title}</b>
+            <span class="fd-lines"><i></i><i></i><i></i><i></i></span>
+            <span class="fd-pdf">PDF</span>
+          </div>
+        ))}
+        <div class="fan-count"><b>{checklistResources.length}</b><span>checklists</span></div>
+        <div class="fan-count fc-2"><b>{resources.length}</b><span>booklets</span></div>
+      </div>
     </div>
   </section>
 
-  <section class="section--tight">
+  <section class="fp-sec tight">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Checklists &amp; gap assessments</span>
-        <h2>Practical resources for every discipline.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Checklists &amp; gap assessments</span>
+        <h2 class="fp-h2">Practical resources for every discipline.</h2>
       </div>
-      <div class="search-wrap">
+      <div class="toolbar rv"><div class="search-wrap">
         <input
           type="search"
           class="search-input"
@@ -37,20 +62,21 @@ const checklistResources = useCaseRegistry
         {[...new Set(checklistResources.map((u) => u.category))].map((c) => (
           <button class="filter-chip" data-filter={c} type="button">{c}</button>
         ))}
-      </div>
+      </div></div>
       <p class="result-count" data-res-count></p>
-      <div class="grid cols-2" data-res-grid>
+      <div class="fp-cards res-grid" data-res-grid>
         {checklistResources.map((u) => (
           <a
-            class="card res"
+            class="fp-card res"
+            style={`--racc: ${catAcc[u.category] || '#2fe88a'}`}
             data-category={u.category}
             data-tags={[u.crumbLabel, u.resource.title, ...(u.frameworks || [])].join(' ').toLowerCase()}
             href={`/use-cases/${u.slug}/#resource`}
           >
-            <span class="tag">{u.category}</span>
+            <span class="fp-card-top"><span class="doc-ic" aria-hidden="true"></span><span class="fp-tag">{u.category}</span></span>
             <h3>{u.resource.title}</h3>
             <p>Related to: {u.crumbLabel}</p>
-            <span class="link-arrow">View &amp; download →</span>
+            <span class="fp-go">View &amp; download →</span>
           </a>
         ))}
       </div>
@@ -58,21 +84,21 @@ const checklistResources = useCaseRegistry
     </div>
   </section>
 
-  <section class="section">
+  <section class="fp-sec tight fp-band">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Product material</span>
-        <h2>Booklets and brochures.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Product material</span>
+        <h2 class="fp-h2">Booklets and brochures.</h2>
       </div>
-      <div class="grid cols-2">
+      <div class="fp-cards">
         {resources.map((r) => (
-          <div class="card res">
-            <span class="tag">{r.type}</span>
+          <div class="fp-card res book rv" style={`--racc: ${lookFor(docSlug(r.title)).acc}`}>
+            <span class="fp-card-top">{solutionIcon(docSlug(r.title)) && <img src={solutionIcon(docSlug(r.title))} alt="" width="34" height="34" loading="lazy" />}<span class="fp-tag">{r.type}</span></span>
             <h3>{r.title}</h3>
             <p>{r.note}</p>
             <a
               href={r.href}
-              class="link-arrow"
+              class="fp-go"
               {...(r.download ? { target: '_blank', rel: 'noopener', download: true } : {})}
             >{r.cta || 'Download →'}</a>
           </div>
@@ -81,6 +107,8 @@ const checklistResources = useCaseRegistry
       <p class="note"><a href="/videos/" class="link-arrow">Looking for videos? Visit the Video Hub →</a></p>
     </div>
   </section>
+  </div>
+  <FeatureReveal />
 </Base>
 
 <script>
@@ -118,20 +146,50 @@ const checklistResources = useCaseRegistry
 </script>
 
 <style>
-  .page-head { padding: 130px 0 0; }
-  .page-head h1 { margin: 8px 0 18px; }
-  .res { text-decoration: none; display: flex; flex-direction: column; }
-  .res .link-arrow { display: inline-block; margin-top: auto; padding-top: 14px; }
+  /* Hero: fanned checklist documents */
+  .fan { position: relative; height: 380px; }
+  .fan-doc { --racc: var(--acc); position: absolute; width: min(300px, 70%); aspect-ratio: 0.74; padding: 22px; border-radius: 18px; display: flex; flex-direction: column; gap: 12px; background: linear-gradient(165deg, color-mix(in srgb, var(--racc) 16%, #0d1b2e), #0a1524 60%); border: 1px solid color-mix(in srgb, var(--racc) 45%, transparent); box-shadow: 0 30px 60px rgba(0,0,0,0.5); transition: transform 0.5s var(--ease); }
+  .fan-doc b { font: 700 1.05rem/1.3 var(--font-display); color: var(--ink); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .fd-tag { font: 500 10px var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--racc); }
+  .fd-lines { display: grid; gap: 9px; margin-top: 6px; }
+  .fd-lines i { height: 7px; border-radius: 4px; background: rgba(255,255,255,0.08); }
+  .fd-lines i:nth-child(2) { width: 82%; } .fd-lines i:nth-child(3) { width: 90%; } .fd-lines i:nth-child(4) { width: 60%; }
+  .fd-pdf { margin-top: auto; align-self: flex-start; font: 600 11px var(--font-mono); color: var(--void); background: var(--racc); padding: 4px 10px; border-radius: 6px; }
+  .fd-0 { left: 34%; top: 0; transform: rotate(7deg); z-index: 1; }
+  .fd-1 { left: 18%; top: 18px; transform: rotate(-2deg); z-index: 2; }
+  .fd-2 { left: 4%; top: 40px; transform: rotate(-9deg); z-index: 3; }
+  .fan:hover .fd-0 { transform: rotate(12deg) translateX(30px); } .fan:hover .fd-2 { transform: rotate(-14deg) translateX(-20px); }
+  .fan-count { position: absolute; right: 2%; top: 46%; z-index: 4; display: flex; flex-direction: column; padding: 14px 18px; border-radius: 16px; background: rgba(8,18,34,0.88); backdrop-filter: blur(10px); border: 1px solid var(--line-strong); box-shadow: 0 18px 40px rgba(0,0,0,0.45); animation: fcfloat 6s ease-in-out infinite; }
+  .fan-count b { font: 800 2rem/1 var(--font-display); background: linear-gradient(90deg, var(--acc), var(--c1)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .fan-count span { font: 500 10px var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); }
+  .fc-2 { top: auto; bottom: 4%; right: 22%; animation-delay: -3s; }
+  .fc-2 b { background: linear-gradient(90deg, var(--c2), var(--c1)); -webkit-background-clip: text; background-clip: text; }
+  @keyframes fcfloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @media (prefers-reduced-motion: reduce) { .fan-count { animation: none; } }
+  @media (max-width: 1000px) { .fan { height: 340px; max-width: 520px; } }
+  @media (max-width: 560px) { .fan { height: 300px; } .fan-doc { width: 62%; padding: 16px; } .fan-doc b { font-size: 0.92rem; } }
+
+  .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; padding: 18px; border-radius: 20px; border: 1px solid var(--line); background: var(--panel); margin-bottom: 14px; }
+  .toolbar .search-wrap { margin: 0; flex: 1 1 280px; }
+  .toolbar .filters { margin: 0; }
+  .res { cursor: pointer; }
+  .res-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .doc-ic { width: 30px; height: 36px; border-radius: 6px; position: relative; background: color-mix(in srgb, var(--racc) 16%, transparent); border: 1.5px solid color-mix(in srgb, var(--racc) 70%, transparent); flex: none; }
+  .doc-ic::before { content: ''; position: absolute; left: 6px; right: 6px; top: 9px; height: 2px; background: var(--racc); box-shadow: 0 6px 0 var(--racc), 0 12px 0 color-mix(in srgb, var(--racc) 60%, transparent); border-radius: 2px; }
+  .book .fp-go { text-decoration: none; }
+  .res .fp-go { text-decoration: none; }
   .note { font-size: 0.85rem; color: var(--faint); margin-top: 28px; }
   code { font-family: var(--font-mono); color: var(--cyan); font-size: 0.85em; }
-  .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
   .filter-chip { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--mute); border: 1px solid var(--line); border-radius: 100px; padding: 9px 16px; background: transparent; cursor: pointer; transition: 0.2s; }
   .filter-chip:hover { color: var(--ink); border-color: var(--line-strong); }
-  .filter-chip.is-active { color: var(--cyan); border-color: var(--line-strong); background: rgba(48,226,244,0.06); }
+  .filter-chip.is-active { color: var(--void); border-color: var(--acc); background: var(--acc); }
   .search-wrap { margin-bottom: 18px; }
-  .search-input { width: 100%; max-width: 420px; font-family: var(--font-body, inherit); font-size: 15px; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; background: rgba(255,255,255,0.02); transition: 0.2s; }
+  .search-input { width: 100%; max-width: 460px; font-family: var(--font-body, inherit); font-size: 15px; color: var(--ink); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; background: rgba(255,255,255,0.03); transition: 0.2s; }
   .search-input::placeholder { color: var(--faint); }
-  .search-input:focus { outline: none; border-color: var(--line-strong); background: rgba(48,226,244,0.04); }
+  .search-input:focus { outline: none; border-color: var(--acc); background: color-mix(in srgb, var(--acc) 5%, transparent); }
   .result-count { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--faint); margin-bottom: 18px; }
   .no-results { color: var(--mute); padding: 20px 0; }
+  @media (max-width: 1000px) { .res-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .res-grid { grid-template-columns: 1fr; } }
 </style>

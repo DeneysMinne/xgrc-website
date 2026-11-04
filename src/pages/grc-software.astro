@@ -1,8 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
 import SsotConvergence from '../components/SsotConvergence.astro';
+import FeatureReveal from '../components/FeatureReveal.astro';
+import '../styles/feature.css';
+import { lookFor, solutionIcon } from '../data/solutionLooks.js';
 import { brand, caseStudies, tourDashboards } from '../data/site.js';
 import { publishedComparisons } from '../data/comparisons.js';
+
+// Per-card colour and icon from the solution each card links to
+const slugOf = (href) => href.replace(/^\/|\/$/g, '').split('/')[0];
+const capLook = (href) => ({ acc: lookFor(slugOf(href)).acc, icon: solutionIcon(slugOf(href)) });
+const jobAcc = (href) => ({ 'use-cases': '#f472b6', tour: '#a78bfa' })[slugOf(href)] || lookFor(slugOf(href)).acc;
 
 const compareLinks = publishedComparisons.filter((c) => c.linkFrom.includes('grc-software'));
 
@@ -139,17 +147,19 @@ const schema = JSON.stringify({
 >
   <script type="application/ld+json" set:html={schema} />
 
+  <div class="fp grc" style="--acc: #30e2f4">
   <!-- ── Hero ───────────────────────────────────────────── -->
-  <section class="grc-hero">
+  <section class="fp-hero grc-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
     <div class="container grc-hero-inner">
       <div class="grc-hero-copy">
-        <nav class="crumbs" aria-label="Breadcrumb">
+        <nav class="fp-crumb" aria-label="Breadcrumb">
           <a href="/">Home</a><span>/</span><b>GRC Platform</b>
         </nav>
-        <span class="eyebrow"><span class="dot"></span>GRC Platform</span>
-        <h1>GRC software.<br>Governance, risk &amp; compliance, unified.</h1>
-        <p class="lede">GRC software (governance, risk and compliance software) is a platform that manages an organisation's policies, risks, controls, obligations, audits and actions in one connected, auditable system, instead of spreadsheets and separate tools. XGRC® is an integrated GRC platform that adds ESG and data protection on the same foundation, giving your organisation a single version of the truth.</p>
-        <div class="hero-actions">
+        <span class="fp-chip">GRC Platform</span>
+        <h1 class="fp-title">GRC software.<br><span class="fp-hl">Governance, risk &amp; compliance, unified.</span></h1>
+        <p class="fp-dek">GRC software (governance, risk and compliance software) is a platform that manages an organisation's policies, risks, controls, obligations, audits and actions in one connected, auditable system, instead of spreadsheets and separate tools. XGRC® is an integrated GRC platform that adds ESG and data protection on the same foundation, giving your organisation a single version of the truth.</p>
+        <div class="fp-actions">
           <a href="/demo/" class="btn btn-primary">Book a Demo</a>
           <a href="/tour/" class="btn btn-ghost">Take the live tour <span aria-hidden="true">&rarr;</span></a>
           <a href="/solutions/" class="btn btn-ghost">Explore solutions</a>
@@ -171,17 +181,20 @@ const schema = JSON.stringify({
             loading="eager"
           />
         </a>
+        <div class="hero-float hf-1" aria-hidden="true"><b>800+</b><span>Companies</span></div>
+        <div class="hero-float hf-2" aria-hidden="true"><b>ISO 27001</b><span>:2022 Certified</span></div>
+        <div class="hero-float hf-3" aria-hidden="true"><b>1</b><span>Platform</span></div>
         <figcaption>Illustrative data. <a href="/tour/">Click through all {tourDashboards.length} dashboards &rarr;</a></figcaption>
       </figure>
     </div>
   </section>
 
   <!-- ── Platform concept ──────────────────────────────── -->
-  <section class="section">
+  <section class="fp-sec">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>The platform</span>
-        <h2>One platform. One source of truth.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">The platform</span>
+        <h2 class="fp-h2">One platform. One source of truth.</h2>
         <p class="lede">Most organisations run governance, risk, compliance, and ESG in isolation: separate tools, disconnected data, duplicate effort. XGRC® consolidates every discipline into one foundation, so decisions are based on the same data, controls link to the right risks, and your compliance status is always current.</p>
       </div>
       <SsotConvergence />
@@ -189,61 +202,62 @@ const schema = JSON.stringify({
   </section>
 
   <!-- ── Capability cards ──────────────────────────────── -->
-  <section class="section--tight">
+  <section class="fp-sec tight">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>What XGRC® covers</span>
-        <h2>Six disciplines. One foundation.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">What XGRC® covers</span>
+        <h2 class="fp-h2">Six disciplines. One foundation.</h2>
       </div>
-      <div class="grid cols-3">
-        {capabilities.map((c) => (
-          <a class="card cap-card" href={c.href}>
-            <span class="tag">{c.tag}</span>
+      <div class="fp-cards">
+        {capabilities.map((c) => { const l = capLook(c.href); return (
+          <a class="fp-card cap-card rv" href={c.href} style={`--racc: ${l.acc}`}>
+            <span class="fp-card-top">{l.icon ? <img src={l.icon} alt="" width="34" height="34" loading="lazy" /> : <span class="fp-mono">{c.tag.slice(0, 2)}</span>}<span class="fp-tag">{c.tag}</span></span>
             <h3>{c.title}</h3>
             <p>{c.body}</p>
-            <span class="link-arrow">Explore &rarr;</span>
+            <span class="fp-go">Explore &rarr;</span>
           </a>
-        ))}
+        ); })}
       </div>
     </div>
   </section>
 
   <!-- ── What GRC software does ───────────────────────── -->
-  <section class="section--tight" id="what-grc-software-does">
+  <section class="fp-sec tight" id="what-grc-software-does">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>What GRC software does</span>
-        <h2>What a GRC platform does, day to day.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">What GRC software does</span>
+        <h2 class="fp-h2">What a GRC platform does, day to day.</h2>
         <p class="lede">Whichever discipline you start with, GRC software solutions do the same core jobs. In XGRC® each one runs on the same data, so a risk links to its controls, its obligations, its audit findings and its corrective actions without double entry.</p>
       </div>
-      <div class="grid cols-3">
-        {grcJobs.map((j) => (
-          <div class="card job-card">
+      <ol class="jobs">
+        {grcJobs.map((j, i) => (
+          <li class="job rv" style={`--racc: ${jobAcc(j.href)}`}>
+            <span class="job-n">{String(i + 1).padStart(2, '0')}</span>
             <h3>{j.title}</h3>
             <p>{j.body}</p>
-            <a href={j.href} class="link-arrow">{j.label} &rarr;</a>
-          </div>
+            <a href={j.href} class="job-go">{j.label} &rarr;</a>
+          </li>
         ))}
-      </div>
+      </ol>
     </div>
   </section>
 
   <!-- ── Platform in action ───────────────────────────── -->
-  <section class="section--tight">
+  <section class="fp-sec tight">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>The platform in action</span>
-        <h2>Real dashboards. Real decisions.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">The platform in action</span>
+        <h2 class="fp-h2">Real dashboards. Real decisions.</h2>
         <p class="lede">Every discipline has a dedicated intelligence layer, executive dashboards built for decision-makers, not data analysts. These are live, click-through demonstrations, not screenshots.</p>
       </div>
-      <div class="dash-tabs" id="dashTabs">
+      <div class="dash-tabs rv" id="dashTabs">
         <button class="dash-tab is-active" data-img="/assets/tour/enterprise-risk-v1.webp" data-label="Enterprise Risk Intelligence" data-href="/tour/enterprise-risk.html">Enterprise Risk</button>
         <button class="dash-tab" data-img="/assets/tour/sherq-v1.webp" data-label="SHERQ Landscape" data-href="/tour/sherq.html">SHEQ &amp; Safety</button>
         <button class="dash-tab" data-img="/assets/tour/esg-v1.webp" data-label="ESG Performance" data-href="/tour/esg.html">ESG</button>
         <button class="dash-tab" data-img="/assets/tour/vendor-risk-v1.webp" data-label="Vendor &amp; Third-Party Risk" data-href="/tour/vendor-risk.html">Compliance Hub</button>
         <button class="dash-tab" data-img="/assets/tour/ai-governance-v1.webp" data-label="AI Governance KPI Dashboard" data-href="/tour/ai-governance.html">AI Governance</button>
       </div>
-      <a class="dash-frame" id="dashFrame" href="/tour/enterprise-risk.html" aria-label="Open the live Enterprise Risk dashboard">
+      <a class="dash-frame rv" id="dashFrame" href="/tour/enterprise-risk.html" aria-label="Open the live Enterprise Risk dashboard">
         <div class="dash-chrome">
           <span class="dc-dot dc-red"></span>
           <span class="dc-dot dc-yellow"></span>
@@ -260,14 +274,14 @@ const schema = JSON.stringify({
   </section>
 
   <!-- ── Frameworks ────────────────────────────────────── -->
-  <section class="section--tight">
+  <section class="fp-sec tight">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Standards & regulations</span>
-        <h2>Built for global standards and local law.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Standards & regulations</span>
+        <h2 class="fp-h2">Built for global standards and local law.</h2>
         <p class="lede">XGRC® supports the frameworks your organisation must comply with, from international ISO standards to South African legislation.</p>
       </div>
-      <div class="fw-split">
+      <div class="fw-split rv">
         <div class="fw-panel">
           <span class="fw-region">Global</span>
           <ul class="fw-chips">
@@ -286,16 +300,16 @@ const schema = JSON.stringify({
   </section>
 
   <!-- ── How to choose ─────────────────────────────────── -->
-  <section class="section--tight" id="how-to-choose-grc-software">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Buyer's checklist</span>
-        <h2>How to choose GRC software.</h2>
+  <section class="fp-sec tight" id="how-to-choose-grc-software">
+    <div class="container fp-split">
+      <div class="fp-head rv">
+        <span class="fp-eb">Buyer's checklist</span>
+        <h2 class="fp-h2">How to choose GRC software.</h2>
         <p class="lede">GRC software solutions vary widely in scope and depth. Use these questions to compare them on what matters once the system is live, not only in the demo.</p>
       </div>
       <ol class="checklist">
         {checklist.map((c) => (
-          <li class="card check-card">
+          <li class="check-card rv">
             <h3>{c.title}</h3>
             <p>{c.body}</p>
           </li>
@@ -305,19 +319,19 @@ const schema = JSON.stringify({
   </section>
 
   <!-- ── Comparison ────────────────────────────────────── -->
-  <section class="section--tight" id="grc-software-compared">
+  <section class="fp-sec tight" id="grc-software-compared">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Compare the options</span>
-        <h2>Integrated GRC software compared with spreadsheets and point solutions.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Compare the options</span>
+        <h2 class="fp-h2">Integrated GRC software compared with spreadsheets and point solutions.</h2>
         <p class="lede">Most organisations reach integrated GRC software from one of two starting points: spreadsheets, or a growing set of single-purpose tools. Here is how the three approaches compare.</p>
       </div>
-      <div class="cmp-table" role="table" aria-label="GRC software compared with spreadsheets and point solutions">
+      <div class="cmp-table rv" role="table" aria-label="GRC software compared with spreadsheets and point solutions">
         <div class="cmp-row cmp-row--head" role="row">
           <span role="columnheader">Approach</span><span role="columnheader">Best suited to</span><span role="columnheader">Limits and what to plan for</span>
         </div>
         {comparison.map((r) => (
-          <div class="cmp-row" role="row">{r.map((c) => <span role="cell">{c}</span>)}</div>
+          <div class={`cmp-row${r[0].startsWith('Integrated') ? ' cmp-row--us' : ''}`} role="row">{r.map((c) => <span role="cell">{c}</span>)}</div>
         ))}
       </div>
       <p class="cmp-links">
@@ -329,24 +343,24 @@ const schema = JSON.stringify({
   </section>
 
   <!-- ── Case studies ─────────────────────────────────── -->
-  <section class="section--tight">
+  <section class="fp-sec tight">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Case studies</span>
-        <h2>Outcomes, not just software.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Case studies</span>
+        <h2 class="fp-h2">Outcomes, not just software.</h2>
         <p class="lede">How organisations across manufacturing, mining, logistics, and facilities management use XGRC® in practice.</p>
       </div>
       <div class="cs-grid">
         {caseStudies.map((c) => (
-          <div class="card cs-card">
+          <div class="fp-card cs-card rv">
             <div class="cs-meta">
-              <span class="tag">{c.sector}</span>
+              <span class="fp-tag">{c.sector}</span>
               <span class="cs-solution">{c.solution}</span>
             </div>
             <h3 class="cs-company">{c.company}</h3>
             <p>{c.summary}</p>
             {c.pdf && (
-              <a href={`/case-studies/${c.slug}.pdf`} class="link-arrow" download>Download case study &rarr;</a>
+              <a href={`/case-studies/${c.slug}.pdf`} class="fp-go" download>Download case study &rarr;</a>
             )}
           </div>
         ))}
@@ -358,16 +372,16 @@ const schema = JSON.stringify({
   </section>
 
   <!-- ── Why XGRC ──────────────────────────────────────── -->
-  <section class="section--tight why-section">
+  <section class="fp-sec tight fp-band why-section">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Why XGRC®</span>
-        <h2>Specific reasons to choose XGRC®.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Why XGRC®</span>
+        <h2 class="fp-h2">Specific reasons to choose XGRC®.</h2>
         <p class="lede">The XGRC® platform is certified to ISO/IEC 27001:2022, customer data is hosted in Microsoft Azure West Europe (Netherlands), and organisations such as KAP Ltd, African Rainbow Minerals, RCL Foods, Servest, Interwaste and Toyota South Africa rely on it. <a href="/customers/">See our customers</a> or <a href="/trust/">review our security and hosting</a>.</p>
       </div>
       <div class="why-grid">
         {whyPoints.map((w) => (
-          <div class="why-card">
+          <div class="why-card rv">
             <div class="why-stat">
               <span class="stat-val">{w.stat}</span>
               <span class="stat-sub">{w.label}</span>
@@ -380,16 +394,16 @@ const schema = JSON.stringify({
   </section>
 
   <!-- ── FAQ ───────────────────────────────────────────── -->
-  <section class="section--tight">
+  <section class="fp-sec tight">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Frequently asked</span>
-        <h2>Common questions about the platform.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Frequently asked</span>
+        <h2 class="fp-h2">Common questions about the platform.</h2>
       </div>
-      <div class="faq-list">
-        {faqs.map((f) => (
-          <details class="faq-item">
-            <summary>{f.q}</summary>
+      <div class="fp-faqs">
+        {faqs.map((f, i) => (
+          <details class="fp-faq rv">
+            <summary><span class="fp-fq-n">{String(i + 1).padStart(2, '0')}</span><span class="fp-fq-q">{f.q}</span><span class="fp-fq-ic" aria-hidden="true"></span></summary>
             <p>{f.a}</p>
             {f.link && <p><a href={f.link.href} class="link-arrow">{f.link.label} &rarr;</a></p>}
           </details>
@@ -399,12 +413,12 @@ const schema = JSON.stringify({
   </section>
 
   <!-- ── CTA ───────────────────────────────────────────── -->
-  <section class="section" id="contact">
+  <section class="fp-sec" id="contact">
     <div class="container">
-      <div class="card cta">
+      <div class="fp-cta rv">
         <h2>Take control of governance, risk, compliance and data protection.</h2>
-        <p class="lede">Whether you are addressing a single risk domain or coordinating assurance across the enterprise, XGRC® gives you the foundation to move forward with confidence.</p>
-        <div class="cta-actions">
+        <p>Whether you are addressing a single risk domain or coordinating assurance across the enterprise, XGRC® gives you the foundation to move forward with confidence.</p>
+        <div class="fp-actions">
           <a href="/demo/" class="btn btn-primary">Request a live demo</a>
           <a href="/use-cases/" class="btn btn-ghost">See use cases</a>
         </div>
@@ -412,6 +426,8 @@ const schema = JSON.stringify({
       </div>
     </div>
   </section>
+  </div>
+  <FeatureReveal />
 <script>
   const tabs  = document.querySelectorAll('.dash-tab');
   const img   = document.getElementById('dashImg');
@@ -437,42 +453,14 @@ const schema = JSON.stringify({
 </Base>
 
 <style>
-  .compare-links { margin-top: 18px; color: var(--mute); font-size: 0.95rem; }
-  .compare-links a { color: var(--cyan); }
   /* ── Hero ─────────────────────────────────────────────── */
-  .grc-hero {
-    padding: 140px 0 80px;
-    position: relative;
-  }
-  .grc-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%,
-      rgba(48, 226, 244, 0.07) 0%,
-      transparent 70%);
-    pointer-events: none;
-  }
-  .grc-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+  .grc-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
   .grc-hero-copy { min-width: 0; }
-  .crumbs { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--faint); display: flex; gap: 10px; align-items: center; margin-bottom: 26px; }
-  .crumbs a { color: var(--mute); text-decoration: none; }
-  .crumbs a:hover { color: var(--cyan); }
-  .crumbs b { color: var(--ink); font-weight: 500; }
-  .grc-hero .eyebrow { margin-bottom: 14px; }
-  .grc-hero h1 {
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.08;
-    letter-spacing: -0.03em;
-    margin-bottom: 22px;
-    max-width: 680px;
-  }
-  .grc-hero .lede { max-width: 600px; margin-bottom: 32px; }
-  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .grc-hero .fp-title { font-size: clamp(2.3rem, 4.8vw, 3.7rem); max-width: 680px; }
 
-  .grc-hero-visual { margin: 0; display: grid; gap: 12px; perspective: 1400px; min-width: 0; }
-  .grc-hero-visual .frame { display: block; text-decoration: none; border-radius: 12px; overflow: hidden; border: 1px solid rgba(48,226,244,0.35); background: #0a1729;
-    box-shadow: 0 40px 90px rgba(0,0,0,0.55), 0 0 0 1px rgba(48,226,244,0.08), 0 0 60px rgba(48,226,244,0.10);
+  .grc-hero-visual { margin: 0; display: grid; gap: 12px; perspective: 1400px; min-width: 0; position: relative; }
+  .grc-hero-visual .frame { display: block; text-decoration: none; border-radius: 14px; overflow: hidden; border: 1px solid rgba(48,226,244,0.35); background: #0a1729;
+    box-shadow: 0 40px 90px rgba(0,0,0,0.55), 0 0 0 1px rgba(48,226,244,0.08), 0 0 80px rgba(48,226,244,0.14);
     transform: rotateY(-9deg) rotateX(3deg); transform-origin: left center; transition: transform 0.6s var(--ease); }
   .grc-hero-visual .frame:hover, .grc-hero-visual .frame:focus-visible { transform: rotateY(-3deg) rotateX(1deg); }
   .grc-hero-visual .frame:focus-visible { outline: 2px solid var(--green-hi); outline-offset: 4px; }
@@ -481,35 +469,52 @@ const schema = JSON.stringify({
   .grc-hero-visual .frame-bar i { width: 8px; height: 8px; border-radius: 50%; background: #243546; display: inline-block; }
   .grc-hero-visual .frame-bar span { margin-left: 8px; }
   .grc-hero-visual figcaption { font-family: var(--font-mono); font-size: 11px; color: var(--faint); padding-left: 4px; }
-  .grc-hero-visual figcaption a { color: var(--cyan); text-decoration: none; }
-  .grc-hero-visual figcaption a:hover { color: var(--cyan-hi); }
-  @media (max-width: 860px) {
+  .grc-hero-visual figcaption a { color: var(--acc); text-decoration: none; }
+  .hero-float { position: absolute; z-index: 2; display: flex; flex-direction: column; gap: 2px; padding: 12px 16px; border-radius: 14px; background: rgba(8, 18, 34, 0.86); backdrop-filter: blur(10px); border: 1px solid var(--line-strong); box-shadow: 0 18px 40px rgba(0,0,0,0.45); animation: hfloat 6s ease-in-out infinite; pointer-events: none; }
+  .hero-float b { font: 800 1.35rem/1 var(--font-display); letter-spacing: -0.02em; background: linear-gradient(90deg, var(--c1), var(--c2)); -webkit-background-clip: text; background-clip: text; color: transparent; white-space: nowrap; }
+  .hero-float span { font: 500 10px var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); white-space: nowrap; }
+  .hf-1 { top: -18px; right: -10px; }
+  .hf-2 { bottom: 34px; left: -26px; animation-delay: -2s; }
+  .hf-3 { bottom: 56px; right: -18px; animation-delay: -4s; }
+  .hf-3 b { background: linear-gradient(90deg, var(--c3), var(--c1)); -webkit-background-clip: text; background-clip: text; }
+  @keyframes hfloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .compare-links { margin-top: 18px; color: var(--mute); font-size: 0.95rem; }
+  .compare-links a { color: var(--acc); }
+  @media (max-width: 1000px) {
     .grc-hero-inner { grid-template-columns: minmax(0, 1fr); }
     .grc-hero-visual .frame, .grc-hero-visual .frame:hover { transform: none; }
+    .hf-1 { right: 6px; } .hf-2 { left: 6px; } .hf-3 { right: 6px; }
   }
+  @media (max-width: 560px) { .hf-3 { display: none; } .hero-float { padding: 9px 12px; } .hero-float b { font-size: 1.1rem; } }
   @media (prefers-reduced-motion: reduce) {
     .grc-hero-visual .frame, .grc-hero-visual .frame:hover { transform: none; transition: none; }
+    .hero-float { animation: none; }
   }
 
-  /* ── Capability cards ─────────────────────────────────── */
-  .cap-card { text-decoration: none; display: flex; flex-direction: column; }
-  .cap-card .link-arrow { margin-top: auto; padding-top: 16px; }
-
-  /* ── What GRC software does ───────────────────────────── */
-  .job-card { display: flex; flex-direction: column; }
-  .job-card h3 { font-size: 1.05rem; margin: 0 0 8px; }
-  .job-card p { color: var(--mute); font-size: 0.93rem; line-height: 1.6; margin: 0; }
-  .job-card .link-arrow { margin-top: auto; padding-top: 16px; }
+  /* ── What GRC software does: numbered jobs ───────────── */
+  .jobs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .job { --racc: var(--acc); position: relative; display: flex; flex-direction: column; padding: 24px; border-radius: 20px; background: var(--panel); border: 1px solid var(--line); overflow: hidden; transition: border-color 0.25s, transform 0.25s var(--ease); }
+  .job::after { content: ''; position: absolute; right: -40px; top: -40px; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--racc) 22%, transparent), transparent 70%); pointer-events: none; }
+  .job:hover { border-color: color-mix(in srgb, var(--racc) 55%, transparent); transform: translateY(-3px); }
+  .job-n { font: 800 2.4rem/1 var(--font-display); letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--racc) 70%, transparent); margin-bottom: 14px; }
+  .job h3 { font: 700 1.1rem/1.3 var(--font-display); color: var(--ink); margin: 0 0 8px; }
+  .job p { color: var(--mute); font-size: 0.93rem; line-height: 1.6; margin: 0; }
+  .job-go { margin-top: auto; padding-top: 16px; color: var(--racc); font-size: 13.5px; font-weight: 500; text-decoration: none; }
+  @media (max-width: 1000px) { .jobs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .jobs { grid-template-columns: 1fr; } }
 
   /* ── Buyer's checklist ───────────────────────────────── */
-  .checklist { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; counter-reset: chk; }
-  .check-card { counter-increment: chk; position: relative; padding-top: 44px; }
-  .check-card::before { content: counter(chk, decimal-leading-zero); position: absolute; top: 18px; left: 24px; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.08em; color: var(--cyan); }
-  .check-card h3 { font-size: 1.05rem; margin: 0 0 8px; }
+  .checklist { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; counter-reset: chk; }
+  .check-card { counter-increment: chk; position: relative; padding: 24px 24px 24px 76px; border-radius: 18px; background: var(--panel); border: 1px solid var(--line); transition: border-color 0.25s; }
+  .check-card:hover { border-color: color-mix(in srgb, var(--acc) 45%, transparent); }
+  .check-card::before { content: counter(chk, decimal-leading-zero); position: absolute; top: 22px; left: 22px; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font: 600 12px var(--font-mono); color: var(--acc); border: 1.5px solid var(--acc); box-shadow: 0 0 18px color-mix(in srgb, var(--acc) 30%, transparent); }
+  .check-card h3 { font: 700 1.05rem/1.3 var(--font-display); color: var(--ink); margin: 0 0 8px; }
   .check-card p { color: var(--mute); font-size: 0.93rem; line-height: 1.6; margin: 0; }
 
   /* ── Comparison table (mirrors the solution-page topic table) ── */
-  .cmp-table { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .cmp-table { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--panel); }
+  .cmp-row--us { background: linear-gradient(90deg, color-mix(in srgb, var(--acc) 12%, transparent), transparent 70%); box-shadow: inset 3px 0 0 var(--acc); }
+  .cmp-row--us span:first-child { color: var(--acc); }
   .cmp-row { display: grid; grid-template-columns: 1fr 2fr 2fr; gap: 16px; padding: 14px 18px; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--mute); line-height: 1.55; }
   .cmp-row:first-child { border-top: none; }
   .cmp-row span:first-child { color: var(--ink); font-weight: 500; }
@@ -523,11 +528,11 @@ const schema = JSON.stringify({
 
   /* ── Frameworks ──────────────────────────────────────── */
   .fw-split {
+    padding: clamp(24px, 4vw, 40px); border-radius: 24px; border: 1px solid var(--line); background: radial-gradient(60% 90% at 100% 0%, color-mix(in srgb, var(--acc) 9%, transparent), transparent 70%), var(--panel);
     display: grid;
     grid-template-columns: 1fr 1px 1fr;
     gap: 48px;
     align-items: start;
-    margin-top: 40px;
   }
   .fw-divider {
     background: var(--line);
@@ -540,7 +545,7 @@ const schema = JSON.stringify({
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--cyan);
+    color: var(--acc);
     margin-bottom: 20px;
   }
   .fw-chips {
@@ -577,25 +582,24 @@ const schema = JSON.stringify({
   .cs-grid .cs-card { flex: 1 1 300px; max-width: calc(33.333% - 11px); }
   @media (max-width: 900px) { .cs-grid .cs-card { max-width: calc(50% - 8px); } }
   @media (max-width: 620px) { .cs-grid .cs-card { max-width: 100%; } }
-  .cs-card { display: flex; flex-direction: column; }
-  .cs-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
-  .cs-solution { font-family: var(--font-mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.06em; }
-  .cs-company { margin-bottom: 8px; }
-  .cs-card .link-arrow { margin-top: auto; padding-top: 16px; }
+  .cs-card .fp-go { text-decoration: none; }
+  .cs-card h3 { font-size: 1.2rem; }
+  .cs-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .cs-solution { font-family: var(--font-mono); font-size: 11px; color: var(--mute); letter-spacing: 0.06em; }
+  .cs-card p { -webkit-line-clamp: unset; display: block; }
 
   /* ── Why XGRC ────────────────────────────────────────── */
   .why-section { position: relative; }
   .why-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    margin-top: 40px;
+    gap: 14px;
   }
   .why-card {
     padding: 32px 28px;
     border: 1px solid var(--line);
     background: var(--panel);
-    border-radius: var(--radius-md);
+    border-radius: 20px; position: relative; overflow: hidden;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -606,8 +610,8 @@ const schema = JSON.stringify({
     font-size: clamp(1.8rem, 3vw, 2.6rem);
     font-weight: 700;
     letter-spacing: -0.03em;
-    color: var(--cyan);
-    line-height: 1;
+    background: linear-gradient(90deg, var(--acc), var(--c2)); -webkit-background-clip: text; background-clip: text; color: transparent;
+    line-height: 1; white-space: nowrap;
   }
   .stat-sub {
     font-family: var(--font-mono);
@@ -618,11 +622,6 @@ const schema = JSON.stringify({
   }
   .why-body { font-size: 14px; color: var(--mute); line-height: 1.6; margin: 0; }
 
-  /* ── CTA (shared from index.astro pattern) ───────────── */
-  .cta { text-align: center; padding: clamp(36px, 6vw, 64px); background: linear-gradient(160deg, rgba(47,232,138,0.07), rgba(48,226,244,0.03)); border-color: var(--line-strong); }
-  .cta h2 { margin-bottom: 14px; max-width: 620px; margin-left: auto; margin-right: auto; }
-  .cta .lede { margin: 0 auto 26px; max-width: 540px; }
-  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .contactline { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
 
   /* ── Dashboard showcase ──────────────────────────────── */
@@ -713,6 +712,5 @@ const schema = JSON.stringify({
   }
   @media (max-width: 600px) {
     .why-grid { grid-template-columns: 1fr; }
-    .grc-hero { padding: 110px 0 60px; }
   }
 </style>

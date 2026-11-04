@@ -1,23 +1,33 @@
 ---
 import Base from '../layouts/Base.astro';
+import FeatureReveal from '../components/FeatureReveal.astro';
+import '../styles/feature.css';
+import { lookFor } from '../data/solutionLooks.js';
 import { tourDashboards } from '../data/site.js';
 
 const [featured, ...rest] = tourDashboards;
 const totalKpis = tourDashboards.reduce((n, d) => n + (d.kpis || 0), 0);
 const img = (slug) => `/assets/tour/${slug}-v1.webp`;
 const dashboardCount = tourDashboards.length;
+// Hero wall: every dashboard screenshot, split over three drifting columns
+const cols = [0, 1, 2].map((c) => tourDashboards.filter((_, i) => i % 3 === c));
+const accOf = (d) => lookFor(d.solution).acc;
 ---
 
 <Base
   title="Live Dashboard Tour | XGRC® Software"
   description={`Click through ${dashboardCount} interactive XGRC® dashboards, covering risk, compliance, ISMS, ESG, AI governance and more. Fictitious data, real product.`}
 >
-  <section class="tour-hero">
-    <div class="container">
-      <span class="eyebrow"><span class="dot"></span>Live dashboard tour</span>
-      <h1>Click through XGRC® <em>the way your board would.</em></h1>
-      <p class="lede">{dashboardCount} interactive dashboards built on the XGRC® platform. Filter them, drill into any KPI to see how it is calculated, switch industries, and export a board pack. No sign-up needed.</p>
-      <div class="tour-actions">
+  <div class="fp tourx" style="--acc: #a78bfa">
+  <section class="fp-hero tour-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
+    <div class="container fp-hero-grid">
+      <div>
+      <nav class="fp-crumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><b>Live tour</b></nav>
+      <span class="fp-chip">Live dashboard tour</span>
+      <h1 class="fp-title">Click through XGRC® <em class="fp-hl">the way your board would.</em></h1>
+      <p class="fp-dek">{dashboardCount} interactive dashboards built on the XGRC® platform. Filter them, drill into any KPI to see how it is calculated, switch industries, and export a board pack. No sign-up needed.</p>
+      <div class="tour-actions fp-actions">
         <a class="btn btn-primary" href={`/tour/${featured.slug}.html`}>Open the Enterprise Risk dashboard</a>
         <a class="btn btn-ghost" href="/demo/">Book a demo with your data</a>
       </div>
@@ -28,12 +38,22 @@ const dashboardCount = tourDashboards.length;
         <span><b>PDF</b> board-pack export</span>
       </div>
       <p class="tour-notice" role="note">Every company, person and figure in these dashboards is fictitious and illustrative. Nothing is connected to a live system or to any customer.</p>
+      </div>
+      <div class="wall" aria-hidden="true">
+        <div class="wall-tilt">
+          {cols.map((col, c) => (
+            <div class={`wall-col wc-${c}`}>
+              {[...col, ...col].map((d) => (<span class="wall-shot" style={`--racc: ${accOf(d)}`}><img src={img(d.slug)} alt="" width="960" height="600" loading="lazy" /></span>))}
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section--tight">
+  <section class="fp-sec tight">
     <div class="container">
-      <article class="tour-featured">
+      <article class="tour-featured rv" style={`--racc: ${accOf(featured)}`}>
         <a class="tour-shot tour-shot--lg" href={`/tour/${featured.slug}.html`} aria-label={`Open ${featured.title}`}>
           <img src={img(featured.slug)} width="960" height="600" alt={`${featured.title} dashboard, showing risk appetite, a heat map and combined assurance`} loading="eager" />
         </a>
@@ -51,7 +71,7 @@ const dashboardCount = tourDashboards.length;
 
       <div class="tour-grid">
         {rest.map((d) => (
-          <article class="tour-card">
+          <article class="tour-card rv" style={`--racc: ${accOf(d)}`}>
             <a class="tour-shot" href={`/tour/${d.slug}.html`} aria-label={`Open ${d.title}`}>
               <img src={img(d.slug)} width="960" height="600" alt={`${d.title} dashboard preview`} loading="lazy" />
             </a>
@@ -71,78 +91,91 @@ const dashboardCount = tourDashboards.length;
     </div>
   </section>
 
-  <section class="section--tight tour-try">
+  <section class="fp-sec tight fp-band tour-try">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>What to try</span>
-        <h2>Three things worth clicking.</h2>
+      <div class="fp-head center rv">
+        <span class="fp-eb">What to try</span>
+        <h2 class="fp-h2">Three things worth clicking.</h2>
       </div>
       <div class="tour-steps">
-        <div><h3>Filter to what matters</h3><p>Use the tabs, the breach and watch filters or the search box to narrow any dashboard to one pillar, owner or status.</p></div>
-        <div><h3>Open any KPI</h3><p>Every tile opens its definition, owner, refresh cadence and the exact calculation behind the number.</p></div>
-        <div><h3>Export a board pack</h3><p>Generate the PDF a board would receive, with every open exception, its owner and how long it has been open.</p></div>
+        <div class="rv"><span class="ts-n">01</span><h3>Filter to what matters</h3><p>Use the tabs, the breach and watch filters or the search box to narrow any dashboard to one pillar, owner or status.</p></div>
+        <div class="rv"><span class="ts-n">02</span><h3>Open any KPI</h3><p>Every tile opens its definition, owner, refresh cadence and the exact calculation behind the number.</p></div>
+        <div class="rv"><span class="ts-n">03</span><h3>Export a board pack</h3><p>Generate the PDF a board would receive, with every open exception, its owner and how long it has been open.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="section--tight">
+  <section class="fp-sec">
     <div class="container">
-      <div class="tour-cta">
+      <div class="fp-cta rv">
         <div>
           <h2>See it with your own data.</h2>
           <p>A 30-minute walkthrough with an XGRC® specialist, on your registers, your sites and your frameworks.</p>
         </div>
-        <div class="tour-actions">
+        <div class="fp-actions">
           <a class="btn btn-primary" href="/demo/">Book a demo</a>
           <a class="btn btn-ghost" href="/solutions/">Explore solutions</a>
         </div>
       </div>
     </div>
   </section>
+  </div>
+  <FeatureReveal />
 </Base>
 
 <style>
-  .tour-hero { padding: clamp(56px, 9vw, 104px) 0 clamp(24px, 4vw, 40px); }
-  .tour-hero h1 { margin: 18px 0 16px; max-width: 18ch; text-wrap: balance; }
-  .tour-hero h1 em { font-style: normal; color: var(--cyan); }
+  .tour-hero .fp-title { max-width: 18ch; }
+  .tour-hero h1 em { font-style: normal; }
   .tour-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
   .tour-telemetry { margin-top: 26px; }
+  .tour-telemetry b { background: linear-gradient(90deg, var(--acc), var(--c1)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .tour-notice { margin-top: 18px; font-size: 0.85rem; color: var(--faint); max-width: 70ch; }
 
-  .tour-shot { display: block; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--line-strong); background: var(--abyss); aspect-ratio: 8 / 5; }
+  /* Hero: drifting wall of dashboards */
+  .wall { position: relative; height: 560px; overflow: hidden; border-radius: 28px; mask-image: linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent); -webkit-mask-image: linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent); }
+  .wall-tilt { position: absolute; inset: -12% -18%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; transform: rotate(-10deg) skewX(4deg); }
+  .wall-col { display: flex; flex-direction: column; gap: 14px; animation: drift 60s linear infinite; }
+  .wc-1 { animation-direction: reverse; animation-duration: 70s; margin-top: -120px; }
+  .wc-2 { animation-duration: 54s; margin-top: -60px; }
+  .wall-shot { display: block; flex: none; aspect-ratio: 8 / 5; border-radius: 12px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--racc) 45%, transparent); box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 24px color-mix(in srgb, var(--racc) 16%, transparent); }
+  .wall-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
+  @keyframes drift { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .wall-col { animation: none; } }
+  @media (max-width: 1000px) { .wall { height: 380px; } }
+  @media (max-width: 560px) { .wall { height: 280px; } }
+
+  .tour-shot { display: block; border-radius: 14px; overflow: hidden; border: 1px solid var(--line-strong); background: var(--abyss); aspect-ratio: 8 / 5; }
   .tour-shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; transition: transform 0.5s var(--ease); }
   .tour-shot:hover img, .tour-shot:focus-visible img { transform: scale(1.03); }
   .tour-shot:focus-visible { outline: 2px solid var(--green-hi); outline-offset: 3px; }
 
-  .tour-featured { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(22px, 4vw, 44px); align-items: center; padding-bottom: clamp(36px, 5vw, 56px); margin-bottom: clamp(36px, 5vw, 56px); border-bottom: 1px solid var(--line); }
-  .tour-shot--lg { box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(48, 226, 244, 0.10); }
-  .tour-featured-body h2 { margin: 6px 0 12px; font-size: clamp(1.7rem, 3vw, 2.3rem); }
+  .tour-featured { --racc: var(--acc); display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(22px, 4vw, 44px); align-items: center; padding: clamp(18px, 3vw, 28px); margin-bottom: clamp(36px, 5vw, 56px); border-radius: 28px; border: 1px solid color-mix(in srgb, var(--racc) 35%, transparent); background: radial-gradient(60% 90% at 100% 50%, color-mix(in srgb, var(--racc) 12%, transparent), transparent 70%), var(--panel); }
+  .tour-shot--lg { box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45), 0 0 50px color-mix(in srgb, var(--racc) 20%, transparent); border-color: color-mix(in srgb, var(--racc) 45%, transparent); }
+  .tour-featured-body h2 { margin: 6px 0 12px; font: 800 clamp(1.7rem, 3vw, 2.3rem)/1.15 var(--font-display); letter-spacing: -0.02em; }
   .tour-featured-body p { color: var(--mute); }
-  .tag { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); }
+  .tag { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--racc, var(--acc)); }
   .tour-links { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 22px; }
+  .tour-links .link-arrow, .tour-meta .link-arrow { color: var(--racc); }
 
   .tour-chips { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
   .tour-chips li { font-family: var(--font-mono); font-size: 10.5px; color: var(--mute); border: 1px solid var(--line); border-radius: 100px; padding: 4px 10px; }
 
   .tour-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
-  .tour-card { display: flex; flex-direction: column; gap: 16px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 14px 14px 20px; transition: border-color 0.35s var(--ease), background 0.35s var(--ease); }
-  .tour-card:hover { border-color: var(--line-strong); background: var(--panel-hover); }
+  .tour-card { --racc: var(--acc); position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 14px 14px 20px; transition: border-color 0.3s var(--ease), transform 0.3s var(--ease); }
+  .tour-card::before { content: ''; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--racc), transparent); z-index: 1; }
+  .tour-card:hover { border-color: color-mix(in srgb, var(--racc) 55%, transparent); transform: translateY(-4px); }
   .tour-card-body { display: flex; flex-direction: column; flex: 1; padding: 0 6px; }
-  .tour-card h3 { font-size: 1.15rem; margin: 6px 0 8px; }
+  .tour-card h3 { font: 700 1.15rem/1.3 var(--font-display); margin: 6px 0 8px; }
   .tour-card h3 a { color: var(--ink); text-decoration: none; }
-  .tour-card h3 a:hover { color: var(--cyan-hi); }
+  .tour-card h3 a:hover { color: var(--racc); }
   .tour-card p { font-size: 0.92rem; color: var(--mute); }
   .tour-meta { margin-top: auto; padding-top: 16px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--faint); }
 
-  .tour-try .tour-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
-  .tour-steps > div { border-top: 1px solid var(--line-strong); padding-top: 18px; }
-  .tour-steps h3 { font-size: 1.1rem; margin: 0 0 8px; }
-  .tour-steps p { color: var(--mute); font-size: 0.95rem; }
-
-  .tour-cta { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; border: 1px solid rgba(47, 232, 138, 0.35); border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(47, 232, 138, 0.08), rgba(48, 226, 244, 0.05)); padding: clamp(24px, 4vw, 40px); }
-  .tour-cta h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
-  .tour-cta p { color: var(--mute); margin-top: 8px; max-width: 52ch; }
-  .tour-cta .tour-actions { margin-top: 0; }
+  .tour-try .tour-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .tour-steps > div { position: relative; padding: 26px; border-radius: 20px; background: var(--panel); border: 1px solid var(--line); }
+  .ts-n { display: block; font: 800 2.6rem/1 var(--font-display); color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--acc) 75%, transparent); margin-bottom: 14px; }
+  .tour-steps h3 { font: 700 1.1rem var(--font-display); margin: 0 0 8px; }
+  .tour-steps p { color: var(--mute); font-size: 0.95rem; margin: 0; }
 
   @media (max-width: 960px) {
     .tour-featured { grid-template-columns: 1fr; }

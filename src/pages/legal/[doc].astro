@@ -1,5 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
+import FeatureReveal from '../../components/FeatureReveal.astro';
+import '../../styles/feature.css';
 import { legalDocs } from '../../data/legalContent.js';
 
 export function getStaticPaths() {
@@ -9,21 +11,26 @@ export function getStaticPaths() {
 const { doc } = Astro.params;
 const content = legalDocs[doc];
 if (!content) return Astro.redirect('/legal');
+const anchor = (h) => h.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const toc = content.sections.filter((s) => s.h).map((s) => ({ h: s.h, id: anchor(s.h) }));
 ---
 
 <Base
   title={`${content.title} | XGRC® Software`}
   description={content.metaDescription || content.intro || `${content.title} for XGRC® Software, provided by Strategix Application Solutions (Pty) Ltd.`}
 >
-  <section class="page-head">
+  <div class="fp ldoc" style="--acc: #7dd3fc">
+  <div class="ld-progress" aria-hidden="true"><i></i></div>
+  <section class="fp-hero ld-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
     <div class="container">
-      <div class="breadcrumb">
+      <div class="fp-crumb breadcrumb">
         <a href="/legal/">Legal Hub</a>
         <span aria-hidden="true">/</span>
         <span>{content.title}</span>
       </div>
-      <span class="eyebrow"><span class="dot"></span>XGRC® Software · {content.reference || 'Legal'}</span>
-      <h1>{content.title}</h1>
+      <span class="fp-chip">XGRC® Software · {content.reference || 'Legal'}</span>
+      <h1 class="fp-title"><span class="fp-hl">{content.title}</span></h1>
       {content.lastUpdated && (
         <p class="meta">
           {content.version && <>Version: {content.version} &middot; </>}
@@ -31,14 +38,21 @@ if (!content) return Astro.redirect('/legal');
           {content.effective && <> &middot; Effective: {content.effective}</>}
         </p>
       )}
-      {content.intro && <p class="lede">{content.intro}</p>}
+      {content.intro && <p class="fp-dek">{content.intro}</p>}
     </div>
   </section>
 
-  <section class="section--tight">
-    <div class="container narrow">
+  <section class="fp-sec tight">
+    <div class={`container ld-grid${toc.length > 2 ? '' : ' no-toc'}`}>
+      {toc.length > 2 && (
+        <aside class="ld-toc" aria-label="Contents">
+          <span class="ld-toc-h">Contents</span>
+          <ol>{toc.map((t) => <li><a href={`#${t.id}`}>{t.h}</a></li>)}</ol>
+        </aside>
+      )}
+      <div class="narrow">
       {content.sections.map((s) => (
-        <div class="doc-section">
+        <div class="doc-section rv" id={s.h ? anchor(s.h) : undefined}>
           {s.h && <h2>{s.h}</h2>}
           {s.body && <p>{s.body}</p>}
           {s.list && (
@@ -75,49 +89,72 @@ if (!content) return Astro.redirect('/legal');
           )}
         </div>
       ))}
+      </div>
     </div>
   </section>
 
-  <section class="section--tight">
+  <section class="fp-sec tight">
     <div class="container narrow">
-      <div class="card cta-card">
+      <div class="cta-card rv">
         <p>Questions about this document, or need a signed copy for procurement? Contact us.</p>
         <a href="/contact/" class="btn btn-ghost">Contact us</a>
       </div>
     </div>
   </section>
+  </div>
+  <FeatureReveal />
+  <script>
+    // Reading progress and active contents entry
+    const bar = document.querySelector('.ld-progress i');
+    const links = [...document.querySelectorAll('.ld-toc a')];
+    const secs = links.map((a) => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+    const onScroll = () => {
+      const h = document.documentElement.scrollHeight - innerHeight;
+      if (bar) bar.style.transform = `scaleX(${h > 0 ? scrollY / h : 0})`;
+      let cur = 0; secs.forEach((s, i) => { if (s.getBoundingClientRect().top < 160) cur = i; });
+      links.forEach((a, i) => a.classList.toggle('on', i === cur));
+    };
+    addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  </script>
 </Base>
 
 <style>
-  .page-head { padding: 130px 0 0; }
-  .page-head h1 { margin: 10px 0 12px; max-width: 26ch; }
-  .breadcrumb { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--faint); margin-bottom: 18px; }
-  .breadcrumb a { color: var(--faint); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--cyan); }
-  .meta { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-bottom: 18px; }
-  .narrow { max-width: 800px; }
-  .doc-section { margin-bottom: 36px; }
-  .doc-section h2 { font-size: 1.25rem; margin-bottom: 12px; }
+  .ld-progress { position: fixed; left: 0; right: 0; top: 74px; height: 3px; z-index: 30; pointer-events: none; }
+  .ld-progress i { display: block; height: 100%; background: linear-gradient(90deg, var(--acc), var(--c2)); transform: scaleX(0); transform-origin: left; }
+  .ld-hero .fp-title { font-size: clamp(2rem, 4.4vw, 3.3rem); max-width: 26ch; }
+  .breadcrumb span:last-child { color: var(--ink); }
+  .meta { display: inline-flex; flex-wrap: wrap; gap: 4px; font-family: var(--font-mono); font-size: 12px; color: var(--mute); margin: 0 0 20px; padding: 7px 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--panel); }
+  .ld-grid { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .ld-grid.no-toc { grid-template-columns: minmax(0, 1fr); }
+  .ld-toc { position: sticky; top: 110px; padding: 18px; border-radius: 18px; border: 1px solid var(--line); background: var(--panel); max-height: calc(100vh - 140px); overflow: auto; }
+  .ld-toc-h { display: block; font: 500 11px var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--acc); margin-bottom: 10px; }
+  .ld-toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+  .ld-toc a { display: block; padding: 6px 10px; border-radius: 8px; font-size: 13px; line-height: 1.4; color: var(--mute); text-decoration: none; border-left: 2px solid transparent; transition: 0.2s; }
+  .ld-toc a:hover { color: var(--ink); }
+  .ld-toc a.on { color: var(--ink); border-left-color: var(--acc); background: color-mix(in srgb, var(--acc) 8%, transparent); }
+  .narrow { max-width: 800px; min-width: 0; }
+  .doc-section { margin-bottom: 40px; scroll-margin-top: 100px; }
+  .doc-section h2 { font: 800 1.35rem/1.3 var(--font-display); letter-spacing: -0.01em; margin-bottom: 14px; padding-left: 14px; border-left: 3px solid var(--acc); }
   .doc-section h3 { font-size: 1rem; margin-bottom: 4px; }
-  .doc-section p { color: var(--mute); line-height: 1.7; font-size: 0.96rem; }
-  .doc-section ul { margin: 0; padding-left: 20px; color: var(--mute); line-height: 1.8; font-size: 0.96rem; }
+  .doc-section p { color: var(--mute); line-height: 1.75; font-size: 0.97rem; }
+  .doc-section ul { margin: 0; padding-left: 20px; color: var(--mute); line-height: 1.8; font-size: 0.97rem; }
   .doc-section ul li { margin-bottom: 6px; }
+  .doc-section ul li::marker { color: var(--acc); }
 
-  .steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 22px; }
-  .steps li { display: flex; gap: 16px; align-items: flex-start; }
-  .step-n { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--panel); border: 1px solid var(--line-strong); color: var(--cyan); font-family: var(--font-mono); font-weight: 600; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+  .steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .steps li { display: flex; gap: 16px; align-items: flex-start; padding: 16px 18px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); }
+  .step-n { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--void); border: 2px solid var(--acc); color: var(--acc); font-family: var(--font-mono); font-weight: 600; display: flex; align-items: center; justify-content: center; font-size: 13px; box-shadow: 0 0 16px color-mix(in srgb, var(--acc) 35%, transparent); }
 
-  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius-md); }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
   table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
   th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cyan); background: var(--panel); white-space: nowrap; }
+  th { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--acc); background: rgba(255,255,255,0.03); white-space: nowrap; }
   td { color: var(--mute); }
   tr:last-child td { border-bottom: none; }
 
-  .cta-card { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding: 26px 28px; }
+  .cta-card { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding: 26px 28px; border-radius: 22px; border: 1px solid var(--line-strong); background: radial-gradient(60% 100% at 0% 0%, color-mix(in srgb, var(--acc) 12%, transparent), transparent 70%), var(--panel); }
   .cta-card p { margin: 0; color: var(--mute); font-size: 0.95rem; }
 
-  @media (max-width: 640px) {
-    .table-wrap table { min-width: 480px; }
-  }
+  @media (max-width: 960px) { .ld-grid { grid-template-columns: minmax(0, 1fr); } .ld-toc { position: static; max-height: none; } }
+  @media (max-width: 640px) { .table-wrap table { min-width: 480px; } }
 </style>

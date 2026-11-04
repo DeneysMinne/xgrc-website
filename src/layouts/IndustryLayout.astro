@@ -2,11 +2,20 @@
 // Reusable industry landing page (SEO Fix Spec T16): regulations, product
 // modules and case studies. Data: src/data/industries.js.
 import Base from './Base.astro';
+import FeatureReveal from '../components/FeatureReveal.astro';
+import SolutionVisual from '../components/SolutionVisual.astro';
+import '../styles/feature.css';
+import { lookFor, solutionIcon } from '../data/solutionLooks.js';
+import { solutionDetails } from '../data/site.js';
 import { caseStudies } from '../data/site.js';
 import { publishedCaseStudyPages } from '../data/caseStudyPages.js';
 
 const { entry, preview = false } = Astro.props;
 const { name, title, metaDescription, h1, intro, regulations, modules, faqs } = entry;
+// Accent and hero visual come from the first module the page leads with
+const lead = modules.find((m) => solutionDetails[m.slug]) || modules[0];
+const leadDetail = solutionDetails[lead.slug];
+const acc = lookFor(lead.slug).acc;
 const path = preview ? `/preview/industries/${entry.slug}/` : `/industries/${entry.slug}/`;
 
 // Link to the HTML case study once it is published, otherwise to the PDF
@@ -43,27 +52,38 @@ const schema = {
     <div class="draft-banner" role="note">Draft for review. Not linked, not indexed and not in the sitemap.</div>
   )}
 
-  <section class="page-head">
-    <div class="container narrow">
-      <span class="eyebrow"><span class="dot"></span>Industries · {name}</span>
-      <h1>{h1}</h1>
-      <p class="lede">{intro}</p>
-      <div class="actions">
+  <div class="fp ind" style={`--acc: ${acc}`}>
+  <section class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
+    <div class="container fp-hero-grid">
+      <div>
+      <nav class="fp-crumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><b>{name}</b></nav>
+      <span class="fp-chip">Industries · {name}</span>
+      <h1 class="fp-title">{h1}</h1>
+      <p class="fp-dek">{intro}</p>
+      <div class="actions fp-actions">
         <a href="/demo/" class="btn btn-primary">Book a demo</a>
         <a href="/solutions/" class="btn btn-ghost">All solutions &rarr;</a>
       </div>
+      </div>
+      {leadDetail && (
+        <div class="ind-vis">
+          <SolutionVisual slug={lead.slug} standards={leadDetail.standards} groups={leadDetail.moduleGroups.map((g) => g.category)} icon={leadDetail.icon || solutionIcon(lead.slug)} />
+        </div>
+      )}
     </div>
   </section>
 
   <section class="section--tight">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Regulation</span>
-        <h2>The rules {name.toLowerCase()} works under.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Regulation</span>
+        <h2 class="fp-h2">The rules {name.toLowerCase()} works under.</h2>
       </div>
       <div class="reg-list">
-        {regulations.map((r) => (
-          <div class="reg">
+        {regulations.map((r, i) => (
+          <div class="reg rv">
+            <span class="reg-n">{String(i + 1).padStart(2, '0')}</span>
             <h3>{r.href ? <a href={r.href}>{r.name}</a> : r.name}</h3>
             <p>{r.detail}</p>
           </div>
@@ -74,16 +94,17 @@ const schema = {
 
   <section class="section--tight">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Modules</span>
-        <h2>How XGRC® covers it.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Modules</span>
+        <h2 class="fp-h2">How XGRC® covers it.</h2>
       </div>
-      <div class="grid cols-3">
+      <div class="fp-cards">
         {modules.map((m) => (
-          <a class="card mod" href={`/${m.slug}/`}>
+          <a class="fp-card mod rv" href={`/${m.slug}/`} style={`--racc: ${lookFor(m.slug).acc}`}>
+            <span class="fp-card-top">{solutionIcon(m.slug) && <img src={solutionIcon(m.slug)} alt="" width="34" height="34" loading="lazy" />}</span>
             <h3>{m.name}</h3>
             <p>{m.why}</p>
-            <span class="link-arrow">Explore {m.name} &rarr;</span>
+            <span class="fp-go">Explore {m.name} &rarr;</span>
           </a>
         ))}
       </div>
@@ -93,14 +114,14 @@ const schema = {
   {studies.length > 0 && (
     <section class="section--tight">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow"><span class="dot"></span>Case studies</span>
-          <h2>{name} customers on XGRC®.</h2>
+        <div class="fp-head rv">
+          <span class="fp-eb">Case studies</span>
+          <h2 class="fp-h2">{name} customers on XGRC®.</h2>
         </div>
-        <div class="grid cols-2">
+        <div class="fp-cards two">
           {studies.map((c) => (
-            <div class="card study">
-              <span class="tag">{c.sector}</span>
+            <div class="fp-card study rv">
+              <span class="fp-tag">{c.sector}</span>
               <h3>{c.company}</h3>
               <p>{c.summary}</p>
               {c.href && <a href={c.href} class="link-arrow" {...(c.isPdf ? { download: true } : {})}>{c.isPdf ? 'Download the case study (PDF)' : 'Read the case study'} &rarr;</a>}
@@ -113,13 +134,16 @@ const schema = {
 
   <section class="section--tight">
     <div class="container narrow">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Frequently asked</span>
-        <h2>Common questions.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Frequently asked</span>
+        <h2 class="fp-h2">Common questions.</h2>
       </div>
-      <div class="faq-list">
-        {faqs.map((f) => (
-          <details class="faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>
+      <div class="fp-faqs">
+        {faqs.map((f, i) => (
+          <details class="fp-faq rv">
+            <summary><span class="fp-fq-n">{String(i + 1).padStart(2, '0')}</span><span class="fp-fq-q">{f.q}</span><span class="fp-fq-ic" aria-hidden="true"></span></summary>
+            <p>{f.a}</p>
+          </details>
         ))}
       </div>
     </div>
@@ -127,28 +151,30 @@ const schema = {
 
   <section class="section">
     <div class="container">
-      <div class="card cta-band">
+      <div class="fp-cta rv">
         <h2>See XGRC® with your own sites and obligations.</h2>
-        <a href="/demo/" class="btn btn-primary">Book a demo</a>
+        <div class="fp-actions"><a href="/demo/" class="btn btn-primary">Book a demo</a></div>
       </div>
     </div>
   </section>
+  </div>
+  <FeatureReveal />
 </Base>
 
 <style>
   .draft-banner { position: sticky; top: 74px; z-index: 20; background: #3a2d05; color: #ffe8a3; border-bottom: 1px solid #806516; padding: 10px 16px; text-align: center; font-size: 0.9rem; }
-  .page-head { padding: 130px 0 0; }
-  .page-head h1 { margin: 8px 0 16px; }
   .narrow { max-width: 860px; }
-  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
   .reg-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .reg { padding: 18px 20px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255, 255, 255, 0.02); }
-  .reg h3 { font-size: 1rem; margin: 0 0 6px; }
-  .reg h3 a { color: var(--cyan); text-decoration: none; }
+  .reg { position: relative; padding: 20px 22px 20px 70px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); transition: border-color 0.25s; }
+  .reg:hover { border-color: color-mix(in srgb, var(--acc) 45%, transparent); }
+  .reg-n { position: absolute; left: 20px; top: 20px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: 600 11.5px var(--font-mono); color: var(--acc); border: 1.5px solid var(--acc); }
+  .reg h3 { font: 700 1.02rem/1.3 var(--font-display); margin: 0 0 6px; }
+  .reg h3 a { color: var(--acc); text-decoration: none; }
   .reg p { color: var(--mute); font-size: 0.92rem; line-height: 1.6; margin: 0; }
-  .mod, .study { text-decoration: none; display: flex; flex-direction: column; }
-  .mod .link-arrow, .study .link-arrow { margin-top: auto; padding-top: 16px; }
-  .cta-band { text-align: center; padding: clamp(40px, 6vw, 64px); background: linear-gradient(120deg, rgba(48,226,244,0.06), rgba(0,92,169,0.05)); border-color: var(--line-strong); }
-  .cta-band h2 { margin-bottom: 22px; }
-  @media (max-width: 760px) { .reg-list { grid-template-columns: 1fr; } }
+  .mod .fp-card-top:empty { display: none; }
+  .fp-cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .study .link-arrow { margin-top: auto; padding-top: 12px; }
+  .study p { -webkit-line-clamp: unset; display: block; }
+  .ind .fp-faqs { max-width: 900px; }
+  @media (max-width: 760px) { .reg-list, .fp-cards.two { grid-template-columns: 1fr; } }
 </style>

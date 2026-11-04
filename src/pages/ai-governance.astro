@@ -4,6 +4,8 @@ import { tourDashboards } from '../data/site.js';
 import TourStrip from '../components/TourStrip.astro';
 import ProductFrame from '../components/aig/ProductFrame.astro';
 import AiActClassifier from '../components/aig/AiActClassifier.astro';
+import FeatureReveal from '../components/FeatureReveal.astro';
+import '../styles/feature.css';
 
 // Copy follows Deneys' AI Governance website brief (29 Sept 2026) and its claims table:
 // starter content (not "always up to date"), certification readiness (not "certifies you"),
@@ -107,14 +109,16 @@ const schema = JSON.stringify({
 >
   <script type="application/ld+json" set:html={schema} />
 
+  <div class="fp aig" style="--acc: #60a5fa">
   <!-- 1. Hero -->
-  <section class="aig-hero">
+  <section class="fp-hero aig-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
     <div class="container aig-hero-grid">
       <div class="aig-hero-copy">
-        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/solutions/">Solutions</a><span>/</span><span aria-current="page">AI Governance</span></nav>
-        <span class="eyebrow"><span class="dot"></span>XGRC® AI Governance</span>
-        <h1>Govern every AI system, <em>from register to regulator.</em></h1>
-        <p class="lede">Your teams are already using AI. XGRC® AI Governance software shows what each system is, what the law expects of it, and whether it is under control. EU AI Act, ISO/IEC 42001, POPIA and GDPR in one place.</p>
+        <nav class="fp-crumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/solutions/">Solutions</a><span>/</span><b aria-current="page">AI Governance</b></nav>
+        <span class="fp-chip">XGRC® AI Governance</span>
+        <h1 class="fp-title">Govern every AI system, <em class="fp-hl">from register to regulator.</em></h1>
+        <p class="fp-dek">Your teams are already using AI. XGRC® AI Governance software shows what each system is, what the law expects of it, and whether it is under control. EU AI Act, ISO/IEC 42001, POPIA and GDPR in one place.</p>
         <div class="aig-actions">
           <a class="btn btn-primary" href="/demo/">Book an AI Governance demo</a>
           <a class="btn btn-ghost" href="#classify">See how classification works</a>
@@ -160,26 +164,26 @@ const schema = JSON.stringify({
   </section>
 
   <!-- Definition + facts (clear, citable statements for search and AI answers) -->
-  <section class="section--tight aig-define">
+  <section class="fp-sec tight aig-define">
     <div class="container">
-      <p class="define"><strong>XGRC® AI Governance</strong> is AI governance software built into the XGRC® platform. It takes each AI system from "what is it?" to "approved, controlled and monitored", runs the organisation-level ISO/IEC 42001 management system on top, and is rule-driven end to end: the classification decides what applies, and a change decides what must be reviewed.</p>
-      <ul class="facts">
+      <p class="define rv"><strong>XGRC® AI Governance</strong> is AI governance software built into the XGRC® platform. It takes each AI system from "what is it?" to "approved, controlled and monitored", runs the organisation-level ISO/IEC 42001 management system on top, and is rule-driven end to end: the classification decides what applies, and a change decides what must be reviewed.</p>
+      <ul class="facts rv">
         {facts.map((f) => <li><b>{f.v}</b><span>{f.l}</span></li>)}
       </ul>
     </div>
   </section>
 
   <!-- 2. The problem -->
-  <section class="section aig-problem">
+  <section class="fp-sec aig-problem">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>The problem</span>
-        <h2>AI moved faster than your governance.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">The problem</span>
+        <h2 class="fp-h2">AI moved faster than your governance.</h2>
         <p class="lede">New tools arrive every month. Models change without notice. Regulators now expect you to know which AI you use, what risk it carries and who is watching it. A policy on paper is no longer enough. You need evidence.</p>
       </div>
       <div class="pains">
         {painPoints.map((p, i) => (
-          <div class="pain">
+          <div class="pain rv">
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
               {i === 0 && <path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6zM3 3l18 18" />}
               {i === 1 && <path d="M12 3v18M7 21h10M5 7h14M5 7l-2.5 6a2.5 2.5 0 0 0 5 0zM19 7l-2.5 6a2.5 2.5 0 0 0 5 0z" />}
@@ -194,21 +198,21 @@ const schema = JSON.stringify({
   </section>
 
   <!-- 3. How it works -->
-  <section class="section aig-how" id="how-it-works">
+  <section class="fp-sec aig-how" id="how-it-works">
     <div class="container aig-how-grid">
       <div>
-        <div class="section-head">
-          <span class="eyebrow"><span class="dot"></span>How it works</span>
-          <h2>Six steps from "what is it?" to "approved and in hand".</h2>
+        <div class="fp-head rv">
+        <span class="fp-eb">How it works</span>
+        <h2 class="fp-h2">Six steps from "what is it?" to "approved and in hand".</h2>
           <p class="lede">Every AI system follows the same guided path. XGRC® works out where each system stands from the records you already have.</p>
         </div>
         <ol class="steps">
           {steps.map((s, i) => (
-            <li><span class="sn">{i + 1}</span><div><h3>{s.t}</h3><p>{s.b}</p></div></li>
+            <li class="rv"><span class="sn">{String(i + 1).padStart(2, '0')}</span><div><h3>{s.t}</h3><p>{s.b}</p></div></li>
           ))}
         </ol>
       </div>
-      <div class="aig-how-visual">
+      <div class="aig-how-visual rv">
         <ProductFrame active="dashboard" compact title="Govern This AI System" label="Illustration of the Govern This AI System six-step progress view">
           <div class="ill-gov">
             <div class="ill-sys"><span class="ill-ref">AIS-0014</span><b>Customer Support Assistant</b><span class="ill-pill">Limited risk · Deployer</span></div>
@@ -229,11 +233,11 @@ const schema = JSON.stringify({
   </section>
 
   <!-- 3b. Interactive classifier -->
-  <section class="section aig-classify" id="classify">
+  <section class="fp-sec aig-classify" id="classify">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Try it</span>
-        <h2>Is your AI system high risk? Find out in five questions.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Try it</span>
+        <h2 class="fp-h2">Is your AI system high risk? Find out in five questions.</h2>
         <p class="lede">A simplified version of how XGRC® classifies an AI system under the EU AI Act. Answer for one system and see the indicative tier and the obligations it brings.</p>
       </div>
       <AiActClassifier />
@@ -241,16 +245,16 @@ const schema = JSON.stringify({
   </section>
 
   <!-- 4. Proof points -->
-  <section class="section aig-proof">
+  <section class="fp-sec aig-proof">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Why it works</span>
-        <h2>Governance that runs itself, with people in charge.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Why it works</span>
+        <h2 class="fp-h2">Governance that runs itself, with people in charge.</h2>
       </div>
       <div class="proof-grid">
-        {proof.map((p) => <div class="proof"><h3>{p.t}</h3><p>{p.b}</p></div>)}
+        {proof.map((p, i) => <div class="proof rv"><span class="proof-n">{String(i + 1).padStart(2, '0')}</span><h3>{p.t}</h3><p>{p.b}</p></div>)}
       </div>
-      <div class="proof-visuals">
+      <div class="proof-visuals rv">
         <ProductFrame active="classification" compact title="AI Act Classification · AIC-0007" label="Illustration of an approved EU AI Act classification result with tier, role and generated obligations">
           <div class="ill-cls">
             <div class="ill-cls-h"><b>Customer Support Assistant</b><span class="ill-lockd">Approved · v2 · locked</span></div>
@@ -279,19 +283,19 @@ const schema = JSON.stringify({
   </section>
 
   <!-- 5. Capability grid -->
-  <section class="section aig-caps">
+  <section class="fp-sec aig-caps">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Capabilities</span>
-        <h2>Everything AI governance software needs, in one module.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Capabilities</span>
+        <h2 class="fp-h2">Everything AI governance software needs, in one module.</h2>
       </div>
       <div class="caps">
         {capabilities.map((c) => (
-          <div class="cap"><h3>{c.h}</h3><ul>{c.items.map((i) => <li>{i}</li>)}</ul></div>
+          <div class="cap rv"><h3>{c.h}</h3><ul>{c.items.map((i) => <li>{i}</li>)}</ul></div>
         ))}
       </div>
       <p class="caps-note">Connect your AI register, monitoring tools and AI agents so XGRC® stays in step automatically. Connections are configured per source.</p>
-      <div class="fw">
+      <div class="fw rv">
         <span class="fw-h">Starter content included</span>
         {frameworks.map((f) => <span class="fw-i"><b>{f.n}</b>{f.r}</span>)}
         <span class="fw-i"><b>Your AI policy</b>map it alongside</span>
@@ -307,11 +311,11 @@ const schema = JSON.stringify({
   />
 
   <!-- 6. Built into XGRC -->
-  <section class="section--tight aig-built">
+  <section class="fp-sec tight aig-built">
     <div class="container">
-      <div class="built">
+      <div class="built rv">
         <div>
-          <span class="eyebrow"><span class="dot"></span>For XGRC® clients</span>
+          <span class="fp-eb">For XGRC® clients</span>
           <h2>Already on XGRC? Add AI Governance.</h2>
           <p class="lede">AI Governance uses the same platform, users, business units, Document Manager and approval flows you already run. It works alongside XGRC® <a href="/erm/">Risk</a>, <a href="/use-cases/incident-management/">Incident</a> and <a href="/compliance-hub/">Compliance</a>, so AI is governed like everything else in your business. No new system to buy, host or train on.</p>
         </div>
@@ -321,11 +325,11 @@ const schema = JSON.stringify({
   </section>
 
   <!-- 7. Resource -->
-  <section class="section--tight aig-resource">
+  <section class="fp-sec tight aig-resource">
     <div class="container">
-      <div class="res">
+      <div class="res rv">
         <div>
-          <span class="eyebrow"><span class="dot"></span>Free checklist</span>
+          <span class="fp-eb">Free checklist</span>
           <h2>Where do you stand on the EU AI Act?</h2>
           <p class="lede">One checklist covering what ISO/IEC 42001 and the EU AI Act actually require: classification and role, management system essentials, Statement of Applicability, impact, controls, oversight, incidents and change.</p>
           <p class="res-links">New to the standard? Read <a href="/insights/what-is-iso-42001/">what ISO/IEC 42001 is</a>, or see <a href="/use-cases/ai-governance-readiness/">the eight steps to AI governance readiness</a>.</p>
@@ -336,43 +340,46 @@ const schema = JSON.stringify({
   </section>
 
   <!-- 8. Closing + FAQ -->
-  <section class="section aig-faq">
+  <section class="fp-sec aig-faq">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Questions</span>
-        <h2>AI governance questions, answered.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Questions</span>
+        <h2 class="fp-h2">AI governance questions, answered.</h2>
       </div>
-      <div class="faq-list">
-        {faqs.map((f) => (
-          <details class="faq-item"><summary>{f.q}</summary><p>{f.a}</p></details>
+      <div class="fp-faqs">
+        {faqs.map((f, i) => (
+          <details class="fp-faq rv">
+            <summary><span class="fp-fq-n">{String(i + 1).padStart(2, '0')}</span><span class="fp-fq-q">{f.q}</span><span class="fp-fq-ic" aria-hidden="true"></span></summary>
+            <p>{f.a}</p>
+          </details>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section aig-close" id="contact">
+  <section class="fp-sec aig-close" id="contact">
     <div class="container">
-      <div class="close-card">
+      <div class="fp-cta rv">
         <h2>Know your AI. Prove it is under control.</h2>
-        <p class="lede">See every AI system, its EU AI Act position and its evidence in one place, inside the platform you already trust.</p>
-        <a class="btn btn-primary" href="/demo/">Book an AI Governance demo</a>
+        <p>See every AI system, its EU AI Act position and its evidence in one place, inside the platform you already trust.</p>
+        <div class="fp-actions"><a class="btn btn-primary" href="/demo/">Book an AI Governance demo</a></div>
       </div>
     </div>
   </section>
+  </div>
+  <FeatureReveal />
 </Base>
 
 <style>
-  .aig-hero { padding: clamp(40px, 7vw, 88px) 0 clamp(28px, 4vw, 48px); overflow: hidden; }
+  .aig-hero { overflow: hidden; }
   .aig-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
-  .crumbs { display: flex; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--faint); margin-bottom: 18px; }
-  .crumbs a { color: var(--mute); text-decoration: none; } .crumbs a:hover { color: var(--cyan); }
-  .aig-hero h1 { margin: 18px 0 18px; font-size: clamp(2.3rem, 4.8vw, 3.9rem); text-wrap: balance; }
-  .aig-hero h1 em { font-style: normal; color: var(--cyan); }
+  .aig-hero .fp-title { font-size: clamp(2.3rem, 4.8vw, 3.8rem); }
+  .aig-hero h1 em { font-style: normal; }
   .aig-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
   .aig-actions.center { justify-content: center; margin-top: 36px; }
   .badges { list-style: none; margin: 26px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-  .badges li { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em; color: var(--ink); border: 1px solid var(--line-strong); border-radius: 7px; padding: 7px 11px; background: rgba(48,226,244,0.05); }
-  .aig-hero-visual { transform: perspective(1400px) rotateY(-6deg); transform-origin: left center; }
+  .badges li { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em; color: var(--ink); border: 1px solid var(--line-strong); border-radius: 7px; padding: 7px 11px; background: color-mix(in srgb, var(--acc) 8%, transparent); }
+  .aig-hero-visual { filter: drop-shadow(0 30px 60px rgba(0,0,0,0.45)) drop-shadow(0 0 50px color-mix(in srgb, var(--acc) 18%, transparent)); transform: perspective(1400px) rotateY(-6deg); transform-origin: left center; }
 
   /* illustrations (product palette comes from ProductFrame) */
   .ill-title { font-family: var(--font-display); font-weight: 600; font-size: 15px; margin-bottom: 10px; color: #e9eef5; }
@@ -427,40 +434,46 @@ const schema = JSON.stringify({
   .ill-foot { margin: 10px 0 0; font-size: 10px; color: #9aa8ba; }
 
   .aig-define { padding-top: 0; }
-  .define { font-size: clamp(1.02rem, 1.5vw, 1.2rem); color: var(--ink); max-width: 76ch; line-height: 1.65; border-left: 2px solid var(--cyan); padding-left: 18px; }
-  .define strong { color: var(--cyan-hi); }
+  .define { font-size: clamp(1.02rem, 1.5vw, 1.2rem); color: var(--ink); max-width: 76ch; line-height: 1.65; border-left: 3px solid var(--acc); padding-left: 20px; }
+  .define strong { color: var(--acc); }
   .facts { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
-  .facts li { border: 1px solid var(--line); border-radius: var(--radius-md); padding: 16px; background: var(--panel); display: grid; gap: 4px; }
-  .facts b { font-family: var(--font-display); font-weight: 800; font-size: 2rem; color: var(--green); line-height: 1; }
+  .facts li { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; padding: 18px 16px; background: var(--panel); display: grid; gap: 6px; }
+  .facts li::before { content: ''; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--acc), transparent); }
+  .facts b { font-family: var(--font-display); font-weight: 800; font-size: 2.3rem; line-height: 1; background: linear-gradient(90deg, var(--acc), var(--c2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .facts span { font-size: 0.85rem; color: var(--mute); line-height: 1.4; }
 
   .pains { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-  .pain { border-top: 1px solid var(--line-strong); padding-top: 20px; }
-  .pain svg { width: 30px; height: 30px; color: var(--cyan); margin-bottom: 12px; }
+  .pain { position: relative; border: 1px solid var(--line); border-radius: 20px; padding: 24px; background: var(--panel); transition: border-color 0.25s, transform 0.25s var(--ease); }
+  .pain:hover { border-color: color-mix(in srgb, #f87171 45%, transparent); transform: translateY(-3px); }
+  .pain svg { width: 48px; height: 48px; padding: 11px; border-radius: 14px; color: #f87171; background: color-mix(in srgb, #f87171 12%, transparent); border: 1px solid color-mix(in srgb, #f87171 35%, transparent); margin-bottom: 16px; }
   .pain h3 { font-size: 1.15rem; margin-bottom: 8px; }
   .pain p { color: var(--mute); font-size: 0.95rem; }
 
   .aig-how-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
-  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; counter-reset: s; }
-  .steps li { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 14px; align-items: start; }
-  .sn { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; color: var(--void); background: var(--cyan); }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; position: relative; }
+  .steps::before { content: ''; position: absolute; left: 21px; top: 22px; bottom: 22px; width: 2px; background: linear-gradient(180deg, var(--acc), var(--c2)); opacity: 0.5; }
+  .steps li { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; align-items: start; }
+  .sn { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 600 13px var(--font-mono); color: var(--acc); background: var(--void); border: 2px solid var(--acc); box-shadow: 0 0 0 5px var(--void), 0 0 20px color-mix(in srgb, var(--acc) 40%, transparent); }
   .steps h3 { font-size: 1.05rem; margin: 6px 0 4px; }
   .steps p { color: var(--mute); font-size: 0.93rem; }
 
   .proof-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
   .proof { grid-column: span 2; }
   .proof:nth-child(4), .proof:nth-child(5) { grid-column: span 3; }
-  .proof { border: 1px solid var(--line); background: var(--panel); border-radius: var(--radius-lg); padding: clamp(20px, 2.6vw, 28px); }
+  .proof { position: relative; overflow: hidden; border: 1px solid var(--line); background: var(--panel); border-radius: 20px; padding: clamp(20px, 2.6vw, 28px); transition: border-color 0.25s; }
+  .proof::before { content: ''; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--acc), var(--c2), transparent); opacity: 0.8; }
+  .proof:hover { border-color: color-mix(in srgb, var(--acc) 45%, transparent); }
+  .proof-n { display: block; font: 800 2.2rem/1 var(--font-display); color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--acc) 70%, transparent); margin-bottom: 12px; }
   .proof h3 { font-size: 1.12rem; margin-bottom: 10px; }
   .proof p { color: var(--mute); font-size: 0.93rem; }
   .proof-visuals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 36px; }
 
   .caps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-  .cap { border: 1px solid var(--line); border-radius: var(--radius-lg); padding: clamp(20px, 2.6vw, 28px); background: var(--panel); }
-  .cap h3 { font-size: 1.05rem; color: var(--cyan); font-family: var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+  .cap { border: 1px solid var(--line); border-radius: 20px; padding: clamp(20px, 2.6vw, 28px); background: radial-gradient(70% 60% at 100% 0%, color-mix(in srgb, var(--acc) 10%, transparent), transparent 70%), var(--panel); }
+  .cap h3 { font-size: 1.05rem; color: var(--acc); font-family: var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
   .cap ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
   .cap li { padding-left: 18px; position: relative; color: var(--ink); }
-  .cap li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 8px; height: 8px; border-radius: 2px; background: var(--green); }
+  .cap li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 8px; height: 8px; border-radius: 2px; background: var(--acc); box-shadow: 0 0 8px var(--acc); }
   .caps-note { margin-top: 18px; color: var(--mute); font-size: 0.95rem; }
   .fw { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
   .fw-h { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); margin-right: 6px; }
@@ -472,21 +485,11 @@ const schema = JSON.stringify({
   .res { border: 1px solid var(--line-strong); background: var(--panel); }
   .built > div, .res > div { max-width: 62ch; }
   .built h2, .res h2 { margin: 14px 0 10px; font-size: clamp(1.6rem, 3vw, 2.2rem); }
-  .built a:not(.btn), .res-links a { color: var(--cyan); }
+  .built a:not(.btn), .res-links a { color: var(--acc); }
   .res-links { margin-top: 12px; color: var(--mute); font-size: 0.93rem; }
   .built .btn, .res .btn { white-space: normal; text-align: center; justify-content: center; max-width: 100%; }
 
-  .faq-list { display: grid; gap: 10px; max-width: 900px; }
-  .faq-item { border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--panel); padding: 0 20px; }
-  .faq-item summary { cursor: pointer; padding: 18px 0; font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; list-style: none; }
-  .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item summary::after { content: '+'; float: right; color: var(--cyan); }
-  .faq-item[open] summary::after { content: '−'; }
-  .faq-item p { padding: 0 0 18px; color: var(--mute); }
-
-  .close-card { text-align: center; border: 1px solid var(--line-strong); border-radius: var(--radius-lg); padding: clamp(32px, 6vw, 64px) clamp(20px, 4vw, 40px); background: radial-gradient(60% 100% at 50% 0%, rgba(48,226,244,0.10), transparent 70%), var(--panel); }
-  .close-card h2 { font-size: clamp(1.9rem, 4vw, 3rem); margin-bottom: 14px; }
-  .close-card .lede { margin: 0 auto 26px; }
+  .aig .fp-faqs { max-width: 900px; }
 
   @media (max-width: 1060px) {
     .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }

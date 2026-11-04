@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import FeatureReveal from '../components/FeatureReveal.astro';
+import '../styles/feature.css';
 import { offices } from '../data/site.js';
 
 const divisions = [
@@ -92,23 +94,36 @@ const schema = JSON.stringify({
 >
   <script type="application/ld+json" set:html={schema} />
 
-  <section class="page-head">
-    <div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb">
+  <div class="fp strat" style="--acc: #5b8def">
+  <section class="fp-hero">
+    <div class="fp-hero-bg" aria-hidden="true"></div>
+    <div class="container fp-hero-grid">
+      <div>
+      <nav class="fp-crumb" aria-label="Breadcrumb">
         <a href="/">Home</a><span>/</span><b>Strategix Group</b>
       </nav>
-      <span class="eyebrow"><span class="dot"></span>The group behind XGRC® Software</span>
-      <h1>One group. Every capability you need.</h1>
-      <p class="lede">Strategix is an integrated technology group — cloud, security, data, ERP and governance — with XGRC® Software at the centre of our assurance capability. Four specialist divisions. One accountable partner. Business, Simplified.</p>
+      <span class="fp-chip">The group behind XGRC® Software</span>
+      <h1 class="fp-title">One group. <span class="fp-hl">Every capability you need.</span></h1>
+      <p class="fp-dek">Strategix is an integrated technology group — cloud, security, data, ERP and governance — with XGRC® Software at the centre of our assurance capability. Four specialist divisions. One accountable partner. Business, Simplified.</p>
       <div class="sol-actions head-actions">
         <a href="#model" class="btn btn-primary">Explore our capability</a>
         <a href="https://www.strategix.co.za" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Visit Strategix Group &rarr;</a>
+      </div>
+      </div>
+      <div class="quad" aria-hidden="true">
+        <svg class="quad-lines" viewBox="0 0 400 400" preserveAspectRatio="none">
+          {divisions.map((d, i) => { const x = i % 2 ? 300 : 100; const y = i < 2 ? 100 : 300; return (<path d={`M200 200 L${x} ${y}`} stroke={d.color} />); })}
+        </svg>
+        {divisions.map((d, i) => (
+          <span class={`quad-tile qt-${i}`} style={`--tc: ${d.color}`}><b>{d.tag}</b><i>{d.tagline}</i><em>{d.caps.length} capabilities</em></span>
+        ))}
+        <span class="quad-core"><img src="/assets/logos/brand/strategix-group-logo.png" alt="" /></span>
       </div>
     </div>
   </section>
 
   <!-- ── Stats band ─────────────────────────────────────── -->
-  <section class="stats-band">
+  <section class="stats-band rv">
     <div class="container stats-inner">
       <div class="stat-cell"><span class="stat-value">60+</span><span class="stat-label">Countries deployed</span></div>
       <div class="stat-cell"><span class="stat-value">4</span><span class="stat-label">Specialist divisions</span></div>
@@ -118,22 +133,22 @@ const schema = JSON.stringify({
   </section>
 
   <!-- ── Our Model ──────────────────────────────────────── -->
-  <section class="section" id="model">
+  <section class="fp-sec" id="model">
     <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow"><span class="dot"></span>Our model</span>
-        <h2>Four divisions. One integrated group.</h2>
+      <div class="fp-head center rv">
+        <span class="fp-eb">Our model</span>
+        <h2 class="fp-h2">Four divisions. One integrated group.</h2>
         <p class="lede">Navigate Strategix Group's full capability — from business operations to data intelligence. Each division is a specialist practice in its own right, sharing one group delivery backbone. Select a division to explore the capabilities beneath.</p>
       </div>
 
-      <div class="model-hub">
+      <div class="model-hub rv">
         <a href="https://www.strategix.co.za" target="_blank" rel="noopener noreferrer" class="hub-logo-link" aria-label="Visit the Strategix Group website">
           <img src="/assets/logos/brand/strategix-group-logo.png" alt="Strategix Group" class="hub-logo" />
         </a>
         <p class="hub-hint" id="hubHint">Select a division to explore its capabilities.</p>
       </div>
 
-      <div class="model-grid" role="tablist" aria-label="Strategix divisions">
+      <div class="model-grid rv" role="tablist" aria-label="Strategix divisions">
         {divisions.map((d) => (
           <button class="model-tile" style={`--tile-color:${d.color}`} data-div={d.key} role="tab" aria-selected="false" aria-controls="modelDetailPanel">
             <span class="model-tile-tag">{d.tag}</span>
@@ -158,11 +173,11 @@ const schema = JSON.stringify({
   </section>
 
   <!-- ── Bridge to XGRC ─────────────────────────────────── -->
-  <section class="section--tight">
+  <section class="fp-sec tight">
     <div class="container">
-      <div class="card bridge-box">
+      <div class="bridge-box rv">
         <div class="bridge-body">
-          <span class="eyebrow"><span class="dot"></span>Application Solutions · Built by Strategix since 2015</span>
+          <span class="fp-eb"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" width="20" height="20" class="bridge-ic" />Application Solutions · Built by Strategix since 2015</span>
           <h3>XGRC® Software is our flagship governance and compliance product.</h3>
           <p>Founded in 2015, XGRC® Software was built to solve a problem Strategix observed across every enterprise client engagement: governance, risk and compliance data trapped in silos — invisible to the people who needed it most. A decade later, XGRC® is deployed in 60+ countries across six continents, helping organisations drive compliance, connect assurance and make governance executable.</p>
           <p>ISO 27001:2022 certified. Built on a single auditable foundation. When you work with XGRC® Software, you already work with Strategix — and the full group capability is one conversation away.</p>
@@ -176,16 +191,17 @@ const schema = JSON.stringify({
   </section>
 
   <!-- ── Why Strategix ──────────────────────────────────── -->
-  <section class="section">
+  <section class="fp-sec tight">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>Why Strategix</span>
-        <h2>One accountable partner. Every technology layer.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">Why Strategix</span>
+        <h2 class="fp-h2">One accountable partner. Every technology layer.</h2>
         <p class="lede">Most enterprise organisations manage six to twelve separate technology vendors. Strategix consolidates them into one integrated group — without sacrificing specialist depth in any domain.</p>
       </div>
       <div class="grid cols-3">
-        {pillars.map((p) => (
-          <div class="card pillar">
+        {pillars.map((p, i) => (
+          <div class="card pillar rv">
+            <span class="pillar-n">{String(i + 1).padStart(2, '0')}</span>
             <div class="pillar-icon" aria-hidden="true">{p.icon}</div>
             <h3>{p.h3}</h3>
             <p>{p.body}</p>
@@ -196,15 +212,15 @@ const schema = JSON.stringify({
   </section>
 
   <!-- ── Delivery model ──────────────────────────────────── -->
-  <section class="section">
+  <section class="fp-sec tight">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span class="dot"></span>How we deliver</span>
-        <h2>Professional Services. Managed Services.</h2>
+      <div class="fp-head rv">
+        <span class="fp-eb">How we deliver</span>
+        <h2 class="fp-h2">Professional Services. Managed Services.</h2>
         <p class="lede">Strategix delivers through two primary models, matched to where your organisation is today and where it needs to go.</p>
       </div>
       <div class="grid cols-2">
-        <div class="card delivery-card">
+        <div class="card delivery-card dc-pro rv">
           <h3>Professional Services</h3>
           <p>Implementation, advisory, training and change management. For organisations deploying new solutions, undergoing transformation, or needing specialist domain expertise on a scoped basis.</p>
           <ul class="delivery-list">
@@ -215,7 +231,7 @@ const schema = JSON.stringify({
             <li>Training, adoption and change enablement</li>
           </ul>
         </div>
-        <div class="card delivery-card">
+        <div class="card delivery-card dc-man rv">
           <h3>Managed Services</h3>
           <p>Ongoing management, monitoring and optimisation. For organisations who want Strategix to operate and continuously improve their technology environment on an accountable, ongoing basis.</p>
           <ul class="delivery-list">
@@ -231,13 +247,13 @@ const schema = JSON.stringify({
   </section>
 
   <!-- ── Final CTA ───────────────────────────────────────── -->
-  <section class="section cta-section">
+  <section class="fp-sec cta-section">
     <div class="container">
-      <div class="card cta-block">
-        <span class="eyebrow"><span class="dot"></span>Get started with Strategix</span>
+      <div class="fp-cta rv">
+        <span class="fp-eb">Get started with Strategix</span>
         <h2>Ready to work with the full group?</h2>
-        <p class="lede">Whether you start with XGRC® Software, a cloud migration, an ERP rollout, or a data transformation — Strategix is the one group that can take you all the way.</p>
-        <div class="cta-actions">
+        <p>Whether you start with XGRC® Software, a cloud migration, an ERP rollout, or a data transformation — Strategix is the one group that can take you all the way.</p>
+        <div class="fp-actions">
           <a href="https://www.strategix.co.za" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Talk to Strategix</a>
           <a href="/demo/" class="btn btn-ghost">Book an XGRC® demo</a>
         </div>
@@ -247,25 +263,38 @@ const schema = JSON.stringify({
       </div>
     </div>
   </section>
+  </div>
+  <FeatureReveal />
 </Base>
 
 <style>
-  .page-head { padding: 130px 0 64px; }
-  .page-head h1 { margin: 8px 0 18px; max-width: 18ch; }
-  .crumbs { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--faint); display: flex; gap: 10px; align-items: center; margin-bottom: 26px; }
-  .crumbs a { color: var(--mute); text-decoration: none; }
-  .crumbs a:hover { color: var(--cyan); }
-  .crumbs b { color: var(--ink); font-weight: 500; }
+  .strat .fp-title { max-width: 16ch; }
   .head-actions { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
-  .center { text-align: center; margin-left: auto; margin-right: auto; }
-  .section-head.center { max-width: 640px; }
+  .strat .fp-head.center { max-width: 680px; }
+
+  /* Hero: four divisions around the group */
+  .quad { position: relative; aspect-ratio: 1; max-width: 500px; width: 100%; margin-left: auto; }
+  .quad-lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .quad-lines path { stroke-width: 2; stroke-dasharray: 5 7; fill: none; opacity: 0.7; animation: dash 14s linear infinite; }
+  .quad-tile { position: absolute; width: 44%; display: flex; flex-direction: column; gap: 4px; padding: 18px; border-radius: 20px; background: linear-gradient(160deg, color-mix(in srgb, var(--tc) 38%, #0b1626), #0a1524 90%); border: 1px solid color-mix(in srgb, var(--tc) 65%, transparent); box-shadow: 0 18px 40px rgba(0,0,0,0.45), 0 0 30px color-mix(in srgb, var(--tc) 22%, transparent); animation: qbob 7s ease-in-out infinite; }
+  .quad-tile b { font: 700 1rem/1.25 var(--font-display); color: var(--ink); }
+  .quad-tile i { font-style: normal; font-size: 12.5px; color: rgba(255,255,255,0.75); }
+  .quad-tile em { font-style: normal; margin-top: 8px; font: 500 10px var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: color-mix(in srgb, var(--tc) 45%, #fff); }
+  .qt-0 { left: 0; top: 0; } .qt-1 { right: 0; top: 0; animation-delay: -1.8s; } .qt-2 { left: 0; bottom: 0; animation-delay: -3.6s; } .qt-3 { right: 0; bottom: 0; animation-delay: -5.4s; }
+  .quad-core { position: absolute; left: 50%; top: 50%; width: 34%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; display: grid; place-items: center; padding: 6%; background: radial-gradient(circle, #13233a, #0a1524 70%); border: 1px solid var(--line-strong); box-shadow: 0 0 0 10px rgba(91,141,239,0.08), 0 0 60px rgba(91,141,239,0.3); z-index: 2; }
+  .quad-core img { width: 100%; height: auto; object-fit: contain; }
+  @keyframes dash { to { stroke-dashoffset: -240; } }
+  @keyframes qbob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -6px; } }
+  @media (prefers-reduced-motion: reduce) { .quad-lines path, .quad-tile { animation: none; } }
+  @media (max-width: 1000px) { .quad { margin: 0 auto; } }
+  @media (max-width: 480px) { .quad-tile { padding: 12px; border-radius: 14px; } .quad-tile b { font-size: 0.85rem; } .quad-tile i { font-size: 11px; } .quad-tile em { display: none; } }
 
   /* stats band */
-  .stats-band { padding: 48px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stats-band { padding: 48px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: linear-gradient(90deg, transparent, rgba(91,141,239,0.06), transparent); }
   .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
   .stat-cell { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; border-right: 1px solid var(--line); padding: 0 12px; }
   .stat-cell:last-child { border-right: none; }
-  .stat-value { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--ink); }
+  .stat-value { font-family: var(--font-display); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800; letter-spacing: -0.03em; background: linear-gradient(90deg, var(--acc), var(--c1) 60%, var(--c2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .stat-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); }
 
   /* model hub */
@@ -302,11 +331,11 @@ const schema = JSON.stringify({
   .model-tile-sub { display: block; font-size: 12.5px; color: rgba(255, 255, 255, 0.72); }
 
   /* model detail panel */
-  .model-detail { margin-top: 32px; padding: clamp(24px, 4vw, 36px); background: var(--panel); border: 1px solid var(--line-strong); border-radius: var(--radius-md); animation: modelDetailIn 0.3s var(--ease) both; }
+  .model-detail { margin-top: 32px; padding: clamp(24px, 4vw, 36px); background: radial-gradient(60% 90% at 100% 0%, rgba(91,141,239,0.1), transparent 70%), var(--panel); border: 1px solid var(--line-strong); border-radius: 22px; animation: modelDetailIn 0.3s var(--ease) both; }
   .model-detail[hidden] { display: none; }
   @keyframes modelDetailIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   .model-detail-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
-  .model-detail-eyebrow { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); display: block; margin-bottom: 6px; }
+  .model-detail-eyebrow { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--acc); display: block; margin-bottom: 6px; }
   .model-detail-head h3 { margin: 0 0 8px; }
   .model-detail-head p { font-size: 0.94rem; color: var(--mute); max-width: 560px; margin: 0; }
   .model-detail-marker { font-size: 11.5px; color: var(--green); margin-top: 10px; font-weight: 500; }
@@ -327,26 +356,31 @@ const schema = JSON.stringify({
   :global(.model-svc-chip) { font-size: 11px; color: var(--mute); background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 4px 9px; }
 
   /* bridge */
-  .bridge-box { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; padding: clamp(28px, 5vw, 44px); }
-  .bridge-body h3 { margin: 10px 0 14px; }
+  .bridge-box { position: relative; overflow: hidden; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; padding: clamp(28px, 5vw, 48px); border-radius: 28px; border: 1px solid rgba(47,232,138,0.4); background: radial-gradient(50% 100% at 0% 0%, rgba(47,232,138,0.14), transparent 70%), radial-gradient(40% 90% at 100% 100%, rgba(48,226,244,0.10), transparent 70%), var(--panel); }
+  .bridge-box .fp-eb { color: #2fe88a; display: inline-flex; align-items: center; gap: 10px; }
+  .bridge-ic { width: 20px; height: 20px; }
+  .bridge-body h3 { margin: 6px 0 14px; font: 800 clamp(1.4rem, 2.6vw, 2rem)/1.2 var(--font-display); letter-spacing: -0.02em; }
+  .bridge-body p { color: var(--mute); }
   .bridge-body p { font-size: 0.96rem; }
   .bridge-body p + p { margin-top: 10px; }
   .bridge-ctas { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
 
   /* pillars */
-  .pillar-icon { font-size: 1.5rem; margin-bottom: 16px; opacity: 0.9; color: var(--cyan); }
+  .pillar { position: relative; overflow: hidden; border-radius: 20px; }
+  .pillar::before { content: ''; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--acc), var(--c2), transparent); }
+  .pillar-n { position: absolute; right: 20px; top: 16px; font: 800 2.4rem/1 var(--font-display); color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--acc) 60%, transparent); }
+  .pillar-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px; font-size: 1.4rem; margin-bottom: 18px; color: var(--acc); background: color-mix(in srgb, var(--acc) 12%, transparent); border: 1px solid color-mix(in srgb, var(--acc) 40%, transparent); }
+  .delivery-card { position: relative; overflow: hidden; border-radius: 22px; }
+  .dc-pro { --dc: #5b8def; } .dc-man { --dc: #a78bfa; }
+  .delivery-card { background: radial-gradient(70% 70% at 100% 0%, color-mix(in srgb, var(--dc) 13%, transparent), transparent 70%), var(--panel); border-color: color-mix(in srgb, var(--dc) 35%, transparent); }
+  .delivery-card h3 { color: var(--dc); }
 
   /* delivery */
   .delivery-card p { margin: 8px 0 0; }
   .delivery-list { list-style: none; margin-top: 18px; display: flex; flex-direction: column; gap: 8px; }
   .delivery-list li { font-size: 13px; color: var(--mute); display: flex; align-items: center; gap: 9px; }
-  .delivery-list li::before { content: '→'; color: var(--cyan); font-size: 12px; flex-shrink: 0; }
+  .delivery-list li::before { content: '→'; color: var(--dc); font-size: 12px; flex-shrink: 0; }
 
-  /* CTA */
-  .cta-block { text-align: center; padding: clamp(36px, 6vw, 64px); background: linear-gradient(160deg, rgba(48,226,244,0.06), rgba(38,158,198,0.02)); border-color: var(--line-strong); }
-  .cta-block h2 { margin: 10px 0 14px; max-width: 580px; margin-left: auto; margin-right: auto; }
-  .cta-block .lede { margin: 0 auto 28px; max-width: 540px; }
-  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .contact-line { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin-top: 22px; }
 
   @media (max-width: 900px) {
