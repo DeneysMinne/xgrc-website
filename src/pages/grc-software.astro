@@ -363,7 +363,9 @@ const schema = JSON.stringify({
             </div>
             <h3 class="cs-company">{c.company}</h3>
             <p>{c.summary}</p>
-            {c.pdf && (
+            {publishedCaseStudyPages.some((p) => p.slug === c.slug) ? (
+              <a href={`/case-studies/${c.slug}/`} class="fp-go">Read the case study &rarr;</a>
+            ) : c.pdf && (
               <a href={`/case-studies/${c.slug}.pdf`} class="fp-go" download>Download case study &rarr;</a>
             )}
           </div>
