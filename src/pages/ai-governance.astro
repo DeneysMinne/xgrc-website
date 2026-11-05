@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
-import { tourDashboards } from '../data/site.js';
+import { tourDashboards, solutions } from '../data/site.js';
+import { useCaseRegistry } from '../data/useCaseRegistry.js';
+import { lookFor, solutionIcon } from '../data/solutionLooks.js';
 import TourStrip from '../components/TourStrip.astro';
 import ProductFrame from '../components/aig/ProductFrame.astro';
 import AiActClassifier from '../components/aig/AiActClassifier.astro';
@@ -55,6 +57,41 @@ const frameworks = [
   { n: 'GDPR', r: '13 requirements' },
   { n: 'POPIA', r: '10 requirements' },
 ];
+
+// Guided setup wizard, in product order (12 steps)
+const setupPhases = [
+  { h: 'Foundation', steps: [
+    { t: 'Switch on AI Governance', b: 'Turn the solution on for your company.' },
+    { t: 'Who will use it', b: 'Choose the people who work in AI Governance and what each can view, add, edit and delete.' },
+    { t: 'Business units', b: 'Set the parts of the business your AI systems belong to.' },
+    { t: 'Who approves what', b: 'Name the approvers for each of the seven approval types.' },
+  ] },
+  { h: 'Your AI estate', steps: [
+    { t: 'Connect AI sources', b: 'Link your AI register, monitoring tools and AI agents.' },
+    { t: 'Your AI systems', b: 'Bring in every AI system, or record it directly in XGRC®.' },
+  ] },
+  { h: 'Rules and frameworks', steps: [
+    { t: 'Frameworks', b: 'Adopt starter content for ISO/IEC 42001, the EU AI Act, GDPR and POPIA.' },
+    { t: 'AI policies', b: 'Upload your own AI policy and map it alongside the standards.' },
+    { t: 'Classification questions', b: 'Review the 18-question EU AI Act decision tree before it is used.' },
+  ] },
+  { h: 'Management system', steps: [
+    { t: 'Management system (ISO 42001)', b: 'Set up the AI management system and its Statement of Applicability.' },
+    { t: 'Dashboard health rules', b: 'Tune the 34 health rules that turn each system red, amber or green.' },
+    { t: 'Ready check', b: 'One check shows what is in place and what still needs attention.' },
+  ] },
+];
+
+// The 13 modules (product names), grouped by how teams use them
+const moduleGroups = [
+  { h: 'Register', items: ['AI systems', 'AI Source Connections'] },
+  { h: 'Assess', items: ['AI Act Classification', 'AI Compliance & Applicability', 'AI Impact Assessment', 'AI Risk Management'] },
+  { h: 'Operate', items: ['AI Controls & Evidence', 'AI Human Oversight', 'Incident Governance', 'AI Change Governance'] },
+  { h: 'Govern', items: ['AI Management System', 'AI Governance Dashboard', 'AI Governance Approvals'] },
+];
+const moduleCount = moduleGroups.reduce((n, g) => n + g.items.length, 0);
+const useCases = useCaseRegistry.filter((u) => u.relatedSolution === 'ai-governance');
+const related = ['maia', 'erm', 'msxcyber', 'xlogic', 'compliance-hub', 'integrated-assurance'].map((k) => solutions.find((x) => x.slug === k)).filter(Boolean);
 
 const faqs = [
   { q: 'What is AI governance software?', a: 'AI governance software keeps a governed record of every AI system an organisation builds or uses: what it is, which rules apply to it, its risks and impacts, the controls and evidence behind it, who oversees it and how changes are reviewed. XGRC® AI Governance does this inside the XGRC® platform, for the EU AI Act, ISO/IEC 42001, POPIA and GDPR.' },
@@ -116,6 +153,7 @@ const schema = JSON.stringify({
     <div class="container aig-hero-grid">
       <div class="aig-hero-copy">
         <nav class="fp-crumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/solutions/">Solutions</a><span>/</span><b aria-current="page">AI Governance</b></nav>
+        <img class="aig-wordmark" src="/assets/logos/solutions/ai-governance.png" alt="" aria-hidden="true" width="320" height="93" loading="eager" />
         <span class="fp-chip">XGRC® AI Governance</span>
         <h1 class="fp-title">Govern every AI system, <em class="fp-hl">from register to regulator.</em></h1>
         <p class="fp-dek">Your teams are already using AI. XGRC® AI Governance software shows what each system is, what the law expects of it, and whether it is under control. EU AI Act, ISO/IEC 42001, POPIA and GDPR in one place.</p>
@@ -232,6 +270,37 @@ const schema = JSON.stringify({
     </div>
   </section>
 
+  <!-- 3a. Guided setup wizard: zero to ISO/IEC 42001 readiness -->
+  <section class="fp-sec aig-setup" id="guided-setup">
+    <div class="container">
+      <div class="fp-head rv">
+        <span class="fp-eb">Guided setup</span>
+        <h2 class="fp-h2">A wizard that takes you from zero to ISO/IEC 42001 readiness.</h2>
+        <p class="lede">You do not start with a blank screen. A twelve-step setup wizard walks your team through everything AI Governance needs, in order, and remembers where you left off. Each step is done or deliberately skipped, so nothing is forgotten.</p>
+      </div>
+      <div class="journey">
+        {setupPhases.map((ph, pi) => {
+          const start = setupPhases.slice(0, pi).reduce((n, x) => n + x.steps.length, 0);
+          return (
+            <div class="jp rv" style={`--pi: ${pi}`}>
+              <span class="jp-h"><i>{String(pi + 1).padStart(2, '0')}</i>{ph.h}</span>
+              <ol start={start + 1}>
+                {ph.steps.map((st, si) => (
+                  <li><span class="jn">{start + si + 1}</span><div><b>{st.t}</b><p>{st.b}</p></div></li>
+                ))}
+              </ol>
+            </div>
+          );
+        })}
+        <div class="jp-goal rv">
+          <span class="seal" aria-hidden="true"><img src={solutionIcon('ai-governance')} alt="" width="56" height="56" loading="lazy" /></span>
+          <b>ISO/IEC 42001 certification readiness</b>
+          <p>The AI management system, the evidence and the Statement of Applicability an auditor looks for. Certification itself comes from an accredited certification body.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 3b. Interactive classifier -->
   <section class="fp-sec aig-classify" id="classify">
     <div class="container">
@@ -303,12 +372,76 @@ const schema = JSON.stringify({
     </div>
   </section>
 
+  <!-- 5b. Modules -->
+  <section class="fp-sec tight aig-mods" id="modules">
+    <div class="container">
+      <div class="fp-head rv">
+        <span class="fp-eb">What's inside</span>
+        <h2 class="fp-h2">{moduleCount} modules, one governed record per AI system.</h2>
+        <p class="lede">Every module works on the same AI system record, so a classification, a risk or an incident is always tied to the system it belongs to.</p>
+      </div>
+      <div class="mods">
+        {moduleGroups.map((g) => (
+          <div class="mod rv"><span class="mod-h">{g.h}<em>{g.items.length}</em></span><ul>{g.items.map((m) => <li>{m}</li>)}</ul></div>
+        ))}
+      </div>
+      <p class="mods-note">Each person also gets <b>My AI Governance Work</b>: one list of everything waiting on them. Access is set per module, with separate View, Add, Edit and Delete rights.</p>
+    </div>
+  </section>
+
   <TourStrip
     items={tourDashboards.filter((d) => d.solution === 'ai-governance')}
     eyebrow="Explore it live"
     heading="See an AI governance dashboard running."
     lede="An interactive demonstration dashboard with fictitious data: EU AI Act classification, ISO/IEC 42001 controls and the gaps between systems. Filter it, open any KPI and export a board pack."
   />
+
+  <!-- 5c. Related use cases -->
+  {useCases.length > 0 && (
+    <section class="fp-sec tight">
+      <div class="container">
+        <div class="fp-head rv">
+          <span class="fp-eb">Related use cases</span>
+          <h2 class="fp-h2">What teams use AI Governance for.</h2>
+          <p class="lede">Each use case explains the problem, the standards and regulations involved, and how AI Governance handles it in practice.</p>
+        </div>
+        <div class="fp-cards">
+          {useCases.map((u) => (
+            <a class="fp-card rv" href={`/use-cases/${u.slug}/`}>
+              <span class="fp-card-top"><span class="fp-tag">{u.category}</span></span>
+              <h3>{u.crumbLabel}</h3>
+              <p>{u.lede}</p>
+              <span class="fp-go">View use case &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 5d. Better together -->
+  <section class="fp-sec tight">
+    <div class="container">
+      <div class="fp-head rv">
+        <span class="fp-eb">Better together</span>
+        <h2 class="fp-h2">AI Governance is stronger on the platform.</h2>
+        <p class="lede">Every XGRC® solution shares the same data foundation. When AI Governance is combined with other solutions, risk, compliance, assurance, and governance data flows without duplication.</p>
+      </div>
+      <div class="fp-cards">
+        {related.map((r) => (
+          <a class="fp-card rv" href={`/${r.slug}/`} style={`--racc: ${lookFor(r.slug).acc}`}>
+            <span class="fp-card-top">
+              {solutionIcon(r.slug) && <img src={solutionIcon(r.slug)} alt="" width="34" height="34" loading="lazy" />}
+              <span class="fp-tag">{r.tag}</span>
+            </span>
+            <h3>{r.name}</h3>
+            <p>{r.blurb}</p>
+            <span class="fp-go">Explore &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <!-- 6. Built into XGRC -->
   <section class="fp-sec tight aig-built">
@@ -433,6 +566,39 @@ const schema = JSON.stringify({
   .ill-rev b { font-size: 11.5px; color: #e9eef5; } .ill-rev span { grid-column: 1; font-size: 10px; color: #9aa8ba; } .ill-rev em { grid-row: 1 / span 2; grid-column: 2; align-self: center; color: #ffd18a; }
   .ill-foot { margin: 10px 0 0; font-size: 10px; color: #9aa8ba; }
 
+  .aig-wordmark { display: block; width: clamp(220px, 26vw, 320px); height: auto; margin: 6px 0 18px; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.45)); }
+
+  /* Guided setup journey */
+  .journey { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.05fr); gap: 16px; align-items: stretch; }
+  .journey::before { content: ''; position: absolute; left: 2%; right: 2%; top: 21px; height: 2px; background: linear-gradient(90deg, #facc15, #4ade80, #38bdf8, var(--acc)); opacity: 0.55; }
+  .jp { position: relative; display: flex; flex-direction: column; gap: 14px; }
+  .jp-h { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; font: 600 11.5px var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); background: var(--void); padding-right: 12px; }
+  .jp-h i { font-style: normal; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; color: var(--acc); border: 2px solid var(--acc); box-shadow: 0 0 0 5px var(--void), 0 0 22px color-mix(in srgb, var(--acc) 40%, transparent); background: var(--void); }
+  .jp ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; flex: 1; align-content: start; }
+  .jp li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; align-items: start; padding: 14px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); transition: border-color 0.25s, transform 0.25s var(--ease); }
+  .jp li:hover { border-color: color-mix(in srgb, var(--acc) 45%, transparent); transform: translateY(-2px); }
+  .jn { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font: 700 12px var(--font-mono); color: var(--acc); background: color-mix(in srgb, var(--acc) 12%, transparent); border: 1px solid color-mix(in srgb, var(--acc) 40%, transparent); }
+  .jp li b { display: block; font: 600 0.95rem/1.3 var(--font-display); color: var(--ink); margin: 4px 0 4px; }
+  .jp li p { margin: 0; font-size: 0.84rem; line-height: 1.5; color: var(--mute); }
+  .jp-goal { position: relative; z-index: 1; align-self: stretch; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 24px; border-radius: 22px; border: 1px solid color-mix(in srgb, var(--acc) 50%, transparent); background: radial-gradient(90% 70% at 100% 0%, color-mix(in srgb, #4ade80 16%, transparent), transparent 70%), radial-gradient(80% 60% at 0% 100%, color-mix(in srgb, #facc15 12%, transparent), transparent 70%), var(--panel); box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 50px color-mix(in srgb, var(--acc) 16%, transparent); }
+  .seal { width: 84px; height: 84px; border-radius: 22px; display: grid; place-items: center; padding: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-top-color: rgba(255,255,255,0.26); box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 0 30px color-mix(in srgb, var(--acc) 30%, transparent); animation: sealGlow 4s ease-in-out infinite; }
+  .seal img { width: 100%; height: 100%; object-fit: contain; }
+  .jp-goal b { font: 700 1.15rem/1.3 var(--font-display); color: var(--ink); }
+  .jp-goal p { margin: 0; font-size: 0.88rem; line-height: 1.55; color: var(--mute); }
+  @keyframes sealGlow { 0%, 100% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 0 24px color-mix(in srgb, var(--acc) 25%, transparent); } 50% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 0 44px color-mix(in srgb, #4ade80 40%, transparent); } }
+
+  /* Modules */
+  .mods { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .mod { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 20px; padding: 22px; background: var(--panel); }
+  .mod::before { content: ''; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--acc), transparent); }
+  .mod-h { display: flex; justify-content: space-between; align-items: center; font: 600 11.5px var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--acc); margin-bottom: 14px; }
+  .mod-h em { font-style: normal; color: var(--faint); border: 1px solid var(--line); border-radius: 99px; padding: 1px 9px; }
+  .mod ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+  .mod li { position: relative; padding-left: 16px; color: var(--ink); font-size: 0.94rem; }
+  .mod li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 7px; height: 7px; border-radius: 2px; background: var(--acc); }
+  .mods-note { margin-top: 18px; color: var(--mute); font-size: 0.95rem; }
+  .mods-note b { color: var(--ink); }
+
   .aig-define { padding-top: 0; }
   .define { font-size: clamp(1.02rem, 1.5vw, 1.2rem); color: var(--ink); max-width: 76ch; line-height: 1.65; border-left: 3px solid var(--acc); padding-left: 20px; }
   .define strong { color: var(--acc); }
@@ -492,6 +658,10 @@ const schema = JSON.stringify({
   .aig .fp-faqs { max-width: 900px; }
 
   @media (max-width: 1060px) {
+    .journey { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .journey::before { display: none; }
+    .jp-goal { grid-column: span 2; }
+    .mods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .proof, .proof:nth-child(4) { grid-column: span 1; }
@@ -503,11 +673,13 @@ const schema = JSON.stringify({
     .pains, .caps, .proof-visuals { grid-template-columns: minmax(0, 1fr); }
   }
   @media (max-width: 560px) {
+    .journey, .mods { grid-template-columns: minmax(0, 1fr); }
+    .jp-goal { grid-column: auto; }
     .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .proof-grid { grid-template-columns: minmax(0, 1fr); }
     .proof, .proof:nth-child(4), .proof:nth-child(5) { grid-column: auto; }
     .ill-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .ill-row { grid-template-columns: minmax(0, 1fr); }
   }
-  @media (prefers-reduced-motion: reduce) { .aig-hero-visual { transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .aig-hero-visual { transform: none; } .seal { animation: none; } }
 </style>
