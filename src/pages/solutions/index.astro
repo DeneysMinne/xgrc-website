@@ -17,6 +17,13 @@ const partnerSolutions = solutions.filter((s) => s.partner);
 const useCasesBySolution = solutions
   .map((s) => ({ solution: s, useCases: useCaseRegistry.filter((u) => u.relatedSolution === s.slug) }))
   .filter((g) => g.useCases.length > 0);
+// Each tile is filled from the solution's own approved page content (headline, key stats, standards)
+const aiGov = {
+  headline: 'Govern every AI system, from register to regulator.',
+  stats: [{ value: '18', label: 'question EU AI Act decision tree' }, { value: '12', label: 'AI risk categories' }, { value: '13', label: 'AI incident types' }],
+  standards: ['ISO/IEC 42001', 'EU AI Act', 'POPIA', 'GDPR'],
+};
+const tileFor = (slug) => (slug === 'ai-governance' ? aiGov : solutionDetails[slug] || {});
 const initials = (n) => n.replace(/[®]/g, '').replace(/XGRC\s*/, '').split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
 // Hero stack: native and platform solutions with an icon
 const stack = [...nativeSolutions, ...availableSolutions].filter((s) => solutionIcon(s.slug));
@@ -165,13 +172,27 @@ const partnerLogo = { 'OSA International': 'osa-international.png', 'GRC Link': 
       </div>
       <div class="uc-groups">
         {useCasesBySolution.map((g) => (
-          <div class="uc-group rv" style={`--racc: ${lookFor(g.solution.slug).acc}`}>
-            <h3>{solutionIcon(g.solution.slug) && <img src={solutionIcon(g.solution.slug)} alt="" width="28" height="28" loading="lazy" />}<a href={`/${g.solution.slug}/`}>{g.solution.name}</a><span class="uc-count">{g.useCases.length}</span></h3>
-            <ul>
+          <div class={`uc-group rv${g.useCases.length >= 6 ? ' uc-group--wide' : ''}`} style={`--racc: ${lookFor(g.solution.slug).acc}`}>
+            <h3>{solutionIcon(g.solution.slug) && <span class="uc-ic"><img src={solutionIcon(g.solution.slug)} alt="" width="40" height="40" loading="lazy" /></span>}<span class="uc-name"><a href={`/${g.solution.slug}/`}>{g.solution.name}</a><small>{g.solution.tag}</small></span><span class="uc-count">{g.useCases.length}</span></h3>
+            {tileFor(g.solution.slug).headline && <p class="uc-head">{tileFor(g.solution.slug).headline}</p>}
+            {tileFor(g.solution.slug).stats && (
+              <dl class="uc-stats">
+                {tileFor(g.solution.slug).stats.slice(0, 3).map((st) => (<div><dt>{st.value}</dt><dd>{st.label}</dd></div>))}
+              </dl>
+            )}
+            {tileFor(g.solution.slug).standards && (
+              <ul class="uc-std" aria-label="Standards">
+                {tileFor(g.solution.slug).standards.slice(0, 4).map((x) => (<li>{x}</li>))}
+                {tileFor(g.solution.slug).standards.length > 4 && <li class="uc-std-more">+{tileFor(g.solution.slug).standards.length - 4}</li>}
+              </ul>
+            )}
+            <span class="uc-lab">Use cases</span>
+            <ul class="uc-list">
               {g.useCases.map((u) => (
                 <li><a href={`/use-cases/${u.slug}/`}>{u.crumbLabel}</a></li>
               ))}
             </ul>
+            <a class="uc-more" href={`/${g.solution.slug}/`} aria-hidden="true" tabindex="-1">Explore {g.solution.name} &rarr;</a>
           </div>
         ))}
       </div>
@@ -211,7 +232,7 @@ const partnerLogo = { 'OSA International': 'osa-international.png', 'GRC Link': 
   .stack-tile { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 8px 12px; border-radius: 16px; background: linear-gradient(160deg, color-mix(in srgb, var(--racc) 14%, transparent), rgba(8, 18, 34, 0.9)); border: 1px solid color-mix(in srgb, var(--racc) 40%, transparent); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); animation: tileIn 0.7s var(--d) both cubic-bezier(0.16, 1, 0.3, 1), bob 7s calc(var(--d) * 4) ease-in-out infinite; }
   .stack-tile img { width: 40px; height: 40px; object-fit: contain; filter: drop-shadow(0 0 10px color-mix(in srgb, var(--racc) 50%, transparent)); }
   .stack-tile i { font: 500 10.5px var(--font-mono); font-style: normal; color: var(--mute); text-align: center; line-height: 1.3; }
-  .stack-beams { display: grid; grid-template-columns: repeat(11, 1fr); gap: 6px; height: 54px; padding: 0 8%; }
+  .stack-beams { display: grid; grid-template-columns: repeat(12, 1fr); gap: 6px; height: 54px; padding: 0 8%; }
   .stack-beams span { width: 2px; justify-self: center; background: linear-gradient(180deg, transparent, var(--racc)); opacity: 0.55; position: relative; overflow: hidden; }
   .stack-beams span::after { content: ''; position: absolute; left: -2px; width: 6px; height: 14px; border-radius: 3px; background: var(--racc); box-shadow: 0 0 10px var(--racc); animation: beam 2.4s var(--d) linear infinite; }
   .stack-base { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 18px; border-radius: 18px; background: linear-gradient(90deg, rgba(48,226,244,0.16), rgba(167,139,250,0.16)); border: 1px solid rgba(48,226,244,0.45); box-shadow: 0 0 40px rgba(48,226,244,0.18), inset 0 0 30px rgba(48,226,244,0.08); font: 600 12px var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-align: center; }
@@ -228,21 +249,41 @@ const partnerLogo = { 'OSA International': 'osa-international.png', 'GRC Link': 
   .small { font-size: 0.98rem; }
   .sol-card--linked { cursor: pointer; }
   .fp-lede a { color: var(--acc); }
-  .uc-groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
-  .uc-group { --racc: var(--acc); position: relative; overflow: hidden; padding: 22px; border-radius: 20px; background: var(--panel); border: 1px solid var(--line); }
+  .uc-groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-flow: row dense; gap: 16px; align-items: stretch; }
+  .uc-group { --racc: var(--acc); position: relative; overflow: hidden; padding: 22px 22px 20px; border-radius: 20px; display: flex; flex-direction: column; background: radial-gradient(90% 70% at 100% 0%, color-mix(in srgb, var(--racc) 9%, transparent), transparent 70%), var(--panel); border: 1px solid var(--line); transition: border-color 0.25s, transform 0.25s var(--ease); }
+  .uc-group:hover { border-color: color-mix(in srgb, var(--racc) 45%, transparent); transform: translateY(-3px); }
   .uc-group::before { content: ''; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--racc), transparent); }
-  .uc-group h3 { display: flex; align-items: center; gap: 10px; font: 700 1.05rem var(--font-display); margin: 0 0 14px; }
-  .uc-group h3 a { color: var(--ink); text-decoration: none; flex: 1; }
-  .uc-group h3 a:hover { color: var(--racc); }
-  .uc-count { font: 500 11px var(--font-mono); color: var(--racc); border: 1px solid color-mix(in srgb, var(--racc) 40%, transparent); border-radius: 99px; padding: 2px 9px; }
-  .uc-group ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
-  .uc-group li { position: relative; padding-left: 16px; }
-  .uc-group li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; border-radius: 50%; background: var(--racc); opacity: 0.8; }
-  .uc-group li a { color: var(--mute); font-size: 0.93rem; text-decoration: none; }
-  .uc-group li a:hover { color: var(--racc); }
+  .uc-group--wide { grid-column: span 2; }
+  .uc-group.uc-group--wide .uc-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
+  .uc-group h3 { display: flex; align-items: center; gap: 14px; font: 700 1.08rem var(--font-display); margin: 0 0 16px; }
+  .uc-ic { width: 52px; height: 52px; flex: none; border-radius: 14px; display: grid; place-items: center; padding: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.10); border-top-color: rgba(255,255,255,0.22); box-shadow: 0 5px 18px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12), 0 0 24px color-mix(in srgb, var(--racc) 14%, transparent); }
+  .uc-ic img { width: 100%; height: 100%; object-fit: contain; }
+  .uc-name { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+  .uc-name a { color: var(--ink); text-decoration: none; }
+  .uc-name a:hover { color: var(--racc); }
+  .uc-name small { font: 500 10.5px var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--racc); }
+  .uc-count { font: 500 11px var(--font-mono); color: var(--racc); border: 1px solid color-mix(in srgb, var(--racc) 40%, transparent); border-radius: 99px; padding: 2px 9px; align-self: flex-start; }
+  .uc-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .uc-list li { position: relative; padding-left: 16px; }
+  .uc-list li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; border-radius: 50%; background: var(--racc); opacity: 0.8; }
+  .uc-list li a { color: var(--mute); font-size: 0.93rem; text-decoration: none; }
+  .uc-list li a:hover { color: var(--racc); }
+  .uc-head { margin: 0 0 16px; font: 600 1.02rem/1.4 var(--font-display); color: var(--ink); }
+  .uc-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0 0 14px; }
+  .uc-stats div { padding: 10px 9px 9px; border-radius: 12px; background: rgba(255,255,255,0.025); border: 1px solid var(--line); min-width: 0; }
+  .uc-stats dt { font: 700 0.86rem/1.2 var(--font-display); color: var(--racc); overflow-wrap: normal; word-break: normal; hyphens: none; }
+  .uc-stats dd { margin: 4px 0 0; font-size: 0.74rem; line-height: 1.3; color: var(--mute); }
+  .uc-std { list-style: none; padding: 0; margin: 0 0 18px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .uc-std li { font: 500 10.5px var(--font-mono); color: var(--ink); border: 1px solid color-mix(in srgb, var(--racc) 35%, transparent); background: color-mix(in srgb, var(--racc) 8%, transparent); border-radius: 99px; padding: 4px 10px; }
+  .uc-std .uc-std-more { color: var(--racc); }
+  .uc-lab { display: block; margin: 0 0 10px; padding-top: 14px; border-top: 1px solid var(--line); font: 500 10.5px var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+  .uc-more { margin-top: auto; padding-top: 18px; font: 600 0.85rem var(--font-display); color: var(--racc); text-decoration: none; opacity: 0.85; }
+  .uc-more:hover { opacity: 1; }
   .uc-all { margin-top: 22px; }
   .pl { width: 34px; height: 34px; border-radius: 10px; background: #fff; display: grid; place-items: center; padding: 4px; flex: none; }
   .fp-card-top .pl img { width: 100%; height: 100%; object-fit: contain; }
   @media (max-width: 1000px) { .uc-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 1200px) { .uc-stats { gap: 6px; } .uc-stats div { padding: 9px 7px 8px; } .uc-stats dt { font-size: 0.76rem; } .uc-stats dd { font-size: 0.7rem; } }
+  @media (max-width: 640px) { .uc-group.uc-group--wide { grid-column: auto; } .uc-group.uc-group--wide .uc-list { grid-template-columns: 1fr; } }
   @media (max-width: 640px) { .uc-groups, .points { grid-template-columns: 1fr; } }
 </style>

@@ -17,6 +17,6 @@ export const solutionLooks = {
   'hakware': { acc: '#f87171', shot: 'msxcyber-dashboard.webp' },
 };
 
-const ICONS = ['msx', 'msxcyber', 'esg', 'sheqx', 'erm', 'integrated-assurance', 'envirx', 'compliance-hub', 'xlogic', 'maia', 'xrm'];
+const ICONS = ['ai-governance', 'msx', 'msxcyber', 'esg', 'sheqx', 'erm', 'integrated-assurance', 'envirx', 'compliance-hub', 'xlogic', 'maia', 'xrm'];
 export const lookFor = (slug) => solutionLooks[slug] || solutionLooks.msx;
 export const solutionIcon = (slug) => (ICONS.includes(slug) ? `/assets/logos/solutions/icons/${slug}.png` : null);
