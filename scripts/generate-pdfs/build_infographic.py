@@ -25,7 +25,7 @@ TARGETS = ['sheqx', 'msx', 'msxcyber', 'erm', 'envirx', 'esg', 'maia', 'libryo',
 # Output filename version per slug. Bump when a fresh URL is needed to bust the
 # Cloudflare edge cache (a URL already served is cached ~4h and we can't purge).
 # erm is v3 because erm-*-v2 was already published+cached with an earlier design.
-VERSION = {'erm': 'v4', 'esg': 'v4'}
+VERSION = {'erm': 'v4', 'esg': 'v4', 'envirx': 'v4'}
 DEFAULT_VERSION = 'v3'
 
 
@@ -157,7 +157,7 @@ h1 {{ font-family: 'Outfit'; font-weight: 700; font-size: 34px; line-height: 1.0
 .closing-text {{ font-family: 'Outfit'; font-weight: 600; font-size: 13.5px; line-height: 1.45; color: #e8f2ff; }}
 
 .footer {{ position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 34px 20px; border-top: 1px solid rgba(255,255,255,0.09); display: flex; align-items: center; justify-content: space-between; }}
-.footer .flogo {{ height: 26px; opacity: 0.92; }}
+.footer .flogo {{ height: 26px; width: auto; flex-shrink: 0; opacity: 0.92; }}
 .footer .site {{ font-family: 'JetBrains Mono'; font-size: 9.5px; color: #6f8599; letter-spacing: .5px; }}
 .footer .tag {{ font-family: 'Outfit'; font-weight: 600; font-size: 10.5px; color: #7fe9f6; }}
 </style></head><body>

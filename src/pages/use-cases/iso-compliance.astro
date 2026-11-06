@@ -9,7 +9,7 @@ const isoPages = useCaseRegistry.filter((u) => u.category === 'ISO Readiness');
 
 const standards = [
   { std: 'ISO 9001', topic: 'Quality management', law: 'Customer, contract and product requirements; SABS publishes it locally as a SANS standard.', uc: 'iso-9001-readiness', sol: 'msx', solName: 'MSX®' },
-  { std: 'ISO 14001', topic: 'Environmental management', law: 'Compliance obligations under NEMA (Act 107 of 1998), the National Water Act (Act 36 of 1998) and NEM:AQA (Act 39 of 2004).', uc: 'iso-14001-readiness', sol: 'envirx', solName: 'ENVIRX®' },
+  { std: 'ISO 14001', topic: 'Environmental management', law: 'Compliance obligations under NEMA (Act 107 of 1998), the National Water Act (Act 36 of 1998) and NEM:AQA (Act 39 of 2004).', uc: 'iso-14001-readiness', sol: 'sheqx', solName: 'SHEQX®' },
   { std: 'ISO 45001', topic: 'Occupational health and safety', law: 'Supports, but does not replace, the OHS Act (Act 85 of 1993) and, on mines, the MHSA (Act 29 of 1996).', uc: 'iso-45001-readiness', sol: 'sheqx', solName: 'SHEQX®' },
   { std: 'ISO/IEC 27001', topic: 'Information security', law: 'Evidence for the security safeguards POPIA section 19 requires for personal information.', uc: 'iso-27001-readiness', sol: 'msxcyber', solName: 'MSXCyber®' },
   { std: 'ISO 22000', topic: 'Food safety', law: 'Sits alongside the R638 hygiene regulations under the Foodstuffs, Cosmetics and Disinfectants Act (Act 54 of 1972).', uc: 'iso-22000-readiness', sol: 'msx', solName: 'MSX®' },
@@ -29,7 +29,7 @@ const faqs = [
   { q: 'Can we manage several ISO standards in one system?', a: 'Yes. ISO management system standards share the same Harmonized Structure (clauses 4 to 10), so one set of processes for context, leadership, planning, support, operation, evaluation and improvement can serve ISO 9001, 14001, 45001 and 27001 at once. PAS 99 describes how to integrate them. See the PAS 99 integrated management system guide.' },
   { q: 'Does ISO certification prove we comply with the law?', a: 'No. ISO 14001 and ISO 45001 require you to identify your compliance obligations and evaluate whether you meet them, but the certificate is not a legal ruling. Legal compliance with Acts such as NEMA or the OHS Act is still tested against the Act itself, which is why the obligations register matters as much as the clause checklist.' },
   { q: 'Is ISO 31000 a certifiable standard?', a: 'No. ISO 31000 provides principles and guidelines for risk management, so organisations align to it rather than certify against it. It is widely used to structure enterprise risk management and to show boards that risk is managed with a recognised method.' },
-  { q: 'Which XGRC® solution supports which standard?', a: 'MSX® supports ISO 9001, ISO 22000 and integrated management systems, ENVIRX® supports ISO 14001, SHEQX® supports ISO 45001, MSXCyber® supports ISO/IEC 27001 and Enterprise Risk Management supports ISO 31000. They all run on the same XGRC® platform, so evidence, actions and audits are shared across standards.' },
+  { q: 'Which XGRC® solution supports which standard?', a: 'MSX® supports ISO 9001, ISO 22000 and integrated management systems, SHEQX® supports ISO 9001, ISO 14001 and ISO 45001, ENVIRX® supplies the environmental and emissions data, MSXCyber® supports ISO/IEC 27001 and Enterprise Risk Management supports ISO 31000. They all run on the same XGRC® platform, so evidence, actions and audits are shared across standards.' },
 ];
 
 const schema = {
