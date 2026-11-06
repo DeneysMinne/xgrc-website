@@ -10,8 +10,14 @@ const points = [
   'Consistent workflows and approvals',
   'A continuous audit trail across all disciplines'
 ];
-const nativeSolutions = solutions.filter((s) => !s.partner && !s.available);
-const availableSolutions = solutions.filter((s) => s.available);
+// Four layers, as set in the XGRC Solution Stack Definition (6 Nov 2026)
+const bySlug = (slugs) => slugs.map((sl) => solutions.find((s) => s.slug === sl)).filter(Boolean);
+const disciplineSolutions = bySlug(['sheqx', 'envirx', 'esg', 'msxcyber', 'erm', 'integrated-assurance', 'compliance-hub', 'ai-governance']);
+const upperLayers = [
+  { num: '02', name: 'Integration', note: 'Optional. One coordinated management system across several ISO standards.', items: bySlug(['msx']) },
+  { num: '03', name: 'Execution', note: 'Policies become owned workflows, and customer work runs under the same governance.', items: bySlug(['xlogic', 'xrm']) },
+  { num: '04', name: 'Intelligence', note: 'Governed AI with a full interaction audit trail.', items: bySlug(['maia']) },
+];
 const partnerSolutions = solutions.filter((s) => s.partner);
 // Use cases grouped under the solution that delivers them (SEO Fix Spec T7)
 const useCasesBySolution = solutions
@@ -26,7 +32,7 @@ const aiGov = {
 const tileFor = (slug) => (slug === 'ai-governance' ? aiGov : solutionDetails[slug] || {});
 const initials = (n) => n.replace(/[®]/g, '').replace(/XGRC\s*/, '').split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
 // Hero stack: native and platform solutions with an icon
-const stack = [...nativeSolutions, ...availableSolutions].filter((s) => solutionIcon(s.slug));
+const stack = [...disciplineSolutions, ...upperLayers.flatMap((L) => L.items)].filter((s) => solutionIcon(s.slug));
 const partnerLogo = { 'OSA International': 'osa-international.png', 'GRC Link': 'grc-link.png' };
 ---
 <Base title="Solutions | XGRC® Software" description="A modular governance, risk and compliance platform. Adopt one specialist XGRC® solution today and add more over time, all on one secure, auditable foundation." ogImage="/assets/og/og-solutions.jpg">
@@ -69,16 +75,16 @@ const partnerLogo = { 'OSA International': 'osa-international.png', 'GRC Link': 
     </div>
   </section>
 
-  <!-- ── Native XGRC® Software Solutions ──────────────────── -->
-  <section class="fp-sec">
+  <!-- ── The 12 solutions in four layers (Stack Definition, 6 Nov 2026) ── -->
+  <section class="fp-sec" id="disciplines">
     <div class="container">
       <div class="fp-head rv">
-        <span class="fp-eb">Built by XGRC®</span>
-        <h2 class="fp-h2">Native XGRC® Software Solutions.</h2>
-        <p class="fp-lede">Specialist modules, built and owned by XGRC®, running natively on one connected platform and data foundation.</p>
+        <span class="fp-eb"><b class="lnum">01</b> Disciplines</span>
+        <h2 class="fp-h2">Eight disciplines, each owning one area of GRC.</h2>
+        <p class="fp-lede">Specialist solutions for safety and quality, environmental data, ESG, information security, risk, assurance, third parties and AI. Adopt one today and add more over time, all on the same foundation.</p>
       </div>
-      <div class="fp-cards">
-        {nativeSolutions.map((s) => {
+      <div class="fp-cards cards4">
+        {disciplineSolutions.map((s) => {
           const hasDetail = !!solutionDetails[s.slug] || !!s.customPage;
           const Tag = hasDetail ? 'a' : 'div';
           const icon = solutionIcon(s.slug);
@@ -90,7 +96,7 @@ const partnerLogo = { 'OSA International': 'osa-international.png', 'GRC Link': 
               {...(hasDetail ? { href: `/${s.slug}/` } : {})}
             >
               <span class="fp-card-top">{icon ? <img src={icon} alt="" width="34" height="34" loading="lazy" /> : <span class="fp-mono">{initials(s.name)}</span>}<span class="fp-tag">{s.tag}</span></span>
-              <h3>{s.name}</h3>
+              <h3>{s.slug === 'xrm' ? 'XRM, Powered by XGRC®' : s.name}</h3>
               <p>{s.blurb}</p>
               {hasDetail && <span class="fp-go">Explore {s.name} &rarr;</span>}
             </Tag>
@@ -100,33 +106,40 @@ const partnerLogo = { 'OSA International': 'osa-international.png', 'GRC Link': 
     </div>
   </section>
 
-  <!-- ── Available Platform Solutions ─────────────────────── -->
-  <section class="fp-sec tight fp-band">
+  <section class="fp-sec tight fp-band" id="integration-execution-intelligence">
     <div class="container">
       <div class="fp-head rv">
-        <span class="fp-eb">On the platform</span>
-        <h2 class="fp-h2">Available Platform Solutions.</h2>
-        <p class="fp-lede">Configured solutions available within XGRC® Software for customers that require specific governance, compliance or operational workflows.</p>
+        <span class="fp-eb">Above the disciplines</span>
+        <h2 class="fp-h2">Joined up, put to work and made intelligent.</h2>
+        <p class="fp-lede">MSX® joins the disciplines into one management system, XLOGIC and XRM put work into motion, and MAIA® adds governed AI across it all.</p>
       </div>
-      <div class="fp-cards">
-        {availableSolutions.map((s) => {
-          const hasDetail = !!solutionDetails[s.slug] || !!s.customPage;
-          const Tag = hasDetail ? 'a' : 'div';
-          const icon = solutionIcon(s.slug);
-          return (
-            <Tag
-              id={s.slug}
-              class={`fp-card sol-card rv ${hasDetail ? 'sol-card--linked' : ''}`}
-              style={`--racc: ${lookFor(s.slug).acc}`}
-              {...(hasDetail ? { href: `/${s.slug}/` } : {})}
-            >
-              <span class="fp-card-top">{icon ? <img src={icon} alt="" width="34" height="34" loading="lazy" /> : <span class="fp-mono">{initials(s.name)}</span>}<span class="fp-tag">{s.tag}</span></span>
-              <h3>{s.name}</h3>
-              <p>{s.blurb}</p>
-              {hasDetail && <span class="fp-go">Explore {s.name} &rarr;</span>}
-            </Tag>
-          );
-        })}
+      <div class="layers3">
+        {upperLayers.map((L) => (
+          <div class="layer-col">
+            <span class="layer-lbl"><b class="lnum">{L.num}</b> {L.name}</span>
+            <p class="layer-note">{L.note}</p>
+            <div class="layer-cards">
+              {L.items.map((s) => {
+                const hasDetail = !!solutionDetails[s.slug] || !!s.customPage;
+                const Tag = hasDetail ? 'a' : 'div';
+                const icon = solutionIcon(s.slug);
+                return (
+                  <Tag
+                    id={s.slug}
+                    class={`fp-card sol-card rv ${hasDetail ? 'sol-card--linked' : ''}`}
+                    style={`--racc: ${lookFor(s.slug).acc}`}
+                    {...(hasDetail ? { href: `/${s.slug}/` } : {})}
+                  >
+                    <span class="fp-card-top">{icon ? <img src={icon} alt="" width="34" height="34" loading="lazy" /> : <span class="fp-mono">{initials(s.name)}</span>}<span class="fp-tag">{s.tag}</span></span>
+                    <h3>{s.slug === 'xrm' ? 'XRM, Powered by XGRC®' : s.name}</h3>
+                    <p>{s.blurb}</p>
+                    {hasDetail && <span class="fp-go">Explore {s.name} &rarr;</span>}
+                  </Tag>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -249,6 +262,18 @@ const partnerLogo = { 'OSA International': 'osa-international.png', 'GRC Link': 
   .small { font-size: 0.98rem; }
   .sol-card--linked { cursor: pointer; }
   .fp-lede a { color: var(--acc); }
+  .cards4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  @media (max-width: 1200px) { .cards4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .cards4 { grid-template-columns: 1fr; } }
+  .lnum { font-family: var(--font-mono, monospace); color: var(--acc); margin-right: 6px; }
+  .layers3 { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 16px; align-items: stretch; }
+  .layer-col { display: flex; flex-direction: column; gap: 10px; padding: 18px; border-radius: 20px; border: 1px dashed var(--line); }
+  .layer-lbl { font: 600 0.78rem var(--font-mono, monospace); letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
+  .layer-note { margin: 0 0 4px; font-size: 0.92rem; color: var(--mute); }
+  .layer-cards { display: grid; gap: 16px; flex: 1; }
+  .layer-col:nth-child(2) .layer-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 1000px) { .layers3 { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .layer-col:nth-child(2) .layer-cards { grid-template-columns: 1fr; } }
   .uc-groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-flow: row dense; gap: 16px; align-items: stretch; }
   .uc-group { --racc: var(--acc); position: relative; overflow: hidden; padding: 22px 22px 20px; border-radius: 20px; display: flex; flex-direction: column; background: radial-gradient(90% 70% at 100% 0%, color-mix(in srgb, var(--racc) 9%, transparent), transparent 70%), var(--panel); border: 1px solid var(--line); transition: border-color 0.25s, transform 0.25s var(--ease); }
   .uc-group:hover { border-color: color-mix(in srgb, var(--racc) 45%, transparent); transform: translateY(-3px); }
