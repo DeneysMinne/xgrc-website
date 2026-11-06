@@ -54,7 +54,7 @@ export const solutions = [
   { name: 'Integrated Assurance', slug: 'integrated-assurance', tag: 'Assurance', blurb: 'Coordination of internal audit and combined assurance, linked directly to risks, controls, and actions.' },
   { name: 'ENVIRX®', slug: 'envirx', tag: 'Environmental', blurb: 'Environmental compliance and performance monitoring with auditable environmental records.' },
   { name: 'XGRC® Compliance Hub', slug: 'compliance-hub', tag: 'Third-party', blurb: 'Supplier, contractor, and third-party compliance through structured onboarding, vetting, and ongoing assurance.', available: true },
-  { name: 'XLOGIC®', slug: 'xlogic', tag: 'Governance Execution', blurb: 'Converts policies, frameworks, controls and obligations into structured workflows with accountability, evidence capture and auditability.', available: true },
+  { name: 'XLOGIC', slug: 'xlogic', tag: 'Governance Execution', blurb: 'Converts policies, frameworks, controls and obligations into structured workflows with accountability, evidence capture and auditability.', available: true },
   { name: 'MAIA®', slug: 'maia', tag: 'Governed AI', blurb: 'Governed AI for GRC, combining business intelligence, data views and intelligent agents, with a full AI interaction audit trail.' },
   { name: 'Libryo', slug: 'libryo', tag: 'Partner', blurb: 'Jurisdiction-specific regulatory intelligence embedded directly within XGRC®.', partner: true },
   { name: 'Hakware', slug: 'hakware', tag: 'Partner', blurb: 'AI-powered penetration testing and unified vulnerability visibility across your environment.', partner: true },
@@ -66,8 +66,8 @@ export const solutionDetails = {
   sheqx: {
     infographic: '/assets/infographics/sheqx-infographic-v3.pdf',
     booklet: '/resources/xgrc-sheqx-booklet.pdf',
-    logo: '/assets/logos/solutions/icons/sheqx.png',
-    icon: '/assets/logos/solutions/icons/sheqx.png',
+    logo: '/assets/logos/solutions/icons/sheqx.png?v=3',
+    icon: '/assets/logos/solutions/icons/sheqx.png?v=3',
     screenshot: '/assets/screenshots/sheqx-dashboard.webp',
     youtubeId: 'hW3EPWIKj9s',
     name: 'SHEQX®',
@@ -118,8 +118,8 @@ export const solutionDetails = {
 
   msx: {
     infographic: '/assets/infographics/msx-infographic-v3.pdf',
-    logo: '/assets/logos/solutions/icons/msx.png',
-    icon: '/assets/logos/solutions/icons/msx.png',
+    logo: '/assets/logos/solutions/icons/msx.png?v=3',
+    icon: '/assets/logos/solutions/icons/msx.png?v=3',
     screenshot: '/assets/screenshots/msx-dashboard.webp',
     name: 'MSX®',
     tag: 'Integrated Management System',
@@ -164,8 +164,8 @@ export const solutionDetails = {
 
   msxcyber: {
     infographic: '/assets/infographics/msxcyber-infographic-v3.pdf',
-    logo: '/assets/logos/solutions/icons/msxcyber.png',
-    icon: '/assets/logos/solutions/icons/msxcyber.png',
+    logo: '/assets/logos/solutions/icons/msxcyber.png?v=3',
+    icon: '/assets/logos/solutions/icons/msxcyber.png?v=3',
     screenshot: '/assets/screenshots/msxcyber-dashboard.webp',
     youtubeId: '5hZX0WIebCo',
     name: 'MSXCyber®',
@@ -249,8 +249,8 @@ export const solutionDetails = {
   erm: {
     infographic: '/assets/infographics/erm-infographic-v4.pdf',
     booklet: '/resources/xgrc-erm-booklet.pdf',
-    logo: '/assets/logos/solutions/icons/erm.png',
-    icon: '/assets/logos/solutions/icons/erm.png',
+    logo: '/assets/logos/solutions/icons/erm.png?v=3',
+    icon: '/assets/logos/solutions/icons/erm.png?v=3',
     screenshot: '/assets/screenshots/erm-dashboard-new.webp',
     name: 'Enterprise Risk Management',
     tag: 'Enterprise Risk Intelligence',
@@ -434,8 +434,8 @@ export const solutionDetails = {
   },
 
   'integrated-assurance': {
-    logo: '/assets/logos/solutions/icons/integrated-assurance.png',
-    icon: '/assets/logos/solutions/icons/integrated-assurance.png',
+    logo: '/assets/logos/solutions/icons/integrated-assurance.png?v=3',
+    icon: '/assets/logos/solutions/icons/integrated-assurance.png?v=3',
     screenshot: '/assets/screenshots/integrated-assurance-dashboard.webp',
     booklet: '/resources/xgrc-integrated-assurance-brochure.pdf',
     name: 'Integrated Assurance',
@@ -480,8 +480,8 @@ export const solutionDetails = {
   envirx: {
     infographic: '/assets/infographics/envirx-infographic-v3.pdf',
     booklet: '/resources/xgrc-envirx-ebook.pdf',
-    logo: '/assets/logos/solutions/icons/envirx.png',
-    icon: '/assets/logos/solutions/icons/envirx.png',
+    logo: '/assets/logos/solutions/icons/envirx.png?v=3',
+    icon: '/assets/logos/solutions/icons/envirx.png?v=3',
     screenshot: '/assets/screenshots/envirx-dashboard.webp',
     name: 'ENVIRX®',
     tag: 'Environmental Compliance & Monitoring',
@@ -527,8 +527,8 @@ export const solutionDetails = {
 
   esg: {
     infographic: '/assets/infographics/esg-infographic-v4.pdf',
-    logo: '/assets/logos/solutions/icons/esg.png',
-    icon: '/assets/logos/solutions/icons/esg.png',
+    logo: '/assets/logos/solutions/icons/esg.png?v=3',
+    icon: '/assets/logos/solutions/icons/esg.png?v=3',
     screenshot: '/assets/screenshots/esg-dashboard.webp',
     youtubeId: 'v3_97N3WUuI',
     name: 'ESG',
@@ -594,8 +594,8 @@ export const solutionDetails = {
   },
 
   'compliance-hub': {
-    logo: '/assets/logos/solutions/icons/compliance-hub.png',
-    icon: '/assets/logos/solutions/icons/compliance-hub.png',
+    logo: '/assets/logos/solutions/icons/compliance-hub.png?v=3',
+    icon: '/assets/logos/solutions/icons/compliance-hub.png?v=3',
     screenshot: '/assets/screenshots/compliance-hub-dashboard-v2.webp',
     booklet: '/resources/xgrc-compliance-hub-booklet.pdf',
     youtubeId: 'itta_NfEvOU',
@@ -640,24 +640,24 @@ export const solutionDetails = {
   },
 
   xlogic: {
-    logo: '/assets/logos/solutions/icons/xlogic.png',
-    icon: '/assets/logos/solutions/icons/xlogic.png',
+    logo: '/assets/logos/solutions/icons/xlogic.png?v=3',
+    icon: '/assets/logos/solutions/icons/xlogic.png?v=3',
     screenshot: '/assets/screenshots/xlogic-dashboard.webp',
-    name: 'XLOGIC®',
+    name: 'XLOGIC',
     tag: 'Governance Execution',
-    metaTitle: 'XLOGIC® Governance Execution | XGRC®',
-    // XLOGIC® go-to-market (7.3): the Free plan page.
+    metaTitle: 'XLOGIC Governance Execution | XGRC®',
+    // XLOGIC go-to-market (7.3): the Free plan page.
     freeLink: { href: '/xlogic-free', label: 'Start free, no card' },
     headline: 'Policies that work. Controls that are actually enforced.',
-    lede: 'XLOGIC® converts governance frameworks, policies, and controls into structured, enforceable workflows, so compliance is built into how work gets done, not bolted on afterwards through audits.',
-    metaDescription: 'XLOGIC® converts governance frameworks, policies and controls into structured, enforceable workflows, so compliance is built into how work gets done.',
+    lede: 'XLOGIC converts governance frameworks, policies, and controls into structured, enforceable workflows, so compliance is built into how work gets done, not bolted on afterwards through audits.',
+    metaDescription: 'XLOGIC converts governance frameworks, policies and controls into structured, enforceable workflows, so compliance is built into how work gets done.',
     challenges: [
       { title: 'Policies approved and filed, never operationalised', body: 'Documents are published. Employees are notified. Controls are never implemented. The gap between policy and practice grows with every update.' },
       { title: 'Frameworks defined at board level, disconnected from operations', body: 'Governance structures documented in reports. Day-to-day operations run on institutional knowledge, habit, and workarounds.' },
       { title: 'Evidence collected reactively', body: 'Compliance evidence gathered when an audit is announced, not continuously as work is performed. Evidence quality reflects urgency, not accuracy.' },
       { title: 'Controls that exist on paper only', body: 'Internal audit reveals controls that are documented but not operating effectively. Management responses are familiar words.' },
     ],
-    overview: 'XLOGIC® is the governance execution layer. It takes the policies, frameworks, and controls defined in XGRC® and converts them into structured workflows with accountability, evidence capture, and continuous compliance monitoring built in.',
+    overview: 'XLOGIC is the governance execution layer. It takes the policies, frameworks, and controls defined in XGRC® and converts them into structured workflows with accountability, evidence capture, and continuous compliance monitoring built in.',
     stats: [
       { value: 'Policy-to', label: 'Workflow conversion' },
       { value: 'Continuous', label: 'Evidence capture' },
@@ -671,22 +671,22 @@ export const solutionDetails = {
     standards: ['King V', 'ISO 9001', 'ISO 27001', 'COSO'],
     related: ['msx', 'erm', 'integrated-assurance'],
     geo: {
-      definition: 'XLOGIC® is a governance execution solution within XGRC® Software that converts policies, frameworks, controls and obligations into structured workflows with accountability, evidence capture and auditability.',
-      usage: 'Organisations typically adopt XLOGIC® when policies are approved and filed but never operationalised, governance frameworks are documented at board level but disconnected from daily operations, and compliance evidence is gathered reactively only once an audit is announced.',
-      notThis: 'XLOGIC® is not a document repository. It helps organisations operationalise governance by linking policies, controls and obligations to real work, accountability and evidence, so compliance is built into how work gets done, not filed away after the fact.',
+      definition: 'XLOGIC is a governance execution solution within XGRC® Software that converts policies, frameworks, controls and obligations into structured workflows with accountability, evidence capture and auditability.',
+      usage: 'Organisations typically adopt XLOGIC when policies are approved and filed but never operationalised, governance frameworks are documented at board level but disconnected from daily operations, and compliance evidence is gathered reactively only once an audit is announced.',
+      notThis: 'XLOGIC is not a document repository. It helps organisations operationalise governance by linking policies, controls and obligations to real work, accountability and evidence, so compliance is built into how work gets done, not filed away after the fact.',
       faqs: [
-        { q: 'How is XLOGIC® different from a document management system?', a: 'A document system stores policies. XLOGIC® converts them into structured, assigned, trackable workflows with continuous evidence capture, the difference between filing a policy and operationalising it.' },
-        { q: 'Which frameworks does XLOGIC® support?', a: 'XLOGIC® supports King V, ISO 9001, ISO 27001 and COSO-aligned governance structures.' },
-        { q: 'Can XLOGIC® show whether a control is actually working?', a: 'Yes. Control effectiveness tracking and continuous evidence collection show whether controls operate in practice, not just whether they\'re documented.' },
-        { q: 'Do we need MSX® to use XLOGIC®?', a: 'No. XLOGIC® runs independently and connects to MSX®, ERM and Integrated Assurance where organisations use those solutions too.' },
+        { q: 'How is XLOGIC different from a document management system?', a: 'A document system stores policies. XLOGIC converts them into structured, assigned, trackable workflows with continuous evidence capture, the difference between filing a policy and operationalising it.' },
+        { q: 'Which frameworks does XLOGIC support?', a: 'XLOGIC supports King V, ISO 9001, ISO 27001 and COSO-aligned governance structures.' },
+        { q: 'Can XLOGIC show whether a control is actually working?', a: 'Yes. Control effectiveness tracking and continuous evidence collection show whether controls operate in practice, not just whether they\'re documented.' },
+        { q: 'Do we need MSX® to use XLOGIC?', a: 'No. XLOGIC runs independently and connects to MSX®, ERM and Integrated Assurance where organisations use those solutions too.' },
       ],
     },
   },
 
   maia: {
     infographic: '/assets/infographics/maia-infographic-v3.pdf',
-    logo: '/assets/logos/solutions/icons/maia.png',
-    icon: '/assets/logos/solutions/icons/maia.png',
+    logo: '/assets/logos/solutions/icons/maia.png?v=3',
+    icon: '/assets/logos/solutions/icons/maia.png?v=3',
     screenshot: '/assets/screenshots/maia-dashboard-v2.webp',
     youtubeId: 'inqCqT0uW2k',
     name: 'MAIA®',
@@ -809,8 +809,8 @@ export const solutionDetails = {
   },
 
   xrm: {
-    logo: '/assets/logos/solutions/icons/xrm.png',
-    icon: '/assets/logos/solutions/icons/xrm.png',
+    logo: '/assets/logos/solutions/icons/xrm.png?v=3',
+    icon: '/assets/logos/solutions/icons/xrm.png?v=3',
     screenshot: '/assets/screenshots/xrm-dashboard.png',
     appUrl: 'xrm.xgrc.cloud',
     poweredBy: 'XGRC®',
@@ -1911,8 +1911,8 @@ export const articleFaqs = {
     { q: 'Which industries need this most?', a: 'Any organisation using contractors or suppliers on safety-critical sites, mining, construction, manufacturing and facilities management see this gap most often.' },
   ],
   'policy-management-vs-governance-execution': [
-    { q: 'Do we need to replace our policy management system to use XLOGIC®?', a: 'No. XLOGIC® works alongside existing policy and document management tools, focusing on operationalising the obligations those policies contain.' },
-    { q: 'How does XLOGIC® prove a control is actually working?', a: 'Through continuous evidence collection and control effectiveness tracking, rather than relying on a one-time acknowledgement or an annual audit sample.' },
+    { q: 'Do we need to replace our policy management system to use XLOGIC?', a: 'No. XLOGIC works alongside existing policy and document management tools, focusing on operationalising the obligations those policies contain.' },
+    { q: 'How does XLOGIC prove a control is actually working?', a: 'Through continuous evidence collection and control effectiveness tracking, rather than relying on a one-time acknowledgement or an annual audit sample.' },
     { q: 'Is this only relevant for large, complex organisations?', a: 'No, any organisation that has had an audit finding saying a documented control "was not operating effectively" has experienced this exact gap.' },
   ],
   'integrated-assurance-vs-internal-audit-software': [
@@ -1967,7 +1967,7 @@ export const articleFaqs = {
   'building-a-compliance-culture': [
     { q: 'What is a compliance culture?', a: 'A compliance culture exists when employees understand what is expected of them, know where to find current governance information, and take responsibility for applying policies in their everyday work, rather than compliance being something only a dedicated team manages.' },
     { q: 'Why is policy management not enough on its own to build a compliance culture?', a: 'Publishing a policy does not make employees aware of it, tell them what changed, or hold anyone accountable for applying it. Without ownership, accessibility, and consistent communication, policies remain documents rather than practised behaviour.' },
-    { q: 'How does XLOGIC® support compliance culture?', a: 'XLOGIC® converts policies, frameworks, controls, and obligations into structured workflows with clear ownership, evidence capture, and auditability, so governance expectations translate into tracked, accountable action rather than a document filed and forgotten.' },
+    { q: 'How does XLOGIC support compliance culture?', a: 'XLOGIC converts policies, frameworks, controls, and obligations into structured workflows with clear ownership, evidence capture, and auditability, so governance expectations translate into tracked, accountable action rather than a document filed and forgotten.' },
   ],
   'future-of-compliance-strategic-business-asset': [
     { q: 'What does strategic compliance mean?', a: 'Using knowledge of requirements, controls and evidence to inform business choices while the options are still open. Compliance keeps its core responsibilities but contributes earlier to service design, investment, change and oversight.' },
@@ -1982,14 +1982,14 @@ export const articleFaqs = {
     { q: 'Why is AI governance important?', a: 'AI governance helps organisations maintain accountability, manage access, protect organisational information, introduce appropriate human oversight and improve the traceability of AI-supported activities.' },
     { q: 'What is governed AI?', a: 'Governed AI is the use of artificial intelligence within defined organisational controls, responsibilities and oversight mechanisms, rather than providing unrestricted access to AI capabilities.' },
     { q: 'What is M.A.I.A.®?', a: 'M.A.I.A.® represents XGRC®\'s approach to bringing artificial intelligence into a governed enterprise environment, where intelligence operates within structured organisational controls.' },
-    { q: 'How does XLOGIC® support AI governance?', a: 'XLOGIC® Executable Governance Architecture works alongside the XGRC® Platform and M.A.I.A.® to support the broader objective of making AI activity more controlled, accountable and traceable.' },
+    { q: 'How does XLOGIC support AI governance?', a: 'XLOGIC Executable Governance Architecture works alongside the XGRC® Platform and M.A.I.A.® to support the broader objective of making AI activity more controlled, accountable and traceable.' },
   ],
   'why-sheq-incidents-are-often-a-data-problem': [
     { q: 'What is SHEQ management?', a: 'SHEQ management refers to the structured management of safety, health, environmental and quality processes across an organisation, including incidents, inspections, risks, corrective actions, audits and compliance requirements.' },
     { q: 'Why is SHEQ data visibility important?', a: 'SHEQ data visibility helps organisations identify relationships between incidents, near misses, inspections, findings, risks and corrective actions. Greater visibility can help management recognise emerging patterns and intervene earlier.' },
     { q: 'How can fragmented SHEQ data increase risk?', a: 'When SHEQ information is managed across separate systems or processes, related events may not be recognised as part of the same trend. This can make emerging operational risks more difficult to identify.' },
     { q: 'Why are corrective actions important in SHEQ management?', a: 'Corrective actions provide a structured response to identified weaknesses or issues. Clear ownership, deadlines and evidence help organisations ensure that identified risks are addressed rather than simply recorded.' },
-    { q: 'What is SHEQX®?', a: 'SHEQX® by XGRC® Software provides a structured environment for bringing SHEQ processes, information, responsibilities and actions together. Powered by the XGRC® Platform and XLOGIC® Executable Governance Architecture, it supports structured, controlled and auditable SHEQ workflows.' },
+    { q: 'What is SHEQX®?', a: 'SHEQX® by XGRC® Software provides a structured environment for bringing SHEQ processes, information, responsibilities and actions together. Powered by the XGRC® Platform and XLOGIC Executable Governance Architecture, it supports structured, controlled and auditable SHEQ workflows.' },
   ],
   'can-your-organisation-prove-it-is-compliant-right-now': [
     { q: 'What is demonstrable compliance?', a: 'Demonstrable compliance means an organisation can provide clear evidence showing how applicable obligations have been identified, assigned, addressed, monitored and supported by appropriate records.' },
@@ -2010,7 +2010,7 @@ export const articleFaqs = {
     { q: 'Why do management systems become fragmented?', a: 'Fragmentation usually builds up gradually, as different departments introduce their own spreadsheets, document repositories, audit processes, action trackers and one-off systems to meet individual requirements.' },
     { q: 'What are the hidden costs of siloed management systems?', a: 'Fragmented systems increase administrative effort through duplicated processes, repeated information requests, version reconciliation, report consolidation, action follow-ups and manual audit preparation, work that adds up even though it rarely appears as a distinct line item.' },
     { q: 'What are the benefits of integrating management systems?', a: 'Integration reduces unnecessary duplication, establishes more consistent controls, strengthens accountability, improves traceability and gives management a more consolidated view of organisational performance.' },
-    { q: 'What is MSX®?', a: 'MSX® by XGRC® Software provides an integrated environment for managing multiple management-system requirements through a more consistent structure. It operates within the XGRC® Platform and is powered by XLOGIC® Executable Governance Architecture.' },
+    { q: 'What is MSX®?', a: 'MSX® by XGRC® Software provides an integrated environment for managing multiple management-system requirements through a more consistent structure. It operates within the XGRC® Platform and is powered by XLOGIC Executable Governance Architecture.' },
   ],
   'cybersecurity-awareness-month-from-awareness-to-action': [
     { q: 'Why is Cybersecurity Awareness Month important?', a: 'Cybersecurity Awareness Month, held every October, helps organisations reinforce secure behaviours, educate employees about evolving threats and encourage greater awareness of individual and organisational cybersecurity responsibilities.' },
@@ -2103,7 +2103,7 @@ export const articleFaqs = {
     { q: 'What is the difference between connected governance and GRC software?', a: 'Connected governance is an operating approach: risks, obligations, controls, findings and actions are linked and owned so you can trace any issue end to end. GRC software is one way to support that approach. Software without defined relationships and owners simply moves the silos onto a new screen, while the approach can begin with a single business unit before any tool changes.' },
     { q: 'Where should an organisation start with connected governance?', a: 'Start by mapping where governance information currently lives and who owns each register. Then pick one material risk and trace it from obligation to control, test result, findings, actions and evidence. The points where that trail breaks show where linking records will deliver the most value, and they make a far better first project than a big-bang system replacement.' },
     { q: 'How does connected governance support combined assurance under King V?', a: 'Combined assurance needs a shared view of which risks are covered by management, specialist functions and internal or external audit. When each line keeps separate records, gaps and duplicated reviews stay hidden. Linking assurance activity to the same risk and control records lets audit and risk committees see coverage, overlaps and unassured material risks in one place.' },
-    { q: 'Does XGRC® replace our existing specialist tools?', a: 'Not necessarily. XGRC® is designed to bring risk, compliance, SHEQ, assurance and information security records into one connected platform, and organisations often phase adoption by module or business unit. XLOGIC® then turns policies and obligations into owned workflows with evidence capture. The right sequence depends on where fragmentation is causing the most risk today.' },
+    { q: 'Does XGRC® replace our existing specialist tools?', a: 'Not necessarily. XGRC® is designed to bring risk, compliance, SHEQ, assurance and information security records into one connected platform, and organisations often phase adoption by module or business unit. XLOGIC then turns policies and obligations into owned workflows with evidence capture. The right sequence depends on where fragmentation is causing the most risk today.' },
   ],
   'popia-data-breach-notification': [
     { q: 'How quickly must a data breach be reported under POPIA?', a: 'POPIA requires notification to the Information Regulator and affected data subjects as soon as reasonably possible after the compromise is discovered. There is no fixed number of hours, unlike the GDPR\'s 72-hour rule, but the Regulator expects any delay to be justified. A delay is permitted where a public body responsible for investigating crime or the Regulator decides notification would impede a criminal investigation.' },
@@ -2215,7 +2215,7 @@ export const milestones = [
   { year: '2025', title: 'Integrated Assurance launches', body: 'Internal audit and combined assurance coordination arrives, linked directly to risks, controls and actions.' },
   { year: '2025', title: 'XGRC® Compliance Hub launches', body: 'Structured supplier, contractor and third-party compliance arrives, through onboarding, vetting and ongoing assurance.' },
   { year: '2025', title: 'Microsoft Power BI connector launches', body: 'A native Power BI connector launches, extending XGRC® reporting and analytics into customers\' existing Microsoft environments.' },
-  { year: '2026', title: 'XLOGIC® launches', body: 'XLOGIC® launches as the governance execution layer, converting policies and controls into structured, enforceable workflows.' },
+  { year: '2026', title: 'XLOGIC launches', body: 'XLOGIC launches as the governance execution layer, converting policies and controls into structured, enforceable workflows.' },
   { year: '2026', title: 'Contract Framework v4.0 takes effect', body: 'The SaaS Agreement and NDA move to v4.0, aligning the legal framework that incorporates the Data Processing Addendum and Website Policies by reference.' },
   { year: 'Jul 2026', title: 'Version 5 releases', body: 'XGRC® Version 5 releases, the platform\'s latest architecture across every discipline.' },
   { year: 'Sep 2026', title: 'ISO/IEC 42001 certification audit', body: 'XGRC® undergoes its ISO/IEC 42001 certification audit, targeting governed AI certification for MAIA®.' },
@@ -2374,7 +2374,7 @@ export const tourDashboards = [
     blurb: 'Safety, health, environment, risk and quality in one view, from LTIFR and permits to certification status, site by site.',
     shows: ['LTIFR', 'Site x pillar status', 'Board pack PDF'], kpis: 22, exceptions: 7 },
   { slug: 'ai-governance', title: 'AI Governance KPI Dashboard', tag: 'AI Governance', solution: 'ai-governance', solutionLabel: 'AI Governance', href: '/ai-governance/',
-    blurb: 'EU AI Act classification, ISO/IEC 42001 controls and evidence, with XLOGIC®, Asgard and MAIA® signals correlated per AI system.',
+    blurb: 'EU AI Act classification, ISO/IEC 42001 controls and evidence, with XLOGIC, Asgard and MAIA® signals correlated per AI system.',
     shows: ['EU AI Act', 'ISO/IEC 42001', 'Cross-system gaps'], kpis: 59, exceptions: 8 },
   { slug: 'incidents', title: 'Incident & Near-Miss Trends', tag: 'Incidents', solution: 'sheqx', solutionLabel: 'Incident management', href: '/use-cases/incident-management/',
     blurb: 'Volume, severity and closure speed across sites, the near-miss ratio as a leading indicator, and root causes ranked by impact.',

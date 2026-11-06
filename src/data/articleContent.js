@@ -769,7 +769,7 @@ The trigger is usually a combination of factors: a large or growing supplier and
 
 How Compliance Hub Fits Alongside Procurement
 
-XGRC® <a href="/compliance-hub/">Compliance Hub</a> is not a procurement replacement — it runs alongside existing procurement systems, managing supplier onboarding, document expiry tracking, risk-based scoring, and ongoing compliance monitoring. Compliance obligations connect to the same governed data foundation as XGRC®'s other solutions, including <a href="/xlogic/">XLOGIC®</a> for turning compliance policy into enforced, evidenced workflow.
+XGRC® <a href="/compliance-hub/">Compliance Hub</a> is not a procurement replacement — it runs alongside existing procurement systems, managing supplier onboarding, document expiry tracking, risk-based scoring, and ongoing compliance monitoring. Compliance obligations connect to the same governed data foundation as XGRC®'s other solutions, including <a href="/xlogic/">XLOGIC</a> for turning compliance policy into enforced, evidenced workflow.
 
 Procurement answers what you bought and from whom. Supplier compliance answers whether you should have. Organisations need both systems, doing different jobs, rather than asking one to cover for the other.
 
@@ -793,9 +793,9 @@ When Organisations Need Governance Execution
 
 The signal is usually an audit or incident finding: a documented control that turns out not to be operating effectively, a governance framework defined at board level with no visible connection to daily operations, or compliance evidence that only gets gathered reactively once an audit is announced.
 
-How XLOGIC® Delivers Governance Execution
+How XLOGIC Delivers Governance Execution
 
-<a href="/xlogic/">XLOGIC®</a> is XGRC®'s governance execution solution — it converts policies, frameworks, controls and obligations into structured workflows with assigned accountability, continuous evidence capture, and full auditability. It is not a document repository; it operationalises what the policy already says should happen, and gives you evidence that it did.
+<a href="/xlogic/">XLOGIC</a> is XGRC®'s governance execution solution — it converts policies, frameworks, controls and obligations into structured workflows with assigned accountability, continuous evidence capture, and full auditability. It is not a document repository; it operationalises what the policy already says should happen, and gives you evidence that it did.
 
 Policy management proves a document exists and was distributed. Governance execution proves the obligations inside it are actually being met. Most organisations already have the first. Very few have built the second — until an audit shows them the difference. The people side of that gap, why acknowledgement doesn't equal adoption, is covered in <a href="/insights/building-a-compliance-culture/">building a compliance culture</a>.`,
 
@@ -1967,9 +1967,9 @@ Managing policies manually becomes increasingly difficult as organisations grow.
 
 A connected approach to policy management can help organisations establish stronger processes around policy creation and ownership, review and approval, version control, distribution and accessibility, employee acknowledgement, scheduled reviews, and governance oversight. The objective is not simply to digitise documents. It is to create a controlled environment where policies remain current, accessible, accountable, and connected to organisational compliance.
 
-How XLOGIC® Supports Stronger Policy Management
+How XLOGIC Supports Stronger Policy Management
 
-Building a strong compliance culture requires organisations to make governance part of everyday operations. <a href="/xlogic/">XLOGIC®</a> converts policies, frameworks, controls, and obligations into structured workflows with clear accountability, evidence capture, and auditability, so a policy is not just published but tracked through to the people responsible for applying it.
+Building a strong compliance culture requires organisations to make governance part of everyday operations. <a href="/xlogic/">XLOGIC</a> converts policies, frameworks, controls, and obligations into structured workflows with clear accountability, evidence capture, and auditability, so a policy is not just published but tracked through to the people responsible for applying it.
 
 Instead of relying on fragmented documents and manual processes, organisations can establish a more consistent approach to managing important policy information. This helps organisations strengthen policy governance, document control, organisational accountability, employee access to information, consistency across operations, and compliance oversight. By improving the way policies are managed, organisations can create stronger connections between governance expectations and everyday employee behaviour.
 
@@ -2175,7 +2175,7 @@ This changes the conversation around enterprise AI. Instead of asking only what 
 
 Connecting AI With Executable Governance
 
-Governance becomes more effective when requirements translate into organisational processes. Combined with the XGRC® Platform and XLOGIC® Executable Governance Architecture, the M.A.I.A.® approach supports the broader objective of making AI activity more controlled, accountable and traceable.
+Governance becomes more effective when requirements translate into organisational processes. Combined with the XGRC® Platform and XLOGIC Executable Governance Architecture, the M.A.I.A.® approach supports the broader objective of making AI activity more controlled, accountable and traceable.
 
 This matters because AI governance should not exist separately from organisational governance: policies need responsibilities, responsibilities need controls, controls need oversight, actions need accountability, and governance activities need traceability. Bringing AI into that environment allows organisations to treat intelligence as part of the governance architecture rather than as an external tool operating beyond it.
 
@@ -2219,7 +2219,7 @@ Close the AI Governance Gap
 
 AI adoption should not require organisations to choose between innovation and control. The opportunity is to enable both. M.A.I.A.® by XGRC® Software brings artificial intelligence into a governed enterprise environment designed around accountability, control and traceability.
 
-Combined with the XGRC® Platform and XLOGIC® Executable Governance Architecture, organisations can begin moving from simply adopting AI toward governing how AI operates within the enterprise. Speak to an XGRC® specialist to discover how M.A.I.A.® can help your organisation build a stronger foundation for governed enterprise AI.`,
+Combined with the XGRC® Platform and XLOGIC Executable Governance Architecture, organisations can begin moving from simply adopting AI toward governing how AI operates within the enterprise. Speak to an XGRC® specialist to discover how M.A.I.A.® can help your organisation build a stronger foundation for governed enterprise AI.`,
 'why-sheq-incidents-are-often-a-data-problem': `Serious Incidents Rarely Happen Without Warning
 
 Serious safety, health, environmental and quality incidents rarely happen without warning. SHEQ management exists to give organisations early visibility of the safety, health, environmental and quality risks that could otherwise develop into serious incidents. Before an incident occurs, there are often smaller signals: recurring observations, overdue corrective actions, inspection findings, near misses, equipment concerns, audit findings and changes in operational conditions. The challenge is not always that organisations lack this information. It is that the information exists in different places, reaches the right people too late, or is not connected in a way that allows emerging risks to be identified, raising an important question for modern SHEQ management: how much risk is hidden inside fragmented information?
@@ -2319,9 +2319,9 @@ Building a More Proactive SHEQ Environment With SHEQX®
 
 The objective of SHEQ management should not simply be to become better at recording incidents. It should be to reduce the likelihood of those incidents occurring in the first place. SHEQX® by XGRC® Software supports organisations in bringing SHEQ processes, information, responsibilities and actions into a structured management environment. This creates greater visibility across operational conditions while supporting more consistent management of risks, actions and compliance requirements. Instead of treating incidents, inspections, risks and actions as isolated activities, organisations can begin creating stronger connections between them.
 
-Turning SHEQ Information Into Controlled Action With XLOGIC®
+Turning SHEQ Information Into Controlled Action With XLOGIC
 
-Information only creates value when the organisation can act on it. Powered by the XGRC® Platform and XLOGIC® Executable Governance Architecture, SHEQX® helps transform disconnected SHEQ information into structured, controlled and auditable workflows: an inspection can identify an issue, the issue can trigger an action, the action can have an owner and a deadline, evidence can support completion, and management can maintain oversight. This creates a clearer relationship between the information the organisation captures and the actions required to manage risk.
+Information only creates value when the organisation can act on it. Powered by the XGRC® Platform and XLOGIC Executable Governance Architecture, SHEQX® helps transform disconnected SHEQ information into structured, controlled and auditable workflows: an inspection can identify an issue, the issue can trigger an action, the action can have an owner and a deadline, evidence can support completion, and management can maintain oversight. This creates a clearer relationship between the information the organisation captures and the actions required to manage risk.
 
 From Reactive SHEQ to Proactive SHEQ
 
@@ -2476,9 +2476,9 @@ Instead of compliance information remaining fragmented across individual departm
 
 This enables compliance to become more visible, structured and demonstrable.
 
-Moving Beyond Static Compliance Registers With XLOGIC®
+Moving Beyond Static Compliance Registers With XLOGIC
 
-A compliance register tells an organisation what its obligations are, but governance must also ensure those obligations translate into action. Through XLOGIC® Executable Governance Architecture, governance requirements can move beyond static registers and connect with controlled workflows, responsibilities and organisational actions, strengthening the relationship between a requirement and its execution.
+A compliance register tells an organisation what its obligations are, but governance must also ensure those obligations translate into action. Through XLOGIC Executable Governance Architecture, governance requirements can move beyond static registers and connect with controlled workflows, responsibilities and organisational actions, strengthening the relationship between a requirement and its execution.
 
 An obligation can have an owner, a requirement can trigger an action, an action can have a deadline, evidence can support its completion, and outstanding issues can receive management attention. Compliance becomes something the organisation actively manages rather than something it periodically checks.
 
@@ -2590,9 +2590,9 @@ Creating a Connected Environmental Management Environment with ENVIRX®
 
 ENVIRX® by XGRC® Software supports organisations in structuring environmental governance within the broader XGRC® Platform. Rather than treating environmental information as an isolated dataset, organisations can connect environmental performance with wider governance and organisational decision-making. This creates greater visibility across environmental responsibilities, risks, actions and governance processes, so that instead of environmental management operating separately from enterprise governance, information can contribute to a broader understanding of organisational risk and performance.
 
-Moving From Environmental Data to Action With XLOGIC®
+Moving From Environmental Data to Action With XLOGIC
 
-Collecting environmental data is only the beginning. When an environmental issue requires action, governance processes need to ensure that responsibility is clear and progress can be monitored. Through XLOGIC® Executable Governance Architecture, environmental information can connect with controlled workflows, responsibilities, risks and organisational actions: an issue can require action, an action can have an owner, an owner can have a deadline, and evidence can demonstrate completion while management maintains oversight.
+Collecting environmental data is only the beginning. When an environmental issue requires action, governance processes need to ensure that responsibility is clear and progress can be monitored. Through XLOGIC Executable Governance Architecture, environmental information can connect with controlled workflows, responsibilities, risks and organisational actions: an issue can require action, an action can have an owner, an owner can have a deadline, and evidence can demonstrate completion while management maintains oversight.
 
 This provides greater traceability between environmental information and organisational response. Environmental governance becomes more than reporting what happened; it becomes managing what happens next.
 
@@ -2705,7 +2705,7 @@ MSX® by XGRC® Software provides an integrated environment for organisations se
 
 Turning Management Requirements Into Controlled Processes
 
-An integrated approach becomes more valuable once requirements translate into structured organisational activity. Operating within the XGRC® Platform and powered by XLOGIC® Executable Governance Architecture, MSX® supports structured workflows, accountability and traceability across management-system processes, connecting management requirements with execution: a requirement can form part of a process, a finding can generate an action, that action can be assigned, responsibility can be established, evidence can support its completion, and management can maintain oversight throughout. The organisation moves away from isolated compliance activities toward a more integrated, controlled and auditable management environment.
+An integrated approach becomes more valuable once requirements translate into structured organisational activity. Operating within the XGRC® Platform and powered by XLOGIC Executable Governance Architecture, MSX® supports structured workflows, accountability and traceability across management-system processes, connecting management requirements with execution: a requirement can form part of a process, a finding can generate an action, that action can be assigned, responsibility can be established, evidence can support its completion, and management can maintain oversight throughout. The organisation moves away from isolated compliance activities toward a more integrated, controlled and auditable management environment.
 
 Integration Should Reduce Complexity
 
@@ -4025,7 +4025,7 @@ How XGRC® Supports Connected Governance
 
 <a href="/grc-software/">XGRC® Software</a> is a governance, risk and compliance platform built around linked records. <a href="/erm/">Enterprise Risk Management</a> links risks to controls, audit findings and actions and supports board reporting aligned to ISO 31000, COSO and King V. <a href="/integrated-assurance/">Integrated Assurance</a> coordinates internal audit and combined assurance against the same risks and controls. <a href="/msx/">MSX®</a> packages selected governance, risk, compliance and management system capabilities into one coordinated management system.
 
-<a href="/xlogic/">XLOGIC®</a> is the governance execution layer. It converts policies, frameworks, controls and obligations into structured workflows with clear accountability, evidence capture and an auditable record, which is how a policy statement becomes work that someone owns and can prove they did.
+<a href="/xlogic/">XLOGIC</a> is the governance execution layer. It converts policies, frameworks, controls and obligations into structured workflows with clear accountability, evidence capture and an auditable record, which is how a policy statement becomes work that someone owns and can prove they did.
 
 If you want a structured starting point, our <a href="/use-cases/compliance-management/">compliance management checklist</a> helps you map current obligations, owners and evidence, which is the first of the five steps above.
 

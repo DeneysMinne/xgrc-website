@@ -20,5 +20,5 @@ export const solutionLooks = {
 const ICONS = ['ai-governance', 'msx', 'msxcyber', 'esg', 'sheqx', 'erm', 'integrated-assurance', 'envirx', 'compliance-hub', 'xlogic', 'maia', 'xrm'];
 export const lookFor = (slug) => solutionLooks[slug] || solutionLooks.msx;
 // Bump an icon's version when its image is replaced, so caches fetch the new file
-const ICON_VER = { 'ai-governance': 2 };
-export const solutionIcon = (slug) => (ICONS.includes(slug) ? `/assets/logos/solutions/icons/${slug}.png${ICON_VER[slug] ? `?v=${ICON_VER[slug]}` : ''}` : null);
+const ICON_VER = 3;
+export const solutionIcon = (slug) => (ICONS.includes(slug) ? `/assets/logos/solutions/icons/${slug}.png?v=${ICON_VER}` : null);
