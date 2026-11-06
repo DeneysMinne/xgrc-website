@@ -46,17 +46,21 @@ const partnerLogo = { 'OSA International': 'osa-international.png', 'GRC Link': 
         <h1 class="fp-title">Confidence and control <span class="fp-hl">across governance, risk and compliance.</span></h1>
         <p class="fp-dek">Modern organisations do not struggle with a lack of data. They struggle with fragmented oversight. Risk sits in one system. Compliance in another. Assurance in spreadsheets. XGRC® Software exists to restore confidence and control.</p>
       </div>
-      <div class="stack" aria-hidden="true">
-        <div class="stack-tiles">
-          {stack.map((s, i) => (
-            <span class="stack-tile" style={`--racc: ${lookFor(s.slug).acc}; --d: ${i * 70}ms`}>
-              <img src={solutionIcon(s.slug)} alt="" width="40" height="40" loading="eager" />
-              <i>{s.name.replace('XGRC® ', '')}</i>
-            </span>
-          ))}
-        </div>
-        <div class="stack-beams">{stack.map((s, i) => <span style={`--racc: ${lookFor(s.slug).acc}; --d: ${i * 0.25}s`}></span>)}</div>
-        <div class="stack-base"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" width="26" height="26" /><span>One secure, auditable data foundation</span></div>
+      <div class="stack">
+        <nav class="stack-tiles" aria-label="XGRC® solutions">
+          {stack.map((s, i) => {
+            const linked = !!solutionDetails[s.slug] || !!s.customPage;
+            const T = linked ? 'a' : 'span';
+            return (
+              <T class="stack-tile" style={`--racc: ${lookFor(s.slug).acc}; --d: ${i * 70}ms`} {...(linked ? { href: `/${s.slug}/` } : {})}>
+                <img src={solutionIcon(s.slug)} alt="" width="40" height="40" loading="eager" />
+                <i>{s.name.replace('XGRC® ', '')}</i>
+              </T>
+            );
+          })}
+        </nav>
+        <div class="stack-beams" aria-hidden="true">{stack.map((s, i) => <span style={`--racc: ${lookFor(s.slug).acc}; --d: ${i * 0.25}s`}></span>)}</div>
+        <div class="stack-base" aria-hidden="true"><img src="/assets/logos/brand/xgrc-icon-white.png" alt="" width="26" height="26" /><span>One secure, auditable data foundation</span></div>
       </div>
     </div>
   </section>
@@ -244,6 +248,9 @@ const partnerLogo = { 'OSA International': 'osa-international.png', 'GRC Link': 
   .stack-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; position: relative; z-index: 2; }
   .stack-tile { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 8px 12px; border-radius: 16px; background: linear-gradient(160deg, color-mix(in srgb, var(--racc) 14%, transparent), rgba(8, 18, 34, 0.9)); border: 1px solid color-mix(in srgb, var(--racc) 40%, transparent); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); animation: tileIn 0.7s var(--d) both cubic-bezier(0.16, 1, 0.3, 1), bob 7s calc(var(--d) * 4) ease-in-out infinite; }
   .stack-tile img { width: 58px; height: 58px; object-fit: contain; filter: drop-shadow(0 0 10px color-mix(in srgb, var(--racc) 50%, transparent)); }
+  a.stack-tile { text-decoration: none; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+  a.stack-tile:hover, a.stack-tile:focus-visible { border-color: var(--racc); box-shadow: 0 0 0 1px var(--racc), 0 14px 36px color-mix(in srgb, var(--racc) 35%, transparent); animation-play-state: paused; outline: none; }
+  a.stack-tile:hover i, a.stack-tile:focus-visible i { color: var(--ink); }
   .stack-tile i { font: 500 10.5px var(--font-mono); font-style: normal; color: var(--mute); text-align: center; line-height: 1.3; }
   .stack-beams { display: grid; grid-template-columns: repeat(12, 1fr); gap: 6px; height: 54px; padding: 0 8%; }
   .stack-beams span { width: 2px; justify-self: center; background: linear-gradient(180deg, transparent, var(--racc)); opacity: 0.55; position: relative; overflow: hidden; }
